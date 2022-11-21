@@ -7,7 +7,7 @@ name = "pypi"
 
 [dev-packages]
 flit = "==3.8.0"
-pylint = "==2.15.5"
+pylint = "==2.15.6"
 mypy = "==0.990"
 yapf = "==0.32.0"
 isort = "==5.10.1"
