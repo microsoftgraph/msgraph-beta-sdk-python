@@ -1,0 +1,10 @@
+from enum import Enum
+
+class EnrollmentNotificationTemplateType(Enum):
+    # Email Notification
+    Email = "email",
+    # Push Notification
+    Push = "push",
+    # Unknown Type
+    UnknownFutureValue = "unknownFutureValue",
+
