@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, locale_info, regional_format_overrides, translation_preferences
+entity = lazy_import('msgraph.generated.models.entity')
+locale_info = lazy_import('msgraph.generated.models.locale_info')
+regional_format_overrides = lazy_import('msgraph.generated.models.regional_format_overrides')
+translation_preferences = lazy_import('msgraph.generated.models.translation_preferences')
 
 class RegionalAndLanguageSettings(entity.Entity):
     @property

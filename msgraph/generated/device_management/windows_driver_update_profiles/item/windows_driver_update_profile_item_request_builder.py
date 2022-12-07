@@ -7,17 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import windows_driver_update_profile
-from ....models.o_data_errors import o_data_error
-from .assign import assign_request_builder
-from .assignments import assignments_request_builder
-from .assignments.item import windows_driver_update_profile_assignment_item_request_builder
-from .driver_inventories import driver_inventories_request_builder
-from .driver_inventories.item import windows_driver_update_inventory_item_request_builder
-from .execute_action import execute_action_request_builder
-from .sync_inventory import sync_inventory_request_builder
+assign_request_builder = lazy_import('msgraph.generated.device_management.windows_driver_update_profiles.item.assign.assign_request_builder')
+assignments_request_builder = lazy_import('msgraph.generated.device_management.windows_driver_update_profiles.item.assignments.assignments_request_builder')
+windows_driver_update_profile_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.windows_driver_update_profiles.item.assignments.item.windows_driver_update_profile_assignment_item_request_builder')
+driver_inventories_request_builder = lazy_import('msgraph.generated.device_management.windows_driver_update_profiles.item.driver_inventories.driver_inventories_request_builder')
+windows_driver_update_inventory_item_request_builder = lazy_import('msgraph.generated.device_management.windows_driver_update_profiles.item.driver_inventories.item.windows_driver_update_inventory_item_request_builder')
+execute_action_request_builder = lazy_import('msgraph.generated.device_management.windows_driver_update_profiles.item.execute_action.execute_action_request_builder')
+sync_inventory_request_builder = lazy_import('msgraph.generated.device_management.windows_driver_update_profiles.item.sync_inventory.sync_inventory_request_builder')
+windows_driver_update_profile = lazy_import('msgraph.generated.models.windows_driver_update_profile')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class WindowsDriverUpdateProfileItemRequestBuilder():
     """

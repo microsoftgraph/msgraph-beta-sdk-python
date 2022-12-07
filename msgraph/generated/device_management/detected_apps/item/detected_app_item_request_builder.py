@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import detected_app
-from ....models.o_data_errors import o_data_error
-from .managed_devices import managed_devices_request_builder
-from .managed_devices.item import managed_device_item_request_builder
+managed_devices_request_builder = lazy_import('msgraph.generated.device_management.detected_apps.item.managed_devices.managed_devices_request_builder')
+managed_device_item_request_builder = lazy_import('msgraph.generated.device_management.detected_apps.item.managed_devices.item.managed_device_item_request_builder')
+detected_app = lazy_import('msgraph.generated.models.detected_app')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class DetectedAppItemRequestBuilder():
     """

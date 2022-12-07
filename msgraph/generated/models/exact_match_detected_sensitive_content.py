@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import detected_sensitive_content_base, sensitive_content_location
+detected_sensitive_content_base = lazy_import('msgraph.generated.models.detected_sensitive_content_base')
+sensitive_content_location = lazy_import('msgraph.generated.models.sensitive_content_location')
 
 class ExactMatchDetectedSensitiveContent(detected_sensitive_content_base.DetectedSensitiveContentBase):
     def __init__(self,) -> None:

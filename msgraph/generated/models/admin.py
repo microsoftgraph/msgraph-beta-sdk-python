@@ -1,10 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import admin_report_settings, edge, service_announcement
-from .tenant_admin import sharepoint
-from .windows_updates import windows
+admin_report_settings = lazy_import('msgraph.generated.models.admin_report_settings')
+edge = lazy_import('msgraph.generated.models.edge')
+service_announcement = lazy_import('msgraph.generated.models.service_announcement')
+sharepoint = lazy_import('msgraph.generated.models.tenant_admin.sharepoint')
+windows = lazy_import('msgraph.generated.models.windows_updates.windows')
 
 class Admin(AdditionalDataHolder, Parsable):
     @property

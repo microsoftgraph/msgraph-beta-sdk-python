@@ -1,9 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity
-from .identity_governance import workflow
+entity = lazy_import('msgraph.generated.models.entity')
+workflow = lazy_import('msgraph.generated.models.identity_governance.workflow')
 
 class DeletedItemContainer(entity.Entity):
     def __init__(self,) -> None:

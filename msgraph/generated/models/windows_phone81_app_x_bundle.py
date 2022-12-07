@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import windows_package_information, windows_phone81_app_x
+windows_package_information = lazy_import('msgraph.generated.models.windows_package_information')
+windows_phone81_app_x = lazy_import('msgraph.generated.models.windows_phone81_app_x')
 
 class WindowsPhone81AppXBundle(windows_phone81_app_x.WindowsPhone81AppX):
     @property

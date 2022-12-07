@@ -1,14 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import legal_hold
-from .. import base_collection_pagination_count_response
+base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
+legal_hold = lazy_import('msgraph.generated.models.ediscovery.legal_hold')
 
 class LegalHoldCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the legalHolds property of the microsoft.graph.ediscovery.case entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new LegalHoldCollectionResponse and sets the default values.

@@ -1,13 +1,16 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import account, customer_payment, entity
+account = lazy_import('msgraph.generated.models.account')
+customer_payment = lazy_import('msgraph.generated.models.customer_payment')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class CustomerPaymentJournal(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def account(self,) -> Optional[account.Account]:

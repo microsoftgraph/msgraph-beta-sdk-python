@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import evidence_remediation_status, evidence_role, evidence_verdict
+evidence_remediation_status = lazy_import('msgraph.generated.models.security.evidence_remediation_status')
+evidence_role = lazy_import('msgraph.generated.models.security.evidence_role')
+evidence_verdict = lazy_import('msgraph.generated.models.security.evidence_verdict')
 
 class AlertEvidence(AdditionalDataHolder, Parsable):
     @property

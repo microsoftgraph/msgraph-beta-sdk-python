@@ -1,9 +1,20 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import file, file_system_info, folder, identity_set, image, item_reference, package, shared, sharepoint_ids, special_folder, video
+file = lazy_import('msgraph.generated.models.file')
+file_system_info = lazy_import('msgraph.generated.models.file_system_info')
+folder = lazy_import('msgraph.generated.models.folder')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+image = lazy_import('msgraph.generated.models.image')
+item_reference = lazy_import('msgraph.generated.models.item_reference')
+package = lazy_import('msgraph.generated.models.package')
+shared = lazy_import('msgraph.generated.models.shared')
+sharepoint_ids = lazy_import('msgraph.generated.models.sharepoint_ids')
+special_folder = lazy_import('msgraph.generated.models.special_folder')
+video = lazy_import('msgraph.generated.models.video')
 
 class RemoteItem(AdditionalDataHolder, Parsable):
     @property

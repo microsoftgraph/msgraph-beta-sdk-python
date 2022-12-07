@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import custom_subject_alternative_name, extended_key_usage, windows_certificate_profile_base
+custom_subject_alternative_name = lazy_import('msgraph.generated.models.custom_subject_alternative_name')
+extended_key_usage = lazy_import('msgraph.generated.models.extended_key_usage')
+windows_certificate_profile_base = lazy_import('msgraph.generated.models.windows_certificate_profile_base')
 
 class Windows81CertificateProfileBase(windows_certificate_profile_base.WindowsCertificateProfileBase):
     def __init__(self,) -> None:

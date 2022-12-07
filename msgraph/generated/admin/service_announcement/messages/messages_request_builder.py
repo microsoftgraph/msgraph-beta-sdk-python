@@ -7,17 +7,19 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import service_update_message, service_update_message_collection_response
-from ....models.o_data_errors import o_data_error
-from .archive import archive_request_builder
-from .count import count_request_builder
-from .favorite import favorite_request_builder
-from .mark_read import mark_read_request_builder
-from .mark_unread import mark_unread_request_builder
-from .unarchive import unarchive_request_builder
-from .unfavorite import unfavorite_request_builder
+archive_request_builder = lazy_import('msgraph.generated.admin.service_announcement.messages.archive.archive_request_builder')
+count_request_builder = lazy_import('msgraph.generated.admin.service_announcement.messages.count.count_request_builder')
+favorite_request_builder = lazy_import('msgraph.generated.admin.service_announcement.messages.favorite.favorite_request_builder')
+mark_read_request_builder = lazy_import('msgraph.generated.admin.service_announcement.messages.mark_read.mark_read_request_builder')
+mark_unread_request_builder = lazy_import('msgraph.generated.admin.service_announcement.messages.mark_unread.mark_unread_request_builder')
+unarchive_request_builder = lazy_import('msgraph.generated.admin.service_announcement.messages.unarchive.unarchive_request_builder')
+unfavorite_request_builder = lazy_import('msgraph.generated.admin.service_announcement.messages.unfavorite.unfavorite_request_builder')
+service_update_message = lazy_import('msgraph.generated.models.service_update_message')
+service_update_message_collection_response = lazy_import('msgraph.generated.models.service_update_message_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class MessagesRequestBuilder():
     """

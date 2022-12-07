@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import windows_app_start_layout_tile_size, windows_kiosk_app_type
+windows_app_start_layout_tile_size = lazy_import('msgraph.generated.models.windows_app_start_layout_tile_size')
+windows_kiosk_app_type = lazy_import('msgraph.generated.models.windows_kiosk_app_type')
 
 class WindowsKioskAppBase(AdditionalDataHolder, Parsable):
     """

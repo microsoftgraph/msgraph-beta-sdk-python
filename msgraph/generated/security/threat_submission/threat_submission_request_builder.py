@@ -7,18 +7,19 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models.o_data_errors import o_data_error
-from ...models.security import threat_submission_root
-from .email_threats import email_threats_request_builder
-from .email_threats.item import email_threat_submission_item_request_builder
-from .email_threat_submission_policies import email_threat_submission_policies_request_builder
-from .email_threat_submission_policies.item import email_threat_submission_policy_item_request_builder
-from .file_threats import file_threats_request_builder
-from .file_threats.item import file_threat_submission_item_request_builder
-from .url_threats import url_threats_request_builder
-from .url_threats.item import url_threat_submission_item_request_builder
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+threat_submission_root = lazy_import('msgraph.generated.models.security.threat_submission_root')
+email_threats_request_builder = lazy_import('msgraph.generated.security.threat_submission.email_threats.email_threats_request_builder')
+email_threat_submission_item_request_builder = lazy_import('msgraph.generated.security.threat_submission.email_threats.item.email_threat_submission_item_request_builder')
+email_threat_submission_policies_request_builder = lazy_import('msgraph.generated.security.threat_submission.email_threat_submission_policies.email_threat_submission_policies_request_builder')
+email_threat_submission_policy_item_request_builder = lazy_import('msgraph.generated.security.threat_submission.email_threat_submission_policies.item.email_threat_submission_policy_item_request_builder')
+file_threats_request_builder = lazy_import('msgraph.generated.security.threat_submission.file_threats.file_threats_request_builder')
+file_threat_submission_item_request_builder = lazy_import('msgraph.generated.security.threat_submission.file_threats.item.file_threat_submission_item_request_builder')
+url_threats_request_builder = lazy_import('msgraph.generated.security.threat_submission.url_threats.url_threats_request_builder')
+url_threat_submission_item_request_builder = lazy_import('msgraph.generated.security.threat_submission.url_threats.item.url_threat_submission_item_request_builder')
 
 class ThreatSubmissionRequestBuilder():
     """

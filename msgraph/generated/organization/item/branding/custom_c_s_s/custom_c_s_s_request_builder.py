@@ -7,9 +7,10 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models.o_data_errors import o_data_error
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class CustomCSSRequestBuilder():
     """
@@ -35,7 +36,7 @@ class CustomCSSRequestBuilder():
     
     def create_get_request_information(self,request_configuration: Optional[CustomCSSRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get customCSS for the navigation property branding from organization
+        CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -51,7 +52,7 @@ class CustomCSSRequestBuilder():
     
     def create_put_request_information(self,body: bytes, request_configuration: Optional[CustomCSSRequestBuilderPutRequestConfiguration] = None) -> RequestInformation:
         """
-        Update customCSS for the navigation property branding in organization
+        CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.
         Args:
             body: Binary request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -71,7 +72,7 @@ class CustomCSSRequestBuilder():
     
     async def get(self,request_configuration: Optional[CustomCSSRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> bytes:
         """
-        Get customCSS for the navigation property branding from organization
+        CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
@@ -90,7 +91,7 @@ class CustomCSSRequestBuilder():
     
     async def put(self,body: bytes, request_configuration: Optional[CustomCSSRequestBuilderPutRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
-        Update customCSS for the navigation property branding in organization
+        CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.
         Args:
             body: Binary request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

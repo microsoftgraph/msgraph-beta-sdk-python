@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import microsoft_tunnel_site
-from ....models.o_data_errors import o_data_error
-from .microsoft_tunnel_configuration import microsoft_tunnel_configuration_request_builder
-from .microsoft_tunnel_servers import microsoft_tunnel_servers_request_builder
-from .microsoft_tunnel_servers.item import microsoft_tunnel_server_item_request_builder
-from .request_upgrade import request_upgrade_request_builder
+microsoft_tunnel_configuration_request_builder = lazy_import('msgraph.generated.device_management.microsoft_tunnel_sites.item.microsoft_tunnel_configuration.microsoft_tunnel_configuration_request_builder')
+microsoft_tunnel_servers_request_builder = lazy_import('msgraph.generated.device_management.microsoft_tunnel_sites.item.microsoft_tunnel_servers.microsoft_tunnel_servers_request_builder')
+microsoft_tunnel_server_item_request_builder = lazy_import('msgraph.generated.device_management.microsoft_tunnel_sites.item.microsoft_tunnel_servers.item.microsoft_tunnel_server_item_request_builder')
+request_upgrade_request_builder = lazy_import('msgraph.generated.device_management.microsoft_tunnel_sites.item.request_upgrade.request_upgrade_request_builder')
+microsoft_tunnel_site = lazy_import('msgraph.generated.models.microsoft_tunnel_site')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class MicrosoftTunnelSiteItemRequestBuilder():
     """

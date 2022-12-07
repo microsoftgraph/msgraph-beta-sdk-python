@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import windows_device_usage_type, windows_user_type
+windows_device_usage_type = lazy_import('msgraph.generated.models.windows_device_usage_type')
+windows_user_type = lazy_import('msgraph.generated.models.windows_user_type')
 
 class OutOfBoxExperienceSettings(AdditionalDataHolder, Parsable):
     """

@@ -7,13 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import participant, participant_collection_response
-from .....models.o_data_errors import o_data_error
-from .count import count_request_builder
-from .invite import invite_request_builder
-from .mute_all import mute_all_request_builder
+count_request_builder = lazy_import('msgraph.generated.communications.calls.item.participants.count.count_request_builder')
+invite_request_builder = lazy_import('msgraph.generated.communications.calls.item.participants.invite.invite_request_builder')
+mute_all_request_builder = lazy_import('msgraph.generated.communications.calls.item.participants.mute_all.mute_all_request_builder')
+participant = lazy_import('msgraph.generated.models.participant')
+participant_collection_response = lazy_import('msgraph.generated.models.participant_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ParticipantsRequestBuilder():
     """

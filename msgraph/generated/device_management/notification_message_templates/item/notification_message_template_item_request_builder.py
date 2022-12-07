@@ -7,13 +7,14 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import notification_message_template
-from ....models.o_data_errors import o_data_error
-from .localized_notification_messages import localized_notification_messages_request_builder
-from .localized_notification_messages.item import localized_notification_message_item_request_builder
-from .send_test_message import send_test_message_request_builder
+localized_notification_messages_request_builder = lazy_import('msgraph.generated.device_management.notification_message_templates.item.localized_notification_messages.localized_notification_messages_request_builder')
+localized_notification_message_item_request_builder = lazy_import('msgraph.generated.device_management.notification_message_templates.item.localized_notification_messages.item.localized_notification_message_item_request_builder')
+send_test_message_request_builder = lazy_import('msgraph.generated.device_management.notification_message_templates.item.send_test_message.send_test_message_request_builder')
+notification_message_template = lazy_import('msgraph.generated.models.notification_message_template')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class NotificationMessageTemplateItemRequestBuilder():
     """

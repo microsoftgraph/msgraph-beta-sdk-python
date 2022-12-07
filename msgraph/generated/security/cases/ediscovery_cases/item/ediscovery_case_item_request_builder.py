@@ -7,27 +7,28 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models.o_data_errors import o_data_error
-from .....models.security import ediscovery_case
-from .close import close_request_builder
-from .custodians import custodians_request_builder
-from .custodians.item import ediscovery_custodian_item_request_builder
-from .legal_holds import legal_holds_request_builder
-from .legal_holds.item import ediscovery_hold_policy_item_request_builder
-from .noncustodial_data_sources import noncustodial_data_sources_request_builder
-from .noncustodial_data_sources.item import ediscovery_noncustodial_data_source_item_request_builder
-from .operations import operations_request_builder
-from .operations.item import case_operation_item_request_builder
-from .reopen import reopen_request_builder
-from .review_sets import review_sets_request_builder
-from .review_sets.item import ediscovery_review_set_item_request_builder
-from .searches import searches_request_builder
-from .searches.item import ediscovery_search_item_request_builder
-from .settings import settings_request_builder
-from .tags import tags_request_builder
-from .tags.item import ediscovery_review_tag_item_request_builder
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+ediscovery_case = lazy_import('msgraph.generated.models.security.ediscovery_case')
+close_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.close.close_request_builder')
+custodians_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.custodians.custodians_request_builder')
+ediscovery_custodian_item_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.custodians.item.ediscovery_custodian_item_request_builder')
+legal_holds_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.legal_holds.legal_holds_request_builder')
+ediscovery_hold_policy_item_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.legal_holds.item.ediscovery_hold_policy_item_request_builder')
+noncustodial_data_sources_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.noncustodial_data_sources.noncustodial_data_sources_request_builder')
+ediscovery_noncustodial_data_source_item_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.noncustodial_data_sources.item.ediscovery_noncustodial_data_source_item_request_builder')
+operations_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.operations.operations_request_builder')
+case_operation_item_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.operations.item.case_operation_item_request_builder')
+reopen_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.reopen.reopen_request_builder')
+review_sets_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.review_sets_request_builder')
+ediscovery_review_set_item_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.ediscovery_review_set_item_request_builder')
+searches_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.searches.searches_request_builder')
+ediscovery_search_item_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.searches.item.ediscovery_search_item_request_builder')
+settings_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.settings.settings_request_builder')
+tags_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.tags.tags_request_builder')
+ediscovery_review_tag_item_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.tags.item.ediscovery_review_tag_item_request_builder')
 
 class EdiscoveryCaseItemRequestBuilder():
     """

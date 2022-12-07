@@ -1,8 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import aosp_device_owner_certificate_profile_base, certificate_store, custom_subject_alternative_name, device_management_certification_authority, managed_device_certificate_state
+aosp_device_owner_certificate_profile_base = lazy_import('msgraph.generated.models.aosp_device_owner_certificate_profile_base')
+certificate_store = lazy_import('msgraph.generated.models.certificate_store')
+custom_subject_alternative_name = lazy_import('msgraph.generated.models.custom_subject_alternative_name')
+device_management_certification_authority = lazy_import('msgraph.generated.models.device_management_certification_authority')
+managed_device_certificate_state = lazy_import('msgraph.generated.models.managed_device_certificate_state')
 
 class AospDeviceOwnerPkcsCertificateProfile(aosp_device_owner_certificate_profile_base.AospDeviceOwnerCertificateProfileBase):
     @property

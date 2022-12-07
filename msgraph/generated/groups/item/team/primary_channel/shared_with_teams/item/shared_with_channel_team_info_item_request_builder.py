@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .......models import shared_with_channel_team_info
-from .......models.o_data_errors import o_data_error
-from .allowed_members import allowed_members_request_builder
-from .allowed_members.item import conversation_member_item_request_builder
+allowed_members_request_builder = lazy_import('msgraph.generated.groups.item.team.primary_channel.shared_with_teams.item.allowed_members.allowed_members_request_builder')
+conversation_member_item_request_builder = lazy_import('msgraph.generated.groups.item.team.primary_channel.shared_with_teams.item.allowed_members.item.conversation_member_item_request_builder')
+shared_with_channel_team_info = lazy_import('msgraph.generated.models.shared_with_channel_team_info')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class SharedWithChannelTeamInfoItemRequestBuilder():
     """

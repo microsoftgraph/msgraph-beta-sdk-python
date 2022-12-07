@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import attendee_base, location_constraint, time_constraint
+attendee_base = lazy_import('msgraph.generated.models.attendee_base')
+location_constraint = lazy_import('msgraph.generated.models.location_constraint')
+time_constraint = lazy_import('msgraph.generated.models.time_constraint')
 
 class FindMeetingTimesPostRequestBody(AdditionalDataHolder, Parsable):
     """

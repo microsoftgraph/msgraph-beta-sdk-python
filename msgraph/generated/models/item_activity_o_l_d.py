@@ -1,8 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import drive_item, entity, identity_set, item_action_set, item_activity_time_set, list_item
+drive_item = lazy_import('msgraph.generated.models.drive_item')
+entity = lazy_import('msgraph.generated.models.entity')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+item_action_set = lazy_import('msgraph.generated.models.item_action_set')
+item_activity_time_set = lazy_import('msgraph.generated.models.item_activity_time_set')
+list_item = lazy_import('msgraph.generated.models.list_item')
 
 class ItemActivityOLD(entity.Entity):
     """

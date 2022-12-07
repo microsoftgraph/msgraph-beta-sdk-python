@@ -1,8 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import android_required_password_complexity, android_required_password_type, app_list_item, app_list_type, device_configuration, web_browser_cookie_settings
+android_required_password_complexity = lazy_import('msgraph.generated.models.android_required_password_complexity')
+android_required_password_type = lazy_import('msgraph.generated.models.android_required_password_type')
+app_list_item = lazy_import('msgraph.generated.models.app_list_item')
+app_list_type = lazy_import('msgraph.generated.models.app_list_type')
+device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+web_browser_cookie_settings = lazy_import('msgraph.generated.models.web_browser_cookie_settings')
 
 class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
     @property

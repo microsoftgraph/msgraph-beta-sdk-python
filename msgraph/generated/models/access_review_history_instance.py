@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import access_review_history_status, entity
+access_review_history_status = lazy_import('msgraph.generated.models.access_review_history_status')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class AccessReviewHistoryInstance(entity.Entity):
     """

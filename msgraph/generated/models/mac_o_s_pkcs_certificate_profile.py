@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import certificate_store, custom_subject_alternative_name, mac_o_s_certificate_profile_base, managed_device_certificate_state
+certificate_store = lazy_import('msgraph.generated.models.certificate_store')
+custom_subject_alternative_name = lazy_import('msgraph.generated.models.custom_subject_alternative_name')
+mac_o_s_certificate_profile_base = lazy_import('msgraph.generated.models.mac_o_s_certificate_profile_base')
+managed_device_certificate_state = lazy_import('msgraph.generated.models.managed_device_certificate_state')
 
 class MacOSPkcsCertificateProfile(mac_o_s_certificate_profile_base.MacOSCertificateProfileBase):
     @property

@@ -1,16 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import data_source, data_source_container, ediscovery_index_operation
+data_source = lazy_import('msgraph.generated.models.security.data_source')
+data_source_container = lazy_import('msgraph.generated.models.security.data_source_container')
+ediscovery_index_operation = lazy_import('msgraph.generated.models.security.ediscovery_index_operation')
 
 class EdiscoveryNoncustodialDataSource(data_source_container.DataSourceContainer):
-    """
-    Provides operations to manage the collection of accessReviewDecision entities.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new ediscoveryNoncustodialDataSource and sets the default values.
+        Instantiates a new EdiscoveryNoncustodialDataSource and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.security.ediscoveryNoncustodialDataSource"

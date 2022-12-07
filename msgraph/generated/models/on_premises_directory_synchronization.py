@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, on_premises_directory_synchronization_configuration, on_premises_directory_synchronization_feature
+entity = lazy_import('msgraph.generated.models.entity')
+on_premises_directory_synchronization_configuration = lazy_import('msgraph.generated.models.on_premises_directory_synchronization_configuration')
+on_premises_directory_synchronization_feature = lazy_import('msgraph.generated.models.on_premises_directory_synchronization_feature')
 
 class OnPremisesDirectorySynchronization(entity.Entity):
     """

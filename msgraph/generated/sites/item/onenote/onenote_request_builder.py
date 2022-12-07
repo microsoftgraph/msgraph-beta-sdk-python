@@ -7,22 +7,23 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import onenote
-from ....models.o_data_errors import o_data_error
-from .notebooks import notebooks_request_builder
-from .notebooks.item import notebook_item_request_builder
-from .operations import operations_request_builder
-from .operations.item import onenote_operation_item_request_builder
-from .pages import pages_request_builder
-from .pages.item import onenote_page_item_request_builder
-from .resources import resources_request_builder
-from .resources.item import onenote_resource_item_request_builder
-from .section_groups import section_groups_request_builder
-from .section_groups.item import section_group_item_request_builder
-from .sections import sections_request_builder
-from .sections.item import onenote_section_item_request_builder
+onenote = lazy_import('msgraph.generated.models.onenote')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+notebooks_request_builder = lazy_import('msgraph.generated.sites.item.onenote.notebooks.notebooks_request_builder')
+notebook_item_request_builder = lazy_import('msgraph.generated.sites.item.onenote.notebooks.item.notebook_item_request_builder')
+operations_request_builder = lazy_import('msgraph.generated.sites.item.onenote.operations.operations_request_builder')
+onenote_operation_item_request_builder = lazy_import('msgraph.generated.sites.item.onenote.operations.item.onenote_operation_item_request_builder')
+pages_request_builder = lazy_import('msgraph.generated.sites.item.onenote.pages.pages_request_builder')
+onenote_page_item_request_builder = lazy_import('msgraph.generated.sites.item.onenote.pages.item.onenote_page_item_request_builder')
+resources_request_builder = lazy_import('msgraph.generated.sites.item.onenote.resources.resources_request_builder')
+onenote_resource_item_request_builder = lazy_import('msgraph.generated.sites.item.onenote.resources.item.onenote_resource_item_request_builder')
+section_groups_request_builder = lazy_import('msgraph.generated.sites.item.onenote.section_groups.section_groups_request_builder')
+section_group_item_request_builder = lazy_import('msgraph.generated.sites.item.onenote.section_groups.item.section_group_item_request_builder')
+sections_request_builder = lazy_import('msgraph.generated.sites.item.onenote.sections.sections_request_builder')
+onenote_section_item_request_builder = lazy_import('msgraph.generated.sites.item.onenote.sections.item.onenote_section_item_request_builder')
 
 class OnenoteRequestBuilder():
     """

@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import apple_vpn_configuration, mac_o_s_certificate_profile_base
+apple_vpn_configuration = lazy_import('msgraph.generated.models.apple_vpn_configuration')
+mac_o_s_certificate_profile_base = lazy_import('msgraph.generated.models.mac_o_s_certificate_profile_base')
 
 class MacOSVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
     def __init__(self,) -> None:

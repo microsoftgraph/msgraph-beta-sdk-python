@@ -1,8 +1,17 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import booking_appointment, booking_custom_question, booking_customer, booking_named_entity, booking_scheduling_policy, booking_service, booking_staff_member, booking_work_hours, physical_address
+booking_appointment = lazy_import('msgraph.generated.models.booking_appointment')
+booking_custom_question = lazy_import('msgraph.generated.models.booking_custom_question')
+booking_customer = lazy_import('msgraph.generated.models.booking_customer')
+booking_named_entity = lazy_import('msgraph.generated.models.booking_named_entity')
+booking_scheduling_policy = lazy_import('msgraph.generated.models.booking_scheduling_policy')
+booking_service = lazy_import('msgraph.generated.models.booking_service')
+booking_staff_member = lazy_import('msgraph.generated.models.booking_staff_member')
+booking_work_hours = lazy_import('msgraph.generated.models.booking_work_hours')
+physical_address = lazy_import('msgraph.generated.models.physical_address')
 
 class BookingBusiness(booking_named_entity.BookingNamedEntity):
     @property

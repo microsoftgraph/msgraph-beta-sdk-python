@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import item_facet
+item_facet = lazy_import('msgraph.generated.models.item_facet')
 
 class PersonResponsibility(item_facet.ItemFacet):
     @property

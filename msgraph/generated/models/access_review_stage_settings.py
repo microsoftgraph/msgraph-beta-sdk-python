@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import access_review_recommendation_insight_setting, access_review_reviewer_scope
+access_review_recommendation_insight_setting = lazy_import('msgraph.generated.models.access_review_recommendation_insight_setting')
+access_review_reviewer_scope = lazy_import('msgraph.generated.models.access_review_reviewer_scope')
 
 class AccessReviewStageSettings(AdditionalDataHolder, Parsable):
     @property

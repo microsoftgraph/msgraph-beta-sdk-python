@@ -7,18 +7,19 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..models import identity_protection_root
-from ..models.o_data_errors import o_data_error
-from .risk_detections import risk_detections_request_builder
-from .risk_detections.item import risk_detection_item_request_builder
-from .risky_service_principals import risky_service_principals_request_builder
-from .risky_service_principals.item import risky_service_principal_item_request_builder
-from .risky_users import risky_users_request_builder
-from .risky_users.item import risky_user_item_request_builder
-from .service_principal_risk_detections import service_principal_risk_detections_request_builder
-from .service_principal_risk_detections.item import service_principal_risk_detection_item_request_builder
+risk_detections_request_builder = lazy_import('msgraph.generated.identity_protection.risk_detections.risk_detections_request_builder')
+risk_detection_item_request_builder = lazy_import('msgraph.generated.identity_protection.risk_detections.item.risk_detection_item_request_builder')
+risky_service_principals_request_builder = lazy_import('msgraph.generated.identity_protection.risky_service_principals.risky_service_principals_request_builder')
+risky_service_principal_item_request_builder = lazy_import('msgraph.generated.identity_protection.risky_service_principals.item.risky_service_principal_item_request_builder')
+risky_users_request_builder = lazy_import('msgraph.generated.identity_protection.risky_users.risky_users_request_builder')
+risky_user_item_request_builder = lazy_import('msgraph.generated.identity_protection.risky_users.item.risky_user_item_request_builder')
+service_principal_risk_detections_request_builder = lazy_import('msgraph.generated.identity_protection.service_principal_risk_detections.service_principal_risk_detections_request_builder')
+service_principal_risk_detection_item_request_builder = lazy_import('msgraph.generated.identity_protection.service_principal_risk_detections.item.service_principal_risk_detection_item_request_builder')
+identity_protection_root = lazy_import('msgraph.generated.models.identity_protection_root')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class IdentityProtectionRequestBuilder():
     """

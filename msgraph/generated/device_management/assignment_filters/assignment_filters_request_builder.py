@@ -7,15 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import device_and_app_management_assignment_filter, device_and_app_management_assignment_filter_collection_response
-from ...models.o_data_errors import o_data_error
-from .count import count_request_builder
-from .enable import enable_request_builder
-from .get_platform_supported_properties_with_platform import get_platform_supported_properties_with_platform_request_builder
-from .get_state import get_state_request_builder
-from .validate_filter import validate_filter_request_builder
+count_request_builder = lazy_import('msgraph.generated.device_management.assignment_filters.count.count_request_builder')
+enable_request_builder = lazy_import('msgraph.generated.device_management.assignment_filters.enable.enable_request_builder')
+get_platform_supported_properties_with_platform_request_builder = lazy_import('msgraph.generated.device_management.assignment_filters.get_platform_supported_properties_with_platform.get_platform_supported_properties_with_platform_request_builder')
+get_state_request_builder = lazy_import('msgraph.generated.device_management.assignment_filters.get_state.get_state_request_builder')
+validate_filter_request_builder = lazy_import('msgraph.generated.device_management.assignment_filters.validate_filter.validate_filter_request_builder')
+device_and_app_management_assignment_filter = lazy_import('msgraph.generated.models.device_and_app_management_assignment_filter')
+device_and_app_management_assignment_filter_collection_response = lazy_import('msgraph.generated.models.device_and_app_management_assignment_filter_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class AssignmentFiltersRequestBuilder():
     """

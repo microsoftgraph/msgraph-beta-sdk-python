@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import approval_settings, unified_role_management_policy_rule
+approval_settings = lazy_import('msgraph.generated.models.approval_settings')
+unified_role_management_policy_rule = lazy_import('msgraph.generated.models.unified_role_management_policy_rule')
 
 class UnifiedRoleManagementPolicyApprovalRule(unified_role_management_policy_rule.UnifiedRoleManagementPolicyRule):
     def __init__(self,) -> None:

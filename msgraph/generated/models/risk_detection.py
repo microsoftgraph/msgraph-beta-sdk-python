@@ -1,9 +1,18 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import activity_type, entity, risk_detail, risk_detection_timing_type, risk_event_type, risk_level, risk_state, sign_in_location, token_issuer_type
+activity_type = lazy_import('msgraph.generated.models.activity_type')
+entity = lazy_import('msgraph.generated.models.entity')
+risk_detail = lazy_import('msgraph.generated.models.risk_detail')
+risk_detection_timing_type = lazy_import('msgraph.generated.models.risk_detection_timing_type')
+risk_event_type = lazy_import('msgraph.generated.models.risk_event_type')
+risk_level = lazy_import('msgraph.generated.models.risk_level')
+risk_state = lazy_import('msgraph.generated.models.risk_state')
+sign_in_location = lazy_import('msgraph.generated.models.sign_in_location')
+token_issuer_type = lazy_import('msgraph.generated.models.token_issuer_type')
 
 class RiskDetection(entity.Entity):
     @property

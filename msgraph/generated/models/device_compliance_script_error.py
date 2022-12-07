@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import code, device_compliance_script_rules_validation_error
+code = lazy_import('msgraph.generated.models.code')
+device_compliance_script_rules_validation_error = lazy_import('msgraph.generated.models.device_compliance_script_rules_validation_error')
 
 class DeviceComplianceScriptError(AdditionalDataHolder, Parsable):
     @property

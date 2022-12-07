@@ -1,9 +1,24 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import base_item, column_definition, content_type, deleted, drive, item_analytics, list, onenote, permission, rich_long_running_operation, root, sharepoint_ids, site_collection, site_page, site_settings
-from .term_store import store
+base_item = lazy_import('msgraph.generated.models.base_item')
+column_definition = lazy_import('msgraph.generated.models.column_definition')
+content_type = lazy_import('msgraph.generated.models.content_type')
+deleted = lazy_import('msgraph.generated.models.deleted')
+drive = lazy_import('msgraph.generated.models.drive')
+item_analytics = lazy_import('msgraph.generated.models.item_analytics')
+list = lazy_import('msgraph.generated.models.list')
+onenote = lazy_import('msgraph.generated.models.onenote')
+permission = lazy_import('msgraph.generated.models.permission')
+rich_long_running_operation = lazy_import('msgraph.generated.models.rich_long_running_operation')
+root = lazy_import('msgraph.generated.models.root')
+sharepoint_ids = lazy_import('msgraph.generated.models.sharepoint_ids')
+site_collection = lazy_import('msgraph.generated.models.site_collection')
+site_page = lazy_import('msgraph.generated.models.site_page')
+site_settings = lazy_import('msgraph.generated.models.site_settings')
+store = lazy_import('msgraph.generated.models.term_store.store')
 
 class Site(base_item.BaseItem):
     @property

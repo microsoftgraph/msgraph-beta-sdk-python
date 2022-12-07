@@ -1,9 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_compliance_script_device_state, device_compliance_script_run_summary, device_health_script_assignment, entity, run_as_account_type
+device_compliance_script_device_state = lazy_import('msgraph.generated.models.device_compliance_script_device_state')
+device_compliance_script_run_summary = lazy_import('msgraph.generated.models.device_compliance_script_run_summary')
+device_health_script_assignment = lazy_import('msgraph.generated.models.device_health_script_assignment')
+entity = lazy_import('msgraph.generated.models.entity')
+run_as_account_type = lazy_import('msgraph.generated.models.run_as_account_type')
 
 class DeviceComplianceScript(entity.Entity):
     """

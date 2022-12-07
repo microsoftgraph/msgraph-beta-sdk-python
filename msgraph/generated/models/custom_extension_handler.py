@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import access_package_custom_extension_stage, custom_access_package_workflow_extension, entity
+access_package_custom_extension_stage = lazy_import('msgraph.generated.models.access_package_custom_extension_stage')
+custom_access_package_workflow_extension = lazy_import('msgraph.generated.models.custom_access_package_workflow_extension')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class CustomExtensionHandler(entity.Entity):
     """

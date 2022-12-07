@@ -7,39 +7,40 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import application
-from ...models.o_data_errors import o_data_error
-from .add_key import add_key_request_builder
-from .add_password import add_password_request_builder
-from .app_management_policies import app_management_policies_request_builder
-from .app_management_policies.item import app_management_policy_item_request_builder
-from .check_member_groups import check_member_groups_request_builder
-from .check_member_objects import check_member_objects_request_builder
-from .connector_group import connector_group_request_builder
-from .created_on_behalf_of import created_on_behalf_of_request_builder
-from .extension_properties import extension_properties_request_builder
-from .extension_properties.item import extension_property_item_request_builder
-from .federated_identity_credentials import federated_identity_credentials_request_builder
-from .federated_identity_credentials.item import federated_identity_credential_item_request_builder
-from .get_member_groups import get_member_groups_request_builder
-from .get_member_objects import get_member_objects_request_builder
-from .home_realm_discovery_policies import home_realm_discovery_policies_request_builder
-from .home_realm_discovery_policies.item import home_realm_discovery_policy_item_request_builder
-from .logo import logo_request_builder
-from .owners import owners_request_builder
-from .owners.item import directory_object_item_request_builder
-from .remove_key import remove_key_request_builder
-from .remove_password import remove_password_request_builder
-from .restore import restore_request_builder
-from .set_verified_publisher import set_verified_publisher_request_builder
-from .synchronization import synchronization_request_builder
-from .token_issuance_policies import token_issuance_policies_request_builder
-from .token_issuance_policies.item import token_issuance_policy_item_request_builder
-from .token_lifetime_policies import token_lifetime_policies_request_builder
-from .token_lifetime_policies.item import token_lifetime_policy_item_request_builder
-from .unset_verified_publisher import unset_verified_publisher_request_builder
+add_key_request_builder = lazy_import('msgraph.generated.applications.item.add_key.add_key_request_builder')
+add_password_request_builder = lazy_import('msgraph.generated.applications.item.add_password.add_password_request_builder')
+app_management_policies_request_builder = lazy_import('msgraph.generated.applications.item.app_management_policies.app_management_policies_request_builder')
+app_management_policy_item_request_builder = lazy_import('msgraph.generated.applications.item.app_management_policies.item.app_management_policy_item_request_builder')
+check_member_groups_request_builder = lazy_import('msgraph.generated.applications.item.check_member_groups.check_member_groups_request_builder')
+check_member_objects_request_builder = lazy_import('msgraph.generated.applications.item.check_member_objects.check_member_objects_request_builder')
+connector_group_request_builder = lazy_import('msgraph.generated.applications.item.connector_group.connector_group_request_builder')
+created_on_behalf_of_request_builder = lazy_import('msgraph.generated.applications.item.created_on_behalf_of.created_on_behalf_of_request_builder')
+extension_properties_request_builder = lazy_import('msgraph.generated.applications.item.extension_properties.extension_properties_request_builder')
+extension_property_item_request_builder = lazy_import('msgraph.generated.applications.item.extension_properties.item.extension_property_item_request_builder')
+federated_identity_credentials_request_builder = lazy_import('msgraph.generated.applications.item.federated_identity_credentials.federated_identity_credentials_request_builder')
+federated_identity_credential_item_request_builder = lazy_import('msgraph.generated.applications.item.federated_identity_credentials.item.federated_identity_credential_item_request_builder')
+get_member_groups_request_builder = lazy_import('msgraph.generated.applications.item.get_member_groups.get_member_groups_request_builder')
+get_member_objects_request_builder = lazy_import('msgraph.generated.applications.item.get_member_objects.get_member_objects_request_builder')
+home_realm_discovery_policies_request_builder = lazy_import('msgraph.generated.applications.item.home_realm_discovery_policies.home_realm_discovery_policies_request_builder')
+home_realm_discovery_policy_item_request_builder = lazy_import('msgraph.generated.applications.item.home_realm_discovery_policies.item.home_realm_discovery_policy_item_request_builder')
+logo_request_builder = lazy_import('msgraph.generated.applications.item.logo.logo_request_builder')
+owners_request_builder = lazy_import('msgraph.generated.applications.item.owners.owners_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.applications.item.owners.item.directory_object_item_request_builder')
+remove_key_request_builder = lazy_import('msgraph.generated.applications.item.remove_key.remove_key_request_builder')
+remove_password_request_builder = lazy_import('msgraph.generated.applications.item.remove_password.remove_password_request_builder')
+restore_request_builder = lazy_import('msgraph.generated.applications.item.restore.restore_request_builder')
+set_verified_publisher_request_builder = lazy_import('msgraph.generated.applications.item.set_verified_publisher.set_verified_publisher_request_builder')
+synchronization_request_builder = lazy_import('msgraph.generated.applications.item.synchronization.synchronization_request_builder')
+token_issuance_policies_request_builder = lazy_import('msgraph.generated.applications.item.token_issuance_policies.token_issuance_policies_request_builder')
+token_issuance_policy_item_request_builder = lazy_import('msgraph.generated.applications.item.token_issuance_policies.item.token_issuance_policy_item_request_builder')
+token_lifetime_policies_request_builder = lazy_import('msgraph.generated.applications.item.token_lifetime_policies.token_lifetime_policies_request_builder')
+token_lifetime_policy_item_request_builder = lazy_import('msgraph.generated.applications.item.token_lifetime_policies.item.token_lifetime_policy_item_request_builder')
+unset_verified_publisher_request_builder = lazy_import('msgraph.generated.applications.item.unset_verified_publisher.unset_verified_publisher_request_builder')
+application = lazy_import('msgraph.generated.models.application')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ApplicationItemRequestBuilder():
     """

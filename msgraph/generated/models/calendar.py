@@ -1,8 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import calendar_color, calendar_permission, email_address, entity, event, multi_value_legacy_extended_property, online_meeting_provider_type, single_value_legacy_extended_property
+calendar_color = lazy_import('msgraph.generated.models.calendar_color')
+calendar_permission = lazy_import('msgraph.generated.models.calendar_permission')
+email_address = lazy_import('msgraph.generated.models.email_address')
+entity = lazy_import('msgraph.generated.models.entity')
+event = lazy_import('msgraph.generated.models.event')
+multi_value_legacy_extended_property = lazy_import('msgraph.generated.models.multi_value_legacy_extended_property')
+online_meeting_provider_type = lazy_import('msgraph.generated.models.online_meeting_provider_type')
+single_value_legacy_extended_property = lazy_import('msgraph.generated.models.single_value_legacy_extended_property')
 
 class Calendar(entity.Entity):
     @property

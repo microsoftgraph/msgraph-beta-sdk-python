@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import android_permission_action, android_profile_applicability, managed_device_mobile_app_configuration
+android_permission_action = lazy_import('msgraph.generated.models.android_permission_action')
+android_profile_applicability = lazy_import('msgraph.generated.models.android_profile_applicability')
+managed_device_mobile_app_configuration = lazy_import('msgraph.generated.models.managed_device_mobile_app_configuration')
 
 class AndroidManagedStoreAppConfiguration(managed_device_mobile_app_configuration.ManagedDeviceMobileAppConfiguration):
     @property

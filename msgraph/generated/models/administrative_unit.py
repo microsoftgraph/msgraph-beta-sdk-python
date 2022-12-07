@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import directory_object, extension, scoped_role_membership
+directory_object = lazy_import('msgraph.generated.models.directory_object')
+extension = lazy_import('msgraph.generated.models.extension')
+scoped_role_membership = lazy_import('msgraph.generated.models.scoped_role_membership')
 
 class AdministrativeUnit(directory_object.DirectoryObject):
     """

@@ -7,14 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import device_health_script, device_health_script_collection_response
-from ...models.o_data_errors import o_data_error
-from .are_global_scripts_available import are_global_scripts_available_request_builder
-from .count import count_request_builder
-from .enable_global_scripts import enable_global_scripts_request_builder
-from .get_remediation_summary import get_remediation_summary_request_builder
+are_global_scripts_available_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.are_global_scripts_available.are_global_scripts_available_request_builder')
+count_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.count.count_request_builder')
+enable_global_scripts_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.enable_global_scripts.enable_global_scripts_request_builder')
+get_remediation_summary_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.get_remediation_summary.get_remediation_summary_request_builder')
+device_health_script = lazy_import('msgraph.generated.models.device_health_script')
+device_health_script_collection_response = lazy_import('msgraph.generated.models.device_health_script_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class DeviceHealthScriptsRequestBuilder():
     """

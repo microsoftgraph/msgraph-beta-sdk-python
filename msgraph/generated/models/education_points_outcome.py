@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import education_assignment_points_grade, education_outcome
+education_assignment_points_grade = lazy_import('msgraph.generated.models.education_assignment_points_grade')
+education_outcome = lazy_import('msgraph.generated.models.education_outcome')
 
 class EducationPointsOutcome(education_outcome.EducationOutcome):
     def __init__(self,) -> None:

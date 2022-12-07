@@ -7,12 +7,14 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import deleted_team, deleted_team_collection_response
-from ...models.o_data_errors import o_data_error
-from .count import count_request_builder
-from .get_all_messages import get_all_messages_request_builder
+deleted_team = lazy_import('msgraph.generated.models.deleted_team')
+deleted_team_collection_response = lazy_import('msgraph.generated.models.deleted_team_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+count_request_builder = lazy_import('msgraph.generated.teamwork.deleted_teams.count.count_request_builder')
+get_all_messages_request_builder = lazy_import('msgraph.generated.teamwork.deleted_teams.get_all_messages.get_all_messages_request_builder')
 
 class DeletedTeamsRequestBuilder():
     """

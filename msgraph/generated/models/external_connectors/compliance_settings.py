@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import display_template
+display_template = lazy_import('msgraph.generated.models.external_connectors.display_template')
 
 class ComplianceSettings(AdditionalDataHolder, Parsable):
     @property

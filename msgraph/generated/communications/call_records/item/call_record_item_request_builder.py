@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models.call_records import call_record
-from ....models.o_data_errors import o_data_error
-from .sessions import sessions_request_builder
-from .sessions.item import session_item_request_builder
+sessions_request_builder = lazy_import('msgraph.generated.communications.call_records.item.sessions.sessions_request_builder')
+session_item_request_builder = lazy_import('msgraph.generated.communications.call_records.item.sessions.item.session_item_request_builder')
+call_record = lazy_import('msgraph.generated.models.call_records.call_record')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class CallRecordItemRequestBuilder():
     """

@@ -7,12 +7,14 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import unified_role_assignment_schedule, unified_role_assignment_schedule_collection_response
-from ....models.o_data_errors import o_data_error
-from .count import count_request_builder
-from .filter_by_current_user_with_on import filter_by_current_user_with_on_request_builder
+unified_role_assignment_schedule = lazy_import('msgraph.generated.models.unified_role_assignment_schedule')
+unified_role_assignment_schedule_collection_response = lazy_import('msgraph.generated.models.unified_role_assignment_schedule_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+count_request_builder = lazy_import('msgraph.generated.role_management.entitlement_management.role_assignment_schedules.count.count_request_builder')
+filter_by_current_user_with_on_request_builder = lazy_import('msgraph.generated.role_management.entitlement_management.role_assignment_schedules.filter_by_current_user_with_on.filter_by_current_user_with_on_request_builder')
 
 class RoleAssignmentSchedulesRequestBuilder():
     """

@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import mac_o_s_software_update_category_summary
-from ......models.o_data_errors import o_data_error
-from .update_state_summaries import update_state_summaries_request_builder
-from .update_state_summaries.item import mac_o_s_software_update_state_summary_item_request_builder
+update_state_summaries_request_builder = lazy_import('msgraph.generated.device_management.mac_o_s_software_update_account_summaries.item.category_summaries.item.update_state_summaries.update_state_summaries_request_builder')
+mac_o_s_software_update_state_summary_item_request_builder = lazy_import('msgraph.generated.device_management.mac_o_s_software_update_account_summaries.item.category_summaries.item.update_state_summaries.item.mac_o_s_software_update_state_summary_item_request_builder')
+mac_o_s_software_update_category_summary = lazy_import('msgraph.generated.models.mac_o_s_software_update_category_summary')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class MacOSSoftwareUpdateCategorySummaryItemRequestBuilder():
     """

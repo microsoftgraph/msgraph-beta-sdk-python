@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import ios_device_type, ios_minimum_operating_system, managed_app
+ios_device_type = lazy_import('msgraph.generated.models.ios_device_type')
+ios_minimum_operating_system = lazy_import('msgraph.generated.models.ios_minimum_operating_system')
+managed_app = lazy_import('msgraph.generated.models.managed_app')
 
 class ManagedIOSStoreApp(managed_app.ManagedApp):
     @property

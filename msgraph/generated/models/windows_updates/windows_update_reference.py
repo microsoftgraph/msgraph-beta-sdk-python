@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import software_update_reference
+software_update_reference = lazy_import('msgraph.generated.models.windows_updates.software_update_reference')
 
 class WindowsUpdateReference(software_update_reference.SoftwareUpdateReference):
     def __init__(self,) -> None:

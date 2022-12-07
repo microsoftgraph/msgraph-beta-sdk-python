@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models.o_data_errors import o_data_error
-from ......models.term_store import store
-from .groups import groups_request_builder
-from .groups.item import group_item_request_builder
-from .sets import sets_request_builder
-from .sets.item import set_item_request_builder
+groups_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.term_store.groups.groups_request_builder')
+group_item_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.term_store.groups.item.group_item_request_builder')
+sets_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.term_store.sets.sets_request_builder')
+set_item_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.term_store.sets.item.set_item_request_builder')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+store = lazy_import('msgraph.generated.models.term_store.store')
 
 class TermStoreRequestBuilder():
     """

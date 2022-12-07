@@ -1,13 +1,18 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, setup_status
+entity = lazy_import('msgraph.generated.models.entity')
+setup_status = lazy_import('msgraph.generated.models.setup_status')
 
 class PrivilegedSignupStatus(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new PrivilegedSignupStatus and sets the default values.
+        Instantiates a new privilegedSignupStatus and sets the default values.
         """
         super().__init__()
         # The isRegistered property

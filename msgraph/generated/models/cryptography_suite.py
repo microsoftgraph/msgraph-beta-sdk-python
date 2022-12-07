@@ -1,8 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import authentication_transform_constant, diffie_hellman_group, perfect_forward_secrecy_group, vpn_encryption_algorithm_type, vpn_integrity_algorithm_type
+authentication_transform_constant = lazy_import('msgraph.generated.models.authentication_transform_constant')
+diffie_hellman_group = lazy_import('msgraph.generated.models.diffie_hellman_group')
+perfect_forward_secrecy_group = lazy_import('msgraph.generated.models.perfect_forward_secrecy_group')
+vpn_encryption_algorithm_type = lazy_import('msgraph.generated.models.vpn_encryption_algorithm_type')
+vpn_integrity_algorithm_type = lazy_import('msgraph.generated.models.vpn_integrity_algorithm_type')
 
 class CryptographySuite(AdditionalDataHolder, Parsable):
     """

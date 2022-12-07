@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ........models import planner_task
-from ........models.o_data_errors import o_data_error
-from .assigned_to_task_board_format import assigned_to_task_board_format_request_builder
-from .bucket_task_board_format import bucket_task_board_format_request_builder
-from .details import details_request_builder
-from .progress_task_board_format import progress_task_board_format_request_builder
+assigned_to_task_board_format_request_builder = lazy_import('msgraph.generated.groups.item.planner.plans.item.tasks.item.assigned_to_task_board_format.assigned_to_task_board_format_request_builder')
+bucket_task_board_format_request_builder = lazy_import('msgraph.generated.groups.item.planner.plans.item.tasks.item.bucket_task_board_format.bucket_task_board_format_request_builder')
+details_request_builder = lazy_import('msgraph.generated.groups.item.planner.plans.item.tasks.item.details.details_request_builder')
+progress_task_board_format_request_builder = lazy_import('msgraph.generated.groups.item.planner.plans.item.tasks.item.progress_task_board_format.progress_task_board_format_request_builder')
+planner_task = lazy_import('msgraph.generated.models.planner_task')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class PlannerTaskItemRequestBuilder():
     """

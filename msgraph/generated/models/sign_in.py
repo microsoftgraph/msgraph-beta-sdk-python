@@ -1,9 +1,36 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import applied_authentication_event_listener, applied_conditional_access_policy, authentication_app_device_details, authentication_app_policy_details, authentication_context, authentication_detail, authentication_requirement_policy, client_credential_type, conditional_access_status, device_detail, entity, incoming_token_type, key_value, mfa_detail, network_location_detail, private_link_details, protocol_type, risk_detail, risk_level, risk_state, session_lifetime_policy, sign_in_access_type, sign_in_identifier_type, sign_in_location, sign_in_status, sign_in_user_type, token_issuer_type
+applied_authentication_event_listener = lazy_import('msgraph.generated.models.applied_authentication_event_listener')
+applied_conditional_access_policy = lazy_import('msgraph.generated.models.applied_conditional_access_policy')
+authentication_app_device_details = lazy_import('msgraph.generated.models.authentication_app_device_details')
+authentication_app_policy_details = lazy_import('msgraph.generated.models.authentication_app_policy_details')
+authentication_context = lazy_import('msgraph.generated.models.authentication_context')
+authentication_detail = lazy_import('msgraph.generated.models.authentication_detail')
+authentication_requirement_policy = lazy_import('msgraph.generated.models.authentication_requirement_policy')
+client_credential_type = lazy_import('msgraph.generated.models.client_credential_type')
+conditional_access_status = lazy_import('msgraph.generated.models.conditional_access_status')
+device_detail = lazy_import('msgraph.generated.models.device_detail')
+entity = lazy_import('msgraph.generated.models.entity')
+incoming_token_type = lazy_import('msgraph.generated.models.incoming_token_type')
+key_value = lazy_import('msgraph.generated.models.key_value')
+mfa_detail = lazy_import('msgraph.generated.models.mfa_detail')
+network_location_detail = lazy_import('msgraph.generated.models.network_location_detail')
+private_link_details = lazy_import('msgraph.generated.models.private_link_details')
+protocol_type = lazy_import('msgraph.generated.models.protocol_type')
+risk_detail = lazy_import('msgraph.generated.models.risk_detail')
+risk_level = lazy_import('msgraph.generated.models.risk_level')
+risk_state = lazy_import('msgraph.generated.models.risk_state')
+session_lifetime_policy = lazy_import('msgraph.generated.models.session_lifetime_policy')
+sign_in_access_type = lazy_import('msgraph.generated.models.sign_in_access_type')
+sign_in_identifier_type = lazy_import('msgraph.generated.models.sign_in_identifier_type')
+sign_in_location = lazy_import('msgraph.generated.models.sign_in_location')
+sign_in_status = lazy_import('msgraph.generated.models.sign_in_status')
+sign_in_user_type = lazy_import('msgraph.generated.models.sign_in_user_type')
+token_issuer_type = lazy_import('msgraph.generated.models.token_issuer_type')
 
 class SignIn(entity.Entity):
     @property

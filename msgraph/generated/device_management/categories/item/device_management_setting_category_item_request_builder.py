@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import device_management_setting_category
-from ....models.o_data_errors import o_data_error
-from .setting_definitions import setting_definitions_request_builder
-from .setting_definitions.item import device_management_setting_definition_item_request_builder
+setting_definitions_request_builder = lazy_import('msgraph.generated.device_management.categories.item.setting_definitions.setting_definitions_request_builder')
+device_management_setting_definition_item_request_builder = lazy_import('msgraph.generated.device_management.categories.item.setting_definitions.item.device_management_setting_definition_item_request_builder')
+device_management_setting_category = lazy_import('msgraph.generated.models.device_management_setting_category')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class DeviceManagementSettingCategoryItemRequestBuilder():
     """

@@ -1,8 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import contact_merge_suggestions, entity, regional_and_language_settings, shift_preferences, user_insights_settings
+contact_merge_suggestions = lazy_import('msgraph.generated.models.contact_merge_suggestions')
+entity = lazy_import('msgraph.generated.models.entity')
+regional_and_language_settings = lazy_import('msgraph.generated.models.regional_and_language_settings')
+shift_preferences = lazy_import('msgraph.generated.models.shift_preferences')
+user_insights_settings = lazy_import('msgraph.generated.models.user_insights_settings')
 
 class UserSettings(entity.Entity):
     def __init__(self,) -> None:

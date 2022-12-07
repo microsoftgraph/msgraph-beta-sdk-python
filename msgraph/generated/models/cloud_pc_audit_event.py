@@ -1,9 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import cloud_pc_audit_activity_operation_type, cloud_pc_audit_activity_result, cloud_pc_audit_actor, cloud_pc_audit_category, cloud_pc_audit_resource, entity
+cloud_pc_audit_activity_operation_type = lazy_import('msgraph.generated.models.cloud_pc_audit_activity_operation_type')
+cloud_pc_audit_activity_result = lazy_import('msgraph.generated.models.cloud_pc_audit_activity_result')
+cloud_pc_audit_actor = lazy_import('msgraph.generated.models.cloud_pc_audit_actor')
+cloud_pc_audit_category = lazy_import('msgraph.generated.models.cloud_pc_audit_category')
+cloud_pc_audit_resource = lazy_import('msgraph.generated.models.cloud_pc_audit_resource')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class CloudPcAuditEvent(entity.Entity):
     @property

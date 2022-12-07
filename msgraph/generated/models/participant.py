@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, media_stream, participant_info, recording_info
+entity = lazy_import('msgraph.generated.models.entity')
+media_stream = lazy_import('msgraph.generated.models.media_stream')
+participant_info = lazy_import('msgraph.generated.models.participant_info')
+recording_info = lazy_import('msgraph.generated.models.recording_info')
 
 class Participant(entity.Entity):
     """

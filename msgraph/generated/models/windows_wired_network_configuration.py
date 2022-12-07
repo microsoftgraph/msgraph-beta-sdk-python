@@ -1,8 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_configuration, eap_type, non_eap_authentication_method_for_eap_ttls_type, windows_certificate_profile_base, windows81_trusted_root_certificate, wired_network_authentication_method, wired_network_authentication_type
+device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+eap_type = lazy_import('msgraph.generated.models.eap_type')
+non_eap_authentication_method_for_eap_ttls_type = lazy_import('msgraph.generated.models.non_eap_authentication_method_for_eap_ttls_type')
+windows_certificate_profile_base = lazy_import('msgraph.generated.models.windows_certificate_profile_base')
+windows81_trusted_root_certificate = lazy_import('msgraph.generated.models.windows81_trusted_root_certificate')
+wired_network_authentication_method = lazy_import('msgraph.generated.models.wired_network_authentication_method')
+wired_network_authentication_type = lazy_import('msgraph.generated.models.wired_network_authentication_type')
 
 class WindowsWiredNetworkConfiguration(device_configuration.DeviceConfiguration):
     @property

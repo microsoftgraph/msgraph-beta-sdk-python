@@ -1,8 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import android_eap_type, android_for_work_certificate_profile_base, android_for_work_trusted_root_certificate, android_for_work_wi_fi_configuration, non_eap_authentication_method_for_eap_ttls_type, non_eap_authentication_method_for_peap, wi_fi_authentication_method
+android_eap_type = lazy_import('msgraph.generated.models.android_eap_type')
+android_for_work_certificate_profile_base = lazy_import('msgraph.generated.models.android_for_work_certificate_profile_base')
+android_for_work_trusted_root_certificate = lazy_import('msgraph.generated.models.android_for_work_trusted_root_certificate')
+android_for_work_wi_fi_configuration = lazy_import('msgraph.generated.models.android_for_work_wi_fi_configuration')
+non_eap_authentication_method_for_eap_ttls_type = lazy_import('msgraph.generated.models.non_eap_authentication_method_for_eap_ttls_type')
+non_eap_authentication_method_for_peap = lazy_import('msgraph.generated.models.non_eap_authentication_method_for_peap')
+wi_fi_authentication_method = lazy_import('msgraph.generated.models.wi_fi_authentication_method')
 
 class AndroidForWorkEnterpriseWiFiConfiguration(android_for_work_wi_fi_configuration.AndroidForWorkWiFiConfiguration):
     @property

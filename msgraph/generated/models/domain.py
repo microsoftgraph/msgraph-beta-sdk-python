@@ -1,8 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import directory_object, domain_dns_record, domain_state, entity, internal_domain_federation, shared_email_domain_invitation
+directory_object = lazy_import('msgraph.generated.models.directory_object')
+domain_dns_record = lazy_import('msgraph.generated.models.domain_dns_record')
+domain_state = lazy_import('msgraph.generated.models.domain_state')
+entity = lazy_import('msgraph.generated.models.entity')
+internal_domain_federation = lazy_import('msgraph.generated.models.internal_domain_federation')
+shared_email_domain_invitation = lazy_import('msgraph.generated.models.shared_email_domain_invitation')
 
 class Domain(entity.Entity):
     @property

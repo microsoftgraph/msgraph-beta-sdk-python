@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, mac_o_s_software_update_category, mac_o_s_software_update_state
+entity = lazy_import('msgraph.generated.models.entity')
+mac_o_s_software_update_category = lazy_import('msgraph.generated.models.mac_o_s_software_update_category')
+mac_o_s_software_update_state = lazy_import('msgraph.generated.models.mac_o_s_software_update_state')
 
 class MacOSSoftwareUpdateStateSummary(entity.Entity):
     """

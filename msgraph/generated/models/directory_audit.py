@@ -1,9 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import audit_activity_initiator, entity, key_value, operation_result, target_resource
+audit_activity_initiator = lazy_import('msgraph.generated.models.audit_activity_initiator')
+entity = lazy_import('msgraph.generated.models.entity')
+key_value = lazy_import('msgraph.generated.models.key_value')
+operation_result = lazy_import('msgraph.generated.models.operation_result')
+target_resource = lazy_import('msgraph.generated.models.target_resource')
 
 class DirectoryAudit(entity.Entity):
     @property

@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, logon_user, network_interface, security_vendor_information
+entity = lazy_import('msgraph.generated.models.entity')
+logon_user = lazy_import('msgraph.generated.models.logon_user')
+network_interface = lazy_import('msgraph.generated.models.network_interface')
+security_vendor_information = lazy_import('msgraph.generated.models.security_vendor_information')
 
 class HostSecurityProfile(entity.Entity):
     """

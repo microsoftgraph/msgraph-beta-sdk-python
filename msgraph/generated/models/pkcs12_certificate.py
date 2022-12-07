@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import api_authentication_configuration_base
+api_authentication_configuration_base = lazy_import('msgraph.generated.models.api_authentication_configuration_base')
 
 class Pkcs12Certificate(api_authentication_configuration_base.ApiAuthenticationConfigurationBase):
     def __init__(self,) -> None:

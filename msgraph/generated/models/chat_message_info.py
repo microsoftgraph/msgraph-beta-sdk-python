@@ -1,9 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import chat_message_from_identity_set, chat_message_type, entity, event_message_detail, item_body
+chat_message_from_identity_set = lazy_import('msgraph.generated.models.chat_message_from_identity_set')
+chat_message_type = lazy_import('msgraph.generated.models.chat_message_type')
+entity = lazy_import('msgraph.generated.models.entity')
+event_message_detail = lazy_import('msgraph.generated.models.event_message_detail')
+item_body = lazy_import('msgraph.generated.models.item_body')
 
 class ChatMessageInfo(entity.Entity):
     @property

@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import office_graph_insights
+office_graph_insights = lazy_import('msgraph.generated.models.office_graph_insights')
 
 class ItemInsights(office_graph_insights.OfficeGraphInsights):
     def __init__(self,) -> None:

@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import item_facet, position_detail, related_person
+item_facet = lazy_import('msgraph.generated.models.item_facet')
+position_detail = lazy_import('msgraph.generated.models.position_detail')
+related_person = lazy_import('msgraph.generated.models.related_person')
 
 class WorkPosition(item_facet.ItemFacet):
     @property

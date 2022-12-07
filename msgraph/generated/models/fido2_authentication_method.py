@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import attestation_level, authentication_method
+attestation_level = lazy_import('msgraph.generated.models.attestation_level')
+authentication_method = lazy_import('msgraph.generated.models.authentication_method')
 
 class Fido2AuthenticationMethod(authentication_method.AuthenticationMethod):
     @property

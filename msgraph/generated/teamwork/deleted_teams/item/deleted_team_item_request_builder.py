@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import deleted_team
-from ....models.o_data_errors import o_data_error
-from .channels import channels_request_builder
-from .channels.item import channel_item_request_builder
+deleted_team = lazy_import('msgraph.generated.models.deleted_team')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+channels_request_builder = lazy_import('msgraph.generated.teamwork.deleted_teams.item.channels.channels_request_builder')
+channel_item_request_builder = lazy_import('msgraph.generated.teamwork.deleted_teams.item.channels.item.channel_item_request_builder')
 
 class DeletedTeamItemRequestBuilder():
     """

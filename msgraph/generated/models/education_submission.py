@@ -1,13 +1,19 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import education_outcome, education_submission_recipient, education_submission_resource, education_submission_status, entity, identity_set
+education_outcome = lazy_import('msgraph.generated.models.education_outcome')
+education_submission_recipient = lazy_import('msgraph.generated.models.education_submission_recipient')
+education_submission_resource = lazy_import('msgraph.generated.models.education_submission_resource')
+education_submission_status = lazy_import('msgraph.generated.models.education_submission_status')
+entity = lazy_import('msgraph.generated.models.entity')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
 
 class EducationSubmission(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     def __init__(self,) -> None:
         """

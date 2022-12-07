@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import base_collection_pagination_count_response, user_experience_analytics_work_from_anywhere_model_performance
+base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
+user_experience_analytics_work_from_anywhere_model_performance = lazy_import('msgraph.generated.models.user_experience_analytics_work_from_anywhere_model_performance')
 
 class UserExperienceAnalyticsWorkFromAnywhereModelPerformanceCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
     def __init__(self,) -> None:

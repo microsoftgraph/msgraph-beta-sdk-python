@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import browser_shared_cookie_source_environment, identity_set
+browser_shared_cookie_source_environment = lazy_import('msgraph.generated.models.browser_shared_cookie_source_environment')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
 
 class BrowserSharedCookieHistory(AdditionalDataHolder, Parsable):
     @property

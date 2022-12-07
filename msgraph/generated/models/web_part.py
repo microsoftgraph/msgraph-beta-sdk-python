@@ -1,39 +1,22 @@
 from __future__ import annotations
-from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import site_page_data
+entity = lazy_import('msgraph.generated.models.entity')
+site_page_data = lazy_import('msgraph.generated.models.site_page_data')
 
-class WebPart(AdditionalDataHolder, Parsable):
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
+class WebPart(entity.Entity):
     def __init__(self,) -> None:
         """
         Instantiates a new webPart and sets the default values.
         """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The required properties for the webPart (varies by webPart)
+        super().__init__()
+        # The data property
         self._data: Optional[site_page_data.SitePageData] = None
         # The OdataType property
-        self._odata_type: Optional[str] = None
-        # A unique identifier specifying the webPart type. Read-only.
+        self.odata_type: Optional[str] = None
+        # The type property
         self._type: Optional[str] = None
     
     @staticmethod
@@ -51,7 +34,7 @@ class WebPart(AdditionalDataHolder, Parsable):
     @property
     def data(self,) -> Optional[site_page_data.SitePageData]:
         """
-        Gets the data property value. The required properties for the webPart (varies by webPart)
+        Gets the data property value. The data property
         Returns: Optional[site_page_data.SitePageData]
         """
         return self._data
@@ -59,7 +42,7 @@ class WebPart(AdditionalDataHolder, Parsable):
     @data.setter
     def data(self,value: Optional[site_page_data.SitePageData] = None) -> None:
         """
-        Sets the data property value. The required properties for the webPart (varies by webPart)
+        Sets the data property value. The data property
         Args:
             value: Value to set for the data property.
         """
@@ -72,27 +55,11 @@ class WebPart(AdditionalDataHolder, Parsable):
         """
         fields = {
             "data": lambda n : setattr(self, 'data', n.get_object_value(site_page_data.SitePageData)),
-            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
         }
+        super_fields = super().get_field_deserializers()
+        fields.update(super_fields)
         return fields
-    
-    @property
-    def odata_type(self,) -> Optional[str]:
-        """
-        Gets the @odata.type property value. The OdataType property
-        Returns: Optional[str]
-        """
-        return self._odata_type
-    
-    @odata_type.setter
-    def odata_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the @odata.type property value. The OdataType property
-        Args:
-            value: Value to set for the OdataType property.
-        """
-        self._odata_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -102,15 +69,14 @@ class WebPart(AdditionalDataHolder, Parsable):
         """
         if writer is None:
             raise Exception("writer cannot be undefined")
+        super().serialize(writer)
         writer.write_object_value("data", self.data)
-        writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("type", self.type)
-        writer.write_additional_data_value(self.additional_data)
     
     @property
     def type(self,) -> Optional[str]:
         """
-        Gets the type property value. A unique identifier specifying the webPart type. Read-only.
+        Gets the type property value. The type property
         Returns: Optional[str]
         """
         return self._type
@@ -118,7 +84,7 @@ class WebPart(AdditionalDataHolder, Parsable):
     @type.setter
     def type(self,value: Optional[str] = None) -> None:
         """
-        Sets the type property value. A unique identifier specifying the webPart type. Read-only.
+        Sets the type property value. The type property
         Args:
             value: Value to set for the type property.
         """

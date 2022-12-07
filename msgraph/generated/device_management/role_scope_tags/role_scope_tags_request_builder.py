@@ -7,13 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import role_scope_tag, role_scope_tag_collection_response
-from ...models.o_data_errors import o_data_error
-from .count import count_request_builder
-from .get_role_scope_tags_by_id import get_role_scope_tags_by_id_request_builder
-from .has_custom_role_scope_tag import has_custom_role_scope_tag_request_builder
+count_request_builder = lazy_import('msgraph.generated.device_management.role_scope_tags.count.count_request_builder')
+get_role_scope_tags_by_id_request_builder = lazy_import('msgraph.generated.device_management.role_scope_tags.get_role_scope_tags_by_id.get_role_scope_tags_by_id_request_builder')
+has_custom_role_scope_tag_request_builder = lazy_import('msgraph.generated.device_management.role_scope_tags.has_custom_role_scope_tag.has_custom_role_scope_tag_request_builder')
+role_scope_tag = lazy_import('msgraph.generated.models.role_scope_tag')
+role_scope_tag_collection_response = lazy_import('msgraph.generated.models.role_scope_tag_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class RoleScopeTagsRequestBuilder():
     """

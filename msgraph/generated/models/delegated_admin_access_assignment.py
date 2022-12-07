@@ -1,13 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import delegated_admin_access_assignment_status, delegated_admin_access_container, delegated_admin_access_details, entity
+delegated_admin_access_assignment_status = lazy_import('msgraph.generated.models.delegated_admin_access_assignment_status')
+delegated_admin_access_container = lazy_import('msgraph.generated.models.delegated_admin_access_container')
+delegated_admin_access_details = lazy_import('msgraph.generated.models.delegated_admin_access_details')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class DelegatedAdminAccessAssignment(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def access_container(self,) -> Optional[delegated_admin_access_container.DelegatedAdminAccessContainer]:

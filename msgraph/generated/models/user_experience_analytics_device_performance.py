@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import disk_type, entity, user_experience_analytics_health_state
+disk_type = lazy_import('msgraph.generated.models.disk_type')
+entity = lazy_import('msgraph.generated.models.entity')
+user_experience_analytics_health_state = lazy_import('msgraph.generated.models.user_experience_analytics_health_state')
 
 class UserExperienceAnalyticsDevicePerformance(entity.Entity):
     """

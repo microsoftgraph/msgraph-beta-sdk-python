@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import change_tracked_entity, schedule_change_request_actor, schedule_change_state
+change_tracked_entity = lazy_import('msgraph.generated.models.change_tracked_entity')
+schedule_change_request_actor = lazy_import('msgraph.generated.models.schedule_change_request_actor')
+schedule_change_state = lazy_import('msgraph.generated.models.schedule_change_state')
 
 class ScheduleChangeRequest(change_tracked_entity.ChangeTrackedEntity):
     @property

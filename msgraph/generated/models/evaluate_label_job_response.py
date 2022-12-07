@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import evaluate_label_job_result_group, job_response_base
+evaluate_label_job_result_group = lazy_import('msgraph.generated.models.evaluate_label_job_result_group')
+job_response_base = lazy_import('msgraph.generated.models.job_response_base')
 
 class EvaluateLabelJobResponse(job_response_base.JobResponseBase):
     def __init__(self,) -> None:

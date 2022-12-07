@@ -1,9 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, file_hash, malware_state, security_vendor_information, vulnerability_state
+entity = lazy_import('msgraph.generated.models.entity')
+file_hash = lazy_import('msgraph.generated.models.file_hash')
+malware_state = lazy_import('msgraph.generated.models.malware_state')
+security_vendor_information = lazy_import('msgraph.generated.models.security_vendor_information')
+vulnerability_state = lazy_import('msgraph.generated.models.vulnerability_state')
 
 class FileSecurityProfile(entity.Entity):
     """

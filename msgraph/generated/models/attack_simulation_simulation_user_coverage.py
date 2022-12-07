@@ -1,9 +1,10 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import attack_simulation_user
+attack_simulation_user = lazy_import('msgraph.generated.models.attack_simulation_user')
 
 class AttackSimulationSimulationUserCoverage(AdditionalDataHolder, Parsable):
     @property

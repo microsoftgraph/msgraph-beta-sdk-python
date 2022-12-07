@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import feedback_token_set, user_feedback_rating
+feedback_token_set = lazy_import('msgraph.generated.models.call_records.feedback_token_set')
+user_feedback_rating = lazy_import('msgraph.generated.models.call_records.user_feedback_rating')
 
 class UserFeedback(AdditionalDataHolder, Parsable):
     @property

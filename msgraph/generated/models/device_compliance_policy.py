@@ -1,9 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_compliance_device_overview, device_compliance_device_status, device_compliance_policy_assignment, device_compliance_scheduled_action_for_rule, device_compliance_user_overview, device_compliance_user_status, entity, setting_state_device_summary
+device_compliance_device_overview = lazy_import('msgraph.generated.models.device_compliance_device_overview')
+device_compliance_device_status = lazy_import('msgraph.generated.models.device_compliance_device_status')
+device_compliance_policy_assignment = lazy_import('msgraph.generated.models.device_compliance_policy_assignment')
+device_compliance_scheduled_action_for_rule = lazy_import('msgraph.generated.models.device_compliance_scheduled_action_for_rule')
+device_compliance_user_overview = lazy_import('msgraph.generated.models.device_compliance_user_overview')
+device_compliance_user_status = lazy_import('msgraph.generated.models.device_compliance_user_status')
+entity = lazy_import('msgraph.generated.models.entity')
+setting_state_device_summary = lazy_import('msgraph.generated.models.setting_state_device_summary')
 
 class DeviceCompliancePolicy(entity.Entity):
     """

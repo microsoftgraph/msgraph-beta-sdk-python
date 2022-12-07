@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import change_tracked_entity, time_off_reason_icon_type
+change_tracked_entity = lazy_import('msgraph.generated.models.change_tracked_entity')
+time_off_reason_icon_type = lazy_import('msgraph.generated.models.time_off_reason_icon_type')
 
 class TimeOffReason(change_tracked_entity.ChangeTrackedEntity):
     def __init__(self,) -> None:

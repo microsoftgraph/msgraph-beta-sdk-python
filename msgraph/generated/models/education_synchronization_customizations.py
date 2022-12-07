@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import education_synchronization_customization, education_synchronization_customizations_base
+education_synchronization_customization = lazy_import('msgraph.generated.models.education_synchronization_customization')
+education_synchronization_customizations_base = lazy_import('msgraph.generated.models.education_synchronization_customizations_base')
 
 class EducationSynchronizationCustomizations(education_synchronization_customizations_base.EducationSynchronizationCustomizationsBase):
     def __init__(self,) -> None:

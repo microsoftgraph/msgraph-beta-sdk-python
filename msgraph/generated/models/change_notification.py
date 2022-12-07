@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import change_notification_encrypted_content, change_type, lifecycle_event_type, resource_data
+change_notification_encrypted_content = lazy_import('msgraph.generated.models.change_notification_encrypted_content')
+change_type = lazy_import('msgraph.generated.models.change_type')
+lifecycle_event_type = lazy_import('msgraph.generated.models.lifecycle_event_type')
+resource_data = lazy_import('msgraph.generated.models.resource_data')
 
 class ChangeNotification(AdditionalDataHolder, Parsable):
     @property

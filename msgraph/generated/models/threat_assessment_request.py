@@ -1,9 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, identity_set, threat_assessment_content_type, threat_assessment_request_source, threat_assessment_result, threat_assessment_status, threat_category, threat_expected_assessment
+entity = lazy_import('msgraph.generated.models.entity')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+threat_assessment_content_type = lazy_import('msgraph.generated.models.threat_assessment_content_type')
+threat_assessment_request_source = lazy_import('msgraph.generated.models.threat_assessment_request_source')
+threat_assessment_result = lazy_import('msgraph.generated.models.threat_assessment_result')
+threat_assessment_status = lazy_import('msgraph.generated.models.threat_assessment_status')
+threat_category = lazy_import('msgraph.generated.models.threat_category')
+threat_expected_assessment = lazy_import('msgraph.generated.models.threat_expected_assessment')
 
 class ThreatAssessmentRequest(entity.Entity):
     """

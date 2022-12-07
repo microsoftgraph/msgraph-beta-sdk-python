@@ -1,9 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import access_review_instance, access_review_instance_decision_item_resource, access_review_instance_decision_item_target, decision_item_principal_resource_membership, entity, governance_insight, identity, user_identity
+access_review_instance = lazy_import('msgraph.generated.models.access_review_instance')
+access_review_instance_decision_item_resource = lazy_import('msgraph.generated.models.access_review_instance_decision_item_resource')
+access_review_instance_decision_item_target = lazy_import('msgraph.generated.models.access_review_instance_decision_item_target')
+decision_item_principal_resource_membership = lazy_import('msgraph.generated.models.decision_item_principal_resource_membership')
+entity = lazy_import('msgraph.generated.models.entity')
+governance_insight = lazy_import('msgraph.generated.models.governance_insight')
+identity = lazy_import('msgraph.generated.models.identity')
+user_identity = lazy_import('msgraph.generated.models.user_identity')
 
 class AccessReviewInstanceDecisionItem(entity.Entity):
     """

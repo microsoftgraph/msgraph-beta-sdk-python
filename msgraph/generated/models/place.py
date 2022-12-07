@@ -1,10 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, outlook_geo_coordinates, physical_address
+entity = lazy_import('msgraph.generated.models.entity')
+outlook_geo_coordinates = lazy_import('msgraph.generated.models.outlook_geo_coordinates')
+physical_address = lazy_import('msgraph.generated.models.physical_address')
 
 class Place(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def address(self,) -> Optional[physical_address.PhysicalAddress]:
         """
@@ -24,7 +30,7 @@ class Place(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new Place and sets the default values.
+        Instantiates a new place and sets the default values.
         """
         super().__init__()
         # The street address of the place.

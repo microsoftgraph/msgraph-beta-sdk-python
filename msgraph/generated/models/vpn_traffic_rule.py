@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import i_pv4_range, number_range, vpn_traffic_rule_app_type, vpn_traffic_rule_routing_policy_type
+i_pv4_range = lazy_import('msgraph.generated.models.i_pv4_range')
+number_range = lazy_import('msgraph.generated.models.number_range')
+vpn_traffic_rule_app_type = lazy_import('msgraph.generated.models.vpn_traffic_rule_app_type')
+vpn_traffic_rule_routing_policy_type = lazy_import('msgraph.generated.models.vpn_traffic_rule_routing_policy_type')
 
 class VpnTrafficRule(AdditionalDataHolder, Parsable):
     """

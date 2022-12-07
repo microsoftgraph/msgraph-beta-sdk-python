@@ -7,22 +7,23 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import access_review
-from ...models.o_data_errors import o_data_error
-from .apply_decisions import apply_decisions_request_builder
-from .decisions import decisions_request_builder
-from .decisions.item import access_review_decision_item_request_builder
-from .instances import instances_request_builder
-from .instances.item import access_review_item_request_builder
-from .my_decisions import my_decisions_request_builder
-from .my_decisions.item import access_review_decision_item_request_builder
-from .reset_decisions import reset_decisions_request_builder
-from .reviewers import reviewers_request_builder
-from .reviewers.item import access_review_reviewer_item_request_builder
-from .send_reminder import send_reminder_request_builder
-from .stop import stop_request_builder
+apply_decisions_request_builder = lazy_import('msgraph.generated.access_reviews.item.apply_decisions.apply_decisions_request_builder')
+decisions_request_builder = lazy_import('msgraph.generated.access_reviews.item.decisions.decisions_request_builder')
+access_review_decision_item_request_builder = lazy_import('msgraph.generated.access_reviews.item.decisions.item.access_review_decision_item_request_builder')
+instances_request_builder = lazy_import('msgraph.generated.access_reviews.item.instances.instances_request_builder')
+access_review_item_request_builder = lazy_import('msgraph.generated.access_reviews.item.instances.item.access_review_item_request_builder')
+my_decisions_request_builder = lazy_import('msgraph.generated.access_reviews.item.my_decisions.my_decisions_request_builder')
+access_review_decision_item_request_builder = lazy_import('msgraph.generated.access_reviews.item.my_decisions.item.access_review_decision_item_request_builder')
+reset_decisions_request_builder = lazy_import('msgraph.generated.access_reviews.item.reset_decisions.reset_decisions_request_builder')
+reviewers_request_builder = lazy_import('msgraph.generated.access_reviews.item.reviewers.reviewers_request_builder')
+access_review_reviewer_item_request_builder = lazy_import('msgraph.generated.access_reviews.item.reviewers.item.access_review_reviewer_item_request_builder')
+send_reminder_request_builder = lazy_import('msgraph.generated.access_reviews.item.send_reminder.send_reminder_request_builder')
+stop_request_builder = lazy_import('msgraph.generated.access_reviews.item.stop.stop_request_builder')
+access_review = lazy_import('msgraph.generated.models.access_review')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class AccessReviewItemRequestBuilder():
     """

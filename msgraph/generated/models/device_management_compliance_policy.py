@@ -1,9 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_management_compliance_scheduled_action_for_rule, device_management_configuration_platforms, device_management_configuration_policy_assignment, device_management_configuration_setting, device_management_configuration_technologies, entity
+device_management_compliance_scheduled_action_for_rule = lazy_import('msgraph.generated.models.device_management_compliance_scheduled_action_for_rule')
+device_management_configuration_platforms = lazy_import('msgraph.generated.models.device_management_configuration_platforms')
+device_management_configuration_policy_assignment = lazy_import('msgraph.generated.models.device_management_configuration_policy_assignment')
+device_management_configuration_setting = lazy_import('msgraph.generated.models.device_management_configuration_setting')
+device_management_configuration_technologies = lazy_import('msgraph.generated.models.device_management_configuration_technologies')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class DeviceManagementCompliancePolicy(entity.Entity):
     """

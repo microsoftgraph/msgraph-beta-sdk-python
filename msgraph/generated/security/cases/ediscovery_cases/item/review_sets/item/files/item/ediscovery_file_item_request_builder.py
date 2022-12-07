@@ -7,15 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .........models.o_data_errors import o_data_error
-from .........models.security import ediscovery_file
-from .content import content_request_builder
-from .custodian import custodian_request_builder
-from .extracted_text_content import extracted_text_content_request_builder
-from .tags import tags_request_builder
-from .tags.item import ediscovery_review_tag_item_request_builder
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+ediscovery_file = lazy_import('msgraph.generated.models.security.ediscovery_file')
+content_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.files.item.content.content_request_builder')
+custodian_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.files.item.custodian.custodian_request_builder')
+extracted_text_content_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.files.item.extracted_text_content.extracted_text_content_request_builder')
+tags_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.files.item.tags.tags_request_builder')
+ediscovery_review_tag_item_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.files.item.tags.item.ediscovery_review_tag_item_request_builder')
 
 class EdiscoveryFileItemRequestBuilder():
     """

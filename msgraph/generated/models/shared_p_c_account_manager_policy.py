@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import shared_p_c_account_deletion_policy_type
+shared_p_c_account_deletion_policy_type = lazy_import('msgraph.generated.models.shared_p_c_account_deletion_policy_type')
 
 class SharedPCAccountManagerPolicy(AdditionalDataHolder, Parsable):
     """

@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import attachment_base
+attachment_base = lazy_import('msgraph.generated.models.attachment_base')
 
 class TaskFileAttachment(attachment_base.AttachmentBase):
     def __init__(self,) -> None:

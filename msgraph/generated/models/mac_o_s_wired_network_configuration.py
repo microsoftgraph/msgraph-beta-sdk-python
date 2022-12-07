@@ -1,8 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_configuration, eap_fast_configuration, eap_type, mac_o_s_certificate_profile_base, mac_o_s_trusted_root_certificate, non_eap_authentication_method_for_eap_ttls_type, wi_fi_authentication_method, wired_network_interface
+device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+eap_fast_configuration = lazy_import('msgraph.generated.models.eap_fast_configuration')
+eap_type = lazy_import('msgraph.generated.models.eap_type')
+mac_o_s_certificate_profile_base = lazy_import('msgraph.generated.models.mac_o_s_certificate_profile_base')
+mac_o_s_trusted_root_certificate = lazy_import('msgraph.generated.models.mac_o_s_trusted_root_certificate')
+non_eap_authentication_method_for_eap_ttls_type = lazy_import('msgraph.generated.models.non_eap_authentication_method_for_eap_ttls_type')
+wi_fi_authentication_method = lazy_import('msgraph.generated.models.wi_fi_authentication_method')
+wired_network_interface = lazy_import('msgraph.generated.models.wired_network_interface')
 
 class MacOSWiredNetworkConfiguration(device_configuration.DeviceConfiguration):
     @property

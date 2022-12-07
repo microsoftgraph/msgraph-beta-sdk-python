@@ -1,8 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_configuration, internet_site_security_level, required_password_type, site_security_level, update_classification, windows_user_account_control_settings
+device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+internet_site_security_level = lazy_import('msgraph.generated.models.internet_site_security_level')
+required_password_type = lazy_import('msgraph.generated.models.required_password_type')
+site_security_level = lazy_import('msgraph.generated.models.site_security_level')
+update_classification = lazy_import('msgraph.generated.models.update_classification')
+windows_user_account_control_settings = lazy_import('msgraph.generated.models.windows_user_account_control_settings')
 
 class Windows81GeneralConfiguration(device_configuration.DeviceConfiguration):
     @property

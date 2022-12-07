@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import run_as_account_type, win32_lob_app_power_shell_script_rule_operation_type, win32_lob_app_rule, win32_lob_app_rule_operator
+run_as_account_type = lazy_import('msgraph.generated.models.run_as_account_type')
+win32_lob_app_power_shell_script_rule_operation_type = lazy_import('msgraph.generated.models.win32_lob_app_power_shell_script_rule_operation_type')
+win32_lob_app_rule = lazy_import('msgraph.generated.models.win32_lob_app_rule')
+win32_lob_app_rule_operator = lazy_import('msgraph.generated.models.win32_lob_app_rule_operator')
 
 class Win32LobAppPowerShellScriptRule(win32_lob_app_rule.Win32LobAppRule):
     @property

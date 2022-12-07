@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, status, user_activity
+entity = lazy_import('msgraph.generated.models.entity')
+status = lazy_import('msgraph.generated.models.status')
+user_activity = lazy_import('msgraph.generated.models.user_activity')
 
 class ActivityHistoryItem(entity.Entity):
     """

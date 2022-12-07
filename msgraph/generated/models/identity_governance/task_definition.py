@@ -1,13 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import lifecycle_task_category, parameter
-from .. import entity
+entity = lazy_import('msgraph.generated.models.entity')
+lifecycle_task_category = lazy_import('msgraph.generated.models.identity_governance.lifecycle_task_category')
+parameter = lazy_import('msgraph.generated.models.identity_governance.parameter')
 
 class TaskDefinition(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def category(self,) -> Optional[lifecycle_task_category.LifecycleTaskCategory]:

@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import delivery_optimization_bandwidth, delivery_optimization_bandwidth_business_hours_limit
+delivery_optimization_bandwidth = lazy_import('msgraph.generated.models.delivery_optimization_bandwidth')
+delivery_optimization_bandwidth_business_hours_limit = lazy_import('msgraph.generated.models.delivery_optimization_bandwidth_business_hours_limit')
 
 class DeliveryOptimizationBandwidthHoursWithPercentage(delivery_optimization_bandwidth.DeliveryOptimizationBandwidth):
     @property

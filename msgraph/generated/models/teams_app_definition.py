@@ -1,9 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, identity_set, teams_app_icon, teams_app_installation_scopes, teams_app_publishing_state, teamwork_bot
+entity = lazy_import('msgraph.generated.models.entity')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+teams_app_icon = lazy_import('msgraph.generated.models.teams_app_icon')
+teams_app_installation_scopes = lazy_import('msgraph.generated.models.teams_app_installation_scopes')
+teams_app_publishing_state = lazy_import('msgraph.generated.models.teams_app_publishing_state')
+teamwork_bot = lazy_import('msgraph.generated.models.teamwork_bot')
 
 class TeamsAppDefinition(entity.Entity):
     """

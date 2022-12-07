@@ -7,15 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import subject_rights_request
-from ....models.o_data_errors import o_data_error
-from .get_final_attachment import get_final_attachment_request_builder
-from .get_final_report import get_final_report_request_builder
-from .notes import notes_request_builder
-from .notes.item import authored_note_item_request_builder
-from .team import team_request_builder
+subject_rights_request = lazy_import('msgraph.generated.models.subject_rights_request')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+get_final_attachment_request_builder = lazy_import('msgraph.generated.privacy.subject_rights_requests.item.get_final_attachment.get_final_attachment_request_builder')
+get_final_report_request_builder = lazy_import('msgraph.generated.privacy.subject_rights_requests.item.get_final_report.get_final_report_request_builder')
+notes_request_builder = lazy_import('msgraph.generated.privacy.subject_rights_requests.item.notes.notes_request_builder')
+authored_note_item_request_builder = lazy_import('msgraph.generated.privacy.subject_rights_requests.item.notes.item.authored_note_item_request_builder')
+team_request_builder = lazy_import('msgraph.generated.privacy.subject_rights_requests.item.team.team_request_builder')
 
 class SubjectRightsRequestItemRequestBuilder():
     """

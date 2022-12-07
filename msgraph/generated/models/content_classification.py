@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import match_location
+match_location = lazy_import('msgraph.generated.models.match_location')
 
 class ContentClassification(AdditionalDataHolder, Parsable):
     @property

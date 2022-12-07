@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ........models.ediscovery import additional_data_options, source_collection
+additional_data_options = lazy_import('msgraph.generated.models.ediscovery.additional_data_options')
+source_collection = lazy_import('msgraph.generated.models.ediscovery.source_collection')
 
 class AddToReviewSetPostRequestBody(AdditionalDataHolder, Parsable):
     """

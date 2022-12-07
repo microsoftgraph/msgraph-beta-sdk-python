@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_management_partner_app_type, device_management_partner_assignment, device_management_partner_tenant_state, entity
+device_management_partner_app_type = lazy_import('msgraph.generated.models.device_management_partner_app_type')
+device_management_partner_assignment = lazy_import('msgraph.generated.models.device_management_partner_assignment')
+device_management_partner_tenant_state = lazy_import('msgraph.generated.models.device_management_partner_tenant_state')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class DeviceManagementPartner(entity.Entity):
     """

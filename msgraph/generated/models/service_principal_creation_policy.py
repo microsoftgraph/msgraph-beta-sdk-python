@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import policy_base, service_principal_creation_condition_set
+policy_base = lazy_import('msgraph.generated.models.policy_base')
+service_principal_creation_condition_set = lazy_import('msgraph.generated.models.service_principal_creation_condition_set')
 
 class ServicePrincipalCreationPolicy(policy_base.PolicyBase):
     def __init__(self,) -> None:

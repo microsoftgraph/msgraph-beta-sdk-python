@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import windows_vpn_configuration, windows_vpn_connection_type, windows81_vpn_proxy_server
+windows_vpn_configuration = lazy_import('msgraph.generated.models.windows_vpn_configuration')
+windows_vpn_connection_type = lazy_import('msgraph.generated.models.windows_vpn_connection_type')
+windows81_vpn_proxy_server = lazy_import('msgraph.generated.models.windows81_vpn_proxy_server')
 
 class Windows81VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguration):
     @property

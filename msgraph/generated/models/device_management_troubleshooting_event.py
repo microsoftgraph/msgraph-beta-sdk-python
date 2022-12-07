@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_management_troubleshooting_error_details, entity, key_value_pair
+device_management_troubleshooting_error_details = lazy_import('msgraph.generated.models.device_management_troubleshooting_error_details')
+entity = lazy_import('msgraph.generated.models.entity')
+key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
 
 class DeviceManagementTroubleshootingEvent(entity.Entity):
     """

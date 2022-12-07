@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import risk_detection, risky_service_principal, risky_user, service_principal_risk_detection
+risk_detection = lazy_import('msgraph.generated.models.risk_detection')
+risky_service_principal = lazy_import('msgraph.generated.models.risky_service_principal')
+risky_user = lazy_import('msgraph.generated.models.risky_user')
+service_principal_risk_detection = lazy_import('msgraph.generated.models.service_principal_risk_detection')
 
 class IdentityProtectionRoot(AdditionalDataHolder, Parsable):
     @property

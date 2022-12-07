@@ -7,18 +7,19 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import directory_object
-from ....models.o_data_errors import o_data_error
-from .application import application_request_builder
-from .check_member_groups import check_member_groups_request_builder
-from .check_member_objects import check_member_objects_request_builder
-from .get_member_groups import get_member_groups_request_builder
-from .get_member_objects import get_member_objects_request_builder
-from .group import group_request_builder
-from .restore import restore_request_builder
-from .user import user_request_builder
+application_request_builder = lazy_import('msgraph.generated.directory.deleted_items.item.application.application_request_builder')
+check_member_groups_request_builder = lazy_import('msgraph.generated.directory.deleted_items.item.check_member_groups.check_member_groups_request_builder')
+check_member_objects_request_builder = lazy_import('msgraph.generated.directory.deleted_items.item.check_member_objects.check_member_objects_request_builder')
+get_member_groups_request_builder = lazy_import('msgraph.generated.directory.deleted_items.item.get_member_groups.get_member_groups_request_builder')
+get_member_objects_request_builder = lazy_import('msgraph.generated.directory.deleted_items.item.get_member_objects.get_member_objects_request_builder')
+group_request_builder = lazy_import('msgraph.generated.directory.deleted_items.item.group.group_request_builder')
+restore_request_builder = lazy_import('msgraph.generated.directory.deleted_items.item.restore.restore_request_builder')
+user_request_builder = lazy_import('msgraph.generated.directory.deleted_items.item.user.user_request_builder')
+directory_object = lazy_import('msgraph.generated.models.directory_object')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class DirectoryObjectItemRequestBuilder():
     """

@@ -7,13 +7,14 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .......models.ediscovery import tag
-from .......models.o_data_errors import o_data_error
-from .child_tags import child_tags_request_builder
-from .child_tags.item import tag_item_request_builder
-from .parent import parent_request_builder
+child_tags_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.tags.item.child_tags.child_tags_request_builder')
+tag_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.tags.item.child_tags.item.tag_item_request_builder')
+parent_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.tags.item.parent.parent_request_builder')
+tag = lazy_import('msgraph.generated.models.ediscovery.tag')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class TagItemRequestBuilder():
     """

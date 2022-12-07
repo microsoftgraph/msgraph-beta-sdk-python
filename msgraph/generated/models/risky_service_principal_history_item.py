@@ -1,12 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import risk_service_principal_activity, risky_service_principal
+risk_service_principal_activity = lazy_import('msgraph.generated.models.risk_service_principal_activity')
+risky_service_principal = lazy_import('msgraph.generated.models.risky_service_principal')
 
 class RiskyServicePrincipalHistoryItem(risky_service_principal.RiskyServicePrincipal):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def activity(self,) -> Optional[risk_service_principal_activity.RiskServicePrincipalActivity]:

@@ -1,13 +1,19 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, governance_resource, governance_role_assignment_request_status, governance_role_definition, governance_schedule, governance_subject
+entity = lazy_import('msgraph.generated.models.entity')
+governance_resource = lazy_import('msgraph.generated.models.governance_resource')
+governance_role_assignment_request_status = lazy_import('msgraph.generated.models.governance_role_assignment_request_status')
+governance_role_definition = lazy_import('msgraph.generated.models.governance_role_definition')
+governance_schedule = lazy_import('msgraph.generated.models.governance_schedule')
+governance_subject = lazy_import('msgraph.generated.models.governance_subject')
 
 class GovernanceRoleAssignmentRequest(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def assignment_state(self,) -> Optional[str]:

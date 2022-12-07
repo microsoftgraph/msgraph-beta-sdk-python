@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import dep_enrollment_base_profile, i_tunes_pairing_mode, management_certificate_with_thumbprint
+dep_enrollment_base_profile = lazy_import('msgraph.generated.models.dep_enrollment_base_profile')
+i_tunes_pairing_mode = lazy_import('msgraph.generated.models.i_tunes_pairing_mode')
+management_certificate_with_thumbprint = lazy_import('msgraph.generated.models.management_certificate_with_thumbprint')
 
 class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfile):
     @property

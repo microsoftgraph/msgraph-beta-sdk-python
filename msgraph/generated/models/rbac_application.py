@@ -1,8 +1,19 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import approval, entity, unified_rbac_resource_namespace, unified_role_assignment, unified_role_assignment_schedule, unified_role_assignment_schedule_instance, unified_role_assignment_schedule_request, unified_role_definition, unified_role_eligibility_schedule, unified_role_eligibility_schedule_instance, unified_role_eligibility_schedule_request
+approval = lazy_import('msgraph.generated.models.approval')
+entity = lazy_import('msgraph.generated.models.entity')
+unified_rbac_resource_namespace = lazy_import('msgraph.generated.models.unified_rbac_resource_namespace')
+unified_role_assignment = lazy_import('msgraph.generated.models.unified_role_assignment')
+unified_role_assignment_schedule = lazy_import('msgraph.generated.models.unified_role_assignment_schedule')
+unified_role_assignment_schedule_instance = lazy_import('msgraph.generated.models.unified_role_assignment_schedule_instance')
+unified_role_assignment_schedule_request = lazy_import('msgraph.generated.models.unified_role_assignment_schedule_request')
+unified_role_definition = lazy_import('msgraph.generated.models.unified_role_definition')
+unified_role_eligibility_schedule = lazy_import('msgraph.generated.models.unified_role_eligibility_schedule')
+unified_role_eligibility_schedule_instance = lazy_import('msgraph.generated.models.unified_role_eligibility_schedule_instance')
+unified_role_eligibility_schedule_request = lazy_import('msgraph.generated.models.unified_role_eligibility_schedule_request')
 
 class RbacApplication(entity.Entity):
     def __init__(self,) -> None:

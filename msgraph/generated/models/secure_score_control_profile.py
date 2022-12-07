@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import compliance_information, entity, secure_score_control_state_update, security_vendor_information
+compliance_information = lazy_import('msgraph.generated.models.compliance_information')
+entity = lazy_import('msgraph.generated.models.entity')
+secure_score_control_state_update = lazy_import('msgraph.generated.models.secure_score_control_state_update')
+security_vendor_information = lazy_import('msgraph.generated.models.security_vendor_information')
 
 class SecureScoreControlProfile(entity.Entity):
     """

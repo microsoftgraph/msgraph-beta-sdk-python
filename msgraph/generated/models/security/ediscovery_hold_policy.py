@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import policy_base, site_source, user_source
+policy_base = lazy_import('msgraph.generated.models.security.policy_base')
+site_source = lazy_import('msgraph.generated.models.security.site_source')
+user_source = lazy_import('msgraph.generated.models.security.user_source')
 
 class EdiscoveryHoldPolicy(policy_base.PolicyBase):
     def __init__(self,) -> None:

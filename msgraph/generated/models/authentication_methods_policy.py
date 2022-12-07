@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import authentication_method_configuration, entity, registration_enforcement
+authentication_method_configuration = lazy_import('msgraph.generated.models.authentication_method_configuration')
+entity = lazy_import('msgraph.generated.models.entity')
+registration_enforcement = lazy_import('msgraph.generated.models.registration_enforcement')
 
 class AuthenticationMethodsPolicy(entity.Entity):
     @property

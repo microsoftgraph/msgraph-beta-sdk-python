@@ -1,8 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import deleted_team, entity, team_template, teams_app_settings, teamwork_device, workforce_integration
+deleted_team = lazy_import('msgraph.generated.models.deleted_team')
+entity = lazy_import('msgraph.generated.models.entity')
+team_template = lazy_import('msgraph.generated.models.team_template')
+teams_app_settings = lazy_import('msgraph.generated.models.teams_app_settings')
+teamwork_device = lazy_import('msgraph.generated.models.teamwork_device')
+workforce_integration = lazy_import('msgraph.generated.models.workforce_integration')
 
 class Teamwork(entity.Entity):
     def __init__(self,) -> None:

@@ -1,9 +1,18 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_management_intent_assignment, device_management_intent_device_setting_state_summary, device_management_intent_device_state, device_management_intent_device_state_summary, device_management_intent_setting_category, device_management_intent_user_state, device_management_intent_user_state_summary, device_management_setting_instance, entity
+device_management_intent_assignment = lazy_import('msgraph.generated.models.device_management_intent_assignment')
+device_management_intent_device_setting_state_summary = lazy_import('msgraph.generated.models.device_management_intent_device_setting_state_summary')
+device_management_intent_device_state = lazy_import('msgraph.generated.models.device_management_intent_device_state')
+device_management_intent_device_state_summary = lazy_import('msgraph.generated.models.device_management_intent_device_state_summary')
+device_management_intent_setting_category = lazy_import('msgraph.generated.models.device_management_intent_setting_category')
+device_management_intent_user_state = lazy_import('msgraph.generated.models.device_management_intent_user_state')
+device_management_intent_user_state_summary = lazy_import('msgraph.generated.models.device_management_intent_user_state_summary')
+device_management_setting_instance = lazy_import('msgraph.generated.models.device_management_setting_instance')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class DeviceManagementIntent(entity.Entity):
     """

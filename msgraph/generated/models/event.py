@@ -1,9 +1,28 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import attachment, attendee, calendar, date_time_time_zone, event_type, extension, free_busy_status, importance, item_body, location, multi_value_legacy_extended_property, online_meeting_info, online_meeting_provider_type, outlook_item, patterned_recurrence, recipient, response_status, sensitivity, single_value_legacy_extended_property
+attachment = lazy_import('msgraph.generated.models.attachment')
+attendee = lazy_import('msgraph.generated.models.attendee')
+calendar = lazy_import('msgraph.generated.models.calendar')
+date_time_time_zone = lazy_import('msgraph.generated.models.date_time_time_zone')
+event_type = lazy_import('msgraph.generated.models.event_type')
+extension = lazy_import('msgraph.generated.models.extension')
+free_busy_status = lazy_import('msgraph.generated.models.free_busy_status')
+importance = lazy_import('msgraph.generated.models.importance')
+item_body = lazy_import('msgraph.generated.models.item_body')
+location = lazy_import('msgraph.generated.models.location')
+multi_value_legacy_extended_property = lazy_import('msgraph.generated.models.multi_value_legacy_extended_property')
+online_meeting_info = lazy_import('msgraph.generated.models.online_meeting_info')
+online_meeting_provider_type = lazy_import('msgraph.generated.models.online_meeting_provider_type')
+outlook_item = lazy_import('msgraph.generated.models.outlook_item')
+patterned_recurrence = lazy_import('msgraph.generated.models.patterned_recurrence')
+recipient = lazy_import('msgraph.generated.models.recipient')
+response_status = lazy_import('msgraph.generated.models.response_status')
+sensitivity = lazy_import('msgraph.generated.models.sensitivity')
+single_value_legacy_extended_property = lazy_import('msgraph.generated.models.single_value_legacy_extended_property')
 
 class Event(outlook_item.OutlookItem):
     @property

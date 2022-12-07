@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import key_credential_configuration, password_credential_configuration
+key_credential_configuration = lazy_import('msgraph.generated.models.key_credential_configuration')
+password_credential_configuration = lazy_import('msgraph.generated.models.password_credential_configuration')
 
 class AppManagementConfiguration(AdditionalDataHolder, Parsable):
     @property

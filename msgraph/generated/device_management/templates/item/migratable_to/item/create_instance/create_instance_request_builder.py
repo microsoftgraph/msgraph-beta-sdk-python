@@ -7,11 +7,12 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import create_instance_post_request_body
-from .......models import device_management_intent
-from .......models.o_data_errors import o_data_error
+create_instance_post_request_body = lazy_import('msgraph.generated.device_management.templates.item.migratable_to.item.create_instance.create_instance_post_request_body')
+device_management_intent = lazy_import('msgraph.generated.models.device_management_intent')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class CreateInstanceRequestBuilder():
     """

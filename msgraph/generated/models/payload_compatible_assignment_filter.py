@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import assignment_filter_payload_type, device_and_app_management_assignment_filter
+assignment_filter_payload_type = lazy_import('msgraph.generated.models.assignment_filter_payload_type')
+device_and_app_management_assignment_filter = lazy_import('msgraph.generated.models.device_and_app_management_assignment_filter')
 
 class PayloadCompatibleAssignmentFilter(device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter):
     def __init__(self,) -> None:

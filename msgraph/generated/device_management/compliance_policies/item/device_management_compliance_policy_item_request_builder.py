@@ -7,18 +7,19 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import device_management_compliance_policy
-from ....models.o_data_errors import o_data_error
-from .assign import assign_request_builder
-from .assignments import assignments_request_builder
-from .assignments.item import device_management_configuration_policy_assignment_item_request_builder
-from .scheduled_actions_for_rule import scheduled_actions_for_rule_request_builder
-from .scheduled_actions_for_rule.item import device_management_compliance_scheduled_action_for_rule_item_request_builder
-from .set_scheduled_actions import set_scheduled_actions_request_builder
-from .settings import settings_request_builder
-from .settings.item import device_management_configuration_setting_item_request_builder
+assign_request_builder = lazy_import('msgraph.generated.device_management.compliance_policies.item.assign.assign_request_builder')
+assignments_request_builder = lazy_import('msgraph.generated.device_management.compliance_policies.item.assignments.assignments_request_builder')
+device_management_configuration_policy_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.compliance_policies.item.assignments.item.device_management_configuration_policy_assignment_item_request_builder')
+scheduled_actions_for_rule_request_builder = lazy_import('msgraph.generated.device_management.compliance_policies.item.scheduled_actions_for_rule.scheduled_actions_for_rule_request_builder')
+device_management_compliance_scheduled_action_for_rule_item_request_builder = lazy_import('msgraph.generated.device_management.compliance_policies.item.scheduled_actions_for_rule.item.device_management_compliance_scheduled_action_for_rule_item_request_builder')
+set_scheduled_actions_request_builder = lazy_import('msgraph.generated.device_management.compliance_policies.item.set_scheduled_actions.set_scheduled_actions_request_builder')
+settings_request_builder = lazy_import('msgraph.generated.device_management.compliance_policies.item.settings.settings_request_builder')
+device_management_configuration_setting_item_request_builder = lazy_import('msgraph.generated.device_management.compliance_policies.item.settings.item.device_management_configuration_setting_item_request_builder')
+device_management_compliance_policy = lazy_import('msgraph.generated.models.device_management_compliance_policy')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class DeviceManagementCompliancePolicyItemRequestBuilder():
     """

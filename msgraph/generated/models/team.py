@@ -1,9 +1,30 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import channel, conversation_member, entity, group, profile_photo, resource_specific_permission_grant, schedule, team_discovery_settings, team_fun_settings, team_guest_settings, team_member_settings, team_messaging_settings, team_specialization, team_summary, team_template_definition, team_visibility_type, teams_app_installation, teams_async_operation, teams_template, teamwork_tag, user
+channel = lazy_import('msgraph.generated.models.channel')
+conversation_member = lazy_import('msgraph.generated.models.conversation_member')
+entity = lazy_import('msgraph.generated.models.entity')
+group = lazy_import('msgraph.generated.models.group')
+profile_photo = lazy_import('msgraph.generated.models.profile_photo')
+resource_specific_permission_grant = lazy_import('msgraph.generated.models.resource_specific_permission_grant')
+schedule = lazy_import('msgraph.generated.models.schedule')
+team_discovery_settings = lazy_import('msgraph.generated.models.team_discovery_settings')
+team_fun_settings = lazy_import('msgraph.generated.models.team_fun_settings')
+team_guest_settings = lazy_import('msgraph.generated.models.team_guest_settings')
+team_member_settings = lazy_import('msgraph.generated.models.team_member_settings')
+team_messaging_settings = lazy_import('msgraph.generated.models.team_messaging_settings')
+team_specialization = lazy_import('msgraph.generated.models.team_specialization')
+team_summary = lazy_import('msgraph.generated.models.team_summary')
+team_template_definition = lazy_import('msgraph.generated.models.team_template_definition')
+team_visibility_type = lazy_import('msgraph.generated.models.team_visibility_type')
+teams_app_installation = lazy_import('msgraph.generated.models.teams_app_installation')
+teams_async_operation = lazy_import('msgraph.generated.models.teams_async_operation')
+teams_template = lazy_import('msgraph.generated.models.teams_template')
+teamwork_tag = lazy_import('msgraph.generated.models.teamwork_tag')
+user = lazy_import('msgraph.generated.models.user')
 
 class Team(entity.Entity):
     @property

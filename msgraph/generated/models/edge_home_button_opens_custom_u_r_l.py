@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import edge_home_button_configuration
+edge_home_button_configuration = lazy_import('msgraph.generated.models.edge_home_button_configuration')
 
 class EdgeHomeButtonOpensCustomURL(edge_home_button_configuration.EdgeHomeButtonConfiguration):
     def __init__(self,) -> None:

@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import base_item_version
+base_item_version = lazy_import('msgraph.generated.models.base_item_version')
 
 class DriveItemVersion(base_item_version.BaseItemVersion):
     def __init__(self,) -> None:

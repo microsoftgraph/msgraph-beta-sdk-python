@@ -1,8 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import importance, message_action_flag, recipient, sensitivity, size_range
+importance = lazy_import('msgraph.generated.models.importance')
+message_action_flag = lazy_import('msgraph.generated.models.message_action_flag')
+recipient = lazy_import('msgraph.generated.models.recipient')
+sensitivity = lazy_import('msgraph.generated.models.sensitivity')
+size_range = lazy_import('msgraph.generated.models.size_range')
 
 class MessageRulePredicates(AdditionalDataHolder, Parsable):
     @property

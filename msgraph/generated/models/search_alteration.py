@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import altered_query_token
+altered_query_token = lazy_import('msgraph.generated.models.altered_query_token')
 
 class SearchAlteration(AdditionalDataHolder, Parsable):
     @property

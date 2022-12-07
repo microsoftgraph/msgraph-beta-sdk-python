@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import booking_work_time_slot, day_of_week
+booking_work_time_slot = lazy_import('msgraph.generated.models.booking_work_time_slot')
+day_of_week = lazy_import('msgraph.generated.models.day_of_week')
 
 class BookingWorkHours(AdditionalDataHolder, Parsable):
     """

@@ -1,9 +1,43 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import aggregated_policy_compliance, audit_event, cloud_pc_connection, cloud_pc_device, cloud_pc_overview, conditional_access_policy_coverage, credential_user_registrations_summary, device_compliance_policy_setting_state_summary, managed_device_compliance, managed_device_compliance_trend, managed_tenant_alert, managed_tenant_alert_log, managed_tenant_alert_rule, managed_tenant_alert_rule_definition, managed_tenant_api_notification, managed_tenant_email_notification, managed_tenant_ticketing_endpoint, management_action, management_action_tenant_deployment_status, management_intent, management_template, management_template_collection, management_template_collection_tenant_summary, management_template_step, management_template_step_tenant_summary, management_template_step_version, my_role, tenant, tenant_customized_information, tenant_detailed_information, tenant_group, tenant_tag, windows_device_malware_state, windows_protection_state
-from .. import entity
+entity = lazy_import('msgraph.generated.models.entity')
+aggregated_policy_compliance = lazy_import('msgraph.generated.models.managed_tenants.aggregated_policy_compliance')
+audit_event = lazy_import('msgraph.generated.models.managed_tenants.audit_event')
+cloud_pc_connection = lazy_import('msgraph.generated.models.managed_tenants.cloud_pc_connection')
+cloud_pc_device = lazy_import('msgraph.generated.models.managed_tenants.cloud_pc_device')
+cloud_pc_overview = lazy_import('msgraph.generated.models.managed_tenants.cloud_pc_overview')
+conditional_access_policy_coverage = lazy_import('msgraph.generated.models.managed_tenants.conditional_access_policy_coverage')
+credential_user_registrations_summary = lazy_import('msgraph.generated.models.managed_tenants.credential_user_registrations_summary')
+device_compliance_policy_setting_state_summary = lazy_import('msgraph.generated.models.managed_tenants.device_compliance_policy_setting_state_summary')
+managed_device_compliance = lazy_import('msgraph.generated.models.managed_tenants.managed_device_compliance')
+managed_device_compliance_trend = lazy_import('msgraph.generated.models.managed_tenants.managed_device_compliance_trend')
+managed_tenant_alert = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_alert')
+managed_tenant_alert_log = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_alert_log')
+managed_tenant_alert_rule = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_alert_rule')
+managed_tenant_alert_rule_definition = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_alert_rule_definition')
+managed_tenant_api_notification = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_api_notification')
+managed_tenant_email_notification = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_email_notification')
+managed_tenant_ticketing_endpoint = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_ticketing_endpoint')
+management_action = lazy_import('msgraph.generated.models.managed_tenants.management_action')
+management_action_tenant_deployment_status = lazy_import('msgraph.generated.models.managed_tenants.management_action_tenant_deployment_status')
+management_intent = lazy_import('msgraph.generated.models.managed_tenants.management_intent')
+management_template = lazy_import('msgraph.generated.models.managed_tenants.management_template')
+management_template_collection = lazy_import('msgraph.generated.models.managed_tenants.management_template_collection')
+management_template_collection_tenant_summary = lazy_import('msgraph.generated.models.managed_tenants.management_template_collection_tenant_summary')
+management_template_step = lazy_import('msgraph.generated.models.managed_tenants.management_template_step')
+management_template_step_tenant_summary = lazy_import('msgraph.generated.models.managed_tenants.management_template_step_tenant_summary')
+management_template_step_version = lazy_import('msgraph.generated.models.managed_tenants.management_template_step_version')
+my_role = lazy_import('msgraph.generated.models.managed_tenants.my_role')
+tenant = lazy_import('msgraph.generated.models.managed_tenants.tenant')
+tenant_customized_information = lazy_import('msgraph.generated.models.managed_tenants.tenant_customized_information')
+tenant_detailed_information = lazy_import('msgraph.generated.models.managed_tenants.tenant_detailed_information')
+tenant_group = lazy_import('msgraph.generated.models.managed_tenants.tenant_group')
+tenant_tag = lazy_import('msgraph.generated.models.managed_tenants.tenant_tag')
+windows_device_malware_state = lazy_import('msgraph.generated.models.managed_tenants.windows_device_malware_state')
+windows_protection_state = lazy_import('msgraph.generated.models.managed_tenants.windows_protection_state')
 
 class ManagedTenant(entity.Entity):
     @property

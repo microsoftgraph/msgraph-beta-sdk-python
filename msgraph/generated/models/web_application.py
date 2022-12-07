@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import implicit_grant_settings, redirect_uri_settings
+implicit_grant_settings = lazy_import('msgraph.generated.models.implicit_grant_settings')
+redirect_uri_settings = lazy_import('msgraph.generated.models.redirect_uri_settings')
 
 class WebApplication(AdditionalDataHolder, Parsable):
     @property

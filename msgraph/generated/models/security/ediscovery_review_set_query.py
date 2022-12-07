@@ -1,13 +1,17 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import search
+search = lazy_import('msgraph.generated.models.security.search')
 
 class EdiscoveryReviewSetQuery(search.Search):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new EdiscoveryReviewSetQuery and sets the default values.
+        Instantiates a new ediscoveryReviewSetQuery and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.security.ediscoveryReviewSetQuery"

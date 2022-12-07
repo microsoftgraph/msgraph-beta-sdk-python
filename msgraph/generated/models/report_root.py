@@ -1,8 +1,17 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import application_sign_in_detailed_summary, authentication_methods_root, credential_user_registration_details, entity, print_usage, print_usage_by_printer, print_usage_by_user, security_reports_root, user_credential_usage_details
+application_sign_in_detailed_summary = lazy_import('msgraph.generated.models.application_sign_in_detailed_summary')
+authentication_methods_root = lazy_import('msgraph.generated.models.authentication_methods_root')
+credential_user_registration_details = lazy_import('msgraph.generated.models.credential_user_registration_details')
+entity = lazy_import('msgraph.generated.models.entity')
+print_usage = lazy_import('msgraph.generated.models.print_usage')
+print_usage_by_printer = lazy_import('msgraph.generated.models.print_usage_by_printer')
+print_usage_by_user = lazy_import('msgraph.generated.models.print_usage_by_user')
+security_reports_root = lazy_import('msgraph.generated.models.security_reports_root')
+user_credential_usage_details = lazy_import('msgraph.generated.models.user_credential_usage_details')
 
 class ReportRoot(entity.Entity):
     @property

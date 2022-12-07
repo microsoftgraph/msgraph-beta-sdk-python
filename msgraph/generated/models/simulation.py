@@ -1,9 +1,16 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import email_identity, entity, payload_delivery_platform, simulation_attack_technique, simulation_attack_type, simulation_report, simulation_status
+email_identity = lazy_import('msgraph.generated.models.email_identity')
+entity = lazy_import('msgraph.generated.models.entity')
+payload_delivery_platform = lazy_import('msgraph.generated.models.payload_delivery_platform')
+simulation_attack_technique = lazy_import('msgraph.generated.models.simulation_attack_technique')
+simulation_attack_type = lazy_import('msgraph.generated.models.simulation_attack_type')
+simulation_report = lazy_import('msgraph.generated.models.simulation_report')
+simulation_status = lazy_import('msgraph.generated.models.simulation_status')
 
 class Simulation(entity.Entity):
     """

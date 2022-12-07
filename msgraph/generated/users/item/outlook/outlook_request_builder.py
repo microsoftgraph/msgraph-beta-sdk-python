@@ -7,21 +7,22 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import outlook_user
-from ....models.o_data_errors import o_data_error
-from .master_categories import master_categories_request_builder
-from .master_categories.item import outlook_category_item_request_builder
-from .supported_languages import supported_languages_request_builder
-from .supported_time_zones import supported_time_zones_request_builder
-from .supported_time_zones_with_time_zone_standard import supported_time_zones_with_time_zone_standard_request_builder
-from .task_folders import task_folders_request_builder
-from .task_folders.item import outlook_task_folder_item_request_builder
-from .task_groups import task_groups_request_builder
-from .task_groups.item import outlook_task_group_item_request_builder
-from .tasks import tasks_request_builder
-from .tasks.item import outlook_task_item_request_builder
+outlook_user = lazy_import('msgraph.generated.models.outlook_user')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+master_categories_request_builder = lazy_import('msgraph.generated.users.item.outlook.master_categories.master_categories_request_builder')
+outlook_category_item_request_builder = lazy_import('msgraph.generated.users.item.outlook.master_categories.item.outlook_category_item_request_builder')
+supported_languages_request_builder = lazy_import('msgraph.generated.users.item.outlook.supported_languages.supported_languages_request_builder')
+supported_time_zones_request_builder = lazy_import('msgraph.generated.users.item.outlook.supported_time_zones.supported_time_zones_request_builder')
+supported_time_zones_with_time_zone_standard_request_builder = lazy_import('msgraph.generated.users.item.outlook.supported_time_zones_with_time_zone_standard.supported_time_zones_with_time_zone_standard_request_builder')
+task_folders_request_builder = lazy_import('msgraph.generated.users.item.outlook.task_folders.task_folders_request_builder')
+outlook_task_folder_item_request_builder = lazy_import('msgraph.generated.users.item.outlook.task_folders.item.outlook_task_folder_item_request_builder')
+task_groups_request_builder = lazy_import('msgraph.generated.users.item.outlook.task_groups.task_groups_request_builder')
+outlook_task_group_item_request_builder = lazy_import('msgraph.generated.users.item.outlook.task_groups.item.outlook_task_group_item_request_builder')
+tasks_request_builder = lazy_import('msgraph.generated.users.item.outlook.tasks.tasks_request_builder')
+outlook_task_item_request_builder = lazy_import('msgraph.generated.users.item.outlook.tasks.item.outlook_task_item_request_builder')
 
 class OutlookRequestBuilder():
     """

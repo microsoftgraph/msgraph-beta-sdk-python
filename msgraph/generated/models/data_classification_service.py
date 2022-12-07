@@ -1,8 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, exact_match_data_store, exact_match_upload_agent, job_response_base, sensitive_type, sensitivity_label
+entity = lazy_import('msgraph.generated.models.entity')
+exact_match_data_store = lazy_import('msgraph.generated.models.exact_match_data_store')
+exact_match_upload_agent = lazy_import('msgraph.generated.models.exact_match_upload_agent')
+job_response_base = lazy_import('msgraph.generated.models.job_response_base')
+sensitive_type = lazy_import('msgraph.generated.models.sensitive_type')
+sensitivity_label = lazy_import('msgraph.generated.models.sensitivity_label')
 
 class DataClassificationService(entity.Entity):
     @property

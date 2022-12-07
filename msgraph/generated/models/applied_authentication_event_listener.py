@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import authentication_event_handler_result, authentication_event_type
+authentication_event_handler_result = lazy_import('msgraph.generated.models.authentication_event_handler_result')
+authentication_event_type = lazy_import('msgraph.generated.models.authentication_event_type')
 
 class AppliedAuthenticationEventListener(AdditionalDataHolder, Parsable):
     @property

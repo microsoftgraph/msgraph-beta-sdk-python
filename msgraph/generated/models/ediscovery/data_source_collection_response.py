@@ -1,14 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import data_source
-from .. import base_collection_pagination_count_response
+base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
+data_source = lazy_import('msgraph.generated.models.ediscovery.data_source')
 
 class DataSourceCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the additionalSources property of the microsoft.graph.ediscovery.sourceCollection entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new DataSourceCollectionResponse and sets the default values.

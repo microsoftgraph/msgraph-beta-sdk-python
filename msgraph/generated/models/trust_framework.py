@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import trust_framework_key_set, trust_framework_policy
+trust_framework_key_set = lazy_import('msgraph.generated.models.trust_framework_key_set')
+trust_framework_policy = lazy_import('msgraph.generated.models.trust_framework_policy')
 
 class TrustFramework(AdditionalDataHolder, Parsable):
     @property

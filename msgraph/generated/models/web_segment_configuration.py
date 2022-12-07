@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import segment_configuration, web_application_segment
+segment_configuration = lazy_import('msgraph.generated.models.segment_configuration')
+web_application_segment = lazy_import('msgraph.generated.models.web_application_segment')
 
 class WebSegmentConfiguration(segment_configuration.SegmentConfiguration):
     @property

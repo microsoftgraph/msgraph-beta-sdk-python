@@ -7,10 +7,11 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import app_diagnostics_with_upn_response
-from ....models.o_data_errors import o_data_error
+app_diagnostics_with_upn_response = lazy_import('msgraph.generated.device_management.managed_devices.app_diagnostics_with_upn.app_diagnostics_with_upn_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class AppDiagnosticsWithUpnRequestBuilder():
     """

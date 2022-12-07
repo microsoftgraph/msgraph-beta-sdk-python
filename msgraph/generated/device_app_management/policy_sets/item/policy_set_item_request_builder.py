@@ -7,15 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import policy_set
-from ....models.o_data_errors import o_data_error
-from .assignments import assignments_request_builder
-from .assignments.item import policy_set_assignment_item_request_builder
-from .items import items_request_builder
-from .items.item import policy_set_item_item_request_builder
-from .update import update_request_builder
+assignments_request_builder = lazy_import('msgraph.generated.device_app_management.policy_sets.item.assignments.assignments_request_builder')
+policy_set_assignment_item_request_builder = lazy_import('msgraph.generated.device_app_management.policy_sets.item.assignments.item.policy_set_assignment_item_request_builder')
+items_request_builder = lazy_import('msgraph.generated.device_app_management.policy_sets.item.items.items_request_builder')
+policy_set_item_item_request_builder = lazy_import('msgraph.generated.device_app_management.policy_sets.item.items.item.policy_set_item_item_request_builder')
+update_request_builder = lazy_import('msgraph.generated.device_app_management.policy_sets.item.update.update_request_builder')
+policy_set = lazy_import('msgraph.generated.models.policy_set')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class PolicySetItemRequestBuilder():
     """

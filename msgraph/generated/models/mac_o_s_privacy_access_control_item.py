@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import enablement, mac_o_s_apple_event_receiver, mac_o_s_process_identifier_type
+enablement = lazy_import('msgraph.generated.models.enablement')
+mac_o_s_apple_event_receiver = lazy_import('msgraph.generated.models.mac_o_s_apple_event_receiver')
+mac_o_s_process_identifier_type = lazy_import('msgraph.generated.models.mac_o_s_process_identifier_type')
 
 class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
     """

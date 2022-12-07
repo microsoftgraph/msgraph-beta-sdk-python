@@ -1,10 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import deployable_content, deployment_audience, deployment_settings, deployment_state
-from .. import entity
+entity = lazy_import('msgraph.generated.models.entity')
+deployable_content = lazy_import('msgraph.generated.models.windows_updates.deployable_content')
+deployment_audience = lazy_import('msgraph.generated.models.windows_updates.deployment_audience')
+deployment_settings = lazy_import('msgraph.generated.models.windows_updates.deployment_settings')
+deployment_state = lazy_import('msgraph.generated.models.windows_updates.deployment_state')
 
 class Deployment(entity.Entity):
     """

@@ -7,13 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import notebook, notebook_collection_response
-from ....models.o_data_errors import o_data_error
-from .count import count_request_builder
-from .get_notebook_from_web_url import get_notebook_from_web_url_request_builder
-from .get_recent_notebooks_with_include_personal_notebooks import get_recent_notebooks_with_include_personal_notebooks_request_builder
+count_request_builder = lazy_import('msgraph.generated.me.onenote.notebooks.count.count_request_builder')
+get_notebook_from_web_url_request_builder = lazy_import('msgraph.generated.me.onenote.notebooks.get_notebook_from_web_url.get_notebook_from_web_url_request_builder')
+get_recent_notebooks_with_include_personal_notebooks_request_builder = lazy_import('msgraph.generated.me.onenote.notebooks.get_recent_notebooks_with_include_personal_notebooks.get_recent_notebooks_with_include_personal_notebooks_request_builder')
+notebook = lazy_import('msgraph.generated.models.notebook')
+notebook_collection_response = lazy_import('msgraph.generated.models.notebook_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class NotebooksRequestBuilder():
     """

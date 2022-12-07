@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..models import trust_framework
-from ..models.o_data_errors import o_data_error
-from .key_sets import key_sets_request_builder
-from .key_sets.item import trust_framework_key_set_item_request_builder
-from .policies import policies_request_builder
-from .policies.item import trust_framework_policy_item_request_builder
+trust_framework = lazy_import('msgraph.generated.models.trust_framework')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+key_sets_request_builder = lazy_import('msgraph.generated.trust_framework.key_sets.key_sets_request_builder')
+trust_framework_key_set_item_request_builder = lazy_import('msgraph.generated.trust_framework.key_sets.item.trust_framework_key_set_item_request_builder')
+policies_request_builder = lazy_import('msgraph.generated.trust_framework.policies.policies_request_builder')
+trust_framework_policy_item_request_builder = lazy_import('msgraph.generated.trust_framework.policies.item.trust_framework_policy_item_request_builder')
 
 class TrustFrameworkRequestBuilder():
     """

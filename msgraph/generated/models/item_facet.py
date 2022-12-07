@@ -1,9 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import allowed_audiences, entity, identity_set, inference_data, person_data_sources
+allowed_audiences = lazy_import('msgraph.generated.models.allowed_audiences')
+entity = lazy_import('msgraph.generated.models.entity')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+inference_data = lazy_import('msgraph.generated.models.inference_data')
+person_data_sources = lazy_import('msgraph.generated.models.person_data_sources')
 
 class ItemFacet(entity.Entity):
     """

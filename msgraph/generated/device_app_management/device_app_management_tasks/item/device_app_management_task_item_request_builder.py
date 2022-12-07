@@ -7,11 +7,12 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import device_app_management_task
-from ....models.o_data_errors import o_data_error
-from .update_status import update_status_request_builder
+update_status_request_builder = lazy_import('msgraph.generated.device_app_management.device_app_management_tasks.item.update_status.update_status_request_builder')
+device_app_management_task = lazy_import('msgraph.generated.models.device_app_management_task')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class DeviceAppManagementTaskItemRequestBuilder():
     """

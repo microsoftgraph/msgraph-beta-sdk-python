@@ -7,15 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .......models import directory_object_collection_response
-from .......models.o_data_errors import o_data_error
-from .count import count_request_builder
-from .endpoint import endpoint_request_builder
-from .ref import ref_request_builder
-from .service_principal import service_principal_request_builder
-from .user import user_request_builder
+count_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.registered_owners.count.count_request_builder')
+endpoint_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.registered_owners.endpoint.endpoint_request_builder')
+ref_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.registered_owners.ref.ref_request_builder')
+service_principal_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.registered_owners.service_principal.service_principal_request_builder')
+user_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.registered_owners.user.user_request_builder')
+directory_object_collection_response = lazy_import('msgraph.generated.models.directory_object_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class RegisteredOwnersRequestBuilder():
     """

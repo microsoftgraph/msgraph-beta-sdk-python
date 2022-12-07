@@ -7,11 +7,12 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import identity_user_flow_attribute_assignment
-from ......models.o_data_errors import o_data_error
-from .user_attribute import user_attribute_request_builder
+user_attribute_request_builder = lazy_import('msgraph.generated.identity.b2c_user_flows.item.user_attribute_assignments.item.user_attribute.user_attribute_request_builder')
+identity_user_flow_attribute_assignment = lazy_import('msgraph.generated.models.identity_user_flow_attribute_assignment')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class IdentityUserFlowAttributeAssignmentItemRequestBuilder():
     """

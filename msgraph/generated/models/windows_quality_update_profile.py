@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, expedited_windows_quality_update_settings, windows_quality_update_profile_assignment
+entity = lazy_import('msgraph.generated.models.entity')
+expedited_windows_quality_update_settings = lazy_import('msgraph.generated.models.expedited_windows_quality_update_settings')
+windows_quality_update_profile_assignment = lazy_import('msgraph.generated.models.windows_quality_update_profile_assignment')
 
 class WindowsQualityUpdateProfile(entity.Entity):
     """

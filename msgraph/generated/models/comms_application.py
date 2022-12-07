@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import call, online_meeting
+call = lazy_import('msgraph.generated.models.call')
+online_meeting = lazy_import('msgraph.generated.models.online_meeting')
 
 class CommsApplication(AdditionalDataHolder, Parsable):
     @property

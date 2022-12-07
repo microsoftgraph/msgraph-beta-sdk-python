@@ -7,33 +7,34 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import call
-from ....models.o_data_errors import o_data_error
-from .add_large_gallery_view import add_large_gallery_view_request_builder
-from .answer import answer_request_builder
-from .audio_routing_groups import audio_routing_groups_request_builder
-from .audio_routing_groups.item import audio_routing_group_item_request_builder
-from .cancel_media_processing import cancel_media_processing_request_builder
-from .change_screen_sharing_role import change_screen_sharing_role_request_builder
-from .content_sharing_sessions import content_sharing_sessions_request_builder
-from .content_sharing_sessions.item import content_sharing_session_item_request_builder
-from .keep_alive import keep_alive_request_builder
-from .mute import mute_request_builder
-from .operations import operations_request_builder
-from .operations.item import comms_operation_item_request_builder
-from .participants import participants_request_builder
-from .participants.item import participant_item_request_builder
-from .play_prompt import play_prompt_request_builder
-from .record import record_request_builder
-from .record_response import record_response_request_builder
-from .redirect import redirect_request_builder
-from .reject import reject_request_builder
-from .subscribe_to_tone import subscribe_to_tone_request_builder
-from .transfer import transfer_request_builder
-from .unmute import unmute_request_builder
-from .update_recording_status import update_recording_status_request_builder
+add_large_gallery_view_request_builder = lazy_import('msgraph.generated.communications.calls.item.add_large_gallery_view.add_large_gallery_view_request_builder')
+answer_request_builder = lazy_import('msgraph.generated.communications.calls.item.answer.answer_request_builder')
+audio_routing_groups_request_builder = lazy_import('msgraph.generated.communications.calls.item.audio_routing_groups.audio_routing_groups_request_builder')
+audio_routing_group_item_request_builder = lazy_import('msgraph.generated.communications.calls.item.audio_routing_groups.item.audio_routing_group_item_request_builder')
+cancel_media_processing_request_builder = lazy_import('msgraph.generated.communications.calls.item.cancel_media_processing.cancel_media_processing_request_builder')
+change_screen_sharing_role_request_builder = lazy_import('msgraph.generated.communications.calls.item.change_screen_sharing_role.change_screen_sharing_role_request_builder')
+content_sharing_sessions_request_builder = lazy_import('msgraph.generated.communications.calls.item.content_sharing_sessions.content_sharing_sessions_request_builder')
+content_sharing_session_item_request_builder = lazy_import('msgraph.generated.communications.calls.item.content_sharing_sessions.item.content_sharing_session_item_request_builder')
+keep_alive_request_builder = lazy_import('msgraph.generated.communications.calls.item.keep_alive.keep_alive_request_builder')
+mute_request_builder = lazy_import('msgraph.generated.communications.calls.item.mute.mute_request_builder')
+operations_request_builder = lazy_import('msgraph.generated.communications.calls.item.operations.operations_request_builder')
+comms_operation_item_request_builder = lazy_import('msgraph.generated.communications.calls.item.operations.item.comms_operation_item_request_builder')
+participants_request_builder = lazy_import('msgraph.generated.communications.calls.item.participants.participants_request_builder')
+participant_item_request_builder = lazy_import('msgraph.generated.communications.calls.item.participants.item.participant_item_request_builder')
+play_prompt_request_builder = lazy_import('msgraph.generated.communications.calls.item.play_prompt.play_prompt_request_builder')
+record_request_builder = lazy_import('msgraph.generated.communications.calls.item.record.record_request_builder')
+record_response_request_builder = lazy_import('msgraph.generated.communications.calls.item.record_response.record_response_request_builder')
+redirect_request_builder = lazy_import('msgraph.generated.communications.calls.item.redirect.redirect_request_builder')
+reject_request_builder = lazy_import('msgraph.generated.communications.calls.item.reject.reject_request_builder')
+subscribe_to_tone_request_builder = lazy_import('msgraph.generated.communications.calls.item.subscribe_to_tone.subscribe_to_tone_request_builder')
+transfer_request_builder = lazy_import('msgraph.generated.communications.calls.item.transfer.transfer_request_builder')
+unmute_request_builder = lazy_import('msgraph.generated.communications.calls.item.unmute.unmute_request_builder')
+update_recording_status_request_builder = lazy_import('msgraph.generated.communications.calls.item.update_recording_status.update_recording_status_request_builder')
+call = lazy_import('msgraph.generated.models.call')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class CallItemRequestBuilder():
     """

@@ -1,14 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import managed_tenant_alert
-from .. import entity
+entity = lazy_import('msgraph.generated.models.entity')
+managed_tenant_alert = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_alert')
 
 class ManagedTenantApiNotification(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def alert(self,) -> Optional[managed_tenant_alert.ManagedTenantAlert]:

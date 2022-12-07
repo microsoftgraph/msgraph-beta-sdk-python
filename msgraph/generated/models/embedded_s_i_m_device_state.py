@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import embedded_s_i_m_device_state_value, entity
+embedded_s_i_m_device_state_value = lazy_import('msgraph.generated.models.embedded_s_i_m_device_state_value')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class EmbeddedSIMDeviceState(entity.Entity):
     """

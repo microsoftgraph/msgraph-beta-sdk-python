@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ........models.ediscovery import export_file_structure, export_options
+export_file_structure = lazy_import('msgraph.generated.models.ediscovery.export_file_structure')
+export_options = lazy_import('msgraph.generated.models.ediscovery.export_options')
 
 class ExportPostRequestBody(AdditionalDataHolder, Parsable):
     """

@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import group_type, modified_property
+group_type = lazy_import('msgraph.generated.models.group_type')
+modified_property = lazy_import('msgraph.generated.models.modified_property')
 
 class TargetResource(AdditionalDataHolder, Parsable):
     @property

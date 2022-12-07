@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, group_policy_setting_scope, group_policy_setting_type, mdm_supported_state
+entity = lazy_import('msgraph.generated.models.entity')
+group_policy_setting_scope = lazy_import('msgraph.generated.models.group_policy_setting_scope')
+group_policy_setting_type = lazy_import('msgraph.generated.models.group_policy_setting_type')
+mdm_supported_state = lazy_import('msgraph.generated.models.mdm_supported_state')
 
 class GroupPolicySettingMapping(entity.Entity):
     """

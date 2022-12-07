@@ -1,8 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import boolean_column, calculated_column, choice_column, column_types, column_validation, content_approval_status_column, content_type_info, currency_column, date_time_column, default_column_value, entity, geolocation_column, hyperlink_or_picture_column, lookup_column, number_column, person_or_group_column, term_column, text_column, thumbnail_column
+boolean_column = lazy_import('msgraph.generated.models.boolean_column')
+calculated_column = lazy_import('msgraph.generated.models.calculated_column')
+choice_column = lazy_import('msgraph.generated.models.choice_column')
+column_types = lazy_import('msgraph.generated.models.column_types')
+column_validation = lazy_import('msgraph.generated.models.column_validation')
+content_approval_status_column = lazy_import('msgraph.generated.models.content_approval_status_column')
+content_type_info = lazy_import('msgraph.generated.models.content_type_info')
+currency_column = lazy_import('msgraph.generated.models.currency_column')
+date_time_column = lazy_import('msgraph.generated.models.date_time_column')
+default_column_value = lazy_import('msgraph.generated.models.default_column_value')
+entity = lazy_import('msgraph.generated.models.entity')
+geolocation_column = lazy_import('msgraph.generated.models.geolocation_column')
+hyperlink_or_picture_column = lazy_import('msgraph.generated.models.hyperlink_or_picture_column')
+lookup_column = lazy_import('msgraph.generated.models.lookup_column')
+number_column = lazy_import('msgraph.generated.models.number_column')
+person_or_group_column = lazy_import('msgraph.generated.models.person_or_group_column')
+term_column = lazy_import('msgraph.generated.models.term_column')
+text_column = lazy_import('msgraph.generated.models.text_column')
+thumbnail_column = lazy_import('msgraph.generated.models.thumbnail_column')
 
 class ColumnDefinition(entity.Entity):
     """

@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import mail_destination_routing_reason, threat_assessment_request
+mail_destination_routing_reason = lazy_import('msgraph.generated.models.mail_destination_routing_reason')
+threat_assessment_request = lazy_import('msgraph.generated.models.threat_assessment_request')
 
 class EmailFileAssessmentRequest(threat_assessment_request.ThreatAssessmentRequest):
     def __init__(self,) -> None:

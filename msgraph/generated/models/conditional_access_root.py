@@ -1,8 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import authentication_context_class_reference, authentication_strength_root, conditional_access_policy, conditional_access_template, entity, named_location
+authentication_context_class_reference = lazy_import('msgraph.generated.models.authentication_context_class_reference')
+authentication_strength_root = lazy_import('msgraph.generated.models.authentication_strength_root')
+conditional_access_policy = lazy_import('msgraph.generated.models.conditional_access_policy')
+conditional_access_template = lazy_import('msgraph.generated.models.conditional_access_template')
+entity = lazy_import('msgraph.generated.models.entity')
+named_location = lazy_import('msgraph.generated.models.named_location')
 
 class ConditionalAccessRoot(entity.Entity):
     @property

@@ -1,9 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import resource_connection
-from .. import base_collection_pagination_count_response
+base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
+resource_connection = lazy_import('msgraph.generated.models.windows_updates.resource_connection')
 
 class ResourceConnectionCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
     """

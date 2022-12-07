@@ -1,8 +1,20 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import apple_device_features_configuration_base, ip_range, key_value_pair, mac_o_s_associated_domains_item, mac_o_s_certificate_profile_base, mac_o_s_content_caching_client_policy, mac_o_s_content_caching_parent_selection_policy, mac_o_s_content_caching_peer_policy, mac_o_s_content_caching_type, mac_o_s_launch_item, mac_o_s_single_sign_on_extension, single_sign_on_extension
+apple_device_features_configuration_base = lazy_import('msgraph.generated.models.apple_device_features_configuration_base')
+ip_range = lazy_import('msgraph.generated.models.ip_range')
+key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
+mac_o_s_associated_domains_item = lazy_import('msgraph.generated.models.mac_o_s_associated_domains_item')
+mac_o_s_certificate_profile_base = lazy_import('msgraph.generated.models.mac_o_s_certificate_profile_base')
+mac_o_s_content_caching_client_policy = lazy_import('msgraph.generated.models.mac_o_s_content_caching_client_policy')
+mac_o_s_content_caching_parent_selection_policy = lazy_import('msgraph.generated.models.mac_o_s_content_caching_parent_selection_policy')
+mac_o_s_content_caching_peer_policy = lazy_import('msgraph.generated.models.mac_o_s_content_caching_peer_policy')
+mac_o_s_content_caching_type = lazy_import('msgraph.generated.models.mac_o_s_content_caching_type')
+mac_o_s_launch_item = lazy_import('msgraph.generated.models.mac_o_s_launch_item')
+mac_o_s_single_sign_on_extension = lazy_import('msgraph.generated.models.mac_o_s_single_sign_on_extension')
+single_sign_on_extension = lazy_import('msgraph.generated.models.single_sign_on_extension')
 
 class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.AppleDeviceFeaturesConfigurationBase):
     @property

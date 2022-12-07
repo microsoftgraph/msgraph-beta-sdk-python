@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ............models.identity_governance import custom_task_extension_callback_data
+custom_task_extension_callback_data = lazy_import('msgraph.generated.models.identity_governance.custom_task_extension_callback_data')
 
 class ResumePostRequestBody(AdditionalDataHolder, Parsable):
     """

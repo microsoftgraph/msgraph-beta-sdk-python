@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import app_identity, audit_user_identity
+app_identity = lazy_import('msgraph.generated.models.app_identity')
+audit_user_identity = lazy_import('msgraph.generated.models.audit_user_identity')
 
 class AuditActivityInitiator(AdditionalDataHolder, Parsable):
     @property

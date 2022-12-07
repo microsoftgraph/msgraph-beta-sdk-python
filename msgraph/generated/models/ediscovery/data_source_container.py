@@ -1,14 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import case_index_operation, data_source_container_status, data_source_hold_status
-from .. import entity
+entity = lazy_import('msgraph.generated.models.entity')
+case_index_operation = lazy_import('msgraph.generated.models.ediscovery.case_index_operation')
+data_source_container_status = lazy_import('msgraph.generated.models.ediscovery.data_source_container_status')
+data_source_hold_status = lazy_import('msgraph.generated.models.ediscovery.data_source_hold_status')
 
 class DataSourceContainer(entity.Entity):
     """
-    Provides operations to manage the compliance singleton.
+    Provides operations to manage the collection of accessReview entities.
     """
     def __init__(self,) -> None:
         """

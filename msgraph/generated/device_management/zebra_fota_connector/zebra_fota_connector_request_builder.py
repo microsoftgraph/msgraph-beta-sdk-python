@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import zebra_fota_connector
-from ...models.o_data_errors import o_data_error
-from .approve_fota_apps import approve_fota_apps_request_builder
-from .connect import connect_request_builder
-from .disconnect import disconnect_request_builder
-from .has_active_deployments import has_active_deployments_request_builder
+approve_fota_apps_request_builder = lazy_import('msgraph.generated.device_management.zebra_fota_connector.approve_fota_apps.approve_fota_apps_request_builder')
+connect_request_builder = lazy_import('msgraph.generated.device_management.zebra_fota_connector.connect.connect_request_builder')
+disconnect_request_builder = lazy_import('msgraph.generated.device_management.zebra_fota_connector.disconnect.disconnect_request_builder')
+has_active_deployments_request_builder = lazy_import('msgraph.generated.device_management.zebra_fota_connector.has_active_deployments.has_active_deployments_request_builder')
+zebra_fota_connector = lazy_import('msgraph.generated.models.zebra_fota_connector')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ZebraFotaConnectorRequestBuilder():
     """

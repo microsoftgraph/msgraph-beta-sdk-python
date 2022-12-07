@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import cloud_pc_export_job, entity
+cloud_pc_export_job = lazy_import('msgraph.generated.models.cloud_pc_export_job')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class CloudPcReports(entity.Entity):
     def __init__(self,) -> None:

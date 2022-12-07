@@ -1,14 +1,19 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import legal_hold_status, site_source, unified_group_source, user_source
-from .. import entity, identity_set
+entity = lazy_import('msgraph.generated.models.entity')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+legal_hold_status = lazy_import('msgraph.generated.models.ediscovery.legal_hold_status')
+site_source = lazy_import('msgraph.generated.models.ediscovery.site_source')
+unified_group_source = lazy_import('msgraph.generated.models.ediscovery.unified_group_source')
+user_source = lazy_import('msgraph.generated.models.ediscovery.user_source')
 
 class LegalHold(entity.Entity):
     """
-    Provides operations to manage the compliance singleton.
+    Provides operations to manage the collection of accessReview entities.
     """
     def __init__(self,) -> None:
         """

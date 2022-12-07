@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import call_recording_status, event_message_detail, identity_set
+call_recording_status = lazy_import('msgraph.generated.models.call_recording_status')
+event_message_detail = lazy_import('msgraph.generated.models.event_message_detail')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
 
 class CallRecordingEventMessageDetail(event_message_detail.EventMessageDetail):
     @property

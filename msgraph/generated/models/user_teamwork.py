@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import associated_team_info, entity, user_scope_teams_app_installation
+associated_team_info = lazy_import('msgraph.generated.models.associated_team_info')
+entity = lazy_import('msgraph.generated.models.entity')
+user_scope_teams_app_installation = lazy_import('msgraph.generated.models.user_scope_teams_app_installation')
 
 class UserTeamwork(entity.Entity):
     @property

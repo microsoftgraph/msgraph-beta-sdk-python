@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..models import role_management
-from ..models.o_data_errors import o_data_error
-from .cloud_p_c import cloud_p_c_request_builder
-from .device_management import device_management_request_builder
-from .directory import directory_request_builder
-from .entitlement_management import entitlement_management_request_builder
+role_management = lazy_import('msgraph.generated.models.role_management')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+cloud_p_c_request_builder = lazy_import('msgraph.generated.role_management.cloud_p_c.cloud_p_c_request_builder')
+device_management_request_builder = lazy_import('msgraph.generated.role_management.device_management.device_management_request_builder')
+directory_request_builder = lazy_import('msgraph.generated.role_management.directory.directory_request_builder')
+entitlement_management_request_builder = lazy_import('msgraph.generated.role_management.entitlement_management.entitlement_management_request_builder')
 
 class RoleManagementRequestBuilder():
     """

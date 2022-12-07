@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import compliance_status, setting_source
+compliance_status = lazy_import('msgraph.generated.models.compliance_status')
+setting_source = lazy_import('msgraph.generated.models.setting_source')
 
 class DeviceConfigurationSettingState(AdditionalDataHolder, Parsable):
     """

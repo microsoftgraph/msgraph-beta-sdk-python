@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_management_configuration_dependent_on, device_management_configuration_setting_depended_on_by, device_management_configuration_setting_value
+device_management_configuration_dependent_on = lazy_import('msgraph.generated.models.device_management_configuration_dependent_on')
+device_management_configuration_setting_depended_on_by = lazy_import('msgraph.generated.models.device_management_configuration_setting_depended_on_by')
+device_management_configuration_setting_value = lazy_import('msgraph.generated.models.device_management_configuration_setting_value')
 
 class DeviceManagementConfigurationOptionDefinition(AdditionalDataHolder, Parsable):
     @property

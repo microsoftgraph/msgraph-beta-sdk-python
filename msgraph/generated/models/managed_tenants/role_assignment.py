@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import delegated_privilege_status, role_definition
+delegated_privilege_status = lazy_import('msgraph.generated.models.managed_tenants.delegated_privilege_status')
+role_definition = lazy_import('msgraph.generated.models.managed_tenants.role_definition')
 
 class RoleAssignment(AdditionalDataHolder, Parsable):
     @property

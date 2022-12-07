@@ -7,19 +7,20 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import governance_resource
-from ...models.o_data_errors import o_data_error
-from .parent import parent_request_builder
-from .role_assignment_requests import role_assignment_requests_request_builder
-from .role_assignment_requests.item import governance_role_assignment_request_item_request_builder
-from .role_assignments import role_assignments_request_builder
-from .role_assignments.item import governance_role_assignment_item_request_builder
-from .role_definitions import role_definitions_request_builder
-from .role_definitions.item import governance_role_definition_item_request_builder
-from .role_settings import role_settings_request_builder
-from .role_settings.item import governance_role_setting_item_request_builder
+parent_request_builder = lazy_import('msgraph.generated.governance_resources.item.parent.parent_request_builder')
+role_assignment_requests_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_assignment_requests.role_assignment_requests_request_builder')
+governance_role_assignment_request_item_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_assignment_requests.item.governance_role_assignment_request_item_request_builder')
+role_assignments_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_assignments.role_assignments_request_builder')
+governance_role_assignment_item_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_assignments.item.governance_role_assignment_item_request_builder')
+role_definitions_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_definitions.role_definitions_request_builder')
+governance_role_definition_item_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_definitions.item.governance_role_definition_item_request_builder')
+role_settings_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_settings.role_settings_request_builder')
+governance_role_setting_item_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_settings.item.governance_role_setting_item_request_builder')
+governance_resource = lazy_import('msgraph.generated.models.governance_resource')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class GovernanceResourceItemRequestBuilder():
     """

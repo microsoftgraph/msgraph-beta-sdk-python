@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import detected_app_platform_type, entity, managed_device
+detected_app_platform_type = lazy_import('msgraph.generated.models.detected_app_platform_type')
+entity = lazy_import('msgraph.generated.models.entity')
+managed_device = lazy_import('msgraph.generated.models.managed_device')
 
 class DetectedApp(entity.Entity):
     """

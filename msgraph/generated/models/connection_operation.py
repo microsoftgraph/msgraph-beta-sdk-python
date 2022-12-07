@@ -1,13 +1,19 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import connection_operation_status, entity, public_error
+connection_operation_status = lazy_import('msgraph.generated.models.connection_operation_status')
+entity = lazy_import('msgraph.generated.models.entity')
+public_error = lazy_import('msgraph.generated.models.public_error')
 
 class ConnectionOperation(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new ConnectionOperation and sets the default values.
+        Instantiates a new connectionOperation and sets the default values.
         """
         super().__init__()
         # The error property

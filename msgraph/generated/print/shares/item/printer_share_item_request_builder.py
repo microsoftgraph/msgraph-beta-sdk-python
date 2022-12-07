@@ -7,15 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import printer_share
-from ....models.o_data_errors import o_data_error
-from .allowed_groups import allowed_groups_request_builder
-from .allowed_groups.item import group_item_request_builder
-from .allowed_users import allowed_users_request_builder
-from .allowed_users.item import user_item_request_builder
-from .printer import printer_request_builder
+printer_share = lazy_import('msgraph.generated.models.printer_share')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+allowed_groups_request_builder = lazy_import('msgraph.generated.print.shares.item.allowed_groups.allowed_groups_request_builder')
+group_item_request_builder = lazy_import('msgraph.generated.print.shares.item.allowed_groups.item.group_item_request_builder')
+allowed_users_request_builder = lazy_import('msgraph.generated.print.shares.item.allowed_users.allowed_users_request_builder')
+user_item_request_builder = lazy_import('msgraph.generated.print.shares.item.allowed_users.item.user_item_request_builder')
+printer_request_builder = lazy_import('msgraph.generated.print.shares.item.printer.printer_request_builder')
 
 class PrinterShareItemRequestBuilder():
     """

@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import office_client_checkin_status, office_client_configuration, office_user_checkin_summary
+office_client_checkin_status = lazy_import('msgraph.generated.models.office_client_checkin_status')
+office_client_configuration = lazy_import('msgraph.generated.models.office_client_configuration')
+office_user_checkin_summary = lazy_import('msgraph.generated.models.office_user_checkin_summary')
 
 class OfficeConfiguration(AdditionalDataHolder, Parsable):
     @property

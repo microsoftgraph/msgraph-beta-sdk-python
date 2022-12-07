@@ -1,8 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import android_certificate_profile_base, android_username_source, device_configuration, domain_name_source, eas_authentication_method, email_sync_duration, email_sync_schedule, user_email_source
+android_certificate_profile_base = lazy_import('msgraph.generated.models.android_certificate_profile_base')
+android_username_source = lazy_import('msgraph.generated.models.android_username_source')
+device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+domain_name_source = lazy_import('msgraph.generated.models.domain_name_source')
+eas_authentication_method = lazy_import('msgraph.generated.models.eas_authentication_method')
+email_sync_duration = lazy_import('msgraph.generated.models.email_sync_duration')
+email_sync_schedule = lazy_import('msgraph.generated.models.email_sync_schedule')
+user_email_source = lazy_import('msgraph.generated.models.user_email_source')
 
 class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfiguration):
     @property

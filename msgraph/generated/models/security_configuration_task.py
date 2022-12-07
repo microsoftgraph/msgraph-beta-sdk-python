@@ -1,8 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_app_management_task, endpoint_security_configuration_applicable_platform, endpoint_security_configuration_profile_type, endpoint_security_configuration_type, key_value_pair, vulnerable_managed_device
+device_app_management_task = lazy_import('msgraph.generated.models.device_app_management_task')
+endpoint_security_configuration_applicable_platform = lazy_import('msgraph.generated.models.endpoint_security_configuration_applicable_platform')
+endpoint_security_configuration_profile_type = lazy_import('msgraph.generated.models.endpoint_security_configuration_profile_type')
+endpoint_security_configuration_type = lazy_import('msgraph.generated.models.endpoint_security_configuration_type')
+key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
+vulnerable_managed_device = lazy_import('msgraph.generated.models.vulnerable_managed_device')
 
 class SecurityConfigurationTask(device_app_management_task.DeviceAppManagementTask):
     @property

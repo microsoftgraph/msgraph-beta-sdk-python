@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import detected_sensitive_content, ml_classification_match_tolerance
+detected_sensitive_content = lazy_import('msgraph.generated.models.detected_sensitive_content')
+ml_classification_match_tolerance = lazy_import('msgraph.generated.models.ml_classification_match_tolerance')
 
 class MachineLearningDetectedSensitiveContent(detected_sensitive_content.DetectedSensitiveContent):
     def __init__(self,) -> None:

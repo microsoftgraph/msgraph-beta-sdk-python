@@ -7,24 +7,25 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import org_contact
-from ...models.o_data_errors import o_data_error
-from .check_member_groups import check_member_groups_request_builder
-from .check_member_objects import check_member_objects_request_builder
-from .direct_reports import direct_reports_request_builder
-from .direct_reports.item import directory_object_item_request_builder
-from .get_member_groups import get_member_groups_request_builder
-from .get_member_objects import get_member_objects_request_builder
-from .manager import manager_request_builder
-from .member_of import member_of_request_builder
-from .member_of.item import directory_object_item_request_builder
-from .restore import restore_request_builder
-from .transitive_member_of import transitive_member_of_request_builder
-from .transitive_member_of.item import directory_object_item_request_builder
-from .transitive_reports import transitive_reports_request_builder
-from .transitive_reports.item import directory_object_item_request_builder
+check_member_groups_request_builder = lazy_import('msgraph.generated.contacts.item.check_member_groups.check_member_groups_request_builder')
+check_member_objects_request_builder = lazy_import('msgraph.generated.contacts.item.check_member_objects.check_member_objects_request_builder')
+direct_reports_request_builder = lazy_import('msgraph.generated.contacts.item.direct_reports.direct_reports_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.contacts.item.direct_reports.item.directory_object_item_request_builder')
+get_member_groups_request_builder = lazy_import('msgraph.generated.contacts.item.get_member_groups.get_member_groups_request_builder')
+get_member_objects_request_builder = lazy_import('msgraph.generated.contacts.item.get_member_objects.get_member_objects_request_builder')
+manager_request_builder = lazy_import('msgraph.generated.contacts.item.manager.manager_request_builder')
+member_of_request_builder = lazy_import('msgraph.generated.contacts.item.member_of.member_of_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.contacts.item.member_of.item.directory_object_item_request_builder')
+restore_request_builder = lazy_import('msgraph.generated.contacts.item.restore.restore_request_builder')
+transitive_member_of_request_builder = lazy_import('msgraph.generated.contacts.item.transitive_member_of.transitive_member_of_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.contacts.item.transitive_member_of.item.directory_object_item_request_builder')
+transitive_reports_request_builder = lazy_import('msgraph.generated.contacts.item.transitive_reports.transitive_reports_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.contacts.item.transitive_reports.item.directory_object_item_request_builder')
+org_contact = lazy_import('msgraph.generated.models.org_contact')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class OrgContactItemRequestBuilder():
     """

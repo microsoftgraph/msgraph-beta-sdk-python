@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import key_value_pair, managed_app_policy
+key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
+managed_app_policy = lazy_import('msgraph.generated.models.managed_app_policy')
 
 class ManagedAppConfiguration(managed_app_policy.ManagedAppPolicy):
     def __init__(self,) -> None:

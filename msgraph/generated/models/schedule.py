@@ -1,8 +1,21 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, offer_shift_request, open_shift, open_shift_change_request, operation_status, scheduling_group, shift, swap_shifts_change_request, time_card, time_clock_settings, time_off, time_off_reason, time_off_request
+entity = lazy_import('msgraph.generated.models.entity')
+offer_shift_request = lazy_import('msgraph.generated.models.offer_shift_request')
+open_shift = lazy_import('msgraph.generated.models.open_shift')
+open_shift_change_request = lazy_import('msgraph.generated.models.open_shift_change_request')
+operation_status = lazy_import('msgraph.generated.models.operation_status')
+scheduling_group = lazy_import('msgraph.generated.models.scheduling_group')
+shift = lazy_import('msgraph.generated.models.shift')
+swap_shifts_change_request = lazy_import('msgraph.generated.models.swap_shifts_change_request')
+time_card = lazy_import('msgraph.generated.models.time_card')
+time_clock_settings = lazy_import('msgraph.generated.models.time_clock_settings')
+time_off = lazy_import('msgraph.generated.models.time_off')
+time_off_reason = lazy_import('msgraph.generated.models.time_off_reason')
+time_off_request = lazy_import('msgraph.generated.models.time_off_request')
 
 class Schedule(entity.Entity):
     def __init__(self,) -> None:

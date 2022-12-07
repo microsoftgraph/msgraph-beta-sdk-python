@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import broadcast_meeting_audience, broadcast_meeting_caption_settings
+broadcast_meeting_audience = lazy_import('msgraph.generated.models.broadcast_meeting_audience')
+broadcast_meeting_caption_settings = lazy_import('msgraph.generated.models.broadcast_meeting_caption_settings')
 
 class BroadcastMeetingSettings(AdditionalDataHolder, Parsable):
     @property

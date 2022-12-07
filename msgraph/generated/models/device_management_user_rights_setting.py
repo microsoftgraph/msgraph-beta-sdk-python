@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_management_user_rights_local_user_or_group, state_management_setting
+device_management_user_rights_local_user_or_group = lazy_import('msgraph.generated.models.device_management_user_rights_local_user_or_group')
+state_management_setting = lazy_import('msgraph.generated.models.state_management_setting')
 
 class DeviceManagementUserRightsSetting(AdditionalDataHolder, Parsable):
     """

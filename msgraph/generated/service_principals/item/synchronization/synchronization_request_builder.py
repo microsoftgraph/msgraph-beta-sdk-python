@@ -7,16 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import synchronization
-from ....models.o_data_errors import o_data_error
-from .acquire_access_token import acquire_access_token_request_builder
-from .jobs import jobs_request_builder
-from .jobs.item import synchronization_job_item_request_builder
-from .ping import ping_request_builder
-from .templates import templates_request_builder
-from .templates.item import synchronization_template_item_request_builder
+synchronization = lazy_import('msgraph.generated.models.synchronization')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+acquire_access_token_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.acquire_access_token.acquire_access_token_request_builder')
+jobs_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.jobs_request_builder')
+synchronization_job_item_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.synchronization_job_item_request_builder')
+ping_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.ping.ping_request_builder')
+templates_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.templates.templates_request_builder')
+synchronization_template_item_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.templates.item.synchronization_template_item_request_builder')
 
 class SynchronizationRequestBuilder():
     """

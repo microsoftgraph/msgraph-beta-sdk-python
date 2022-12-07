@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import free_busy_error, schedule_item, working_hours
+free_busy_error = lazy_import('msgraph.generated.models.free_busy_error')
+schedule_item = lazy_import('msgraph.generated.models.schedule_item')
+working_hours = lazy_import('msgraph.generated.models.working_hours')
 
 class ScheduleInformation(AdditionalDataHolder, Parsable):
     @property

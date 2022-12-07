@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import app_log_collection_request, device_management_troubleshooting_event, mobile_app_troubleshooting_history_item
+app_log_collection_request = lazy_import('msgraph.generated.models.app_log_collection_request')
+device_management_troubleshooting_event = lazy_import('msgraph.generated.models.device_management_troubleshooting_event')
+mobile_app_troubleshooting_history_item = lazy_import('msgraph.generated.models.mobile_app_troubleshooting_history_item')
 
 class MobileAppTroubleshootingEvent(device_management_troubleshooting_event.DeviceManagementTroubleshootingEvent):
     @property

@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import mac_o_s_lob_child_app, mac_o_s_minimum_operating_system, mobile_lob_app
+mac_o_s_lob_child_app = lazy_import('msgraph.generated.models.mac_o_s_lob_child_app')
+mac_o_s_minimum_operating_system = lazy_import('msgraph.generated.models.mac_o_s_minimum_operating_system')
+mobile_lob_app = lazy_import('msgraph.generated.models.mobile_lob_app')
 
 class MacOSLobApp(mobile_lob_app.MobileLobApp):
     @property

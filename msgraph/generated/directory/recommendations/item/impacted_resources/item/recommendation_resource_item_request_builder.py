@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import recommendation_resource
-from ......models.o_data_errors import o_data_error
-from .complete import complete_request_builder
-from .dismiss import dismiss_request_builder
-from .postpone import postpone_request_builder
-from .reactivate import reactivate_request_builder
+complete_request_builder = lazy_import('msgraph.generated.directory.recommendations.item.impacted_resources.item.complete.complete_request_builder')
+dismiss_request_builder = lazy_import('msgraph.generated.directory.recommendations.item.impacted_resources.item.dismiss.dismiss_request_builder')
+postpone_request_builder = lazy_import('msgraph.generated.directory.recommendations.item.impacted_resources.item.postpone.postpone_request_builder')
+reactivate_request_builder = lazy_import('msgraph.generated.directory.recommendations.item.impacted_resources.item.reactivate.reactivate_request_builder')
+recommendation_resource = lazy_import('msgraph.generated.models.recommendation_resource')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class RecommendationResourceItemRequestBuilder():
     """

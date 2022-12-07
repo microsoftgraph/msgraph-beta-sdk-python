@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import access_package_custom_extension_handler_status, access_package_custom_extension_stage
+access_package_custom_extension_handler_status = lazy_import('msgraph.generated.models.access_package_custom_extension_handler_status')
+access_package_custom_extension_stage = lazy_import('msgraph.generated.models.access_package_custom_extension_stage')
 
 class CustomExtensionHandlerInstance(AdditionalDataHolder, Parsable):
     @property

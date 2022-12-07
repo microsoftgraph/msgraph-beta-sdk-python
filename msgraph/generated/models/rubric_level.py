@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import education_assignment_grade_type, education_item_body
+education_assignment_grade_type = lazy_import('msgraph.generated.models.education_assignment_grade_type')
+education_item_body = lazy_import('msgraph.generated.models.education_item_body')
 
 class RubricLevel(AdditionalDataHolder, Parsable):
     @property

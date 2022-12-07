@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import vpp_token_action_failure_reason, vpp_token_action_result
+vpp_token_action_failure_reason = lazy_import('msgraph.generated.models.vpp_token_action_failure_reason')
+vpp_token_action_result = lazy_import('msgraph.generated.models.vpp_token_action_result')
 
 class VppTokenRevokeLicensesActionResult(vpp_token_action_result.VppTokenActionResult):
     @property

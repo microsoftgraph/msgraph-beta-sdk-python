@@ -1,9 +1,16 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_install_state, e_book_install_summary, entity, managed_e_book_assignment, managed_e_book_category, mime_content, user_install_state_summary
+device_install_state = lazy_import('msgraph.generated.models.device_install_state')
+e_book_install_summary = lazy_import('msgraph.generated.models.e_book_install_summary')
+entity = lazy_import('msgraph.generated.models.entity')
+managed_e_book_assignment = lazy_import('msgraph.generated.models.managed_e_book_assignment')
+managed_e_book_category = lazy_import('msgraph.generated.models.managed_e_book_category')
+mime_content = lazy_import('msgraph.generated.models.mime_content')
+user_install_state_summary = lazy_import('msgraph.generated.models.user_install_state_summary')
 
 class ManagedEBook(entity.Entity):
     """

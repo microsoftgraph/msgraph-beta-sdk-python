@@ -7,9 +7,10 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .......models.o_data_errors import o_data_error
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class HeaderLogoRequestBuilder():
     """
@@ -35,7 +36,7 @@ class HeaderLogoRequestBuilder():
     
     def create_get_request_information(self,request_configuration: Optional[HeaderLogoRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get headerLogo for the navigation property localizations from organization
+        A company logo that appears in the header of the sign-in page. The allowed types are PNG or JPEG not larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -51,7 +52,7 @@ class HeaderLogoRequestBuilder():
     
     def create_put_request_information(self,body: bytes, request_configuration: Optional[HeaderLogoRequestBuilderPutRequestConfiguration] = None) -> RequestInformation:
         """
-        Update headerLogo for the navigation property localizations in organization
+        A company logo that appears in the header of the sign-in page. The allowed types are PNG or JPEG not larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
         Args:
             body: Binary request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -71,7 +72,7 @@ class HeaderLogoRequestBuilder():
     
     async def get(self,request_configuration: Optional[HeaderLogoRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> bytes:
         """
-        Get headerLogo for the navigation property localizations from organization
+        A company logo that appears in the header of the sign-in page. The allowed types are PNG or JPEG not larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
@@ -90,7 +91,7 @@ class HeaderLogoRequestBuilder():
     
     async def put(self,body: bytes, request_configuration: Optional[HeaderLogoRequestBuilderPutRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
-        Update headerLogo for the navigation property localizations in organization
+        A company logo that appears in the header of the sign-in page. The allowed types are PNG or JPEG not larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
         Args:
             body: Binary request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

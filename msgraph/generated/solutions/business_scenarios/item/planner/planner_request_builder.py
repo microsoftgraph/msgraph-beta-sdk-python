@@ -7,15 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import business_scenario_planner
-from .....models.o_data_errors import o_data_error
-from .get_plan import get_plan_request_builder
-from .plan_configuration import plan_configuration_request_builder
-from .task_configuration import task_configuration_request_builder
-from .tasks import tasks_request_builder
-from .tasks.item import business_scenario_task_item_request_builder
+business_scenario_planner = lazy_import('msgraph.generated.models.business_scenario_planner')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+get_plan_request_builder = lazy_import('msgraph.generated.solutions.business_scenarios.item.planner.get_plan.get_plan_request_builder')
+plan_configuration_request_builder = lazy_import('msgraph.generated.solutions.business_scenarios.item.planner.plan_configuration.plan_configuration_request_builder')
+task_configuration_request_builder = lazy_import('msgraph.generated.solutions.business_scenarios.item.planner.task_configuration.task_configuration_request_builder')
+tasks_request_builder = lazy_import('msgraph.generated.solutions.business_scenarios.item.planner.tasks.tasks_request_builder')
+business_scenario_task_item_request_builder = lazy_import('msgraph.generated.solutions.business_scenarios.item.planner.tasks.item.business_scenario_task_item_request_builder')
 
 class PlannerRequestBuilder():
     """

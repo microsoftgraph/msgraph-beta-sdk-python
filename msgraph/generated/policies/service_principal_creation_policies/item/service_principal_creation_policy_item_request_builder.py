@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import service_principal_creation_policy
-from ....models.o_data_errors import o_data_error
-from .excludes import excludes_request_builder
-from .excludes.item import service_principal_creation_condition_set_item_request_builder
-from .includes import includes_request_builder
-from .includes.item import service_principal_creation_condition_set_item_request_builder
+service_principal_creation_policy = lazy_import('msgraph.generated.models.service_principal_creation_policy')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+excludes_request_builder = lazy_import('msgraph.generated.policies.service_principal_creation_policies.item.excludes.excludes_request_builder')
+service_principal_creation_condition_set_item_request_builder = lazy_import('msgraph.generated.policies.service_principal_creation_policies.item.excludes.item.service_principal_creation_condition_set_item_request_builder')
+includes_request_builder = lazy_import('msgraph.generated.policies.service_principal_creation_policies.item.includes.includes_request_builder')
+service_principal_creation_condition_set_item_request_builder = lazy_import('msgraph.generated.policies.service_principal_creation_policies.item.includes.item.service_principal_creation_condition_set_item_request_builder')
 
 class ServicePrincipalCreationPolicyItemRequestBuilder():
     """

@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .......models import authentication_method_modes
+authentication_method_modes = lazy_import('msgraph.generated.models.authentication_method_modes')
 
 class UpdateAllowedCombinationsPostRequestBody(AdditionalDataHolder, Parsable):
     """

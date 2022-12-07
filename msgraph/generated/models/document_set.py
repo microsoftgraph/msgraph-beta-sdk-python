@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import column_definition, content_type_info, document_set_content
+column_definition = lazy_import('msgraph.generated.models.column_definition')
+content_type_info = lazy_import('msgraph.generated.models.content_type_info')
+document_set_content = lazy_import('msgraph.generated.models.document_set_content')
 
 class DocumentSet(AdditionalDataHolder, Parsable):
     @property

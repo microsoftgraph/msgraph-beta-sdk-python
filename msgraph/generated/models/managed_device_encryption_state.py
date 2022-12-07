@@ -1,8 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import advanced_bit_locker_state, compliance_status, device_types, encryption_readiness_state, encryption_report_policy_details, encryption_state, entity, file_vault_state
+advanced_bit_locker_state = lazy_import('msgraph.generated.models.advanced_bit_locker_state')
+compliance_status = lazy_import('msgraph.generated.models.compliance_status')
+device_types = lazy_import('msgraph.generated.models.device_types')
+encryption_readiness_state = lazy_import('msgraph.generated.models.encryption_readiness_state')
+encryption_report_policy_details = lazy_import('msgraph.generated.models.encryption_report_policy_details')
+encryption_state = lazy_import('msgraph.generated.models.encryption_state')
+entity = lazy_import('msgraph.generated.models.entity')
+file_vault_state = lazy_import('msgraph.generated.models.file_vault_state')
 
 class ManagedDeviceEncryptionState(entity.Entity):
     """

@@ -1,9 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import access_review_error, access_review_instance_decision_item, access_review_reviewer, access_review_reviewer_scope, access_review_schedule_definition, access_review_scope, access_review_stage, entity
+access_review_error = lazy_import('msgraph.generated.models.access_review_error')
+access_review_instance_decision_item = lazy_import('msgraph.generated.models.access_review_instance_decision_item')
+access_review_reviewer = lazy_import('msgraph.generated.models.access_review_reviewer')
+access_review_reviewer_scope = lazy_import('msgraph.generated.models.access_review_reviewer_scope')
+access_review_schedule_definition = lazy_import('msgraph.generated.models.access_review_schedule_definition')
+access_review_scope = lazy_import('msgraph.generated.models.access_review_scope')
+access_review_stage = lazy_import('msgraph.generated.models.access_review_stage')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class AccessReviewInstance(entity.Entity):
     """

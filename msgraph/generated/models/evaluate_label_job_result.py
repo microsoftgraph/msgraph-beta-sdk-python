@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import matching_label, responsible_policy, responsible_sensitive_type
+matching_label = lazy_import('msgraph.generated.models.matching_label')
+responsible_policy = lazy_import('msgraph.generated.models.responsible_policy')
+responsible_sensitive_type = lazy_import('msgraph.generated.models.responsible_sensitive_type')
 
 class EvaluateLabelJobResult(AdditionalDataHolder, Parsable):
     @property

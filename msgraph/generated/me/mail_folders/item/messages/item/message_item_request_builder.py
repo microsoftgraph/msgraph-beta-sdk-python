@@ -7,31 +7,32 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import message
-from ......models.o_data_errors import o_data_error
-from .attachments import attachments_request_builder
-from .attachments.item import attachment_item_request_builder
-from .copy import copy_request_builder
-from .create_forward import create_forward_request_builder
-from .create_reply import create_reply_request_builder
-from .create_reply_all import create_reply_all_request_builder
-from .extensions import extensions_request_builder
-from .extensions.item import extension_item_request_builder
-from .forward import forward_request_builder
-from .mentions import mentions_request_builder
-from .mentions.item import mention_item_request_builder
-from .move import move_request_builder
-from .multi_value_extended_properties import multi_value_extended_properties_request_builder
-from .multi_value_extended_properties.item import multi_value_legacy_extended_property_item_request_builder
-from .reply import reply_request_builder
-from .reply_all import reply_all_request_builder
-from .send import send_request_builder
-from .single_value_extended_properties import single_value_extended_properties_request_builder
-from .single_value_extended_properties.item import single_value_legacy_extended_property_item_request_builder
-from .unsubscribe import unsubscribe_request_builder
-from .value import content_request_builder
+attachments_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.messages.item.attachments.attachments_request_builder')
+attachment_item_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.messages.item.attachments.item.attachment_item_request_builder')
+copy_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.messages.item.copy.copy_request_builder')
+create_forward_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.messages.item.create_forward.create_forward_request_builder')
+create_reply_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.messages.item.create_reply.create_reply_request_builder')
+create_reply_all_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.messages.item.create_reply_all.create_reply_all_request_builder')
+extensions_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.messages.item.extensions.extensions_request_builder')
+extension_item_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.messages.item.extensions.item.extension_item_request_builder')
+forward_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.messages.item.forward.forward_request_builder')
+mentions_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.messages.item.mentions.mentions_request_builder')
+mention_item_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.messages.item.mentions.item.mention_item_request_builder')
+move_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.messages.item.move.move_request_builder')
+multi_value_extended_properties_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.messages.item.multi_value_extended_properties.multi_value_extended_properties_request_builder')
+multi_value_legacy_extended_property_item_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.messages.item.multi_value_extended_properties.item.multi_value_legacy_extended_property_item_request_builder')
+reply_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.messages.item.reply.reply_request_builder')
+reply_all_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.messages.item.reply_all.reply_all_request_builder')
+send_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.messages.item.send.send_request_builder')
+single_value_extended_properties_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.messages.item.single_value_extended_properties.single_value_extended_properties_request_builder')
+single_value_legacy_extended_property_item_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.messages.item.single_value_extended_properties.item.single_value_legacy_extended_property_item_request_builder')
+unsubscribe_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.messages.item.unsubscribe.unsubscribe_request_builder')
+content_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.messages.item.value.content_request_builder')
+message = lazy_import('msgraph.generated.models.message')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class MessageItemRequestBuilder():
     """

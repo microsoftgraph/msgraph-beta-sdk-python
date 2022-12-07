@@ -1,14 +1,18 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import lifecycle_workflow_processing_status, task_processing_result, workflow_execution_type
-from .. import entity, user
+entity = lazy_import('msgraph.generated.models.entity')
+user = lazy_import('msgraph.generated.models.user')
+lifecycle_workflow_processing_status = lazy_import('msgraph.generated.models.identity_governance.lifecycle_workflow_processing_status')
+task_processing_result = lazy_import('msgraph.generated.models.identity_governance.task_processing_result')
+workflow_execution_type = lazy_import('msgraph.generated.models.identity_governance.workflow_execution_type')
 
 class UserProcessingResult(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def completed_date_time(self,) -> Optional[datetime]:

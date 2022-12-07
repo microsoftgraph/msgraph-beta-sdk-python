@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import identity_set, notebook_links, onenote_user_role
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+notebook_links = lazy_import('msgraph.generated.models.notebook_links')
+onenote_user_role = lazy_import('msgraph.generated.models.onenote_user_role')
 
 class CopyNotebookModel(AdditionalDataHolder, Parsable):
     @property

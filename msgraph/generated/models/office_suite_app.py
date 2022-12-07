@@ -1,8 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import excluded_apps, mobile_app, office_product_id, office_suite_default_file_format_type, office_suite_install_progress_display_level, office_update_channel, windows_architecture
+excluded_apps = lazy_import('msgraph.generated.models.excluded_apps')
+mobile_app = lazy_import('msgraph.generated.models.mobile_app')
+office_product_id = lazy_import('msgraph.generated.models.office_product_id')
+office_suite_default_file_format_type = lazy_import('msgraph.generated.models.office_suite_default_file_format_type')
+office_suite_install_progress_display_level = lazy_import('msgraph.generated.models.office_suite_install_progress_display_level')
+office_update_channel = lazy_import('msgraph.generated.models.office_update_channel')
+windows_architecture = lazy_import('msgraph.generated.models.windows_architecture')
 
 class OfficeSuiteApp(mobile_app.MobileApp):
     @property

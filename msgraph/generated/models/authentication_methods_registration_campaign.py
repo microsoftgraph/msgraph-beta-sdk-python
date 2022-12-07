@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import advanced_config_state, authentication_methods_registration_campaign_include_target, exclude_target
+advanced_config_state = lazy_import('msgraph.generated.models.advanced_config_state')
+authentication_methods_registration_campaign_include_target = lazy_import('msgraph.generated.models.authentication_methods_registration_campaign_include_target')
+exclude_target = lazy_import('msgraph.generated.models.exclude_target')
 
 class AuthenticationMethodsRegistrationCampaign(AdditionalDataHolder, Parsable):
     @property

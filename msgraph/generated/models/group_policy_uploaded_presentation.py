@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import group_policy_presentation
+group_policy_presentation = lazy_import('msgraph.generated.models.group_policy_presentation')
 
 class GroupPolicyUploadedPresentation(group_policy_presentation.GroupPolicyPresentation):
     def __init__(self,) -> None:

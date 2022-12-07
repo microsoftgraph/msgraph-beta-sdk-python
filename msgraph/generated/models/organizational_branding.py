@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import organizational_branding_localization, organizational_branding_properties
+organizational_branding_localization = lazy_import('msgraph.generated.models.organizational_branding_localization')
+organizational_branding_properties = lazy_import('msgraph.generated.models.organizational_branding_properties')
 
 class OrganizationalBranding(organizational_branding_properties.OrganizationalBrandingProperties):
     def __init__(self,) -> None:

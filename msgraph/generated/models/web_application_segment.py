@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import application_segment, cors_configuration_v2
+application_segment = lazy_import('msgraph.generated.models.application_segment')
+cors_configuration_v2 = lazy_import('msgraph.generated.models.cors_configuration_v2')
 
 class WebApplicationSegment(application_segment.ApplicationSegment):
     @property

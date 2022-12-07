@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import state_management_setting, windows_firewall_rule_interface_types, windows_firewall_rule_network_profile_types, windows_firewall_rule_traffic_direction_type
+state_management_setting = lazy_import('msgraph.generated.models.state_management_setting')
+windows_firewall_rule_interface_types = lazy_import('msgraph.generated.models.windows_firewall_rule_interface_types')
+windows_firewall_rule_network_profile_types = lazy_import('msgraph.generated.models.windows_firewall_rule_network_profile_types')
+windows_firewall_rule_traffic_direction_type = lazy_import('msgraph.generated.models.windows_firewall_rule_traffic_direction_type')
 
 class WindowsFirewallRule(AdditionalDataHolder, Parsable):
     """

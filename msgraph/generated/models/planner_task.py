@@ -1,9 +1,19 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import identity_set, planner_applied_categories, planner_assigned_to_task_board_task_format, planner_assignments, planner_bucket_task_board_task_format, planner_delta, planner_preview_type, planner_progress_task_board_task_format, planner_task_creation, planner_task_details
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+planner_applied_categories = lazy_import('msgraph.generated.models.planner_applied_categories')
+planner_assigned_to_task_board_task_format = lazy_import('msgraph.generated.models.planner_assigned_to_task_board_task_format')
+planner_assignments = lazy_import('msgraph.generated.models.planner_assignments')
+planner_bucket_task_board_task_format = lazy_import('msgraph.generated.models.planner_bucket_task_board_task_format')
+planner_delta = lazy_import('msgraph.generated.models.planner_delta')
+planner_preview_type = lazy_import('msgraph.generated.models.planner_preview_type')
+planner_progress_task_board_task_format = lazy_import('msgraph.generated.models.planner_progress_task_board_task_format')
+planner_task_creation = lazy_import('msgraph.generated.models.planner_task_creation')
+planner_task_details = lazy_import('msgraph.generated.models.planner_task_details')
 
 class PlannerTask(planner_delta.PlannerDelta):
     """

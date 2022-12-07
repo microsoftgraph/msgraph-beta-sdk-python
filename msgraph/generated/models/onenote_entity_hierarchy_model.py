@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import identity_set, onenote_entity_schema_object_model
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+onenote_entity_schema_object_model = lazy_import('msgraph.generated.models.onenote_entity_schema_object_model')
 
 class OnenoteEntityHierarchyModel(onenote_entity_schema_object_model.OnenoteEntitySchemaObjectModel):
     def __init__(self,) -> None:

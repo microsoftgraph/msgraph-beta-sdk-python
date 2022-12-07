@@ -1,9 +1,10 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import content_metadata
+content_metadata = lazy_import('msgraph.generated.models.content_metadata')
 
 class ContentProperties(AdditionalDataHolder, Parsable):
     @property

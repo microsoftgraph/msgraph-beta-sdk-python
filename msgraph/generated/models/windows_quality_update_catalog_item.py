@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import windows_quality_update_classification, windows_update_catalog_item
+windows_quality_update_classification = lazy_import('msgraph.generated.models.windows_quality_update_classification')
+windows_update_catalog_item = lazy_import('msgraph.generated.models.windows_update_catalog_item')
 
 class WindowsQualityUpdateCatalogItem(windows_update_catalog_item.WindowsUpdateCatalogItem):
     @property

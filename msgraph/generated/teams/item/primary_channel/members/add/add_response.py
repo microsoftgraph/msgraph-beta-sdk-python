@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import action_result_part, base_collection_pagination_count_response
+action_result_part = lazy_import('msgraph.generated.models.action_result_part')
+base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
 
 class AddResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
     """

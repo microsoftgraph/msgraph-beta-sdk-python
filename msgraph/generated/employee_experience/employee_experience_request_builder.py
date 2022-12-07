@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..models import employee_experience
-from ..models.o_data_errors import o_data_error
-from .learning_providers import learning_providers_request_builder
-from .learning_providers.item import learning_provider_item_request_builder
+learning_providers_request_builder = lazy_import('msgraph.generated.employee_experience.learning_providers.learning_providers_request_builder')
+learning_provider_item_request_builder = lazy_import('msgraph.generated.employee_experience.learning_providers.item.learning_provider_item_request_builder')
+employee_experience = lazy_import('msgraph.generated.models.employee_experience')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class EmployeeExperienceRequestBuilder():
     """

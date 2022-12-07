@@ -7,20 +7,21 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..models import teamwork
-from ..models.o_data_errors import o_data_error
-from .deleted_teams import deleted_teams_request_builder
-from .deleted_teams.item import deleted_team_item_request_builder
-from .devices import devices_request_builder
-from .devices.item import teamwork_device_item_request_builder
-from .send_activity_notification_to_recipients import send_activity_notification_to_recipients_request_builder
-from .teams_app_settings import teams_app_settings_request_builder
-from .team_templates import team_templates_request_builder
-from .team_templates.item import team_template_item_request_builder
-from .workforce_integrations import workforce_integrations_request_builder
-from .workforce_integrations.item import workforce_integration_item_request_builder
+teamwork = lazy_import('msgraph.generated.models.teamwork')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+deleted_teams_request_builder = lazy_import('msgraph.generated.teamwork.deleted_teams.deleted_teams_request_builder')
+deleted_team_item_request_builder = lazy_import('msgraph.generated.teamwork.deleted_teams.item.deleted_team_item_request_builder')
+devices_request_builder = lazy_import('msgraph.generated.teamwork.devices.devices_request_builder')
+teamwork_device_item_request_builder = lazy_import('msgraph.generated.teamwork.devices.item.teamwork_device_item_request_builder')
+send_activity_notification_to_recipients_request_builder = lazy_import('msgraph.generated.teamwork.send_activity_notification_to_recipients.send_activity_notification_to_recipients_request_builder')
+teams_app_settings_request_builder = lazy_import('msgraph.generated.teamwork.teams_app_settings.teams_app_settings_request_builder')
+team_templates_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.team_templates_request_builder')
+team_template_item_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.team_template_item_request_builder')
+workforce_integrations_request_builder = lazy_import('msgraph.generated.teamwork.workforce_integrations.workforce_integrations_request_builder')
+workforce_integration_item_request_builder = lazy_import('msgraph.generated.teamwork.workforce_integrations.item.workforce_integration_item_request_builder')
 
 class TeamworkRequestBuilder():
     """

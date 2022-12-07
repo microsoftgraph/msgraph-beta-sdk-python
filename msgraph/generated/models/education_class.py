@@ -1,10 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import education_assignment, education_assignment_defaults, education_assignment_settings, education_category, education_course, education_external_source, education_school, education_term, education_user, entity, group, identity_set
+education_assignment = lazy_import('msgraph.generated.models.education_assignment')
+education_assignment_defaults = lazy_import('msgraph.generated.models.education_assignment_defaults')
+education_assignment_settings = lazy_import('msgraph.generated.models.education_assignment_settings')
+education_category = lazy_import('msgraph.generated.models.education_category')
+education_course = lazy_import('msgraph.generated.models.education_course')
+education_external_source = lazy_import('msgraph.generated.models.education_external_source')
+education_school = lazy_import('msgraph.generated.models.education_school')
+education_term = lazy_import('msgraph.generated.models.education_term')
+education_user = lazy_import('msgraph.generated.models.education_user')
+entity = lazy_import('msgraph.generated.models.entity')
+group = lazy_import('msgraph.generated.models.group')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
 
 class EducationClass(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def assignment_categories(self,) -> Optional[List[education_category.EducationCategory]]:
         """
@@ -92,7 +107,7 @@ class EducationClass(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new EducationClass and sets the default values.
+        Instantiates a new educationClass and sets the default values.
         """
         super().__init__()
         # All categories associated with this class. Nullable.

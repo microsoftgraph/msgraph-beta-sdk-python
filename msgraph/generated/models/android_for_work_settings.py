@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import android_for_work_bind_status, android_for_work_enrollment_target, android_for_work_sync_status, entity
+android_for_work_bind_status = lazy_import('msgraph.generated.models.android_for_work_bind_status')
+android_for_work_enrollment_target = lazy_import('msgraph.generated.models.android_for_work_enrollment_target')
+android_for_work_sync_status = lazy_import('msgraph.generated.models.android_for_work_sync_status')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class AndroidForWorkSettings(entity.Entity):
     @property

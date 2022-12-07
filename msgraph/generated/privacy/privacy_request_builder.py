@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..models import privacy
-from ..models.o_data_errors import o_data_error
-from .subject_rights_requests import subject_rights_requests_request_builder
-from .subject_rights_requests.item import subject_rights_request_item_request_builder
+privacy = lazy_import('msgraph.generated.models.privacy')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+subject_rights_requests_request_builder = lazy_import('msgraph.generated.privacy.subject_rights_requests.subject_rights_requests_request_builder')
+subject_rights_request_item_request_builder = lazy_import('msgraph.generated.privacy.subject_rights_requests.item.subject_rights_request_item_request_builder')
 
 class PrivacyRequestBuilder():
     """

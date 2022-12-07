@@ -7,13 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import vpp_token, vpp_token_collection_response
-from ...models.o_data_errors import o_data_error
-from .count import count_request_builder
-from .get_licenses_for_app_with_bundle_id import get_licenses_for_app_with_bundle_id_request_builder
-from .sync_license_counts import sync_license_counts_request_builder
+count_request_builder = lazy_import('msgraph.generated.device_app_management.vpp_tokens.count.count_request_builder')
+get_licenses_for_app_with_bundle_id_request_builder = lazy_import('msgraph.generated.device_app_management.vpp_tokens.get_licenses_for_app_with_bundle_id.get_licenses_for_app_with_bundle_id_request_builder')
+sync_license_counts_request_builder = lazy_import('msgraph.generated.device_app_management.vpp_tokens.sync_license_counts.sync_license_counts_request_builder')
+vpp_token = lazy_import('msgraph.generated.models.vpp_token')
+vpp_token_collection_response = lazy_import('msgraph.generated.models.vpp_token_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class VppTokensRequestBuilder():
     """

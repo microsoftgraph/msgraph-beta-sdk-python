@@ -1,9 +1,10 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import planner_task_creation
+planner_task_creation = lazy_import('msgraph.generated.models.planner_task_creation')
 
 class PlannerTeamsPublicationInfo(planner_task_creation.PlannerTaskCreation):
     def __init__(self,) -> None:

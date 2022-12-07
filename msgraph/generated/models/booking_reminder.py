@@ -1,9 +1,10 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import booking_reminder_recipients
+booking_reminder_recipients = lazy_import('msgraph.generated.models.booking_reminder_recipients')
 
 class BookingReminder(AdditionalDataHolder, Parsable):
     """

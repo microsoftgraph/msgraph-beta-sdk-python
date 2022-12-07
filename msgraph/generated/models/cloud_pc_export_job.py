@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import cloud_pc_export_job_status, cloud_pc_report_name, entity
+cloud_pc_export_job_status = lazy_import('msgraph.generated.models.cloud_pc_export_job_status')
+cloud_pc_report_name = lazy_import('msgraph.generated.models.cloud_pc_report_name')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class CloudPcExportJob(entity.Entity):
     def __init__(self,) -> None:

@@ -1,8 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import certificate_validity_period_scale, device_configuration, extended_key_usage, key_storage_provider_option, subject_alternative_name_type, subject_name_format
+certificate_validity_period_scale = lazy_import('msgraph.generated.models.certificate_validity_period_scale')
+device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+extended_key_usage = lazy_import('msgraph.generated.models.extended_key_usage')
+key_storage_provider_option = lazy_import('msgraph.generated.models.key_storage_provider_option')
+subject_alternative_name_type = lazy_import('msgraph.generated.models.subject_alternative_name_type')
+subject_name_format = lazy_import('msgraph.generated.models.subject_name_format')
 
 class WindowsPhone81CertificateProfileBase(device_configuration.DeviceConfiguration):
     @property

@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import domain_registrant, entity, reputation_category, security_vendor_information
+domain_registrant = lazy_import('msgraph.generated.models.domain_registrant')
+entity = lazy_import('msgraph.generated.models.entity')
+reputation_category = lazy_import('msgraph.generated.models.reputation_category')
+security_vendor_information = lazy_import('msgraph.generated.models.security_vendor_information')
 
 class DomainSecurityProfile(entity.Entity):
     """

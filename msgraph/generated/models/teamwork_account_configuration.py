@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import teamwork_on_premises_calendar_sync_configuration, teamwork_supported_client
+teamwork_on_premises_calendar_sync_configuration = lazy_import('msgraph.generated.models.teamwork_on_premises_calendar_sync_configuration')
+teamwork_supported_client = lazy_import('msgraph.generated.models.teamwork_supported_client')
 
 class TeamworkAccountConfiguration(AdditionalDataHolder, Parsable):
     @property

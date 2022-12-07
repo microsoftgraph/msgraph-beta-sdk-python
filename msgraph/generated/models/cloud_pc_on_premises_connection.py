@@ -1,8 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import cloud_pc_management_service, cloud_pc_on_premises_connection_status, cloud_pc_on_premises_connection_status_details, cloud_pc_on_premises_connection_type, entity
+cloud_pc_management_service = lazy_import('msgraph.generated.models.cloud_pc_management_service')
+cloud_pc_on_premises_connection_status = lazy_import('msgraph.generated.models.cloud_pc_on_premises_connection_status')
+cloud_pc_on_premises_connection_status_details = lazy_import('msgraph.generated.models.cloud_pc_on_premises_connection_status_details')
+cloud_pc_on_premises_connection_type = lazy_import('msgraph.generated.models.cloud_pc_on_premises_connection_type')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class CloudPcOnPremisesConnection(entity.Entity):
     @property

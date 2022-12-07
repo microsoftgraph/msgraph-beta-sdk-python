@@ -1,13 +1,15 @@
 from __future__ import annotations
 from datetime import date, datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, postal_address_type
+entity = lazy_import('msgraph.generated.models.entity')
+postal_address_type = lazy_import('msgraph.generated.models.postal_address_type')
 
 class CompanyInformation(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def address(self,) -> Optional[postal_address_type.PostalAddressType]:

@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import user_install_state_summary
-from ......models.o_data_errors import o_data_error
-from .device_states import device_states_request_builder
-from .device_states.item import device_install_state_item_request_builder
+device_states_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.user_state_summary.item.device_states.device_states_request_builder')
+device_install_state_item_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.user_state_summary.item.device_states.item.device_install_state_item_request_builder')
+user_install_state_summary = lazy_import('msgraph.generated.models.user_install_state_summary')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class UserInstallStateSummaryItemRequestBuilder():
     """

@@ -1,9 +1,10 @@
 from __future__ import annotations
 from datetime import datetime, timedelta
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import synchronization_schedule_state
+synchronization_schedule_state = lazy_import('msgraph.generated.models.synchronization_schedule_state')
 
 class SynchronizationSchedule(AdditionalDataHolder, Parsable):
     @property

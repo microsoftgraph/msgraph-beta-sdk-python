@@ -1,13 +1,17 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import acl, external_activity, external_item_content, properties
-from .. import entity
+entity = lazy_import('msgraph.generated.models.entity')
+acl = lazy_import('msgraph.generated.models.external_connectors.acl')
+external_activity = lazy_import('msgraph.generated.models.external_connectors.external_activity')
+external_item_content = lazy_import('msgraph.generated.models.external_connectors.external_item_content')
+properties = lazy_import('msgraph.generated.models.external_connectors.properties')
 
 class ExternalItem(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def acl(self,) -> Optional[List[acl.Acl]]:

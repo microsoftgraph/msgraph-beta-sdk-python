@@ -1,8 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import application_mode, auto_labeling, entity, label_action_base, label_policy, sensitivity_label_target
+application_mode = lazy_import('msgraph.generated.models.application_mode')
+auto_labeling = lazy_import('msgraph.generated.models.auto_labeling')
+entity = lazy_import('msgraph.generated.models.entity')
+label_action_base = lazy_import('msgraph.generated.models.label_action_base')
+label_policy = lazy_import('msgraph.generated.models.label_policy')
+sensitivity_label_target = lazy_import('msgraph.generated.models.sensitivity_label_target')
 
 class SensitivityLabel(entity.Entity):
     """

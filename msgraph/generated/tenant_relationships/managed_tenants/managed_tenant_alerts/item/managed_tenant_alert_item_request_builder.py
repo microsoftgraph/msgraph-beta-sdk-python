@@ -7,18 +7,19 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models.managed_tenants import managed_tenant_alert
-from .....models.o_data_errors import o_data_error
-from .add_user_input_log import add_user_input_log_request_builder
-from .alert_logs import alert_logs_request_builder
-from .alert_logs.item import managed_tenant_alert_log_item_request_builder
-from .alert_rule import alert_rule_request_builder
-from .api_notifications import api_notifications_request_builder
-from .api_notifications.item import managed_tenant_api_notification_item_request_builder
-from .email_notifications import email_notifications_request_builder
-from .email_notifications.item import managed_tenant_email_notification_item_request_builder
+managed_tenant_alert = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_alert')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+add_user_input_log_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.managed_tenant_alerts.item.add_user_input_log.add_user_input_log_request_builder')
+alert_logs_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.managed_tenant_alerts.item.alert_logs.alert_logs_request_builder')
+managed_tenant_alert_log_item_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.managed_tenant_alerts.item.alert_logs.item.managed_tenant_alert_log_item_request_builder')
+alert_rule_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.managed_tenant_alerts.item.alert_rule.alert_rule_request_builder')
+api_notifications_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.managed_tenant_alerts.item.api_notifications.api_notifications_request_builder')
+managed_tenant_api_notification_item_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.managed_tenant_alerts.item.api_notifications.item.managed_tenant_api_notification_item_request_builder')
+email_notifications_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.managed_tenant_alerts.item.email_notifications.email_notifications_request_builder')
+managed_tenant_email_notification_item_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.managed_tenant_alerts.item.email_notifications.item.managed_tenant_email_notification_item_request_builder')
 
 class ManagedTenantAlertItemRequestBuilder():
     """

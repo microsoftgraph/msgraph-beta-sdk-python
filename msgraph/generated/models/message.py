@@ -1,9 +1,22 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import attachment, extension, followup_flag, importance, inference_classification_type, internet_message_header, item_body, mention, mentions_preview, multi_value_legacy_extended_property, outlook_item, recipient, single_value_legacy_extended_property
+attachment = lazy_import('msgraph.generated.models.attachment')
+extension = lazy_import('msgraph.generated.models.extension')
+followup_flag = lazy_import('msgraph.generated.models.followup_flag')
+importance = lazy_import('msgraph.generated.models.importance')
+inference_classification_type = lazy_import('msgraph.generated.models.inference_classification_type')
+internet_message_header = lazy_import('msgraph.generated.models.internet_message_header')
+item_body = lazy_import('msgraph.generated.models.item_body')
+mention = lazy_import('msgraph.generated.models.mention')
+mentions_preview = lazy_import('msgraph.generated.models.mentions_preview')
+multi_value_legacy_extended_property = lazy_import('msgraph.generated.models.multi_value_legacy_extended_property')
+outlook_item = lazy_import('msgraph.generated.models.outlook_item')
+recipient = lazy_import('msgraph.generated.models.recipient')
+single_value_legacy_extended_property = lazy_import('msgraph.generated.models.single_value_legacy_extended_property')
 
 class Message(outlook_item.OutlookItem):
     @property

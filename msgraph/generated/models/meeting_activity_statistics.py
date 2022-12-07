@@ -1,9 +1,10 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import activity_statistics
+activity_statistics = lazy_import('msgraph.generated.models.activity_statistics')
 
 class MeetingActivityStatistics(activity_statistics.ActivityStatistics):
     @property

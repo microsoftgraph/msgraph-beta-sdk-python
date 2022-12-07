@@ -1,13 +1,18 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import conditional_access_condition_set, conditional_access_grant_controls, conditional_access_policy_state, conditional_access_session_controls, entity
+conditional_access_condition_set = lazy_import('msgraph.generated.models.conditional_access_condition_set')
+conditional_access_grant_controls = lazy_import('msgraph.generated.models.conditional_access_grant_controls')
+conditional_access_policy_state = lazy_import('msgraph.generated.models.conditional_access_policy_state')
+conditional_access_session_controls = lazy_import('msgraph.generated.models.conditional_access_session_controls')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class ConditionalAccessPolicy(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def conditions(self,) -> Optional[conditional_access_condition_set.ConditionalAccessConditionSet]:

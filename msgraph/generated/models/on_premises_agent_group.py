@@ -1,12 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, on_premises_agent, on_premises_publishing_type, published_resource
+entity = lazy_import('msgraph.generated.models.entity')
+on_premises_agent = lazy_import('msgraph.generated.models.on_premises_agent')
+on_premises_publishing_type = lazy_import('msgraph.generated.models.on_premises_publishing_type')
+published_resource = lazy_import('msgraph.generated.models.published_resource')
 
 class OnPremisesAgentGroup(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def agents(self,) -> Optional[List[on_premises_agent.OnPremisesAgent]]:

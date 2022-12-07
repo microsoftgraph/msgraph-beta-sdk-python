@@ -1,9 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import action_step, entity, recommendation_category, recommendation_priority, recommendation_resource, recommendation_status
+action_step = lazy_import('msgraph.generated.models.action_step')
+entity = lazy_import('msgraph.generated.models.entity')
+recommendation_category = lazy_import('msgraph.generated.models.recommendation_category')
+recommendation_priority = lazy_import('msgraph.generated.models.recommendation_priority')
+recommendation_resource = lazy_import('msgraph.generated.models.recommendation_resource')
+recommendation_status = lazy_import('msgraph.generated.models.recommendation_status')
 
 class Recommendation(entity.Entity):
     """

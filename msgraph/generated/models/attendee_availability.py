@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import attendee_base, free_busy_status
+attendee_base = lazy_import('msgraph.generated.models.attendee_base')
+free_busy_status = lazy_import('msgraph.generated.models.free_busy_status')
 
 class AttendeeAvailability(AdditionalDataHolder, Parsable):
     @property

@@ -1,10 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import set, term_group_scope
-from .. import entity
+entity = lazy_import('msgraph.generated.models.entity')
+set = lazy_import('msgraph.generated.models.term_store.set')
+term_group_scope = lazy_import('msgraph.generated.models.term_store.term_group_scope')
 
 class Group(entity.Entity):
     """

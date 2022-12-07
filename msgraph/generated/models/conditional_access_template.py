@@ -1,12 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import conditional_access_policy_detail, entity, template_scenarios
+conditional_access_policy_detail = lazy_import('msgraph.generated.models.conditional_access_policy_detail')
+entity = lazy_import('msgraph.generated.models.entity')
+template_scenarios = lazy_import('msgraph.generated.models.template_scenarios')
 
 class ConditionalAccessTemplate(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     def __init__(self,) -> None:
         """

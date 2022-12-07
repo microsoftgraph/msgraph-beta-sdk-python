@@ -1,9 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import string_key_long_value_pair, synchronization_progress, synchronization_quarantine, synchronization_status_code, synchronization_task_execution
+string_key_long_value_pair = lazy_import('msgraph.generated.models.string_key_long_value_pair')
+synchronization_progress = lazy_import('msgraph.generated.models.synchronization_progress')
+synchronization_quarantine = lazy_import('msgraph.generated.models.synchronization_quarantine')
+synchronization_status_code = lazy_import('msgraph.generated.models.synchronization_status_code')
+synchronization_task_execution = lazy_import('msgraph.generated.models.synchronization_task_execution')
 
 class SynchronizationStatus(AdditionalDataHolder, Parsable):
     @property

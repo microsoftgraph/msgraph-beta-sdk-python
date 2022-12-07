@@ -7,11 +7,12 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ........models import command
-from ........models.o_data_errors import o_data_error
-from .responsepayload import responsepayload_request_builder
+responsepayload_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.commands.item.responsepayload.responsepayload_request_builder')
+command = lazy_import('msgraph.generated.models.command')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class CommandItemRequestBuilder():
     """

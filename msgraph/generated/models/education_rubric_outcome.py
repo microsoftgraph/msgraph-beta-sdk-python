@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import education_outcome, rubric_quality_feedback_model, rubric_quality_selected_column_model
+education_outcome = lazy_import('msgraph.generated.models.education_outcome')
+rubric_quality_feedback_model = lazy_import('msgraph.generated.models.rubric_quality_feedback_model')
+rubric_quality_selected_column_model = lazy_import('msgraph.generated.models.rubric_quality_selected_column_model')
 
 class EducationRubricOutcome(education_outcome.EducationOutcome):
     def __init__(self,) -> None:

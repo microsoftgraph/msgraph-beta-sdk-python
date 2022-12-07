@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import kerberos_sign_on_settings, single_sign_on_mode
+kerberos_sign_on_settings = lazy_import('msgraph.generated.models.kerberos_sign_on_settings')
+single_sign_on_mode = lazy_import('msgraph.generated.models.single_sign_on_mode')
 
 class OnPremisesPublishingSingleSignOn(AdditionalDataHolder, Parsable):
     @property

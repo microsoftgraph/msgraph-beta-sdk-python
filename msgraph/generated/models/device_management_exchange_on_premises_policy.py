@@ -1,8 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_management_exchange_access_level, device_management_exchange_access_rule, device_management_exchange_device_class, entity, on_premises_conditional_access_settings
+device_management_exchange_access_level = lazy_import('msgraph.generated.models.device_management_exchange_access_level')
+device_management_exchange_access_rule = lazy_import('msgraph.generated.models.device_management_exchange_access_rule')
+device_management_exchange_device_class = lazy_import('msgraph.generated.models.device_management_exchange_device_class')
+entity = lazy_import('msgraph.generated.models.entity')
+on_premises_conditional_access_settings = lazy_import('msgraph.generated.models.on_premises_conditional_access_settings')
 
 class DeviceManagementExchangeOnPremisesPolicy(entity.Entity):
     """

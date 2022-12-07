@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import install_intent, mobile_app_assignment_settings, policy_set_item
+install_intent = lazy_import('msgraph.generated.models.install_intent')
+mobile_app_assignment_settings = lazy_import('msgraph.generated.models.mobile_app_assignment_settings')
+policy_set_item = lazy_import('msgraph.generated.models.policy_set_item')
 
 class MobileAppPolicySetItem(policy_set_item.PolicySetItem):
     def __init__(self,) -> None:

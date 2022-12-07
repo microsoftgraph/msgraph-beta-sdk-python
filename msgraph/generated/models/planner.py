@@ -1,8 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, planner_bucket, planner_plan, planner_roster, planner_task
+entity = lazy_import('msgraph.generated.models.entity')
+planner_bucket = lazy_import('msgraph.generated.models.planner_bucket')
+planner_plan = lazy_import('msgraph.generated.models.planner_plan')
+planner_roster = lazy_import('msgraph.generated.models.planner_roster')
+planner_task = lazy_import('msgraph.generated.models.planner_task')
 
 class Planner(entity.Entity):
     @property

@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import generic_error
+generic_error = lazy_import('msgraph.generated.models.generic_error')
 
 class AccessReviewError(generic_error.GenericError):
     def __init__(self,) -> None:

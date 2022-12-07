@@ -7,25 +7,26 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import booking_business
-from ...models.o_data_errors import o_data_error
-from .appointments import appointments_request_builder
-from .appointments.item import booking_appointment_item_request_builder
-from .calendar_view import calendar_view_request_builder
-from .calendar_view.item import booking_appointment_item_request_builder
-from .customers import customers_request_builder
-from .customers.item import booking_customer_item_request_builder
-from .custom_questions import custom_questions_request_builder
-from .custom_questions.item import booking_custom_question_item_request_builder
-from .get_staff_availability import get_staff_availability_request_builder
-from .publish import publish_request_builder
-from .services import services_request_builder
-from .services.item import booking_service_item_request_builder
-from .staff_members import staff_members_request_builder
-from .staff_members.item import booking_staff_member_item_request_builder
-from .unpublish import unpublish_request_builder
+appointments_request_builder = lazy_import('msgraph.generated.booking_businesses.item.appointments.appointments_request_builder')
+booking_appointment_item_request_builder = lazy_import('msgraph.generated.booking_businesses.item.appointments.item.booking_appointment_item_request_builder')
+calendar_view_request_builder = lazy_import('msgraph.generated.booking_businesses.item.calendar_view.calendar_view_request_builder')
+booking_appointment_item_request_builder = lazy_import('msgraph.generated.booking_businesses.item.calendar_view.item.booking_appointment_item_request_builder')
+customers_request_builder = lazy_import('msgraph.generated.booking_businesses.item.customers.customers_request_builder')
+booking_customer_item_request_builder = lazy_import('msgraph.generated.booking_businesses.item.customers.item.booking_customer_item_request_builder')
+custom_questions_request_builder = lazy_import('msgraph.generated.booking_businesses.item.custom_questions.custom_questions_request_builder')
+booking_custom_question_item_request_builder = lazy_import('msgraph.generated.booking_businesses.item.custom_questions.item.booking_custom_question_item_request_builder')
+get_staff_availability_request_builder = lazy_import('msgraph.generated.booking_businesses.item.get_staff_availability.get_staff_availability_request_builder')
+publish_request_builder = lazy_import('msgraph.generated.booking_businesses.item.publish.publish_request_builder')
+services_request_builder = lazy_import('msgraph.generated.booking_businesses.item.services.services_request_builder')
+booking_service_item_request_builder = lazy_import('msgraph.generated.booking_businesses.item.services.item.booking_service_item_request_builder')
+staff_members_request_builder = lazy_import('msgraph.generated.booking_businesses.item.staff_members.staff_members_request_builder')
+booking_staff_member_item_request_builder = lazy_import('msgraph.generated.booking_businesses.item.staff_members.item.booking_staff_member_item_request_builder')
+unpublish_request_builder = lazy_import('msgraph.generated.booking_businesses.item.unpublish.unpublish_request_builder')
+booking_business = lazy_import('msgraph.generated.models.booking_business')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class BookingBusinessItemRequestBuilder():
     """

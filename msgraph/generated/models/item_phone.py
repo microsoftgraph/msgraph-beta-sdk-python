@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import item_facet, phone_type
+item_facet = lazy_import('msgraph.generated.models.item_facet')
+phone_type = lazy_import('msgraph.generated.models.phone_type')
 
 class ItemPhone(item_facet.ItemFacet):
     def __init__(self,) -> None:

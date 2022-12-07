@@ -7,15 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .......models import synchronization_schema
-from .......models.o_data_errors import o_data_error
-from .directories import directories_request_builder
-from .directories.item import directory_definition_item_request_builder
-from .filter_operators import filter_operators_request_builder
-from .functions import functions_request_builder
-from .parse_expression import parse_expression_request_builder
+directories_request_builder = lazy_import('msgraph.generated.applications.item.synchronization.jobs.item.schema.directories.directories_request_builder')
+directory_definition_item_request_builder = lazy_import('msgraph.generated.applications.item.synchronization.jobs.item.schema.directories.item.directory_definition_item_request_builder')
+filter_operators_request_builder = lazy_import('msgraph.generated.applications.item.synchronization.jobs.item.schema.filter_operators.filter_operators_request_builder')
+functions_request_builder = lazy_import('msgraph.generated.applications.item.synchronization.jobs.item.schema.functions.functions_request_builder')
+parse_expression_request_builder = lazy_import('msgraph.generated.applications.item.synchronization.jobs.item.schema.parse_expression.parse_expression_request_builder')
+synchronization_schema = lazy_import('msgraph.generated.models.synchronization_schema')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class SchemaRequestBuilder():
     """

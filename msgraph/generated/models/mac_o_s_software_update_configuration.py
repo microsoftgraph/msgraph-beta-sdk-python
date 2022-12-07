@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import custom_update_time_window, device_configuration, mac_o_s_software_update_behavior, mac_o_s_software_update_schedule_type
+custom_update_time_window = lazy_import('msgraph.generated.models.custom_update_time_window')
+device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+mac_o_s_software_update_behavior = lazy_import('msgraph.generated.models.mac_o_s_software_update_behavior')
+mac_o_s_software_update_schedule_type = lazy_import('msgraph.generated.models.mac_o_s_software_update_schedule_type')
 
 class MacOSSoftwareUpdateConfiguration(device_configuration.DeviceConfiguration):
     @property

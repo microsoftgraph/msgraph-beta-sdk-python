@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import app_list_item
+app_list_item = lazy_import('msgraph.generated.models.app_list_item')
 
 class AppleAppListItem(app_list_item.AppListItem):
     def __init__(self,) -> None:

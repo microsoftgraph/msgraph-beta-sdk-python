@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import delegated_admin_relationship_operation_type, entity, long_running_operation_status
+delegated_admin_relationship_operation_type = lazy_import('msgraph.generated.models.delegated_admin_relationship_operation_type')
+entity = lazy_import('msgraph.generated.models.entity')
+long_running_operation_status = lazy_import('msgraph.generated.models.long_running_operation_status')
 
 class DelegatedAdminRelationshipOperation(entity.Entity):
     """

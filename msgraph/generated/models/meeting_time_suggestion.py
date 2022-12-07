@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import attendee_availability, free_busy_status, location, time_slot
+attendee_availability = lazy_import('msgraph.generated.models.attendee_availability')
+free_busy_status = lazy_import('msgraph.generated.models.free_busy_status')
+location = lazy_import('msgraph.generated.models.location')
+time_slot = lazy_import('msgraph.generated.models.time_slot')
 
 class MeetingTimeSuggestion(AdditionalDataHolder, Parsable):
     @property

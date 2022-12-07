@@ -1,8 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_guard_local_system_authority_credential_guard_state, device_guard_virtualization_based_security_hardware_requirement_state, device_guard_virtualization_based_security_state, device_licensing_status, shared_apple_device_user
+device_guard_local_system_authority_credential_guard_state = lazy_import('msgraph.generated.models.device_guard_local_system_authority_credential_guard_state')
+device_guard_virtualization_based_security_hardware_requirement_state = lazy_import('msgraph.generated.models.device_guard_virtualization_based_security_hardware_requirement_state')
+device_guard_virtualization_based_security_state = lazy_import('msgraph.generated.models.device_guard_virtualization_based_security_state')
+device_licensing_status = lazy_import('msgraph.generated.models.device_licensing_status')
+shared_apple_device_user = lazy_import('msgraph.generated.models.shared_apple_device_user')
 
 class HardwareInformation(AdditionalDataHolder, Parsable):
     """

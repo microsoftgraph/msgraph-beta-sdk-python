@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import teamwork_configured_peripheral, teamwork_display_screen_configuration
+teamwork_configured_peripheral = lazy_import('msgraph.generated.models.teamwork_configured_peripheral')
+teamwork_display_screen_configuration = lazy_import('msgraph.generated.models.teamwork_display_screen_configuration')
 
 class TeamworkDisplayConfiguration(AdditionalDataHolder, Parsable):
     @property

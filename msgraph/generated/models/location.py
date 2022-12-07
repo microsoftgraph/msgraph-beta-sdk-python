@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import location_type, location_unique_id_type, outlook_geo_coordinates, physical_address
+location_type = lazy_import('msgraph.generated.models.location_type')
+location_unique_id_type = lazy_import('msgraph.generated.models.location_unique_id_type')
+outlook_geo_coordinates = lazy_import('msgraph.generated.models.outlook_geo_coordinates')
+physical_address = lazy_import('msgraph.generated.models.physical_address')
 
 class Location(AdditionalDataHolder, Parsable):
     @property

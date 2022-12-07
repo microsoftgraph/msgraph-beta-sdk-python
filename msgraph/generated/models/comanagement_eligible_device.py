@@ -1,8 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import comanagement_eligible_type, device_registration_state, device_type, entity, management_agent_type, management_state, owner_type
+comanagement_eligible_type = lazy_import('msgraph.generated.models.comanagement_eligible_type')
+device_registration_state = lazy_import('msgraph.generated.models.device_registration_state')
+device_type = lazy_import('msgraph.generated.models.device_type')
+entity = lazy_import('msgraph.generated.models.entity')
+management_agent_type = lazy_import('msgraph.generated.models.management_agent_type')
+management_state = lazy_import('msgraph.generated.models.management_state')
+owner_type = lazy_import('msgraph.generated.models.owner_type')
 
 class ComanagementEligibleDevice(entity.Entity):
     """

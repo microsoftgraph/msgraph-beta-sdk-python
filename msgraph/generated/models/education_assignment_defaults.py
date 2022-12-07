@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import time
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import education_add_to_calendar_options, education_added_student_action, entity
+education_add_to_calendar_options = lazy_import('msgraph.generated.models.education_add_to_calendar_options')
+education_added_student_action = lazy_import('msgraph.generated.models.education_added_student_action')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class EducationAssignmentDefaults(entity.Entity):
     @property
@@ -42,7 +45,7 @@ class EducationAssignmentDefaults(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new EducationAssignmentDefaults and sets the default values.
+        Instantiates a new educationAssignmentDefaults and sets the default values.
         """
         super().__init__()
         # Class-level default behavior for handling students who are added after the assignment is published. Possible values are: none, assignIfOpen.

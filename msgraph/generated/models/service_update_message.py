@@ -1,9 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import item_body, service_announcement_attachment, service_announcement_base, service_update_category, service_update_message_viewpoint, service_update_severity
+item_body = lazy_import('msgraph.generated.models.item_body')
+service_announcement_attachment = lazy_import('msgraph.generated.models.service_announcement_attachment')
+service_announcement_base = lazy_import('msgraph.generated.models.service_announcement_base')
+service_update_category = lazy_import('msgraph.generated.models.service_update_category')
+service_update_message_viewpoint = lazy_import('msgraph.generated.models.service_update_message_viewpoint')
+service_update_severity = lazy_import('msgraph.generated.models.service_update_severity')
 
 class ServiceUpdateMessage(service_announcement_base.ServiceAnnouncementBase):
     @property

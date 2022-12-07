@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import base_delta_function_response, list_item
+base_delta_function_response = lazy_import('msgraph.generated.models.base_delta_function_response')
+list_item = lazy_import('msgraph.generated.models.list_item')
 
 class DeltaWithTokenResponse(base_delta_function_response.BaseDeltaFunctionResponse):
     """

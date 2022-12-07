@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import item_facet, service_information
+item_facet = lazy_import('msgraph.generated.models.item_facet')
+service_information = lazy_import('msgraph.generated.models.service_information')
 
 class WebAccount(item_facet.ItemFacet):
     def __init__(self,) -> None:

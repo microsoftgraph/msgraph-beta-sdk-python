@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import purchase_invoice_line
-from ......models.o_data_errors import o_data_error
-from .account import account_request_builder
-from .item import item_request_builder
+account_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoice_lines.item.account.account_request_builder')
+item_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoice_lines.item.item.item_request_builder')
+purchase_invoice_line = lazy_import('msgraph.generated.models.purchase_invoice_line')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class PurchaseInvoiceLineItemRequestBuilder():
     """

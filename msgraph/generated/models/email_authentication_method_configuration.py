@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import authentication_method_configuration, authentication_method_target, external_email_otp_state
+authentication_method_configuration = lazy_import('msgraph.generated.models.authentication_method_configuration')
+authentication_method_target = lazy_import('msgraph.generated.models.authentication_method_target')
+external_email_otp_state = lazy_import('msgraph.generated.models.external_email_otp_state')
 
 class EmailAuthenticationMethodConfiguration(authentication_method_configuration.AuthenticationMethodConfiguration):
     @property

@@ -1,9 +1,15 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import booking_named_entity, booking_price_type, booking_question_assignment, booking_reminder, booking_scheduling_policy, location
+booking_named_entity = lazy_import('msgraph.generated.models.booking_named_entity')
+booking_price_type = lazy_import('msgraph.generated.models.booking_price_type')
+booking_question_assignment = lazy_import('msgraph.generated.models.booking_question_assignment')
+booking_reminder = lazy_import('msgraph.generated.models.booking_reminder')
+booking_scheduling_policy = lazy_import('msgraph.generated.models.booking_scheduling_policy')
+location = lazy_import('msgraph.generated.models.location')
 
 class BookingService(booking_named_entity.BookingNamedEntity):
     """

@@ -1,8 +1,18 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import comment_action, create_action, delete_action, edit_action, mention_action, move_action, rename_action, restore_action, share_action, version_action
+comment_action = lazy_import('msgraph.generated.models.comment_action')
+create_action = lazy_import('msgraph.generated.models.create_action')
+delete_action = lazy_import('msgraph.generated.models.delete_action')
+edit_action = lazy_import('msgraph.generated.models.edit_action')
+mention_action = lazy_import('msgraph.generated.models.mention_action')
+move_action = lazy_import('msgraph.generated.models.move_action')
+rename_action = lazy_import('msgraph.generated.models.rename_action')
+restore_action = lazy_import('msgraph.generated.models.restore_action')
+share_action = lazy_import('msgraph.generated.models.share_action')
+version_action = lazy_import('msgraph.generated.models.version_action')
 
 class ItemActionSet(AdditionalDataHolder, Parsable):
     @property

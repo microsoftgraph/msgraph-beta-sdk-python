@@ -7,10 +7,11 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import download_apple_push_notification_certificate_signing_request_response
-from ....models.o_data_errors import o_data_error
+download_apple_push_notification_certificate_signing_request_response = lazy_import('msgraph.generated.device_management.apple_push_notification_certificate.download_apple_push_notification_certificate_signing_request.download_apple_push_notification_certificate_signing_request_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class DownloadApplePushNotificationCertificateSigningRequestRequestBuilder():
     """

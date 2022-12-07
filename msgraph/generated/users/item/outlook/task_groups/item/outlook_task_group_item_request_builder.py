@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import outlook_task_group
-from ......models.o_data_errors import o_data_error
-from .task_folders import task_folders_request_builder
-from .task_folders.item import outlook_task_folder_item_request_builder
+outlook_task_group = lazy_import('msgraph.generated.models.outlook_task_group')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+task_folders_request_builder = lazy_import('msgraph.generated.users.item.outlook.task_groups.item.task_folders.task_folders_request_builder')
+outlook_task_folder_item_request_builder = lazy_import('msgraph.generated.users.item.outlook.task_groups.item.task_folders.item.outlook_task_folder_item_request_builder')
 
 class OutlookTaskGroupItemRequestBuilder():
     """

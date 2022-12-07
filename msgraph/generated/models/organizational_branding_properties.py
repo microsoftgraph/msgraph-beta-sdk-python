@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, login_page_layout_configuration, login_page_text_visibility_settings
+entity = lazy_import('msgraph.generated.models.entity')
+login_page_layout_configuration = lazy_import('msgraph.generated.models.login_page_layout_configuration')
+login_page_text_visibility_settings = lazy_import('msgraph.generated.models.login_page_text_visibility_settings')
 
 class OrganizationalBrandingProperties(entity.Entity):
     @property
@@ -130,9 +133,9 @@ class OrganizationalBrandingProperties(entity.Entity):
         self._custom_cannot_access_your_account_text: Optional[str] = None
         # A custom URL to replace the default URL of the self-service password reset (SSPR) 'Can't access your account?' hyperlink on the sign-in page. This URL must be in ASCII format or non-ASCII characters must be URL encoded, and not exceed 128 characters. DO NOT USE. Use customAccountResetCredentialsUrl instead.
         self._custom_cannot_access_your_account_url: Optional[str] = None
-        # The customCSS property
+        # CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.
         self._custom_c_s_s: Optional[bytes] = None
-        # The customCSSRelativeUrl property
+        # A relative URL for the customCSS property that is combined with a CDN base URL from the cdnList to provide the version served by a CDN. Read-only.
         self._custom_c_s_s_relative_url: Optional[str] = None
         # A string to replace the default 'Forgot my password' hyperlink text on the sign-in form. This text must be in Unicode format and not exceed 256 characters.
         self._custom_forgot_my_password_text: Optional[str] = None
@@ -152,11 +155,11 @@ class OrganizationalBrandingProperties(entity.Entity):
         self._favicon_relative_url: Optional[str] = None
         # The RGB color to apply to customize the color of the header.
         self._header_background_color: Optional[str] = None
-        # The headerLogo property
+        # A company logo that appears in the header of the sign-in page. The allowed types are PNG or JPEG not larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
         self._header_logo: Optional[bytes] = None
-        # The headerLogoRelativeUrl property
+        # A relative URL for the headerLogo property that is combined with a CDN base URL from the cdnList to provide the read-only version served by a CDN. Read-only.
         self._header_logo_relative_url: Optional[str] = None
-        # The loginPageLayoutConfiguration property
+        # Represents the layout configuration to be displayed on the login page for a tenant.
         self._login_page_layout_configuration: Optional[login_page_layout_configuration.LoginPageLayoutConfiguration] = None
         # Represents the various texts that can be hidden on the login page for a tenant.
         self._login_page_text_visibility_settings: Optional[login_page_text_visibility_settings.LoginPageTextVisibilitySettings] = None
@@ -241,7 +244,7 @@ class OrganizationalBrandingProperties(entity.Entity):
     @property
     def custom_c_s_s(self,) -> Optional[bytes]:
         """
-        Gets the customCSS property value. The customCSS property
+        Gets the customCSS property value. CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.
         Returns: Optional[bytes]
         """
         return self._custom_c_s_s
@@ -249,7 +252,7 @@ class OrganizationalBrandingProperties(entity.Entity):
     @custom_c_s_s.setter
     def custom_c_s_s(self,value: Optional[bytes] = None) -> None:
         """
-        Sets the customCSS property value. The customCSS property
+        Sets the customCSS property value. CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.
         Args:
             value: Value to set for the customCSS property.
         """
@@ -258,7 +261,7 @@ class OrganizationalBrandingProperties(entity.Entity):
     @property
     def custom_c_s_s_relative_url(self,) -> Optional[str]:
         """
-        Gets the customCSSRelativeUrl property value. The customCSSRelativeUrl property
+        Gets the customCSSRelativeUrl property value. A relative URL for the customCSS property that is combined with a CDN base URL from the cdnList to provide the version served by a CDN. Read-only.
         Returns: Optional[str]
         """
         return self._custom_c_s_s_relative_url
@@ -266,7 +269,7 @@ class OrganizationalBrandingProperties(entity.Entity):
     @custom_c_s_s_relative_url.setter
     def custom_c_s_s_relative_url(self,value: Optional[str] = None) -> None:
         """
-        Sets the customCSSRelativeUrl property value. The customCSSRelativeUrl property
+        Sets the customCSSRelativeUrl property value. A relative URL for the customCSS property that is combined with a CDN base URL from the cdnList to provide the version served by a CDN. Read-only.
         Args:
             value: Value to set for the customCSSRelativeUrl property.
         """
@@ -469,7 +472,7 @@ class OrganizationalBrandingProperties(entity.Entity):
     @property
     def header_logo(self,) -> Optional[bytes]:
         """
-        Gets the headerLogo property value. The headerLogo property
+        Gets the headerLogo property value. A company logo that appears in the header of the sign-in page. The allowed types are PNG or JPEG not larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
         Returns: Optional[bytes]
         """
         return self._header_logo
@@ -477,7 +480,7 @@ class OrganizationalBrandingProperties(entity.Entity):
     @header_logo.setter
     def header_logo(self,value: Optional[bytes] = None) -> None:
         """
-        Sets the headerLogo property value. The headerLogo property
+        Sets the headerLogo property value. A company logo that appears in the header of the sign-in page. The allowed types are PNG or JPEG not larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
         Args:
             value: Value to set for the headerLogo property.
         """
@@ -486,7 +489,7 @@ class OrganizationalBrandingProperties(entity.Entity):
     @property
     def header_logo_relative_url(self,) -> Optional[str]:
         """
-        Gets the headerLogoRelativeUrl property value. The headerLogoRelativeUrl property
+        Gets the headerLogoRelativeUrl property value. A relative URL for the headerLogo property that is combined with a CDN base URL from the cdnList to provide the read-only version served by a CDN. Read-only.
         Returns: Optional[str]
         """
         return self._header_logo_relative_url
@@ -494,7 +497,7 @@ class OrganizationalBrandingProperties(entity.Entity):
     @header_logo_relative_url.setter
     def header_logo_relative_url(self,value: Optional[str] = None) -> None:
         """
-        Sets the headerLogoRelativeUrl property value. The headerLogoRelativeUrl property
+        Sets the headerLogoRelativeUrl property value. A relative URL for the headerLogo property that is combined with a CDN base URL from the cdnList to provide the read-only version served by a CDN. Read-only.
         Args:
             value: Value to set for the headerLogoRelativeUrl property.
         """
@@ -503,7 +506,7 @@ class OrganizationalBrandingProperties(entity.Entity):
     @property
     def login_page_layout_configuration(self,) -> Optional[login_page_layout_configuration.LoginPageLayoutConfiguration]:
         """
-        Gets the loginPageLayoutConfiguration property value. The loginPageLayoutConfiguration property
+        Gets the loginPageLayoutConfiguration property value. Represents the layout configuration to be displayed on the login page for a tenant.
         Returns: Optional[login_page_layout_configuration.LoginPageLayoutConfiguration]
         """
         return self._login_page_layout_configuration
@@ -511,7 +514,7 @@ class OrganizationalBrandingProperties(entity.Entity):
     @login_page_layout_configuration.setter
     def login_page_layout_configuration(self,value: Optional[login_page_layout_configuration.LoginPageLayoutConfiguration] = None) -> None:
         """
-        Sets the loginPageLayoutConfiguration property value. The loginPageLayoutConfiguration property
+        Sets the loginPageLayoutConfiguration property value. Represents the layout configuration to be displayed on the login page for a tenant.
         Args:
             value: Value to set for the loginPageLayoutConfiguration property.
         """

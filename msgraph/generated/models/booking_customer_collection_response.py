@@ -1,13 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import base_collection_pagination_count_response, booking_customer
+base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
+booking_customer = lazy_import('msgraph.generated.models.booking_customer')
 
 class BookingCustomerCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the customers property of the microsoft.graph.bookingBusiness entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new BookingCustomerCollectionResponse and sets the default values.

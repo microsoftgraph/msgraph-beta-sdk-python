@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import contact, entity, multi_value_legacy_extended_property, single_value_legacy_extended_property
+contact = lazy_import('msgraph.generated.models.contact')
+entity = lazy_import('msgraph.generated.models.entity')
+multi_value_legacy_extended_property = lazy_import('msgraph.generated.models.multi_value_legacy_extended_property')
+single_value_legacy_extended_property = lazy_import('msgraph.generated.models.single_value_legacy_extended_property')
 
 class ContactFolder(entity.Entity):
     """

@@ -1,13 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import data_source, data_source_container
+data_source = lazy_import('msgraph.generated.models.ediscovery.data_source')
+data_source_container = lazy_import('msgraph.generated.models.ediscovery.data_source_container')
 
 class NoncustodialDataSource(data_source_container.DataSourceContainer):
-    """
-    Provides operations to manage the compliance singleton.
-    """
     @property
     def apply_hold_to_source(self,) -> Optional[bool]:
         """
@@ -27,7 +26,7 @@ class NoncustodialDataSource(data_source_container.DataSourceContainer):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new noncustodialDataSource and sets the default values.
+        Instantiates a new NoncustodialDataSource and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.ediscovery.noncustodialDataSource"

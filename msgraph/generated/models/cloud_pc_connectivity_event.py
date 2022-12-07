@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import cloud_pc_connectivity_event_result, cloud_pc_connectivity_event_type
+cloud_pc_connectivity_event_result = lazy_import('msgraph.generated.models.cloud_pc_connectivity_event_result')
+cloud_pc_connectivity_event_type = lazy_import('msgraph.generated.models.cloud_pc_connectivity_event_type')
 
 class CloudPcConnectivityEvent(AdditionalDataHolder, Parsable):
     @property

@@ -1,13 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import lifecycle_task_category, task_processing_result
-from .. import entity, key_value_pair
+entity = lazy_import('msgraph.generated.models.entity')
+key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
+lifecycle_task_category = lazy_import('msgraph.generated.models.identity_governance.lifecycle_task_category')
+task_processing_result = lazy_import('msgraph.generated.models.identity_governance.task_processing_result')
 
 class Task(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def arguments(self,) -> Optional[List[key_value_pair.KeyValuePair]]:
@@ -52,7 +55,7 @@ class Task(entity.Entity):
         self._arguments: Optional[List[key_value_pair.KeyValuePair]] = None
         # The category property
         self._category: Optional[lifecycle_task_category.LifecycleTaskCategory] = None
-        # A boolean value that determines if the failure of this task stops the subsequent workflows from running. Optional.
+        # A boolean value that specifies whether, if this task fails, the workflow will stop, and subsequent tasks will not run. Optional.
         self._continue_on_error: Optional[bool] = None
         # A string that describes the purpose of the task for administrative use. Optional.
         self._description: Optional[str] = None
@@ -72,7 +75,7 @@ class Task(entity.Entity):
     @property
     def continue_on_error(self,) -> Optional[bool]:
         """
-        Gets the continueOnError property value. A boolean value that determines if the failure of this task stops the subsequent workflows from running. Optional.
+        Gets the continueOnError property value. A boolean value that specifies whether, if this task fails, the workflow will stop, and subsequent tasks will not run. Optional.
         Returns: Optional[bool]
         """
         return self._continue_on_error
@@ -80,7 +83,7 @@ class Task(entity.Entity):
     @continue_on_error.setter
     def continue_on_error(self,value: Optional[bool] = None) -> None:
         """
-        Sets the continueOnError property value. A boolean value that determines if the failure of this task stops the subsequent workflows from running. Optional.
+        Sets the continueOnError property value. A boolean value that specifies whether, if this task fails, the workflow will stop, and subsequent tasks will not run. Optional.
         Args:
             value: Value to set for the continueOnError property.
         """

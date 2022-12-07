@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import daylight_time_zone_offset, standard_time_zone_offset, time_zone_base
+daylight_time_zone_offset = lazy_import('msgraph.generated.models.daylight_time_zone_offset')
+standard_time_zone_offset = lazy_import('msgraph.generated.models.standard_time_zone_offset')
+time_zone_base = lazy_import('msgraph.generated.models.time_zone_base')
 
 class CustomTimeZone(time_zone_base.TimeZoneBase):
     @property

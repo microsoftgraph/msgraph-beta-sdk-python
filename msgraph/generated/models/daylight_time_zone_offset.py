@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import standard_time_zone_offset
+standard_time_zone_offset = lazy_import('msgraph.generated.models.standard_time_zone_offset')
 
 class DaylightTimeZoneOffset(standard_time_zone_offset.StandardTimeZoneOffset):
     def __init__(self,) -> None:

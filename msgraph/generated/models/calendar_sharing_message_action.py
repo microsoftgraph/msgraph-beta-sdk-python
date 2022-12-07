@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import calendar_sharing_action, calendar_sharing_action_importance, calendar_sharing_action_type
+calendar_sharing_action = lazy_import('msgraph.generated.models.calendar_sharing_action')
+calendar_sharing_action_importance = lazy_import('msgraph.generated.models.calendar_sharing_action_importance')
+calendar_sharing_action_type = lazy_import('msgraph.generated.models.calendar_sharing_action_type')
 
 class CalendarSharingMessageAction(AdditionalDataHolder, Parsable):
     @property

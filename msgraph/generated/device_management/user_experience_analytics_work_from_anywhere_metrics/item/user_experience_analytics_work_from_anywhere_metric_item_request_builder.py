@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import user_experience_analytics_work_from_anywhere_metric
-from ....models.o_data_errors import o_data_error
-from .metric_devices import metric_devices_request_builder
-from .metric_devices.item import user_experience_analytics_work_from_anywhere_device_item_request_builder
+metric_devices_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_work_from_anywhere_metrics.item.metric_devices.metric_devices_request_builder')
+user_experience_analytics_work_from_anywhere_device_item_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_work_from_anywhere_metrics.item.metric_devices.item.user_experience_analytics_work_from_anywhere_device_item_request_builder')
+user_experience_analytics_work_from_anywhere_metric = lazy_import('msgraph.generated.models.user_experience_analytics_work_from_anywhere_metric')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilder():
     """

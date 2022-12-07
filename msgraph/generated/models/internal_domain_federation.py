@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import federated_idp_mfa_behavior, prompt_login_behavior, saml_or_ws_fed_provider, signing_certificate_update_status
+federated_idp_mfa_behavior = lazy_import('msgraph.generated.models.federated_idp_mfa_behavior')
+prompt_login_behavior = lazy_import('msgraph.generated.models.prompt_login_behavior')
+saml_or_ws_fed_provider = lazy_import('msgraph.generated.models.saml_or_ws_fed_provider')
+signing_certificate_update_status = lazy_import('msgraph.generated.models.signing_certificate_update_status')
 
 class InternalDomainFederation(saml_or_ws_fed_provider.SamlOrWsFedProvider):
     @property

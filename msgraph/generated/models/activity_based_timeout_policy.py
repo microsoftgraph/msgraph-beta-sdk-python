@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import sts_policy
+sts_policy = lazy_import('msgraph.generated.models.sts_policy')
 
 class ActivityBasedTimeoutPolicy(sts_policy.StsPolicy):
     def __init__(self,) -> None:

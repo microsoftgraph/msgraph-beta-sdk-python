@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import translation_behavior, translation_language_override
+translation_behavior = lazy_import('msgraph.generated.models.translation_behavior')
+translation_language_override = lazy_import('msgraph.generated.models.translation_language_override')
 
 class TranslationPreferences(AdditionalDataHolder, Parsable):
     @property

@@ -1,11 +1,21 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import booking_customer_information_base, booking_invoice_status, booking_price_type, booking_reminder, date_time_time_zone, entity, location
+booking_customer_information_base = lazy_import('msgraph.generated.models.booking_customer_information_base')
+booking_invoice_status = lazy_import('msgraph.generated.models.booking_invoice_status')
+booking_price_type = lazy_import('msgraph.generated.models.booking_price_type')
+booking_reminder = lazy_import('msgraph.generated.models.booking_reminder')
+date_time_time_zone = lazy_import('msgraph.generated.models.date_time_time_zone')
+entity = lazy_import('msgraph.generated.models.entity')
+location = lazy_import('msgraph.generated.models.location')
 
 class BookingAppointment(entity.Entity):
+    """
+    Represents a booked appointment of a service by a customer in a business.
+    """
     @property
     def additional_information(self,) -> Optional[str]:
         """
@@ -42,7 +52,7 @@ class BookingAppointment(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new BookingAppointment and sets the default values.
+        Instantiates a new bookingAppointment and sets the default values.
         """
         super().__init__()
         # Additional information that is sent to the customer when an appointment is confirmed.

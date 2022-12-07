@@ -7,23 +7,24 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import channel
-from .....models.o_data_errors import o_data_error
-from .complete_migration import complete_migration_request_builder
-from .does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name import does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name_request_builder
-from .files_folder import files_folder_request_builder
-from .members import members_request_builder
-from .members.item import conversation_member_item_request_builder
-from .messages import messages_request_builder
-from .messages.item import chat_message_item_request_builder
-from .provision_email import provision_email_request_builder
-from .remove_email import remove_email_request_builder
-from .shared_with_teams import shared_with_teams_request_builder
-from .shared_with_teams.item import shared_with_channel_team_info_item_request_builder
-from .tabs import tabs_request_builder
-from .tabs.item import teams_tab_item_request_builder
+channel = lazy_import('msgraph.generated.models.channel')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+complete_migration_request_builder = lazy_import('msgraph.generated.team_template_definition.item.team_definition.primary_channel.complete_migration.complete_migration_request_builder')
+does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name_request_builder = lazy_import('msgraph.generated.team_template_definition.item.team_definition.primary_channel.does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name.does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name_request_builder')
+files_folder_request_builder = lazy_import('msgraph.generated.team_template_definition.item.team_definition.primary_channel.files_folder.files_folder_request_builder')
+members_request_builder = lazy_import('msgraph.generated.team_template_definition.item.team_definition.primary_channel.members.members_request_builder')
+conversation_member_item_request_builder = lazy_import('msgraph.generated.team_template_definition.item.team_definition.primary_channel.members.item.conversation_member_item_request_builder')
+messages_request_builder = lazy_import('msgraph.generated.team_template_definition.item.team_definition.primary_channel.messages.messages_request_builder')
+chat_message_item_request_builder = lazy_import('msgraph.generated.team_template_definition.item.team_definition.primary_channel.messages.item.chat_message_item_request_builder')
+provision_email_request_builder = lazy_import('msgraph.generated.team_template_definition.item.team_definition.primary_channel.provision_email.provision_email_request_builder')
+remove_email_request_builder = lazy_import('msgraph.generated.team_template_definition.item.team_definition.primary_channel.remove_email.remove_email_request_builder')
+shared_with_teams_request_builder = lazy_import('msgraph.generated.team_template_definition.item.team_definition.primary_channel.shared_with_teams.shared_with_teams_request_builder')
+shared_with_channel_team_info_item_request_builder = lazy_import('msgraph.generated.team_template_definition.item.team_definition.primary_channel.shared_with_teams.item.shared_with_channel_team_info_item_request_builder')
+tabs_request_builder = lazy_import('msgraph.generated.team_template_definition.item.team_definition.primary_channel.tabs.tabs_request_builder')
+teams_tab_item_request_builder = lazy_import('msgraph.generated.team_template_definition.item.team_definition.primary_channel.tabs.item.teams_tab_item_request_builder')
 
 class PrimaryChannelRequestBuilder():
     """

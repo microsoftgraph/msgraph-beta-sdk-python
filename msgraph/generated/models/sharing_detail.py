@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import insight_identity, resource_reference
+insight_identity = lazy_import('msgraph.generated.models.insight_identity')
+resource_reference = lazy_import('msgraph.generated.models.resource_reference')
 
 class SharingDetail(AdditionalDataHolder, Parsable):
     @property

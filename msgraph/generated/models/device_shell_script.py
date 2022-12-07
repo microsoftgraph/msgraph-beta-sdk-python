@@ -1,9 +1,16 @@
 from __future__ import annotations
 from datetime import datetime, timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_management_script_assignment, device_management_script_device_state, device_management_script_group_assignment, device_management_script_run_summary, device_management_script_user_state, entity, run_as_account_type
+device_management_script_assignment = lazy_import('msgraph.generated.models.device_management_script_assignment')
+device_management_script_device_state = lazy_import('msgraph.generated.models.device_management_script_device_state')
+device_management_script_group_assignment = lazy_import('msgraph.generated.models.device_management_script_group_assignment')
+device_management_script_run_summary = lazy_import('msgraph.generated.models.device_management_script_run_summary')
+device_management_script_user_state = lazy_import('msgraph.generated.models.device_management_script_user_state')
+entity = lazy_import('msgraph.generated.models.entity')
+run_as_account_type = lazy_import('msgraph.generated.models.run_as_account_type')
 
 class DeviceShellScript(entity.Entity):
     """

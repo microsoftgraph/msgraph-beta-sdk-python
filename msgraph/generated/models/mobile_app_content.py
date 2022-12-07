@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, mobile_app_content_file, mobile_contained_app
+entity = lazy_import('msgraph.generated.models.entity')
+mobile_app_content_file = lazy_import('msgraph.generated.models.mobile_app_content_file')
+mobile_contained_app = lazy_import('msgraph.generated.models.mobile_contained_app')
 
 class MobileAppContent(entity.Entity):
     """

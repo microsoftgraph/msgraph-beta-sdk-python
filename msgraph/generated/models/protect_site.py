@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import label_action_base, site_access_type
+label_action_base = lazy_import('msgraph.generated.models.label_action_base')
+site_access_type = lazy_import('msgraph.generated.models.site_access_type')
 
 class ProtectSite(label_action_base.LabelActionBase):
     @property

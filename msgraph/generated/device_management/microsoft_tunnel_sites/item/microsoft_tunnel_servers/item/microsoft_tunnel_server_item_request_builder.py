@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import microsoft_tunnel_server
-from ......models.o_data_errors import o_data_error
-from .create_server_log_collection_request import create_server_log_collection_request_request_builder
-from .generate_server_log_collection_request import generate_server_log_collection_request_request_builder
-from .get_health_metrics import get_health_metrics_request_builder
-from .get_health_metric_time_series import get_health_metric_time_series_request_builder
+create_server_log_collection_request_request_builder = lazy_import('msgraph.generated.device_management.microsoft_tunnel_sites.item.microsoft_tunnel_servers.item.create_server_log_collection_request.create_server_log_collection_request_request_builder')
+generate_server_log_collection_request_request_builder = lazy_import('msgraph.generated.device_management.microsoft_tunnel_sites.item.microsoft_tunnel_servers.item.generate_server_log_collection_request.generate_server_log_collection_request_request_builder')
+get_health_metrics_request_builder = lazy_import('msgraph.generated.device_management.microsoft_tunnel_sites.item.microsoft_tunnel_servers.item.get_health_metrics.get_health_metrics_request_builder')
+get_health_metric_time_series_request_builder = lazy_import('msgraph.generated.device_management.microsoft_tunnel_sites.item.microsoft_tunnel_servers.item.get_health_metric_time_series.get_health_metric_time_series_request_builder')
+microsoft_tunnel_server = lazy_import('msgraph.generated.models.microsoft_tunnel_server')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class MicrosoftTunnelServerItemRequestBuilder():
     """

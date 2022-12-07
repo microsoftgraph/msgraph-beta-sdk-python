@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import eas_email_profile_configuration_base, email_sync_duration, email_sync_schedule, user_email_source
+eas_email_profile_configuration_base = lazy_import('msgraph.generated.models.eas_email_profile_configuration_base')
+email_sync_duration = lazy_import('msgraph.generated.models.email_sync_duration')
+email_sync_schedule = lazy_import('msgraph.generated.models.email_sync_schedule')
+user_email_source = lazy_import('msgraph.generated.models.user_email_source')
 
 class Windows10EasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEmailProfileConfigurationBase):
     @property

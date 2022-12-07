@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import action_result_part
+action_result_part = lazy_import('msgraph.generated.models.action_result_part')
 
 class AadUserConversationMemberResult(action_result_part.ActionResultPart):
     def __init__(self,) -> None:

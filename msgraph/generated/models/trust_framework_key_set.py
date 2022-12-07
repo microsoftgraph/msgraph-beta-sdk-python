@@ -1,13 +1,18 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, trust_framework_key
+entity = lazy_import('msgraph.generated.models.entity')
+trust_framework_key = lazy_import('msgraph.generated.models.trust_framework_key')
 
 class TrustFrameworkKeySet(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new TrustFrameworkKeySet and sets the default values.
+        Instantiates a new trustFrameworkKeySet and sets the default values.
         """
         super().__init__()
         # A collection of the keys.

@@ -7,27 +7,28 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models.ediscovery import case
-from .....models.o_data_errors import o_data_error
-from .close import close_request_builder
-from .custodians import custodians_request_builder
-from .custodians.item import custodian_item_request_builder
-from .legal_holds import legal_holds_request_builder
-from .legal_holds.item import legal_hold_item_request_builder
-from .noncustodial_data_sources import noncustodial_data_sources_request_builder
-from .noncustodial_data_sources.item import noncustodial_data_source_item_request_builder
-from .operations import operations_request_builder
-from .operations.item import case_operation_item_request_builder
-from .reopen import reopen_request_builder
-from .review_sets import review_sets_request_builder
-from .review_sets.item import review_set_item_request_builder
-from .settings import settings_request_builder
-from .source_collections import source_collections_request_builder
-from .source_collections.item import source_collection_item_request_builder
-from .tags import tags_request_builder
-from .tags.item import tag_item_request_builder
+close_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.close.close_request_builder')
+custodians_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.custodians_request_builder')
+custodian_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.custodian_item_request_builder')
+legal_holds_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.legal_holds.legal_holds_request_builder')
+legal_hold_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.legal_holds.item.legal_hold_item_request_builder')
+noncustodial_data_sources_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.noncustodial_data_sources.noncustodial_data_sources_request_builder')
+noncustodial_data_source_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.noncustodial_data_sources.item.noncustodial_data_source_item_request_builder')
+operations_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.operations.operations_request_builder')
+case_operation_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.operations.item.case_operation_item_request_builder')
+reopen_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.reopen.reopen_request_builder')
+review_sets_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.review_sets.review_sets_request_builder')
+review_set_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.review_sets.item.review_set_item_request_builder')
+settings_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.settings.settings_request_builder')
+source_collections_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.source_collections.source_collections_request_builder')
+source_collection_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.source_collections.item.source_collection_item_request_builder')
+tags_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.tags.tags_request_builder')
+tag_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.tags.item.tag_item_request_builder')
+case = lazy_import('msgraph.generated.models.ediscovery.case')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class CaseItemRequestBuilder():
     """

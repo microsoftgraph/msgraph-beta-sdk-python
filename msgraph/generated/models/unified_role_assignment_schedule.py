@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import request_schedule, unified_role_eligibility_schedule, unified_role_schedule_base
+request_schedule = lazy_import('msgraph.generated.models.request_schedule')
+unified_role_eligibility_schedule = lazy_import('msgraph.generated.models.unified_role_eligibility_schedule')
+unified_role_schedule_base = lazy_import('msgraph.generated.models.unified_role_schedule_base')
 
 class UnifiedRoleAssignmentSchedule(unified_role_schedule_base.UnifiedRoleScheduleBase):
     @property

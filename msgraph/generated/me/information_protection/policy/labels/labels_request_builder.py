@@ -7,15 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import information_protection_label, information_protection_label_collection_response
-from .....models.o_data_errors import o_data_error
-from .count import count_request_builder
-from .evaluate_application import evaluate_application_request_builder
-from .evaluate_classification_results import evaluate_classification_results_request_builder
-from .evaluate_removal import evaluate_removal_request_builder
-from .extract_label import extract_label_request_builder
+count_request_builder = lazy_import('msgraph.generated.me.information_protection.policy.labels.count.count_request_builder')
+evaluate_application_request_builder = lazy_import('msgraph.generated.me.information_protection.policy.labels.evaluate_application.evaluate_application_request_builder')
+evaluate_classification_results_request_builder = lazy_import('msgraph.generated.me.information_protection.policy.labels.evaluate_classification_results.evaluate_classification_results_request_builder')
+evaluate_removal_request_builder = lazy_import('msgraph.generated.me.information_protection.policy.labels.evaluate_removal.evaluate_removal_request_builder')
+extract_label_request_builder = lazy_import('msgraph.generated.me.information_protection.policy.labels.extract_label.extract_label_request_builder')
+information_protection_label = lazy_import('msgraph.generated.models.information_protection_label')
+information_protection_label_collection_response = lazy_import('msgraph.generated.models.information_protection_label_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class LabelsRequestBuilder():
     """

@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import vpp_token
-from ....models.o_data_errors import o_data_error
-from .revoke_licenses import revoke_licenses_request_builder
-from .sync_licenses import sync_licenses_request_builder
+revoke_licenses_request_builder = lazy_import('msgraph.generated.device_app_management.vpp_tokens.item.revoke_licenses.revoke_licenses_request_builder')
+sync_licenses_request_builder = lazy_import('msgraph.generated.device_app_management.vpp_tokens.item.sync_licenses.sync_licenses_request_builder')
+vpp_token = lazy_import('msgraph.generated.models.vpp_token')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class VppTokenItemRequestBuilder():
     """

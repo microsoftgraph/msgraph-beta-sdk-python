@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import governance_criteria
+governance_criteria = lazy_import('msgraph.generated.models.governance_criteria')
 
 class RoleMembershipGovernanceCriteria(governance_criteria.GovernanceCriteria):
     def __init__(self,) -> None:

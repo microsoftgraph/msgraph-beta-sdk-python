@@ -1,12 +1,20 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_management_configuration_control_type, device_management_configuration_referred_setting_information, device_management_configuration_setting_access_types, device_management_configuration_setting_applicability, device_management_configuration_setting_occurrence, device_management_configuration_setting_usage, device_management_configuration_setting_visibility, entity
+device_management_configuration_control_type = lazy_import('msgraph.generated.models.device_management_configuration_control_type')
+device_management_configuration_referred_setting_information = lazy_import('msgraph.generated.models.device_management_configuration_referred_setting_information')
+device_management_configuration_setting_access_types = lazy_import('msgraph.generated.models.device_management_configuration_setting_access_types')
+device_management_configuration_setting_applicability = lazy_import('msgraph.generated.models.device_management_configuration_setting_applicability')
+device_management_configuration_setting_occurrence = lazy_import('msgraph.generated.models.device_management_configuration_setting_occurrence')
+device_management_configuration_setting_usage = lazy_import('msgraph.generated.models.device_management_configuration_setting_usage')
+device_management_configuration_setting_visibility = lazy_import('msgraph.generated.models.device_management_configuration_setting_visibility')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class DeviceManagementConfigurationSettingDefinition(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def access_types(self,) -> Optional[device_management_configuration_setting_access_types.DeviceManagementConfigurationSettingAccessTypes]:

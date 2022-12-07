@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import agreement_file_properties, agreement_file_version
+agreement_file_properties = lazy_import('msgraph.generated.models.agreement_file_properties')
+agreement_file_version = lazy_import('msgraph.generated.models.agreement_file_version')
 
 class AgreementFileLocalization(agreement_file_properties.AgreementFileProperties):
     """

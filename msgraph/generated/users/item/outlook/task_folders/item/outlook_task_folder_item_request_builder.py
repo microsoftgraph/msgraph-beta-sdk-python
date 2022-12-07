@@ -7,16 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import outlook_task_folder
-from ......models.o_data_errors import o_data_error
-from .multi_value_extended_properties import multi_value_extended_properties_request_builder
-from .multi_value_extended_properties.item import multi_value_legacy_extended_property_item_request_builder
-from .single_value_extended_properties import single_value_extended_properties_request_builder
-from .single_value_extended_properties.item import single_value_legacy_extended_property_item_request_builder
-from .tasks import tasks_request_builder
-from .tasks.item import outlook_task_item_request_builder
+outlook_task_folder = lazy_import('msgraph.generated.models.outlook_task_folder')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+multi_value_extended_properties_request_builder = lazy_import('msgraph.generated.users.item.outlook.task_folders.item.multi_value_extended_properties.multi_value_extended_properties_request_builder')
+multi_value_legacy_extended_property_item_request_builder = lazy_import('msgraph.generated.users.item.outlook.task_folders.item.multi_value_extended_properties.item.multi_value_legacy_extended_property_item_request_builder')
+single_value_extended_properties_request_builder = lazy_import('msgraph.generated.users.item.outlook.task_folders.item.single_value_extended_properties.single_value_extended_properties_request_builder')
+single_value_legacy_extended_property_item_request_builder = lazy_import('msgraph.generated.users.item.outlook.task_folders.item.single_value_extended_properties.item.single_value_legacy_extended_property_item_request_builder')
+tasks_request_builder = lazy_import('msgraph.generated.users.item.outlook.task_folders.item.tasks.tasks_request_builder')
+outlook_task_item_request_builder = lazy_import('msgraph.generated.users.item.outlook.task_folders.item.tasks.item.outlook_task_item_request_builder')
 
 class OutlookTaskFolderItemRequestBuilder():
     """

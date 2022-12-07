@@ -7,10 +7,11 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import end_remote_help_session_post_request_body
-from .....models.o_data_errors import o_data_error
+end_remote_help_session_post_request_body = lazy_import('msgraph.generated.device_management.managed_devices.item.end_remote_help_session.end_remote_help_session_post_request_body')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class EndRemoteHelpSessionRequestBuilder():
     """

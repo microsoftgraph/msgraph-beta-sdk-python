@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, user_pfx_intended_purpose, user_pfx_padding_scheme
+entity = lazy_import('msgraph.generated.models.entity')
+user_pfx_intended_purpose = lazy_import('msgraph.generated.models.user_pfx_intended_purpose')
+user_pfx_padding_scheme = lazy_import('msgraph.generated.models.user_pfx_padding_scheme')
 
 class UserPFXCertificate(entity.Entity):
     """

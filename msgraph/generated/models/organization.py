@@ -1,11 +1,26 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import assigned_plan, certificate_based_auth_configuration, certificate_connector_setting, directory_object, directory_size_quota, extension, mdm_authority, organization_settings, organizational_branding, privacy_profile, provisioned_plan, verified_domain
+assigned_plan = lazy_import('msgraph.generated.models.assigned_plan')
+certificate_based_auth_configuration = lazy_import('msgraph.generated.models.certificate_based_auth_configuration')
+certificate_connector_setting = lazy_import('msgraph.generated.models.certificate_connector_setting')
+directory_object = lazy_import('msgraph.generated.models.directory_object')
+directory_size_quota = lazy_import('msgraph.generated.models.directory_size_quota')
+extension = lazy_import('msgraph.generated.models.extension')
+mdm_authority = lazy_import('msgraph.generated.models.mdm_authority')
+organization_settings = lazy_import('msgraph.generated.models.organization_settings')
+organizational_branding = lazy_import('msgraph.generated.models.organizational_branding')
+privacy_profile = lazy_import('msgraph.generated.models.privacy_profile')
+provisioned_plan = lazy_import('msgraph.generated.models.provisioned_plan')
+verified_domain = lazy_import('msgraph.generated.models.verified_domain')
 
 class Organization(directory_object.DirectoryObject):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def assigned_plans(self,) -> Optional[List[assigned_plan.AssignedPlan]]:
         """
@@ -110,7 +125,7 @@ class Organization(directory_object.DirectoryObject):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new Organization and sets the default values.
+        Instantiates a new organization and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.organization"

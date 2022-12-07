@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import android_work_profile_eas_email_profile_base
+android_work_profile_eas_email_profile_base = lazy_import('msgraph.generated.models.android_work_profile_eas_email_profile_base')
 
 class AndroidWorkProfileNineWorkEasConfiguration(android_work_profile_eas_email_profile_base.AndroidWorkProfileEasEmailProfileBase):
     def __init__(self,) -> None:

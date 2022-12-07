@@ -7,15 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import agreement
-from ...models.o_data_errors import o_data_error
-from .acceptances import acceptances_request_builder
-from .acceptances.item import agreement_acceptance_item_request_builder
-from .file import file_request_builder
-from .files import files_request_builder
-from .files.item import agreement_file_localization_item_request_builder
+acceptances_request_builder = lazy_import('msgraph.generated.agreements.item.acceptances.acceptances_request_builder')
+agreement_acceptance_item_request_builder = lazy_import('msgraph.generated.agreements.item.acceptances.item.agreement_acceptance_item_request_builder')
+file_request_builder = lazy_import('msgraph.generated.agreements.item.file.file_request_builder')
+files_request_builder = lazy_import('msgraph.generated.agreements.item.files.files_request_builder')
+agreement_file_localization_item_request_builder = lazy_import('msgraph.generated.agreements.item.files.item.agreement_file_localization_item_request_builder')
+agreement = lazy_import('msgraph.generated.models.agreement')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class AgreementItemRequestBuilder():
     """

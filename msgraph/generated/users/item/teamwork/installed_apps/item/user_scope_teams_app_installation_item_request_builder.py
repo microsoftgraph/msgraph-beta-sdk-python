@@ -7,11 +7,12 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import user_scope_teams_app_installation
-from ......models.o_data_errors import o_data_error
-from .chat import chat_request_builder
+user_scope_teams_app_installation = lazy_import('msgraph.generated.models.user_scope_teams_app_installation')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+chat_request_builder = lazy_import('msgraph.generated.users.item.teamwork.installed_apps.item.chat.chat_request_builder')
 
 class UserScopeTeamsAppInstallationItemRequestBuilder():
     """

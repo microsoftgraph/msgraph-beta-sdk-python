@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import enrollment_configuration_assignment
+enrollment_configuration_assignment = lazy_import('msgraph.generated.models.enrollment_configuration_assignment')
 
 class AssignPostRequestBody(AdditionalDataHolder, Parsable):
     """

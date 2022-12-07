@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import connection_direction, connection_status, security_network_protocol
+connection_direction = lazy_import('msgraph.generated.models.connection_direction')
+connection_status = lazy_import('msgraph.generated.models.connection_status')
+security_network_protocol = lazy_import('msgraph.generated.models.security_network_protocol')
 
 class NetworkConnection(AdditionalDataHolder, Parsable):
     @property

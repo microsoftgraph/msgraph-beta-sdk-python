@@ -7,16 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import approval_workflow_provider
-from ...models.o_data_errors import o_data_error
-from .business_flows import business_flows_request_builder
-from .business_flows.item import business_flow_item_request_builder
-from .business_flows_with_requests_awaiting_my_decision import business_flows_with_requests_awaiting_my_decision_request_builder
-from .business_flows_with_requests_awaiting_my_decision.item import business_flow_item_request_builder
-from .policy_templates import policy_templates_request_builder
-from .policy_templates.item import governance_policy_template_item_request_builder
+business_flows_request_builder = lazy_import('msgraph.generated.approval_workflow_providers.item.business_flows.business_flows_request_builder')
+business_flow_item_request_builder = lazy_import('msgraph.generated.approval_workflow_providers.item.business_flows.item.business_flow_item_request_builder')
+business_flows_with_requests_awaiting_my_decision_request_builder = lazy_import('msgraph.generated.approval_workflow_providers.item.business_flows_with_requests_awaiting_my_decision.business_flows_with_requests_awaiting_my_decision_request_builder')
+business_flow_item_request_builder = lazy_import('msgraph.generated.approval_workflow_providers.item.business_flows_with_requests_awaiting_my_decision.item.business_flow_item_request_builder')
+policy_templates_request_builder = lazy_import('msgraph.generated.approval_workflow_providers.item.policy_templates.policy_templates_request_builder')
+governance_policy_template_item_request_builder = lazy_import('msgraph.generated.approval_workflow_providers.item.policy_templates.item.governance_policy_template_item_request_builder')
+approval_workflow_provider = lazy_import('msgraph.generated.models.approval_workflow_provider')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ApprovalWorkflowProviderItemRequestBuilder():
     """

@@ -7,13 +7,14 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import android_managed_app_protection
-from ....models.o_data_errors import o_data_error
-from .apps import apps_request_builder
-from .apps.item import managed_mobile_app_item_request_builder
-from .deployment_summary import deployment_summary_request_builder
+apps_request_builder = lazy_import('msgraph.generated.device_app_management.android_managed_app_protections.item.apps.apps_request_builder')
+managed_mobile_app_item_request_builder = lazy_import('msgraph.generated.device_app_management.android_managed_app_protections.item.apps.item.managed_mobile_app_item_request_builder')
+deployment_summary_request_builder = lazy_import('msgraph.generated.device_app_management.android_managed_app_protections.item.deployment_summary.deployment_summary_request_builder')
+android_managed_app_protection = lazy_import('msgraph.generated.models.android_managed_app_protection')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class AndroidManagedAppProtectionItemRequestBuilder():
     """

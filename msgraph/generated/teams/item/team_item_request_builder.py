@@ -7,39 +7,40 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import team
-from ...models.o_data_errors import o_data_error
-from .all_channels import all_channels_request_builder
-from .all_channels.item import channel_item_request_builder
-from .archive import archive_request_builder
-from .channels import channels_request_builder
-from .channels.item import channel_item_request_builder
-from .clone import clone_request_builder
-from .complete_migration import complete_migration_request_builder
-from .group import group_request_builder
-from .incoming_channels import incoming_channels_request_builder
-from .incoming_channels.item import channel_item_request_builder
-from .installed_apps import installed_apps_request_builder
-from .installed_apps.item import teams_app_installation_item_request_builder
-from .members import members_request_builder
-from .members.item import conversation_member_item_request_builder
-from .operations import operations_request_builder
-from .operations.item import teams_async_operation_item_request_builder
-from .owners import owners_request_builder
-from .owners.item import user_item_request_builder
-from .permission_grants import permission_grants_request_builder
-from .permission_grants.item import resource_specific_permission_grant_item_request_builder
-from .photo import photo_request_builder
-from .primary_channel import primary_channel_request_builder
-from .schedule import schedule_request_builder
-from .send_activity_notification import send_activity_notification_request_builder
-from .tags import tags_request_builder
-from .tags.item import teamwork_tag_item_request_builder
-from .template import template_request_builder
-from .template_definition import template_definition_request_builder
-from .unarchive import unarchive_request_builder
+team = lazy_import('msgraph.generated.models.team')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+all_channels_request_builder = lazy_import('msgraph.generated.teams.item.all_channels.all_channels_request_builder')
+channel_item_request_builder = lazy_import('msgraph.generated.teams.item.all_channels.item.channel_item_request_builder')
+archive_request_builder = lazy_import('msgraph.generated.teams.item.archive.archive_request_builder')
+channels_request_builder = lazy_import('msgraph.generated.teams.item.channels.channels_request_builder')
+channel_item_request_builder = lazy_import('msgraph.generated.teams.item.channels.item.channel_item_request_builder')
+clone_request_builder = lazy_import('msgraph.generated.teams.item.clone.clone_request_builder')
+complete_migration_request_builder = lazy_import('msgraph.generated.teams.item.complete_migration.complete_migration_request_builder')
+group_request_builder = lazy_import('msgraph.generated.teams.item.group.group_request_builder')
+incoming_channels_request_builder = lazy_import('msgraph.generated.teams.item.incoming_channels.incoming_channels_request_builder')
+channel_item_request_builder = lazy_import('msgraph.generated.teams.item.incoming_channels.item.channel_item_request_builder')
+installed_apps_request_builder = lazy_import('msgraph.generated.teams.item.installed_apps.installed_apps_request_builder')
+teams_app_installation_item_request_builder = lazy_import('msgraph.generated.teams.item.installed_apps.item.teams_app_installation_item_request_builder')
+members_request_builder = lazy_import('msgraph.generated.teams.item.members.members_request_builder')
+conversation_member_item_request_builder = lazy_import('msgraph.generated.teams.item.members.item.conversation_member_item_request_builder')
+operations_request_builder = lazy_import('msgraph.generated.teams.item.operations.operations_request_builder')
+teams_async_operation_item_request_builder = lazy_import('msgraph.generated.teams.item.operations.item.teams_async_operation_item_request_builder')
+owners_request_builder = lazy_import('msgraph.generated.teams.item.owners.owners_request_builder')
+user_item_request_builder = lazy_import('msgraph.generated.teams.item.owners.item.user_item_request_builder')
+permission_grants_request_builder = lazy_import('msgraph.generated.teams.item.permission_grants.permission_grants_request_builder')
+resource_specific_permission_grant_item_request_builder = lazy_import('msgraph.generated.teams.item.permission_grants.item.resource_specific_permission_grant_item_request_builder')
+photo_request_builder = lazy_import('msgraph.generated.teams.item.photo.photo_request_builder')
+primary_channel_request_builder = lazy_import('msgraph.generated.teams.item.primary_channel.primary_channel_request_builder')
+schedule_request_builder = lazy_import('msgraph.generated.teams.item.schedule.schedule_request_builder')
+send_activity_notification_request_builder = lazy_import('msgraph.generated.teams.item.send_activity_notification.send_activity_notification_request_builder')
+tags_request_builder = lazy_import('msgraph.generated.teams.item.tags.tags_request_builder')
+teamwork_tag_item_request_builder = lazy_import('msgraph.generated.teams.item.tags.item.teamwork_tag_item_request_builder')
+template_request_builder = lazy_import('msgraph.generated.teams.item.template.template_request_builder')
+template_definition_request_builder = lazy_import('msgraph.generated.teams.item.template_definition.template_definition_request_builder')
+unarchive_request_builder = lazy_import('msgraph.generated.teams.item.unarchive.unarchive_request_builder')
 
 class TeamItemRequestBuilder():
     """

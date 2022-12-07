@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, install_state
+entity = lazy_import('msgraph.generated.models.entity')
+install_state = lazy_import('msgraph.generated.models.install_state')
 
 class DeviceInstallState(entity.Entity):
     """

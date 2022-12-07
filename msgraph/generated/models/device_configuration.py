@@ -1,9 +1,20 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_configuration_assignment, device_configuration_device_overview, device_configuration_device_status, device_configuration_group_assignment, device_configuration_user_overview, device_configuration_user_status, device_management_applicability_rule_device_mode, device_management_applicability_rule_os_edition, device_management_applicability_rule_os_version, entity, setting_state_device_summary
+device_configuration_assignment = lazy_import('msgraph.generated.models.device_configuration_assignment')
+device_configuration_device_overview = lazy_import('msgraph.generated.models.device_configuration_device_overview')
+device_configuration_device_status = lazy_import('msgraph.generated.models.device_configuration_device_status')
+device_configuration_group_assignment = lazy_import('msgraph.generated.models.device_configuration_group_assignment')
+device_configuration_user_overview = lazy_import('msgraph.generated.models.device_configuration_user_overview')
+device_configuration_user_status = lazy_import('msgraph.generated.models.device_configuration_user_status')
+device_management_applicability_rule_device_mode = lazy_import('msgraph.generated.models.device_management_applicability_rule_device_mode')
+device_management_applicability_rule_os_edition = lazy_import('msgraph.generated.models.device_management_applicability_rule_os_edition')
+device_management_applicability_rule_os_version = lazy_import('msgraph.generated.models.device_management_applicability_rule_os_version')
+entity = lazy_import('msgraph.generated.models.entity')
+setting_state_device_summary = lazy_import('msgraph.generated.models.setting_state_device_summary')
 
 class DeviceConfiguration(entity.Entity):
     """

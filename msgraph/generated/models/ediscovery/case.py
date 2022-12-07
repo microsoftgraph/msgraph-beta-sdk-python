@@ -1,10 +1,20 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import case_operation, case_settings, case_status, custodian, legal_hold, noncustodial_data_source, review_set, source_collection, tag
-from .. import entity, identity_set
+entity = lazy_import('msgraph.generated.models.entity')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+case_operation = lazy_import('msgraph.generated.models.ediscovery.case_operation')
+case_settings = lazy_import('msgraph.generated.models.ediscovery.case_settings')
+case_status = lazy_import('msgraph.generated.models.ediscovery.case_status')
+custodian = lazy_import('msgraph.generated.models.ediscovery.custodian')
+legal_hold = lazy_import('msgraph.generated.models.ediscovery.legal_hold')
+noncustodial_data_source = lazy_import('msgraph.generated.models.ediscovery.noncustodial_data_source')
+review_set = lazy_import('msgraph.generated.models.ediscovery.review_set')
+source_collection = lazy_import('msgraph.generated.models.ediscovery.source_collection')
+tag = lazy_import('msgraph.generated.models.ediscovery.tag')
 
 class Case(entity.Entity):
     """

@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import website_type
+website_type = lazy_import('msgraph.generated.models.website_type')
 
 class Website(AdditionalDataHolder, Parsable):
     @property

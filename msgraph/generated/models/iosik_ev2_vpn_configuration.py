@@ -1,8 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import apple_vpn_always_on_configuration, ios_vpn_configuration, ios_vpn_security_association_parameters, vpn_client_authentication_type, vpn_dead_peer_detection_rate, vpn_local_identifier, vpn_server_certificate_type
+apple_vpn_always_on_configuration = lazy_import('msgraph.generated.models.apple_vpn_always_on_configuration')
+ios_vpn_configuration = lazy_import('msgraph.generated.models.ios_vpn_configuration')
+ios_vpn_security_association_parameters = lazy_import('msgraph.generated.models.ios_vpn_security_association_parameters')
+vpn_client_authentication_type = lazy_import('msgraph.generated.models.vpn_client_authentication_type')
+vpn_dead_peer_detection_rate = lazy_import('msgraph.generated.models.vpn_dead_peer_detection_rate')
+vpn_local_identifier = lazy_import('msgraph.generated.models.vpn_local_identifier')
+vpn_server_certificate_type = lazy_import('msgraph.generated.models.vpn_server_certificate_type')
 
 class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
     @property

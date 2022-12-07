@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import windows_protection_state
-from .....models.o_data_errors import o_data_error
-from .detected_malware_state import detected_malware_state_request_builder
-from .detected_malware_state.item import windows_device_malware_state_item_request_builder
+detected_malware_state_request_builder = lazy_import('msgraph.generated.me.managed_devices.item.windows_protection_state.detected_malware_state.detected_malware_state_request_builder')
+windows_device_malware_state_item_request_builder = lazy_import('msgraph.generated.me.managed_devices.item.windows_protection_state.detected_malware_state.item.windows_device_malware_state_item_request_builder')
+windows_protection_state = lazy_import('msgraph.generated.models.windows_protection_state')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class WindowsProtectionStateRequestBuilder():
     """

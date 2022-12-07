@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_management_configuration_integer_setting_value_default_template
+device_management_configuration_integer_setting_value_default_template = lazy_import('msgraph.generated.models.device_management_configuration_integer_setting_value_default_template')
 
 class DeviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate(device_management_configuration_integer_setting_value_default_template.DeviceManagementConfigurationIntegerSettingValueDefaultTemplate):
     @property

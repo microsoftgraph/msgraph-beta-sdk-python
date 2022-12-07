@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import chat_message_mentioned_identity_set
+chat_message_mentioned_identity_set = lazy_import('msgraph.generated.models.chat_message_mentioned_identity_set')
 
 class ChatMessageMention(AdditionalDataHolder, Parsable):
     @property

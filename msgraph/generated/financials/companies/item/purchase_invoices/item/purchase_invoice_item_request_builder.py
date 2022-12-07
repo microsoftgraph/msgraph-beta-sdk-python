@@ -7,15 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import purchase_invoice
-from ......models.o_data_errors import o_data_error
-from .currency import currency_request_builder
-from .post import post_request_builder
-from .purchase_invoice_lines import purchase_invoice_lines_request_builder
-from .purchase_invoice_lines.item import purchase_invoice_line_item_request_builder
-from .vendor import vendor_request_builder
+currency_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.item.currency.currency_request_builder')
+post_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.item.post.post_request_builder')
+purchase_invoice_lines_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.item.purchase_invoice_lines.purchase_invoice_lines_request_builder')
+purchase_invoice_line_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.item.purchase_invoice_lines.item.purchase_invoice_line_item_request_builder')
+vendor_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.item.vendor.vendor_request_builder')
+purchase_invoice = lazy_import('msgraph.generated.models.purchase_invoice')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class PurchaseInvoiceItemRequestBuilder():
     """

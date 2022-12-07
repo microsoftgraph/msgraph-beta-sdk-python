@@ -7,20 +7,21 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .......models.ediscovery import source_collection
-from .......models.o_data_errors import o_data_error
-from .additional_sources import additional_sources_request_builder
-from .additional_sources.item import data_source_item_request_builder
-from .add_to_review_set_operation import add_to_review_set_operation_request_builder
-from .custodian_sources import custodian_sources_request_builder
-from .custodian_sources.item import data_source_item_request_builder
-from .estimate_statistics import estimate_statistics_request_builder
-from .last_estimate_statistics_operation import last_estimate_statistics_operation_request_builder
-from .noncustodial_sources import noncustodial_sources_request_builder
-from .noncustodial_sources.item import noncustodial_data_source_item_request_builder
-from .purge_data import purge_data_request_builder
+additional_sources_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.source_collections.item.additional_sources.additional_sources_request_builder')
+data_source_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.source_collections.item.additional_sources.item.data_source_item_request_builder')
+add_to_review_set_operation_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.source_collections.item.add_to_review_set_operation.add_to_review_set_operation_request_builder')
+custodian_sources_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.source_collections.item.custodian_sources.custodian_sources_request_builder')
+data_source_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.source_collections.item.custodian_sources.item.data_source_item_request_builder')
+estimate_statistics_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.source_collections.item.estimate_statistics.estimate_statistics_request_builder')
+last_estimate_statistics_operation_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.source_collections.item.last_estimate_statistics_operation.last_estimate_statistics_operation_request_builder')
+noncustodial_sources_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.source_collections.item.noncustodial_sources.noncustodial_sources_request_builder')
+noncustodial_data_source_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.source_collections.item.noncustodial_sources.item.noncustodial_data_source_item_request_builder')
+purge_data_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.source_collections.item.purge_data.purge_data_request_builder')
+source_collection = lazy_import('msgraph.generated.models.ediscovery.source_collection')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class SourceCollectionItemRequestBuilder():
     """

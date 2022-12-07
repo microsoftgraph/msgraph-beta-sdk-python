@@ -1,5 +1,6 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 class ExternalLink(AdditionalDataHolder, Parsable):
@@ -27,7 +28,7 @@ class ExternalLink(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The url of the link.
+        # The URL of the link.
         self._href: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
@@ -58,7 +59,7 @@ class ExternalLink(AdditionalDataHolder, Parsable):
     @property
     def href(self,) -> Optional[str]:
         """
-        Gets the href property value. The url of the link.
+        Gets the href property value. The URL of the link.
         Returns: Optional[str]
         """
         return self._href
@@ -66,7 +67,7 @@ class ExternalLink(AdditionalDataHolder, Parsable):
     @href.setter
     def href(self,value: Optional[str] = None) -> None:
         """
-        Sets the href property value. The url of the link.
+        Sets the href property value. The URL of the link.
         Args:
             value: Value to set for the href property.
         """

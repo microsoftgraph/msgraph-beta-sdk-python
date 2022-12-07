@@ -7,37 +7,38 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import site
-from ...models.o_data_errors import o_data_error
-from .analytics import analytics_request_builder
-from .columns import columns_request_builder
-from .columns.item import column_definition_item_request_builder
-from .content_types import content_types_request_builder
-from .content_types.item import content_type_item_request_builder
-from .drive import drive_request_builder
-from .drives import drives_request_builder
-from .drives.item import drive_item_request_builder
-from .external_columns import external_columns_request_builder
-from .external_columns.item import column_definition_item_request_builder
-from .get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval import get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder
-from .get_applicable_content_types_for_list_with_list_id import get_applicable_content_types_for_list_with_list_id_request_builder
-from .get_by_path_with_path import get_by_path_with_path_request_builder
-from .items import items_request_builder
-from .items.item import base_item_item_request_builder
-from .lists import lists_request_builder
-from .lists.item import list_item_request_builder
-from .onenote import onenote_request_builder
-from .operations import operations_request_builder
-from .operations.item import rich_long_running_operation_item_request_builder
-from .pages import pages_request_builder
-from .pages.item import site_page_item_request_builder
-from .permissions import permissions_request_builder
-from .permissions.item import permission_item_request_builder
-from .sites import sites_request_builder
-from .sites.item import site_item_request_builder
-from .term_store import term_store_request_builder
+site = lazy_import('msgraph.generated.models.site')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+analytics_request_builder = lazy_import('msgraph.generated.sites.item.analytics.analytics_request_builder')
+columns_request_builder = lazy_import('msgraph.generated.sites.item.columns.columns_request_builder')
+column_definition_item_request_builder = lazy_import('msgraph.generated.sites.item.columns.item.column_definition_item_request_builder')
+content_types_request_builder = lazy_import('msgraph.generated.sites.item.content_types.content_types_request_builder')
+content_type_item_request_builder = lazy_import('msgraph.generated.sites.item.content_types.item.content_type_item_request_builder')
+drive_request_builder = lazy_import('msgraph.generated.sites.item.drive.drive_request_builder')
+drives_request_builder = lazy_import('msgraph.generated.sites.item.drives.drives_request_builder')
+drive_item_request_builder = lazy_import('msgraph.generated.sites.item.drives.item.drive_item_request_builder')
+external_columns_request_builder = lazy_import('msgraph.generated.sites.item.external_columns.external_columns_request_builder')
+column_definition_item_request_builder = lazy_import('msgraph.generated.sites.item.external_columns.item.column_definition_item_request_builder')
+get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder = lazy_import('msgraph.generated.sites.item.get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval.get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder')
+get_applicable_content_types_for_list_with_list_id_request_builder = lazy_import('msgraph.generated.sites.item.get_applicable_content_types_for_list_with_list_id.get_applicable_content_types_for_list_with_list_id_request_builder')
+get_by_path_with_path_request_builder = lazy_import('msgraph.generated.sites.item.get_by_path_with_path.get_by_path_with_path_request_builder')
+items_request_builder = lazy_import('msgraph.generated.sites.item.items.items_request_builder')
+base_item_item_request_builder = lazy_import('msgraph.generated.sites.item.items.item.base_item_item_request_builder')
+lists_request_builder = lazy_import('msgraph.generated.sites.item.lists.lists_request_builder')
+list_item_request_builder = lazy_import('msgraph.generated.sites.item.lists.item.list_item_request_builder')
+onenote_request_builder = lazy_import('msgraph.generated.sites.item.onenote.onenote_request_builder')
+operations_request_builder = lazy_import('msgraph.generated.sites.item.operations.operations_request_builder')
+rich_long_running_operation_item_request_builder = lazy_import('msgraph.generated.sites.item.operations.item.rich_long_running_operation_item_request_builder')
+pages_request_builder = lazy_import('msgraph.generated.sites.item.pages.pages_request_builder')
+site_page_item_request_builder = lazy_import('msgraph.generated.sites.item.pages.item.site_page_item_request_builder')
+permissions_request_builder = lazy_import('msgraph.generated.sites.item.permissions.permissions_request_builder')
+permission_item_request_builder = lazy_import('msgraph.generated.sites.item.permissions.item.permission_item_request_builder')
+sites_request_builder = lazy_import('msgraph.generated.sites.item.sites.sites_request_builder')
+site_item_request_builder = lazy_import('msgraph.generated.sites.item.sites.item.site_item_request_builder')
+term_store_request_builder = lazy_import('msgraph.generated.sites.item.term_store.term_store_request_builder')
 
 class SiteItemRequestBuilder():
     """

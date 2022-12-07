@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import group_policy_presentation_dropdown_list_item, group_policy_uploaded_presentation
+group_policy_presentation_dropdown_list_item = lazy_import('msgraph.generated.models.group_policy_presentation_dropdown_list_item')
+group_policy_uploaded_presentation = lazy_import('msgraph.generated.models.group_policy_uploaded_presentation')
 
 class GroupPolicyPresentationDropdownList(group_policy_uploaded_presentation.GroupPolicyUploadedPresentation):
     def __init__(self,) -> None:

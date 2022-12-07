@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import call_disposition, invitation_participant_info
+call_disposition = lazy_import('msgraph.generated.models.call_disposition')
+invitation_participant_info = lazy_import('msgraph.generated.models.invitation_participant_info')
 
 class RedirectPostRequestBody(AdditionalDataHolder, Parsable):
     """

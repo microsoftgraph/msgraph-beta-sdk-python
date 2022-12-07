@@ -7,31 +7,32 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import schedule
-from .....models.o_data_errors import o_data_error
-from .offer_shift_requests import offer_shift_requests_request_builder
-from .offer_shift_requests.item import offer_shift_request_item_request_builder
-from .open_shift_change_requests import open_shift_change_requests_request_builder
-from .open_shift_change_requests.item import open_shift_change_request_item_request_builder
-from .open_shifts import open_shifts_request_builder
-from .open_shifts.item import open_shift_item_request_builder
-from .scheduling_groups import scheduling_groups_request_builder
-from .scheduling_groups.item import scheduling_group_item_request_builder
-from .share import share_request_builder
-from .shifts import shifts_request_builder
-from .shifts.item import shift_item_request_builder
-from .swap_shifts_change_requests import swap_shifts_change_requests_request_builder
-from .swap_shifts_change_requests.item import swap_shifts_change_request_item_request_builder
-from .time_cards import time_cards_request_builder
-from .time_cards.item import time_card_item_request_builder
-from .time_off_reasons import time_off_reasons_request_builder
-from .time_off_reasons.item import time_off_reason_item_request_builder
-from .time_off_requests import time_off_requests_request_builder
-from .time_off_requests.item import time_off_request_item_request_builder
-from .times_off import times_off_request_builder
-from .times_off.item import time_off_item_request_builder
+offer_shift_requests_request_builder = lazy_import('msgraph.generated.groups.item.team.schedule.offer_shift_requests.offer_shift_requests_request_builder')
+offer_shift_request_item_request_builder = lazy_import('msgraph.generated.groups.item.team.schedule.offer_shift_requests.item.offer_shift_request_item_request_builder')
+open_shift_change_requests_request_builder = lazy_import('msgraph.generated.groups.item.team.schedule.open_shift_change_requests.open_shift_change_requests_request_builder')
+open_shift_change_request_item_request_builder = lazy_import('msgraph.generated.groups.item.team.schedule.open_shift_change_requests.item.open_shift_change_request_item_request_builder')
+open_shifts_request_builder = lazy_import('msgraph.generated.groups.item.team.schedule.open_shifts.open_shifts_request_builder')
+open_shift_item_request_builder = lazy_import('msgraph.generated.groups.item.team.schedule.open_shifts.item.open_shift_item_request_builder')
+scheduling_groups_request_builder = lazy_import('msgraph.generated.groups.item.team.schedule.scheduling_groups.scheduling_groups_request_builder')
+scheduling_group_item_request_builder = lazy_import('msgraph.generated.groups.item.team.schedule.scheduling_groups.item.scheduling_group_item_request_builder')
+share_request_builder = lazy_import('msgraph.generated.groups.item.team.schedule.share.share_request_builder')
+shifts_request_builder = lazy_import('msgraph.generated.groups.item.team.schedule.shifts.shifts_request_builder')
+shift_item_request_builder = lazy_import('msgraph.generated.groups.item.team.schedule.shifts.item.shift_item_request_builder')
+swap_shifts_change_requests_request_builder = lazy_import('msgraph.generated.groups.item.team.schedule.swap_shifts_change_requests.swap_shifts_change_requests_request_builder')
+swap_shifts_change_request_item_request_builder = lazy_import('msgraph.generated.groups.item.team.schedule.swap_shifts_change_requests.item.swap_shifts_change_request_item_request_builder')
+time_cards_request_builder = lazy_import('msgraph.generated.groups.item.team.schedule.time_cards.time_cards_request_builder')
+time_card_item_request_builder = lazy_import('msgraph.generated.groups.item.team.schedule.time_cards.item.time_card_item_request_builder')
+time_off_reasons_request_builder = lazy_import('msgraph.generated.groups.item.team.schedule.time_off_reasons.time_off_reasons_request_builder')
+time_off_reason_item_request_builder = lazy_import('msgraph.generated.groups.item.team.schedule.time_off_reasons.item.time_off_reason_item_request_builder')
+time_off_requests_request_builder = lazy_import('msgraph.generated.groups.item.team.schedule.time_off_requests.time_off_requests_request_builder')
+time_off_request_item_request_builder = lazy_import('msgraph.generated.groups.item.team.schedule.time_off_requests.item.time_off_request_item_request_builder')
+times_off_request_builder = lazy_import('msgraph.generated.groups.item.team.schedule.times_off.times_off_request_builder')
+time_off_item_request_builder = lazy_import('msgraph.generated.groups.item.team.schedule.times_off.item.time_off_item_request_builder')
+schedule = lazy_import('msgraph.generated.models.schedule')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ScheduleRequestBuilder():
     """

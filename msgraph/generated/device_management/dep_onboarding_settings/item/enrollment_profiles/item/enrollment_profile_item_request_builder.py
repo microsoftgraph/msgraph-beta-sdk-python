@@ -7,13 +7,14 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import enrollment_profile
-from ......models.o_data_errors import o_data_error
-from .export_mobile_config import export_mobile_config_request_builder
-from .set_default_profile import set_default_profile_request_builder
-from .update_device_profile_assignment import update_device_profile_assignment_request_builder
+export_mobile_config_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.enrollment_profiles.item.export_mobile_config.export_mobile_config_request_builder')
+set_default_profile_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.enrollment_profiles.item.set_default_profile.set_default_profile_request_builder')
+update_device_profile_assignment_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.enrollment_profiles.item.update_device_profile_assignment.update_device_profile_assignment_request_builder')
+enrollment_profile = lazy_import('msgraph.generated.models.enrollment_profile')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class EnrollmentProfileItemRequestBuilder():
     """

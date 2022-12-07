@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import policy_scope
+policy_scope = lazy_import('msgraph.generated.models.policy_scope')
 
 class AzureADRegistrationPolicy(AdditionalDataHolder, Parsable):
     @property

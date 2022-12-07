@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import internet_explorer_mode
-from ....models.o_data_errors import o_data_error
-from .site_lists import site_lists_request_builder
-from .site_lists.item import browser_site_list_item_request_builder
+site_lists_request_builder = lazy_import('msgraph.generated.admin.edge.internet_explorer_mode.site_lists.site_lists_request_builder')
+browser_site_list_item_request_builder = lazy_import('msgraph.generated.admin.edge.internet_explorer_mode.site_lists.item.browser_site_list_item_request_builder')
+internet_explorer_mode = lazy_import('msgraph.generated.models.internet_explorer_mode')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class InternetExplorerModeRequestBuilder():
     """

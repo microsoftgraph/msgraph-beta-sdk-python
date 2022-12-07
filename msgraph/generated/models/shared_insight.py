@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, resource_reference, resource_visualization, sharing_detail
+entity = lazy_import('msgraph.generated.models.entity')
+resource_reference = lazy_import('msgraph.generated.models.resource_reference')
+resource_visualization = lazy_import('msgraph.generated.models.resource_visualization')
+sharing_detail = lazy_import('msgraph.generated.models.sharing_detail')
 
 class SharedInsight(entity.Entity):
     """

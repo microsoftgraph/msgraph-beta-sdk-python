@@ -7,23 +7,24 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models.identity_governance import workflow
-from .....models.o_data_errors import o_data_error
-from .activate import activate_request_builder
-from .create_new_version import create_new_version_request_builder
-from .execution_scope import execution_scope_request_builder
-from .execution_scope.item import user_item_request_builder
-from .restore import restore_request_builder
-from .runs import runs_request_builder
-from .runs.item import run_item_request_builder
-from .task_reports import task_reports_request_builder
-from .task_reports.item import task_report_item_request_builder
-from .user_processing_results import user_processing_results_request_builder
-from .user_processing_results.item import user_processing_result_item_request_builder
-from .versions import versions_request_builder
-from .versions.item import workflow_version_version_number_item_request_builder
+activate_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.activate.activate_request_builder')
+create_new_version_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.create_new_version.create_new_version_request_builder')
+execution_scope_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.execution_scope.execution_scope_request_builder')
+user_item_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.execution_scope.item.user_item_request_builder')
+restore_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.restore.restore_request_builder')
+runs_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.runs.runs_request_builder')
+run_item_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.runs.item.run_item_request_builder')
+task_reports_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.task_reports.task_reports_request_builder')
+task_report_item_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.task_reports.item.task_report_item_request_builder')
+user_processing_results_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.user_processing_results.user_processing_results_request_builder')
+user_processing_result_item_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.user_processing_results.item.user_processing_result_item_request_builder')
+versions_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.versions.versions_request_builder')
+workflow_version_version_number_item_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.versions.item.workflow_version_version_number_item_request_builder')
+workflow = lazy_import('msgraph.generated.models.identity_governance.workflow')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class WorkflowItemRequestBuilder():
     """

@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import android_for_work_app_configuration_schema_item_data_type, key_value_pair
+android_for_work_app_configuration_schema_item_data_type = lazy_import('msgraph.generated.models.android_for_work_app_configuration_schema_item_data_type')
+key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
 
 class AndroidForWorkAppConfigurationSchemaItem(AdditionalDataHolder, Parsable):
     """

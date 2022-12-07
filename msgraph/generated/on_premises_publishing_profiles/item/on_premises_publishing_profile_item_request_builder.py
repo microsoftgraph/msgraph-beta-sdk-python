@@ -7,20 +7,21 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import on_premises_publishing_profile
-from ...models.o_data_errors import o_data_error
-from .agent_groups import agent_groups_request_builder
-from .agent_groups.item import on_premises_agent_group_item_request_builder
-from .agents import agents_request_builder
-from .agents.item import on_premises_agent_item_request_builder
-from .connector_groups import connector_groups_request_builder
-from .connector_groups.item import connector_group_item_request_builder
-from .connectors import connectors_request_builder
-from .connectors.item import connector_item_request_builder
-from .published_resources import published_resources_request_builder
-from .published_resources.item import published_resource_item_request_builder
+on_premises_publishing_profile = lazy_import('msgraph.generated.models.on_premises_publishing_profile')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+agent_groups_request_builder = lazy_import('msgraph.generated.on_premises_publishing_profiles.item.agent_groups.agent_groups_request_builder')
+on_premises_agent_group_item_request_builder = lazy_import('msgraph.generated.on_premises_publishing_profiles.item.agent_groups.item.on_premises_agent_group_item_request_builder')
+agents_request_builder = lazy_import('msgraph.generated.on_premises_publishing_profiles.item.agents.agents_request_builder')
+on_premises_agent_item_request_builder = lazy_import('msgraph.generated.on_premises_publishing_profiles.item.agents.item.on_premises_agent_item_request_builder')
+connector_groups_request_builder = lazy_import('msgraph.generated.on_premises_publishing_profiles.item.connector_groups.connector_groups_request_builder')
+connector_group_item_request_builder = lazy_import('msgraph.generated.on_premises_publishing_profiles.item.connector_groups.item.connector_group_item_request_builder')
+connectors_request_builder = lazy_import('msgraph.generated.on_premises_publishing_profiles.item.connectors.connectors_request_builder')
+connector_item_request_builder = lazy_import('msgraph.generated.on_premises_publishing_profiles.item.connectors.item.connector_item_request_builder')
+published_resources_request_builder = lazy_import('msgraph.generated.on_premises_publishing_profiles.item.published_resources.published_resources_request_builder')
+published_resource_item_request_builder = lazy_import('msgraph.generated.on_premises_publishing_profiles.item.published_resources.item.published_resource_item_request_builder')
 
 class OnPremisesPublishingProfileItemRequestBuilder():
     """

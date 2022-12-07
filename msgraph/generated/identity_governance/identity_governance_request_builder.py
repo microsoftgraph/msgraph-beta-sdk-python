@@ -7,15 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..models import identity_governance
-from ..models.o_data_errors import o_data_error
-from .access_reviews import access_reviews_request_builder
-from .app_consent import app_consent_request_builder
-from .entitlement_management import entitlement_management_request_builder
-from .lifecycle_workflows import lifecycle_workflows_request_builder
-from .terms_of_use import terms_of_use_request_builder
+access_reviews_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.access_reviews_request_builder')
+app_consent_request_builder = lazy_import('msgraph.generated.identity_governance.app_consent.app_consent_request_builder')
+entitlement_management_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.entitlement_management_request_builder')
+lifecycle_workflows_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.lifecycle_workflows_request_builder')
+terms_of_use_request_builder = lazy_import('msgraph.generated.identity_governance.terms_of_use.terms_of_use_request_builder')
+identity_governance = lazy_import('msgraph.generated.models.identity_governance')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class IdentityGovernanceRequestBuilder():
     """

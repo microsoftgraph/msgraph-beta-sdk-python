@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, user_experience_analytics_anomaly_severity, user_experience_analytics_anomaly_state, user_experience_analytics_anomaly_type
+entity = lazy_import('msgraph.generated.models.entity')
+user_experience_analytics_anomaly_severity = lazy_import('msgraph.generated.models.user_experience_analytics_anomaly_severity')
+user_experience_analytics_anomaly_state = lazy_import('msgraph.generated.models.user_experience_analytics_anomaly_state')
+user_experience_analytics_anomaly_type = lazy_import('msgraph.generated.models.user_experience_analytics_anomaly_type')
 
 class UserExperienceAnalyticsAnomaly(entity.Entity):
     """

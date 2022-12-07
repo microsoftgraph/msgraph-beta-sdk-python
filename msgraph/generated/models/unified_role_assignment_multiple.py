@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import app_scope, directory_object, entity, unified_role_definition
+app_scope = lazy_import('msgraph.generated.models.app_scope')
+directory_object = lazy_import('msgraph.generated.models.directory_object')
+entity = lazy_import('msgraph.generated.models.entity')
+unified_role_definition = lazy_import('msgraph.generated.models.unified_role_definition')
 
 class UnifiedRoleAssignmentMultiple(entity.Entity):
     """

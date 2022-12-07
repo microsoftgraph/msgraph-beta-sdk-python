@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import email_role, logon_type, user_account_security_type
+email_role = lazy_import('msgraph.generated.models.email_role')
+logon_type = lazy_import('msgraph.generated.models.logon_type')
+user_account_security_type = lazy_import('msgraph.generated.models.user_account_security_type')
 
 class UserSecurityState(AdditionalDataHolder, Parsable):
     @property

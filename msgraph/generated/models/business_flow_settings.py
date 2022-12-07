@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import access_review_settings
+access_review_settings = lazy_import('msgraph.generated.models.access_review_settings')
 
 class BusinessFlowSettings(access_review_settings.AccessReviewSettings):
     def __init__(self,) -> None:

@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import identity, initiator_type
+identity = lazy_import('msgraph.generated.models.identity')
+initiator_type = lazy_import('msgraph.generated.models.initiator_type')
 
 class Initiator(identity.Identity):
     def __init__(self,) -> None:

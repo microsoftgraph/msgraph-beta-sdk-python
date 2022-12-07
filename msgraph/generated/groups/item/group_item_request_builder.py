@@ -7,74 +7,75 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import group
-from ...models.o_data_errors import o_data_error
-from .accepted_senders import accepted_senders_request_builder
-from .accepted_senders.item import directory_object_item_request_builder
-from .add_favorite import add_favorite_request_builder
-from .app_role_assignments import app_role_assignments_request_builder
-from .app_role_assignments.item import app_role_assignment_item_request_builder
-from .assign_license import assign_license_request_builder
-from .calendar import calendar_request_builder
-from .calendar_view import calendar_view_request_builder
-from .calendar_view.item import event_item_request_builder
-from .check_granted_permissions_for_app import check_granted_permissions_for_app_request_builder
-from .check_member_groups import check_member_groups_request_builder
-from .check_member_objects import check_member_objects_request_builder
-from .conversations import conversations_request_builder
-from .conversations.item import conversation_item_request_builder
-from .created_on_behalf_of import created_on_behalf_of_request_builder
-from .drive import drive_request_builder
-from .drives import drives_request_builder
-from .drives.item import drive_item_request_builder
-from .endpoints import endpoints_request_builder
-from .endpoints.item import endpoint_item_request_builder
-from .evaluate_dynamic_membership import evaluate_dynamic_membership_request_builder
-from .events import events_request_builder
-from .events.item import event_item_request_builder
-from .extensions import extensions_request_builder
-from .extensions.item import extension_item_request_builder
-from .get_member_groups import get_member_groups_request_builder
-from .get_member_objects import get_member_objects_request_builder
-from .group_lifecycle_policies import group_lifecycle_policies_request_builder
-from .group_lifecycle_policies.item import group_lifecycle_policy_item_request_builder
-from .member_of import member_of_request_builder
-from .member_of.item import directory_object_item_request_builder
-from .members import members_request_builder
-from .members.item import directory_object_item_request_builder
-from .members_with_license_errors import members_with_license_errors_request_builder
-from .members_with_license_errors.item import directory_object_item_request_builder
-from .onenote import onenote_request_builder
-from .owners import owners_request_builder
-from .owners.item import directory_object_item_request_builder
-from .permission_grants import permission_grants_request_builder
-from .permission_grants.item import resource_specific_permission_grant_item_request_builder
-from .photo import photo_request_builder
-from .photos import photos_request_builder
-from .photos.item import profile_photo_item_request_builder
-from .planner import planner_request_builder
-from .rejected_senders import rejected_senders_request_builder
-from .rejected_senders.item import directory_object_item_request_builder
-from .remove_favorite import remove_favorite_request_builder
-from .renew import renew_request_builder
-from .reset_unseen_count import reset_unseen_count_request_builder
-from .restore import restore_request_builder
-from .settings import settings_request_builder
-from .settings.item import directory_setting_item_request_builder
-from .sites import sites_request_builder
-from .sites.item import site_item_request_builder
-from .subscribe_by_mail import subscribe_by_mail_request_builder
-from .team import team_request_builder
-from .threads import threads_request_builder
-from .threads.item import conversation_thread_item_request_builder
-from .transitive_member_of import transitive_member_of_request_builder
-from .transitive_member_of.item import directory_object_item_request_builder
-from .transitive_members import transitive_members_request_builder
-from .transitive_members.item import directory_object_item_request_builder
-from .unsubscribe_by_mail import unsubscribe_by_mail_request_builder
-from .validate_properties import validate_properties_request_builder
+accepted_senders_request_builder = lazy_import('msgraph.generated.groups.item.accepted_senders.accepted_senders_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.groups.item.accepted_senders.item.directory_object_item_request_builder')
+add_favorite_request_builder = lazy_import('msgraph.generated.groups.item.add_favorite.add_favorite_request_builder')
+app_role_assignments_request_builder = lazy_import('msgraph.generated.groups.item.app_role_assignments.app_role_assignments_request_builder')
+app_role_assignment_item_request_builder = lazy_import('msgraph.generated.groups.item.app_role_assignments.item.app_role_assignment_item_request_builder')
+assign_license_request_builder = lazy_import('msgraph.generated.groups.item.assign_license.assign_license_request_builder')
+calendar_request_builder = lazy_import('msgraph.generated.groups.item.calendar.calendar_request_builder')
+calendar_view_request_builder = lazy_import('msgraph.generated.groups.item.calendar_view.calendar_view_request_builder')
+event_item_request_builder = lazy_import('msgraph.generated.groups.item.calendar_view.item.event_item_request_builder')
+check_granted_permissions_for_app_request_builder = lazy_import('msgraph.generated.groups.item.check_granted_permissions_for_app.check_granted_permissions_for_app_request_builder')
+check_member_groups_request_builder = lazy_import('msgraph.generated.groups.item.check_member_groups.check_member_groups_request_builder')
+check_member_objects_request_builder = lazy_import('msgraph.generated.groups.item.check_member_objects.check_member_objects_request_builder')
+conversations_request_builder = lazy_import('msgraph.generated.groups.item.conversations.conversations_request_builder')
+conversation_item_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.conversation_item_request_builder')
+created_on_behalf_of_request_builder = lazy_import('msgraph.generated.groups.item.created_on_behalf_of.created_on_behalf_of_request_builder')
+drive_request_builder = lazy_import('msgraph.generated.groups.item.drive.drive_request_builder')
+drives_request_builder = lazy_import('msgraph.generated.groups.item.drives.drives_request_builder')
+drive_item_request_builder = lazy_import('msgraph.generated.groups.item.drives.item.drive_item_request_builder')
+endpoints_request_builder = lazy_import('msgraph.generated.groups.item.endpoints.endpoints_request_builder')
+endpoint_item_request_builder = lazy_import('msgraph.generated.groups.item.endpoints.item.endpoint_item_request_builder')
+evaluate_dynamic_membership_request_builder = lazy_import('msgraph.generated.groups.item.evaluate_dynamic_membership.evaluate_dynamic_membership_request_builder')
+events_request_builder = lazy_import('msgraph.generated.groups.item.events.events_request_builder')
+event_item_request_builder = lazy_import('msgraph.generated.groups.item.events.item.event_item_request_builder')
+extensions_request_builder = lazy_import('msgraph.generated.groups.item.extensions.extensions_request_builder')
+extension_item_request_builder = lazy_import('msgraph.generated.groups.item.extensions.item.extension_item_request_builder')
+get_member_groups_request_builder = lazy_import('msgraph.generated.groups.item.get_member_groups.get_member_groups_request_builder')
+get_member_objects_request_builder = lazy_import('msgraph.generated.groups.item.get_member_objects.get_member_objects_request_builder')
+group_lifecycle_policies_request_builder = lazy_import('msgraph.generated.groups.item.group_lifecycle_policies.group_lifecycle_policies_request_builder')
+group_lifecycle_policy_item_request_builder = lazy_import('msgraph.generated.groups.item.group_lifecycle_policies.item.group_lifecycle_policy_item_request_builder')
+member_of_request_builder = lazy_import('msgraph.generated.groups.item.member_of.member_of_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.groups.item.member_of.item.directory_object_item_request_builder')
+members_request_builder = lazy_import('msgraph.generated.groups.item.members.members_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.groups.item.members.item.directory_object_item_request_builder')
+members_with_license_errors_request_builder = lazy_import('msgraph.generated.groups.item.members_with_license_errors.members_with_license_errors_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.groups.item.members_with_license_errors.item.directory_object_item_request_builder')
+onenote_request_builder = lazy_import('msgraph.generated.groups.item.onenote.onenote_request_builder')
+owners_request_builder = lazy_import('msgraph.generated.groups.item.owners.owners_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.groups.item.owners.item.directory_object_item_request_builder')
+permission_grants_request_builder = lazy_import('msgraph.generated.groups.item.permission_grants.permission_grants_request_builder')
+resource_specific_permission_grant_item_request_builder = lazy_import('msgraph.generated.groups.item.permission_grants.item.resource_specific_permission_grant_item_request_builder')
+photo_request_builder = lazy_import('msgraph.generated.groups.item.photo.photo_request_builder')
+photos_request_builder = lazy_import('msgraph.generated.groups.item.photos.photos_request_builder')
+profile_photo_item_request_builder = lazy_import('msgraph.generated.groups.item.photos.item.profile_photo_item_request_builder')
+planner_request_builder = lazy_import('msgraph.generated.groups.item.planner.planner_request_builder')
+rejected_senders_request_builder = lazy_import('msgraph.generated.groups.item.rejected_senders.rejected_senders_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.groups.item.rejected_senders.item.directory_object_item_request_builder')
+remove_favorite_request_builder = lazy_import('msgraph.generated.groups.item.remove_favorite.remove_favorite_request_builder')
+renew_request_builder = lazy_import('msgraph.generated.groups.item.renew.renew_request_builder')
+reset_unseen_count_request_builder = lazy_import('msgraph.generated.groups.item.reset_unseen_count.reset_unseen_count_request_builder')
+restore_request_builder = lazy_import('msgraph.generated.groups.item.restore.restore_request_builder')
+settings_request_builder = lazy_import('msgraph.generated.groups.item.settings.settings_request_builder')
+directory_setting_item_request_builder = lazy_import('msgraph.generated.groups.item.settings.item.directory_setting_item_request_builder')
+sites_request_builder = lazy_import('msgraph.generated.groups.item.sites.sites_request_builder')
+site_item_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.site_item_request_builder')
+subscribe_by_mail_request_builder = lazy_import('msgraph.generated.groups.item.subscribe_by_mail.subscribe_by_mail_request_builder')
+team_request_builder = lazy_import('msgraph.generated.groups.item.team.team_request_builder')
+threads_request_builder = lazy_import('msgraph.generated.groups.item.threads.threads_request_builder')
+conversation_thread_item_request_builder = lazy_import('msgraph.generated.groups.item.threads.item.conversation_thread_item_request_builder')
+transitive_member_of_request_builder = lazy_import('msgraph.generated.groups.item.transitive_member_of.transitive_member_of_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.groups.item.transitive_member_of.item.directory_object_item_request_builder')
+transitive_members_request_builder = lazy_import('msgraph.generated.groups.item.transitive_members.transitive_members_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.groups.item.transitive_members.item.directory_object_item_request_builder')
+unsubscribe_by_mail_request_builder = lazy_import('msgraph.generated.groups.item.unsubscribe_by_mail.unsubscribe_by_mail_request_builder')
+validate_properties_request_builder = lazy_import('msgraph.generated.groups.item.validate_properties.validate_properties_request_builder')
+group = lazy_import('msgraph.generated.models.group')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class GroupItemRequestBuilder():
     """

@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import long_running_operation_status, tenant_allow_block_list_entry_type
+long_running_operation_status = lazy_import('msgraph.generated.models.security.long_running_operation_status')
+tenant_allow_block_list_entry_type = lazy_import('msgraph.generated.models.security.tenant_allow_block_list_entry_type')
 
 class TenantAllowBlockListEntryResult(AdditionalDataHolder, Parsable):
     @property

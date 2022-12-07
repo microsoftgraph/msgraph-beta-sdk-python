@@ -1,8 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, json, workbook_range_format, workbook_range_sort, workbook_worksheet
+entity = lazy_import('msgraph.generated.models.entity')
+json = lazy_import('msgraph.generated.models.json')
+workbook_range_format = lazy_import('msgraph.generated.models.workbook_range_format')
+workbook_range_sort = lazy_import('msgraph.generated.models.workbook_range_sort')
+workbook_worksheet = lazy_import('msgraph.generated.models.workbook_worksheet')
 
 class WorkbookRange(entity.Entity):
     @property

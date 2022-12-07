@@ -1,10 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import authentication_method_modes, entity
+authentication_method_modes = lazy_import('msgraph.generated.models.authentication_method_modes')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class AuthenticationCombinationConfiguration(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def applies_to_combinations(self,) -> Optional[List[authentication_method_modes.AuthenticationMethodModes]]:
         """
@@ -24,7 +29,7 @@ class AuthenticationCombinationConfiguration(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new AuthenticationCombinationConfiguration and sets the default values.
+        Instantiates a new authenticationCombinationConfiguration and sets the default values.
         """
         super().__init__()
         # Which authentication method combinations this configuration applies to. Must be an allowedCombinations object that's defined for the authenticationStrengthPolicy. The only possible value for fido2combinationConfigurations is 'fido2'.

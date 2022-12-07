@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import cloud_app_security_session_control_type, conditional_access_session_control
+cloud_app_security_session_control_type = lazy_import('msgraph.generated.models.cloud_app_security_session_control_type')
+conditional_access_session_control = lazy_import('msgraph.generated.models.conditional_access_session_control')
 
 class CloudAppSecuritySessionControl(conditional_access_session_control.ConditionalAccessSessionControl):
     @property

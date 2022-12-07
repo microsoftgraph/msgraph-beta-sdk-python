@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import assignment_method, label_details
+assignment_method = lazy_import('msgraph.generated.models.assignment_method')
+label_details = lazy_import('msgraph.generated.models.label_details')
 
 class InformationProtectionContentLabel(AdditionalDataHolder, Parsable):
     @property

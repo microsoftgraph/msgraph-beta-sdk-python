@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime, timedelta
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import audio_codec, media_stream_direction, video_codec
+audio_codec = lazy_import('msgraph.generated.models.call_records.audio_codec')
+media_stream_direction = lazy_import('msgraph.generated.models.call_records.media_stream_direction')
+video_codec = lazy_import('msgraph.generated.models.call_records.video_codec')
 
 class MediaStream(AdditionalDataHolder, Parsable):
     @property

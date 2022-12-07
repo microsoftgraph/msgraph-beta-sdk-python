@@ -1,8 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import external_authentication_type, key_credential, on_premises_application_segment, on_premises_publishing_single_sign_on, password_credential, segment_configuration, verified_custom_domain_certificates_metadata
+external_authentication_type = lazy_import('msgraph.generated.models.external_authentication_type')
+key_credential = lazy_import('msgraph.generated.models.key_credential')
+on_premises_application_segment = lazy_import('msgraph.generated.models.on_premises_application_segment')
+on_premises_publishing_single_sign_on = lazy_import('msgraph.generated.models.on_premises_publishing_single_sign_on')
+password_credential = lazy_import('msgraph.generated.models.password_credential')
+segment_configuration = lazy_import('msgraph.generated.models.segment_configuration')
+verified_custom_domain_certificates_metadata = lazy_import('msgraph.generated.models.verified_custom_domain_certificates_metadata')
 
 class OnPremisesPublishing(AdditionalDataHolder, Parsable):
     @property

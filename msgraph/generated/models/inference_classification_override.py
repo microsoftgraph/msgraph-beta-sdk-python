@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import email_address, entity, inference_classification_type
+email_address = lazy_import('msgraph.generated.models.email_address')
+entity = lazy_import('msgraph.generated.models.entity')
+inference_classification_type = lazy_import('msgraph.generated.models.inference_classification_type')
 
 class InferenceClassificationOverride(entity.Entity):
     """

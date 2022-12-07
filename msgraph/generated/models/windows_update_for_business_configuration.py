@@ -1,9 +1,20 @@
 from __future__ import annotations
 from datetime import date, datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import auto_restart_notification_dismissal_method, automatic_update_mode, device_configuration, enablement, prerelease_features, windows_delivery_optimization_mode, windows_update_for_business_update_weeks, windows_update_install_schedule_type, windows_update_notification_display_option, windows_update_state, windows_update_type
+auto_restart_notification_dismissal_method = lazy_import('msgraph.generated.models.auto_restart_notification_dismissal_method')
+automatic_update_mode = lazy_import('msgraph.generated.models.automatic_update_mode')
+device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+enablement = lazy_import('msgraph.generated.models.enablement')
+prerelease_features = lazy_import('msgraph.generated.models.prerelease_features')
+windows_delivery_optimization_mode = lazy_import('msgraph.generated.models.windows_delivery_optimization_mode')
+windows_update_for_business_update_weeks = lazy_import('msgraph.generated.models.windows_update_for_business_update_weeks')
+windows_update_install_schedule_type = lazy_import('msgraph.generated.models.windows_update_install_schedule_type')
+windows_update_notification_display_option = lazy_import('msgraph.generated.models.windows_update_notification_display_option')
+windows_update_state = lazy_import('msgraph.generated.models.windows_update_state')
+windows_update_type = lazy_import('msgraph.generated.models.windows_update_type')
 
 class WindowsUpdateForBusinessConfiguration(device_configuration.DeviceConfiguration):
     @property

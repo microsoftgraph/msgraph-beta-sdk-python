@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, identity_user_flow_attribute, identity_user_flow_attribute_input_type, user_attribute_values_item
+entity = lazy_import('msgraph.generated.models.entity')
+identity_user_flow_attribute = lazy_import('msgraph.generated.models.identity_user_flow_attribute')
+identity_user_flow_attribute_input_type = lazy_import('msgraph.generated.models.identity_user_flow_attribute_input_type')
+user_attribute_values_item = lazy_import('msgraph.generated.models.user_attribute_values_item')
 
 class IdentityUserFlowAttributeAssignment(entity.Entity):
     """

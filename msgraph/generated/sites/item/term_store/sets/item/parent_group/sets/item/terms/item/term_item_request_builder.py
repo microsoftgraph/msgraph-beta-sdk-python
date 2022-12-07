@@ -7,15 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...........models.o_data_errors import o_data_error
-from ...........models.term_store import term
-from .children import children_request_builder
-from .children.item import term_item_request_builder
-from .relations import relations_request_builder
-from .relations.item import relation_item_request_builder
-from .set import set_request_builder
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+term = lazy_import('msgraph.generated.models.term_store.term')
+children_request_builder = lazy_import('msgraph.generated.sites.item.term_store.sets.item.parent_group.sets.item.terms.item.children.children_request_builder')
+term_item_request_builder = lazy_import('msgraph.generated.sites.item.term_store.sets.item.parent_group.sets.item.terms.item.children.item.term_item_request_builder')
+relations_request_builder = lazy_import('msgraph.generated.sites.item.term_store.sets.item.parent_group.sets.item.terms.item.relations.relations_request_builder')
+relation_item_request_builder = lazy_import('msgraph.generated.sites.item.term_store.sets.item.parent_group.sets.item.terms.item.relations.item.relation_item_request_builder')
+set_request_builder = lazy_import('msgraph.generated.sites.item.term_store.sets.item.parent_group.sets.item.terms.item.set.set_request_builder')
 
 class TermItemRequestBuilder():
     """

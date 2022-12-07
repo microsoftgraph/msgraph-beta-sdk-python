@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import error_details, inner_error
+error_details = lazy_import('msgraph.generated.models.o_data_errors.error_details')
+inner_error = lazy_import('msgraph.generated.models.o_data_errors.inner_error')
 
 class MainError(AdditionalDataHolder, Parsable):
     @property

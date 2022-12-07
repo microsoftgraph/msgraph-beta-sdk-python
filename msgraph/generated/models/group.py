@@ -1,9 +1,33 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import app_role_assignment, assigned_label, assigned_license, calendar, conversation, conversation_thread, directory_object, directory_setting, drive, endpoint, event, extension, group_access_type, group_lifecycle_policy, group_writeback_configuration, license_processing_state, membership_rule_processing_status, on_premises_provisioning_error, onenote, planner_group, profile_photo, resource_specific_permission_grant, site, team
+app_role_assignment = lazy_import('msgraph.generated.models.app_role_assignment')
+assigned_label = lazy_import('msgraph.generated.models.assigned_label')
+assigned_license = lazy_import('msgraph.generated.models.assigned_license')
+calendar = lazy_import('msgraph.generated.models.calendar')
+conversation = lazy_import('msgraph.generated.models.conversation')
+conversation_thread = lazy_import('msgraph.generated.models.conversation_thread')
+directory_object = lazy_import('msgraph.generated.models.directory_object')
+directory_setting = lazy_import('msgraph.generated.models.directory_setting')
+drive = lazy_import('msgraph.generated.models.drive')
+endpoint = lazy_import('msgraph.generated.models.endpoint')
+event = lazy_import('msgraph.generated.models.event')
+extension = lazy_import('msgraph.generated.models.extension')
+group_access_type = lazy_import('msgraph.generated.models.group_access_type')
+group_lifecycle_policy = lazy_import('msgraph.generated.models.group_lifecycle_policy')
+group_writeback_configuration = lazy_import('msgraph.generated.models.group_writeback_configuration')
+license_processing_state = lazy_import('msgraph.generated.models.license_processing_state')
+membership_rule_processing_status = lazy_import('msgraph.generated.models.membership_rule_processing_status')
+on_premises_provisioning_error = lazy_import('msgraph.generated.models.on_premises_provisioning_error')
+onenote = lazy_import('msgraph.generated.models.onenote')
+planner_group = lazy_import('msgraph.generated.models.planner_group')
+profile_photo = lazy_import('msgraph.generated.models.profile_photo')
+resource_specific_permission_grant = lazy_import('msgraph.generated.models.resource_specific_permission_grant')
+site = lazy_import('msgraph.generated.models.site')
+team = lazy_import('msgraph.generated.models.team')
 
 class Group(directory_object.DirectoryObject):
     """

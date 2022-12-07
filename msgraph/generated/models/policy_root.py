@@ -1,8 +1,34 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import access_review_policy, activity_based_timeout_policy, admin_consent_request_policy, app_management_policy, authentication_flows_policy, authentication_methods_policy, authentication_strength_policy, authorization_policy, b2c_authentication_methods_policy, claims_mapping_policy, conditional_access_policy, cross_tenant_access_policy, device_registration_policy, directory_role_access_review_policy, external_identities_policy, feature_rollout_policy, home_realm_discovery_policy, identity_security_defaults_enforcement_policy, mobility_management_policy, permission_grant_policy, service_principal_creation_policy, tenant_app_management_policy, token_issuance_policy, token_lifetime_policy, unified_role_management_policy, unified_role_management_policy_assignment
+access_review_policy = lazy_import('msgraph.generated.models.access_review_policy')
+activity_based_timeout_policy = lazy_import('msgraph.generated.models.activity_based_timeout_policy')
+admin_consent_request_policy = lazy_import('msgraph.generated.models.admin_consent_request_policy')
+app_management_policy = lazy_import('msgraph.generated.models.app_management_policy')
+authentication_flows_policy = lazy_import('msgraph.generated.models.authentication_flows_policy')
+authentication_methods_policy = lazy_import('msgraph.generated.models.authentication_methods_policy')
+authentication_strength_policy = lazy_import('msgraph.generated.models.authentication_strength_policy')
+authorization_policy = lazy_import('msgraph.generated.models.authorization_policy')
+b2c_authentication_methods_policy = lazy_import('msgraph.generated.models.b2c_authentication_methods_policy')
+claims_mapping_policy = lazy_import('msgraph.generated.models.claims_mapping_policy')
+conditional_access_policy = lazy_import('msgraph.generated.models.conditional_access_policy')
+cross_tenant_access_policy = lazy_import('msgraph.generated.models.cross_tenant_access_policy')
+device_registration_policy = lazy_import('msgraph.generated.models.device_registration_policy')
+directory_role_access_review_policy = lazy_import('msgraph.generated.models.directory_role_access_review_policy')
+external_identities_policy = lazy_import('msgraph.generated.models.external_identities_policy')
+feature_rollout_policy = lazy_import('msgraph.generated.models.feature_rollout_policy')
+home_realm_discovery_policy = lazy_import('msgraph.generated.models.home_realm_discovery_policy')
+identity_security_defaults_enforcement_policy = lazy_import('msgraph.generated.models.identity_security_defaults_enforcement_policy')
+mobility_management_policy = lazy_import('msgraph.generated.models.mobility_management_policy')
+permission_grant_policy = lazy_import('msgraph.generated.models.permission_grant_policy')
+service_principal_creation_policy = lazy_import('msgraph.generated.models.service_principal_creation_policy')
+tenant_app_management_policy = lazy_import('msgraph.generated.models.tenant_app_management_policy')
+token_issuance_policy = lazy_import('msgraph.generated.models.token_issuance_policy')
+token_lifetime_policy = lazy_import('msgraph.generated.models.token_lifetime_policy')
+unified_role_management_policy = lazy_import('msgraph.generated.models.unified_role_management_policy')
+unified_role_management_policy_assignment = lazy_import('msgraph.generated.models.unified_role_management_policy_assignment')
 
 class PolicyRoot(AdditionalDataHolder, Parsable):
     @property

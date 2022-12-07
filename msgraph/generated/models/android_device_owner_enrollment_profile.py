@@ -1,9 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import android_device_owner_enrollment_mode, android_device_owner_enrollment_token_type, aosp_wifi_security_type, entity, mime_content
+android_device_owner_enrollment_mode = lazy_import('msgraph.generated.models.android_device_owner_enrollment_mode')
+android_device_owner_enrollment_token_type = lazy_import('msgraph.generated.models.android_device_owner_enrollment_token_type')
+aosp_wifi_security_type = lazy_import('msgraph.generated.models.aosp_wifi_security_type')
+entity = lazy_import('msgraph.generated.models.entity')
+mime_content = lazy_import('msgraph.generated.models.mime_content')
 
 class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
     """

@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models.o_data_errors import o_data_error
-from ...models.security import trigger_types_root
-from .retention_event_types import retention_event_types_request_builder
-from .retention_event_types.item import retention_event_type_item_request_builder
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+trigger_types_root = lazy_import('msgraph.generated.models.security.trigger_types_root')
+retention_event_types_request_builder = lazy_import('msgraph.generated.security.trigger_types.retention_event_types.retention_event_types_request_builder')
+retention_event_type_item_request_builder = lazy_import('msgraph.generated.security.trigger_types.retention_event_types.item.retention_event_type_item_request_builder')
 
 class TriggerTypesRequestBuilder():
     """

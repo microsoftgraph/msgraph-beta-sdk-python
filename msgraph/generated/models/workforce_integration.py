@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import change_tracked_entity, eligibility_filtering_enabled_entities, workforce_integration_encryption, workforce_integration_supported_entities
+change_tracked_entity = lazy_import('msgraph.generated.models.change_tracked_entity')
+eligibility_filtering_enabled_entities = lazy_import('msgraph.generated.models.eligibility_filtering_enabled_entities')
+workforce_integration_encryption = lazy_import('msgraph.generated.models.workforce_integration_encryption')
+workforce_integration_supported_entities = lazy_import('msgraph.generated.models.workforce_integration_supported_entities')
 
 class WorkforceIntegration(change_tracked_entity.ChangeTrackedEntity):
     @property

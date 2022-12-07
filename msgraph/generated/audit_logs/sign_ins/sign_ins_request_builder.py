@@ -7,13 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import sign_in, sign_in_collection_response
-from ...models.o_data_errors import o_data_error
-from .confirm_compromised import confirm_compromised_request_builder
-from .confirm_safe import confirm_safe_request_builder
-from .count import count_request_builder
+confirm_compromised_request_builder = lazy_import('msgraph.generated.audit_logs.sign_ins.confirm_compromised.confirm_compromised_request_builder')
+confirm_safe_request_builder = lazy_import('msgraph.generated.audit_logs.sign_ins.confirm_safe.confirm_safe_request_builder')
+count_request_builder = lazy_import('msgraph.generated.audit_logs.sign_ins.count.count_request_builder')
+sign_in = lazy_import('msgraph.generated.models.sign_in')
+sign_in_collection_response = lazy_import('msgraph.generated.models.sign_in_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class SignInsRequestBuilder():
     """

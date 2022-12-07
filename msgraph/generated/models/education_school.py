@@ -1,8 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import administrative_unit, education_class, education_organization, education_user, identity_set, physical_address
+administrative_unit = lazy_import('msgraph.generated.models.administrative_unit')
+education_class = lazy_import('msgraph.generated.models.education_class')
+education_organization = lazy_import('msgraph.generated.models.education_organization')
+education_user = lazy_import('msgraph.generated.models.education_user')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+physical_address = lazy_import('msgraph.generated.models.physical_address')
 
 class EducationSchool(education_organization.EducationOrganization):
     @property

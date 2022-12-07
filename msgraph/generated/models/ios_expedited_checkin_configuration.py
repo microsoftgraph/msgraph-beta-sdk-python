@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import apple_expedited_checkin_configuration_base
+apple_expedited_checkin_configuration_base = lazy_import('msgraph.generated.models.apple_expedited_checkin_configuration_base')
 
 class IosExpeditedCheckinConfiguration(apple_expedited_checkin_configuration_base.AppleExpeditedCheckinConfigurationBase):
     def __init__(self,) -> None:

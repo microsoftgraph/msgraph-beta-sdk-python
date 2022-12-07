@@ -7,13 +7,14 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import teams_app_definition
-from ......models.o_data_errors import o_data_error
-from .bot import bot_request_builder
-from .color_icon import color_icon_request_builder
-from .outline_icon import outline_icon_request_builder
+bot_request_builder = lazy_import('msgraph.generated.app_catalogs.teams_apps.item.app_definitions.item.bot.bot_request_builder')
+color_icon_request_builder = lazy_import('msgraph.generated.app_catalogs.teams_apps.item.app_definitions.item.color_icon.color_icon_request_builder')
+outline_icon_request_builder = lazy_import('msgraph.generated.app_catalogs.teams_apps.item.app_definitions.item.outline_icon.outline_icon_request_builder')
+teams_app_definition = lazy_import('msgraph.generated.models.teams_app_definition')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class TeamsAppDefinitionItemRequestBuilder():
     """

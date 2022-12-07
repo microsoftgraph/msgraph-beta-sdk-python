@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import access_package_question
+access_package_question = lazy_import('msgraph.generated.models.access_package_question')
 
 class AccessPackageTextInputQuestion(access_package_question.AccessPackageQuestion):
     def __init__(self,) -> None:

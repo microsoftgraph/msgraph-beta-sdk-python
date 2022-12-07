@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import compliance_status, device_type, managed_device_owner_type, management_agent_type
+compliance_status = lazy_import('msgraph.generated.models.compliance_status')
+device_type = lazy_import('msgraph.generated.models.device_type')
+managed_device_owner_type = lazy_import('msgraph.generated.models.managed_device_owner_type')
+management_agent_type = lazy_import('msgraph.generated.models.management_agent_type')
 
 class RetireScheduledManagedDevice(AdditionalDataHolder, Parsable):
     """

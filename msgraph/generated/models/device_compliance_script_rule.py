@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import data_type, device_compliance_script_rul_operator, device_compliance_script_rule_data_type, operator
+data_type = lazy_import('msgraph.generated.models.data_type')
+device_compliance_script_rul_operator = lazy_import('msgraph.generated.models.device_compliance_script_rul_operator')
+device_compliance_script_rule_data_type = lazy_import('msgraph.generated.models.device_compliance_script_rule_data_type')
+operator = lazy_import('msgraph.generated.models.operator')
 
 class DeviceComplianceScriptRule(AdditionalDataHolder, Parsable):
     @property

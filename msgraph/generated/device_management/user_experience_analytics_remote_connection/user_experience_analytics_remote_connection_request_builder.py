@@ -7,12 +7,14 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import user_experience_analytics_remote_connection, user_experience_analytics_remote_connection_collection_response
-from ...models.o_data_errors import o_data_error
-from .count import count_request_builder
-from .summarize_device_remote_connection_with_summarize_by import summarize_device_remote_connection_with_summarize_by_request_builder
+count_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_remote_connection.count.count_request_builder')
+summarize_device_remote_connection_with_summarize_by_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_remote_connection.summarize_device_remote_connection_with_summarize_by.summarize_device_remote_connection_with_summarize_by_request_builder')
+user_experience_analytics_remote_connection = lazy_import('msgraph.generated.models.user_experience_analytics_remote_connection')
+user_experience_analytics_remote_connection_collection_response = lazy_import('msgraph.generated.models.user_experience_analytics_remote_connection_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class UserExperienceAnalyticsRemoteConnectionRequestBuilder():
     """

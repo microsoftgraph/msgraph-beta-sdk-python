@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import custom_extension_authentication_configuration, custom_extension_client_configuration, custom_extension_endpoint_configuration, entity
+custom_extension_authentication_configuration = lazy_import('msgraph.generated.models.custom_extension_authentication_configuration')
+custom_extension_client_configuration = lazy_import('msgraph.generated.models.custom_extension_client_configuration')
+custom_extension_endpoint_configuration = lazy_import('msgraph.generated.models.custom_extension_endpoint_configuration')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class CustomCalloutExtension(entity.Entity):
     """

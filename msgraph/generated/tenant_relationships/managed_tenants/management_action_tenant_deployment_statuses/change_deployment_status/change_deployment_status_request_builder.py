@@ -7,11 +7,12 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import change_deployment_status_post_request_body
-from .....models.managed_tenants import management_action_deployment_status
-from .....models.o_data_errors import o_data_error
+management_action_deployment_status = lazy_import('msgraph.generated.models.managed_tenants.management_action_deployment_status')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+change_deployment_status_post_request_body = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.management_action_tenant_deployment_statuses.change_deployment_status.change_deployment_status_post_request_body')
 
 class ChangeDeploymentStatusRequestBuilder():
     """

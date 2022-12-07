@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import cloud_pc_restore_point_setting, cloud_pc_user_setting_assignment, entity
+cloud_pc_restore_point_setting = lazy_import('msgraph.generated.models.cloud_pc_restore_point_setting')
+cloud_pc_user_setting_assignment = lazy_import('msgraph.generated.models.cloud_pc_user_setting_assignment')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class CloudPcUserSetting(entity.Entity):
     @property

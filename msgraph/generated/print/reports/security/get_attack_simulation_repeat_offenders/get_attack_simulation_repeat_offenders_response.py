@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import attack_simulation_repeat_offender, base_collection_pagination_count_response
+attack_simulation_repeat_offender = lazy_import('msgraph.generated.models.attack_simulation_repeat_offender')
+base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
 
 class GetAttackSimulationRepeatOffendersResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
     """

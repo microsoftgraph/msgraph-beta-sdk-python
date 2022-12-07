@@ -1,9 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import catalog, deployment, resource_connection, updatable_asset
-from .. import entity
+entity = lazy_import('msgraph.generated.models.entity')
+catalog = lazy_import('msgraph.generated.models.windows_updates.catalog')
+deployment = lazy_import('msgraph.generated.models.windows_updates.deployment')
+resource_connection = lazy_import('msgraph.generated.models.windows_updates.resource_connection')
+updatable_asset = lazy_import('msgraph.generated.models.windows_updates.updatable_asset')
 
 class Updates(entity.Entity):
     @property

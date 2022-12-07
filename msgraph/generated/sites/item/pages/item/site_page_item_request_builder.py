@@ -7,11 +7,12 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import site_page
-from .....models.o_data_errors import o_data_error
-from .publish import publish_request_builder
+site_page = lazy_import('msgraph.generated.models.site_page')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+publish_request_builder = lazy_import('msgraph.generated.sites.item.pages.item.publish.publish_request_builder')
 
 class SitePageItemRequestBuilder():
     """

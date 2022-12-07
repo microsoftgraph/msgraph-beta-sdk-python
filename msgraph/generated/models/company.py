@@ -1,8 +1,44 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import account, aged_accounts_payable, aged_accounts_receivable, company_information, country_region, currency, customer, customer_payment, customer_payment_journal, dimension, dimension_value, employee, entity, general_ledger_entry, item, item_category, journal, journal_line, payment_method, payment_term, picture, purchase_invoice, purchase_invoice_line, sales_credit_memo, sales_credit_memo_line, sales_invoice, sales_invoice_line, sales_order, sales_order_line, sales_quote, sales_quote_line, shipment_method, tax_area, tax_group, unit_of_measure, vendor
+account = lazy_import('msgraph.generated.models.account')
+aged_accounts_payable = lazy_import('msgraph.generated.models.aged_accounts_payable')
+aged_accounts_receivable = lazy_import('msgraph.generated.models.aged_accounts_receivable')
+company_information = lazy_import('msgraph.generated.models.company_information')
+country_region = lazy_import('msgraph.generated.models.country_region')
+currency = lazy_import('msgraph.generated.models.currency')
+customer = lazy_import('msgraph.generated.models.customer')
+customer_payment = lazy_import('msgraph.generated.models.customer_payment')
+customer_payment_journal = lazy_import('msgraph.generated.models.customer_payment_journal')
+dimension = lazy_import('msgraph.generated.models.dimension')
+dimension_value = lazy_import('msgraph.generated.models.dimension_value')
+employee = lazy_import('msgraph.generated.models.employee')
+entity = lazy_import('msgraph.generated.models.entity')
+general_ledger_entry = lazy_import('msgraph.generated.models.general_ledger_entry')
+item = lazy_import('msgraph.generated.models.item')
+item_category = lazy_import('msgraph.generated.models.item_category')
+journal = lazy_import('msgraph.generated.models.journal')
+journal_line = lazy_import('msgraph.generated.models.journal_line')
+payment_method = lazy_import('msgraph.generated.models.payment_method')
+payment_term = lazy_import('msgraph.generated.models.payment_term')
+picture = lazy_import('msgraph.generated.models.picture')
+purchase_invoice = lazy_import('msgraph.generated.models.purchase_invoice')
+purchase_invoice_line = lazy_import('msgraph.generated.models.purchase_invoice_line')
+sales_credit_memo = lazy_import('msgraph.generated.models.sales_credit_memo')
+sales_credit_memo_line = lazy_import('msgraph.generated.models.sales_credit_memo_line')
+sales_invoice = lazy_import('msgraph.generated.models.sales_invoice')
+sales_invoice_line = lazy_import('msgraph.generated.models.sales_invoice_line')
+sales_order = lazy_import('msgraph.generated.models.sales_order')
+sales_order_line = lazy_import('msgraph.generated.models.sales_order_line')
+sales_quote = lazy_import('msgraph.generated.models.sales_quote')
+sales_quote_line = lazy_import('msgraph.generated.models.sales_quote_line')
+shipment_method = lazy_import('msgraph.generated.models.shipment_method')
+tax_area = lazy_import('msgraph.generated.models.tax_area')
+tax_group = lazy_import('msgraph.generated.models.tax_group')
+unit_of_measure = lazy_import('msgraph.generated.models.unit_of_measure')
+vendor = lazy_import('msgraph.generated.models.vendor')
 
 class Company(entity.Entity):
     @property

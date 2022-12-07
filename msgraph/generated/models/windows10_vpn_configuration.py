@@ -1,8 +1,20 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import cryptography_suite, extended_key_usage, vpn_dns_rule, vpn_route, vpn_traffic_rule, windows_certificate_profile_base, windows_vpn_configuration, windows10_associated_apps, windows10_vpn_authentication_method, windows10_vpn_connection_type, windows10_vpn_profile_target, windows10_vpn_proxy_server
+cryptography_suite = lazy_import('msgraph.generated.models.cryptography_suite')
+extended_key_usage = lazy_import('msgraph.generated.models.extended_key_usage')
+vpn_dns_rule = lazy_import('msgraph.generated.models.vpn_dns_rule')
+vpn_route = lazy_import('msgraph.generated.models.vpn_route')
+vpn_traffic_rule = lazy_import('msgraph.generated.models.vpn_traffic_rule')
+windows_certificate_profile_base = lazy_import('msgraph.generated.models.windows_certificate_profile_base')
+windows_vpn_configuration = lazy_import('msgraph.generated.models.windows_vpn_configuration')
+windows10_associated_apps = lazy_import('msgraph.generated.models.windows10_associated_apps')
+windows10_vpn_authentication_method = lazy_import('msgraph.generated.models.windows10_vpn_authentication_method')
+windows10_vpn_connection_type = lazy_import('msgraph.generated.models.windows10_vpn_connection_type')
+windows10_vpn_profile_target = lazy_import('msgraph.generated.models.windows10_vpn_profile_target')
+windows10_vpn_proxy_server = lazy_import('msgraph.generated.models.windows10_vpn_proxy_server')
 
 class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguration):
     @property

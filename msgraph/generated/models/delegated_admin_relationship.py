@@ -1,9 +1,16 @@
 from __future__ import annotations
 from datetime import datetime, timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import delegated_admin_access_assignment, delegated_admin_access_details, delegated_admin_relationship_customer_participant, delegated_admin_relationship_operation, delegated_admin_relationship_request, delegated_admin_relationship_status, entity
+delegated_admin_access_assignment = lazy_import('msgraph.generated.models.delegated_admin_access_assignment')
+delegated_admin_access_details = lazy_import('msgraph.generated.models.delegated_admin_access_details')
+delegated_admin_relationship_customer_participant = lazy_import('msgraph.generated.models.delegated_admin_relationship_customer_participant')
+delegated_admin_relationship_operation = lazy_import('msgraph.generated.models.delegated_admin_relationship_operation')
+delegated_admin_relationship_request = lazy_import('msgraph.generated.models.delegated_admin_relationship_request')
+delegated_admin_relationship_status = lazy_import('msgraph.generated.models.delegated_admin_relationship_status')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class DelegatedAdminRelationship(entity.Entity):
     """

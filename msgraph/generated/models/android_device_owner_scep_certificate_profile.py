@@ -1,8 +1,17 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import android_device_owner_certificate_access_type, android_device_owner_certificate_profile_base, android_device_owner_silent_certificate_access, certificate_store, custom_subject_alternative_name, hash_algorithms, key_size, key_usages, managed_device_certificate_state
+android_device_owner_certificate_access_type = lazy_import('msgraph.generated.models.android_device_owner_certificate_access_type')
+android_device_owner_certificate_profile_base = lazy_import('msgraph.generated.models.android_device_owner_certificate_profile_base')
+android_device_owner_silent_certificate_access = lazy_import('msgraph.generated.models.android_device_owner_silent_certificate_access')
+certificate_store = lazy_import('msgraph.generated.models.certificate_store')
+custom_subject_alternative_name = lazy_import('msgraph.generated.models.custom_subject_alternative_name')
+hash_algorithms = lazy_import('msgraph.generated.models.hash_algorithms')
+key_size = lazy_import('msgraph.generated.models.key_size')
+key_usages = lazy_import('msgraph.generated.models.key_usages')
+managed_device_certificate_state = lazy_import('msgraph.generated.models.managed_device_certificate_state')
 
 class AndroidDeviceOwnerScepCertificateProfile(android_device_owner_certificate_profile_base.AndroidDeviceOwnerCertificateProfileBase):
     @property

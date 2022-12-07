@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .term_store import set, term
+set = lazy_import('msgraph.generated.models.term_store.set')
+term = lazy_import('msgraph.generated.models.term_store.term')
 
 class TermColumn(AdditionalDataHolder, Parsable):
     @property

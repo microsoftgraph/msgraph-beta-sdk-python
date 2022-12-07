@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import planner_bucket_creation, planner_delta, planner_task
+planner_bucket_creation = lazy_import('msgraph.generated.models.planner_bucket_creation')
+planner_delta = lazy_import('msgraph.generated.models.planner_delta')
+planner_task = lazy_import('msgraph.generated.models.planner_task')
 
 class PlannerBucket(planner_delta.PlannerDelta):
     """

@@ -1,9 +1,10 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import pstn_call_duration_source
+pstn_call_duration_source = lazy_import('msgraph.generated.models.call_records.pstn_call_duration_source')
 
 class PstnCallLogRow(AdditionalDataHolder, Parsable):
     @property

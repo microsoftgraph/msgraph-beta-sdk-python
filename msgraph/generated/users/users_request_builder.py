@@ -7,17 +7,19 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..models import user, user_collection_response
-from ..models.o_data_errors import o_data_error
-from .count import count_request_builder
-from .delta import delta_request_builder
-from .get_by_ids import get_by_ids_request_builder
-from .get_managed_app_blocked_users import get_managed_app_blocked_users_request_builder
-from .get_user_owned_objects import get_user_owned_objects_request_builder
-from .validate_password import validate_password_request_builder
-from .validate_properties import validate_properties_request_builder
+user = lazy_import('msgraph.generated.models.user')
+user_collection_response = lazy_import('msgraph.generated.models.user_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+count_request_builder = lazy_import('msgraph.generated.users.count.count_request_builder')
+delta_request_builder = lazy_import('msgraph.generated.users.delta.delta_request_builder')
+get_by_ids_request_builder = lazy_import('msgraph.generated.users.get_by_ids.get_by_ids_request_builder')
+get_managed_app_blocked_users_request_builder = lazy_import('msgraph.generated.users.get_managed_app_blocked_users.get_managed_app_blocked_users_request_builder')
+get_user_owned_objects_request_builder = lazy_import('msgraph.generated.users.get_user_owned_objects.get_user_owned_objects_request_builder')
+validate_password_request_builder = lazy_import('msgraph.generated.users.validate_password.validate_password_request_builder')
+validate_properties_request_builder = lazy_import('msgraph.generated.users.validate_properties.validate_properties_request_builder')
 
 class UsersRequestBuilder():
     """

@@ -1,9 +1,45 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import assignment_filter_evaluation_status_details, chassis_type, chrome_o_s_device_property, cloud_pc_remote_action_result, compliance_state, configuration_manager_client_enabled_features, configuration_manager_client_health_state, configuration_manager_client_information, detected_app, device_action_result, device_category, device_compliance_policy_state, device_configuration_state, device_enrollment_type, device_health_attestation_state, device_log_collection_response, device_management_exchange_access_state, device_management_exchange_access_state_reason, device_registration_state, device_type, entity, hardware_information, join_type, logged_on_user, lost_mode_state, managed_device_architecture, managed_device_management_features, managed_device_mobile_app_configuration_state, managed_device_owner_type, managed_device_partner_reported_health_state, management_agent_type, management_state, owner_type, security_baseline_state, user, windows_protection_state
+assignment_filter_evaluation_status_details = lazy_import('msgraph.generated.models.assignment_filter_evaluation_status_details')
+chassis_type = lazy_import('msgraph.generated.models.chassis_type')
+chrome_o_s_device_property = lazy_import('msgraph.generated.models.chrome_o_s_device_property')
+cloud_pc_remote_action_result = lazy_import('msgraph.generated.models.cloud_pc_remote_action_result')
+compliance_state = lazy_import('msgraph.generated.models.compliance_state')
+configuration_manager_client_enabled_features = lazy_import('msgraph.generated.models.configuration_manager_client_enabled_features')
+configuration_manager_client_health_state = lazy_import('msgraph.generated.models.configuration_manager_client_health_state')
+configuration_manager_client_information = lazy_import('msgraph.generated.models.configuration_manager_client_information')
+detected_app = lazy_import('msgraph.generated.models.detected_app')
+device_action_result = lazy_import('msgraph.generated.models.device_action_result')
+device_category = lazy_import('msgraph.generated.models.device_category')
+device_compliance_policy_state = lazy_import('msgraph.generated.models.device_compliance_policy_state')
+device_configuration_state = lazy_import('msgraph.generated.models.device_configuration_state')
+device_enrollment_type = lazy_import('msgraph.generated.models.device_enrollment_type')
+device_health_attestation_state = lazy_import('msgraph.generated.models.device_health_attestation_state')
+device_log_collection_response = lazy_import('msgraph.generated.models.device_log_collection_response')
+device_management_exchange_access_state = lazy_import('msgraph.generated.models.device_management_exchange_access_state')
+device_management_exchange_access_state_reason = lazy_import('msgraph.generated.models.device_management_exchange_access_state_reason')
+device_registration_state = lazy_import('msgraph.generated.models.device_registration_state')
+device_type = lazy_import('msgraph.generated.models.device_type')
+entity = lazy_import('msgraph.generated.models.entity')
+hardware_information = lazy_import('msgraph.generated.models.hardware_information')
+join_type = lazy_import('msgraph.generated.models.join_type')
+logged_on_user = lazy_import('msgraph.generated.models.logged_on_user')
+lost_mode_state = lazy_import('msgraph.generated.models.lost_mode_state')
+managed_device_architecture = lazy_import('msgraph.generated.models.managed_device_architecture')
+managed_device_management_features = lazy_import('msgraph.generated.models.managed_device_management_features')
+managed_device_mobile_app_configuration_state = lazy_import('msgraph.generated.models.managed_device_mobile_app_configuration_state')
+managed_device_owner_type = lazy_import('msgraph.generated.models.managed_device_owner_type')
+managed_device_partner_reported_health_state = lazy_import('msgraph.generated.models.managed_device_partner_reported_health_state')
+management_agent_type = lazy_import('msgraph.generated.models.management_agent_type')
+management_state = lazy_import('msgraph.generated.models.management_state')
+owner_type = lazy_import('msgraph.generated.models.owner_type')
+security_baseline_state = lazy_import('msgraph.generated.models.security_baseline_state')
+user = lazy_import('msgraph.generated.models.user')
+windows_protection_state = lazy_import('msgraph.generated.models.windows_protection_state')
 
 class ManagedDevice(entity.Entity):
     """

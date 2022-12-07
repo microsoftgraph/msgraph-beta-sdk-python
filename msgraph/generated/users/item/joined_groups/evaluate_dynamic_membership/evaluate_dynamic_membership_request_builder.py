@@ -7,11 +7,12 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import evaluate_dynamic_membership_post_request_body
-from .....models import evaluate_dynamic_membership_result
-from .....models.o_data_errors import o_data_error
+evaluate_dynamic_membership_result = lazy_import('msgraph.generated.models.evaluate_dynamic_membership_result')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+evaluate_dynamic_membership_post_request_body = lazy_import('msgraph.generated.users.item.joined_groups.evaluate_dynamic_membership.evaluate_dynamic_membership_post_request_body')
 
 class EvaluateDynamicMembershipRequestBuilder():
     """

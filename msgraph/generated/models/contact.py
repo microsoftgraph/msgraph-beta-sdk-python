@@ -1,9 +1,19 @@
 from __future__ import annotations
 from datetime import date, datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import extension, followup_flag, multi_value_legacy_extended_property, outlook_item, phone, physical_address, profile_photo, single_value_legacy_extended_property, typed_email_address, website
+extension = lazy_import('msgraph.generated.models.extension')
+followup_flag = lazy_import('msgraph.generated.models.followup_flag')
+multi_value_legacy_extended_property = lazy_import('msgraph.generated.models.multi_value_legacy_extended_property')
+outlook_item = lazy_import('msgraph.generated.models.outlook_item')
+phone = lazy_import('msgraph.generated.models.phone')
+physical_address = lazy_import('msgraph.generated.models.physical_address')
+profile_photo = lazy_import('msgraph.generated.models.profile_photo')
+single_value_legacy_extended_property = lazy_import('msgraph.generated.models.single_value_legacy_extended_property')
+typed_email_address = lazy_import('msgraph.generated.models.typed_email_address')
+website = lazy_import('msgraph.generated.models.website')
 
 class Contact(outlook_item.OutlookItem):
     @property

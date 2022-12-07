@@ -1,9 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import access_review_set, app_consent_approval_route, entitlement_management, terms_of_use_container
-from .identity_governance import lifecycle_workflows_container
+access_review_set = lazy_import('msgraph.generated.models.access_review_set')
+app_consent_approval_route = lazy_import('msgraph.generated.models.app_consent_approval_route')
+entitlement_management = lazy_import('msgraph.generated.models.entitlement_management')
+terms_of_use_container = lazy_import('msgraph.generated.models.terms_of_use_container')
+lifecycle_workflows_container = lazy_import('msgraph.generated.models.identity_governance.lifecycle_workflows_container')
 
 class IdentityGovernance(AdditionalDataHolder, Parsable):
     @property

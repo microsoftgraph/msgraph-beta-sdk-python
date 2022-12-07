@@ -1,9 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import access_package, access_package_resource, access_package_resource_role, access_package_resource_scope, custom_access_package_workflow_extension, entity
+access_package = lazy_import('msgraph.generated.models.access_package')
+access_package_resource = lazy_import('msgraph.generated.models.access_package_resource')
+access_package_resource_role = lazy_import('msgraph.generated.models.access_package_resource_role')
+access_package_resource_scope = lazy_import('msgraph.generated.models.access_package_resource_scope')
+custom_access_package_workflow_extension = lazy_import('msgraph.generated.models.custom_access_package_workflow_extension')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class AccessPackageCatalog(entity.Entity):
     @property

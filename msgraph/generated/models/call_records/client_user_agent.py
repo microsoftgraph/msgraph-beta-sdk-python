@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import client_platform, product_family, user_agent
+client_platform = lazy_import('msgraph.generated.models.call_records.client_platform')
+product_family = lazy_import('msgraph.generated.models.call_records.product_family')
+user_agent = lazy_import('msgraph.generated.models.call_records.user_agent')
 
 class ClientUserAgent(user_agent.UserAgent):
     @property

@@ -1,9 +1,10 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import governance_insight
+governance_insight = lazy_import('msgraph.generated.models.governance_insight')
 
 class UserSignInInsight(governance_insight.GovernanceInsight):
     def __init__(self,) -> None:

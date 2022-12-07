@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, unified_role_management_policy_rule_target
+entity = lazy_import('msgraph.generated.models.entity')
+unified_role_management_policy_rule_target = lazy_import('msgraph.generated.models.unified_role_management_policy_rule_target')
 
 class UnifiedRoleManagementPolicyRule(entity.Entity):
     """

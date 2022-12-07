@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import windows_autopilot_deployment_profile, windows_domain_join_configuration
+windows_autopilot_deployment_profile = lazy_import('msgraph.generated.models.windows_autopilot_deployment_profile')
+windows_domain_join_configuration = lazy_import('msgraph.generated.models.windows_domain_join_configuration')
 
 class ActiveDirectoryWindowsAutopilotDeploymentProfile(windows_autopilot_deployment_profile.WindowsAutopilotDeploymentProfile):
     def __init__(self,) -> None:

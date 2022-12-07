@@ -1,8 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import android_for_work_certificate_profile_base, certificate_store, custom_subject_alternative_name, hash_algorithms, key_size, key_usages, managed_device_certificate_state
+android_for_work_certificate_profile_base = lazy_import('msgraph.generated.models.android_for_work_certificate_profile_base')
+certificate_store = lazy_import('msgraph.generated.models.certificate_store')
+custom_subject_alternative_name = lazy_import('msgraph.generated.models.custom_subject_alternative_name')
+hash_algorithms = lazy_import('msgraph.generated.models.hash_algorithms')
+key_size = lazy_import('msgraph.generated.models.key_size')
+key_usages = lazy_import('msgraph.generated.models.key_usages')
+managed_device_certificate_state = lazy_import('msgraph.generated.models.managed_device_certificate_state')
 
 class AndroidForWorkScepCertificateProfile(android_for_work_certificate_profile_base.AndroidForWorkCertificateProfileBase):
     @property

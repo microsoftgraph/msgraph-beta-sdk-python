@@ -7,12 +7,14 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import dep_onboarding_setting, dep_onboarding_setting_collection_response
-from ...models.o_data_errors import o_data_error
-from .count import count_request_builder
-from .get_expiring_vpp_token_count_with_expiring_before_date_time import get_expiring_vpp_token_count_with_expiring_before_date_time_request_builder
+count_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.count.count_request_builder')
+get_expiring_vpp_token_count_with_expiring_before_date_time_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.get_expiring_vpp_token_count_with_expiring_before_date_time.get_expiring_vpp_token_count_with_expiring_before_date_time_request_builder')
+dep_onboarding_setting = lazy_import('msgraph.generated.models.dep_onboarding_setting')
+dep_onboarding_setting_collection_response = lazy_import('msgraph.generated.models.dep_onboarding_setting_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class DepOnboardingSettingsRequestBuilder():
     """

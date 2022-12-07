@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import answer_state, search_answer
+answer_state = lazy_import('msgraph.generated.models.search.answer_state')
+search_answer = lazy_import('msgraph.generated.models.search.search_answer')
 
 class Acronym(search_answer.SearchAnswer):
     def __init__(self,) -> None:

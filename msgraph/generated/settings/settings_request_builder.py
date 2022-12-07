@@ -7,11 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..models import directory_setting, directory_setting_collection_response
-from ..models.o_data_errors import o_data_error
-from .count import count_request_builder
+directory_setting = lazy_import('msgraph.generated.models.directory_setting')
+directory_setting_collection_response = lazy_import('msgraph.generated.models.directory_setting_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+count_request_builder = lazy_import('msgraph.generated.settings.count.count_request_builder')
 
 class SettingsRequestBuilder():
     """
@@ -35,7 +37,7 @@ class SettingsRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/settings{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}"
+        self.url_template: str = "{+baseurl}/settings{?%24top,%24skip,%24search,%24count,%24orderby,%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
@@ -132,9 +134,6 @@ class SettingsRequestBuilder():
         # Expand related entities
         expand: Optional[List[str]] = None
 
-        # Filter items by property values
-        filter: Optional[str] = None
-
         # Order items by property values
         orderby: Optional[List[str]] = None
 
@@ -163,8 +162,6 @@ class SettingsRequestBuilder():
                 return "%24count"
             if original_name == "expand":
                 return "%24expand"
-            if original_name == "filter":
-                return "%24filter"
             if original_name == "orderby":
                 return "%24orderby"
             if original_name == "search":

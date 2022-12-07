@@ -1,15 +1,30 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import education_add_to_calendar_options, education_added_student_action, education_assignment_grade_type, education_assignment_recipient, education_assignment_resource, education_assignment_status, education_category, education_item_body, education_rubric, education_submission, entity, identity_set
+education_add_to_calendar_options = lazy_import('msgraph.generated.models.education_add_to_calendar_options')
+education_added_student_action = lazy_import('msgraph.generated.models.education_added_student_action')
+education_assignment_grade_type = lazy_import('msgraph.generated.models.education_assignment_grade_type')
+education_assignment_recipient = lazy_import('msgraph.generated.models.education_assignment_recipient')
+education_assignment_resource = lazy_import('msgraph.generated.models.education_assignment_resource')
+education_assignment_status = lazy_import('msgraph.generated.models.education_assignment_status')
+education_category = lazy_import('msgraph.generated.models.education_category')
+education_item_body = lazy_import('msgraph.generated.models.education_item_body')
+education_rubric = lazy_import('msgraph.generated.models.education_rubric')
+education_submission = lazy_import('msgraph.generated.models.education_submission')
+entity = lazy_import('msgraph.generated.models.entity')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
 
 class EducationAssignment(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def added_student_action(self,) -> Optional[education_added_student_action.EducationAddedStudentAction]:
         """
-        Gets the addedStudentAction property value. Optional field to control the assignment behavior for students who are added after the assignment is published. If not specified, defaults to none value. Currently supports only two values: none or assignIfOpen.
+        Gets the addedStudentAction property value. Optional field to control the assignment behavior for students who are added after the assignment is published. If not specified, defaults to none. Supported values are: none, assignIfOpen. For example, a teacher can use assignIfOpen to indicate that an assignment should be assigned to any new student who joins the class while the assignment is still open, and none to indicate that an assignment should not be assigned to new students.
         Returns: Optional[education_added_student_action.EducationAddedStudentAction]
         """
         return self._added_student_action
@@ -17,7 +32,7 @@ class EducationAssignment(entity.Entity):
     @added_student_action.setter
     def added_student_action(self,value: Optional[education_added_student_action.EducationAddedStudentAction] = None) -> None:
         """
-        Sets the addedStudentAction property value. Optional field to control the assignment behavior for students who are added after the assignment is published. If not specified, defaults to none value. Currently supports only two values: none or assignIfOpen.
+        Sets the addedStudentAction property value. Optional field to control the assignment behavior for students who are added after the assignment is published. If not specified, defaults to none. Supported values are: none, assignIfOpen. For example, a teacher can use assignIfOpen to indicate that an assignment should be assigned to any new student who joins the class while the assignment is still open, and none to indicate that an assignment should not be assigned to new students.
         Args:
             value: Value to set for the addedStudentAction property.
         """
@@ -178,10 +193,10 @@ class EducationAssignment(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new EducationAssignment and sets the default values.
+        Instantiates a new educationAssignment and sets the default values.
         """
         super().__init__()
-        # Optional field to control the assignment behavior for students who are added after the assignment is published. If not specified, defaults to none value. Currently supports only two values: none or assignIfOpen.
+        # Optional field to control the assignment behavior for students who are added after the assignment is published. If not specified, defaults to none. Supported values are: none, assignIfOpen. For example, a teacher can use assignIfOpen to indicate that an assignment should be assigned to any new student who joins the class while the assignment is still open, and none to indicate that an assignment should not be assigned to new students.
         self._added_student_action: Optional[education_added_student_action.EducationAddedStudentAction] = None
         # Optional field to control the assignment behavior  for adding assignments to students' and teachers' calendars when the assignment is published. The possible values are: none, studentsAndPublisher, studentsAndTeamOwners, unknownFutureValue, and studentsOnly. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: studentsOnly. The default value is none.
         self._add_to_calendar_action: Optional[education_add_to_calendar_options.EducationAddToCalendarOptions] = None

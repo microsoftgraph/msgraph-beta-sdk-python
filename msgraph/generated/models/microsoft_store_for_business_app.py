@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import microsoft_store_for_business_license_type, mobile_app, mobile_contained_app, vpp_licensing_type
+microsoft_store_for_business_license_type = lazy_import('msgraph.generated.models.microsoft_store_for_business_license_type')
+mobile_app = lazy_import('msgraph.generated.models.mobile_app')
+mobile_contained_app = lazy_import('msgraph.generated.models.mobile_contained_app')
+vpp_licensing_type = lazy_import('msgraph.generated.models.vpp_licensing_type')
 
 class MicrosoftStoreForBusinessApp(mobile_app.MobileApp):
     def __init__(self,) -> None:

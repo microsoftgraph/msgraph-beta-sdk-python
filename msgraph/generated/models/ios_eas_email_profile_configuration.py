@@ -1,8 +1,17 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_management_derived_credential_settings, eas_authentication_method, eas_email_profile_configuration_base, eas_services, email_certificate_type, email_sync_duration, ios_certificate_profile, ios_certificate_profile_base, user_email_source
+device_management_derived_credential_settings = lazy_import('msgraph.generated.models.device_management_derived_credential_settings')
+eas_authentication_method = lazy_import('msgraph.generated.models.eas_authentication_method')
+eas_email_profile_configuration_base = lazy_import('msgraph.generated.models.eas_email_profile_configuration_base')
+eas_services = lazy_import('msgraph.generated.models.eas_services')
+email_certificate_type = lazy_import('msgraph.generated.models.email_certificate_type')
+email_sync_duration = lazy_import('msgraph.generated.models.email_sync_duration')
+ios_certificate_profile = lazy_import('msgraph.generated.models.ios_certificate_profile')
+ios_certificate_profile_base = lazy_import('msgraph.generated.models.ios_certificate_profile_base')
+user_email_source = lazy_import('msgraph.generated.models.user_email_source')
 
 class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEmailProfileConfigurationBase):
     @property

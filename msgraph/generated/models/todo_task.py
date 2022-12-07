@@ -1,13 +1,24 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import attachment_base, attachment_session, checklist_item, date_time_time_zone, entity, extension, importance, item_body, linked_resource, patterned_recurrence, task_status
+attachment_base = lazy_import('msgraph.generated.models.attachment_base')
+attachment_session = lazy_import('msgraph.generated.models.attachment_session')
+checklist_item = lazy_import('msgraph.generated.models.checklist_item')
+date_time_time_zone = lazy_import('msgraph.generated.models.date_time_time_zone')
+entity = lazy_import('msgraph.generated.models.entity')
+extension = lazy_import('msgraph.generated.models.extension')
+importance = lazy_import('msgraph.generated.models.importance')
+item_body = lazy_import('msgraph.generated.models.item_body')
+linked_resource = lazy_import('msgraph.generated.models.linked_resource')
+patterned_recurrence = lazy_import('msgraph.generated.models.patterned_recurrence')
+task_status = lazy_import('msgraph.generated.models.task_status')
 
 class TodoTask(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def attachments(self,) -> Optional[List[attachment_base.AttachmentBase]]:

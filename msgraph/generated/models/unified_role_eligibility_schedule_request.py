@@ -1,8 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import app_scope, directory_object, request, request_schedule, ticket_info, unified_role_definition, unified_role_eligibility_schedule
+app_scope = lazy_import('msgraph.generated.models.app_scope')
+directory_object = lazy_import('msgraph.generated.models.directory_object')
+request = lazy_import('msgraph.generated.models.request')
+request_schedule = lazy_import('msgraph.generated.models.request_schedule')
+ticket_info = lazy_import('msgraph.generated.models.ticket_info')
+unified_role_definition = lazy_import('msgraph.generated.models.unified_role_definition')
+unified_role_eligibility_schedule = lazy_import('msgraph.generated.models.unified_role_eligibility_schedule')
 
 class UnifiedRoleEligibilityScheduleRequest(request.Request):
     @property

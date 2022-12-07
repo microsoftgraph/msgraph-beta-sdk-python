@@ -1,8 +1,24 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import cloud_p_c, cloud_pc_audit_event, cloud_pc_cross_cloud_government_organization_mapping, cloud_pc_device_image, cloud_pc_external_partner_setting, cloud_pc_gallery_image, cloud_pc_on_premises_connection, cloud_pc_organization_settings, cloud_pc_provisioning_policy, cloud_pc_reports, cloud_pc_service_plan, cloud_pc_shared_use_service_plan, cloud_pc_snapshot, cloud_pc_supported_region, cloud_pc_user_setting, entity
+cloud_p_c = lazy_import('msgraph.generated.models.cloud_p_c')
+cloud_pc_audit_event = lazy_import('msgraph.generated.models.cloud_pc_audit_event')
+cloud_pc_cross_cloud_government_organization_mapping = lazy_import('msgraph.generated.models.cloud_pc_cross_cloud_government_organization_mapping')
+cloud_pc_device_image = lazy_import('msgraph.generated.models.cloud_pc_device_image')
+cloud_pc_external_partner_setting = lazy_import('msgraph.generated.models.cloud_pc_external_partner_setting')
+cloud_pc_gallery_image = lazy_import('msgraph.generated.models.cloud_pc_gallery_image')
+cloud_pc_on_premises_connection = lazy_import('msgraph.generated.models.cloud_pc_on_premises_connection')
+cloud_pc_organization_settings = lazy_import('msgraph.generated.models.cloud_pc_organization_settings')
+cloud_pc_provisioning_policy = lazy_import('msgraph.generated.models.cloud_pc_provisioning_policy')
+cloud_pc_reports = lazy_import('msgraph.generated.models.cloud_pc_reports')
+cloud_pc_service_plan = lazy_import('msgraph.generated.models.cloud_pc_service_plan')
+cloud_pc_shared_use_service_plan = lazy_import('msgraph.generated.models.cloud_pc_shared_use_service_plan')
+cloud_pc_snapshot = lazy_import('msgraph.generated.models.cloud_pc_snapshot')
+cloud_pc_supported_region = lazy_import('msgraph.generated.models.cloud_pc_supported_region')
+cloud_pc_user_setting = lazy_import('msgraph.generated.models.cloud_pc_user_setting')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class VirtualEndpoint(entity.Entity):
     @property

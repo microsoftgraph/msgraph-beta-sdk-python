@@ -1,10 +1,21 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import cloud_pc_domain_join_configuration, cloud_pc_management_service, cloud_pc_provisioning_policy_assignment, cloud_pc_provisioning_policy_image_type, cloud_pc_provisioning_type, cloud_pc_windows_settings, entity, microsoft_managed_desktop
+cloud_pc_domain_join_configuration = lazy_import('msgraph.generated.models.cloud_pc_domain_join_configuration')
+cloud_pc_management_service = lazy_import('msgraph.generated.models.cloud_pc_management_service')
+cloud_pc_provisioning_policy_assignment = lazy_import('msgraph.generated.models.cloud_pc_provisioning_policy_assignment')
+cloud_pc_provisioning_policy_image_type = lazy_import('msgraph.generated.models.cloud_pc_provisioning_policy_image_type')
+cloud_pc_provisioning_type = lazy_import('msgraph.generated.models.cloud_pc_provisioning_type')
+cloud_pc_windows_settings = lazy_import('msgraph.generated.models.cloud_pc_windows_settings')
+entity = lazy_import('msgraph.generated.models.entity')
+microsoft_managed_desktop = lazy_import('msgraph.generated.models.microsoft_managed_desktop')
 
 class CloudPcProvisioningPolicy(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def alternate_resource_url(self,) -> Optional[str]:
         """
@@ -58,7 +69,7 @@ class CloudPcProvisioningPolicy(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new CloudPcProvisioningPolicy and sets the default values.
+        Instantiates a new cloudPcProvisioningPolicy and sets the default values.
         """
         super().__init__()
         # The URL of the alternate resource that links to this provisioning policy. Read-only.

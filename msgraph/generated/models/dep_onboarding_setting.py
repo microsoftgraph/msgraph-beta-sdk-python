@@ -1,9 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import dep_i_o_s_enrollment_profile, dep_mac_o_s_enrollment_profile, dep_token_type, enrollment_profile, entity, imported_apple_device_identity
+dep_i_o_s_enrollment_profile = lazy_import('msgraph.generated.models.dep_i_o_s_enrollment_profile')
+dep_mac_o_s_enrollment_profile = lazy_import('msgraph.generated.models.dep_mac_o_s_enrollment_profile')
+dep_token_type = lazy_import('msgraph.generated.models.dep_token_type')
+enrollment_profile = lazy_import('msgraph.generated.models.enrollment_profile')
+entity = lazy_import('msgraph.generated.models.entity')
+imported_apple_device_identity = lazy_import('msgraph.generated.models.imported_apple_device_identity')
 
 class DepOnboardingSetting(entity.Entity):
     """

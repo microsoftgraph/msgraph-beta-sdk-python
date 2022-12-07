@@ -1,12 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, service_plan_info
+entity = lazy_import('msgraph.generated.models.entity')
+service_plan_info = lazy_import('msgraph.generated.models.service_plan_info')
 
 class LicenseDetails(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Casts the previous resource to servicePrincipal.
     """
     def __init__(self,) -> None:
         """

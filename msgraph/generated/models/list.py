@@ -1,8 +1,19 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import base_item, column_definition, content_type, drive, item_activity_o_l_d, list_info, list_item, rich_long_running_operation, sharepoint_ids, subscription, system_facet
+base_item = lazy_import('msgraph.generated.models.base_item')
+column_definition = lazy_import('msgraph.generated.models.column_definition')
+content_type = lazy_import('msgraph.generated.models.content_type')
+drive = lazy_import('msgraph.generated.models.drive')
+item_activity_o_l_d = lazy_import('msgraph.generated.models.item_activity_o_l_d')
+list_info = lazy_import('msgraph.generated.models.list_info')
+list_item = lazy_import('msgraph.generated.models.list_item')
+rich_long_running_operation = lazy_import('msgraph.generated.models.rich_long_running_operation')
+sharepoint_ids = lazy_import('msgraph.generated.models.sharepoint_ids')
+subscription = lazy_import('msgraph.generated.models.subscription')
+system_facet = lazy_import('msgraph.generated.models.system_facet')
 
 class List(base_item.BaseItem):
     @property

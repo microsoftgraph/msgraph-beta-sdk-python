@@ -7,22 +7,23 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import calendar
-from ....models.o_data_errors import o_data_error
-from .allowed_calendar_sharing_roles_with_user import allowed_calendar_sharing_roles_with_user_request_builder
-from .calendar_permissions import calendar_permissions_request_builder
-from .calendar_permissions.item import calendar_permission_item_request_builder
-from .calendar_view import calendar_view_request_builder
-from .calendar_view.item import event_item_request_builder
-from .events import events_request_builder
-from .events.item import event_item_request_builder
-from .get_schedule import get_schedule_request_builder
-from .multi_value_extended_properties import multi_value_extended_properties_request_builder
-from .multi_value_extended_properties.item import multi_value_legacy_extended_property_item_request_builder
-from .single_value_extended_properties import single_value_extended_properties_request_builder
-from .single_value_extended_properties.item import single_value_legacy_extended_property_item_request_builder
+allowed_calendar_sharing_roles_with_user_request_builder = lazy_import('msgraph.generated.groups.item.calendar.allowed_calendar_sharing_roles_with_user.allowed_calendar_sharing_roles_with_user_request_builder')
+calendar_permissions_request_builder = lazy_import('msgraph.generated.groups.item.calendar.calendar_permissions.calendar_permissions_request_builder')
+calendar_permission_item_request_builder = lazy_import('msgraph.generated.groups.item.calendar.calendar_permissions.item.calendar_permission_item_request_builder')
+calendar_view_request_builder = lazy_import('msgraph.generated.groups.item.calendar.calendar_view.calendar_view_request_builder')
+event_item_request_builder = lazy_import('msgraph.generated.groups.item.calendar.calendar_view.item.event_item_request_builder')
+events_request_builder = lazy_import('msgraph.generated.groups.item.calendar.events.events_request_builder')
+event_item_request_builder = lazy_import('msgraph.generated.groups.item.calendar.events.item.event_item_request_builder')
+get_schedule_request_builder = lazy_import('msgraph.generated.groups.item.calendar.get_schedule.get_schedule_request_builder')
+multi_value_extended_properties_request_builder = lazy_import('msgraph.generated.groups.item.calendar.multi_value_extended_properties.multi_value_extended_properties_request_builder')
+multi_value_legacy_extended_property_item_request_builder = lazy_import('msgraph.generated.groups.item.calendar.multi_value_extended_properties.item.multi_value_legacy_extended_property_item_request_builder')
+single_value_extended_properties_request_builder = lazy_import('msgraph.generated.groups.item.calendar.single_value_extended_properties.single_value_extended_properties_request_builder')
+single_value_legacy_extended_property_item_request_builder = lazy_import('msgraph.generated.groups.item.calendar.single_value_extended_properties.item.single_value_legacy_extended_property_item_request_builder')
+calendar = lazy_import('msgraph.generated.models.calendar')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class CalendarRequestBuilder():
     """

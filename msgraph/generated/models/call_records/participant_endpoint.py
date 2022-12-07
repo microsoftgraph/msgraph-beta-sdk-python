@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import endpoint, user_feedback
-from .. import identity_set
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+endpoint = lazy_import('msgraph.generated.models.call_records.endpoint')
+user_feedback = lazy_import('msgraph.generated.models.call_records.user_feedback')
 
 class ParticipantEndpoint(endpoint.Endpoint):
     def __init__(self,) -> None:

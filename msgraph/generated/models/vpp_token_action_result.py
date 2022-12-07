@@ -1,9 +1,10 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import action_state
+action_state = lazy_import('msgraph.generated.models.action_state')
 
 class VppTokenActionResult(AdditionalDataHolder, Parsable):
     """

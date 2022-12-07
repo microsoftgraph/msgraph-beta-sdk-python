@@ -7,16 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import terms_and_conditions
-from ....models.o_data_errors import o_data_error
-from .acceptance_statuses import acceptance_statuses_request_builder
-from .acceptance_statuses.item import terms_and_conditions_acceptance_status_item_request_builder
-from .assignments import assignments_request_builder
-from .assignments.item import terms_and_conditions_assignment_item_request_builder
-from .group_assignments import group_assignments_request_builder
-from .group_assignments.item import terms_and_conditions_group_assignment_item_request_builder
+acceptance_statuses_request_builder = lazy_import('msgraph.generated.device_management.terms_and_conditions.item.acceptance_statuses.acceptance_statuses_request_builder')
+terms_and_conditions_acceptance_status_item_request_builder = lazy_import('msgraph.generated.device_management.terms_and_conditions.item.acceptance_statuses.item.terms_and_conditions_acceptance_status_item_request_builder')
+assignments_request_builder = lazy_import('msgraph.generated.device_management.terms_and_conditions.item.assignments.assignments_request_builder')
+terms_and_conditions_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.terms_and_conditions.item.assignments.item.terms_and_conditions_assignment_item_request_builder')
+group_assignments_request_builder = lazy_import('msgraph.generated.device_management.terms_and_conditions.item.group_assignments.group_assignments_request_builder')
+terms_and_conditions_group_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.terms_and_conditions.item.group_assignments.item.terms_and_conditions_group_assignment_item_request_builder')
+terms_and_conditions = lazy_import('msgraph.generated.models.terms_and_conditions')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class TermsAndConditionsItemRequestBuilder():
     """

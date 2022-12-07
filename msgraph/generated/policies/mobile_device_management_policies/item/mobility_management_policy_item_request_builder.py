@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import mobility_management_policy
-from ....models.o_data_errors import o_data_error
-from .included_groups import included_groups_request_builder
-from .included_groups.item import group_item_request_builder
+mobility_management_policy = lazy_import('msgraph.generated.models.mobility_management_policy')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+included_groups_request_builder = lazy_import('msgraph.generated.policies.mobile_device_management_policies.item.included_groups.included_groups_request_builder')
+group_item_request_builder = lazy_import('msgraph.generated.policies.mobile_device_management_policies.item.included_groups.item.group_item_request_builder')
 
 class MobilityManagementPolicyItemRequestBuilder():
     """

@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_management_template, security_baseline_category_state_summary, security_baseline_device_state, security_baseline_state_summary
+device_management_template = lazy_import('msgraph.generated.models.device_management_template')
+security_baseline_category_state_summary = lazy_import('msgraph.generated.models.security_baseline_category_state_summary')
+security_baseline_device_state = lazy_import('msgraph.generated.models.security_baseline_device_state')
+security_baseline_state_summary = lazy_import('msgraph.generated.models.security_baseline_state_summary')
 
 class SecurityBaselineTemplate(device_management_template.DeviceManagementTemplate):
     @property

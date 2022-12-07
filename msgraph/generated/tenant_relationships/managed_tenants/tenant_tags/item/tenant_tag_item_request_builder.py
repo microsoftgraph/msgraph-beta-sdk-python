@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models.managed_tenants import tenant_tag
-from .....models.o_data_errors import o_data_error
-from .assign_tag import assign_tag_request_builder
-from .unassign_tag import unassign_tag_request_builder
+tenant_tag = lazy_import('msgraph.generated.models.managed_tenants.tenant_tag')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+assign_tag_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.tenant_tags.item.assign_tag.assign_tag_request_builder')
+unassign_tag_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.tenant_tags.item.unassign_tag.unassign_tag_request_builder')
 
 class TenantTagItemRequestBuilder():
     """

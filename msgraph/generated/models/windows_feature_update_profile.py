@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, windows_feature_update_profile_assignment, windows_update_rollout_settings
+entity = lazy_import('msgraph.generated.models.entity')
+windows_feature_update_profile_assignment = lazy_import('msgraph.generated.models.windows_feature_update_profile_assignment')
+windows_update_rollout_settings = lazy_import('msgraph.generated.models.windows_update_rollout_settings')
 
 class WindowsFeatureUpdateProfile(entity.Entity):
     """

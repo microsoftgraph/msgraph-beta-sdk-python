@@ -1,8 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, notebook, onenote_operation, onenote_page, onenote_resource, onenote_section, section_group
+entity = lazy_import('msgraph.generated.models.entity')
+notebook = lazy_import('msgraph.generated.models.notebook')
+onenote_operation = lazy_import('msgraph.generated.models.onenote_operation')
+onenote_page = lazy_import('msgraph.generated.models.onenote_page')
+onenote_resource = lazy_import('msgraph.generated.models.onenote_resource')
+onenote_section = lazy_import('msgraph.generated.models.onenote_section')
+section_group = lazy_import('msgraph.generated.models.section_group')
 
 class Onenote(entity.Entity):
     def __init__(self,) -> None:

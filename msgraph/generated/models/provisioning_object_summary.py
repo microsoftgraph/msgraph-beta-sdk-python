@@ -1,9 +1,19 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, initiator, modified_property, provisioned_identity, provisioning_action, provisioning_service_principal, provisioning_status_info, provisioning_step, provisioning_system, status_base
+entity = lazy_import('msgraph.generated.models.entity')
+initiator = lazy_import('msgraph.generated.models.initiator')
+modified_property = lazy_import('msgraph.generated.models.modified_property')
+provisioned_identity = lazy_import('msgraph.generated.models.provisioned_identity')
+provisioning_action = lazy_import('msgraph.generated.models.provisioning_action')
+provisioning_service_principal = lazy_import('msgraph.generated.models.provisioning_service_principal')
+provisioning_status_info = lazy_import('msgraph.generated.models.provisioning_status_info')
+provisioning_step = lazy_import('msgraph.generated.models.provisioning_step')
+provisioning_system = lazy_import('msgraph.generated.models.provisioning_system')
+status_base = lazy_import('msgraph.generated.models.status_base')
 
 class ProvisioningObjectSummary(entity.Entity):
     @property

@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import service_health
-from .....models.o_data_errors import o_data_error
-from .issues import issues_request_builder
-from .issues.item import service_health_issue_item_request_builder
+issues_request_builder = lazy_import('msgraph.generated.admin.service_announcement.health_overviews.item.issues.issues_request_builder')
+service_health_issue_item_request_builder = lazy_import('msgraph.generated.admin.service_announcement.health_overviews.item.issues.item.service_health_issue_item_request_builder')
+service_health = lazy_import('msgraph.generated.models.service_health')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ServiceHealthItemRequestBuilder():
     """

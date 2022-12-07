@@ -7,16 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .......models import section_group
-from .......models.o_data_errors import o_data_error
-from .parent_notebook import parent_notebook_request_builder
-from .parent_section_group import parent_section_group_request_builder
-from .section_groups import section_groups_request_builder
-from .section_groups.item import section_group_item_request_builder
-from .sections import sections_request_builder
-from .sections.item import onenote_section_item_request_builder
+parent_notebook_request_builder = lazy_import('msgraph.generated.me.onenote.notebooks.item.section_groups.item.parent_notebook.parent_notebook_request_builder')
+parent_section_group_request_builder = lazy_import('msgraph.generated.me.onenote.notebooks.item.section_groups.item.parent_section_group.parent_section_group_request_builder')
+section_groups_request_builder = lazy_import('msgraph.generated.me.onenote.notebooks.item.section_groups.item.section_groups.section_groups_request_builder')
+section_group_item_request_builder = lazy_import('msgraph.generated.me.onenote.notebooks.item.section_groups.item.section_groups.item.section_group_item_request_builder')
+sections_request_builder = lazy_import('msgraph.generated.me.onenote.notebooks.item.section_groups.item.sections.sections_request_builder')
+onenote_section_item_request_builder = lazy_import('msgraph.generated.me.onenote.notebooks.item.section_groups.item.sections.item.onenote_section_item_request_builder')
+section_group = lazy_import('msgraph.generated.models.section_group')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class SectionGroupItemRequestBuilder():
     """

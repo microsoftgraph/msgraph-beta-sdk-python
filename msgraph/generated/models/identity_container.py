@@ -1,8 +1,18 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import authentication_event_listener, b2c_identity_user_flow, b2x_identity_user_flow, conditional_access_root, continuous_access_evaluation_policy, custom_authentication_extension, identity_api_connector, identity_provider_base, identity_user_flow, identity_user_flow_attribute
+authentication_event_listener = lazy_import('msgraph.generated.models.authentication_event_listener')
+b2c_identity_user_flow = lazy_import('msgraph.generated.models.b2c_identity_user_flow')
+b2x_identity_user_flow = lazy_import('msgraph.generated.models.b2x_identity_user_flow')
+conditional_access_root = lazy_import('msgraph.generated.models.conditional_access_root')
+continuous_access_evaluation_policy = lazy_import('msgraph.generated.models.continuous_access_evaluation_policy')
+custom_authentication_extension = lazy_import('msgraph.generated.models.custom_authentication_extension')
+identity_api_connector = lazy_import('msgraph.generated.models.identity_api_connector')
+identity_provider_base = lazy_import('msgraph.generated.models.identity_provider_base')
+identity_user_flow = lazy_import('msgraph.generated.models.identity_user_flow')
+identity_user_flow_attribute = lazy_import('msgraph.generated.models.identity_user_flow_attribute')
 
 class IdentityContainer(AdditionalDataHolder, Parsable):
     @property

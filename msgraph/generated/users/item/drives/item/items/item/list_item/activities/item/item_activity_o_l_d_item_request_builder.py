@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..........models import item_activity_o_l_d
-from ..........models.o_data_errors import o_data_error
-from .drive_item import drive_item_request_builder
-from .list_item import list_item_request_builder
+item_activity_o_l_d = lazy_import('msgraph.generated.models.item_activity_o_l_d')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+drive_item_request_builder = lazy_import('msgraph.generated.users.item.drives.item.items.item.list_item.activities.item.drive_item.drive_item_request_builder')
+list_item_request_builder = lazy_import('msgraph.generated.users.item.drives.item.items.item.list_item.activities.item.list_item.list_item_request_builder')
 
 class ItemActivityOLDItemRequestBuilder():
     """

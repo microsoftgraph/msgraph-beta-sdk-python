@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import workforce_integration_encryption_protocol
+workforce_integration_encryption_protocol = lazy_import('msgraph.generated.models.workforce_integration_encryption_protocol')
 
 class WorkforceIntegrationEncryption(AdditionalDataHolder, Parsable):
     @property

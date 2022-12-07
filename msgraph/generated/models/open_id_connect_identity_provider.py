@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import claims_mapping, identity_provider_base, open_id_connect_response_mode, open_id_connect_response_types
+claims_mapping = lazy_import('msgraph.generated.models.claims_mapping')
+identity_provider_base = lazy_import('msgraph.generated.models.identity_provider_base')
+open_id_connect_response_mode = lazy_import('msgraph.generated.models.open_id_connect_response_mode')
+open_id_connect_response_types = lazy_import('msgraph.generated.models.open_id_connect_response_types')
 
 class OpenIdConnectIdentityProvider(identity_provider_base.IdentityProviderBase):
     @property

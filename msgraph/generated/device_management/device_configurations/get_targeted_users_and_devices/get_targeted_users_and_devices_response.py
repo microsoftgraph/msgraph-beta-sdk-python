@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import base_collection_pagination_count_response, device_configuration_targeted_user_and_device
+base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
+device_configuration_targeted_user_and_device = lazy_import('msgraph.generated.models.device_configuration_targeted_user_and_device')
 
 class GetTargetedUsersAndDevicesResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
     """

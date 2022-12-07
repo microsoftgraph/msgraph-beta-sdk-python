@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import incoming_call_options, media_config, modality
+incoming_call_options = lazy_import('msgraph.generated.models.incoming_call_options')
+media_config = lazy_import('msgraph.generated.models.media_config')
+modality = lazy_import('msgraph.generated.models.modality')
 
 class AnswerPostRequestBody(AdditionalDataHolder, Parsable):
     """

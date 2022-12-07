@@ -1,9 +1,23 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import authored_note, data_subject, data_subject_type, entity, identity, identity_set, subject_rights_request_detail, subject_rights_request_history, subject_rights_request_mailbox_location, subject_rights_request_site_location, subject_rights_request_stage_detail, subject_rights_request_status, subject_rights_request_type, team
+authored_note = lazy_import('msgraph.generated.models.authored_note')
+data_subject = lazy_import('msgraph.generated.models.data_subject')
+data_subject_type = lazy_import('msgraph.generated.models.data_subject_type')
+entity = lazy_import('msgraph.generated.models.entity')
+identity = lazy_import('msgraph.generated.models.identity')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+subject_rights_request_detail = lazy_import('msgraph.generated.models.subject_rights_request_detail')
+subject_rights_request_history = lazy_import('msgraph.generated.models.subject_rights_request_history')
+subject_rights_request_mailbox_location = lazy_import('msgraph.generated.models.subject_rights_request_mailbox_location')
+subject_rights_request_site_location = lazy_import('msgraph.generated.models.subject_rights_request_site_location')
+subject_rights_request_stage_detail = lazy_import('msgraph.generated.models.subject_rights_request_stage_detail')
+subject_rights_request_status = lazy_import('msgraph.generated.models.subject_rights_request_status')
+subject_rights_request_type = lazy_import('msgraph.generated.models.subject_rights_request_type')
+team = lazy_import('msgraph.generated.models.team')
 
 class SubjectRightsRequest(entity.Entity):
     @property

@@ -1,9 +1,16 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import managed_app_device_threat_level, managed_app_policy, managed_app_remediation_action, managed_mobile_app, targeted_managed_app_policy_assignment, windows_managed_app_clipboard_sharing_level, windows_managed_app_data_transfer_level
+managed_app_device_threat_level = lazy_import('msgraph.generated.models.managed_app_device_threat_level')
+managed_app_policy = lazy_import('msgraph.generated.models.managed_app_policy')
+managed_app_remediation_action = lazy_import('msgraph.generated.models.managed_app_remediation_action')
+managed_mobile_app = lazy_import('msgraph.generated.models.managed_mobile_app')
+targeted_managed_app_policy_assignment = lazy_import('msgraph.generated.models.targeted_managed_app_policy_assignment')
+windows_managed_app_clipboard_sharing_level = lazy_import('msgraph.generated.models.windows_managed_app_clipboard_sharing_level')
+windows_managed_app_data_transfer_level = lazy_import('msgraph.generated.models.windows_managed_app_data_transfer_level')
 
 class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
     @property

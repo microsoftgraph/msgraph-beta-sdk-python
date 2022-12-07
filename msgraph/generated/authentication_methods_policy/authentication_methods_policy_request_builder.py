@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..models import authentication_methods_policy
-from ..models.o_data_errors import o_data_error
-from .authentication_method_configurations import authentication_method_configurations_request_builder
-from .authentication_method_configurations.item import authentication_method_configuration_item_request_builder
+authentication_method_configurations_request_builder = lazy_import('msgraph.generated.authentication_methods_policy.authentication_method_configurations.authentication_method_configurations_request_builder')
+authentication_method_configuration_item_request_builder = lazy_import('msgraph.generated.authentication_methods_policy.authentication_method_configurations.item.authentication_method_configuration_item_request_builder')
+authentication_methods_policy = lazy_import('msgraph.generated.models.authentication_methods_policy')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class AuthenticationMethodsPolicyRequestBuilder():
     """

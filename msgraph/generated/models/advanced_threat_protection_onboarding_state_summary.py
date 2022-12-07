@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import advanced_threat_protection_onboarding_device_setting_state, entity
+advanced_threat_protection_onboarding_device_setting_state = lazy_import('msgraph.generated.models.advanced_threat_protection_onboarding_device_setting_state')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class AdvancedThreatProtectionOnboardingStateSummary(entity.Entity):
     @property

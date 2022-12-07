@@ -1,8 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, workbook_application, workbook_comment, workbook_functions, workbook_named_item, workbook_operation, workbook_table, workbook_worksheet
+entity = lazy_import('msgraph.generated.models.entity')
+workbook_application = lazy_import('msgraph.generated.models.workbook_application')
+workbook_comment = lazy_import('msgraph.generated.models.workbook_comment')
+workbook_functions = lazy_import('msgraph.generated.models.workbook_functions')
+workbook_named_item = lazy_import('msgraph.generated.models.workbook_named_item')
+workbook_operation = lazy_import('msgraph.generated.models.workbook_operation')
+workbook_table = lazy_import('msgraph.generated.models.workbook_table')
+workbook_worksheet = lazy_import('msgraph.generated.models.workbook_worksheet')
 
 class Workbook(entity.Entity):
     @property

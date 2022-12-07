@@ -1,12 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, permission_type
+entity = lazy_import('msgraph.generated.models.entity')
+permission_type = lazy_import('msgraph.generated.models.permission_type')
 
 class PermissionGrantConditionSet(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Casts the previous resource to application.
     """
     @property
     def certified_client_applications_only(self,) -> Optional[bool]:

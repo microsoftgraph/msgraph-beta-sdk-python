@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import classification_error, exact_match_detected_sensitive_content
+classification_error = lazy_import('msgraph.generated.models.classification_error')
+exact_match_detected_sensitive_content = lazy_import('msgraph.generated.models.exact_match_detected_sensitive_content')
 
 class ExactMatchClassificationResult(AdditionalDataHolder, Parsable):
     @property

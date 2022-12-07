@@ -1,10 +1,19 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import case, case_operation, ediscovery_case_settings, ediscovery_custodian, ediscovery_hold_policy, ediscovery_noncustodial_data_source, ediscovery_review_set, ediscovery_review_tag, ediscovery_search
-from .. import identity_set
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+case = lazy_import('msgraph.generated.models.security.case')
+case_operation = lazy_import('msgraph.generated.models.security.case_operation')
+ediscovery_case_settings = lazy_import('msgraph.generated.models.security.ediscovery_case_settings')
+ediscovery_custodian = lazy_import('msgraph.generated.models.security.ediscovery_custodian')
+ediscovery_hold_policy = lazy_import('msgraph.generated.models.security.ediscovery_hold_policy')
+ediscovery_noncustodial_data_source = lazy_import('msgraph.generated.models.security.ediscovery_noncustodial_data_source')
+ediscovery_review_set = lazy_import('msgraph.generated.models.security.ediscovery_review_set')
+ediscovery_review_tag = lazy_import('msgraph.generated.models.security.ediscovery_review_tag')
+ediscovery_search = lazy_import('msgraph.generated.models.security.ediscovery_search')
 
 class EdiscoveryCase(case.Case):
     @property

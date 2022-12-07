@@ -7,11 +7,12 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .......models import unified_rbac_resource_action
-from .......models.o_data_errors import o_data_error
-from .resource_scope import resource_scope_request_builder
+unified_rbac_resource_action = lazy_import('msgraph.generated.models.unified_rbac_resource_action')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+resource_scope_request_builder = lazy_import('msgraph.generated.role_management.cloud_p_c.resource_namespaces.item.resource_actions.item.resource_scope.resource_scope_request_builder')
 
 class UnifiedRbacResourceActionItemRequestBuilder():
     """

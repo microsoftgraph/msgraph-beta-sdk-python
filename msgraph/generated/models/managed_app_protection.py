@@ -1,9 +1,21 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import managed_app_clipboard_sharing_level, managed_app_data_ingestion_location, managed_app_data_storage_location, managed_app_data_transfer_level, managed_app_device_threat_level, managed_app_notification_restriction, managed_app_phone_number_redirect_level, managed_app_pin_character_set, managed_app_policy, managed_app_remediation_action, managed_browser_type, mobile_threat_defense_partner_priority
+managed_app_clipboard_sharing_level = lazy_import('msgraph.generated.models.managed_app_clipboard_sharing_level')
+managed_app_data_ingestion_location = lazy_import('msgraph.generated.models.managed_app_data_ingestion_location')
+managed_app_data_storage_location = lazy_import('msgraph.generated.models.managed_app_data_storage_location')
+managed_app_data_transfer_level = lazy_import('msgraph.generated.models.managed_app_data_transfer_level')
+managed_app_device_threat_level = lazy_import('msgraph.generated.models.managed_app_device_threat_level')
+managed_app_notification_restriction = lazy_import('msgraph.generated.models.managed_app_notification_restriction')
+managed_app_phone_number_redirect_level = lazy_import('msgraph.generated.models.managed_app_phone_number_redirect_level')
+managed_app_pin_character_set = lazy_import('msgraph.generated.models.managed_app_pin_character_set')
+managed_app_policy = lazy_import('msgraph.generated.models.managed_app_policy')
+managed_app_remediation_action = lazy_import('msgraph.generated.models.managed_app_remediation_action')
+managed_browser_type = lazy_import('msgraph.generated.models.managed_browser_type')
+mobile_threat_defense_partner_priority = lazy_import('msgraph.generated.models.mobile_threat_defense_partner_priority')
 
 class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
     @property

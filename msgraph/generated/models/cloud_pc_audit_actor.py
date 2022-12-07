@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import cloud_pc_audit_actor_type, cloud_pc_user_role_scope_tag_info
+cloud_pc_audit_actor_type = lazy_import('msgraph.generated.models.cloud_pc_audit_actor_type')
+cloud_pc_user_role_scope_tag_info = lazy_import('msgraph.generated.models.cloud_pc_user_role_scope_tag_info')
 
 class CloudPcAuditActor(AdditionalDataHolder, Parsable):
     @property

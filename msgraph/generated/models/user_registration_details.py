@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import default_mfa_method_type, entity, sign_in_user_type
+default_mfa_method_type = lazy_import('msgraph.generated.models.default_mfa_method_type')
+entity = lazy_import('msgraph.generated.models.entity')
+sign_in_user_type = lazy_import('msgraph.generated.models.sign_in_user_type')
 
 class UserRegistrationDetails(entity.Entity):
     """

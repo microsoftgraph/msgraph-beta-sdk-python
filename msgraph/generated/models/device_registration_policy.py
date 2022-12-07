@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import azure_a_d_registration_policy, azure_ad_join_policy, entity, multi_factor_auth_configuration
+azure_a_d_registration_policy = lazy_import('msgraph.generated.models.azure_a_d_registration_policy')
+azure_ad_join_policy = lazy_import('msgraph.generated.models.azure_ad_join_policy')
+entity = lazy_import('msgraph.generated.models.entity')
+multi_factor_auth_configuration = lazy_import('msgraph.generated.models.multi_factor_auth_configuration')
 
 class DeviceRegistrationPolicy(entity.Entity):
     @property

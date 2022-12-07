@@ -1,8 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import android_device_owner_certificate_profile_base, android_device_owner_trusted_root_certificate, android_device_owner_wi_fi_configuration, android_eap_type, device_management_derived_credential_settings, non_eap_authentication_method_for_eap_ttls_type, non_eap_authentication_method_for_peap, wi_fi_authentication_method
+android_device_owner_certificate_profile_base = lazy_import('msgraph.generated.models.android_device_owner_certificate_profile_base')
+android_device_owner_trusted_root_certificate = lazy_import('msgraph.generated.models.android_device_owner_trusted_root_certificate')
+android_device_owner_wi_fi_configuration = lazy_import('msgraph.generated.models.android_device_owner_wi_fi_configuration')
+android_eap_type = lazy_import('msgraph.generated.models.android_eap_type')
+device_management_derived_credential_settings = lazy_import('msgraph.generated.models.device_management_derived_credential_settings')
+non_eap_authentication_method_for_eap_ttls_type = lazy_import('msgraph.generated.models.non_eap_authentication_method_for_eap_ttls_type')
+non_eap_authentication_method_for_peap = lazy_import('msgraph.generated.models.non_eap_authentication_method_for_peap')
+wi_fi_authentication_method = lazy_import('msgraph.generated.models.wi_fi_authentication_method')
 
 class AndroidDeviceOwnerEnterpriseWiFiConfiguration(android_device_owner_wi_fi_configuration.AndroidDeviceOwnerWiFiConfiguration):
     @property

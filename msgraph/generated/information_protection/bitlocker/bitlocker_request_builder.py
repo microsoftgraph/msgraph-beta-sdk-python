@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import bitlocker
-from ...models.o_data_errors import o_data_error
-from .recovery_keys import recovery_keys_request_builder
-from .recovery_keys.item import bitlocker_recovery_key_item_request_builder
+recovery_keys_request_builder = lazy_import('msgraph.generated.information_protection.bitlocker.recovery_keys.recovery_keys_request_builder')
+bitlocker_recovery_key_item_request_builder = lazy_import('msgraph.generated.information_protection.bitlocker.recovery_keys.item.bitlocker_recovery_key_item_request_builder')
+bitlocker = lazy_import('msgraph.generated.models.bitlocker')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class BitlockerRequestBuilder():
     """

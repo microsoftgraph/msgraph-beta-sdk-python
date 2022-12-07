@@ -1,9 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import tenant_contact_information
-from .. import entity
+entity = lazy_import('msgraph.generated.models.entity')
+tenant_contact_information = lazy_import('msgraph.generated.models.managed_tenants.tenant_contact_information')
 
 class TenantCustomizedInformation(entity.Entity):
     """

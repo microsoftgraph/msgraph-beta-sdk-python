@@ -7,80 +7,81 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import company
-from ....models.o_data_errors import o_data_error
-from .accounts import accounts_request_builder
-from .accounts.item import account_item_request_builder
-from .aged_accounts_payable import aged_accounts_payable_request_builder
-from .aged_accounts_payable.item import aged_accounts_payable_item_request_builder
-from .aged_accounts_receivable import aged_accounts_receivable_request_builder
-from .aged_accounts_receivable.item import aged_accounts_receivable_item_request_builder
-from .company_information import company_information_request_builder
-from .company_information.item import company_information_item_request_builder
-from .countries_regions import countries_regions_request_builder
-from .countries_regions.item import country_region_item_request_builder
-from .currencies import currencies_request_builder
-from .currencies.item import currency_item_request_builder
-from .customer_payment_journals import customer_payment_journals_request_builder
-from .customer_payment_journals.item import customer_payment_journal_item_request_builder
-from .customer_payments import customer_payments_request_builder
-from .customer_payments.item import customer_payment_item_request_builder
-from .customers import customers_request_builder
-from .customers.item import customer_item_request_builder
-from .dimensions import dimensions_request_builder
-from .dimensions.item import dimension_item_request_builder
-from .dimension_values import dimension_values_request_builder
-from .dimension_values.item import dimension_value_item_request_builder
-from .employees import employees_request_builder
-from .employees.item import employee_item_request_builder
-from .general_ledger_entries import general_ledger_entries_request_builder
-from .general_ledger_entries.item import general_ledger_entry_item_request_builder
-from .item_categories import item_categories_request_builder
-from .item_categories.item import item_category_item_request_builder
-from .items import items_request_builder
-from .items.item import item_item_request_builder
-from .journal_lines import journal_lines_request_builder
-from .journal_lines.item import journal_line_item_request_builder
-from .journals import journals_request_builder
-from .journals.item import journal_item_request_builder
-from .payment_methods import payment_methods_request_builder
-from .payment_methods.item import payment_method_item_request_builder
-from .payment_terms import payment_terms_request_builder
-from .payment_terms.item import payment_term_item_request_builder
-from .picture import picture_request_builder
-from .picture.item import picture_item_request_builder
-from .purchase_invoice_lines import purchase_invoice_lines_request_builder
-from .purchase_invoice_lines.item import purchase_invoice_line_item_request_builder
-from .purchase_invoices import purchase_invoices_request_builder
-from .purchase_invoices.item import purchase_invoice_item_request_builder
-from .sales_credit_memo_lines import sales_credit_memo_lines_request_builder
-from .sales_credit_memo_lines.item import sales_credit_memo_line_item_request_builder
-from .sales_credit_memos import sales_credit_memos_request_builder
-from .sales_credit_memos.item import sales_credit_memo_item_request_builder
-from .sales_invoice_lines import sales_invoice_lines_request_builder
-from .sales_invoice_lines.item import sales_invoice_line_item_request_builder
-from .sales_invoices import sales_invoices_request_builder
-from .sales_invoices.item import sales_invoice_item_request_builder
-from .sales_order_lines import sales_order_lines_request_builder
-from .sales_order_lines.item import sales_order_line_item_request_builder
-from .sales_orders import sales_orders_request_builder
-from .sales_orders.item import sales_order_item_request_builder
-from .sales_quote_lines import sales_quote_lines_request_builder
-from .sales_quote_lines.item import sales_quote_line_item_request_builder
-from .sales_quotes import sales_quotes_request_builder
-from .sales_quotes.item import sales_quote_item_request_builder
-from .shipment_methods import shipment_methods_request_builder
-from .shipment_methods.item import shipment_method_item_request_builder
-from .tax_areas import tax_areas_request_builder
-from .tax_areas.item import tax_area_item_request_builder
-from .tax_groups import tax_groups_request_builder
-from .tax_groups.item import tax_group_item_request_builder
-from .units_of_measure import units_of_measure_request_builder
-from .units_of_measure.item import unit_of_measure_item_request_builder
-from .vendors import vendors_request_builder
-from .vendors.item import vendor_item_request_builder
+accounts_request_builder = lazy_import('msgraph.generated.financials.companies.item.accounts.accounts_request_builder')
+account_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.accounts.item.account_item_request_builder')
+aged_accounts_payable_request_builder = lazy_import('msgraph.generated.financials.companies.item.aged_accounts_payable.aged_accounts_payable_request_builder')
+aged_accounts_payable_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.aged_accounts_payable.item.aged_accounts_payable_item_request_builder')
+aged_accounts_receivable_request_builder = lazy_import('msgraph.generated.financials.companies.item.aged_accounts_receivable.aged_accounts_receivable_request_builder')
+aged_accounts_receivable_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.aged_accounts_receivable.item.aged_accounts_receivable_item_request_builder')
+company_information_request_builder = lazy_import('msgraph.generated.financials.companies.item.company_information.company_information_request_builder')
+company_information_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.company_information.item.company_information_item_request_builder')
+countries_regions_request_builder = lazy_import('msgraph.generated.financials.companies.item.countries_regions.countries_regions_request_builder')
+country_region_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.countries_regions.item.country_region_item_request_builder')
+currencies_request_builder = lazy_import('msgraph.generated.financials.companies.item.currencies.currencies_request_builder')
+currency_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.currencies.item.currency_item_request_builder')
+customer_payment_journals_request_builder = lazy_import('msgraph.generated.financials.companies.item.customer_payment_journals.customer_payment_journals_request_builder')
+customer_payment_journal_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.customer_payment_journals.item.customer_payment_journal_item_request_builder')
+customer_payments_request_builder = lazy_import('msgraph.generated.financials.companies.item.customer_payments.customer_payments_request_builder')
+customer_payment_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.customer_payments.item.customer_payment_item_request_builder')
+customers_request_builder = lazy_import('msgraph.generated.financials.companies.item.customers.customers_request_builder')
+customer_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.customers.item.customer_item_request_builder')
+dimensions_request_builder = lazy_import('msgraph.generated.financials.companies.item.dimensions.dimensions_request_builder')
+dimension_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.dimensions.item.dimension_item_request_builder')
+dimension_values_request_builder = lazy_import('msgraph.generated.financials.companies.item.dimension_values.dimension_values_request_builder')
+dimension_value_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.dimension_values.item.dimension_value_item_request_builder')
+employees_request_builder = lazy_import('msgraph.generated.financials.companies.item.employees.employees_request_builder')
+employee_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.employees.item.employee_item_request_builder')
+general_ledger_entries_request_builder = lazy_import('msgraph.generated.financials.companies.item.general_ledger_entries.general_ledger_entries_request_builder')
+general_ledger_entry_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.general_ledger_entries.item.general_ledger_entry_item_request_builder')
+item_categories_request_builder = lazy_import('msgraph.generated.financials.companies.item.item_categories.item_categories_request_builder')
+item_category_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.item_categories.item.item_category_item_request_builder')
+items_request_builder = lazy_import('msgraph.generated.financials.companies.item.items.items_request_builder')
+item_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.items.item.item_item_request_builder')
+journal_lines_request_builder = lazy_import('msgraph.generated.financials.companies.item.journal_lines.journal_lines_request_builder')
+journal_line_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.journal_lines.item.journal_line_item_request_builder')
+journals_request_builder = lazy_import('msgraph.generated.financials.companies.item.journals.journals_request_builder')
+journal_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.journals.item.journal_item_request_builder')
+payment_methods_request_builder = lazy_import('msgraph.generated.financials.companies.item.payment_methods.payment_methods_request_builder')
+payment_method_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.payment_methods.item.payment_method_item_request_builder')
+payment_terms_request_builder = lazy_import('msgraph.generated.financials.companies.item.payment_terms.payment_terms_request_builder')
+payment_term_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.payment_terms.item.payment_term_item_request_builder')
+picture_request_builder = lazy_import('msgraph.generated.financials.companies.item.picture.picture_request_builder')
+picture_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.picture.item.picture_item_request_builder')
+purchase_invoice_lines_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoice_lines.purchase_invoice_lines_request_builder')
+purchase_invoice_line_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoice_lines.item.purchase_invoice_line_item_request_builder')
+purchase_invoices_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.purchase_invoices_request_builder')
+purchase_invoice_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.item.purchase_invoice_item_request_builder')
+sales_credit_memo_lines_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_credit_memo_lines.sales_credit_memo_lines_request_builder')
+sales_credit_memo_line_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_credit_memo_lines.item.sales_credit_memo_line_item_request_builder')
+sales_credit_memos_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_credit_memos.sales_credit_memos_request_builder')
+sales_credit_memo_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_credit_memos.item.sales_credit_memo_item_request_builder')
+sales_invoice_lines_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoice_lines.sales_invoice_lines_request_builder')
+sales_invoice_line_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoice_lines.item.sales_invoice_line_item_request_builder')
+sales_invoices_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.sales_invoices_request_builder')
+sales_invoice_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.sales_invoice_item_request_builder')
+sales_order_lines_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_order_lines.sales_order_lines_request_builder')
+sales_order_line_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_order_lines.item.sales_order_line_item_request_builder')
+sales_orders_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_orders.sales_orders_request_builder')
+sales_order_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_orders.item.sales_order_item_request_builder')
+sales_quote_lines_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_quote_lines.sales_quote_lines_request_builder')
+sales_quote_line_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_quote_lines.item.sales_quote_line_item_request_builder')
+sales_quotes_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_quotes.sales_quotes_request_builder')
+sales_quote_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_quotes.item.sales_quote_item_request_builder')
+shipment_methods_request_builder = lazy_import('msgraph.generated.financials.companies.item.shipment_methods.shipment_methods_request_builder')
+shipment_method_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.shipment_methods.item.shipment_method_item_request_builder')
+tax_areas_request_builder = lazy_import('msgraph.generated.financials.companies.item.tax_areas.tax_areas_request_builder')
+tax_area_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.tax_areas.item.tax_area_item_request_builder')
+tax_groups_request_builder = lazy_import('msgraph.generated.financials.companies.item.tax_groups.tax_groups_request_builder')
+tax_group_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.tax_groups.item.tax_group_item_request_builder')
+units_of_measure_request_builder = lazy_import('msgraph.generated.financials.companies.item.units_of_measure.units_of_measure_request_builder')
+unit_of_measure_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.units_of_measure.item.unit_of_measure_item_request_builder')
+vendors_request_builder = lazy_import('msgraph.generated.financials.companies.item.vendors.vendors_request_builder')
+vendor_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.vendors.item.vendor_item_request_builder')
+company = lazy_import('msgraph.generated.models.company')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class CompanyItemRequestBuilder():
     """

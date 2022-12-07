@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import attachment, reference_attachment_permission, reference_attachment_provider
+attachment = lazy_import('msgraph.generated.models.attachment')
+reference_attachment_permission = lazy_import('msgraph.generated.models.reference_attachment_permission')
+reference_attachment_provider = lazy_import('msgraph.generated.models.reference_attachment_provider')
 
 class ReferenceAttachment(attachment.Attachment):
     def __init__(self,) -> None:

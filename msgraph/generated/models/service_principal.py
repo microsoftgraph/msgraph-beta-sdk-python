@@ -1,13 +1,36 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import add_in, app_management_policy, app_role, app_role_assignment, claims_mapping_policy, custom_security_attribute_value, delegated_permission_classification, directory_object, endpoint, federated_identity_credential, home_realm_discovery_policy, informational_url, key_credential, license_details, o_auth2_permission_grant, password_credential, password_single_sign_on_settings, permission_scope, saml_single_sign_on_settings, synchronization, token_issuance_policy, token_lifetime_policy, verified_publisher
+add_in = lazy_import('msgraph.generated.models.add_in')
+app_management_policy = lazy_import('msgraph.generated.models.app_management_policy')
+app_role = lazy_import('msgraph.generated.models.app_role')
+app_role_assignment = lazy_import('msgraph.generated.models.app_role_assignment')
+claims_mapping_policy = lazy_import('msgraph.generated.models.claims_mapping_policy')
+custom_security_attribute_value = lazy_import('msgraph.generated.models.custom_security_attribute_value')
+delegated_permission_classification = lazy_import('msgraph.generated.models.delegated_permission_classification')
+directory_object = lazy_import('msgraph.generated.models.directory_object')
+endpoint = lazy_import('msgraph.generated.models.endpoint')
+federated_identity_credential = lazy_import('msgraph.generated.models.federated_identity_credential')
+home_realm_discovery_policy = lazy_import('msgraph.generated.models.home_realm_discovery_policy')
+informational_url = lazy_import('msgraph.generated.models.informational_url')
+key_credential = lazy_import('msgraph.generated.models.key_credential')
+license_details = lazy_import('msgraph.generated.models.license_details')
+o_auth2_permission_grant = lazy_import('msgraph.generated.models.o_auth2_permission_grant')
+password_credential = lazy_import('msgraph.generated.models.password_credential')
+password_single_sign_on_settings = lazy_import('msgraph.generated.models.password_single_sign_on_settings')
+permission_scope = lazy_import('msgraph.generated.models.permission_scope')
+saml_single_sign_on_settings = lazy_import('msgraph.generated.models.saml_single_sign_on_settings')
+synchronization = lazy_import('msgraph.generated.models.synchronization')
+token_issuance_policy = lazy_import('msgraph.generated.models.token_issuance_policy')
+token_lifetime_policy = lazy_import('msgraph.generated.models.token_lifetime_policy')
+verified_publisher = lazy_import('msgraph.generated.models.verified_publisher')
 
 class ServicePrincipal(directory_object.DirectoryObject):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Casts the previous resource to servicePrincipal.
     """
     @property
     def account_enabled(self,) -> Optional[bool]:

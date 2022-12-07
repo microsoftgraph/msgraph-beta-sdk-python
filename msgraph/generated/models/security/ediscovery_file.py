@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import ediscovery_custodian, ediscovery_review_tag, file
+ediscovery_custodian = lazy_import('msgraph.generated.models.security.ediscovery_custodian')
+ediscovery_review_tag = lazy_import('msgraph.generated.models.security.ediscovery_review_tag')
+file = lazy_import('msgraph.generated.models.security.file')
 
 class EdiscoveryFile(file.File):
     def __init__(self,) -> None:

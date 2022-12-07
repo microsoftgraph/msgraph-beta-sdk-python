@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, teams_app, teams_app_definition
+entity = lazy_import('msgraph.generated.models.entity')
+teams_app = lazy_import('msgraph.generated.models.teams_app')
+teams_app_definition = lazy_import('msgraph.generated.models.teams_app_definition')
 
 class TeamsAppInstallation(entity.Entity):
     """

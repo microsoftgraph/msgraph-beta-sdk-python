@@ -7,11 +7,12 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import cross_tenant_access_policy_configuration_default
-from ....models.o_data_errors import o_data_error
-from .reset_to_system_default import reset_to_system_default_request_builder
+cross_tenant_access_policy_configuration_default = lazy_import('msgraph.generated.models.cross_tenant_access_policy_configuration_default')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+reset_to_system_default_request_builder = lazy_import('msgraph.generated.policies.cross_tenant_access_policy.default.reset_to_system_default.reset_to_system_default_request_builder')
 
 class DefaultRequestBuilder():
     """

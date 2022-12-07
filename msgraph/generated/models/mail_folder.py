@@ -1,8 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, message, message_rule, multi_value_legacy_extended_property, single_value_legacy_extended_property, user_configuration
+entity = lazy_import('msgraph.generated.models.entity')
+message = lazy_import('msgraph.generated.models.message')
+message_rule = lazy_import('msgraph.generated.models.message_rule')
+multi_value_legacy_extended_property = lazy_import('msgraph.generated.models.multi_value_legacy_extended_property')
+single_value_legacy_extended_property = lazy_import('msgraph.generated.models.single_value_legacy_extended_property')
+user_configuration = lazy_import('msgraph.generated.models.user_configuration')
 
 class MailFolder(entity.Entity):
     """

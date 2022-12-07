@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import android_fota_deployment_assignment, entity, zebra_fota_deployment_settings, zebra_fota_deployment_status
+android_fota_deployment_assignment = lazy_import('msgraph.generated.models.android_fota_deployment_assignment')
+entity = lazy_import('msgraph.generated.models.entity')
+zebra_fota_deployment_settings = lazy_import('msgraph.generated.models.zebra_fota_deployment_settings')
+zebra_fota_deployment_status = lazy_import('msgraph.generated.models.zebra_fota_deployment_status')
 
 class ZebraFotaDeployment(entity.Entity):
     """

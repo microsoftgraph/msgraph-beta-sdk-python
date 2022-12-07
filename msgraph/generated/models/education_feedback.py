@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import education_item_body, identity_set
+education_item_body = lazy_import('msgraph.generated.models.education_item_body')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
 
 class EducationFeedback(AdditionalDataHolder, Parsable):
     @property

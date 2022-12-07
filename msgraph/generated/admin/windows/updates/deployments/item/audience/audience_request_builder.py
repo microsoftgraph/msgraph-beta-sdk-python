@@ -7,16 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .......models.o_data_errors import o_data_error
-from .......models.windows_updates import deployment_audience
-from .exclusions import exclusions_request_builder
-from .exclusions.item import updatable_asset_item_request_builder
-from .members import members_request_builder
-from .members.item import updatable_asset_item_request_builder
-from .update_audience import update_audience_request_builder
-from .update_audience_by_id import update_audience_by_id_request_builder
+exclusions_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.exclusions.exclusions_request_builder')
+updatable_asset_item_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.exclusions.item.updatable_asset_item_request_builder')
+members_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.members_request_builder')
+updatable_asset_item_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.item.updatable_asset_item_request_builder')
+update_audience_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.update_audience.update_audience_request_builder')
+update_audience_by_id_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.update_audience_by_id.update_audience_by_id_request_builder')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+deployment_audience = lazy_import('msgraph.generated.models.windows_updates.deployment_audience')
 
 class AudienceRequestBuilder():
     """

@@ -1,8 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import service_announcement_base, service_health_classification_type, service_health_issue_post, service_health_origin, service_health_status
+service_announcement_base = lazy_import('msgraph.generated.models.service_announcement_base')
+service_health_classification_type = lazy_import('msgraph.generated.models.service_health_classification_type')
+service_health_issue_post = lazy_import('msgraph.generated.models.service_health_issue_post')
+service_health_origin = lazy_import('msgraph.generated.models.service_health_origin')
+service_health_status = lazy_import('msgraph.generated.models.service_health_status')
 
 class ServiceHealthIssue(service_announcement_base.ServiceAnnouncementBase):
     @property

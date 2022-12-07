@@ -1,8 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_configuration, enablement, mac_o_s_file_vault_recovery_key_types, mac_o_s_firewall_application, mac_o_s_gatekeeper_app_sources
+device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+enablement = lazy_import('msgraph.generated.models.enablement')
+mac_o_s_file_vault_recovery_key_types = lazy_import('msgraph.generated.models.mac_o_s_file_vault_recovery_key_types')
+mac_o_s_firewall_application = lazy_import('msgraph.generated.models.mac_o_s_firewall_application')
+mac_o_s_gatekeeper_app_sources = lazy_import('msgraph.generated.models.mac_o_s_gatekeeper_app_sources')
 
 class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfiguration):
     @property

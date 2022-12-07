@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_configuration, oma_setting
+device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+oma_setting = lazy_import('msgraph.generated.models.oma_setting')
 
 class Windows10CustomConfiguration(device_configuration.DeviceConfiguration):
     def __init__(self,) -> None:

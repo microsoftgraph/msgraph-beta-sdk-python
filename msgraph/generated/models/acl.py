@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import access_type, acl_type, identity_source_type
+access_type = lazy_import('msgraph.generated.models.access_type')
+acl_type = lazy_import('msgraph.generated.models.acl_type')
+identity_source_type = lazy_import('msgraph.generated.models.identity_source_type')
 
 class Acl(AdditionalDataHolder, Parsable):
     @property

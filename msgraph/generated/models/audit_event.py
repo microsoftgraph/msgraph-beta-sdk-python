@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import audit_actor, audit_resource, entity
+audit_actor = lazy_import('msgraph.generated.models.audit_actor')
+audit_resource = lazy_import('msgraph.generated.models.audit_resource')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class AuditEvent(entity.Entity):
     """

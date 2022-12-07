@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models.managed_tenants import management_template_step
-from .....models.o_data_errors import o_data_error
-from .accepted_version import accepted_version_request_builder
-from .management_template import management_template_request_builder
-from .versions import versions_request_builder
-from .versions.item import management_template_step_version_item_request_builder
+management_template_step = lazy_import('msgraph.generated.models.managed_tenants.management_template_step')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+accepted_version_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.management_template_steps.item.accepted_version.accepted_version_request_builder')
+management_template_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.management_template_steps.item.management_template.management_template_request_builder')
+versions_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.management_template_steps.item.versions.versions_request_builder')
+management_template_step_version_item_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.management_template_steps.item.versions.item.management_template_step_version_item_request_builder')
 
 class ManagementTemplateStepItemRequestBuilder():
     """

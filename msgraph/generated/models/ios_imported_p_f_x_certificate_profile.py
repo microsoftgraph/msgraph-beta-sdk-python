@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import intended_purpose, ios_certificate_profile, managed_device_certificate_state
+intended_purpose = lazy_import('msgraph.generated.models.intended_purpose')
+ios_certificate_profile = lazy_import('msgraph.generated.models.ios_certificate_profile')
+managed_device_certificate_state = lazy_import('msgraph.generated.models.managed_device_certificate_state')
 
 class IosImportedPFXCertificateProfile(ios_certificate_profile.IosCertificateProfile):
     def __init__(self,) -> None:

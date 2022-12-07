@@ -7,19 +7,20 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import conditional_access_root
-from ...models.o_data_errors import o_data_error
-from .authentication_context_class_references import authentication_context_class_references_request_builder
-from .authentication_context_class_references.item import authentication_context_class_reference_item_request_builder
-from .authentication_strengths import authentication_strengths_request_builder
-from .named_locations import named_locations_request_builder
-from .named_locations.item import named_location_item_request_builder
-from .policies import policies_request_builder
-from .policies.item import conditional_access_policy_item_request_builder
-from .templates import templates_request_builder
-from .templates.item import conditional_access_template_item_request_builder
+authentication_context_class_references_request_builder = lazy_import('msgraph.generated.identity.conditional_access.authentication_context_class_references.authentication_context_class_references_request_builder')
+authentication_context_class_reference_item_request_builder = lazy_import('msgraph.generated.identity.conditional_access.authentication_context_class_references.item.authentication_context_class_reference_item_request_builder')
+authentication_strengths_request_builder = lazy_import('msgraph.generated.identity.conditional_access.authentication_strengths.authentication_strengths_request_builder')
+named_locations_request_builder = lazy_import('msgraph.generated.identity.conditional_access.named_locations.named_locations_request_builder')
+named_location_item_request_builder = lazy_import('msgraph.generated.identity.conditional_access.named_locations.item.named_location_item_request_builder')
+policies_request_builder = lazy_import('msgraph.generated.identity.conditional_access.policies.policies_request_builder')
+conditional_access_policy_item_request_builder = lazy_import('msgraph.generated.identity.conditional_access.policies.item.conditional_access_policy_item_request_builder')
+templates_request_builder = lazy_import('msgraph.generated.identity.conditional_access.templates.templates_request_builder')
+conditional_access_template_item_request_builder = lazy_import('msgraph.generated.identity.conditional_access.templates.item.conditional_access_template_item_request_builder')
+conditional_access_root = lazy_import('msgraph.generated.models.conditional_access_root')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ConditionalAccessRequestBuilder():
     """

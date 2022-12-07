@@ -1,8 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import connector, connector_group, entity, hybrid_agent_updater_configuration, on_premises_agent, on_premises_agent_group, published_resource
+connector = lazy_import('msgraph.generated.models.connector')
+connector_group = lazy_import('msgraph.generated.models.connector_group')
+entity = lazy_import('msgraph.generated.models.entity')
+hybrid_agent_updater_configuration = lazy_import('msgraph.generated.models.hybrid_agent_updater_configuration')
+on_premises_agent = lazy_import('msgraph.generated.models.on_premises_agent')
+on_premises_agent_group = lazy_import('msgraph.generated.models.on_premises_agent_group')
+published_resource = lazy_import('msgraph.generated.models.published_resource')
 
 class OnPremisesPublishingProfile(entity.Entity):
     @property

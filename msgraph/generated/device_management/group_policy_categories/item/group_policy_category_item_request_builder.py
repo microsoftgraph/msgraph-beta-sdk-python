@@ -7,16 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import group_policy_category
-from ....models.o_data_errors import o_data_error
-from .children import children_request_builder
-from .children.item import group_policy_category_item_request_builder
-from .definition_file import definition_file_request_builder
-from .definitions import definitions_request_builder
-from .definitions.item import group_policy_definition_item_request_builder
-from .parent import parent_request_builder
+children_request_builder = lazy_import('msgraph.generated.device_management.group_policy_categories.item.children.children_request_builder')
+group_policy_category_item_request_builder = lazy_import('msgraph.generated.device_management.group_policy_categories.item.children.item.group_policy_category_item_request_builder')
+definition_file_request_builder = lazy_import('msgraph.generated.device_management.group_policy_categories.item.definition_file.definition_file_request_builder')
+definitions_request_builder = lazy_import('msgraph.generated.device_management.group_policy_categories.item.definitions.definitions_request_builder')
+group_policy_definition_item_request_builder = lazy_import('msgraph.generated.device_management.group_policy_categories.item.definitions.item.group_policy_definition_item_request_builder')
+parent_request_builder = lazy_import('msgraph.generated.device_management.group_policy_categories.item.parent.parent_request_builder')
+group_policy_category = lazy_import('msgraph.generated.models.group_policy_category')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class GroupPolicyCategoryItemRequestBuilder():
     """
