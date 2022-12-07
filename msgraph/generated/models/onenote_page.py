@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import notebook, onenote_entity_schema_object_model, onenote_section, page_links
+notebook = lazy_import('msgraph.generated.models.notebook')
+onenote_entity_schema_object_model = lazy_import('msgraph.generated.models.onenote_entity_schema_object_model')
+onenote_section = lazy_import('msgraph.generated.models.onenote_section')
+page_links = lazy_import('msgraph.generated.models.page_links')
 
 class OnenotePage(onenote_entity_schema_object_model.OnenoteEntitySchemaObjectModel):
     """

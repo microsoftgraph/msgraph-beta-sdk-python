@@ -1,8 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import planner_delta, planner_favorite_plan_reference_collection, planner_plan, planner_recent_plan_reference_collection, planner_task
+planner_delta = lazy_import('msgraph.generated.models.planner_delta')
+planner_favorite_plan_reference_collection = lazy_import('msgraph.generated.models.planner_favorite_plan_reference_collection')
+planner_plan = lazy_import('msgraph.generated.models.planner_plan')
+planner_recent_plan_reference_collection = lazy_import('msgraph.generated.models.planner_recent_plan_reference_collection')
+planner_task = lazy_import('msgraph.generated.models.planner_task')
 
 class PlannerUser(planner_delta.PlannerDelta):
     @property
@@ -29,7 +34,7 @@ class PlannerUser(planner_delta.PlannerDelta):
         super().__init__()
         # The all property
         self._all: Optional[List[planner_delta.PlannerDelta]] = None
-        # A collection containing the references to the plans that the user has marked as favorites.
+        # A collection that contains the references to the plans that the user has marked as favorites.
         self._favorite_plan_references: Optional[planner_favorite_plan_reference_collection.PlannerFavoritePlanReferenceCollection] = None
         # Read-only. Nullable. Returns the plannerPlans that the user marked as favorites.
         self._favorite_plans: Optional[List[planner_plan.PlannerPlan]] = None
@@ -37,7 +42,7 @@ class PlannerUser(planner_delta.PlannerDelta):
         self.odata_type: Optional[str] = None
         # The plans property
         self._plans: Optional[List[planner_plan.PlannerPlan]] = None
-        # A collection containing references to the plans that were viewed recently by the user in apps that support recent plans.
+        # A collection that contains references to the plans that were viewed recently by the user in apps that support recent plans.
         self._recent_plan_references: Optional[planner_recent_plan_reference_collection.PlannerRecentPlanReferenceCollection] = None
         # Read-only. Nullable. Returns the plannerPlans that have been recently viewed by the user in apps that support recent plans.
         self._recent_plans: Optional[List[planner_plan.PlannerPlan]] = None
@@ -61,7 +66,7 @@ class PlannerUser(planner_delta.PlannerDelta):
     @property
     def favorite_plan_references(self,) -> Optional[planner_favorite_plan_reference_collection.PlannerFavoritePlanReferenceCollection]:
         """
-        Gets the favoritePlanReferences property value. A collection containing the references to the plans that the user has marked as favorites.
+        Gets the favoritePlanReferences property value. A collection that contains the references to the plans that the user has marked as favorites.
         Returns: Optional[planner_favorite_plan_reference_collection.PlannerFavoritePlanReferenceCollection]
         """
         return self._favorite_plan_references
@@ -69,7 +74,7 @@ class PlannerUser(planner_delta.PlannerDelta):
     @favorite_plan_references.setter
     def favorite_plan_references(self,value: Optional[planner_favorite_plan_reference_collection.PlannerFavoritePlanReferenceCollection] = None) -> None:
         """
-        Sets the favoritePlanReferences property value. A collection containing the references to the plans that the user has marked as favorites.
+        Sets the favoritePlanReferences property value. A collection that contains the references to the plans that the user has marked as favorites.
         Args:
             value: Value to set for the favoritePlanReferences property.
         """
@@ -131,7 +136,7 @@ class PlannerUser(planner_delta.PlannerDelta):
     @property
     def recent_plan_references(self,) -> Optional[planner_recent_plan_reference_collection.PlannerRecentPlanReferenceCollection]:
         """
-        Gets the recentPlanReferences property value. A collection containing references to the plans that were viewed recently by the user in apps that support recent plans.
+        Gets the recentPlanReferences property value. A collection that contains references to the plans that were viewed recently by the user in apps that support recent plans.
         Returns: Optional[planner_recent_plan_reference_collection.PlannerRecentPlanReferenceCollection]
         """
         return self._recent_plan_references
@@ -139,7 +144,7 @@ class PlannerUser(planner_delta.PlannerDelta):
     @recent_plan_references.setter
     def recent_plan_references(self,value: Optional[planner_recent_plan_reference_collection.PlannerRecentPlanReferenceCollection] = None) -> None:
         """
-        Sets the recentPlanReferences property value. A collection containing references to the plans that were viewed recently by the user in apps that support recent plans.
+        Sets the recentPlanReferences property value. A collection that contains references to the plans that were viewed recently by the user in apps that support recent plans.
         Args:
             value: Value to set for the recentPlanReferences property.
         """

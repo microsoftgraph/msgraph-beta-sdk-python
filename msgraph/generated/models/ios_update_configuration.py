@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import time
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import custom_update_time_window, day_of_week, device_configuration, ios_software_update_schedule_type
+custom_update_time_window = lazy_import('msgraph.generated.models.custom_update_time_window')
+day_of_week = lazy_import('msgraph.generated.models.day_of_week')
+device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+ios_software_update_schedule_type = lazy_import('msgraph.generated.models.ios_software_update_schedule_type')
 
 class IosUpdateConfiguration(device_configuration.DeviceConfiguration):
     @property

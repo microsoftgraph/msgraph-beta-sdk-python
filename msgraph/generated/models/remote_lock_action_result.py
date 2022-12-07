@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_action_result
+device_action_result = lazy_import('msgraph.generated.models.device_action_result')
 
 class RemoteLockActionResult(device_action_result.DeviceActionResult):
     def __init__(self,) -> None:

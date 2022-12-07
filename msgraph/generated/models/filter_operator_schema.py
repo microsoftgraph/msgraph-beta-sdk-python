@@ -1,10 +1,17 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import attribute_type, entity, scope_operator_multi_valued_comparison_type, scope_operator_type
+attribute_type = lazy_import('msgraph.generated.models.attribute_type')
+entity = lazy_import('msgraph.generated.models.entity')
+scope_operator_multi_valued_comparison_type = lazy_import('msgraph.generated.models.scope_operator_multi_valued_comparison_type')
+scope_operator_type = lazy_import('msgraph.generated.models.scope_operator_type')
 
 class FilterOperatorSchema(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def arity(self,) -> Optional[scope_operator_type.ScopeOperatorType]:
         """

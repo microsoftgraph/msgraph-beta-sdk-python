@@ -1,8 +1,18 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import attachment, date_time_time_zone, importance, item_body, multi_value_legacy_extended_property, outlook_item, patterned_recurrence, sensitivity, single_value_legacy_extended_property, task_status
+attachment = lazy_import('msgraph.generated.models.attachment')
+date_time_time_zone = lazy_import('msgraph.generated.models.date_time_time_zone')
+importance = lazy_import('msgraph.generated.models.importance')
+item_body = lazy_import('msgraph.generated.models.item_body')
+multi_value_legacy_extended_property = lazy_import('msgraph.generated.models.multi_value_legacy_extended_property')
+outlook_item = lazy_import('msgraph.generated.models.outlook_item')
+patterned_recurrence = lazy_import('msgraph.generated.models.patterned_recurrence')
+sensitivity = lazy_import('msgraph.generated.models.sensitivity')
+single_value_legacy_extended_property = lazy_import('msgraph.generated.models.single_value_legacy_extended_property')
+task_status = lazy_import('msgraph.generated.models.task_status')
 
 class OutlookTask(outlook_item.OutlookItem):
     @property

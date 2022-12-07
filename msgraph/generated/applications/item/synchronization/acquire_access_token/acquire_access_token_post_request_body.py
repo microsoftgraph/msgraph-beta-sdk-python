@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import synchronization_secret_key_string_value_pair
+synchronization_secret_key_string_value_pair = lazy_import('msgraph.generated.models.synchronization_secret_key_string_value_pair')
 
 class AcquireAccessTokenPostRequestBody(AdditionalDataHolder, Parsable):
     """

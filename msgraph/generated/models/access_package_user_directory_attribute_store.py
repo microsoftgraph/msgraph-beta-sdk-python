@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import access_package_resource_attribute_destination
+access_package_resource_attribute_destination = lazy_import('msgraph.generated.models.access_package_resource_attribute_destination')
 
 class AccessPackageUserDirectoryAttributeStore(access_package_resource_attribute_destination.AccessPackageResourceAttributeDestination):
     def __init__(self,) -> None:

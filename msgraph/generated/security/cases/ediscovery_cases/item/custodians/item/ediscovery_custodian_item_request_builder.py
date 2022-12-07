@@ -7,22 +7,23 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .......models.o_data_errors import o_data_error
-from .......models.security import ediscovery_custodian
-from .activate import activate_request_builder
-from .apply_hold import apply_hold_request_builder
-from .last_index_operation import last_index_operation_request_builder
-from .release import release_request_builder
-from .remove_hold import remove_hold_request_builder
-from .site_sources import site_sources_request_builder
-from .site_sources.item import site_source_item_request_builder
-from .unified_group_sources import unified_group_sources_request_builder
-from .unified_group_sources.item import unified_group_source_item_request_builder
-from .update_index import update_index_request_builder
-from .user_sources import user_sources_request_builder
-from .user_sources.item import user_source_item_request_builder
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+ediscovery_custodian = lazy_import('msgraph.generated.models.security.ediscovery_custodian')
+activate_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.custodians.item.activate.activate_request_builder')
+apply_hold_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.custodians.item.apply_hold.apply_hold_request_builder')
+last_index_operation_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.custodians.item.last_index_operation.last_index_operation_request_builder')
+release_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.custodians.item.release.release_request_builder')
+remove_hold_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.custodians.item.remove_hold.remove_hold_request_builder')
+site_sources_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.custodians.item.site_sources.site_sources_request_builder')
+site_source_item_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.custodians.item.site_sources.item.site_source_item_request_builder')
+unified_group_sources_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.custodians.item.unified_group_sources.unified_group_sources_request_builder')
+unified_group_source_item_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.custodians.item.unified_group_sources.item.unified_group_source_item_request_builder')
+update_index_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.custodians.item.update_index.update_index_request_builder')
+user_sources_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.custodians.item.user_sources.user_sources_request_builder')
+user_source_item_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.custodians.item.user_sources.item.user_source_item_request_builder')
 
 class EdiscoveryCustodianItemRequestBuilder():
     """

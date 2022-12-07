@@ -7,30 +7,31 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import chat
-from ...models.o_data_errors import o_data_error
-from .hide_for_user import hide_for_user_request_builder
-from .installed_apps import installed_apps_request_builder
-from .installed_apps.item import teams_app_installation_item_request_builder
-from .last_message_preview import last_message_preview_request_builder
-from .mark_chat_read_for_user import mark_chat_read_for_user_request_builder
-from .mark_chat_unread_for_user import mark_chat_unread_for_user_request_builder
-from .members import members_request_builder
-from .members.item import conversation_member_item_request_builder
-from .messages import messages_request_builder
-from .messages.item import chat_message_item_request_builder
-from .operations import operations_request_builder
-from .operations.item import teams_async_operation_item_request_builder
-from .permission_grants import permission_grants_request_builder
-from .permission_grants.item import resource_specific_permission_grant_item_request_builder
-from .pinned_messages import pinned_messages_request_builder
-from .pinned_messages.item import pinned_chat_message_info_item_request_builder
-from .send_activity_notification import send_activity_notification_request_builder
-from .tabs import tabs_request_builder
-from .tabs.item import teams_tab_item_request_builder
-from .unhide_for_user import unhide_for_user_request_builder
+hide_for_user_request_builder = lazy_import('msgraph.generated.chats.item.hide_for_user.hide_for_user_request_builder')
+installed_apps_request_builder = lazy_import('msgraph.generated.chats.item.installed_apps.installed_apps_request_builder')
+teams_app_installation_item_request_builder = lazy_import('msgraph.generated.chats.item.installed_apps.item.teams_app_installation_item_request_builder')
+last_message_preview_request_builder = lazy_import('msgraph.generated.chats.item.last_message_preview.last_message_preview_request_builder')
+mark_chat_read_for_user_request_builder = lazy_import('msgraph.generated.chats.item.mark_chat_read_for_user.mark_chat_read_for_user_request_builder')
+mark_chat_unread_for_user_request_builder = lazy_import('msgraph.generated.chats.item.mark_chat_unread_for_user.mark_chat_unread_for_user_request_builder')
+members_request_builder = lazy_import('msgraph.generated.chats.item.members.members_request_builder')
+conversation_member_item_request_builder = lazy_import('msgraph.generated.chats.item.members.item.conversation_member_item_request_builder')
+messages_request_builder = lazy_import('msgraph.generated.chats.item.messages.messages_request_builder')
+chat_message_item_request_builder = lazy_import('msgraph.generated.chats.item.messages.item.chat_message_item_request_builder')
+operations_request_builder = lazy_import('msgraph.generated.chats.item.operations.operations_request_builder')
+teams_async_operation_item_request_builder = lazy_import('msgraph.generated.chats.item.operations.item.teams_async_operation_item_request_builder')
+permission_grants_request_builder = lazy_import('msgraph.generated.chats.item.permission_grants.permission_grants_request_builder')
+resource_specific_permission_grant_item_request_builder = lazy_import('msgraph.generated.chats.item.permission_grants.item.resource_specific_permission_grant_item_request_builder')
+pinned_messages_request_builder = lazy_import('msgraph.generated.chats.item.pinned_messages.pinned_messages_request_builder')
+pinned_chat_message_info_item_request_builder = lazy_import('msgraph.generated.chats.item.pinned_messages.item.pinned_chat_message_info_item_request_builder')
+send_activity_notification_request_builder = lazy_import('msgraph.generated.chats.item.send_activity_notification.send_activity_notification_request_builder')
+tabs_request_builder = lazy_import('msgraph.generated.chats.item.tabs.tabs_request_builder')
+teams_tab_item_request_builder = lazy_import('msgraph.generated.chats.item.tabs.item.teams_tab_item_request_builder')
+unhide_for_user_request_builder = lazy_import('msgraph.generated.chats.item.unhide_for_user.unhide_for_user_request_builder')
+chat = lazy_import('msgraph.generated.models.chat')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ChatItemRequestBuilder():
     """

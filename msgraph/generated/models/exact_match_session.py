@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import exact_match_session_base, exact_match_upload_agent
+exact_match_session_base = lazy_import('msgraph.generated.models.exact_match_session_base')
+exact_match_upload_agent = lazy_import('msgraph.generated.models.exact_match_upload_agent')
 
 class ExactMatchSession(exact_match_session_base.ExactMatchSessionBase):
     @property

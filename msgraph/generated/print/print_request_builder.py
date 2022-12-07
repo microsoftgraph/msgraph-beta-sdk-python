@@ -7,25 +7,26 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..models import print
-from ..models.o_data_errors import o_data_error
-from .connectors import connectors_request_builder
-from .connectors.item import print_connector_item_request_builder
-from .operations import operations_request_builder
-from .operations.item import print_operation_item_request_builder
-from .printers import printers_request_builder
-from .printers.item import printer_item_request_builder
-from .printer_shares import printer_shares_request_builder
-from .printer_shares.item import printer_share_item_request_builder
-from .reports import reports_request_builder
-from .services import services_request_builder
-from .services.item import print_service_item_request_builder
-from .shares import shares_request_builder
-from .shares.item import printer_share_item_request_builder
-from .task_definitions import task_definitions_request_builder
-from .task_definitions.item import print_task_definition_item_request_builder
+print = lazy_import('msgraph.generated.models.print')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+connectors_request_builder = lazy_import('msgraph.generated.print.connectors.connectors_request_builder')
+print_connector_item_request_builder = lazy_import('msgraph.generated.print.connectors.item.print_connector_item_request_builder')
+operations_request_builder = lazy_import('msgraph.generated.print.operations.operations_request_builder')
+print_operation_item_request_builder = lazy_import('msgraph.generated.print.operations.item.print_operation_item_request_builder')
+printers_request_builder = lazy_import('msgraph.generated.print.printers.printers_request_builder')
+printer_item_request_builder = lazy_import('msgraph.generated.print.printers.item.printer_item_request_builder')
+printer_shares_request_builder = lazy_import('msgraph.generated.print.printer_shares.printer_shares_request_builder')
+printer_share_item_request_builder = lazy_import('msgraph.generated.print.printer_shares.item.printer_share_item_request_builder')
+reports_request_builder = lazy_import('msgraph.generated.print.reports.reports_request_builder')
+services_request_builder = lazy_import('msgraph.generated.print.services.services_request_builder')
+print_service_item_request_builder = lazy_import('msgraph.generated.print.services.item.print_service_item_request_builder')
+shares_request_builder = lazy_import('msgraph.generated.print.shares.shares_request_builder')
+printer_share_item_request_builder = lazy_import('msgraph.generated.print.shares.item.printer_share_item_request_builder')
+task_definitions_request_builder = lazy_import('msgraph.generated.print.task_definitions.task_definitions_request_builder')
+print_task_definition_item_request_builder = lazy_import('msgraph.generated.print.task_definitions.item.print_task_definition_item_request_builder')
 
 class PrintRequestBuilder():
     """

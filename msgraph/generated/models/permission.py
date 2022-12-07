@@ -1,9 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, identity_set, item_reference, share_point_identity_set, sharing_invitation, sharing_link
+entity = lazy_import('msgraph.generated.models.entity')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+item_reference = lazy_import('msgraph.generated.models.item_reference')
+share_point_identity_set = lazy_import('msgraph.generated.models.share_point_identity_set')
+sharing_invitation = lazy_import('msgraph.generated.models.sharing_invitation')
+sharing_link = lazy_import('msgraph.generated.models.sharing_link')
 
 class Permission(entity.Entity):
     """

@@ -1,14 +1,18 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import endpoint, failure_info, modality, segment
-from .. import entity
+entity = lazy_import('msgraph.generated.models.entity')
+endpoint = lazy_import('msgraph.generated.models.call_records.endpoint')
+failure_info = lazy_import('msgraph.generated.models.call_records.failure_info')
+modality = lazy_import('msgraph.generated.models.call_records.modality')
+segment = lazy_import('msgraph.generated.models.call_records.segment')
 
 class Session(entity.Entity):
     """
-    Provides operations to manage the cloudCommunications singleton.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def callee(self,) -> Optional[endpoint.Endpoint]:

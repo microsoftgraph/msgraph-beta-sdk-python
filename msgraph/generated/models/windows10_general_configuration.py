@@ -1,9 +1,44 @@
 from __future__ import annotations
 from datetime import time
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import app_install_control_type, browser_sync_setting, configuration_usage, defender_cloud_block_level_type, defender_detected_malware_actions, defender_monitor_file_activity, defender_potentially_unwanted_app_action, defender_prompt_for_sample_submission, defender_protection_type, defender_scan_type, defender_submit_samples_consent_type, device_configuration, diagnostic_data_submission_mode, edge_cookie_policy, edge_home_button_configuration, edge_kiosk_mode_restriction_type, edge_open_options, edge_search_engine_base, edge_telemetry_mode, enablement, ink_access_setting, internet_explorer_message_setting, power_action_type, required_password_type, safe_search_filter_type, sign_in_assistant_options, state_management_setting, visibility_setting, weekly_schedule, windows_privacy_data_access_control_item, windows_spotlight_enablement_settings, windows_start_menu_app_list_visibility_type, windows_start_menu_mode_type, windows10_apps_force_update_schedule, windows10_network_proxy_server
+app_install_control_type = lazy_import('msgraph.generated.models.app_install_control_type')
+browser_sync_setting = lazy_import('msgraph.generated.models.browser_sync_setting')
+configuration_usage = lazy_import('msgraph.generated.models.configuration_usage')
+defender_cloud_block_level_type = lazy_import('msgraph.generated.models.defender_cloud_block_level_type')
+defender_detected_malware_actions = lazy_import('msgraph.generated.models.defender_detected_malware_actions')
+defender_monitor_file_activity = lazy_import('msgraph.generated.models.defender_monitor_file_activity')
+defender_potentially_unwanted_app_action = lazy_import('msgraph.generated.models.defender_potentially_unwanted_app_action')
+defender_prompt_for_sample_submission = lazy_import('msgraph.generated.models.defender_prompt_for_sample_submission')
+defender_protection_type = lazy_import('msgraph.generated.models.defender_protection_type')
+defender_scan_type = lazy_import('msgraph.generated.models.defender_scan_type')
+defender_submit_samples_consent_type = lazy_import('msgraph.generated.models.defender_submit_samples_consent_type')
+device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+diagnostic_data_submission_mode = lazy_import('msgraph.generated.models.diagnostic_data_submission_mode')
+edge_cookie_policy = lazy_import('msgraph.generated.models.edge_cookie_policy')
+edge_home_button_configuration = lazy_import('msgraph.generated.models.edge_home_button_configuration')
+edge_kiosk_mode_restriction_type = lazy_import('msgraph.generated.models.edge_kiosk_mode_restriction_type')
+edge_open_options = lazy_import('msgraph.generated.models.edge_open_options')
+edge_search_engine_base = lazy_import('msgraph.generated.models.edge_search_engine_base')
+edge_telemetry_mode = lazy_import('msgraph.generated.models.edge_telemetry_mode')
+enablement = lazy_import('msgraph.generated.models.enablement')
+ink_access_setting = lazy_import('msgraph.generated.models.ink_access_setting')
+internet_explorer_message_setting = lazy_import('msgraph.generated.models.internet_explorer_message_setting')
+power_action_type = lazy_import('msgraph.generated.models.power_action_type')
+required_password_type = lazy_import('msgraph.generated.models.required_password_type')
+safe_search_filter_type = lazy_import('msgraph.generated.models.safe_search_filter_type')
+sign_in_assistant_options = lazy_import('msgraph.generated.models.sign_in_assistant_options')
+state_management_setting = lazy_import('msgraph.generated.models.state_management_setting')
+visibility_setting = lazy_import('msgraph.generated.models.visibility_setting')
+weekly_schedule = lazy_import('msgraph.generated.models.weekly_schedule')
+windows_privacy_data_access_control_item = lazy_import('msgraph.generated.models.windows_privacy_data_access_control_item')
+windows_spotlight_enablement_settings = lazy_import('msgraph.generated.models.windows_spotlight_enablement_settings')
+windows_start_menu_app_list_visibility_type = lazy_import('msgraph.generated.models.windows_start_menu_app_list_visibility_type')
+windows_start_menu_mode_type = lazy_import('msgraph.generated.models.windows_start_menu_mode_type')
+windows10_apps_force_update_schedule = lazy_import('msgraph.generated.models.windows10_apps_force_update_schedule')
+windows10_network_proxy_server = lazy_import('msgraph.generated.models.windows10_network_proxy_server')
 
 class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
     @property

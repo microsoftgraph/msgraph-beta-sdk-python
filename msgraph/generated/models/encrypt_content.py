@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import encrypt_with, label_action_base
+encrypt_with = lazy_import('msgraph.generated.models.encrypt_with')
+label_action_base = lazy_import('msgraph.generated.models.label_action_base')
 
 class EncryptContent(label_action_base.LabelActionBase):
     def __init__(self,) -> None:

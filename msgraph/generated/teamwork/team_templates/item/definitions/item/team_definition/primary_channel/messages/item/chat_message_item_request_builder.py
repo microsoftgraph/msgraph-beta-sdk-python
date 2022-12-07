@@ -7,18 +7,19 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..........models import chat_message
-from ..........models.o_data_errors import o_data_error
-from .hosted_contents import hosted_contents_request_builder
-from .hosted_contents.item import chat_message_hosted_content_item_request_builder
-from .replies import replies_request_builder
-from .replies.item import chat_message_item_request_builder
-from .set_reaction import set_reaction_request_builder
-from .soft_delete import soft_delete_request_builder
-from .undo_soft_delete import undo_soft_delete_request_builder
-from .unset_reaction import unset_reaction_request_builder
+chat_message = lazy_import('msgraph.generated.models.chat_message')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+hosted_contents_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.primary_channel.messages.item.hosted_contents.hosted_contents_request_builder')
+chat_message_hosted_content_item_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.primary_channel.messages.item.hosted_contents.item.chat_message_hosted_content_item_request_builder')
+replies_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.primary_channel.messages.item.replies.replies_request_builder')
+chat_message_item_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.primary_channel.messages.item.replies.item.chat_message_item_request_builder')
+set_reaction_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.primary_channel.messages.item.set_reaction.set_reaction_request_builder')
+soft_delete_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.primary_channel.messages.item.soft_delete.soft_delete_request_builder')
+undo_soft_delete_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.primary_channel.messages.item.undo_soft_delete.undo_soft_delete_request_builder')
+unset_reaction_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.primary_channel.messages.item.unset_reaction.unset_reaction_request_builder')
 
 class ChatMessageItemRequestBuilder():
     """

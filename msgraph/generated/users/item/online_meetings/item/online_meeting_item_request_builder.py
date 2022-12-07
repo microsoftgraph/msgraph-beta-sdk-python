@@ -7,20 +7,21 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import online_meeting
-from .....models.o_data_errors import o_data_error
-from .alternative_recording import alternative_recording_request_builder
-from .attendance_reports import attendance_reports_request_builder
-from .attendance_reports.item import meeting_attendance_report_item_request_builder
-from .attendee_report import attendee_report_request_builder
-from .meeting_attendance_report import meeting_attendance_report_request_builder
-from .recording import recording_request_builder
-from .registration import registration_request_builder
-from .transcripts import transcripts_request_builder
-from .transcripts.item import call_transcript_item_request_builder
-from .virtual_appointment import virtual_appointment_request_builder
+online_meeting = lazy_import('msgraph.generated.models.online_meeting')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+alternative_recording_request_builder = lazy_import('msgraph.generated.users.item.online_meetings.item.alternative_recording.alternative_recording_request_builder')
+attendance_reports_request_builder = lazy_import('msgraph.generated.users.item.online_meetings.item.attendance_reports.attendance_reports_request_builder')
+meeting_attendance_report_item_request_builder = lazy_import('msgraph.generated.users.item.online_meetings.item.attendance_reports.item.meeting_attendance_report_item_request_builder')
+attendee_report_request_builder = lazy_import('msgraph.generated.users.item.online_meetings.item.attendee_report.attendee_report_request_builder')
+meeting_attendance_report_request_builder = lazy_import('msgraph.generated.users.item.online_meetings.item.meeting_attendance_report.meeting_attendance_report_request_builder')
+recording_request_builder = lazy_import('msgraph.generated.users.item.online_meetings.item.recording.recording_request_builder')
+registration_request_builder = lazy_import('msgraph.generated.users.item.online_meetings.item.registration.registration_request_builder')
+transcripts_request_builder = lazy_import('msgraph.generated.users.item.online_meetings.item.transcripts.transcripts_request_builder')
+call_transcript_item_request_builder = lazy_import('msgraph.generated.users.item.online_meetings.item.transcripts.item.call_transcript_item_request_builder')
+virtual_appointment_request_builder = lazy_import('msgraph.generated.users.item.online_meetings.item.virtual_appointment.virtual_appointment_request_builder')
 
 class OnlineMeetingItemRequestBuilder():
     """

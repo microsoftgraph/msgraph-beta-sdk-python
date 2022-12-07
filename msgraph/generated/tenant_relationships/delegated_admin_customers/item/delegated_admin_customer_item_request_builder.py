@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import delegated_admin_customer
-from ....models.o_data_errors import o_data_error
-from .service_management_details import service_management_details_request_builder
-from .service_management_details.item import delegated_admin_service_management_detail_item_request_builder
+delegated_admin_customer = lazy_import('msgraph.generated.models.delegated_admin_customer')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+service_management_details_request_builder = lazy_import('msgraph.generated.tenant_relationships.delegated_admin_customers.item.service_management_details.service_management_details_request_builder')
+delegated_admin_service_management_detail_item_request_builder = lazy_import('msgraph.generated.tenant_relationships.delegated_admin_customers.item.service_management_details.item.delegated_admin_service_management_detail_item_request_builder')
 
 class DelegatedAdminCustomerItemRequestBuilder():
     """

@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_management_autopilot_policy_compliance_status, device_management_autopilot_policy_type, entity
+device_management_autopilot_policy_compliance_status = lazy_import('msgraph.generated.models.device_management_autopilot_policy_compliance_status')
+device_management_autopilot_policy_type = lazy_import('msgraph.generated.models.device_management_autopilot_policy_type')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class DeviceManagementAutopilotPolicyStatusDetail(entity.Entity):
     """

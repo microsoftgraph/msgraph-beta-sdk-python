@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import base_collection_pagination_count_response, key_long_value_pair
+base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
+key_long_value_pair = lazy_import('msgraph.generated.models.key_long_value_pair')
 
 class GetHealthMetricsResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
     """

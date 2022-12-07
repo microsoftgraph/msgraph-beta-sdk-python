@@ -1,9 +1,18 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import channel_membership_type, channel_moderation_settings, channel_summary, chat_message, conversation_member, drive_item, entity, shared_with_channel_team_info, teams_tab
+channel_membership_type = lazy_import('msgraph.generated.models.channel_membership_type')
+channel_moderation_settings = lazy_import('msgraph.generated.models.channel_moderation_settings')
+channel_summary = lazy_import('msgraph.generated.models.channel_summary')
+chat_message = lazy_import('msgraph.generated.models.chat_message')
+conversation_member = lazy_import('msgraph.generated.models.conversation_member')
+drive_item = lazy_import('msgraph.generated.models.drive_item')
+entity = lazy_import('msgraph.generated.models.entity')
+shared_with_channel_team_info = lazy_import('msgraph.generated.models.shared_with_channel_team_info')
+teams_tab = lazy_import('msgraph.generated.models.teams_tab')
 
 class Channel(entity.Entity):
     """
@@ -18,7 +27,7 @@ class Channel(entity.Entity):
         self._created_date_time: Optional[datetime] = None
         # Optional textual description for the channel.
         self._description: Optional[str] = None
-        # Channel name as it will appear to the user in Microsoft Teams.
+        # Channel name as it will appear to the user in Microsoft Teams. The maximum length is 50 characters.
         self._display_name: Optional[str] = None
         # The email address for sending messages to the channel. Read-only.
         self._email: Optional[str] = None
@@ -96,7 +105,7 @@ class Channel(entity.Entity):
     @property
     def display_name(self,) -> Optional[str]:
         """
-        Gets the displayName property value. Channel name as it will appear to the user in Microsoft Teams.
+        Gets the displayName property value. Channel name as it will appear to the user in Microsoft Teams. The maximum length is 50 characters.
         Returns: Optional[str]
         """
         return self._display_name
@@ -104,7 +113,7 @@ class Channel(entity.Entity):
     @display_name.setter
     def display_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the displayName property value. Channel name as it will appear to the user in Microsoft Teams.
+        Sets the displayName property value. Channel name as it will appear to the user in Microsoft Teams. The maximum length is 50 characters.
         Args:
             value: Value to set for the displayName property.
         """

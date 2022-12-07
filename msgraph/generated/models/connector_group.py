@@ -1,8 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import application, connector, connector_group_region, connector_group_type, entity
+application = lazy_import('msgraph.generated.models.application')
+connector = lazy_import('msgraph.generated.models.connector')
+connector_group_region = lazy_import('msgraph.generated.models.connector_group_region')
+connector_group_type = lazy_import('msgraph.generated.models.connector_group_type')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class ConnectorGroup(entity.Entity):
     @property

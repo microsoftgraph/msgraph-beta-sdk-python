@@ -1,9 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.api_error import APIError
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import main_error
+main_error = lazy_import('msgraph.generated.models.o_data_errors.main_error')
 
 class ODataError(APIError):
     @property

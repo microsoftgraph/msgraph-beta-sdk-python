@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_enrollment_configuration, enrollment_notification_branding_options, enrollment_notification_template_type, enrollment_restriction_platform_type
+device_enrollment_configuration = lazy_import('msgraph.generated.models.device_enrollment_configuration')
+enrollment_notification_branding_options = lazy_import('msgraph.generated.models.enrollment_notification_branding_options')
+enrollment_notification_template_type = lazy_import('msgraph.generated.models.enrollment_notification_template_type')
+enrollment_restriction_platform_type = lazy_import('msgraph.generated.models.enrollment_restriction_platform_type')
 
 class DeviceEnrollmentNotificationConfiguration(device_enrollment_configuration.DeviceEnrollmentConfiguration):
     @property

@@ -7,23 +7,24 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import organization
-from ...models.o_data_errors import o_data_error
-from .activate_service import activate_service_request_builder
-from .branding import branding_request_builder
-from .certificate_based_auth_configuration import certificate_based_auth_configuration_request_builder
-from .certificate_based_auth_configuration.item import certificate_based_auth_configuration_item_request_builder
-from .check_member_groups import check_member_groups_request_builder
-from .check_member_objects import check_member_objects_request_builder
-from .extensions import extensions_request_builder
-from .extensions.item import extension_item_request_builder
-from .get_member_groups import get_member_groups_request_builder
-from .get_member_objects import get_member_objects_request_builder
-from .restore import restore_request_builder
-from .set_mobile_device_management_authority import set_mobile_device_management_authority_request_builder
-from .settings import settings_request_builder
+organization = lazy_import('msgraph.generated.models.organization')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+activate_service_request_builder = lazy_import('msgraph.generated.organization.item.activate_service.activate_service_request_builder')
+branding_request_builder = lazy_import('msgraph.generated.organization.item.branding.branding_request_builder')
+certificate_based_auth_configuration_request_builder = lazy_import('msgraph.generated.organization.item.certificate_based_auth_configuration.certificate_based_auth_configuration_request_builder')
+certificate_based_auth_configuration_item_request_builder = lazy_import('msgraph.generated.organization.item.certificate_based_auth_configuration.item.certificate_based_auth_configuration_item_request_builder')
+check_member_groups_request_builder = lazy_import('msgraph.generated.organization.item.check_member_groups.check_member_groups_request_builder')
+check_member_objects_request_builder = lazy_import('msgraph.generated.organization.item.check_member_objects.check_member_objects_request_builder')
+extensions_request_builder = lazy_import('msgraph.generated.organization.item.extensions.extensions_request_builder')
+extension_item_request_builder = lazy_import('msgraph.generated.organization.item.extensions.item.extension_item_request_builder')
+get_member_groups_request_builder = lazy_import('msgraph.generated.organization.item.get_member_groups.get_member_groups_request_builder')
+get_member_objects_request_builder = lazy_import('msgraph.generated.organization.item.get_member_objects.get_member_objects_request_builder')
+restore_request_builder = lazy_import('msgraph.generated.organization.item.restore.restore_request_builder')
+set_mobile_device_management_authority_request_builder = lazy_import('msgraph.generated.organization.item.set_mobile_device_management_authority.set_mobile_device_management_authority_request_builder')
+settings_request_builder = lazy_import('msgraph.generated.organization.item.settings.settings_request_builder')
 
 class OrganizationItemRequestBuilder():
     """

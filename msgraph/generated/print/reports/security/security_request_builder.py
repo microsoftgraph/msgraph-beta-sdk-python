@@ -7,13 +7,14 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import security_reports_root
-from ....models.o_data_errors import o_data_error
-from .get_attack_simulation_repeat_offenders import get_attack_simulation_repeat_offenders_request_builder
-from .get_attack_simulation_simulation_user_coverage import get_attack_simulation_simulation_user_coverage_request_builder
-from .get_attack_simulation_training_user_coverage import get_attack_simulation_training_user_coverage_request_builder
+security_reports_root = lazy_import('msgraph.generated.models.security_reports_root')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+get_attack_simulation_repeat_offenders_request_builder = lazy_import('msgraph.generated.print.reports.security.get_attack_simulation_repeat_offenders.get_attack_simulation_repeat_offenders_request_builder')
+get_attack_simulation_simulation_user_coverage_request_builder = lazy_import('msgraph.generated.print.reports.security.get_attack_simulation_simulation_user_coverage.get_attack_simulation_simulation_user_coverage_request_builder')
+get_attack_simulation_training_user_coverage_request_builder = lazy_import('msgraph.generated.print.reports.security.get_attack_simulation_training_user_coverage.get_attack_simulation_training_user_coverage_request_builder')
 
 class SecurityRequestBuilder():
     """

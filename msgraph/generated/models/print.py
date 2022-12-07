@@ -1,8 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import print_connector, print_operation, print_service, print_settings, print_task_definition, printer, printer_share, report_root
+print_connector = lazy_import('msgraph.generated.models.print_connector')
+print_operation = lazy_import('msgraph.generated.models.print_operation')
+print_service = lazy_import('msgraph.generated.models.print_service')
+print_settings = lazy_import('msgraph.generated.models.print_settings')
+print_task_definition = lazy_import('msgraph.generated.models.print_task_definition')
+printer = lazy_import('msgraph.generated.models.printer')
+printer_share = lazy_import('msgraph.generated.models.printer_share')
+report_root = lazy_import('msgraph.generated.models.report_root')
 
 class Print(AdditionalDataHolder, Parsable):
     @property

@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import identity_provider_base, identity_provider_state
+identity_provider_base = lazy_import('msgraph.generated.models.identity_provider_base')
+identity_provider_state = lazy_import('msgraph.generated.models.identity_provider_state')
 
 class BuiltInIdentityProvider(identity_provider_base.IdentityProviderBase):
     def __init__(self,) -> None:

@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import teamwork_date_time_configuration, teamwork_network_configuration
+teamwork_date_time_configuration = lazy_import('msgraph.generated.models.teamwork_date_time_configuration')
+teamwork_network_configuration = lazy_import('msgraph.generated.models.teamwork_network_configuration')
 
 class TeamworkSystemConfiguration(AdditionalDataHolder, Parsable):
     @property

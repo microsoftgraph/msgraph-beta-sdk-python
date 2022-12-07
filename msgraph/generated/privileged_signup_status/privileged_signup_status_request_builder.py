@@ -7,15 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..models import privileged_signup_status, privileged_signup_status_collection_response
-from ..models.o_data_errors import o_data_error
-from .can_sign_up import can_sign_up_request_builder
-from .complete_setup import complete_setup_request_builder
-from .count import count_request_builder
-from .is_signed_up import is_signed_up_request_builder
-from .sign_up import sign_up_request_builder
+privileged_signup_status = lazy_import('msgraph.generated.models.privileged_signup_status')
+privileged_signup_status_collection_response = lazy_import('msgraph.generated.models.privileged_signup_status_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+can_sign_up_request_builder = lazy_import('msgraph.generated.privileged_signup_status.can_sign_up.can_sign_up_request_builder')
+complete_setup_request_builder = lazy_import('msgraph.generated.privileged_signup_status.complete_setup.complete_setup_request_builder')
+count_request_builder = lazy_import('msgraph.generated.privileged_signup_status.count.count_request_builder')
+is_signed_up_request_builder = lazy_import('msgraph.generated.privileged_signup_status.is_signed_up.is_signed_up_request_builder')
+sign_up_request_builder = lazy_import('msgraph.generated.privileged_signup_status.sign_up.sign_up_request_builder')
 
 class PrivilegedSignupStatusRequestBuilder():
     """

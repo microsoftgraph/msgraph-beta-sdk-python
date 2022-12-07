@@ -7,15 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import windows_autopilot_deployment_profile
-from ....models.o_data_errors import o_data_error
-from .assign import assign_request_builder
-from .assigned_devices import assigned_devices_request_builder
-from .assigned_devices.item import windows_autopilot_device_identity_item_request_builder
-from .assignments import assignments_request_builder
-from .assignments.item import windows_autopilot_deployment_profile_assignment_item_request_builder
+assign_request_builder = lazy_import('msgraph.generated.device_management.windows_autopilot_deployment_profiles.item.assign.assign_request_builder')
+assigned_devices_request_builder = lazy_import('msgraph.generated.device_management.windows_autopilot_deployment_profiles.item.assigned_devices.assigned_devices_request_builder')
+windows_autopilot_device_identity_item_request_builder = lazy_import('msgraph.generated.device_management.windows_autopilot_deployment_profiles.item.assigned_devices.item.windows_autopilot_device_identity_item_request_builder')
+assignments_request_builder = lazy_import('msgraph.generated.device_management.windows_autopilot_deployment_profiles.item.assignments.assignments_request_builder')
+windows_autopilot_deployment_profile_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.windows_autopilot_deployment_profiles.item.assignments.item.windows_autopilot_deployment_profile_assignment_item_request_builder')
+windows_autopilot_deployment_profile = lazy_import('msgraph.generated.models.windows_autopilot_deployment_profile')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class WindowsAutopilotDeploymentProfileItemRequestBuilder():
     """

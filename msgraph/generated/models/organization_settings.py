@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, insights_settings, microsoft_application_data_access_settings, profile_card_property
+entity = lazy_import('msgraph.generated.models.entity')
+insights_settings = lazy_import('msgraph.generated.models.insights_settings')
+microsoft_application_data_access_settings = lazy_import('msgraph.generated.models.microsoft_application_data_access_settings')
+profile_card_property = lazy_import('msgraph.generated.models.profile_card_property')
 
 class OrganizationSettings(entity.Entity):
     def __init__(self,) -> None:

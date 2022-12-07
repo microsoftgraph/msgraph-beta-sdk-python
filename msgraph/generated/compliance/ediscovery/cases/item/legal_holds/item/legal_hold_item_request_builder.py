@@ -7,16 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .......models.ediscovery import legal_hold
-from .......models.o_data_errors import o_data_error
-from .site_sources import site_sources_request_builder
-from .site_sources.item import site_source_item_request_builder
-from .unified_group_sources import unified_group_sources_request_builder
-from .unified_group_sources.item import unified_group_source_item_request_builder
-from .user_sources import user_sources_request_builder
-from .user_sources.item import user_source_item_request_builder
+site_sources_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.legal_holds.item.site_sources.site_sources_request_builder')
+site_source_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.legal_holds.item.site_sources.item.site_source_item_request_builder')
+unified_group_sources_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.legal_holds.item.unified_group_sources.unified_group_sources_request_builder')
+unified_group_source_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.legal_holds.item.unified_group_sources.item.unified_group_source_item_request_builder')
+user_sources_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.legal_holds.item.user_sources.user_sources_request_builder')
+user_source_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.legal_holds.item.user_sources.item.user_source_item_request_builder')
+legal_hold = lazy_import('msgraph.generated.models.ediscovery.legal_hold')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class LegalHoldItemRequestBuilder():
     """

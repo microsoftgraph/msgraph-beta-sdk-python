@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import microsoft_managed_desktop_type
+microsoft_managed_desktop_type = lazy_import('msgraph.generated.models.microsoft_managed_desktop_type')
 
 class MicrosoftManagedDesktop(AdditionalDataHolder, Parsable):
     @property

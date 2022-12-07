@@ -1,14 +1,39 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import android_managed_app_protection, default_managed_app_protection, device_app_management_task, enterprise_code_signing_certificate, entity, ios_lob_app_provisioning_configuration, ios_managed_app_protection, managed_app_policy, managed_app_registration, managed_app_status, managed_device_mobile_app_configuration, managed_e_book, managed_e_book_category, mdm_windows_information_protection_policy, microsoft_store_for_business_portal_selection_options, mobile_app, mobile_app_category, policy_set, side_loading_key, symantec_code_signing_certificate, targeted_managed_app_configuration, vpp_token, windows_defender_application_control_supplemental_policy, windows_information_protection_device_registration, windows_information_protection_policy, windows_information_protection_wipe_action, windows_managed_app_protection, windows_management_app
+android_managed_app_protection = lazy_import('msgraph.generated.models.android_managed_app_protection')
+default_managed_app_protection = lazy_import('msgraph.generated.models.default_managed_app_protection')
+device_app_management_task = lazy_import('msgraph.generated.models.device_app_management_task')
+enterprise_code_signing_certificate = lazy_import('msgraph.generated.models.enterprise_code_signing_certificate')
+entity = lazy_import('msgraph.generated.models.entity')
+ios_lob_app_provisioning_configuration = lazy_import('msgraph.generated.models.ios_lob_app_provisioning_configuration')
+ios_managed_app_protection = lazy_import('msgraph.generated.models.ios_managed_app_protection')
+managed_app_policy = lazy_import('msgraph.generated.models.managed_app_policy')
+managed_app_registration = lazy_import('msgraph.generated.models.managed_app_registration')
+managed_app_status = lazy_import('msgraph.generated.models.managed_app_status')
+managed_device_mobile_app_configuration = lazy_import('msgraph.generated.models.managed_device_mobile_app_configuration')
+managed_e_book = lazy_import('msgraph.generated.models.managed_e_book')
+managed_e_book_category = lazy_import('msgraph.generated.models.managed_e_book_category')
+mdm_windows_information_protection_policy = lazy_import('msgraph.generated.models.mdm_windows_information_protection_policy')
+microsoft_store_for_business_portal_selection_options = lazy_import('msgraph.generated.models.microsoft_store_for_business_portal_selection_options')
+mobile_app = lazy_import('msgraph.generated.models.mobile_app')
+mobile_app_category = lazy_import('msgraph.generated.models.mobile_app_category')
+policy_set = lazy_import('msgraph.generated.models.policy_set')
+side_loading_key = lazy_import('msgraph.generated.models.side_loading_key')
+symantec_code_signing_certificate = lazy_import('msgraph.generated.models.symantec_code_signing_certificate')
+targeted_managed_app_configuration = lazy_import('msgraph.generated.models.targeted_managed_app_configuration')
+vpp_token = lazy_import('msgraph.generated.models.vpp_token')
+windows_defender_application_control_supplemental_policy = lazy_import('msgraph.generated.models.windows_defender_application_control_supplemental_policy')
+windows_information_protection_device_registration = lazy_import('msgraph.generated.models.windows_information_protection_device_registration')
+windows_information_protection_policy = lazy_import('msgraph.generated.models.windows_information_protection_policy')
+windows_information_protection_wipe_action = lazy_import('msgraph.generated.models.windows_information_protection_wipe_action')
+windows_managed_app_protection = lazy_import('msgraph.generated.models.windows_managed_app_protection')
+windows_management_app = lazy_import('msgraph.generated.models.windows_management_app')
 
 class DeviceAppManagement(entity.Entity):
-    """
-    Singleton entity that acts as a container for all device app management functionality.
-    """
     @property
     def android_managed_app_protections(self,) -> Optional[List[android_managed_app_protection.AndroidManagedAppProtection]]:
         """
@@ -28,7 +53,7 @@ class DeviceAppManagement(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceAppManagement and sets the default values.
+        Instantiates a new DeviceAppManagement and sets the default values.
         """
         super().__init__()
         # Android managed app policies.

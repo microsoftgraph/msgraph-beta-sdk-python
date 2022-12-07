@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import access_package_answer, access_package_question, request_schedule
+access_package_answer = lazy_import('msgraph.generated.models.access_package_answer')
+access_package_question = lazy_import('msgraph.generated.models.access_package_question')
+request_schedule = lazy_import('msgraph.generated.models.request_schedule')
 
 class AccessPackageAssignmentRequestRequirements(AdditionalDataHolder, Parsable):
     @property

@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import assignment_filter_operator
+assignment_filter_operator = lazy_import('msgraph.generated.models.assignment_filter_operator')
 
 class AssignmentFilterSupportedProperty(AdditionalDataHolder, Parsable):
     """

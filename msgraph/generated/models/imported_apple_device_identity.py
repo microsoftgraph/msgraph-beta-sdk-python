@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import discovery_source, enrollment_state, entity, platform
+discovery_source = lazy_import('msgraph.generated.models.discovery_source')
+enrollment_state = lazy_import('msgraph.generated.models.enrollment_state')
+entity = lazy_import('msgraph.generated.models.entity')
+platform = lazy_import('msgraph.generated.models.platform')
 
 class ImportedAppleDeviceIdentity(entity.Entity):
     """

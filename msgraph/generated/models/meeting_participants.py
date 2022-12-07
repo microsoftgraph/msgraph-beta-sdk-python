@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import meeting_participant_info
+meeting_participant_info = lazy_import('msgraph.generated.models.meeting_participant_info')
 
 class MeetingParticipants(AdditionalDataHolder, Parsable):
     @property

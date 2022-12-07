@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import group_policy_definition_file, group_policy_operation, group_policy_uploaded_definition_file_status, group_policy_uploaded_language_file
+group_policy_definition_file = lazy_import('msgraph.generated.models.group_policy_definition_file')
+group_policy_operation = lazy_import('msgraph.generated.models.group_policy_operation')
+group_policy_uploaded_definition_file_status = lazy_import('msgraph.generated.models.group_policy_uploaded_definition_file_status')
+group_policy_uploaded_language_file = lazy_import('msgraph.generated.models.group_policy_uploaded_language_file')
 
 class GroupPolicyUploadedDefinitionFile(group_policy_definition_file.GroupPolicyDefinitionFile):
     def __init__(self,) -> None:

@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import on_premises_directory_synchronization_deletion_prevention_type
+on_premises_directory_synchronization_deletion_prevention_type = lazy_import('msgraph.generated.models.on_premises_directory_synchronization_deletion_prevention_type')
 
 class OnPremisesAccidentalDeletionPrevention(AdditionalDataHolder, Parsable):
     @property

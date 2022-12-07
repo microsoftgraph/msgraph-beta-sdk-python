@@ -1,10 +1,17 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, privileged_role_assignment, privileged_role_settings, privileged_role_summary
+entity = lazy_import('msgraph.generated.models.entity')
+privileged_role_assignment = lazy_import('msgraph.generated.models.privileged_role_assignment')
+privileged_role_settings = lazy_import('msgraph.generated.models.privileged_role_settings')
+privileged_role_summary = lazy_import('msgraph.generated.models.privileged_role_summary')
 
 class PrivilegedRole(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def assignments(self,) -> Optional[List[privileged_role_assignment.PrivilegedRoleAssignment]]:
         """

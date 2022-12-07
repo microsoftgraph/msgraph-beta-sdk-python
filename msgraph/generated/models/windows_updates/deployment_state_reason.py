@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import deployment_state_reason_value
+deployment_state_reason_value = lazy_import('msgraph.generated.models.windows_updates.deployment_state_reason_value')
 
 class DeploymentStateReason(AdditionalDataHolder, Parsable):
     @property

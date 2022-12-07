@@ -1,8 +1,30 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import audio_routing_group, call_direction, call_media_state, call_options, call_route, call_state, call_transcription_info, chat_info, comms_operation, content_sharing_session, entity, incoming_context, invitation_participant_info, media_config, meeting_capability, meeting_info, modality, participant, participant_info, result_info, routing_policy, tone_info
+audio_routing_group = lazy_import('msgraph.generated.models.audio_routing_group')
+call_direction = lazy_import('msgraph.generated.models.call_direction')
+call_media_state = lazy_import('msgraph.generated.models.call_media_state')
+call_options = lazy_import('msgraph.generated.models.call_options')
+call_route = lazy_import('msgraph.generated.models.call_route')
+call_state = lazy_import('msgraph.generated.models.call_state')
+call_transcription_info = lazy_import('msgraph.generated.models.call_transcription_info')
+chat_info = lazy_import('msgraph.generated.models.chat_info')
+comms_operation = lazy_import('msgraph.generated.models.comms_operation')
+content_sharing_session = lazy_import('msgraph.generated.models.content_sharing_session')
+entity = lazy_import('msgraph.generated.models.entity')
+incoming_context = lazy_import('msgraph.generated.models.incoming_context')
+invitation_participant_info = lazy_import('msgraph.generated.models.invitation_participant_info')
+media_config = lazy_import('msgraph.generated.models.media_config')
+meeting_capability = lazy_import('msgraph.generated.models.meeting_capability')
+meeting_info = lazy_import('msgraph.generated.models.meeting_info')
+modality = lazy_import('msgraph.generated.models.modality')
+participant = lazy_import('msgraph.generated.models.participant')
+participant_info = lazy_import('msgraph.generated.models.participant_info')
+result_info = lazy_import('msgraph.generated.models.result_info')
+routing_policy = lazy_import('msgraph.generated.models.routing_policy')
+tone_info = lazy_import('msgraph.generated.models.tone_info')
 
 class Call(entity.Entity):
     """

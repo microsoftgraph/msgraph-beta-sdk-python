@@ -7,15 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import user_teamwork
-from ...models.o_data_errors import o_data_error
-from .associated_teams import associated_teams_request_builder
-from .associated_teams.item import associated_team_info_item_request_builder
-from .installed_apps import installed_apps_request_builder
-from .installed_apps.item import user_scope_teams_app_installation_item_request_builder
-from .send_activity_notification import send_activity_notification_request_builder
+associated_teams_request_builder = lazy_import('msgraph.generated.me.teamwork.associated_teams.associated_teams_request_builder')
+associated_team_info_item_request_builder = lazy_import('msgraph.generated.me.teamwork.associated_teams.item.associated_team_info_item_request_builder')
+installed_apps_request_builder = lazy_import('msgraph.generated.me.teamwork.installed_apps.installed_apps_request_builder')
+user_scope_teams_app_installation_item_request_builder = lazy_import('msgraph.generated.me.teamwork.installed_apps.item.user_scope_teams_app_installation_item_request_builder')
+send_activity_notification_request_builder = lazy_import('msgraph.generated.me.teamwork.send_activity_notification.send_activity_notification_request_builder')
+user_teamwork = lazy_import('msgraph.generated.models.user_teamwork')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class TeamworkRequestBuilder():
     """

@@ -1,8 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import column_definition, column_link, content_type_order, document_set, document_set_content, entity, item_reference
+column_definition = lazy_import('msgraph.generated.models.column_definition')
+column_link = lazy_import('msgraph.generated.models.column_link')
+content_type_order = lazy_import('msgraph.generated.models.content_type_order')
+document_set = lazy_import('msgraph.generated.models.document_set')
+document_set_content = lazy_import('msgraph.generated.models.document_set_content')
+entity = lazy_import('msgraph.generated.models.entity')
+item_reference = lazy_import('msgraph.generated.models.item_reference')
 
 class ContentType(entity.Entity):
     """

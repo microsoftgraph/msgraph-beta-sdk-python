@@ -1,9 +1,14 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import agreement_acceptance, agreement_file, agreement_file_localization, entity, terms_expiration
+agreement_acceptance = lazy_import('msgraph.generated.models.agreement_acceptance')
+agreement_file = lazy_import('msgraph.generated.models.agreement_file')
+agreement_file_localization = lazy_import('msgraph.generated.models.agreement_file_localization')
+entity = lazy_import('msgraph.generated.models.entity')
+terms_expiration = lazy_import('msgraph.generated.models.terms_expiration')
 
 class Agreement(entity.Entity):
     """

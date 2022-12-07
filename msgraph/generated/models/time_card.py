@@ -1,8 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import change_tracked_entity, confirmed_by, item_body, time_card_break, time_card_entry, time_card_event, time_card_state
+change_tracked_entity = lazy_import('msgraph.generated.models.change_tracked_entity')
+confirmed_by = lazy_import('msgraph.generated.models.confirmed_by')
+item_body = lazy_import('msgraph.generated.models.item_body')
+time_card_break = lazy_import('msgraph.generated.models.time_card_break')
+time_card_entry = lazy_import('msgraph.generated.models.time_card_entry')
+time_card_event = lazy_import('msgraph.generated.models.time_card_event')
+time_card_state = lazy_import('msgraph.generated.models.time_card_state')
 
 class TimeCard(change_tracked_entity.ChangeTrackedEntity):
     @property

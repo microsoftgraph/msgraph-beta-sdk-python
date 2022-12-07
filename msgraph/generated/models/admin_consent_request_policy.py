@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import access_review_reviewer_scope, entity
+access_review_reviewer_scope = lazy_import('msgraph.generated.models.access_review_reviewer_scope')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class AdminConsentRequestPolicy(entity.Entity):
     def __init__(self,) -> None:

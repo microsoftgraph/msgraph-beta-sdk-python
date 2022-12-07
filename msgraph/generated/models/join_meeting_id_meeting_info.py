@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import meeting_info
+meeting_info = lazy_import('msgraph.generated.models.meeting_info')
 
 class JoinMeetingIdMeetingInfo(meeting_info.MeetingInfo):
     def __init__(self,) -> None:

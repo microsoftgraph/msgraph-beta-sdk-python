@@ -7,11 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import site_page, site_page_collection_response
-from ....models.o_data_errors import o_data_error
-from .count import count_request_builder
+site_page = lazy_import('msgraph.generated.models.site_page')
+site_page_collection_response = lazy_import('msgraph.generated.models.site_page_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+count_request_builder = lazy_import('msgraph.generated.sites.item.pages.count.count_request_builder')
 
 class PagesRequestBuilder():
     """
@@ -43,7 +45,7 @@ class PagesRequestBuilder():
     
     def create_get_request_information(self,request_configuration: Optional[PagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the collection of [sitePage][] objects from the site pages [list][] in a site [site][]. All pages in the site are returned (with pagination).
+        Get the collection of [sitePage][] objects from the site pages [list][] in a site [site][]. All pages in the site are returned (with pagination). Sort alphabetically by `name` in ascending order.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -82,7 +84,7 @@ class PagesRequestBuilder():
     
     async def get(self,request_configuration: Optional[PagesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[site_page_collection_response.SitePageCollectionResponse]:
         """
-        Get the collection of [sitePage][] objects from the site pages [list][] in a site [site][]. All pages in the site are returned (with pagination).
+        Get the collection of [sitePage][] objects from the site pages [list][] in a site [site][]. All pages in the site are returned (with pagination). Sort alphabetically by `name` in ascending order.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
@@ -124,7 +126,7 @@ class PagesRequestBuilder():
     @dataclass
     class PagesRequestBuilderGetQueryParameters():
         """
-        Get the collection of [sitePage][] objects from the site pages [list][] in a site [site][]. All pages in the site are returned (with pagination).
+        Get the collection of [sitePage][] objects from the site pages [list][] in a site [site][]. All pages in the site are returned (with pagination). Sort alphabetically by `name` in ascending order.
         """
         # Include count of items
         count: Optional[bool] = None

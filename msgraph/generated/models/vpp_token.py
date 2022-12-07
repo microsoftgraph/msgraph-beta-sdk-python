@@ -1,9 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, vpp_token_account_type, vpp_token_action_result, vpp_token_state, vpp_token_sync_status
+entity = lazy_import('msgraph.generated.models.entity')
+vpp_token_account_type = lazy_import('msgraph.generated.models.vpp_token_account_type')
+vpp_token_action_result = lazy_import('msgraph.generated.models.vpp_token_action_result')
+vpp_token_state = lazy_import('msgraph.generated.models.vpp_token_state')
+vpp_token_sync_status = lazy_import('msgraph.generated.models.vpp_token_sync_status')
 
 class VppToken(entity.Entity):
     """

@@ -7,21 +7,22 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import administrative_unit
-from ...models.o_data_errors import o_data_error
-from .check_member_groups import check_member_groups_request_builder
-from .check_member_objects import check_member_objects_request_builder
-from .extensions import extensions_request_builder
-from .extensions.item import extension_item_request_builder
-from .get_member_groups import get_member_groups_request_builder
-from .get_member_objects import get_member_objects_request_builder
-from .members import members_request_builder
-from .members.item import directory_object_item_request_builder
-from .restore import restore_request_builder
-from .scoped_role_members import scoped_role_members_request_builder
-from .scoped_role_members.item import scoped_role_membership_item_request_builder
+check_member_groups_request_builder = lazy_import('msgraph.generated.administrative_units.item.check_member_groups.check_member_groups_request_builder')
+check_member_objects_request_builder = lazy_import('msgraph.generated.administrative_units.item.check_member_objects.check_member_objects_request_builder')
+extensions_request_builder = lazy_import('msgraph.generated.administrative_units.item.extensions.extensions_request_builder')
+extension_item_request_builder = lazy_import('msgraph.generated.administrative_units.item.extensions.item.extension_item_request_builder')
+get_member_groups_request_builder = lazy_import('msgraph.generated.administrative_units.item.get_member_groups.get_member_groups_request_builder')
+get_member_objects_request_builder = lazy_import('msgraph.generated.administrative_units.item.get_member_objects.get_member_objects_request_builder')
+members_request_builder = lazy_import('msgraph.generated.administrative_units.item.members.members_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.administrative_units.item.members.item.directory_object_item_request_builder')
+restore_request_builder = lazy_import('msgraph.generated.administrative_units.item.restore.restore_request_builder')
+scoped_role_members_request_builder = lazy_import('msgraph.generated.administrative_units.item.scoped_role_members.scoped_role_members_request_builder')
+scoped_role_membership_item_request_builder = lazy_import('msgraph.generated.administrative_units.item.scoped_role_members.item.scoped_role_membership_item_request_builder')
+administrative_unit = lazy_import('msgraph.generated.models.administrative_unit')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class AdministrativeUnitItemRequestBuilder():
     """

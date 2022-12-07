@@ -1,8 +1,17 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import apple_vpn_connection_type, device_configuration, key_value, key_value_pair, vpn_authentication_method, vpn_on_demand_rule, vpn_provider_type, vpn_proxy_server, vpn_server
+apple_vpn_connection_type = lazy_import('msgraph.generated.models.apple_vpn_connection_type')
+device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+key_value = lazy_import('msgraph.generated.models.key_value')
+key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
+vpn_authentication_method = lazy_import('msgraph.generated.models.vpn_authentication_method')
+vpn_on_demand_rule = lazy_import('msgraph.generated.models.vpn_on_demand_rule')
+vpn_provider_type = lazy_import('msgraph.generated.models.vpn_provider_type')
+vpn_proxy_server = lazy_import('msgraph.generated.models.vpn_proxy_server')
+vpn_server = lazy_import('msgraph.generated.models.vpn_server')
 
 class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
     @property

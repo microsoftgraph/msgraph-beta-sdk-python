@@ -7,15 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import sales_credit_memo
-from ......models.o_data_errors import o_data_error
-from .currency import currency_request_builder
-from .customer import customer_request_builder
-from .payment_term import payment_term_request_builder
-from .sales_credit_memo_lines import sales_credit_memo_lines_request_builder
-from .sales_credit_memo_lines.item import sales_credit_memo_line_item_request_builder
+currency_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_credit_memos.item.currency.currency_request_builder')
+customer_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_credit_memos.item.customer.customer_request_builder')
+payment_term_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_credit_memos.item.payment_term.payment_term_request_builder')
+sales_credit_memo_lines_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_credit_memos.item.sales_credit_memo_lines.sales_credit_memo_lines_request_builder')
+sales_credit_memo_line_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_credit_memos.item.sales_credit_memo_lines.item.sales_credit_memo_line_item_request_builder')
+sales_credit_memo = lazy_import('msgraph.generated.models.sales_credit_memo')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class SalesCreditMemoItemRequestBuilder():
     """

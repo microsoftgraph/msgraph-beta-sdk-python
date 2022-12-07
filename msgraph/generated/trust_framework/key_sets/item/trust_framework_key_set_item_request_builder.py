@@ -7,15 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import trust_framework_key_set
-from ....models.o_data_errors import o_data_error
-from .generate_key import generate_key_request_builder
-from .get_active_key import get_active_key_request_builder
-from .upload_certificate import upload_certificate_request_builder
-from .upload_pkcs12 import upload_pkcs12_request_builder
-from .upload_secret import upload_secret_request_builder
+trust_framework_key_set = lazy_import('msgraph.generated.models.trust_framework_key_set')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+generate_key_request_builder = lazy_import('msgraph.generated.trust_framework.key_sets.item.generate_key.generate_key_request_builder')
+get_active_key_request_builder = lazy_import('msgraph.generated.trust_framework.key_sets.item.get_active_key.get_active_key_request_builder')
+upload_certificate_request_builder = lazy_import('msgraph.generated.trust_framework.key_sets.item.upload_certificate.upload_certificate_request_builder')
+upload_pkcs12_request_builder = lazy_import('msgraph.generated.trust_framework.key_sets.item.upload_pkcs12.upload_pkcs12_request_builder')
+upload_secret_request_builder = lazy_import('msgraph.generated.trust_framework.key_sets.item.upload_secret.upload_secret_request_builder')
 
 class TrustFrameworkKeySetItemRequestBuilder():
     """

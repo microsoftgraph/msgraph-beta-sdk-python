@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_enrollment_configuration, enablement, windows_hello_for_business_pin_usage
+device_enrollment_configuration = lazy_import('msgraph.generated.models.device_enrollment_configuration')
+enablement = lazy_import('msgraph.generated.models.enablement')
+windows_hello_for_business_pin_usage = lazy_import('msgraph.generated.models.windows_hello_for_business_pin_usage')
 
 class DeviceEnrollmentWindowsHelloForBusinessConfiguration(device_enrollment_configuration.DeviceEnrollmentConfiguration):
     def __init__(self,) -> None:

@@ -7,14 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import resource_specific_permission_grant, resource_specific_permission_grant_collection_response
-from ....models.o_data_errors import o_data_error
-from .count import count_request_builder
-from .get_by_ids import get_by_ids_request_builder
-from .get_user_owned_objects import get_user_owned_objects_request_builder
-from .validate_properties import validate_properties_request_builder
+count_request_builder = lazy_import('msgraph.generated.groups.item.permission_grants.count.count_request_builder')
+get_by_ids_request_builder = lazy_import('msgraph.generated.groups.item.permission_grants.get_by_ids.get_by_ids_request_builder')
+get_user_owned_objects_request_builder = lazy_import('msgraph.generated.groups.item.permission_grants.get_user_owned_objects.get_user_owned_objects_request_builder')
+validate_properties_request_builder = lazy_import('msgraph.generated.groups.item.permission_grants.validate_properties.validate_properties_request_builder')
+resource_specific_permission_grant = lazy_import('msgraph.generated.models.resource_specific_permission_grant')
+resource_specific_permission_grant_collection_response = lazy_import('msgraph.generated.models.resource_specific_permission_grant_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class PermissionGrantsRequestBuilder():
     """

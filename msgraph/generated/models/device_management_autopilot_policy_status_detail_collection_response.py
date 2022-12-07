@@ -1,13 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import base_collection_pagination_count_response, device_management_autopilot_policy_status_detail
+base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
+device_management_autopilot_policy_status_detail = lazy_import('msgraph.generated.models.device_management_autopilot_policy_status_detail')
 
 class DeviceManagementAutopilotPolicyStatusDetailCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the policyStatusDetails property of the microsoft.graph.deviceManagementAutopilotEvent entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new DeviceManagementAutopilotPolicyStatusDetailCollectionResponse and sets the default values.

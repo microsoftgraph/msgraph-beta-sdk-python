@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, terms_and_conditions
+entity = lazy_import('msgraph.generated.models.entity')
+terms_and_conditions = lazy_import('msgraph.generated.models.terms_and_conditions')
 
 class TermsAndConditionsGroupAssignment(entity.Entity):
     """

@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import apple_deployment_channel, device_configuration
+apple_deployment_channel = lazy_import('msgraph.generated.models.apple_deployment_channel')
+device_configuration = lazy_import('msgraph.generated.models.device_configuration')
 
 class MacOSCustomConfiguration(device_configuration.DeviceConfiguration):
     def __init__(self,) -> None:

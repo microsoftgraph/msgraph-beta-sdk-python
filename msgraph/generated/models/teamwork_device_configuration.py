@@ -1,9 +1,19 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, identity_set, teamwork_camera_configuration, teamwork_device_software_versions, teamwork_display_configuration, teamwork_hardware_configuration, teamwork_microphone_configuration, teamwork_speaker_configuration, teamwork_system_configuration, teamwork_teams_client_configuration
+entity = lazy_import('msgraph.generated.models.entity')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+teamwork_camera_configuration = lazy_import('msgraph.generated.models.teamwork_camera_configuration')
+teamwork_device_software_versions = lazy_import('msgraph.generated.models.teamwork_device_software_versions')
+teamwork_display_configuration = lazy_import('msgraph.generated.models.teamwork_display_configuration')
+teamwork_hardware_configuration = lazy_import('msgraph.generated.models.teamwork_hardware_configuration')
+teamwork_microphone_configuration = lazy_import('msgraph.generated.models.teamwork_microphone_configuration')
+teamwork_speaker_configuration = lazy_import('msgraph.generated.models.teamwork_speaker_configuration')
+teamwork_system_configuration = lazy_import('msgraph.generated.models.teamwork_system_configuration')
+teamwork_teams_client_configuration = lazy_import('msgraph.generated.models.teamwork_teams_client_configuration')
 
 class TeamworkDeviceConfiguration(entity.Entity):
     @property

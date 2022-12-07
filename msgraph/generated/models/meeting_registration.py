@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import meeting_registration_base, meeting_registration_question, meeting_speaker
+meeting_registration_base = lazy_import('msgraph.generated.models.meeting_registration_base')
+meeting_registration_question = lazy_import('msgraph.generated.models.meeting_registration_question')
+meeting_speaker = lazy_import('msgraph.generated.models.meeting_speaker')
 
 class MeetingRegistration(meeting_registration_base.MeetingRegistrationBase):
     def __init__(self,) -> None:

@@ -7,17 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import synchronization_job
-from ......models.o_data_errors import o_data_error
-from .pause import pause_request_builder
-from .provision_on_demand import provision_on_demand_request_builder
-from .restart import restart_request_builder
-from .schema import schema_request_builder
-from .start import start_request_builder
-from .stop import stop_request_builder
-from .validate_credentials import validate_credentials_request_builder
+synchronization_job = lazy_import('msgraph.generated.models.synchronization_job')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+pause_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.pause.pause_request_builder')
+provision_on_demand_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.provision_on_demand.provision_on_demand_request_builder')
+restart_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.restart.restart_request_builder')
+schema_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.schema.schema_request_builder')
+start_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.start.start_request_builder')
+stop_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.stop.stop_request_builder')
+validate_credentials_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.validate_credentials.validate_credentials_request_builder')
 
 class SynchronizationJobItemRequestBuilder():
     """

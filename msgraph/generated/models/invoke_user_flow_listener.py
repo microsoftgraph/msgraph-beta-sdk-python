@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import authentication_listener, b2x_identity_user_flow
+authentication_listener = lazy_import('msgraph.generated.models.authentication_listener')
+b2x_identity_user_flow = lazy_import('msgraph.generated.models.b2x_identity_user_flow')
 
 class InvokeUserFlowListener(authentication_listener.AuthenticationListener):
     def __init__(self,) -> None:

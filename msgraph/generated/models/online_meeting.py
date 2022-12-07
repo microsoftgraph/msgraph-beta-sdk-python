@@ -1,9 +1,24 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import audio_conferencing, broadcast_meeting_settings, call_transcript, chat_info, entity, item_body, join_meeting_id_settings, lobby_bypass_settings, meeting_attendance_report, meeting_capabilities, meeting_participants, meeting_registration, online_meeting_presenters, online_meeting_role, virtual_appointment
+audio_conferencing = lazy_import('msgraph.generated.models.audio_conferencing')
+broadcast_meeting_settings = lazy_import('msgraph.generated.models.broadcast_meeting_settings')
+call_transcript = lazy_import('msgraph.generated.models.call_transcript')
+chat_info = lazy_import('msgraph.generated.models.chat_info')
+entity = lazy_import('msgraph.generated.models.entity')
+item_body = lazy_import('msgraph.generated.models.item_body')
+join_meeting_id_settings = lazy_import('msgraph.generated.models.join_meeting_id_settings')
+lobby_bypass_settings = lazy_import('msgraph.generated.models.lobby_bypass_settings')
+meeting_attendance_report = lazy_import('msgraph.generated.models.meeting_attendance_report')
+meeting_capabilities = lazy_import('msgraph.generated.models.meeting_capabilities')
+meeting_participants = lazy_import('msgraph.generated.models.meeting_participants')
+meeting_registration = lazy_import('msgraph.generated.models.meeting_registration')
+online_meeting_presenters = lazy_import('msgraph.generated.models.online_meeting_presenters')
+online_meeting_role = lazy_import('msgraph.generated.models.online_meeting_role')
+virtual_appointment = lazy_import('msgraph.generated.models.virtual_appointment')
 
 class OnlineMeeting(entity.Entity):
     """

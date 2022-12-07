@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import program
-from ....models.o_data_errors import o_data_error
-from .controls import controls_request_builder
-from .controls.item import program_control_item_request_builder
+program = lazy_import('msgraph.generated.models.program')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+controls_request_builder = lazy_import('msgraph.generated.program_controls.item.program.controls.controls_request_builder')
+program_control_item_request_builder = lazy_import('msgraph.generated.program_controls.item.program.controls.item.program_control_item_request_builder')
 
 class ProgramRequestBuilder():
     """

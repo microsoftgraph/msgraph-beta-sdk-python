@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import quality_update_classification, software_update_catalog_entry
+quality_update_classification = lazy_import('msgraph.generated.models.windows_updates.quality_update_classification')
+software_update_catalog_entry = lazy_import('msgraph.generated.models.windows_updates.software_update_catalog_entry')
 
 class QualityUpdateCatalogEntry(software_update_catalog_entry.SoftwareUpdateCatalogEntry):
     def __init__(self,) -> None:

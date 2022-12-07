@@ -1,13 +1,20 @@
 from __future__ import annotations
 from datetime import date, datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import currency, customer, entity, payment_term, postal_address_type, sales_quote_line, shipment_method
+currency = lazy_import('msgraph.generated.models.currency')
+customer = lazy_import('msgraph.generated.models.customer')
+entity = lazy_import('msgraph.generated.models.entity')
+payment_term = lazy_import('msgraph.generated.models.payment_term')
+postal_address_type = lazy_import('msgraph.generated.models.postal_address_type')
+sales_quote_line = lazy_import('msgraph.generated.models.sales_quote_line')
+shipment_method = lazy_import('msgraph.generated.models.shipment_method')
 
 class SalesQuote(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def accepted_date(self,) -> Optional[Date]:

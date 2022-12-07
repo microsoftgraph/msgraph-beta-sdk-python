@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import custom_authentication_extension, on_token_issuance_start_return_claim
+custom_authentication_extension = lazy_import('msgraph.generated.models.custom_authentication_extension')
+on_token_issuance_start_return_claim = lazy_import('msgraph.generated.models.on_token_issuance_start_return_claim')
 
 class OnTokenIssuanceStartCustomExtension(custom_authentication_extension.CustomAuthenticationExtension):
     @property

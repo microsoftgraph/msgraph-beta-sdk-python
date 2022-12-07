@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import event_message_detail, identity_set, teamwork_call_event_type
+event_message_detail = lazy_import('msgraph.generated.models.event_message_detail')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+teamwork_call_event_type = lazy_import('msgraph.generated.models.teamwork_call_event_type')
 
 class CallStartedEventMessageDetail(event_message_detail.EventMessageDetail):
     @property

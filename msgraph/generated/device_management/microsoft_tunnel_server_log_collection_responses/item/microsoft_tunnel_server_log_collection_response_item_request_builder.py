@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import microsoft_tunnel_server_log_collection_response
-from ....models.o_data_errors import o_data_error
-from .create_download_url import create_download_url_request_builder
-from .generate_download_url import generate_download_url_request_builder
+create_download_url_request_builder = lazy_import('msgraph.generated.device_management.microsoft_tunnel_server_log_collection_responses.item.create_download_url.create_download_url_request_builder')
+generate_download_url_request_builder = lazy_import('msgraph.generated.device_management.microsoft_tunnel_server_log_collection_responses.item.generate_download_url.generate_download_url_request_builder')
+microsoft_tunnel_server_log_collection_response = lazy_import('msgraph.generated.models.microsoft_tunnel_server_log_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class MicrosoftTunnelServerLogCollectionResponseItemRequestBuilder():
     """

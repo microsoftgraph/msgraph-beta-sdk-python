@@ -7,19 +7,20 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import device_health_script
-from ....models.o_data_errors import o_data_error
-from .assign import assign_request_builder
-from .assignments import assignments_request_builder
-from .assignments.item import device_health_script_assignment_item_request_builder
-from .device_run_states import device_run_states_request_builder
-from .device_run_states.item import device_health_script_device_state_item_request_builder
-from .get_global_script_highest_available_version import get_global_script_highest_available_version_request_builder
-from .get_remediation_history import get_remediation_history_request_builder
-from .run_summary import run_summary_request_builder
-from .update_global_script import update_global_script_request_builder
+assign_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.item.assign.assign_request_builder')
+assignments_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.item.assignments.assignments_request_builder')
+device_health_script_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.item.assignments.item.device_health_script_assignment_item_request_builder')
+device_run_states_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.item.device_run_states.device_run_states_request_builder')
+device_health_script_device_state_item_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.item.device_run_states.item.device_health_script_device_state_item_request_builder')
+get_global_script_highest_available_version_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.item.get_global_script_highest_available_version.get_global_script_highest_available_version_request_builder')
+get_remediation_history_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.item.get_remediation_history.get_remediation_history_request_builder')
+run_summary_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.item.run_summary.run_summary_request_builder')
+update_global_script_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.item.update_global_script.update_global_script_request_builder')
+device_health_script = lazy_import('msgraph.generated.models.device_health_script')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class DeviceHealthScriptItemRequestBuilder():
     """

@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import app_consent_request_scope, entity, user_consent_request
+app_consent_request_scope = lazy_import('msgraph.generated.models.app_consent_request_scope')
+entity = lazy_import('msgraph.generated.models.entity')
+user_consent_request = lazy_import('msgraph.generated.models.user_consent_request')
 
 class AppConsentRequest(entity.Entity):
     """

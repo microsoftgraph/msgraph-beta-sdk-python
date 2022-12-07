@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import print_service
-from ....models.o_data_errors import o_data_error
-from .endpoints import endpoints_request_builder
-from .endpoints.item import print_service_endpoint_item_request_builder
+print_service = lazy_import('msgraph.generated.models.print_service')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+endpoints_request_builder = lazy_import('msgraph.generated.print.services.item.endpoints.endpoints_request_builder')
+print_service_endpoint_item_request_builder = lazy_import('msgraph.generated.print.services.item.endpoints.item.print_service_endpoint_item_request_builder')
 
 class PrintServiceItemRequestBuilder():
     """

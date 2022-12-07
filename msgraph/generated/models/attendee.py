@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import attendee_base, response_status, time_slot
+attendee_base = lazy_import('msgraph.generated.models.attendee_base')
+response_status = lazy_import('msgraph.generated.models.response_status')
+time_slot = lazy_import('msgraph.generated.models.time_slot')
 
 class Attendee(attendee_base.AttendeeBase):
     def __init__(self,) -> None:

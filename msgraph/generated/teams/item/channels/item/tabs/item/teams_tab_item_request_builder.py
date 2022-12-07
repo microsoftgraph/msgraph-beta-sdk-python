@@ -7,11 +7,12 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .......models import teams_tab
-from .......models.o_data_errors import o_data_error
-from .teams_app import teams_app_request_builder
+teams_tab = lazy_import('msgraph.generated.models.teams_tab')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+teams_app_request_builder = lazy_import('msgraph.generated.teams.item.channels.item.tabs.item.teams_app.teams_app_request_builder')
 
 class TeamsTabItemRequestBuilder():
     """

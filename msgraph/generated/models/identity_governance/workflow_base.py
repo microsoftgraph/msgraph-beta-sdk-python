@@ -1,10 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import lifecycle_workflow_category, task, workflow_execution_conditions
-from .. import user
+user = lazy_import('msgraph.generated.models.user')
+lifecycle_workflow_category = lazy_import('msgraph.generated.models.identity_governance.lifecycle_workflow_category')
+task = lazy_import('msgraph.generated.models.identity_governance.task')
+workflow_execution_conditions = lazy_import('msgraph.generated.models.identity_governance.workflow_execution_conditions')
 
 class WorkflowBase(AdditionalDataHolder, Parsable):
     @property

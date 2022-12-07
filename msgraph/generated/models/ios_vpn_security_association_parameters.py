@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import vpn_encryption_algorithm_type, vpn_integrity_algorithm_type
+vpn_encryption_algorithm_type = lazy_import('msgraph.generated.models.vpn_encryption_algorithm_type')
+vpn_integrity_algorithm_type = lazy_import('msgraph.generated.models.vpn_integrity_algorithm_type')
 
 class IosVpnSecurityAssociationParameters(AdditionalDataHolder, Parsable):
     """

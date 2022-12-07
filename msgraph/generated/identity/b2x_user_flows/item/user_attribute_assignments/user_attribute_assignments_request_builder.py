@@ -7,13 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import identity_user_flow_attribute_assignment, identity_user_flow_attribute_assignment_collection_response
-from .....models.o_data_errors import o_data_error
-from .count import count_request_builder
-from .get_order import get_order_request_builder
-from .set_order import set_order_request_builder
+count_request_builder = lazy_import('msgraph.generated.identity.b2x_user_flows.item.user_attribute_assignments.count.count_request_builder')
+get_order_request_builder = lazy_import('msgraph.generated.identity.b2x_user_flows.item.user_attribute_assignments.get_order.get_order_request_builder')
+set_order_request_builder = lazy_import('msgraph.generated.identity.b2x_user_flows.item.user_attribute_assignments.set_order.set_order_request_builder')
+identity_user_flow_attribute_assignment = lazy_import('msgraph.generated.models.identity_user_flow_attribute_assignment')
+identity_user_flow_attribute_assignment_collection_response = lazy_import('msgraph.generated.models.identity_user_flow_attribute_assignment_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class UserAttributeAssignmentsRequestBuilder():
     """

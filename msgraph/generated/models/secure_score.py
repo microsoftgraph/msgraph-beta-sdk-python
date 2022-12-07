@@ -1,13 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import average_comparative_score, control_score, entity, security_vendor_information
+average_comparative_score = lazy_import('msgraph.generated.models.average_comparative_score')
+control_score = lazy_import('msgraph.generated.models.control_score')
+entity = lazy_import('msgraph.generated.models.entity')
+security_vendor_information = lazy_import('msgraph.generated.models.security_vendor_information')
 
 class SecureScore(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def active_user_count(self,) -> Optional[int]:

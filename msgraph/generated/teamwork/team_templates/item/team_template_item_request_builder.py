@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import team_template
-from ....models.o_data_errors import o_data_error
-from .definitions import definitions_request_builder
-from .definitions.item import team_template_definition_item_request_builder
+team_template = lazy_import('msgraph.generated.models.team_template')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+definitions_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.definitions_request_builder')
+team_template_definition_item_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_template_definition_item_request_builder')
 
 class TeamTemplateItemRequestBuilder():
     """

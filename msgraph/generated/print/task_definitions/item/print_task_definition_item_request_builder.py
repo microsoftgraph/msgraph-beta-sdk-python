@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import print_task_definition
-from ....models.o_data_errors import o_data_error
-from .tasks import tasks_request_builder
-from .tasks.item import print_task_item_request_builder
+print_task_definition = lazy_import('msgraph.generated.models.print_task_definition')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+tasks_request_builder = lazy_import('msgraph.generated.print.task_definitions.item.tasks.tasks_request_builder')
+print_task_item_request_builder = lazy_import('msgraph.generated.print.task_definitions.item.tasks.item.print_task_item_request_builder')
 
 class PrintTaskDefinitionItemRequestBuilder():
     """

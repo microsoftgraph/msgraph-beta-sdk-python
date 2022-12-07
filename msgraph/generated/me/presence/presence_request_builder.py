@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import presence
-from ...models.o_data_errors import o_data_error
-from .clear_presence import clear_presence_request_builder
-from .clear_user_preferred_presence import clear_user_preferred_presence_request_builder
-from .set_presence import set_presence_request_builder
-from .set_user_preferred_presence import set_user_preferred_presence_request_builder
+clear_presence_request_builder = lazy_import('msgraph.generated.me.presence.clear_presence.clear_presence_request_builder')
+clear_user_preferred_presence_request_builder = lazy_import('msgraph.generated.me.presence.clear_user_preferred_presence.clear_user_preferred_presence_request_builder')
+set_presence_request_builder = lazy_import('msgraph.generated.me.presence.set_presence.set_presence_request_builder')
+set_user_preferred_presence_request_builder = lazy_import('msgraph.generated.me.presence.set_user_preferred_presence.set_user_preferred_presence_request_builder')
+presence = lazy_import('msgraph.generated.models.presence')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class PresenceRequestBuilder():
     """

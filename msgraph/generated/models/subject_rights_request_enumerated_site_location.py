@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import subject_rights_request_site_location
+subject_rights_request_site_location = lazy_import('msgraph.generated.models.subject_rights_request_site_location')
 
 class SubjectRightsRequestEnumeratedSiteLocation(subject_rights_request_site_location.SubjectRightsRequestSiteLocation):
     def __init__(self,) -> None:

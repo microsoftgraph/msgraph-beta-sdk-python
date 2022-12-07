@@ -7,48 +7,49 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..models import security
-from ..models.o_data_errors import o_data_error
-from .alerts import alerts_request_builder
-from .alerts_v2 import alerts_v2_request_builder
-from .alerts_v2.item import alert_item_request_builder
-from .alerts.item import alert_item_request_builder
-from .attack_simulation import attack_simulation_request_builder
-from .cases import cases_request_builder
-from .cloud_app_security_profiles import cloud_app_security_profiles_request_builder
-from .cloud_app_security_profiles.item import cloud_app_security_profile_item_request_builder
-from .domain_security_profiles import domain_security_profiles_request_builder
-from .domain_security_profiles.item import domain_security_profile_item_request_builder
-from .file_security_profiles import file_security_profiles_request_builder
-from .file_security_profiles.item import file_security_profile_item_request_builder
-from .host_security_profiles import host_security_profiles_request_builder
-from .host_security_profiles.item import host_security_profile_item_request_builder
-from .incidents import incidents_request_builder
-from .incidents.item import incident_item_request_builder
-from .information_protection import information_protection_request_builder
-from .ip_security_profiles import ip_security_profiles_request_builder
-from .ip_security_profiles.item import ip_security_profile_item_request_builder
-from .labels import labels_request_builder
-from .provider_tenant_settings import provider_tenant_settings_request_builder
-from .provider_tenant_settings.item import provider_tenant_setting_item_request_builder
-from .run_hunting_query import run_hunting_query_request_builder
-from .secure_score_control_profiles import secure_score_control_profiles_request_builder
-from .secure_score_control_profiles.item import secure_score_control_profile_item_request_builder
-from .secure_scores import secure_scores_request_builder
-from .secure_scores.item import secure_score_item_request_builder
-from .security_actions import security_actions_request_builder
-from .security_actions.item import security_action_item_request_builder
-from .subject_rights_requests import subject_rights_requests_request_builder
-from .subject_rights_requests.item import subject_rights_request_item_request_builder
-from .threat_submission import threat_submission_request_builder
-from .ti_indicators import ti_indicators_request_builder
-from .ti_indicators.item import ti_indicator_item_request_builder
-from .triggers import triggers_request_builder
-from .trigger_types import trigger_types_request_builder
-from .user_security_profiles import user_security_profiles_request_builder
-from .user_security_profiles.item import user_security_profile_item_request_builder
+security = lazy_import('msgraph.generated.models.security')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+alerts_request_builder = lazy_import('msgraph.generated.security.alerts.alerts_request_builder')
+alerts_v2_request_builder = lazy_import('msgraph.generated.security.alerts_v2.alerts_v2_request_builder')
+alert_item_request_builder = lazy_import('msgraph.generated.security.alerts_v2.item.alert_item_request_builder')
+alert_item_request_builder = lazy_import('msgraph.generated.security.alerts.item.alert_item_request_builder')
+attack_simulation_request_builder = lazy_import('msgraph.generated.security.attack_simulation.attack_simulation_request_builder')
+cases_request_builder = lazy_import('msgraph.generated.security.cases.cases_request_builder')
+cloud_app_security_profiles_request_builder = lazy_import('msgraph.generated.security.cloud_app_security_profiles.cloud_app_security_profiles_request_builder')
+cloud_app_security_profile_item_request_builder = lazy_import('msgraph.generated.security.cloud_app_security_profiles.item.cloud_app_security_profile_item_request_builder')
+domain_security_profiles_request_builder = lazy_import('msgraph.generated.security.domain_security_profiles.domain_security_profiles_request_builder')
+domain_security_profile_item_request_builder = lazy_import('msgraph.generated.security.domain_security_profiles.item.domain_security_profile_item_request_builder')
+file_security_profiles_request_builder = lazy_import('msgraph.generated.security.file_security_profiles.file_security_profiles_request_builder')
+file_security_profile_item_request_builder = lazy_import('msgraph.generated.security.file_security_profiles.item.file_security_profile_item_request_builder')
+host_security_profiles_request_builder = lazy_import('msgraph.generated.security.host_security_profiles.host_security_profiles_request_builder')
+host_security_profile_item_request_builder = lazy_import('msgraph.generated.security.host_security_profiles.item.host_security_profile_item_request_builder')
+incidents_request_builder = lazy_import('msgraph.generated.security.incidents.incidents_request_builder')
+incident_item_request_builder = lazy_import('msgraph.generated.security.incidents.item.incident_item_request_builder')
+information_protection_request_builder = lazy_import('msgraph.generated.security.information_protection.information_protection_request_builder')
+ip_security_profiles_request_builder = lazy_import('msgraph.generated.security.ip_security_profiles.ip_security_profiles_request_builder')
+ip_security_profile_item_request_builder = lazy_import('msgraph.generated.security.ip_security_profiles.item.ip_security_profile_item_request_builder')
+labels_request_builder = lazy_import('msgraph.generated.security.labels.labels_request_builder')
+provider_tenant_settings_request_builder = lazy_import('msgraph.generated.security.provider_tenant_settings.provider_tenant_settings_request_builder')
+provider_tenant_setting_item_request_builder = lazy_import('msgraph.generated.security.provider_tenant_settings.item.provider_tenant_setting_item_request_builder')
+run_hunting_query_request_builder = lazy_import('msgraph.generated.security.run_hunting_query.run_hunting_query_request_builder')
+secure_score_control_profiles_request_builder = lazy_import('msgraph.generated.security.secure_score_control_profiles.secure_score_control_profiles_request_builder')
+secure_score_control_profile_item_request_builder = lazy_import('msgraph.generated.security.secure_score_control_profiles.item.secure_score_control_profile_item_request_builder')
+secure_scores_request_builder = lazy_import('msgraph.generated.security.secure_scores.secure_scores_request_builder')
+secure_score_item_request_builder = lazy_import('msgraph.generated.security.secure_scores.item.secure_score_item_request_builder')
+security_actions_request_builder = lazy_import('msgraph.generated.security.security_actions.security_actions_request_builder')
+security_action_item_request_builder = lazy_import('msgraph.generated.security.security_actions.item.security_action_item_request_builder')
+subject_rights_requests_request_builder = lazy_import('msgraph.generated.security.subject_rights_requests.subject_rights_requests_request_builder')
+subject_rights_request_item_request_builder = lazy_import('msgraph.generated.security.subject_rights_requests.item.subject_rights_request_item_request_builder')
+threat_submission_request_builder = lazy_import('msgraph.generated.security.threat_submission.threat_submission_request_builder')
+ti_indicators_request_builder = lazy_import('msgraph.generated.security.ti_indicators.ti_indicators_request_builder')
+ti_indicator_item_request_builder = lazy_import('msgraph.generated.security.ti_indicators.item.ti_indicator_item_request_builder')
+triggers_request_builder = lazy_import('msgraph.generated.security.triggers.triggers_request_builder')
+trigger_types_request_builder = lazy_import('msgraph.generated.security.trigger_types.trigger_types_request_builder')
+user_security_profiles_request_builder = lazy_import('msgraph.generated.security.user_security_profiles.user_security_profiles_request_builder')
+user_security_profile_item_request_builder = lazy_import('msgraph.generated.security.user_security_profiles.item.user_security_profile_item_request_builder')
 
 class SecurityRequestBuilder():
     """

@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import exact_match_data_store_base, exact_match_session
+exact_match_data_store_base = lazy_import('msgraph.generated.models.exact_match_data_store_base')
+exact_match_session = lazy_import('msgraph.generated.models.exact_match_session')
 
 class ExactMatchDataStore(exact_match_data_store_base.ExactMatchDataStoreBase):
     def __init__(self,) -> None:

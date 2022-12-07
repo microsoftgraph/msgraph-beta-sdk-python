@@ -1,9 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import android_enrollment_company_code, android_managed_store_account_app_sync_status, android_managed_store_account_bind_status, android_managed_store_account_enrollment_target, entity
+android_enrollment_company_code = lazy_import('msgraph.generated.models.android_enrollment_company_code')
+android_managed_store_account_app_sync_status = lazy_import('msgraph.generated.models.android_managed_store_account_app_sync_status')
+android_managed_store_account_bind_status = lazy_import('msgraph.generated.models.android_managed_store_account_bind_status')
+android_managed_store_account_enrollment_target = lazy_import('msgraph.generated.models.android_managed_store_account_enrollment_target')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class AndroidManagedStoreAccountEnterpriseSettings(entity.Entity):
     @property

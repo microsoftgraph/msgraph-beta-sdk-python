@@ -7,20 +7,21 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .......models import todo_task
-from .......models.o_data_errors import o_data_error
-from .attachments import attachments_request_builder
-from .attachments.item import attachment_base_item_request_builder
-from .attachment_sessions import attachment_sessions_request_builder
-from .attachment_sessions.item import attachment_session_item_request_builder
-from .checklist_items import checklist_items_request_builder
-from .checklist_items.item import checklist_item_item_request_builder
-from .extensions import extensions_request_builder
-from .extensions.item import extension_item_request_builder
-from .linked_resources import linked_resources_request_builder
-from .linked_resources.item import linked_resource_item_request_builder
+attachments_request_builder = lazy_import('msgraph.generated.me.todo.lists.item.tasks.item.attachments.attachments_request_builder')
+attachment_base_item_request_builder = lazy_import('msgraph.generated.me.todo.lists.item.tasks.item.attachments.item.attachment_base_item_request_builder')
+attachment_sessions_request_builder = lazy_import('msgraph.generated.me.todo.lists.item.tasks.item.attachment_sessions.attachment_sessions_request_builder')
+attachment_session_item_request_builder = lazy_import('msgraph.generated.me.todo.lists.item.tasks.item.attachment_sessions.item.attachment_session_item_request_builder')
+checklist_items_request_builder = lazy_import('msgraph.generated.me.todo.lists.item.tasks.item.checklist_items.checklist_items_request_builder')
+checklist_item_item_request_builder = lazy_import('msgraph.generated.me.todo.lists.item.tasks.item.checklist_items.item.checklist_item_item_request_builder')
+extensions_request_builder = lazy_import('msgraph.generated.me.todo.lists.item.tasks.item.extensions.extensions_request_builder')
+extension_item_request_builder = lazy_import('msgraph.generated.me.todo.lists.item.tasks.item.extensions.item.extension_item_request_builder')
+linked_resources_request_builder = lazy_import('msgraph.generated.me.todo.lists.item.tasks.item.linked_resources.linked_resources_request_builder')
+linked_resource_item_request_builder = lazy_import('msgraph.generated.me.todo.lists.item.tasks.item.linked_resources.item.linked_resource_item_request_builder')
+todo_task = lazy_import('msgraph.generated.models.todo_task')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class TodoTaskItemRequestBuilder():
     """

@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import planner_relationship_user_roles, planner_task_configuration_role_base
+planner_relationship_user_roles = lazy_import('msgraph.generated.models.planner_relationship_user_roles')
+planner_task_configuration_role_base = lazy_import('msgraph.generated.models.planner_task_configuration_role_base')
 
 class PlannerRelationshipBasedUserType(planner_task_configuration_role_base.PlannerTaskConfigurationRoleBase):
     def __init__(self,) -> None:

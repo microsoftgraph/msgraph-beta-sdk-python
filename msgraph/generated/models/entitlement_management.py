@@ -1,8 +1,23 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import access_package, access_package_assignment, access_package_assignment_policy, access_package_assignment_request, access_package_assignment_resource_role, access_package_catalog, access_package_resource, access_package_resource_environment, access_package_resource_request, access_package_resource_role_scope, access_package_subject, approval, connected_organization, entitlement_management_settings, entity
+access_package = lazy_import('msgraph.generated.models.access_package')
+access_package_assignment = lazy_import('msgraph.generated.models.access_package_assignment')
+access_package_assignment_policy = lazy_import('msgraph.generated.models.access_package_assignment_policy')
+access_package_assignment_request = lazy_import('msgraph.generated.models.access_package_assignment_request')
+access_package_assignment_resource_role = lazy_import('msgraph.generated.models.access_package_assignment_resource_role')
+access_package_catalog = lazy_import('msgraph.generated.models.access_package_catalog')
+access_package_resource = lazy_import('msgraph.generated.models.access_package_resource')
+access_package_resource_environment = lazy_import('msgraph.generated.models.access_package_resource_environment')
+access_package_resource_request = lazy_import('msgraph.generated.models.access_package_resource_request')
+access_package_resource_role_scope = lazy_import('msgraph.generated.models.access_package_resource_role_scope')
+access_package_subject = lazy_import('msgraph.generated.models.access_package_subject')
+approval = lazy_import('msgraph.generated.models.approval')
+connected_organization = lazy_import('msgraph.generated.models.connected_organization')
+entitlement_management_settings = lazy_import('msgraph.generated.models.entitlement_management_settings')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class EntitlementManagement(entity.Entity):
     @property

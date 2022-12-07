@@ -1,8 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import automatic_replies_setting, delegate_meeting_message_delivery_options, locale_info, mailbox_recipient_type, user_purpose, working_hours
+automatic_replies_setting = lazy_import('msgraph.generated.models.automatic_replies_setting')
+delegate_meeting_message_delivery_options = lazy_import('msgraph.generated.models.delegate_meeting_message_delivery_options')
+locale_info = lazy_import('msgraph.generated.models.locale_info')
+mailbox_recipient_type = lazy_import('msgraph.generated.models.mailbox_recipient_type')
+user_purpose = lazy_import('msgraph.generated.models.user_purpose')
+working_hours = lazy_import('msgraph.generated.models.working_hours')
 
 class MailboxSettings(AdditionalDataHolder, Parsable):
     @property

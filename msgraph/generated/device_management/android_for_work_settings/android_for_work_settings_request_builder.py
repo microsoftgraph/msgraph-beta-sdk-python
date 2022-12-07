@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import android_for_work_settings
-from ...models.o_data_errors import o_data_error
-from .complete_signup import complete_signup_request_builder
-from .request_signup_url import request_signup_url_request_builder
-from .sync_apps import sync_apps_request_builder
-from .unbind import unbind_request_builder
+complete_signup_request_builder = lazy_import('msgraph.generated.device_management.android_for_work_settings.complete_signup.complete_signup_request_builder')
+request_signup_url_request_builder = lazy_import('msgraph.generated.device_management.android_for_work_settings.request_signup_url.request_signup_url_request_builder')
+sync_apps_request_builder = lazy_import('msgraph.generated.device_management.android_for_work_settings.sync_apps.sync_apps_request_builder')
+unbind_request_builder = lazy_import('msgraph.generated.device_management.android_for_work_settings.unbind.unbind_request_builder')
+android_for_work_settings = lazy_import('msgraph.generated.models.android_for_work_settings')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class AndroidForWorkSettingsRequestBuilder():
     """

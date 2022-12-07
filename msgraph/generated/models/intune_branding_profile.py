@@ -1,9 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import company_portal_blocked_action, enrollment_availability_options, entity, intune_branding_profile_assignment, mime_content, rgb_color
+company_portal_blocked_action = lazy_import('msgraph.generated.models.company_portal_blocked_action')
+enrollment_availability_options = lazy_import('msgraph.generated.models.enrollment_availability_options')
+entity = lazy_import('msgraph.generated.models.entity')
+intune_branding_profile_assignment = lazy_import('msgraph.generated.models.intune_branding_profile_assignment')
+mime_content = lazy_import('msgraph.generated.models.mime_content')
+rgb_color = lazy_import('msgraph.generated.models.rgb_color')
 
 class IntuneBrandingProfile(entity.Entity):
     """

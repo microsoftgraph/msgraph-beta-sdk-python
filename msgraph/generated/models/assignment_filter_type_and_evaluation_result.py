@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import assignment_filter_evaluation_result, device_and_app_management_assignment_filter_type
+assignment_filter_evaluation_result = lazy_import('msgraph.generated.models.assignment_filter_evaluation_result')
+device_and_app_management_assignment_filter_type = lazy_import('msgraph.generated.models.device_and_app_management_assignment_filter_type')
 
 class AssignmentFilterTypeAndEvaluationResult(AdditionalDataHolder, Parsable):
     """

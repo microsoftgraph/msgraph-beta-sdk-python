@@ -1,9 +1,10 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import on_premises_accidental_deletion_prevention
+on_premises_accidental_deletion_prevention = lazy_import('msgraph.generated.models.on_premises_accidental_deletion_prevention')
 
 class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Parsable):
     @property

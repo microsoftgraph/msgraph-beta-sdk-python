@@ -1,8 +1,17 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import conditional_access_applications, conditional_access_client_app, conditional_access_client_applications, conditional_access_device_states, conditional_access_devices, conditional_access_locations, conditional_access_platforms, conditional_access_users, risk_level
+conditional_access_applications = lazy_import('msgraph.generated.models.conditional_access_applications')
+conditional_access_client_app = lazy_import('msgraph.generated.models.conditional_access_client_app')
+conditional_access_client_applications = lazy_import('msgraph.generated.models.conditional_access_client_applications')
+conditional_access_device_states = lazy_import('msgraph.generated.models.conditional_access_device_states')
+conditional_access_devices = lazy_import('msgraph.generated.models.conditional_access_devices')
+conditional_access_locations = lazy_import('msgraph.generated.models.conditional_access_locations')
+conditional_access_platforms = lazy_import('msgraph.generated.models.conditional_access_platforms')
+conditional_access_users = lazy_import('msgraph.generated.models.conditional_access_users')
+risk_level = lazy_import('msgraph.generated.models.risk_level')
 
 class ConditionalAccessConditionSet(AdditionalDataHolder, Parsable):
     @property

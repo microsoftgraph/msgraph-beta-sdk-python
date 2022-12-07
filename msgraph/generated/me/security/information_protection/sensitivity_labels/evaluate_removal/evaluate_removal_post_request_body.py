@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models.security import content_info, downgrade_justification
+content_info = lazy_import('msgraph.generated.models.security.content_info')
+downgrade_justification = lazy_import('msgraph.generated.models.security.downgrade_justification')
 
 class EvaluateRemovalPostRequestBody(AdditionalDataHolder, Parsable):
     """

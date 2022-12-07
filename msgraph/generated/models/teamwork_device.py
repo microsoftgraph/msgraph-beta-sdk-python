@@ -1,9 +1,20 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, identity_set, teamwork_device_activity, teamwork_device_activity_state, teamwork_device_configuration, teamwork_device_health, teamwork_device_health_status, teamwork_device_operation, teamwork_device_type, teamwork_hardware_detail, teamwork_user_identity
+entity = lazy_import('msgraph.generated.models.entity')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+teamwork_device_activity = lazy_import('msgraph.generated.models.teamwork_device_activity')
+teamwork_device_activity_state = lazy_import('msgraph.generated.models.teamwork_device_activity_state')
+teamwork_device_configuration = lazy_import('msgraph.generated.models.teamwork_device_configuration')
+teamwork_device_health = lazy_import('msgraph.generated.models.teamwork_device_health')
+teamwork_device_health_status = lazy_import('msgraph.generated.models.teamwork_device_health_status')
+teamwork_device_operation = lazy_import('msgraph.generated.models.teamwork_device_operation')
+teamwork_device_type = lazy_import('msgraph.generated.models.teamwork_device_type')
+teamwork_hardware_detail = lazy_import('msgraph.generated.models.teamwork_hardware_detail')
+teamwork_user_identity = lazy_import('msgraph.generated.models.teamwork_user_identity')
 
 class TeamworkDevice(entity.Entity):
     """

@@ -1,10 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import answer_keyword, answer_state, answer_variant, search_answer
-from .. import device_platform_type
+device_platform_type = lazy_import('msgraph.generated.models.device_platform_type')
+answer_keyword = lazy_import('msgraph.generated.models.search.answer_keyword')
+answer_state = lazy_import('msgraph.generated.models.search.answer_state')
+answer_variant = lazy_import('msgraph.generated.models.search.answer_variant')
+search_answer = lazy_import('msgraph.generated.models.search.search_answer')
 
 class Bookmark(search_answer.SearchAnswer):
     @property

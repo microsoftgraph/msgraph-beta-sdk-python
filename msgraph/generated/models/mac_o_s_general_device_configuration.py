@@ -1,8 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import app_list_item, app_list_type, device_configuration, mac_o_s_privacy_access_control_item, mac_o_s_software_update_delay_policy, required_password_type
+app_list_item = lazy_import('msgraph.generated.models.app_list_item')
+app_list_type = lazy_import('msgraph.generated.models.app_list_type')
+device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+mac_o_s_privacy_access_control_item = lazy_import('msgraph.generated.models.mac_o_s_privacy_access_control_item')
+mac_o_s_software_update_delay_policy = lazy_import('msgraph.generated.models.mac_o_s_software_update_delay_policy')
+required_password_type = lazy_import('msgraph.generated.models.required_password_type')
 
 class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
     @property

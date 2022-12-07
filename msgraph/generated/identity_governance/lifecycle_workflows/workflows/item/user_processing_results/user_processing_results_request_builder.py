@@ -8,12 +8,14 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models.identity_governance import user_processing_result, user_processing_result_collection_response
-from ......models.o_data_errors import o_data_error
-from .count import count_request_builder
-from .summary_with_start_date_time_with_end_date_time import summary_with_start_date_time_with_end_date_time_request_builder
+count_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.user_processing_results.count.count_request_builder')
+summary_with_start_date_time_with_end_date_time_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.user_processing_results.summary_with_start_date_time_with_end_date_time.summary_with_start_date_time_with_end_date_time_request_builder')
+user_processing_result = lazy_import('msgraph.generated.models.identity_governance.user_processing_result')
+user_processing_result_collection_response = lazy_import('msgraph.generated.models.identity_governance.user_processing_result_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class UserProcessingResultsRequestBuilder():
     """

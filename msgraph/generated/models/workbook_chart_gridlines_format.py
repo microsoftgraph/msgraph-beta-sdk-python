@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, workbook_chart_line_format
+entity = lazy_import('msgraph.generated.models.entity')
+workbook_chart_line_format = lazy_import('msgraph.generated.models.workbook_chart_line_format')
 
 class WorkbookChartGridlinesFormat(entity.Entity):
     def __init__(self,) -> None:

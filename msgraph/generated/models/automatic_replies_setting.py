@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import automatic_replies_status, date_time_time_zone, external_audience_scope
+automatic_replies_status = lazy_import('msgraph.generated.models.automatic_replies_status')
+date_time_time_zone = lazy_import('msgraph.generated.models.date_time_time_zone')
+external_audience_scope = lazy_import('msgraph.generated.models.external_audience_scope')
 
 class AutomaticRepliesSetting(AdditionalDataHolder, Parsable):
     @property

@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import unified_role_assignment
-from .....models.o_data_errors import o_data_error
-from .app_scope import app_scope_request_builder
-from .directory_scope import directory_scope_request_builder
-from .principal import principal_request_builder
-from .role_definition import role_definition_request_builder
+unified_role_assignment = lazy_import('msgraph.generated.models.unified_role_assignment')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+app_scope_request_builder = lazy_import('msgraph.generated.role_management.directory.role_assignments.item.app_scope.app_scope_request_builder')
+directory_scope_request_builder = lazy_import('msgraph.generated.role_management.directory.role_assignments.item.directory_scope.directory_scope_request_builder')
+principal_request_builder = lazy_import('msgraph.generated.role_management.directory.role_assignments.item.principal.principal_request_builder')
+role_definition_request_builder = lazy_import('msgraph.generated.role_management.directory.role_assignments.item.role_definition.role_definition_request_builder')
 
 class UnifiedRoleAssignmentItemRequestBuilder():
     """

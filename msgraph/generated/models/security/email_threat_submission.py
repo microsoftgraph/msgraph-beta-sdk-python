@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import attack_simulation_info, submission_category, tenant_allow_or_block_list_action, threat_submission
+attack_simulation_info = lazy_import('msgraph.generated.models.security.attack_simulation_info')
+submission_category = lazy_import('msgraph.generated.models.security.submission_category')
+tenant_allow_or_block_list_action = lazy_import('msgraph.generated.models.security.tenant_allow_or_block_list_action')
+threat_submission = lazy_import('msgraph.generated.models.security.threat_submission')
 
 class EmailThreatSubmission(threat_submission.ThreatSubmission):
     @property

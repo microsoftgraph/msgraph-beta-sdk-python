@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import search_query_string
+search_query_string = lazy_import('msgraph.generated.models.search_query_string')
 
 class SearchQuery(AdditionalDataHolder, Parsable):
     @property

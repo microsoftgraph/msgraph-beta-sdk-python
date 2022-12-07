@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import alert_impact, alert_rule_template, rule_severity_type
+alert_impact = lazy_import('msgraph.generated.models.device_management.alert_impact')
+alert_rule_template = lazy_import('msgraph.generated.models.device_management.alert_rule_template')
+rule_severity_type = lazy_import('msgraph.generated.models.device_management.rule_severity_type')
 
 class PortalNotification(AdditionalDataHolder, Parsable):
     @property

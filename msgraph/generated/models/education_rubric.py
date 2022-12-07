@@ -1,9 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import education_assignment_grade_type, education_item_body, entity, identity_set, rubric_level, rubric_quality
+education_assignment_grade_type = lazy_import('msgraph.generated.models.education_assignment_grade_type')
+education_item_body = lazy_import('msgraph.generated.models.education_item_body')
+entity = lazy_import('msgraph.generated.models.entity')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+rubric_level = lazy_import('msgraph.generated.models.rubric_level')
+rubric_quality = lazy_import('msgraph.generated.models.rubric_quality')
 
 class EducationRubric(entity.Entity):
     def __init__(self,) -> None:

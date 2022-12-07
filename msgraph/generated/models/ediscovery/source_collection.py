@@ -1,10 +1,16 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import add_to_review_set_operation, data_source, data_source_scopes, estimate_statistics_operation, noncustodial_data_source
-from .. import entity, identity_set
+entity = lazy_import('msgraph.generated.models.entity')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+add_to_review_set_operation = lazy_import('msgraph.generated.models.ediscovery.add_to_review_set_operation')
+data_source = lazy_import('msgraph.generated.models.ediscovery.data_source')
+data_source_scopes = lazy_import('msgraph.generated.models.ediscovery.data_source_scopes')
+estimate_statistics_operation = lazy_import('msgraph.generated.models.ediscovery.estimate_statistics_operation')
+noncustodial_data_source = lazy_import('msgraph.generated.models.ediscovery.noncustodial_data_source')
 
 class SourceCollection(entity.Entity):
     @property

@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..models import solutions_root
-from ..models.o_data_errors import o_data_error
-from .business_scenarios import business_scenarios_request_builder
-from .business_scenarios.item import business_scenario_item_request_builder
+solutions_root = lazy_import('msgraph.generated.models.solutions_root')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+business_scenarios_request_builder = lazy_import('msgraph.generated.solutions.business_scenarios.business_scenarios_request_builder')
+business_scenario_item_request_builder = lazy_import('msgraph.generated.solutions.business_scenarios.item.business_scenario_item_request_builder')
 
 class SolutionsRequestBuilder():
     """

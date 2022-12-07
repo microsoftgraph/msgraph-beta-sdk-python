@@ -1,12 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import business_flow, entity, governance_policy_template
+business_flow = lazy_import('msgraph.generated.models.business_flow')
+entity = lazy_import('msgraph.generated.models.entity')
+governance_policy_template = lazy_import('msgraph.generated.models.governance_policy_template')
 
 class ApprovalWorkflowProvider(entity.Entity):
     """
-    Provides operations to manage the collection of approvalWorkflowProvider entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def business_flows(self,) -> Optional[List[business_flow.BusinessFlow]]:

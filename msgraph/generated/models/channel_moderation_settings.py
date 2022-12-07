@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import reply_restriction, user_new_message_restriction
+reply_restriction = lazy_import('msgraph.generated.models.reply_restriction')
+user_new_message_restriction = lazy_import('msgraph.generated.models.user_new_message_restriction')
 
 class ChannelModerationSettings(AdditionalDataHolder, Parsable):
     @property

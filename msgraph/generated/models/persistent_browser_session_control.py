@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import conditional_access_session_control, persistent_browser_session_mode
+conditional_access_session_control = lazy_import('msgraph.generated.models.conditional_access_session_control')
+persistent_browser_session_mode = lazy_import('msgraph.generated.models.persistent_browser_session_mode')
 
 class PersistentBrowserSessionControl(conditional_access_session_control.ConditionalAccessSessionControl):
     def __init__(self,) -> None:

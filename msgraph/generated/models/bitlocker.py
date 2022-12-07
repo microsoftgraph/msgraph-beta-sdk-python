@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import bitlocker_recovery_key, entity
+bitlocker_recovery_key = lazy_import('msgraph.generated.models.bitlocker_recovery_key')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class Bitlocker(entity.Entity):
     def __init__(self,) -> None:

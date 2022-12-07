@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ........models import current_label, discovered_sensitive_type
+current_label = lazy_import('msgraph.generated.models.current_label')
+discovered_sensitive_type = lazy_import('msgraph.generated.models.discovered_sensitive_type')
 
 class EvaluatePostRequestBody(AdditionalDataHolder, Parsable):
     """

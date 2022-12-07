@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import object_mapping, string_key_string_value_pair
+object_mapping = lazy_import('msgraph.generated.models.object_mapping')
+string_key_string_value_pair = lazy_import('msgraph.generated.models.string_key_string_value_pair')
 
 class SynchronizationRule(AdditionalDataHolder, Parsable):
     @property

@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import identity_set, subject_rights_request_stage, subject_rights_request_stage_status
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+subject_rights_request_stage = lazy_import('msgraph.generated.models.subject_rights_request_stage')
+subject_rights_request_stage_status = lazy_import('msgraph.generated.models.subject_rights_request_stage_status')
 
 class SubjectRightsRequestHistory(AdditionalDataHolder, Parsable):
     @property

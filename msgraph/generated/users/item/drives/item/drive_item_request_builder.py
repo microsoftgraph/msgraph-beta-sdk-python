@@ -7,25 +7,26 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import drive
-from .....models.o_data_errors import o_data_error
-from .activities import activities_request_builder
-from .activities.item import item_activity_o_l_d_item_request_builder
-from .bundles import bundles_request_builder
-from .bundles.item import drive_item_item_request_builder
-from .following import following_request_builder
-from .following.item import drive_item_item_request_builder
-from .items import items_request_builder
-from .items.item import drive_item_item_request_builder
-from .list import list_request_builder
-from .recent import recent_request_builder
-from .root import root_request_builder
-from .search_with_q import search_with_q_request_builder
-from .shared_with_me import shared_with_me_request_builder
-from .special import special_request_builder
-from .special.item import drive_item_item_request_builder
+drive = lazy_import('msgraph.generated.models.drive')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+activities_request_builder = lazy_import('msgraph.generated.users.item.drives.item.activities.activities_request_builder')
+item_activity_o_l_d_item_request_builder = lazy_import('msgraph.generated.users.item.drives.item.activities.item.item_activity_o_l_d_item_request_builder')
+bundles_request_builder = lazy_import('msgraph.generated.users.item.drives.item.bundles.bundles_request_builder')
+drive_item_item_request_builder = lazy_import('msgraph.generated.users.item.drives.item.bundles.item.drive_item_item_request_builder')
+following_request_builder = lazy_import('msgraph.generated.users.item.drives.item.following.following_request_builder')
+drive_item_item_request_builder = lazy_import('msgraph.generated.users.item.drives.item.following.item.drive_item_item_request_builder')
+items_request_builder = lazy_import('msgraph.generated.users.item.drives.item.items.items_request_builder')
+drive_item_item_request_builder = lazy_import('msgraph.generated.users.item.drives.item.items.item.drive_item_item_request_builder')
+list_request_builder = lazy_import('msgraph.generated.users.item.drives.item.list.list_request_builder')
+recent_request_builder = lazy_import('msgraph.generated.users.item.drives.item.recent.recent_request_builder')
+root_request_builder = lazy_import('msgraph.generated.users.item.drives.item.root.root_request_builder')
+search_with_q_request_builder = lazy_import('msgraph.generated.users.item.drives.item.search_with_q.search_with_q_request_builder')
+shared_with_me_request_builder = lazy_import('msgraph.generated.users.item.drives.item.shared_with_me.shared_with_me_request_builder')
+special_request_builder = lazy_import('msgraph.generated.users.item.drives.item.special.special_request_builder')
+drive_item_item_request_builder = lazy_import('msgraph.generated.users.item.drives.item.special.item.drive_item_item_request_builder')
 
 class DriveItemRequestBuilder():
     """

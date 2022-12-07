@@ -1,14 +1,16 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import external_activity_type, identity
-from .. import entity
+entity = lazy_import('msgraph.generated.models.entity')
+external_activity_type = lazy_import('msgraph.generated.models.external_connectors.external_activity_type')
+identity = lazy_import('msgraph.generated.models.external_connectors.identity')
 
 class ExternalActivity(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     def __init__(self,) -> None:
         """

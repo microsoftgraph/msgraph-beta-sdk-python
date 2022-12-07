@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import conditional_access_conditions, conditional_access_rule
+conditional_access_conditions = lazy_import('msgraph.generated.models.conditional_access_conditions')
+conditional_access_rule = lazy_import('msgraph.generated.models.conditional_access_rule')
 
 class ConditionalAccessRuleSatisfied(AdditionalDataHolder, Parsable):
     @property

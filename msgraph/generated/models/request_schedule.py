@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import expiration_pattern, patterned_recurrence
+expiration_pattern = lazy_import('msgraph.generated.models.expiration_pattern')
+patterned_recurrence = lazy_import('msgraph.generated.models.patterned_recurrence')
 
 class RequestSchedule(AdditionalDataHolder, Parsable):
     @property

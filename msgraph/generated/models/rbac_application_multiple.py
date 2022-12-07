@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, unified_rbac_resource_namespace, unified_role_assignment_multiple, unified_role_definition
+entity = lazy_import('msgraph.generated.models.entity')
+unified_rbac_resource_namespace = lazy_import('msgraph.generated.models.unified_rbac_resource_namespace')
+unified_role_assignment_multiple = lazy_import('msgraph.generated.models.unified_role_assignment_multiple')
+unified_role_definition = lazy_import('msgraph.generated.models.unified_role_definition')
 
 class RbacApplicationMultiple(entity.Entity):
     def __init__(self,) -> None:

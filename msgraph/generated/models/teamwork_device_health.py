@@ -1,9 +1,16 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, identity_set, teamwork_connection, teamwork_hardware_health, teamwork_login_status, teamwork_peripherals_health, teamwork_software_update_health
+entity = lazy_import('msgraph.generated.models.entity')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+teamwork_connection = lazy_import('msgraph.generated.models.teamwork_connection')
+teamwork_hardware_health = lazy_import('msgraph.generated.models.teamwork_hardware_health')
+teamwork_login_status = lazy_import('msgraph.generated.models.teamwork_login_status')
+teamwork_peripherals_health = lazy_import('msgraph.generated.models.teamwork_peripherals_health')
+teamwork_software_update_health = lazy_import('msgraph.generated.models.teamwork_software_update_health')
 
 class TeamworkDeviceHealth(entity.Entity):
     @property

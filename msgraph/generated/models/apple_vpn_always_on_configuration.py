@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import specified_captive_network_plugins, vpn_service_exception_action, vpn_tunnel_configuration_type
+specified_captive_network_plugins = lazy_import('msgraph.generated.models.specified_captive_network_plugins')
+vpn_service_exception_action = lazy_import('msgraph.generated.models.vpn_service_exception_action')
+vpn_tunnel_configuration_type = lazy_import('msgraph.generated.models.vpn_tunnel_configuration_type')
 
 class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, Parsable):
     """

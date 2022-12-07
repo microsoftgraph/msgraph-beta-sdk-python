@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, key_value, recommendation_status
+entity = lazy_import('msgraph.generated.models.entity')
+key_value = lazy_import('msgraph.generated.models.key_value')
+recommendation_status = lazy_import('msgraph.generated.models.recommendation_status')
 
 class RecommendationResource(entity.Entity):
     """

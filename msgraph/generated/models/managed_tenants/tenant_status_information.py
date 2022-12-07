@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import delegated_privilege_status, tenant_onboarding_eligibility_reason, tenant_onboarding_status, workload_status
+delegated_privilege_status = lazy_import('msgraph.generated.models.managed_tenants.delegated_privilege_status')
+tenant_onboarding_eligibility_reason = lazy_import('msgraph.generated.models.managed_tenants.tenant_onboarding_eligibility_reason')
+tenant_onboarding_status = lazy_import('msgraph.generated.models.managed_tenants.tenant_onboarding_status')
+workload_status = lazy_import('msgraph.generated.models.managed_tenants.workload_status')
 
 class TenantStatusInformation(AdditionalDataHolder, Parsable):
     @property

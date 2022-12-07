@@ -1,13 +1,18 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import authentication_method_state, entity
+authentication_method_state = lazy_import('msgraph.generated.models.authentication_method_state')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class AuthenticationMethodConfiguration(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new AuthenticationMethodConfiguration and sets the default values.
+        Instantiates a new authenticationMethodConfiguration and sets the default values.
         """
         super().__init__()
         # The OdataType property

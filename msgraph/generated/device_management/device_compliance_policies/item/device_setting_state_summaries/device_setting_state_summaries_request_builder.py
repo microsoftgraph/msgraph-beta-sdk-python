@@ -7,11 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import setting_state_device_summary, setting_state_device_summary_collection_response
-from .....models.o_data_errors import o_data_error
-from .count import count_request_builder
+count_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.item.device_setting_state_summaries.count.count_request_builder')
+setting_state_device_summary = lazy_import('msgraph.generated.models.setting_state_device_summary')
+setting_state_device_summary_collection_response = lazy_import('msgraph.generated.models.setting_state_device_summary_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class DeviceSettingStateSummariesRequestBuilder():
     """

@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import user_flow_language_configuration
-from ......models.o_data_errors import o_data_error
-from .default_pages import default_pages_request_builder
-from .default_pages.item import user_flow_language_page_item_request_builder
-from .overrides_pages import overrides_pages_request_builder
-from .overrides_pages.item import user_flow_language_page_item_request_builder
+default_pages_request_builder = lazy_import('msgraph.generated.identity.b2c_user_flows.item.languages.item.default_pages.default_pages_request_builder')
+user_flow_language_page_item_request_builder = lazy_import('msgraph.generated.identity.b2c_user_flows.item.languages.item.default_pages.item.user_flow_language_page_item_request_builder')
+overrides_pages_request_builder = lazy_import('msgraph.generated.identity.b2c_user_flows.item.languages.item.overrides_pages.overrides_pages_request_builder')
+user_flow_language_page_item_request_builder = lazy_import('msgraph.generated.identity.b2c_user_flows.item.languages.item.overrides_pages.item.user_flow_language_page_item_request_builder')
+user_flow_language_configuration = lazy_import('msgraph.generated.models.user_flow_language_configuration')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class UserFlowLanguageConfigurationItemRequestBuilder():
     """

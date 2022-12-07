@@ -1,9 +1,18 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, mime_content, mobile_app_assignment, mobile_app_category, mobile_app_install_status, mobile_app_install_summary, mobile_app_publishing_state, mobile_app_relationship, user_app_install_status
+entity = lazy_import('msgraph.generated.models.entity')
+mime_content = lazy_import('msgraph.generated.models.mime_content')
+mobile_app_assignment = lazy_import('msgraph.generated.models.mobile_app_assignment')
+mobile_app_category = lazy_import('msgraph.generated.models.mobile_app_category')
+mobile_app_install_status = lazy_import('msgraph.generated.models.mobile_app_install_status')
+mobile_app_install_summary = lazy_import('msgraph.generated.models.mobile_app_install_summary')
+mobile_app_publishing_state = lazy_import('msgraph.generated.models.mobile_app_publishing_state')
+mobile_app_relationship = lazy_import('msgraph.generated.models.mobile_app_relationship')
+user_app_install_status = lazy_import('msgraph.generated.models.user_app_install_status')
 
 class MobileApp(entity.Entity):
     """

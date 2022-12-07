@@ -1,12 +1,19 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import configuration, connection_operation, connection_state, entity, external_group, external_item, schema
+configuration = lazy_import('msgraph.generated.models.configuration')
+connection_operation = lazy_import('msgraph.generated.models.connection_operation')
+connection_state = lazy_import('msgraph.generated.models.connection_state')
+entity = lazy_import('msgraph.generated.models.entity')
+external_group = lazy_import('msgraph.generated.models.external_group')
+external_item = lazy_import('msgraph.generated.models.external_item')
+schema = lazy_import('msgraph.generated.models.schema')
 
 class ExternalConnection(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def configuration(self,) -> Optional[configuration.Configuration]:

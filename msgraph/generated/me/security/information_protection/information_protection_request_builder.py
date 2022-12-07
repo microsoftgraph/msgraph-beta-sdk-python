@@ -7,13 +7,14 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models.o_data_errors import o_data_error
-from ....models.security import information_protection
-from .label_policy_settings import label_policy_settings_request_builder
-from .sensitivity_labels import sensitivity_labels_request_builder
-from .sensitivity_labels.item import sensitivity_label_item_request_builder
+label_policy_settings_request_builder = lazy_import('msgraph.generated.me.security.information_protection.label_policy_settings.label_policy_settings_request_builder')
+sensitivity_labels_request_builder = lazy_import('msgraph.generated.me.security.information_protection.sensitivity_labels.sensitivity_labels_request_builder')
+sensitivity_label_item_request_builder = lazy_import('msgraph.generated.me.security.information_protection.sensitivity_labels.item.sensitivity_label_item_request_builder')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+information_protection = lazy_import('msgraph.generated.models.security.information_protection')
 
 class InformationProtectionRequestBuilder():
     """

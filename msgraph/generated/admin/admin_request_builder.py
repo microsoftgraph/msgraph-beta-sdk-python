@@ -7,15 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..models import admin
-from ..models.o_data_errors import o_data_error
-from .edge import edge_request_builder
-from .report_settings import report_settings_request_builder
-from .service_announcement import service_announcement_request_builder
-from .sharepoint import sharepoint_request_builder
-from .windows import windows_request_builder
+edge_request_builder = lazy_import('msgraph.generated.admin.edge.edge_request_builder')
+report_settings_request_builder = lazy_import('msgraph.generated.admin.report_settings.report_settings_request_builder')
+service_announcement_request_builder = lazy_import('msgraph.generated.admin.service_announcement.service_announcement_request_builder')
+sharepoint_request_builder = lazy_import('msgraph.generated.admin.sharepoint.sharepoint_request_builder')
+windows_request_builder = lazy_import('msgraph.generated.admin.windows.windows_request_builder')
+admin = lazy_import('msgraph.generated.models.admin')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class AdminRequestBuilder():
     """

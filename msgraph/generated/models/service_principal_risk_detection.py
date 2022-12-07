@@ -1,15 +1,23 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import activity_type, entity, risk_detail, risk_detection_timing_type, risk_level, risk_state, sign_in_location, token_issuer_type
+activity_type = lazy_import('msgraph.generated.models.activity_type')
+entity = lazy_import('msgraph.generated.models.entity')
+risk_detail = lazy_import('msgraph.generated.models.risk_detail')
+risk_detection_timing_type = lazy_import('msgraph.generated.models.risk_detection_timing_type')
+risk_level = lazy_import('msgraph.generated.models.risk_level')
+risk_state = lazy_import('msgraph.generated.models.risk_state')
+sign_in_location = lazy_import('msgraph.generated.models.sign_in_location')
+token_issuer_type = lazy_import('msgraph.generated.models.token_issuer_type')
 
 class ServicePrincipalRiskDetection(entity.Entity):
     @property
     def activity(self,) -> Optional[activity_type.ActivityType]:
         """
-        Gets the activity property value. Indicates the activity type the detected risk is linked to.  The possible values are: signin, unknownFutureValue, servicePrincipal. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: servicePrincipal.
+        Gets the activity property value. Indicates the activity type the detected risk is linked to.  The possible values are: signin, servicePrincipal. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: servicePrincipal.
         Returns: Optional[activity_type.ActivityType]
         """
         return self._activity
@@ -17,7 +25,7 @@ class ServicePrincipalRiskDetection(entity.Entity):
     @activity.setter
     def activity(self,value: Optional[activity_type.ActivityType] = None) -> None:
         """
-        Sets the activity property value. Indicates the activity type the detected risk is linked to.  The possible values are: signin, unknownFutureValue, servicePrincipal. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: servicePrincipal.
+        Sets the activity property value. Indicates the activity type the detected risk is linked to.  The possible values are: signin, servicePrincipal. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: servicePrincipal.
         Args:
             value: Value to set for the activity property.
         """
@@ -79,7 +87,7 @@ class ServicePrincipalRiskDetection(entity.Entity):
         Instantiates a new ServicePrincipalRiskDetection and sets the default values.
         """
         super().__init__()
-        # Indicates the activity type the detected risk is linked to.  The possible values are: signin, unknownFutureValue, servicePrincipal. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: servicePrincipal.
+        # Indicates the activity type the detected risk is linked to.  The possible values are: signin, servicePrincipal. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: servicePrincipal.
         self._activity: Optional[activity_type.ActivityType] = None
         # Date and time when the risky activity occurred. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         self._activity_date_time: Optional[datetime] = None
@@ -105,13 +113,13 @@ class ServicePrincipalRiskDetection(entity.Entity):
         self.odata_type: Optional[str] = None
         # Request identifier of the sign-in activity associated with the risk detection. This property is null if the risk detection is not associated with a sign-in activity. Supports $filter (eq).
         self._request_id: Optional[str] = None
-        # Details of the detected risk. Note: Details for this property are only available for Azure AD Premium P2 customers. P1 customers will be returned hidden. The possible values are: none, hidden, unknownFutureValue, adminConfirmedServicePrincipalCompromised, adminDismissedAllRiskForServicePrincipal. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: adminConfirmedServicePrincipalCompromised , adminDismissedAllRiskForServicePrincipal.
+        # Details of the detected risk. Note: Details for this property are only available for Workload Identities Premium customers. Events in tenants without this license will be returned hidden. The possible values are: none, hidden, adminConfirmedServicePrincipalCompromised, adminDismissedAllRiskForServicePrincipal. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: adminConfirmedServicePrincipalCompromised , adminDismissedAllRiskForServicePrincipal.
         self._risk_detail: Optional[risk_detail.RiskDetail] = None
-        # The type of risk event detected. The possible values are:  investigationsThreatIntelligence, generic, adminConfirmedServicePrincipalCompromised, suspiciousSignins, leakedCredentials, unknownFutureValue. Supports $filter (eq).
+        # The type of risk event detected. The possible values are: investigationsThreatIntelligence, generic, adminConfirmedServicePrincipalCompromised, suspiciousSignins, leakedCredentials, anomalousServicePrincipalActivity, maliciousApplication, suspiciousApplication.
         self._risk_event_type: Optional[str] = None
-        # Level of the detected risk. Note: Details for this property are only available for Azure AD Premium P2 customers. P1 customers will be returned hidden. The possible values are: low, medium, high, hidden, none, unknownFutureValue.
+        # Level of the detected risk. Note: Details for this property are only available for Workload Identities Premium customers. Events in tenants without this license will be returned hidden. The possible values are: low, medium, high, hidden, none.
         self._risk_level: Optional[risk_level.RiskLevel] = None
-        # The state of a detected risky service principal or sign-in activity. The possible values are: none, dismissed, atRisk, confirmedCompromised, unknownFutureValue.
+        # The state of a detected risky service principal or sign-in activity. The possible values are: none, dismissed, atRisk, confirmedCompromised.
         self._risk_state: Optional[risk_state.RiskState] = None
         # The display name for the service principal.
         self._service_principal_display_name: Optional[str] = None
@@ -119,7 +127,7 @@ class ServicePrincipalRiskDetection(entity.Entity):
         self._service_principal_id: Optional[str] = None
         # Source of the risk detection. For example, identityProtection.
         self._source: Optional[str] = None
-        # Indicates the type of token issuer for the detected sign-in risk. The possible values are: AzureAD, UnknownFutureValue.
+        # Indicates the type of token issuer for the detected sign-in risk. The possible values are: AzureAD.
         self._token_issuer_type: Optional[token_issuer_type.TokenIssuerType] = None
     
     @property
@@ -304,7 +312,7 @@ class ServicePrincipalRiskDetection(entity.Entity):
     @property
     def risk_detail(self,) -> Optional[risk_detail.RiskDetail]:
         """
-        Gets the riskDetail property value. Details of the detected risk. Note: Details for this property are only available for Azure AD Premium P2 customers. P1 customers will be returned hidden. The possible values are: none, hidden, unknownFutureValue, adminConfirmedServicePrincipalCompromised, adminDismissedAllRiskForServicePrincipal. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: adminConfirmedServicePrincipalCompromised , adminDismissedAllRiskForServicePrincipal.
+        Gets the riskDetail property value. Details of the detected risk. Note: Details for this property are only available for Workload Identities Premium customers. Events in tenants without this license will be returned hidden. The possible values are: none, hidden, adminConfirmedServicePrincipalCompromised, adminDismissedAllRiskForServicePrincipal. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: adminConfirmedServicePrincipalCompromised , adminDismissedAllRiskForServicePrincipal.
         Returns: Optional[risk_detail.RiskDetail]
         """
         return self._risk_detail
@@ -312,7 +320,7 @@ class ServicePrincipalRiskDetection(entity.Entity):
     @risk_detail.setter
     def risk_detail(self,value: Optional[risk_detail.RiskDetail] = None) -> None:
         """
-        Sets the riskDetail property value. Details of the detected risk. Note: Details for this property are only available for Azure AD Premium P2 customers. P1 customers will be returned hidden. The possible values are: none, hidden, unknownFutureValue, adminConfirmedServicePrincipalCompromised, adminDismissedAllRiskForServicePrincipal. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: adminConfirmedServicePrincipalCompromised , adminDismissedAllRiskForServicePrincipal.
+        Sets the riskDetail property value. Details of the detected risk. Note: Details for this property are only available for Workload Identities Premium customers. Events in tenants without this license will be returned hidden. The possible values are: none, hidden, adminConfirmedServicePrincipalCompromised, adminDismissedAllRiskForServicePrincipal. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: adminConfirmedServicePrincipalCompromised , adminDismissedAllRiskForServicePrincipal.
         Args:
             value: Value to set for the riskDetail property.
         """
@@ -321,7 +329,7 @@ class ServicePrincipalRiskDetection(entity.Entity):
     @property
     def risk_event_type(self,) -> Optional[str]:
         """
-        Gets the riskEventType property value. The type of risk event detected. The possible values are:  investigationsThreatIntelligence, generic, adminConfirmedServicePrincipalCompromised, suspiciousSignins, leakedCredentials, unknownFutureValue. Supports $filter (eq).
+        Gets the riskEventType property value. The type of risk event detected. The possible values are: investigationsThreatIntelligence, generic, adminConfirmedServicePrincipalCompromised, suspiciousSignins, leakedCredentials, anomalousServicePrincipalActivity, maliciousApplication, suspiciousApplication.
         Returns: Optional[str]
         """
         return self._risk_event_type
@@ -329,7 +337,7 @@ class ServicePrincipalRiskDetection(entity.Entity):
     @risk_event_type.setter
     def risk_event_type(self,value: Optional[str] = None) -> None:
         """
-        Sets the riskEventType property value. The type of risk event detected. The possible values are:  investigationsThreatIntelligence, generic, adminConfirmedServicePrincipalCompromised, suspiciousSignins, leakedCredentials, unknownFutureValue. Supports $filter (eq).
+        Sets the riskEventType property value. The type of risk event detected. The possible values are: investigationsThreatIntelligence, generic, adminConfirmedServicePrincipalCompromised, suspiciousSignins, leakedCredentials, anomalousServicePrincipalActivity, maliciousApplication, suspiciousApplication.
         Args:
             value: Value to set for the riskEventType property.
         """
@@ -338,7 +346,7 @@ class ServicePrincipalRiskDetection(entity.Entity):
     @property
     def risk_level(self,) -> Optional[risk_level.RiskLevel]:
         """
-        Gets the riskLevel property value. Level of the detected risk. Note: Details for this property are only available for Azure AD Premium P2 customers. P1 customers will be returned hidden. The possible values are: low, medium, high, hidden, none, unknownFutureValue.
+        Gets the riskLevel property value. Level of the detected risk. Note: Details for this property are only available for Workload Identities Premium customers. Events in tenants without this license will be returned hidden. The possible values are: low, medium, high, hidden, none.
         Returns: Optional[risk_level.RiskLevel]
         """
         return self._risk_level
@@ -346,7 +354,7 @@ class ServicePrincipalRiskDetection(entity.Entity):
     @risk_level.setter
     def risk_level(self,value: Optional[risk_level.RiskLevel] = None) -> None:
         """
-        Sets the riskLevel property value. Level of the detected risk. Note: Details for this property are only available for Azure AD Premium P2 customers. P1 customers will be returned hidden. The possible values are: low, medium, high, hidden, none, unknownFutureValue.
+        Sets the riskLevel property value. Level of the detected risk. Note: Details for this property are only available for Workload Identities Premium customers. Events in tenants without this license will be returned hidden. The possible values are: low, medium, high, hidden, none.
         Args:
             value: Value to set for the riskLevel property.
         """
@@ -355,7 +363,7 @@ class ServicePrincipalRiskDetection(entity.Entity):
     @property
     def risk_state(self,) -> Optional[risk_state.RiskState]:
         """
-        Gets the riskState property value. The state of a detected risky service principal or sign-in activity. The possible values are: none, dismissed, atRisk, confirmedCompromised, unknownFutureValue.
+        Gets the riskState property value. The state of a detected risky service principal or sign-in activity. The possible values are: none, dismissed, atRisk, confirmedCompromised.
         Returns: Optional[risk_state.RiskState]
         """
         return self._risk_state
@@ -363,7 +371,7 @@ class ServicePrincipalRiskDetection(entity.Entity):
     @risk_state.setter
     def risk_state(self,value: Optional[risk_state.RiskState] = None) -> None:
         """
-        Sets the riskState property value. The state of a detected risky service principal or sign-in activity. The possible values are: none, dismissed, atRisk, confirmedCompromised, unknownFutureValue.
+        Sets the riskState property value. The state of a detected risky service principal or sign-in activity. The possible values are: none, dismissed, atRisk, confirmedCompromised.
         Args:
             value: Value to set for the riskState property.
         """
@@ -453,7 +461,7 @@ class ServicePrincipalRiskDetection(entity.Entity):
     @property
     def token_issuer_type(self,) -> Optional[token_issuer_type.TokenIssuerType]:
         """
-        Gets the tokenIssuerType property value. Indicates the type of token issuer for the detected sign-in risk. The possible values are: AzureAD, UnknownFutureValue.
+        Gets the tokenIssuerType property value. Indicates the type of token issuer for the detected sign-in risk. The possible values are: AzureAD.
         Returns: Optional[token_issuer_type.TokenIssuerType]
         """
         return self._token_issuer_type
@@ -461,7 +469,7 @@ class ServicePrincipalRiskDetection(entity.Entity):
     @token_issuer_type.setter
     def token_issuer_type(self,value: Optional[token_issuer_type.TokenIssuerType] = None) -> None:
         """
-        Sets the tokenIssuerType property value. Indicates the type of token issuer for the detected sign-in risk. The possible values are: AzureAD, UnknownFutureValue.
+        Sets the tokenIssuerType property value. Indicates the type of token issuer for the detected sign-in risk. The possible values are: AzureAD.
         Args:
             value: Value to set for the tokenIssuerType property.
         """

@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import directory_object, governance_insight, outlier_container_type, outlier_member_type
+directory_object = lazy_import('msgraph.generated.models.directory_object')
+governance_insight = lazy_import('msgraph.generated.models.governance_insight')
+outlier_container_type = lazy_import('msgraph.generated.models.outlier_container_type')
+outlier_member_type = lazy_import('msgraph.generated.models.outlier_member_type')
 
 class MembershipOutlierInsight(governance_insight.GovernanceInsight):
     def __init__(self,) -> None:

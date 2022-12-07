@@ -7,15 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import embedded_s_i_m_activation_code_pool
-from ....models.o_data_errors import o_data_error
-from .assign import assign_request_builder
-from .assignments import assignments_request_builder
-from .assignments.item import embedded_s_i_m_activation_code_pool_assignment_item_request_builder
-from .device_states import device_states_request_builder
-from .device_states.item import embedded_s_i_m_device_state_item_request_builder
+assign_request_builder = lazy_import('msgraph.generated.device_management.embedded_s_i_m_activation_code_pools.item.assign.assign_request_builder')
+assignments_request_builder = lazy_import('msgraph.generated.device_management.embedded_s_i_m_activation_code_pools.item.assignments.assignments_request_builder')
+embedded_s_i_m_activation_code_pool_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.embedded_s_i_m_activation_code_pools.item.assignments.item.embedded_s_i_m_activation_code_pool_assignment_item_request_builder')
+device_states_request_builder = lazy_import('msgraph.generated.device_management.embedded_s_i_m_activation_code_pools.item.device_states.device_states_request_builder')
+embedded_s_i_m_device_state_item_request_builder = lazy_import('msgraph.generated.device_management.embedded_s_i_m_activation_code_pools.item.device_states.item.embedded_s_i_m_device_state_item_request_builder')
+embedded_s_i_m_activation_code_pool = lazy_import('msgraph.generated.models.embedded_s_i_m_activation_code_pool')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class EmbeddedSIMActivationCodePoolItemRequestBuilder():
     """

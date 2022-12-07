@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import planner_roster
-from ....models.o_data_errors import o_data_error
-from .members import members_request_builder
-from .members.item import planner_roster_member_item_request_builder
-from .plans import plans_request_builder
-from .plans.item import planner_plan_item_request_builder
+planner_roster = lazy_import('msgraph.generated.models.planner_roster')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+members_request_builder = lazy_import('msgraph.generated.planner.rosters.item.members.members_request_builder')
+planner_roster_member_item_request_builder = lazy_import('msgraph.generated.planner.rosters.item.members.item.planner_roster_member_item_request_builder')
+plans_request_builder = lazy_import('msgraph.generated.planner.rosters.item.plans.plans_request_builder')
+planner_plan_item_request_builder = lazy_import('msgraph.generated.planner.rosters.item.plans.item.planner_plan_item_request_builder')
 
 class PlannerRosterItemRequestBuilder():
     """

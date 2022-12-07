@@ -1,9 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import driver_update_profile_approval_type, entity, windows_driver_update_inventory, windows_driver_update_profile_assignment, windows_driver_update_profile_inventory_sync_status
+driver_update_profile_approval_type = lazy_import('msgraph.generated.models.driver_update_profile_approval_type')
+entity = lazy_import('msgraph.generated.models.entity')
+windows_driver_update_inventory = lazy_import('msgraph.generated.models.windows_driver_update_inventory')
+windows_driver_update_profile_assignment = lazy_import('msgraph.generated.models.windows_driver_update_profile_assignment')
+windows_driver_update_profile_inventory_sync_status = lazy_import('msgraph.generated.models.windows_driver_update_profile_inventory_sync_status')
 
 class WindowsDriverUpdateProfile(entity.Entity):
     """

@@ -1,10 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import group, localized_name, relation, term
-from .. import entity, key_value
+entity = lazy_import('msgraph.generated.models.entity')
+key_value = lazy_import('msgraph.generated.models.key_value')
+group = lazy_import('msgraph.generated.models.term_store.group')
+localized_name = lazy_import('msgraph.generated.models.term_store.localized_name')
+relation = lazy_import('msgraph.generated.models.term_store.relation')
+term = lazy_import('msgraph.generated.models.term_store.term')
 
 class Set(entity.Entity):
     @property

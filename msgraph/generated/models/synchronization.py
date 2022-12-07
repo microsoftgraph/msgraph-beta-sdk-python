@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, synchronization_job, synchronization_secret_key_string_value_pair, synchronization_template
+entity = lazy_import('msgraph.generated.models.entity')
+synchronization_job = lazy_import('msgraph.generated.models.synchronization_job')
+synchronization_secret_key_string_value_pair = lazy_import('msgraph.generated.models.synchronization_secret_key_string_value_pair')
+synchronization_template = lazy_import('msgraph.generated.models.synchronization_template')
 
 class Synchronization(entity.Entity):
     def __init__(self,) -> None:

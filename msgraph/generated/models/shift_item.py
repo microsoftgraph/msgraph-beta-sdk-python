@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import schedule_entity, shift_activity
+schedule_entity = lazy_import('msgraph.generated.models.schedule_entity')
+shift_activity = lazy_import('msgraph.generated.models.shift_activity')
 
 class ShiftItem(schedule_entity.ScheduleEntity):
     @property

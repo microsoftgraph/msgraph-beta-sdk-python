@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import layout_template_type
+layout_template_type = lazy_import('msgraph.generated.models.layout_template_type')
 
 class LoginPageLayoutConfiguration(AdditionalDataHolder, Parsable):
     @property
@@ -29,11 +30,11 @@ class LoginPageLayoutConfiguration(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The isFooterShown property
+        # Option to show the footer on the sign-in page.
         self._is_footer_shown: Optional[bool] = None
-        # The isHeaderShown property
+        # Option to show the header on the sign-in page.
         self._is_header_shown: Optional[bool] = None
-        # The layoutTemplateType property
+        # Represents the layout template to be displayed on the login page for a tenant. The possible values are  default - Represents the default Microsoft layout with a centered lightbox.  verticalSplit - Represents a layout with a backgound on the left side and a full-height lightbox to the right.  unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
         self._layout_template_type: Optional[layout_template_type.LayoutTemplateType] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
@@ -66,7 +67,7 @@ class LoginPageLayoutConfiguration(AdditionalDataHolder, Parsable):
     @property
     def is_footer_shown(self,) -> Optional[bool]:
         """
-        Gets the isFooterShown property value. The isFooterShown property
+        Gets the isFooterShown property value. Option to show the footer on the sign-in page.
         Returns: Optional[bool]
         """
         return self._is_footer_shown
@@ -74,7 +75,7 @@ class LoginPageLayoutConfiguration(AdditionalDataHolder, Parsable):
     @is_footer_shown.setter
     def is_footer_shown(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isFooterShown property value. The isFooterShown property
+        Sets the isFooterShown property value. Option to show the footer on the sign-in page.
         Args:
             value: Value to set for the isFooterShown property.
         """
@@ -83,7 +84,7 @@ class LoginPageLayoutConfiguration(AdditionalDataHolder, Parsable):
     @property
     def is_header_shown(self,) -> Optional[bool]:
         """
-        Gets the isHeaderShown property value. The isHeaderShown property
+        Gets the isHeaderShown property value. Option to show the header on the sign-in page.
         Returns: Optional[bool]
         """
         return self._is_header_shown
@@ -91,7 +92,7 @@ class LoginPageLayoutConfiguration(AdditionalDataHolder, Parsable):
     @is_header_shown.setter
     def is_header_shown(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isHeaderShown property value. The isHeaderShown property
+        Sets the isHeaderShown property value. Option to show the header on the sign-in page.
         Args:
             value: Value to set for the isHeaderShown property.
         """
@@ -100,7 +101,7 @@ class LoginPageLayoutConfiguration(AdditionalDataHolder, Parsable):
     @property
     def layout_template_type(self,) -> Optional[layout_template_type.LayoutTemplateType]:
         """
-        Gets the layoutTemplateType property value. The layoutTemplateType property
+        Gets the layoutTemplateType property value. Represents the layout template to be displayed on the login page for a tenant. The possible values are  default - Represents the default Microsoft layout with a centered lightbox.  verticalSplit - Represents a layout with a backgound on the left side and a full-height lightbox to the right.  unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
         Returns: Optional[layout_template_type.LayoutTemplateType]
         """
         return self._layout_template_type
@@ -108,7 +109,7 @@ class LoginPageLayoutConfiguration(AdditionalDataHolder, Parsable):
     @layout_template_type.setter
     def layout_template_type(self,value: Optional[layout_template_type.LayoutTemplateType] = None) -> None:
         """
-        Sets the layoutTemplateType property value. The layoutTemplateType property
+        Sets the layoutTemplateType property value. Represents the layout template to be displayed on the login page for a tenant. The possible values are  default - Represents the default Microsoft layout with a centered lightbox.  verticalSplit - Represents a layout with a backgound on the left side and a full-height lightbox to the right.  unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
         Args:
             value: Value to set for the layoutTemplateType property.
         """

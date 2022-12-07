@@ -1,9 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, managed_device_mobile_app_configuration_assignment, managed_device_mobile_app_configuration_device_status, managed_device_mobile_app_configuration_device_summary, managed_device_mobile_app_configuration_user_status, managed_device_mobile_app_configuration_user_summary
+entity = lazy_import('msgraph.generated.models.entity')
+managed_device_mobile_app_configuration_assignment = lazy_import('msgraph.generated.models.managed_device_mobile_app_configuration_assignment')
+managed_device_mobile_app_configuration_device_status = lazy_import('msgraph.generated.models.managed_device_mobile_app_configuration_device_status')
+managed_device_mobile_app_configuration_device_summary = lazy_import('msgraph.generated.models.managed_device_mobile_app_configuration_device_summary')
+managed_device_mobile_app_configuration_user_status = lazy_import('msgraph.generated.models.managed_device_mobile_app_configuration_user_status')
+managed_device_mobile_app_configuration_user_summary = lazy_import('msgraph.generated.models.managed_device_mobile_app_configuration_user_summary')
 
 class ManagedDeviceMobileAppConfiguration(entity.Entity):
     """

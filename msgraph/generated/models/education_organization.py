@@ -1,12 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import education_external_source, entity
+education_external_source = lazy_import('msgraph.generated.models.education_external_source')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class EducationOrganization(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     def __init__(self,) -> None:
         """

@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .. import custom_callout_extension, custom_extension_callback_configuration, user
+custom_callout_extension = lazy_import('msgraph.generated.models.custom_callout_extension')
+custom_extension_callback_configuration = lazy_import('msgraph.generated.models.custom_extension_callback_configuration')
+user = lazy_import('msgraph.generated.models.user')
 
 class CustomTaskExtension(custom_callout_extension.CustomCalloutExtension):
     @property

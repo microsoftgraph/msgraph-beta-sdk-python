@@ -1,9 +1,32 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import alert, attack_simulation_root, cloud_app_security_profile, domain_security_profile, entity, file_security_profile, host_security_profile, ip_security_profile, provider_tenant_setting, secure_score, secure_score_control_profile, security_action, security_provider_status, subject_rights_request, ti_indicator, user_security_profile
-from .security import alert, cases_root, incident, information_protection, labels_root, threat_submission_root, trigger_types_root, triggers_root
+alert = lazy_import('msgraph.generated.models.alert')
+attack_simulation_root = lazy_import('msgraph.generated.models.attack_simulation_root')
+cloud_app_security_profile = lazy_import('msgraph.generated.models.cloud_app_security_profile')
+domain_security_profile = lazy_import('msgraph.generated.models.domain_security_profile')
+entity = lazy_import('msgraph.generated.models.entity')
+file_security_profile = lazy_import('msgraph.generated.models.file_security_profile')
+host_security_profile = lazy_import('msgraph.generated.models.host_security_profile')
+ip_security_profile = lazy_import('msgraph.generated.models.ip_security_profile')
+provider_tenant_setting = lazy_import('msgraph.generated.models.provider_tenant_setting')
+secure_score = lazy_import('msgraph.generated.models.secure_score')
+secure_score_control_profile = lazy_import('msgraph.generated.models.secure_score_control_profile')
+security_action = lazy_import('msgraph.generated.models.security_action')
+security_provider_status = lazy_import('msgraph.generated.models.security_provider_status')
+subject_rights_request = lazy_import('msgraph.generated.models.subject_rights_request')
+ti_indicator = lazy_import('msgraph.generated.models.ti_indicator')
+user_security_profile = lazy_import('msgraph.generated.models.user_security_profile')
+alert = lazy_import('msgraph.generated.models.security.alert')
+cases_root = lazy_import('msgraph.generated.models.security.cases_root')
+incident = lazy_import('msgraph.generated.models.security.incident')
+information_protection = lazy_import('msgraph.generated.models.security.information_protection')
+labels_root = lazy_import('msgraph.generated.models.security.labels_root')
+threat_submission_root = lazy_import('msgraph.generated.models.security.threat_submission_root')
+trigger_types_root = lazy_import('msgraph.generated.models.security.trigger_types_root')
+triggers_root = lazy_import('msgraph.generated.models.security.triggers_root')
 
 class Security(entity.Entity):
     @property

@@ -1,9 +1,16 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import browser_site_compatibility_mode, browser_site_history, browser_site_merge_type, browser_site_status, browser_site_target_environment, entity, identity_set
+browser_site_compatibility_mode = lazy_import('msgraph.generated.models.browser_site_compatibility_mode')
+browser_site_history = lazy_import('msgraph.generated.models.browser_site_history')
+browser_site_merge_type = lazy_import('msgraph.generated.models.browser_site_merge_type')
+browser_site_status = lazy_import('msgraph.generated.models.browser_site_status')
+browser_site_target_environment = lazy_import('msgraph.generated.models.browser_site_target_environment')
+entity = lazy_import('msgraph.generated.models.entity')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
 
 class BrowserSite(entity.Entity):
     """

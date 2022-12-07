@@ -1,8 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import eap_fast_configuration, eap_type, mac_o_s_certificate_profile_base, mac_o_s_trusted_root_certificate, mac_o_s_wi_fi_configuration, non_eap_authentication_method_for_eap_ttls_type, wi_fi_authentication_method
+eap_fast_configuration = lazy_import('msgraph.generated.models.eap_fast_configuration')
+eap_type = lazy_import('msgraph.generated.models.eap_type')
+mac_o_s_certificate_profile_base = lazy_import('msgraph.generated.models.mac_o_s_certificate_profile_base')
+mac_o_s_trusted_root_certificate = lazy_import('msgraph.generated.models.mac_o_s_trusted_root_certificate')
+mac_o_s_wi_fi_configuration = lazy_import('msgraph.generated.models.mac_o_s_wi_fi_configuration')
+non_eap_authentication_method_for_eap_ttls_type = lazy_import('msgraph.generated.models.non_eap_authentication_method_for_eap_ttls_type')
+wi_fi_authentication_method = lazy_import('msgraph.generated.models.wi_fi_authentication_method')
 
 class MacOSEnterpriseWiFiConfiguration(mac_o_s_wi_fi_configuration.MacOSWiFiConfiguration):
     @property

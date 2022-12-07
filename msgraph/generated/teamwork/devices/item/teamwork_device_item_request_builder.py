@@ -7,18 +7,19 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import teamwork_device
-from ....models.o_data_errors import o_data_error
-from .activity import activity_request_builder
-from .configuration import configuration_request_builder
-from .health import health_request_builder
-from .operations import operations_request_builder
-from .operations.item import teamwork_device_operation_item_request_builder
-from .restart import restart_request_builder
-from .run_diagnostics import run_diagnostics_request_builder
-from .update_software import update_software_request_builder
+teamwork_device = lazy_import('msgraph.generated.models.teamwork_device')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+activity_request_builder = lazy_import('msgraph.generated.teamwork.devices.item.activity.activity_request_builder')
+configuration_request_builder = lazy_import('msgraph.generated.teamwork.devices.item.configuration.configuration_request_builder')
+health_request_builder = lazy_import('msgraph.generated.teamwork.devices.item.health.health_request_builder')
+operations_request_builder = lazy_import('msgraph.generated.teamwork.devices.item.operations.operations_request_builder')
+teamwork_device_operation_item_request_builder = lazy_import('msgraph.generated.teamwork.devices.item.operations.item.teamwork_device_operation_item_request_builder')
+restart_request_builder = lazy_import('msgraph.generated.teamwork.devices.item.restart.restart_request_builder')
+run_diagnostics_request_builder = lazy_import('msgraph.generated.teamwork.devices.item.run_diagnostics.run_diagnostics_request_builder')
+update_software_request_builder = lazy_import('msgraph.generated.teamwork.devices.item.update_software.update_software_request_builder')
 
 class TeamworkDeviceItemRequestBuilder():
     """

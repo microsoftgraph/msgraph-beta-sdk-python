@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import directory_definition_discoverabilities, entity, object_definition
+directory_definition_discoverabilities = lazy_import('msgraph.generated.models.directory_definition_discoverabilities')
+entity = lazy_import('msgraph.generated.models.entity')
+object_definition = lazy_import('msgraph.generated.models.object_definition')
 
 class DirectoryDefinition(entity.Entity):
     """

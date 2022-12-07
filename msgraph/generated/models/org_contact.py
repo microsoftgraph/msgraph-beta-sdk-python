@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import directory_object, on_premises_provisioning_error, phone, physical_office_address
+directory_object = lazy_import('msgraph.generated.models.directory_object')
+on_premises_provisioning_error = lazy_import('msgraph.generated.models.on_premises_provisioning_error')
+phone = lazy_import('msgraph.generated.models.phone')
+physical_office_address = lazy_import('msgraph.generated.models.physical_office_address')
 
 class OrgContact(directory_object.DirectoryObject):
     """

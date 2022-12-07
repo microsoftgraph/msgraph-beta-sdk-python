@@ -1,8 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import case_operation, ediscovery_review_set, ediscovery_review_set_query, export_file_structure, export_options
+case_operation = lazy_import('msgraph.generated.models.security.case_operation')
+ediscovery_review_set = lazy_import('msgraph.generated.models.security.ediscovery_review_set')
+ediscovery_review_set_query = lazy_import('msgraph.generated.models.security.ediscovery_review_set_query')
+export_file_structure = lazy_import('msgraph.generated.models.security.export_file_structure')
+export_options = lazy_import('msgraph.generated.models.security.export_options')
 
 class EdiscoveryExportOperation(case_operation.CaseOperation):
     @property

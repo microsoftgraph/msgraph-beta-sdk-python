@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import connected_organization
-from .....models.o_data_errors import o_data_error
-from .external_sponsors import external_sponsors_request_builder
-from .external_sponsors.item import directory_object_item_request_builder
-from .internal_sponsors import internal_sponsors_request_builder
-from .internal_sponsors.item import directory_object_item_request_builder
+external_sponsors_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.connected_organizations.item.external_sponsors.external_sponsors_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.connected_organizations.item.external_sponsors.item.directory_object_item_request_builder')
+internal_sponsors_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.connected_organizations.item.internal_sponsors.internal_sponsors_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.connected_organizations.item.internal_sponsors.item.directory_object_item_request_builder')
+connected_organization = lazy_import('msgraph.generated.models.connected_organization')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ConnectedOrganizationItemRequestBuilder():
     """

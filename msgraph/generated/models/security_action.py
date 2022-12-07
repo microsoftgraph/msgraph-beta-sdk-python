@@ -1,9 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, key_value_pair, operation_status, result_info, security_action_state, security_vendor_information
+entity = lazy_import('msgraph.generated.models.entity')
+key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
+operation_status = lazy_import('msgraph.generated.models.operation_status')
+result_info = lazy_import('msgraph.generated.models.result_info')
+security_action_state = lazy_import('msgraph.generated.models.security_action_state')
+security_vendor_information = lazy_import('msgraph.generated.models.security_vendor_information')
 
 class SecurityAction(entity.Entity):
     """

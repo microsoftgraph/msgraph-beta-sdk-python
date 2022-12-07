@@ -1,13 +1,18 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, program_control
+entity = lazy_import('msgraph.generated.models.entity')
+program_control = lazy_import('msgraph.generated.models.program_control')
 
 class Program(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new Program and sets the default values.
+        Instantiates a new program and sets the default values.
         """
         super().__init__()
         # Controls associated with the program.

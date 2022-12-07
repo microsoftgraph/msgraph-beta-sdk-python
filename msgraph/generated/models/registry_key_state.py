@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import registry_hive, registry_operation, registry_value_type
+registry_hive = lazy_import('msgraph.generated.models.registry_hive')
+registry_operation = lazy_import('msgraph.generated.models.registry_operation')
+registry_value_type = lazy_import('msgraph.generated.models.registry_value_type')
 
 class RegistryKeyState(AdditionalDataHolder, Parsable):
     @property

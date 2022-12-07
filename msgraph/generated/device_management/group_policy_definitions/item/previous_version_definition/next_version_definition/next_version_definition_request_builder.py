@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import group_policy_definition
-from ......models.o_data_errors import o_data_error
-from .category import category_request_builder
-from .definition_file import definition_file_request_builder
-from .presentations import presentations_request_builder
-from .presentations.item import group_policy_presentation_item_request_builder
+category_request_builder = lazy_import('msgraph.generated.device_management.group_policy_definitions.item.previous_version_definition.next_version_definition.category.category_request_builder')
+definition_file_request_builder = lazy_import('msgraph.generated.device_management.group_policy_definitions.item.previous_version_definition.next_version_definition.definition_file.definition_file_request_builder')
+presentations_request_builder = lazy_import('msgraph.generated.device_management.group_policy_definitions.item.previous_version_definition.next_version_definition.presentations.presentations_request_builder')
+group_policy_presentation_item_request_builder = lazy_import('msgraph.generated.device_management.group_policy_definitions.item.previous_version_definition.next_version_definition.presentations.item.group_policy_presentation_item_request_builder')
+group_policy_definition = lazy_import('msgraph.generated.models.group_policy_definition')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class NextVersionDefinitionRequestBuilder():
     """

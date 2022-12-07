@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import change_tracked_entity, shift_availability
+change_tracked_entity = lazy_import('msgraph.generated.models.change_tracked_entity')
+shift_availability = lazy_import('msgraph.generated.models.shift_availability')
 
 class ShiftPreferences(change_tracked_entity.ChangeTrackedEntity):
     @property

@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import cloud_pc_management_service, cloud_pc_region_group, cloud_pc_supported_region_status, entity
+cloud_pc_management_service = lazy_import('msgraph.generated.models.cloud_pc_management_service')
+cloud_pc_region_group = lazy_import('msgraph.generated.models.cloud_pc_region_group')
+cloud_pc_supported_region_status = lazy_import('msgraph.generated.models.cloud_pc_supported_region_status')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class CloudPcSupportedRegion(entity.Entity):
     def __init__(self,) -> None:

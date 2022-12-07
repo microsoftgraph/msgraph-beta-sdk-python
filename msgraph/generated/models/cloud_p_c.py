@@ -1,9 +1,21 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import cloud_pc_connectivity_result, cloud_pc_disk_encryption_state, cloud_pc_login_result, cloud_pc_operating_system, cloud_pc_partner_agent_install_result, cloud_pc_provisioning_type, cloud_pc_remote_action_result, cloud_pc_service_plan_type, cloud_pc_status, cloud_pc_status_details, cloud_pc_user_account_type, entity
+cloud_pc_connectivity_result = lazy_import('msgraph.generated.models.cloud_pc_connectivity_result')
+cloud_pc_disk_encryption_state = lazy_import('msgraph.generated.models.cloud_pc_disk_encryption_state')
+cloud_pc_login_result = lazy_import('msgraph.generated.models.cloud_pc_login_result')
+cloud_pc_operating_system = lazy_import('msgraph.generated.models.cloud_pc_operating_system')
+cloud_pc_partner_agent_install_result = lazy_import('msgraph.generated.models.cloud_pc_partner_agent_install_result')
+cloud_pc_provisioning_type = lazy_import('msgraph.generated.models.cloud_pc_provisioning_type')
+cloud_pc_remote_action_result = lazy_import('msgraph.generated.models.cloud_pc_remote_action_result')
+cloud_pc_service_plan_type = lazy_import('msgraph.generated.models.cloud_pc_service_plan_type')
+cloud_pc_status = lazy_import('msgraph.generated.models.cloud_pc_status')
+cloud_pc_status_details = lazy_import('msgraph.generated.models.cloud_pc_status_details')
+cloud_pc_user_account_type = lazy_import('msgraph.generated.models.cloud_pc_user_account_type')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class CloudPC(entity.Entity):
     """

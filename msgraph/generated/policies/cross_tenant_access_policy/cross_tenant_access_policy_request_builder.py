@@ -7,13 +7,14 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import cross_tenant_access_policy
-from ...models.o_data_errors import o_data_error
-from .default import default_request_builder
-from .partners import partners_request_builder
-from .partners.item import cross_tenant_access_policy_configuration_partner_tenant_item_request_builder
+cross_tenant_access_policy = lazy_import('msgraph.generated.models.cross_tenant_access_policy')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+default_request_builder = lazy_import('msgraph.generated.policies.cross_tenant_access_policy.default.default_request_builder')
+partners_request_builder = lazy_import('msgraph.generated.policies.cross_tenant_access_policy.partners.partners_request_builder')
+cross_tenant_access_policy_configuration_partner_tenant_item_request_builder = lazy_import('msgraph.generated.policies.cross_tenant_access_policy.partners.item.cross_tenant_access_policy_configuration_partner_tenant_item_request_builder')
 
 class CrossTenantAccessPolicyRequestBuilder():
     """

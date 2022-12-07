@@ -1,9 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import external_activity
-from .. import public_error
+public_error = lazy_import('msgraph.generated.models.public_error')
+external_activity = lazy_import('msgraph.generated.models.external_connectors.external_activity')
 
 class ExternalActivityResult(external_activity.ExternalActivity):
     def __init__(self,) -> None:

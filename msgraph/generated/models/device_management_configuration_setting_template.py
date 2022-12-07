@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_management_configuration_setting_definition, device_management_configuration_setting_instance_template, entity
+device_management_configuration_setting_definition = lazy_import('msgraph.generated.models.device_management_configuration_setting_definition')
+device_management_configuration_setting_instance_template = lazy_import('msgraph.generated.models.device_management_configuration_setting_instance_template')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class DeviceManagementConfigurationSettingTemplate(entity.Entity):
     """

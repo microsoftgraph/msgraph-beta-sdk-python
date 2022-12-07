@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import delivery_optimization_max_cache_size
+delivery_optimization_max_cache_size = lazy_import('msgraph.generated.models.delivery_optimization_max_cache_size')
 
 class DeliveryOptimizationMaxCacheSizePercentage(delivery_optimization_max_cache_size.DeliveryOptimizationMaxCacheSize):
     def __init__(self,) -> None:

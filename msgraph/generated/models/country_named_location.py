@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import country_lookup_method_type, named_location
+country_lookup_method_type = lazy_import('msgraph.generated.models.country_lookup_method_type')
+named_location = lazy_import('msgraph.generated.models.named_location')
 
 class CountryNamedLocation(named_location.NamedLocation):
     def __init__(self,) -> None:

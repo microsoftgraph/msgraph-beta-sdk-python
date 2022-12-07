@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import business_scenario_task, entity, planner_plan_configuration, planner_task_configuration
+business_scenario_task = lazy_import('msgraph.generated.models.business_scenario_task')
+entity = lazy_import('msgraph.generated.models.entity')
+planner_plan_configuration = lazy_import('msgraph.generated.models.planner_plan_configuration')
+planner_task_configuration = lazy_import('msgraph.generated.models.planner_task_configuration')
 
 class BusinessScenarioPlanner(entity.Entity):
     def __init__(self,) -> None:

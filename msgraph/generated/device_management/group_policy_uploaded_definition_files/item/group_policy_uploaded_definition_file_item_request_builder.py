@@ -7,17 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import group_policy_uploaded_definition_file
-from ....models.o_data_errors import o_data_error
-from .add_language_files import add_language_files_request_builder
-from .group_policy_operations import group_policy_operations_request_builder
-from .group_policy_operations.item import group_policy_operation_item_request_builder
-from .remove import remove_request_builder
-from .remove_language_files import remove_language_files_request_builder
-from .update_language_files import update_language_files_request_builder
-from .upload_new_version import upload_new_version_request_builder
+add_language_files_request_builder = lazy_import('msgraph.generated.device_management.group_policy_uploaded_definition_files.item.add_language_files.add_language_files_request_builder')
+group_policy_operations_request_builder = lazy_import('msgraph.generated.device_management.group_policy_uploaded_definition_files.item.group_policy_operations.group_policy_operations_request_builder')
+group_policy_operation_item_request_builder = lazy_import('msgraph.generated.device_management.group_policy_uploaded_definition_files.item.group_policy_operations.item.group_policy_operation_item_request_builder')
+remove_request_builder = lazy_import('msgraph.generated.device_management.group_policy_uploaded_definition_files.item.remove.remove_request_builder')
+remove_language_files_request_builder = lazy_import('msgraph.generated.device_management.group_policy_uploaded_definition_files.item.remove_language_files.remove_language_files_request_builder')
+update_language_files_request_builder = lazy_import('msgraph.generated.device_management.group_policy_uploaded_definition_files.item.update_language_files.update_language_files_request_builder')
+upload_new_version_request_builder = lazy_import('msgraph.generated.device_management.group_policy_uploaded_definition_files.item.upload_new_version.upload_new_version_request_builder')
+group_policy_uploaded_definition_file = lazy_import('msgraph.generated.models.group_policy_uploaded_definition_file')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class GroupPolicyUploadedDefinitionFileItemRequestBuilder():
     """

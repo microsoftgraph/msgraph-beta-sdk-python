@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import time
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_configuration, miracast_channel, welcome_screen_meeting_information
+device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+miracast_channel = lazy_import('msgraph.generated.models.miracast_channel')
+welcome_screen_meeting_information = lazy_import('msgraph.generated.models.welcome_screen_meeting_information')
 
 class Windows10TeamGeneralConfiguration(device_configuration.DeviceConfiguration):
     @property

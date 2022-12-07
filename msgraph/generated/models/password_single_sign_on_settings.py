@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import password_single_sign_on_field
+password_single_sign_on_field = lazy_import('msgraph.generated.models.password_single_sign_on_field')
 
 class PasswordSingleSignOnSettings(AdditionalDataHolder, Parsable):
     @property

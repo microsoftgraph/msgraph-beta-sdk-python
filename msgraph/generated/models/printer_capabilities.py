@@ -1,8 +1,22 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import integer_range, print_color_configuration, print_color_mode, print_duplex_configuration, print_duplex_mode, print_finishing, print_media_type, print_multipage_layout, print_orientation, print_presentation_direction, print_quality, print_scaling, printer_feed_direction, printer_feed_orientation
+integer_range = lazy_import('msgraph.generated.models.integer_range')
+print_color_configuration = lazy_import('msgraph.generated.models.print_color_configuration')
+print_color_mode = lazy_import('msgraph.generated.models.print_color_mode')
+print_duplex_configuration = lazy_import('msgraph.generated.models.print_duplex_configuration')
+print_duplex_mode = lazy_import('msgraph.generated.models.print_duplex_mode')
+print_finishing = lazy_import('msgraph.generated.models.print_finishing')
+print_media_type = lazy_import('msgraph.generated.models.print_media_type')
+print_multipage_layout = lazy_import('msgraph.generated.models.print_multipage_layout')
+print_orientation = lazy_import('msgraph.generated.models.print_orientation')
+print_presentation_direction = lazy_import('msgraph.generated.models.print_presentation_direction')
+print_quality = lazy_import('msgraph.generated.models.print_quality')
+print_scaling = lazy_import('msgraph.generated.models.print_scaling')
+printer_feed_direction = lazy_import('msgraph.generated.models.printer_feed_direction')
+printer_feed_orientation = lazy_import('msgraph.generated.models.printer_feed_orientation')
 
 class PrinterCapabilities(AdditionalDataHolder, Parsable):
     @property

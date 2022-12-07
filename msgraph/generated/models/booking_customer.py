@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import booking_person, phone, physical_address
+booking_person = lazy_import('msgraph.generated.models.booking_person')
+phone = lazy_import('msgraph.generated.models.phone')
+physical_address = lazy_import('msgraph.generated.models.physical_address')
 
 class BookingCustomer(booking_person.BookingPerson):
     @property

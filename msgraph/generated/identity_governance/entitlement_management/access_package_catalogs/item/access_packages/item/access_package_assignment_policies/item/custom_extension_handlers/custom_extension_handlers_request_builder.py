@@ -7,11 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..........models import custom_extension_handler, custom_extension_handler_collection_response
-from ..........models.o_data_errors import o_data_error
-from .count import count_request_builder
+count_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_packages.item.access_package_assignment_policies.item.custom_extension_handlers.count.count_request_builder')
+custom_extension_handler = lazy_import('msgraph.generated.models.custom_extension_handler')
+custom_extension_handler_collection_response = lazy_import('msgraph.generated.models.custom_extension_handler_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class CustomExtensionHandlersRequestBuilder():
     """

@@ -1,13 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import base_collection_pagination_count_response, business_flow_template
+base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
+business_flow_template = lazy_import('msgraph.generated.models.business_flow_template')
 
 class BusinessFlowTemplateCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the collection of businessFlowTemplate entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new BusinessFlowTemplateCollectionResponse and sets the default values.

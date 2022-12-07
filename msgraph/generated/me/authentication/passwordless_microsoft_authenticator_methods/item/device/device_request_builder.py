@@ -7,29 +7,30 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import device
-from ......models.o_data_errors import o_data_error
-from .check_member_groups import check_member_groups_request_builder
-from .check_member_objects import check_member_objects_request_builder
-from .commands import commands_request_builder
-from .commands.item import command_item_request_builder
-from .extensions import extensions_request_builder
-from .extensions.item import extension_item_request_builder
-from .get_member_groups import get_member_groups_request_builder
-from .get_member_objects import get_member_objects_request_builder
-from .member_of import member_of_request_builder
-from .member_of.item import directory_object_item_request_builder
-from .registered_owners import registered_owners_request_builder
-from .registered_owners.item import directory_object_item_request_builder
-from .registered_users import registered_users_request_builder
-from .registered_users.item import directory_object_item_request_builder
-from .restore import restore_request_builder
-from .transitive_member_of import transitive_member_of_request_builder
-from .transitive_member_of.item import directory_object_item_request_builder
-from .usage_rights import usage_rights_request_builder
-from .usage_rights.item import usage_right_item_request_builder
+check_member_groups_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.check_member_groups.check_member_groups_request_builder')
+check_member_objects_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.check_member_objects.check_member_objects_request_builder')
+commands_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.commands.commands_request_builder')
+command_item_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.commands.item.command_item_request_builder')
+extensions_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.extensions.extensions_request_builder')
+extension_item_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.extensions.item.extension_item_request_builder')
+get_member_groups_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.get_member_groups.get_member_groups_request_builder')
+get_member_objects_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.get_member_objects.get_member_objects_request_builder')
+member_of_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.member_of.member_of_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.member_of.item.directory_object_item_request_builder')
+registered_owners_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.registered_owners.registered_owners_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.registered_owners.item.directory_object_item_request_builder')
+registered_users_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.registered_users.registered_users_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.registered_users.item.directory_object_item_request_builder')
+restore_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.restore.restore_request_builder')
+transitive_member_of_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.transitive_member_of.transitive_member_of_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.transitive_member_of.item.directory_object_item_request_builder')
+usage_rights_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.usage_rights.usage_rights_request_builder')
+usage_right_item_request_builder = lazy_import('msgraph.generated.me.authentication.passwordless_microsoft_authenticator_methods.item.device.usage_rights.item.usage_right_item_request_builder')
+device = lazy_import('msgraph.generated.models.device')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class DeviceRequestBuilder():
     """

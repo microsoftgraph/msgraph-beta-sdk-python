@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import information_protection_action
+information_protection_action = lazy_import('msgraph.generated.models.security.information_protection_action')
 
 class JustifyAction(information_protection_action.InformationProtectionAction):
     def __init__(self,) -> None:

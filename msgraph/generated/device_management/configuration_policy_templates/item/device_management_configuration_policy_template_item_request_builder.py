@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import device_management_configuration_policy_template
-from ....models.o_data_errors import o_data_error
-from .setting_templates import setting_templates_request_builder
-from .setting_templates.item import device_management_configuration_setting_template_item_request_builder
+setting_templates_request_builder = lazy_import('msgraph.generated.device_management.configuration_policy_templates.item.setting_templates.setting_templates_request_builder')
+device_management_configuration_setting_template_item_request_builder = lazy_import('msgraph.generated.device_management.configuration_policy_templates.item.setting_templates.item.device_management_configuration_setting_template_item_request_builder')
+device_management_configuration_policy_template = lazy_import('msgraph.generated.models.device_management_configuration_policy_template')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class DeviceManagementConfigurationPolicyTemplateItemRequestBuilder():
     """

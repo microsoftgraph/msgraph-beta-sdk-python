@@ -1,9 +1,16 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import access_package, access_package_assignment_policy, access_package_assignment_request, access_package_assignment_resource_role, access_package_subject, entity, request_schedule
+access_package = lazy_import('msgraph.generated.models.access_package')
+access_package_assignment_policy = lazy_import('msgraph.generated.models.access_package_assignment_policy')
+access_package_assignment_request = lazy_import('msgraph.generated.models.access_package_assignment_request')
+access_package_assignment_resource_role = lazy_import('msgraph.generated.models.access_package_assignment_resource_role')
+access_package_subject = lazy_import('msgraph.generated.models.access_package_subject')
+entity = lazy_import('msgraph.generated.models.entity')
+request_schedule = lazy_import('msgraph.generated.models.request_schedule')
 
 class AccessPackageAssignment(entity.Entity):
     @property

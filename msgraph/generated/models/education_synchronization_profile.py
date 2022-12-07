@@ -1,9 +1,16 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import education_identity_synchronization_configuration, education_synchronization_data_provider, education_synchronization_error, education_synchronization_license_assignment, education_synchronization_profile_state, education_synchronization_profile_status, entity
+education_identity_synchronization_configuration = lazy_import('msgraph.generated.models.education_identity_synchronization_configuration')
+education_synchronization_data_provider = lazy_import('msgraph.generated.models.education_synchronization_data_provider')
+education_synchronization_error = lazy_import('msgraph.generated.models.education_synchronization_error')
+education_synchronization_license_assignment = lazy_import('msgraph.generated.models.education_synchronization_license_assignment')
+education_synchronization_profile_state = lazy_import('msgraph.generated.models.education_synchronization_profile_state')
+education_synchronization_profile_status = lazy_import('msgraph.generated.models.education_synchronization_profile_status')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class EducationSynchronizationProfile(entity.Entity):
     def __init__(self,) -> None:

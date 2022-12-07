@@ -1,13 +1,31 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import assigned_license, assigned_plan, education_assignment, education_class, education_external_source, education_on_premises_info, education_rubric, education_school, education_student, education_teacher, education_user_role, entity, identity_set, password_profile, physical_address, provisioned_plan, related_contact, user
+assigned_license = lazy_import('msgraph.generated.models.assigned_license')
+assigned_plan = lazy_import('msgraph.generated.models.assigned_plan')
+education_assignment = lazy_import('msgraph.generated.models.education_assignment')
+education_class = lazy_import('msgraph.generated.models.education_class')
+education_external_source = lazy_import('msgraph.generated.models.education_external_source')
+education_on_premises_info = lazy_import('msgraph.generated.models.education_on_premises_info')
+education_rubric = lazy_import('msgraph.generated.models.education_rubric')
+education_school = lazy_import('msgraph.generated.models.education_school')
+education_student = lazy_import('msgraph.generated.models.education_student')
+education_teacher = lazy_import('msgraph.generated.models.education_teacher')
+education_user_role = lazy_import('msgraph.generated.models.education_user_role')
+entity = lazy_import('msgraph.generated.models.entity')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+password_profile = lazy_import('msgraph.generated.models.password_profile')
+physical_address = lazy_import('msgraph.generated.models.physical_address')
+provisioned_plan = lazy_import('msgraph.generated.models.provisioned_plan')
+related_contact = lazy_import('msgraph.generated.models.related_contact')
+user = lazy_import('msgraph.generated.models.user')
 
 class EducationUser(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def account_enabled(self,) -> Optional[bool]:

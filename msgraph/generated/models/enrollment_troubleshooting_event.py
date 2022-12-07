@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_enrollment_failure_reason, device_enrollment_type, device_management_troubleshooting_event
+device_enrollment_failure_reason = lazy_import('msgraph.generated.models.device_enrollment_failure_reason')
+device_enrollment_type = lazy_import('msgraph.generated.models.device_enrollment_type')
+device_management_troubleshooting_event = lazy_import('msgraph.generated.models.device_management_troubleshooting_event')
 
 class EnrollmentTroubleshootingEvent(device_management_troubleshooting_event.DeviceManagementTroubleshootingEvent):
     def __init__(self,) -> None:

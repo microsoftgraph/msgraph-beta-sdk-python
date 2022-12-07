@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import windows_kiosk_app_configuration, windows_kiosk_win32_app
+windows_kiosk_app_configuration = lazy_import('msgraph.generated.models.windows_kiosk_app_configuration')
+windows_kiosk_win32_app = lazy_import('msgraph.generated.models.windows_kiosk_win32_app')
 
 class WindowsKioskSingleWin32App(windows_kiosk_app_configuration.WindowsKioskAppConfiguration):
     def __init__(self,) -> None:

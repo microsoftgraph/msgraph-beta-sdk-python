@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import print_connector, print_task_trigger, printer_base, printer_share
+print_connector = lazy_import('msgraph.generated.models.print_connector')
+print_task_trigger = lazy_import('msgraph.generated.models.print_task_trigger')
+printer_base = lazy_import('msgraph.generated.models.printer_base')
+printer_share = lazy_import('msgraph.generated.models.printer_share')
 
 class Printer(printer_base.PrinterBase):
     @property

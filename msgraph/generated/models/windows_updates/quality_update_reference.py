@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import quality_update_classification, windows_update_reference
+quality_update_classification = lazy_import('msgraph.generated.models.windows_updates.quality_update_classification')
+windows_update_reference = lazy_import('msgraph.generated.models.windows_updates.windows_update_reference')
 
 class QualityUpdateReference(windows_update_reference.WindowsUpdateReference):
     @property

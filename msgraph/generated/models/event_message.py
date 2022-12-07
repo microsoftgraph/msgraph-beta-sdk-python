@@ -1,8 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import date_time_time_zone, event, event_type, location, meeting_message_type, message, patterned_recurrence
+date_time_time_zone = lazy_import('msgraph.generated.models.date_time_time_zone')
+event = lazy_import('msgraph.generated.models.event')
+event_type = lazy_import('msgraph.generated.models.event_type')
+location = lazy_import('msgraph.generated.models.location')
+meeting_message_type = lazy_import('msgraph.generated.models.meeting_message_type')
+message = lazy_import('msgraph.generated.models.message')
+patterned_recurrence = lazy_import('msgraph.generated.models.patterned_recurrence')
 
 class EventMessage(message.Message):
     def __init__(self,) -> None:

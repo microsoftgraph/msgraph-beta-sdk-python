@@ -7,18 +7,19 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..models import audit_log_root
-from ..models.o_data_errors import o_data_error
-from .directory_audits import directory_audits_request_builder
-from .directory_audits.item import directory_audit_item_request_builder
-from .directory_provisioning import directory_provisioning_request_builder
-from .directory_provisioning.item import provisioning_object_summary_item_request_builder
-from .provisioning import provisioning_request_builder
-from .provisioning.item import provisioning_object_summary_item_request_builder
-from .sign_ins import sign_ins_request_builder
-from .sign_ins.item import sign_in_item_request_builder
+directory_audits_request_builder = lazy_import('msgraph.generated.audit_logs.directory_audits.directory_audits_request_builder')
+directory_audit_item_request_builder = lazy_import('msgraph.generated.audit_logs.directory_audits.item.directory_audit_item_request_builder')
+directory_provisioning_request_builder = lazy_import('msgraph.generated.audit_logs.directory_provisioning.directory_provisioning_request_builder')
+provisioning_object_summary_item_request_builder = lazy_import('msgraph.generated.audit_logs.directory_provisioning.item.provisioning_object_summary_item_request_builder')
+provisioning_request_builder = lazy_import('msgraph.generated.audit_logs.provisioning.provisioning_request_builder')
+provisioning_object_summary_item_request_builder = lazy_import('msgraph.generated.audit_logs.provisioning.item.provisioning_object_summary_item_request_builder')
+sign_ins_request_builder = lazy_import('msgraph.generated.audit_logs.sign_ins.sign_ins_request_builder')
+sign_in_item_request_builder = lazy_import('msgraph.generated.audit_logs.sign_ins.item.sign_in_item_request_builder')
+audit_log_root = lazy_import('msgraph.generated.models.audit_log_root')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class AuditLogsRequestBuilder():
     """

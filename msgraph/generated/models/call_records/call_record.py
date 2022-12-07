@@ -1,10 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import call_type, modality, session
-from .. import entity, identity_set
+entity = lazy_import('msgraph.generated.models.entity')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+call_type = lazy_import('msgraph.generated.models.call_records.call_type')
+modality = lazy_import('msgraph.generated.models.call_records.modality')
+session = lazy_import('msgraph.generated.models.call_records.session')
 
 class CallRecord(entity.Entity):
     """

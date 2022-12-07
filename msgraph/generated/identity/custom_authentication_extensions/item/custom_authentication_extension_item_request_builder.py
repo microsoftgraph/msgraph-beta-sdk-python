@@ -7,11 +7,12 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import custom_authentication_extension
-from ....models.o_data_errors import o_data_error
-from .validate_authentication_configuration import validate_authentication_configuration_request_builder
+validate_authentication_configuration_request_builder = lazy_import('msgraph.generated.identity.custom_authentication_extensions.item.validate_authentication_configuration.validate_authentication_configuration_request_builder')
+custom_authentication_extension = lazy_import('msgraph.generated.models.custom_authentication_extension')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class CustomAuthenticationExtensionItemRequestBuilder():
     """

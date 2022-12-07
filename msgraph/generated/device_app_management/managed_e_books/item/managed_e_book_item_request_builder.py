@@ -7,20 +7,21 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import managed_e_book
-from ....models.o_data_errors import o_data_error
-from .assign import assign_request_builder
-from .assignments import assignments_request_builder
-from .assignments.item import managed_e_book_assignment_item_request_builder
-from .categories import categories_request_builder
-from .categories.item import managed_e_book_category_item_request_builder
-from .device_states import device_states_request_builder
-from .device_states.item import device_install_state_item_request_builder
-from .install_summary import install_summary_request_builder
-from .user_state_summary import user_state_summary_request_builder
-from .user_state_summary.item import user_install_state_summary_item_request_builder
+assign_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.assign.assign_request_builder')
+assignments_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.assignments.assignments_request_builder')
+managed_e_book_assignment_item_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.assignments.item.managed_e_book_assignment_item_request_builder')
+categories_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.categories.categories_request_builder')
+managed_e_book_category_item_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.categories.item.managed_e_book_category_item_request_builder')
+device_states_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.device_states.device_states_request_builder')
+device_install_state_item_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.device_states.item.device_install_state_item_request_builder')
+install_summary_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.install_summary.install_summary_request_builder')
+user_state_summary_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.user_state_summary.user_state_summary_request_builder')
+user_install_state_summary_item_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.user_state_summary.item.user_install_state_summary_item_request_builder')
+managed_e_book = lazy_import('msgraph.generated.models.managed_e_book')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ManagedEBookItemRequestBuilder():
     """

@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import ios_single_sign_on_extension, key_typed_value_pair
+ios_single_sign_on_extension = lazy_import('msgraph.generated.models.ios_single_sign_on_extension')
+key_typed_value_pair = lazy_import('msgraph.generated.models.key_typed_value_pair')
 
 class IosCredentialSingleSignOnExtension(ios_single_sign_on_extension.IosSingleSignOnExtension):
     @property

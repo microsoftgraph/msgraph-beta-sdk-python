@@ -1,8 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import bitlocker, data_loss_prevention_policy, entity, information_protection_policy, sensitivity_label, sensitivity_policy_settings, threat_assessment_request
+bitlocker = lazy_import('msgraph.generated.models.bitlocker')
+data_loss_prevention_policy = lazy_import('msgraph.generated.models.data_loss_prevention_policy')
+entity = lazy_import('msgraph.generated.models.entity')
+information_protection_policy = lazy_import('msgraph.generated.models.information_protection_policy')
+sensitivity_label = lazy_import('msgraph.generated.models.sensitivity_label')
+sensitivity_policy_settings = lazy_import('msgraph.generated.models.sensitivity_policy_settings')
+threat_assessment_request = lazy_import('msgraph.generated.models.threat_assessment_request')
 
 class InformationProtection(entity.Entity):
     @property

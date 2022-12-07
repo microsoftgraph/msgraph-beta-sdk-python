@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import role_definition
+role_definition = lazy_import('msgraph.generated.models.role_definition')
 
 class DeviceAndAppManagementRoleDefinition(role_definition.RoleDefinition):
     def __init__(self,) -> None:

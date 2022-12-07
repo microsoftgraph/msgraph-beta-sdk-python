@@ -7,24 +7,25 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import content_type
-from .....models.o_data_errors import o_data_error
-from .associate_with_hub_sites import associate_with_hub_sites_request_builder
-from .base import base_request_builder
-from .base_types import base_types_request_builder
-from .base_types.item import content_type_item_request_builder
-from .column_links import column_links_request_builder
-from .column_links.item import column_link_item_request_builder
-from .column_positions import column_positions_request_builder
-from .column_positions.item import column_definition_item_request_builder
-from .columns import columns_request_builder
-from .columns.item import column_definition_item_request_builder
-from .copy_to_default_content_location import copy_to_default_content_location_request_builder
-from .is_published import is_published_request_builder
-from .publish import publish_request_builder
-from .unpublish import unpublish_request_builder
+associate_with_hub_sites_request_builder = lazy_import('msgraph.generated.drive.list.content_types.item.associate_with_hub_sites.associate_with_hub_sites_request_builder')
+base_request_builder = lazy_import('msgraph.generated.drive.list.content_types.item.base.base_request_builder')
+base_types_request_builder = lazy_import('msgraph.generated.drive.list.content_types.item.base_types.base_types_request_builder')
+content_type_item_request_builder = lazy_import('msgraph.generated.drive.list.content_types.item.base_types.item.content_type_item_request_builder')
+column_links_request_builder = lazy_import('msgraph.generated.drive.list.content_types.item.column_links.column_links_request_builder')
+column_link_item_request_builder = lazy_import('msgraph.generated.drive.list.content_types.item.column_links.item.column_link_item_request_builder')
+column_positions_request_builder = lazy_import('msgraph.generated.drive.list.content_types.item.column_positions.column_positions_request_builder')
+column_definition_item_request_builder = lazy_import('msgraph.generated.drive.list.content_types.item.column_positions.item.column_definition_item_request_builder')
+columns_request_builder = lazy_import('msgraph.generated.drive.list.content_types.item.columns.columns_request_builder')
+column_definition_item_request_builder = lazy_import('msgraph.generated.drive.list.content_types.item.columns.item.column_definition_item_request_builder')
+copy_to_default_content_location_request_builder = lazy_import('msgraph.generated.drive.list.content_types.item.copy_to_default_content_location.copy_to_default_content_location_request_builder')
+is_published_request_builder = lazy_import('msgraph.generated.drive.list.content_types.item.is_published.is_published_request_builder')
+publish_request_builder = lazy_import('msgraph.generated.drive.list.content_types.item.publish.publish_request_builder')
+unpublish_request_builder = lazy_import('msgraph.generated.drive.list.content_types.item.unpublish.unpublish_request_builder')
+content_type = lazy_import('msgraph.generated.models.content_type')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ContentTypeItemRequestBuilder():
     """

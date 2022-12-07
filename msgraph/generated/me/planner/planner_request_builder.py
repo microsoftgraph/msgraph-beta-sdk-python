@@ -7,22 +7,23 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import planner_user
-from ...models.o_data_errors import o_data_error
-from .all import all_request_builder
-from .all.item import planner_delta_item_request_builder
-from .favorite_plans import favorite_plans_request_builder
-from .favorite_plans.item import planner_plan_item_request_builder
-from .plans import plans_request_builder
-from .plans.item import planner_plan_item_request_builder
-from .recent_plans import recent_plans_request_builder
-from .recent_plans.item import planner_plan_item_request_builder
-from .roster_plans import roster_plans_request_builder
-from .roster_plans.item import planner_plan_item_request_builder
-from .tasks import tasks_request_builder
-from .tasks.item import planner_task_item_request_builder
+all_request_builder = lazy_import('msgraph.generated.me.planner.all.all_request_builder')
+planner_delta_item_request_builder = lazy_import('msgraph.generated.me.planner.all.item.planner_delta_item_request_builder')
+favorite_plans_request_builder = lazy_import('msgraph.generated.me.planner.favorite_plans.favorite_plans_request_builder')
+planner_plan_item_request_builder = lazy_import('msgraph.generated.me.planner.favorite_plans.item.planner_plan_item_request_builder')
+plans_request_builder = lazy_import('msgraph.generated.me.planner.plans.plans_request_builder')
+planner_plan_item_request_builder = lazy_import('msgraph.generated.me.planner.plans.item.planner_plan_item_request_builder')
+recent_plans_request_builder = lazy_import('msgraph.generated.me.planner.recent_plans.recent_plans_request_builder')
+planner_plan_item_request_builder = lazy_import('msgraph.generated.me.planner.recent_plans.item.planner_plan_item_request_builder')
+roster_plans_request_builder = lazy_import('msgraph.generated.me.planner.roster_plans.roster_plans_request_builder')
+planner_plan_item_request_builder = lazy_import('msgraph.generated.me.planner.roster_plans.item.planner_plan_item_request_builder')
+tasks_request_builder = lazy_import('msgraph.generated.me.planner.tasks.tasks_request_builder')
+planner_task_item_request_builder = lazy_import('msgraph.generated.me.planner.tasks.item.planner_task_item_request_builder')
+planner_user = lazy_import('msgraph.generated.models.planner_user')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class PlannerRequestBuilder():
     """

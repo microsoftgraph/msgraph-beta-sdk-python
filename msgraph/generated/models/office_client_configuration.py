@@ -1,10 +1,17 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, office_client_checkin_status, office_client_configuration_assignment, office_user_checkin_summary
+entity = lazy_import('msgraph.generated.models.entity')
+office_client_checkin_status = lazy_import('msgraph.generated.models.office_client_checkin_status')
+office_client_configuration_assignment = lazy_import('msgraph.generated.models.office_client_configuration_assignment')
+office_user_checkin_summary = lazy_import('msgraph.generated.models.office_user_checkin_summary')
 
 class OfficeClientConfiguration(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def assignments(self,) -> Optional[List[office_client_configuration_assignment.OfficeClientConfigurationAssignment]]:
         """
@@ -41,7 +48,7 @@ class OfficeClientConfiguration(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new OfficeClientConfiguration and sets the default values.
+        Instantiates a new officeClientConfiguration and sets the default values.
         """
         super().__init__()
         # The list of group assignments for the policy.

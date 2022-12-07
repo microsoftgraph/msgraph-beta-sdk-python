@@ -1,14 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, group_policy_definition, group_policy_definition_file, ingestion_source
+entity = lazy_import('msgraph.generated.models.entity')
+group_policy_definition = lazy_import('msgraph.generated.models.group_policy_definition')
+group_policy_definition_file = lazy_import('msgraph.generated.models.group_policy_definition_file')
+ingestion_source = lazy_import('msgraph.generated.models.ingestion_source')
 
 class GroupPolicyCategory(entity.Entity):
-    """
-    The category entity stores the category of a group policy definition
-    """
     @property
     def children(self,) -> Optional[List[GroupPolicyCategory]]:
         """

@@ -1,13 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import management_action_deployment_status
-from .. import entity
+entity = lazy_import('msgraph.generated.models.entity')
+management_action_deployment_status = lazy_import('msgraph.generated.models.managed_tenants.management_action_deployment_status')
 
 class ManagementActionTenantDeploymentStatus(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     def __init__(self,) -> None:
         """

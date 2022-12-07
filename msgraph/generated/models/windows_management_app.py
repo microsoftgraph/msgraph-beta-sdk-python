@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, managed_installer_status, windows_management_app_health_state
+entity = lazy_import('msgraph.generated.models.entity')
+managed_installer_status = lazy_import('msgraph.generated.models.managed_installer_status')
+windows_management_app_health_state = lazy_import('msgraph.generated.models.windows_management_app_health_state')
 
 class WindowsManagementApp(entity.Entity):
     @property

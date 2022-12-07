@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import cross_tenant_access_policy_b2_b_setting, cross_tenant_access_policy_inbound_trust, cross_tenant_access_policy_tenant_restrictions
+cross_tenant_access_policy_b2_b_setting = lazy_import('msgraph.generated.models.cross_tenant_access_policy_b2_b_setting')
+cross_tenant_access_policy_inbound_trust = lazy_import('msgraph.generated.models.cross_tenant_access_policy_inbound_trust')
+cross_tenant_access_policy_tenant_restrictions = lazy_import('msgraph.generated.models.cross_tenant_access_policy_tenant_restrictions')
 
 class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, Parsable):
     @property

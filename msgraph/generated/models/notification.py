@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, payload_types, priority, target_policy_endpoints
+entity = lazy_import('msgraph.generated.models.entity')
+payload_types = lazy_import('msgraph.generated.models.payload_types')
+priority = lazy_import('msgraph.generated.models.priority')
+target_policy_endpoints = lazy_import('msgraph.generated.models.target_policy_endpoints')
 
 class Notification(entity.Entity):
     """

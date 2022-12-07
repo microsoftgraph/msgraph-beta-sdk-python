@@ -7,16 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .......models.o_data_errors import o_data_error
-from .......models.security import ediscovery_review_set
-from .add_to_review_set import add_to_review_set_request_builder
-from .export import export_request_builder
-from .files import files_request_builder
-from .files.item import ediscovery_file_item_request_builder
-from .queries import queries_request_builder
-from .queries.item import ediscovery_review_set_query_item_request_builder
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+ediscovery_review_set = lazy_import('msgraph.generated.models.security.ediscovery_review_set')
+add_to_review_set_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.add_to_review_set.add_to_review_set_request_builder')
+export_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.export.export_request_builder')
+files_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.files.files_request_builder')
+ediscovery_file_item_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.files.item.ediscovery_file_item_request_builder')
+queries_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.queries.queries_request_builder')
+ediscovery_review_set_query_item_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.queries.item.ediscovery_review_set_query_item_request_builder')
 
 class EdiscoveryReviewSetItemRequestBuilder():
     """

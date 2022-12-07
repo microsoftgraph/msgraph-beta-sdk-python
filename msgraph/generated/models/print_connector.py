@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_health, entity, printer_location
+device_health = lazy_import('msgraph.generated.models.device_health')
+entity = lazy_import('msgraph.generated.models.entity')
+printer_location = lazy_import('msgraph.generated.models.printer_location')
 
 class PrintConnector(entity.Entity):
     """

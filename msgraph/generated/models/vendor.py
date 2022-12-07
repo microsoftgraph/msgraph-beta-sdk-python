@@ -1,11 +1,20 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import currency, entity, payment_method, payment_term, picture, postal_address_type
+currency = lazy_import('msgraph.generated.models.currency')
+entity = lazy_import('msgraph.generated.models.entity')
+payment_method = lazy_import('msgraph.generated.models.payment_method')
+payment_term = lazy_import('msgraph.generated.models.payment_term')
+picture = lazy_import('msgraph.generated.models.picture')
+postal_address_type = lazy_import('msgraph.generated.models.postal_address_type')
 
 class Vendor(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def address(self,) -> Optional[postal_address_type.PostalAddressType]:
         """

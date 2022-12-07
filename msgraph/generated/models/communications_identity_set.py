@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import endpoint_type, identity, identity_set
+endpoint_type = lazy_import('msgraph.generated.models.endpoint_type')
+identity = lazy_import('msgraph.generated.models.identity')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
 
 class CommunicationsIdentitySet(identity_set.IdentitySet):
     @property

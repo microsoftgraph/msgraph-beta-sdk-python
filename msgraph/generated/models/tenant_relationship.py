@@ -1,9 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import delegated_admin_customer, delegated_admin_relationship, entity
-from .managed_tenants import managed_tenant
+delegated_admin_customer = lazy_import('msgraph.generated.models.delegated_admin_customer')
+delegated_admin_relationship = lazy_import('msgraph.generated.models.delegated_admin_relationship')
+entity = lazy_import('msgraph.generated.models.entity')
+managed_tenant = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant')
 
 class TenantRelationship(entity.Entity):
     def __init__(self,) -> None:

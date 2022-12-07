@@ -1,14 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import identity
-from .. import base_collection_pagination_count_response
+base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
+identity = lazy_import('msgraph.generated.models.external_connectors.identity')
 
 class IdentityCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the members property of the microsoft.graph.externalConnectors.externalGroup entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new IdentityCollectionResponse and sets the default values.

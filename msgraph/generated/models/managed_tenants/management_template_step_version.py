@@ -1,12 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import management_template_step, management_template_step_deployment
-from .. import entity
+entity = lazy_import('msgraph.generated.models.entity')
+management_template_step = lazy_import('msgraph.generated.models.managed_tenants.management_template_step')
+management_template_step_deployment = lazy_import('msgraph.generated.models.managed_tenants.management_template_step_deployment')
 
 class ManagementTemplateStepVersion(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def accepted_for(self,) -> Optional[management_template_step.ManagementTemplateStep]:
         """

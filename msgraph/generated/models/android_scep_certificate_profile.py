@@ -1,8 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import android_certificate_profile_base, hash_algorithms, key_size, key_usages, managed_device_certificate_state
+android_certificate_profile_base = lazy_import('msgraph.generated.models.android_certificate_profile_base')
+hash_algorithms = lazy_import('msgraph.generated.models.hash_algorithms')
+key_size = lazy_import('msgraph.generated.models.key_size')
+key_usages = lazy_import('msgraph.generated.models.key_usages')
+managed_device_certificate_state = lazy_import('msgraph.generated.models.managed_device_certificate_state')
 
 class AndroidScepCertificateProfile(android_certificate_profile_base.AndroidCertificateProfileBase):
     def __init__(self,) -> None:

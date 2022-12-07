@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, key_value_pair
+entity = lazy_import('msgraph.generated.models.entity')
+key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
 
 class ServiceAnnouncementBase(entity.Entity):
     """

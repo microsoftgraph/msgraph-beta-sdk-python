@@ -1,9 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import idle_session_sign_out, image_tagging_choice, sharing_capabilities, sharing_domain_restriction_mode
-from .. import entity
+entity = lazy_import('msgraph.generated.models.entity')
+idle_session_sign_out = lazy_import('msgraph.generated.models.tenant_admin.idle_session_sign_out')
+image_tagging_choice = lazy_import('msgraph.generated.models.tenant_admin.image_tagging_choice')
+sharing_capabilities = lazy_import('msgraph.generated.models.tenant_admin.sharing_capabilities')
+sharing_domain_restriction_mode = lazy_import('msgraph.generated.models.tenant_admin.sharing_domain_restriction_mode')
 
 class Settings(entity.Entity):
     @property

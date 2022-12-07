@@ -1,9 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, out_of_box_experience_settings, windows_autopilot_deployment_profile_assignment, windows_autopilot_device_identity, windows_autopilot_device_type, windows_enrollment_status_screen_settings
+entity = lazy_import('msgraph.generated.models.entity')
+out_of_box_experience_settings = lazy_import('msgraph.generated.models.out_of_box_experience_settings')
+windows_autopilot_deployment_profile_assignment = lazy_import('msgraph.generated.models.windows_autopilot_deployment_profile_assignment')
+windows_autopilot_device_identity = lazy_import('msgraph.generated.models.windows_autopilot_device_identity')
+windows_autopilot_device_type = lazy_import('msgraph.generated.models.windows_autopilot_device_type')
+windows_enrollment_status_screen_settings = lazy_import('msgraph.generated.models.windows_enrollment_status_screen_settings')
 
 class WindowsAutopilotDeploymentProfile(entity.Entity):
     """

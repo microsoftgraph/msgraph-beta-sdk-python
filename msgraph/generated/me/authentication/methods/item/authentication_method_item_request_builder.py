@@ -7,13 +7,14 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import authentication_method
-from .....models.o_data_errors import o_data_error
-from .disable_sms_sign_in import disable_sms_sign_in_request_builder
-from .enable_sms_sign_in import enable_sms_sign_in_request_builder
-from .reset_password import reset_password_request_builder
+disable_sms_sign_in_request_builder = lazy_import('msgraph.generated.me.authentication.methods.item.disable_sms_sign_in.disable_sms_sign_in_request_builder')
+enable_sms_sign_in_request_builder = lazy_import('msgraph.generated.me.authentication.methods.item.enable_sms_sign_in.enable_sms_sign_in_request_builder')
+reset_password_request_builder = lazy_import('msgraph.generated.me.authentication.methods.item.reset_password.reset_password_request_builder')
+authentication_method = lazy_import('msgraph.generated.models.authentication_method')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class AuthenticationMethodItemRequestBuilder():
     """

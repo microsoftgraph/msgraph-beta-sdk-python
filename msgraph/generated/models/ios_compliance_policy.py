@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import app_list_item, device_compliance_policy, device_threat_protection_level, required_password_type
+app_list_item = lazy_import('msgraph.generated.models.app_list_item')
+device_compliance_policy = lazy_import('msgraph.generated.models.device_compliance_policy')
+device_threat_protection_level = lazy_import('msgraph.generated.models.device_threat_protection_level')
+required_password_type = lazy_import('msgraph.generated.models.required_password_type')
 
 class IosCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
     @property

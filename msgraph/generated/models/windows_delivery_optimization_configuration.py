@@ -1,8 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import delivery_optimization_bandwidth, delivery_optimization_group_id_source, delivery_optimization_max_cache_size, delivery_optimization_restrict_peer_selection_by_options, device_configuration, enablement, windows_delivery_optimization_mode
+delivery_optimization_bandwidth = lazy_import('msgraph.generated.models.delivery_optimization_bandwidth')
+delivery_optimization_group_id_source = lazy_import('msgraph.generated.models.delivery_optimization_group_id_source')
+delivery_optimization_max_cache_size = lazy_import('msgraph.generated.models.delivery_optimization_max_cache_size')
+delivery_optimization_restrict_peer_selection_by_options = lazy_import('msgraph.generated.models.delivery_optimization_restrict_peer_selection_by_options')
+device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+enablement = lazy_import('msgraph.generated.models.enablement')
+windows_delivery_optimization_mode = lazy_import('msgraph.generated.models.windows_delivery_optimization_mode')
 
 class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfiguration):
     @property

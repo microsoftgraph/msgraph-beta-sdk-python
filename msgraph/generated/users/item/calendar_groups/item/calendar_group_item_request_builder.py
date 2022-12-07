@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import calendar_group
-from .....models.o_data_errors import o_data_error
-from .calendars import calendars_request_builder
-from .calendars.item import calendar_item_request_builder
+calendar_group = lazy_import('msgraph.generated.models.calendar_group')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+calendars_request_builder = lazy_import('msgraph.generated.users.item.calendar_groups.item.calendars.calendars_request_builder')
+calendar_item_request_builder = lazy_import('msgraph.generated.users.item.calendar_groups.item.calendars.item.calendar_item_request_builder')
 
 class CalendarGroupItemRequestBuilder():
     """

@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import cross_tenant_access_policy_configuration_default, cross_tenant_access_policy_configuration_partner, tenant_relationship_access_policy_base
+cross_tenant_access_policy_configuration_default = lazy_import('msgraph.generated.models.cross_tenant_access_policy_configuration_default')
+cross_tenant_access_policy_configuration_partner = lazy_import('msgraph.generated.models.cross_tenant_access_policy_configuration_partner')
+tenant_relationship_access_policy_base = lazy_import('msgraph.generated.models.tenant_relationship_access_policy_base')
 
 class CrossTenantAccessPolicy(tenant_relationship_access_policy_base.TenantRelationshipAccessPolicyBase):
     @property

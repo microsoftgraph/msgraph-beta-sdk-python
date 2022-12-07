@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import onenote_source_service, recent_notebook_links
+onenote_source_service = lazy_import('msgraph.generated.models.onenote_source_service')
+recent_notebook_links = lazy_import('msgraph.generated.models.recent_notebook_links')
 
 class RecentNotebook(AdditionalDataHolder, Parsable):
     @property

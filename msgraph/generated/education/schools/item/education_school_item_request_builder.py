@@ -7,15 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import education_school
-from ....models.o_data_errors import o_data_error
-from .administrative_unit import administrative_unit_request_builder
-from .classes import classes_request_builder
-from .classes.item import education_class_item_request_builder
-from .users import users_request_builder
-from .users.item import education_user_item_request_builder
+administrative_unit_request_builder = lazy_import('msgraph.generated.education.schools.item.administrative_unit.administrative_unit_request_builder')
+classes_request_builder = lazy_import('msgraph.generated.education.schools.item.classes.classes_request_builder')
+education_class_item_request_builder = lazy_import('msgraph.generated.education.schools.item.classes.item.education_class_item_request_builder')
+users_request_builder = lazy_import('msgraph.generated.education.schools.item.users.users_request_builder')
+education_user_item_request_builder = lazy_import('msgraph.generated.education.schools.item.users.item.education_user_item_request_builder')
+education_school = lazy_import('msgraph.generated.models.education_school')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class EducationSchoolItemRequestBuilder():
     """

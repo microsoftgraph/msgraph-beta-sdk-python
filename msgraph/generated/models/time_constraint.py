@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import activity_domain, time_slot
+activity_domain = lazy_import('msgraph.generated.models.activity_domain')
+time_slot = lazy_import('msgraph.generated.models.time_slot')
 
 class TimeConstraint(AdditionalDataHolder, Parsable):
     @property

@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import agreement_file_data, entity
+agreement_file_data = lazy_import('msgraph.generated.models.agreement_file_data')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class AgreementFileProperties(entity.Entity):
     def __init__(self,) -> None:

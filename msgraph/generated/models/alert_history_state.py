@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import alert_feedback, alert_status
+alert_feedback = lazy_import('msgraph.generated.models.alert_feedback')
+alert_status = lazy_import('msgraph.generated.models.alert_status')
 
 class AlertHistoryState(AdditionalDataHolder, Parsable):
     @property

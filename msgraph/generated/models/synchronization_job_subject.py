@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import synchronization_linked_objects
+synchronization_linked_objects = lazy_import('msgraph.generated.models.synchronization_linked_objects')
 
 class SynchronizationJobSubject(AdditionalDataHolder, Parsable):
     @property

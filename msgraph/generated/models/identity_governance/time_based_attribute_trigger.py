@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import workflow_execution_trigger, workflow_trigger_time_based_attribute
+workflow_execution_trigger = lazy_import('msgraph.generated.models.identity_governance.workflow_execution_trigger')
+workflow_trigger_time_based_attribute = lazy_import('msgraph.generated.models.identity_governance.workflow_trigger_time_based_attribute')
 
 class TimeBasedAttributeTrigger(workflow_execution_trigger.WorkflowExecutionTrigger):
     def __init__(self,) -> None:

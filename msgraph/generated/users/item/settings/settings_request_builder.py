@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import user_settings
-from ....models.o_data_errors import o_data_error
-from .contact_merge_suggestions import contact_merge_suggestions_request_builder
-from .item_insights import item_insights_request_builder
-from .regional_and_language_settings import regional_and_language_settings_request_builder
-from .shift_preferences import shift_preferences_request_builder
+user_settings = lazy_import('msgraph.generated.models.user_settings')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+contact_merge_suggestions_request_builder = lazy_import('msgraph.generated.users.item.settings.contact_merge_suggestions.contact_merge_suggestions_request_builder')
+item_insights_request_builder = lazy_import('msgraph.generated.users.item.settings.item_insights.item_insights_request_builder')
+regional_and_language_settings_request_builder = lazy_import('msgraph.generated.users.item.settings.regional_and_language_settings.regional_and_language_settings_request_builder')
+shift_preferences_request_builder = lazy_import('msgraph.generated.users.item.settings.shift_preferences.shift_preferences_request_builder')
 
 class SettingsRequestBuilder():
     """

@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import dimension
-from ......models.o_data_errors import o_data_error
-from .dimension_values import dimension_values_request_builder
-from .dimension_values.item import dimension_value_item_request_builder
+dimension_values_request_builder = lazy_import('msgraph.generated.financials.companies.item.dimensions.item.dimension_values.dimension_values_request_builder')
+dimension_value_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.dimensions.item.dimension_values.item.dimension_value_item_request_builder')
+dimension = lazy_import('msgraph.generated.models.dimension')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class DimensionItemRequestBuilder():
     """

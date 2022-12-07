@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import allow_invites_from, default_user_role_override, default_user_role_permissions, policy_base
+allow_invites_from = lazy_import('msgraph.generated.models.allow_invites_from')
+default_user_role_override = lazy_import('msgraph.generated.models.default_user_role_override')
+default_user_role_permissions = lazy_import('msgraph.generated.models.default_user_role_permissions')
+policy_base = lazy_import('msgraph.generated.models.policy_base')
 
 class AuthorizationPolicy(policy_base.PolicyBase):
     @property

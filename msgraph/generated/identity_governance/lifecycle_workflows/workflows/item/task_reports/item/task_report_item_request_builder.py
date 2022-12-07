@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .......models.identity_governance import task_report
-from .......models.o_data_errors import o_data_error
-from .task import task_request_builder
-from .task_definition import task_definition_request_builder
-from .task_processing_results import task_processing_results_request_builder
-from .task_processing_results.item import task_processing_result_item_request_builder
+task_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.task_reports.item.task.task_request_builder')
+task_definition_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.task_reports.item.task_definition.task_definition_request_builder')
+task_processing_results_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.task_reports.item.task_processing_results.task_processing_results_request_builder')
+task_processing_result_item_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.task_reports.item.task_processing_results.item.task_processing_result_item_request_builder')
+task_report = lazy_import('msgraph.generated.models.identity_governance.task_report')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class TaskReportItemRequestBuilder():
     """

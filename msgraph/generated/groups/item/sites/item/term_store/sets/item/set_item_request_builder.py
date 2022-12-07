@@ -7,17 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ........models.o_data_errors import o_data_error
-from ........models.term_store import set
-from .children import children_request_builder
-from .children.item import term_item_request_builder
-from .parent_group import parent_group_request_builder
-from .relations import relations_request_builder
-from .relations.item import relation_item_request_builder
-from .terms import terms_request_builder
-from .terms.item import term_item_request_builder
+children_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.term_store.sets.item.children.children_request_builder')
+term_item_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.term_store.sets.item.children.item.term_item_request_builder')
+parent_group_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.term_store.sets.item.parent_group.parent_group_request_builder')
+relations_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.term_store.sets.item.relations.relations_request_builder')
+relation_item_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.term_store.sets.item.relations.item.relation_item_request_builder')
+terms_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.term_store.sets.item.terms.terms_request_builder')
+term_item_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.term_store.sets.item.terms.item.term_item_request_builder')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+set = lazy_import('msgraph.generated.models.term_store.set')
 
 class SetItemRequestBuilder():
     """

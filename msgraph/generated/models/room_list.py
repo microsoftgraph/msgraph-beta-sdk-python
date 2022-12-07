@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import place, room, workspace
+place = lazy_import('msgraph.generated.models.place')
+room = lazy_import('msgraph.generated.models.room')
+workspace = lazy_import('msgraph.generated.models.workspace')
 
 class RoomList(place.Place):
     def __init__(self,) -> None:

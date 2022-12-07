@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import item_facet, language_proficiency_level
+item_facet = lazy_import('msgraph.generated.models.item_facet')
+language_proficiency_level = lazy_import('msgraph.generated.models.language_proficiency_level')
 
 class LanguageProficiency(item_facet.ItemFacet):
     def __init__(self,) -> None:

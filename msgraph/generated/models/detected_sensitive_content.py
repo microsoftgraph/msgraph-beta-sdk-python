@@ -1,8 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import classification_attribute, classification_method, detected_sensitive_content_base, sensitive_content_location, sensitive_type_scope, sensitive_type_source
+classification_attribute = lazy_import('msgraph.generated.models.classification_attribute')
+classification_method = lazy_import('msgraph.generated.models.classification_method')
+detected_sensitive_content_base = lazy_import('msgraph.generated.models.detected_sensitive_content_base')
+sensitive_content_location = lazy_import('msgraph.generated.models.sensitive_content_location')
+sensitive_type_scope = lazy_import('msgraph.generated.models.sensitive_type_scope')
+sensitive_type_source = lazy_import('msgraph.generated.models.sensitive_type_source')
 
 class DetectedSensitiveContent(detected_sensitive_content_base.DetectedSensitiveContentBase):
     @property

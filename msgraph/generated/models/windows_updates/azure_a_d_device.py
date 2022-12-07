@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import updatable_asset, updatable_asset_enrollment, updatable_asset_error
+updatable_asset = lazy_import('msgraph.generated.models.windows_updates.updatable_asset')
+updatable_asset_enrollment = lazy_import('msgraph.generated.models.windows_updates.updatable_asset_enrollment')
+updatable_asset_error = lazy_import('msgraph.generated.models.windows_updates.updatable_asset_error')
 
 class AzureADDevice(updatable_asset.UpdatableAsset):
     def __init__(self,) -> None:

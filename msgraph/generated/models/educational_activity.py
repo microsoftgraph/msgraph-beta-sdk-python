@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import educational_activity_detail, institution_data, item_facet
+educational_activity_detail = lazy_import('msgraph.generated.models.educational_activity_detail')
+institution_data = lazy_import('msgraph.generated.models.institution_data')
+item_facet = lazy_import('msgraph.generated.models.item_facet')
 
 class EducationalActivity(item_facet.ItemFacet):
     @property

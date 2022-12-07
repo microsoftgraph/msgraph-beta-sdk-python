@@ -1,13 +1,17 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity
+entity = lazy_import('msgraph.generated.models.entity')
 
 class BookingNamedEntity(entity.Entity):
+    """
+    Booking entities that provide a display name.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new BookingNamedEntity and sets the default values.
+        Instantiates a new bookingNamedEntity and sets the default values.
         """
         super().__init__()
         # A name for the derived entity, which interfaces with customers.

@@ -1,9 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import custom_task_extension, lifecycle_management_settings, task_definition, workflow, workflow_template
-from .. import deleted_item_container, entity
+deleted_item_container = lazy_import('msgraph.generated.models.deleted_item_container')
+entity = lazy_import('msgraph.generated.models.entity')
+custom_task_extension = lazy_import('msgraph.generated.models.identity_governance.custom_task_extension')
+lifecycle_management_settings = lazy_import('msgraph.generated.models.identity_governance.lifecycle_management_settings')
+task_definition = lazy_import('msgraph.generated.models.identity_governance.task_definition')
+workflow = lazy_import('msgraph.generated.models.identity_governance.workflow')
+workflow_template = lazy_import('msgraph.generated.models.identity_governance.workflow_template')
 
 class LifecycleWorkflowsContainer(entity.Entity):
     def __init__(self,) -> None:

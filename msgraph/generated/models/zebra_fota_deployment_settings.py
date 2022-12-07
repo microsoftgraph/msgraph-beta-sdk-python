@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime, time
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import zebra_fota_network_type, zebra_fota_schedule_mode, zebra_fota_update_type
+zebra_fota_network_type = lazy_import('msgraph.generated.models.zebra_fota_network_type')
+zebra_fota_schedule_mode = lazy_import('msgraph.generated.models.zebra_fota_schedule_mode')
+zebra_fota_update_type = lazy_import('msgraph.generated.models.zebra_fota_update_type')
 
 class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
     """

@@ -7,17 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ........models import contact
-from ........models.o_data_errors import o_data_error
-from .extensions import extensions_request_builder
-from .extensions.item import extension_item_request_builder
-from .multi_value_extended_properties import multi_value_extended_properties_request_builder
-from .multi_value_extended_properties.item import multi_value_legacy_extended_property_item_request_builder
-from .photo import photo_request_builder
-from .single_value_extended_properties import single_value_extended_properties_request_builder
-from .single_value_extended_properties.item import single_value_legacy_extended_property_item_request_builder
+extensions_request_builder = lazy_import('msgraph.generated.me.contact_folders.item.child_folders.item.contacts.item.extensions.extensions_request_builder')
+extension_item_request_builder = lazy_import('msgraph.generated.me.contact_folders.item.child_folders.item.contacts.item.extensions.item.extension_item_request_builder')
+multi_value_extended_properties_request_builder = lazy_import('msgraph.generated.me.contact_folders.item.child_folders.item.contacts.item.multi_value_extended_properties.multi_value_extended_properties_request_builder')
+multi_value_legacy_extended_property_item_request_builder = lazy_import('msgraph.generated.me.contact_folders.item.child_folders.item.contacts.item.multi_value_extended_properties.item.multi_value_legacy_extended_property_item_request_builder')
+photo_request_builder = lazy_import('msgraph.generated.me.contact_folders.item.child_folders.item.contacts.item.photo.photo_request_builder')
+single_value_extended_properties_request_builder = lazy_import('msgraph.generated.me.contact_folders.item.child_folders.item.contacts.item.single_value_extended_properties.single_value_extended_properties_request_builder')
+single_value_legacy_extended_property_item_request_builder = lazy_import('msgraph.generated.me.contact_folders.item.child_folders.item.contacts.item.single_value_extended_properties.item.single_value_legacy_extended_property_item_request_builder')
+contact = lazy_import('msgraph.generated.models.contact')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ContactItemRequestBuilder():
     """

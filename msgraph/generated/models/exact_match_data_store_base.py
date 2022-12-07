@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, exact_data_match_store_column
+entity = lazy_import('msgraph.generated.models.entity')
+exact_data_match_store_column = lazy_import('msgraph.generated.models.exact_data_match_store_column')
 
 class ExactMatchDataStoreBase(entity.Entity):
     """

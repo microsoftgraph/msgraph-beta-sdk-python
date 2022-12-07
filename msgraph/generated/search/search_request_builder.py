@@ -7,17 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..models import search_entity
-from ..models.o_data_errors import o_data_error
-from .acronyms import acronyms_request_builder
-from .acronyms.item import acronym_item_request_builder
-from .bookmarks import bookmarks_request_builder
-from .bookmarks.item import bookmark_item_request_builder
-from .qnas import qnas_request_builder
-from .qnas.item import qna_item_request_builder
-from .query import query_request_builder
+search_entity = lazy_import('msgraph.generated.models.search_entity')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+acronyms_request_builder = lazy_import('msgraph.generated.search.acronyms.acronyms_request_builder')
+acronym_item_request_builder = lazy_import('msgraph.generated.search.acronyms.item.acronym_item_request_builder')
+bookmarks_request_builder = lazy_import('msgraph.generated.search.bookmarks.bookmarks_request_builder')
+bookmark_item_request_builder = lazy_import('msgraph.generated.search.bookmarks.item.bookmark_item_request_builder')
+qnas_request_builder = lazy_import('msgraph.generated.search.qnas.qnas_request_builder')
+qna_item_request_builder = lazy_import('msgraph.generated.search.qnas.item.qna_item_request_builder')
+query_request_builder = lazy_import('msgraph.generated.search.query.query_request_builder')
 
 class SearchRequestBuilder():
     """

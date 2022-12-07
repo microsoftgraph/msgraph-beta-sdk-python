@@ -7,23 +7,24 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import information_protection
-from ...models.o_data_errors import o_data_error
-from .bitlocker import bitlocker_request_builder
-from .data_loss_prevention_policies import data_loss_prevention_policies_request_builder
-from .data_loss_prevention_policies.item import data_loss_prevention_policy_item_request_builder
-from .decrypt_buffer import decrypt_buffer_request_builder
-from .encrypt_buffer import encrypt_buffer_request_builder
-from .policy import policy_request_builder
-from .sensitivity_labels import sensitivity_labels_request_builder
-from .sensitivity_labels.item import sensitivity_label_item_request_builder
-from .sensitivity_policy_settings import sensitivity_policy_settings_request_builder
-from .sign_digest import sign_digest_request_builder
-from .threat_assessment_requests import threat_assessment_requests_request_builder
-from .threat_assessment_requests.item import threat_assessment_request_item_request_builder
-from .verify_signature import verify_signature_request_builder
+bitlocker_request_builder = lazy_import('msgraph.generated.me.information_protection.bitlocker.bitlocker_request_builder')
+data_loss_prevention_policies_request_builder = lazy_import('msgraph.generated.me.information_protection.data_loss_prevention_policies.data_loss_prevention_policies_request_builder')
+data_loss_prevention_policy_item_request_builder = lazy_import('msgraph.generated.me.information_protection.data_loss_prevention_policies.item.data_loss_prevention_policy_item_request_builder')
+decrypt_buffer_request_builder = lazy_import('msgraph.generated.me.information_protection.decrypt_buffer.decrypt_buffer_request_builder')
+encrypt_buffer_request_builder = lazy_import('msgraph.generated.me.information_protection.encrypt_buffer.encrypt_buffer_request_builder')
+policy_request_builder = lazy_import('msgraph.generated.me.information_protection.policy.policy_request_builder')
+sensitivity_labels_request_builder = lazy_import('msgraph.generated.me.information_protection.sensitivity_labels.sensitivity_labels_request_builder')
+sensitivity_label_item_request_builder = lazy_import('msgraph.generated.me.information_protection.sensitivity_labels.item.sensitivity_label_item_request_builder')
+sensitivity_policy_settings_request_builder = lazy_import('msgraph.generated.me.information_protection.sensitivity_policy_settings.sensitivity_policy_settings_request_builder')
+sign_digest_request_builder = lazy_import('msgraph.generated.me.information_protection.sign_digest.sign_digest_request_builder')
+threat_assessment_requests_request_builder = lazy_import('msgraph.generated.me.information_protection.threat_assessment_requests.threat_assessment_requests_request_builder')
+threat_assessment_request_item_request_builder = lazy_import('msgraph.generated.me.information_protection.threat_assessment_requests.item.threat_assessment_request_item_request_builder')
+verify_signature_request_builder = lazy_import('msgraph.generated.me.information_protection.verify_signature.verify_signature_request_builder')
+information_protection = lazy_import('msgraph.generated.models.information_protection')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class InformationProtectionRequestBuilder():
     """

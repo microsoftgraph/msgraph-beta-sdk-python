@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import conditional_access_session_control, sign_in_frequency_authentication_type, sign_in_frequency_interval, signin_frequency_type
+conditional_access_session_control = lazy_import('msgraph.generated.models.conditional_access_session_control')
+sign_in_frequency_authentication_type = lazy_import('msgraph.generated.models.sign_in_frequency_authentication_type')
+sign_in_frequency_interval = lazy_import('msgraph.generated.models.sign_in_frequency_interval')
+signin_frequency_type = lazy_import('msgraph.generated.models.signin_frequency_type')
 
 class SignInFrequencySessionControl(conditional_access_session_control.ConditionalAccessSessionControl):
     @property

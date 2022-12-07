@@ -8,13 +8,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models.call_records import call_record, call_record_collection_response
-from ...models.o_data_errors import o_data_error
-from .count import count_request_builder
-from .get_direct_routing_calls_with_from_date_time_with_to_date_time import get_direct_routing_calls_with_from_date_time_with_to_date_time_request_builder
-from .get_pstn_calls_with_from_date_time_with_to_date_time import get_pstn_calls_with_from_date_time_with_to_date_time_request_builder
+count_request_builder = lazy_import('msgraph.generated.communications.call_records.count.count_request_builder')
+get_direct_routing_calls_with_from_date_time_with_to_date_time_request_builder = lazy_import('msgraph.generated.communications.call_records.get_direct_routing_calls_with_from_date_time_with_to_date_time.get_direct_routing_calls_with_from_date_time_with_to_date_time_request_builder')
+get_pstn_calls_with_from_date_time_with_to_date_time_request_builder = lazy_import('msgraph.generated.communications.call_records.get_pstn_calls_with_from_date_time_with_to_date_time.get_pstn_calls_with_from_date_time_with_to_date_time_request_builder')
+call_record = lazy_import('msgraph.generated.models.call_records.call_record')
+call_record_collection_response = lazy_import('msgraph.generated.models.call_records.call_record_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class CallRecordsRequestBuilder():
     """

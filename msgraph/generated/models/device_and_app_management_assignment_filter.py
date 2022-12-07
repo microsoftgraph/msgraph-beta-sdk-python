@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_platform_type, entity, payload_by_filter
+device_platform_type = lazy_import('msgraph.generated.models.device_platform_type')
+entity = lazy_import('msgraph.generated.models.entity')
+payload_by_filter = lazy_import('msgraph.generated.models.payload_by_filter')
 
 class DeviceAndAppManagementAssignmentFilter(entity.Entity):
     """

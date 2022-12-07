@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import day_of_week, windows10_apps_update_recurrence
+day_of_week = lazy_import('msgraph.generated.models.day_of_week')
+windows10_apps_update_recurrence = lazy_import('msgraph.generated.models.windows10_apps_update_recurrence')
 
 class WindowsKioskForceUpdateSchedule(AdditionalDataHolder, Parsable):
     """

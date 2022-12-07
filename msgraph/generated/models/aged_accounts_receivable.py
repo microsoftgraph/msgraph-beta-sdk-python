@@ -1,11 +1,15 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity
+entity = lazy_import('msgraph.generated.models.entity')
 
 class AgedAccountsReceivable(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def aged_as_of_date(self,) -> Optional[Date]:
         """
@@ -42,7 +46,7 @@ class AgedAccountsReceivable(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new AgedAccountsReceivable and sets the default values.
+        Instantiates a new agedAccountsReceivable and sets the default values.
         """
         super().__init__()
         # The agedAsOfDate property

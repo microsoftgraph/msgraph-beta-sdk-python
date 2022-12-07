@@ -7,10 +7,12 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import query_by_platform_type_post_request_body, query_by_platform_type_response
-from ....models.o_data_errors import o_data_error
+query_by_platform_type_post_request_body = lazy_import('msgraph.generated.device_management.resource_access_profiles.query_by_platform_type.query_by_platform_type_post_request_body')
+query_by_platform_type_response = lazy_import('msgraph.generated.device_management.resource_access_profiles.query_by_platform_type.query_by_platform_type_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class QueryByPlatformTypeRequestBuilder():
     """

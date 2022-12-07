@@ -1,12 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.get_path_parameters import get_path_parameters
 from kiota_abstractions.request_adapter import RequestAdapter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .endpoint import endpoint_request_builder
-from .ref import ref_request_builder
-from .service_principal import service_principal_request_builder
-from .user import user_request_builder
+endpoint_request_builder = lazy_import('msgraph.generated.users.item.authentication.passwordless_microsoft_authenticator_methods.item.device.registered_owners.item.endpoint.endpoint_request_builder')
+ref_request_builder = lazy_import('msgraph.generated.users.item.authentication.passwordless_microsoft_authenticator_methods.item.device.registered_owners.item.ref.ref_request_builder')
+service_principal_request_builder = lazy_import('msgraph.generated.users.item.authentication.passwordless_microsoft_authenticator_methods.item.device.registered_owners.item.service_principal.service_principal_request_builder')
+user_request_builder = lazy_import('msgraph.generated.users.item.authentication.passwordless_microsoft_authenticator_methods.item.device.registered_owners.item.user.user_request_builder')
 
 class DirectoryObjectItemRequestBuilder():
     """

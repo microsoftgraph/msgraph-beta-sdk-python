@@ -1,8 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import identity_provider, identity_provider_base, identity_user_flow, identity_user_flow_attribute_assignment, user_flow_api_connector_configuration, user_flow_language_configuration
+identity_provider = lazy_import('msgraph.generated.models.identity_provider')
+identity_provider_base = lazy_import('msgraph.generated.models.identity_provider_base')
+identity_user_flow = lazy_import('msgraph.generated.models.identity_user_flow')
+identity_user_flow_attribute_assignment = lazy_import('msgraph.generated.models.identity_user_flow_attribute_assignment')
+user_flow_api_connector_configuration = lazy_import('msgraph.generated.models.user_flow_api_connector_configuration')
+user_flow_language_configuration = lazy_import('msgraph.generated.models.user_flow_language_configuration')
 
 class B2cIdentityUserFlow(identity_user_flow.IdentityUserFlow):
     @property

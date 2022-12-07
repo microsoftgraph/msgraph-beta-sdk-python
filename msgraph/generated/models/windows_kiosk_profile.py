@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import windows_kiosk_app_configuration, windows_kiosk_user
+windows_kiosk_app_configuration = lazy_import('msgraph.generated.models.windows_kiosk_app_configuration')
+windows_kiosk_user = lazy_import('msgraph.generated.models.windows_kiosk_user')
 
 class WindowsKioskProfile(AdditionalDataHolder, Parsable):
     @property

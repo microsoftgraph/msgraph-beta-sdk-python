@@ -1,9 +1,10 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import restore_time_range
+restore_time_range = lazy_import('msgraph.generated.models.restore_time_range')
 
 class BulkRestoreCloudPcPostRequestBody(AdditionalDataHolder, Parsable):
     """

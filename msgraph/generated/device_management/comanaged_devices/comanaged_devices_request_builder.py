@@ -7,18 +7,20 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import managed_device, managed_device_collection_response
-from ...models.o_data_errors import o_data_error
-from .app_diagnostics_with_upn import app_diagnostics_with_upn_request_builder
-from .bulk_reprovision_cloud_pc import bulk_reprovision_cloud_pc_request_builder
-from .bulk_restore_cloud_pc import bulk_restore_cloud_pc_request_builder
-from .bulk_set_cloud_pc_review_status import bulk_set_cloud_pc_review_status_request_builder
-from .count import count_request_builder
-from .download_app_diagnostics import download_app_diagnostics_request_builder
-from .execute_action import execute_action_request_builder
-from .move_devices_to_o_u import move_devices_to_o_u_request_builder
+app_diagnostics_with_upn_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.app_diagnostics_with_upn.app_diagnostics_with_upn_request_builder')
+bulk_reprovision_cloud_pc_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.bulk_reprovision_cloud_pc.bulk_reprovision_cloud_pc_request_builder')
+bulk_restore_cloud_pc_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.bulk_restore_cloud_pc.bulk_restore_cloud_pc_request_builder')
+bulk_set_cloud_pc_review_status_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.bulk_set_cloud_pc_review_status.bulk_set_cloud_pc_review_status_request_builder')
+count_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.count.count_request_builder')
+download_app_diagnostics_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.download_app_diagnostics.download_app_diagnostics_request_builder')
+execute_action_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.execute_action.execute_action_request_builder')
+move_devices_to_o_u_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.move_devices_to_o_u.move_devices_to_o_u_request_builder')
+managed_device = lazy_import('msgraph.generated.models.managed_device')
+managed_device_collection_response = lazy_import('msgraph.generated.models.managed_device_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ComanagedDevicesRequestBuilder():
     """

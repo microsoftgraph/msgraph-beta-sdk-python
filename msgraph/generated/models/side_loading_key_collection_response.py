@@ -1,13 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import base_collection_pagination_count_response, side_loading_key
+base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
+side_loading_key = lazy_import('msgraph.generated.models.side_loading_key')
 
 class SideLoadingKeyCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the sideLoadingKeys property of the microsoft.graph.deviceAppManagement entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new SideLoadingKeyCollectionResponse and sets the default values.

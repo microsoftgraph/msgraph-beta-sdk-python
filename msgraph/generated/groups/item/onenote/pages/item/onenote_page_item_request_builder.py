@@ -7,16 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import onenote_page
-from ......models.o_data_errors import o_data_error
-from .content import content_request_builder
-from .copy_to_section import copy_to_section_request_builder
-from .onenote_patch_content import onenote_patch_content_request_builder
-from .parent_notebook import parent_notebook_request_builder
-from .parent_section import parent_section_request_builder
-from .preview import preview_request_builder
+content_request_builder = lazy_import('msgraph.generated.groups.item.onenote.pages.item.content.content_request_builder')
+copy_to_section_request_builder = lazy_import('msgraph.generated.groups.item.onenote.pages.item.copy_to_section.copy_to_section_request_builder')
+onenote_patch_content_request_builder = lazy_import('msgraph.generated.groups.item.onenote.pages.item.onenote_patch_content.onenote_patch_content_request_builder')
+parent_notebook_request_builder = lazy_import('msgraph.generated.groups.item.onenote.pages.item.parent_notebook.parent_notebook_request_builder')
+parent_section_request_builder = lazy_import('msgraph.generated.groups.item.onenote.pages.item.parent_section.parent_section_request_builder')
+preview_request_builder = lazy_import('msgraph.generated.groups.item.onenote.pages.item.preview.preview_request_builder')
+onenote_page = lazy_import('msgraph.generated.models.onenote_page')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class OnenotePageItemRequestBuilder():
     """

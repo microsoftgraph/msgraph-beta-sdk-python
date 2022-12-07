@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_enrollment_configuration_type, enrollment_configuration_assignment, entity
+device_enrollment_configuration_type = lazy_import('msgraph.generated.models.device_enrollment_configuration_type')
+enrollment_configuration_assignment = lazy_import('msgraph.generated.models.enrollment_configuration_assignment')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class DeviceEnrollmentConfiguration(entity.Entity):
     """

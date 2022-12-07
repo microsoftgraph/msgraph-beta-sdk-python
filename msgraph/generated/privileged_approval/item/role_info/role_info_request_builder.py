@@ -7,16 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import privileged_role
-from ....models.o_data_errors import o_data_error
-from .assignments import assignments_request_builder
-from .assignments.item import privileged_role_assignment_item_request_builder
-from .self_activate import self_activate_request_builder
-from .self_deactivate import self_deactivate_request_builder
-from .settings import settings_request_builder
-from .summary import summary_request_builder
+privileged_role = lazy_import('msgraph.generated.models.privileged_role')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+assignments_request_builder = lazy_import('msgraph.generated.privileged_approval.item.role_info.assignments.assignments_request_builder')
+privileged_role_assignment_item_request_builder = lazy_import('msgraph.generated.privileged_approval.item.role_info.assignments.item.privileged_role_assignment_item_request_builder')
+self_activate_request_builder = lazy_import('msgraph.generated.privileged_approval.item.role_info.self_activate.self_activate_request_builder')
+self_deactivate_request_builder = lazy_import('msgraph.generated.privileged_approval.item.role_info.self_deactivate.self_deactivate_request_builder')
+settings_request_builder = lazy_import('msgraph.generated.privileged_approval.item.role_info.settings.settings_request_builder')
+summary_request_builder = lazy_import('msgraph.generated.privileged_approval.item.role_info.summary.summary_request_builder')
 
 class RoleInfoRequestBuilder():
     """

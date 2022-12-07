@@ -7,15 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import browser_site_list
-from ......models.o_data_errors import o_data_error
-from .publish import publish_request_builder
-from .shared_cookies import shared_cookies_request_builder
-from .shared_cookies.item import browser_shared_cookie_item_request_builder
-from .sites import sites_request_builder
-from .sites.item import browser_site_item_request_builder
+publish_request_builder = lazy_import('msgraph.generated.admin.edge.internet_explorer_mode.site_lists.item.publish.publish_request_builder')
+shared_cookies_request_builder = lazy_import('msgraph.generated.admin.edge.internet_explorer_mode.site_lists.item.shared_cookies.shared_cookies_request_builder')
+browser_shared_cookie_item_request_builder = lazy_import('msgraph.generated.admin.edge.internet_explorer_mode.site_lists.item.shared_cookies.item.browser_shared_cookie_item_request_builder')
+sites_request_builder = lazy_import('msgraph.generated.admin.edge.internet_explorer_mode.site_lists.item.sites.sites_request_builder')
+browser_site_item_request_builder = lazy_import('msgraph.generated.admin.edge.internet_explorer_mode.site_lists.item.sites.item.browser_site_item_request_builder')
+browser_site_list = lazy_import('msgraph.generated.models.browser_site_list')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class BrowserSiteListItemRequestBuilder():
     """

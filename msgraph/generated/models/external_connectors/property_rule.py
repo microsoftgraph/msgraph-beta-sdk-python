@@ -1,9 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import rule_operation
-from .. import binary_operator
+binary_operator = lazy_import('msgraph.generated.models.binary_operator')
+rule_operation = lazy_import('msgraph.generated.models.external_connectors.rule_operation')
 
 class PropertyRule(AdditionalDataHolder, Parsable):
     @property

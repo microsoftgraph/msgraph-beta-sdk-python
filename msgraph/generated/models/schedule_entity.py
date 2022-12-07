@@ -1,9 +1,10 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import schedule_entity_theme
+schedule_entity_theme = lazy_import('msgraph.generated.models.schedule_entity_theme')
 
 class ScheduleEntity(AdditionalDataHolder, Parsable):
     @property

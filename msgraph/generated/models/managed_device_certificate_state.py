@@ -1,13 +1,22 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import certificate_issuance_states, certificate_revocation_status, certificate_validity_period_scale, device_platform_type, entity, key_storage_provider_option, key_usages, subject_alternative_name_type, subject_name_format
+certificate_issuance_states = lazy_import('msgraph.generated.models.certificate_issuance_states')
+certificate_revocation_status = lazy_import('msgraph.generated.models.certificate_revocation_status')
+certificate_validity_period_scale = lazy_import('msgraph.generated.models.certificate_validity_period_scale')
+device_platform_type = lazy_import('msgraph.generated.models.device_platform_type')
+entity = lazy_import('msgraph.generated.models.entity')
+key_storage_provider_option = lazy_import('msgraph.generated.models.key_storage_provider_option')
+key_usages = lazy_import('msgraph.generated.models.key_usages')
+subject_alternative_name_type = lazy_import('msgraph.generated.models.subject_alternative_name_type')
+subject_name_format = lazy_import('msgraph.generated.models.subject_name_format')
 
 class ManagedDeviceCertificateState(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def certificate_enhanced_key_usage(self,) -> Optional[str]:

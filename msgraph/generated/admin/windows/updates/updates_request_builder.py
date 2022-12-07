@@ -7,17 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models.o_data_errors import o_data_error
-from ....models.windows_updates import updates
-from .catalog import catalog_request_builder
-from .deployments import deployments_request_builder
-from .deployments.item import deployment_item_request_builder
-from .resource_connections import resource_connections_request_builder
-from .resource_connections.item import resource_connection_item_request_builder
-from .updatable_assets import updatable_assets_request_builder
-from .updatable_assets.item import updatable_asset_item_request_builder
+catalog_request_builder = lazy_import('msgraph.generated.admin.windows.updates.catalog.catalog_request_builder')
+deployments_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.deployments_request_builder')
+deployment_item_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.deployment_item_request_builder')
+resource_connections_request_builder = lazy_import('msgraph.generated.admin.windows.updates.resource_connections.resource_connections_request_builder')
+resource_connection_item_request_builder = lazy_import('msgraph.generated.admin.windows.updates.resource_connections.item.resource_connection_item_request_builder')
+updatable_assets_request_builder = lazy_import('msgraph.generated.admin.windows.updates.updatable_assets.updatable_assets_request_builder')
+updatable_asset_item_request_builder = lazy_import('msgraph.generated.admin.windows.updates.updatable_assets.item.updatable_asset_item_request_builder')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+updates = lazy_import('msgraph.generated.models.windows_updates.updates')
 
 class UpdatesRequestBuilder():
     """

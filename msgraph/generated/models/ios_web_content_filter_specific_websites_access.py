@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import ios_bookmark, ios_web_content_filter_base
+ios_bookmark = lazy_import('msgraph.generated.models.ios_bookmark')
+ios_web_content_filter_base = lazy_import('msgraph.generated.models.ios_web_content_filter_base')
 
 class IosWebContentFilterSpecificWebsitesAccess(ios_web_content_filter_base.IosWebContentFilterBase):
     def __init__(self,) -> None:

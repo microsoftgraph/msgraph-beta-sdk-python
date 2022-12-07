@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import vpn_authentication_method, windows_phone81_certificate_profile_base, windows81_vpn_configuration
+vpn_authentication_method = lazy_import('msgraph.generated.models.vpn_authentication_method')
+windows_phone81_certificate_profile_base = lazy_import('msgraph.generated.models.windows_phone81_certificate_profile_base')
+windows81_vpn_configuration = lazy_import('msgraph.generated.models.windows81_vpn_configuration')
 
 class WindowsPhone81VpnConfiguration(windows81_vpn_configuration.Windows81VpnConfiguration):
     @property

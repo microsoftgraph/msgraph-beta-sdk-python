@@ -7,17 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import unified_role_assignment_multiple
-from .....models.o_data_errors import o_data_error
-from .app_scopes import app_scopes_request_builder
-from .app_scopes.item import app_scope_item_request_builder
-from .directory_scopes import directory_scopes_request_builder
-from .directory_scopes.item import directory_object_item_request_builder
-from .principals import principals_request_builder
-from .principals.item import directory_object_item_request_builder
-from .role_definition import role_definition_request_builder
+unified_role_assignment_multiple = lazy_import('msgraph.generated.models.unified_role_assignment_multiple')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+app_scopes_request_builder = lazy_import('msgraph.generated.role_management.cloud_p_c.role_assignments.item.app_scopes.app_scopes_request_builder')
+app_scope_item_request_builder = lazy_import('msgraph.generated.role_management.cloud_p_c.role_assignments.item.app_scopes.item.app_scope_item_request_builder')
+directory_scopes_request_builder = lazy_import('msgraph.generated.role_management.cloud_p_c.role_assignments.item.directory_scopes.directory_scopes_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.role_management.cloud_p_c.role_assignments.item.directory_scopes.item.directory_object_item_request_builder')
+principals_request_builder = lazy_import('msgraph.generated.role_management.cloud_p_c.role_assignments.item.principals.principals_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.role_management.cloud_p_c.role_assignments.item.principals.item.directory_object_item_request_builder')
+role_definition_request_builder = lazy_import('msgraph.generated.role_management.cloud_p_c.role_assignments.item.role_definition.role_definition_request_builder')
 
 class UnifiedRoleAssignmentMultipleItemRequestBuilder():
     """

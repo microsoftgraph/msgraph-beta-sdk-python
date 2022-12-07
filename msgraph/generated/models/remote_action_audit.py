@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import action_state, entity, remote_action
+action_state = lazy_import('msgraph.generated.models.action_state')
+entity = lazy_import('msgraph.generated.models.entity')
+remote_action = lazy_import('msgraph.generated.models.remote_action')
 
 class RemoteActionAudit(entity.Entity):
     """

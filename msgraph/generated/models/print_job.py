@@ -1,9 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, print_document, print_job_configuration, print_job_status, print_task, user_identity
+entity = lazy_import('msgraph.generated.models.entity')
+print_document = lazy_import('msgraph.generated.models.print_document')
+print_job_configuration = lazy_import('msgraph.generated.models.print_job_configuration')
+print_job_status = lazy_import('msgraph.generated.models.print_job_status')
+print_task = lazy_import('msgraph.generated.models.print_task')
+user_identity = lazy_import('msgraph.generated.models.user_identity')
 
 class PrintJob(entity.Entity):
     """

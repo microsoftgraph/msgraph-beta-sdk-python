@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import chat_message_policy_violation_dlp_action_types, chat_message_policy_violation_policy_tip, chat_message_policy_violation_user_action_types, chat_message_policy_violation_verdict_details_types
+chat_message_policy_violation_dlp_action_types = lazy_import('msgraph.generated.models.chat_message_policy_violation_dlp_action_types')
+chat_message_policy_violation_policy_tip = lazy_import('msgraph.generated.models.chat_message_policy_violation_policy_tip')
+chat_message_policy_violation_user_action_types = lazy_import('msgraph.generated.models.chat_message_policy_violation_user_action_types')
+chat_message_policy_violation_verdict_details_types = lazy_import('msgraph.generated.models.chat_message_policy_violation_verdict_details_types')
 
 class ChatMessagePolicyViolation(AdditionalDataHolder, Parsable):
     @property

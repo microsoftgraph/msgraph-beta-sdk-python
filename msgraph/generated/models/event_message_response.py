@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import event_message, response_type, time_slot
+event_message = lazy_import('msgraph.generated.models.event_message')
+response_type = lazy_import('msgraph.generated.models.response_type')
+time_slot = lazy_import('msgraph.generated.models.time_slot')
 
 class EventMessageResponse(event_message.EventMessage):
     def __init__(self,) -> None:

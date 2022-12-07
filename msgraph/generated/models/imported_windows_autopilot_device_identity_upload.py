@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, imported_windows_autopilot_device_identity, imported_windows_autopilot_device_identity_upload_status
+entity = lazy_import('msgraph.generated.models.entity')
+imported_windows_autopilot_device_identity = lazy_import('msgraph.generated.models.imported_windows_autopilot_device_identity')
+imported_windows_autopilot_device_identity_upload_status = lazy_import('msgraph.generated.models.imported_windows_autopilot_device_identity_upload_status')
 
 class ImportedWindowsAutopilotDeviceIdentityUpload(entity.Entity):
     def __init__(self,) -> None:

@@ -1,10 +1,18 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import alert_data, alert_data_reference_string, alert_severity, alert_status, managed_tenant_alert_log, managed_tenant_alert_rule, managed_tenant_api_notification, managed_tenant_email_notification
-from .. import entity
+entity = lazy_import('msgraph.generated.models.entity')
+alert_data = lazy_import('msgraph.generated.models.managed_tenants.alert_data')
+alert_data_reference_string = lazy_import('msgraph.generated.models.managed_tenants.alert_data_reference_string')
+alert_severity = lazy_import('msgraph.generated.models.managed_tenants.alert_severity')
+alert_status = lazy_import('msgraph.generated.models.managed_tenants.alert_status')
+managed_tenant_alert_log = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_alert_log')
+managed_tenant_alert_rule = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_alert_rule')
+managed_tenant_api_notification = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_api_notification')
+managed_tenant_email_notification = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_email_notification')
 
 class ManagedTenantAlert(entity.Entity):
     @property

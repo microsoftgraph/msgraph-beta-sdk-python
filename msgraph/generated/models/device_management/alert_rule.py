@@ -1,13 +1,17 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import alert_rule_template, notification_channel, rule_severity_type, rule_threshold
-from .. import entity
+entity = lazy_import('msgraph.generated.models.entity')
+alert_rule_template = lazy_import('msgraph.generated.models.device_management.alert_rule_template')
+notification_channel = lazy_import('msgraph.generated.models.device_management.notification_channel')
+rule_severity_type = lazy_import('msgraph.generated.models.device_management.rule_severity_type')
+rule_threshold = lazy_import('msgraph.generated.models.device_management.rule_threshold')
 
 class AlertRule(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def alert_rule_template(self,) -> Optional[alert_rule_template.AlertRuleTemplate]:

@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import policy_platform_type
+policy_platform_type = lazy_import('msgraph.generated.models.policy_platform_type')
 
 class QueryByPlatformTypePostRequestBody(AdditionalDataHolder, Parsable):
     """

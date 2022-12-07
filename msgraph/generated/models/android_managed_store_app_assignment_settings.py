@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import android_managed_store_auto_update_mode, mobile_app_assignment_settings
+android_managed_store_auto_update_mode = lazy_import('msgraph.generated.models.android_managed_store_auto_update_mode')
+mobile_app_assignment_settings = lazy_import('msgraph.generated.models.mobile_app_assignment_settings')
 
 class AndroidManagedStoreAppAssignmentSettings(mobile_app_assignment_settings.MobileAppAssignmentSettings):
     @property

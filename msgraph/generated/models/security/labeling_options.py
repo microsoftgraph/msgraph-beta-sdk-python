@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import assignment_method, downgrade_justification, key_value_pair
+assignment_method = lazy_import('msgraph.generated.models.security.assignment_method')
+downgrade_justification = lazy_import('msgraph.generated.models.security.downgrade_justification')
+key_value_pair = lazy_import('msgraph.generated.models.security.key_value_pair')
 
 class LabelingOptions(AdditionalDataHolder, Parsable):
     @property

@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import planner_delta
+planner_delta = lazy_import('msgraph.generated.models.planner_delta')
 
 class PlannerBucketTaskBoardTaskFormat(planner_delta.PlannerDelta):
     def __init__(self,) -> None:
@@ -12,7 +13,7 @@ class PlannerBucketTaskBoardTaskFormat(planner_delta.PlannerDelta):
         super().__init__()
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # Hint used to order tasks in the Bucket view of the Task Board. The format is defined as outlined here.
+        # Hint used to order tasks in the bucket view of the task board. For details about the supported format, see Using order hints in Planner.
         self._order_hint: Optional[str] = None
     
     @staticmethod
@@ -42,7 +43,7 @@ class PlannerBucketTaskBoardTaskFormat(planner_delta.PlannerDelta):
     @property
     def order_hint(self,) -> Optional[str]:
         """
-        Gets the orderHint property value. Hint used to order tasks in the Bucket view of the Task Board. The format is defined as outlined here.
+        Gets the orderHint property value. Hint used to order tasks in the bucket view of the task board. For details about the supported format, see Using order hints in Planner.
         Returns: Optional[str]
         """
         return self._order_hint
@@ -50,7 +51,7 @@ class PlannerBucketTaskBoardTaskFormat(planner_delta.PlannerDelta):
     @order_hint.setter
     def order_hint(self,value: Optional[str] = None) -> None:
         """
-        Sets the orderHint property value. Hint used to order tasks in the Bucket view of the Task Board. The format is defined as outlined here.
+        Sets the orderHint property value. Hint used to order tasks in the bucket view of the task board. For details about the supported format, see Using order hints in Planner.
         Args:
             value: Value to set for the orderHint property.
         """

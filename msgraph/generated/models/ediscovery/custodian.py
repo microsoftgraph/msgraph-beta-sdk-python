@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import data_source_container, site_source, unified_group_source, user_source
+data_source_container = lazy_import('msgraph.generated.models.ediscovery.data_source_container')
+site_source = lazy_import('msgraph.generated.models.ediscovery.site_source')
+unified_group_source = lazy_import('msgraph.generated.models.ediscovery.unified_group_source')
+user_source = lazy_import('msgraph.generated.models.ediscovery.user_source')
 
 class Custodian(data_source_container.DataSourceContainer):
     @property

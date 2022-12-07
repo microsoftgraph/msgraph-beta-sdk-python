@@ -7,22 +7,23 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import list
-from .....models.o_data_errors import o_data_error
-from .activities import activities_request_builder
-from .columns import columns_request_builder
-from .columns.item import column_definition_item_request_builder
-from .content_types import content_types_request_builder
-from .content_types.item import content_type_item_request_builder
-from .drive import drive_request_builder
-from .items import items_request_builder
-from .items.item import list_item_item_request_builder
-from .operations import operations_request_builder
-from .operations.item import rich_long_running_operation_item_request_builder
-from .subscriptions import subscriptions_request_builder
-from .subscriptions.item import subscription_item_request_builder
+activities_request_builder = lazy_import('msgraph.generated.me.drives.item.list.activities.activities_request_builder')
+columns_request_builder = lazy_import('msgraph.generated.me.drives.item.list.columns.columns_request_builder')
+column_definition_item_request_builder = lazy_import('msgraph.generated.me.drives.item.list.columns.item.column_definition_item_request_builder')
+content_types_request_builder = lazy_import('msgraph.generated.me.drives.item.list.content_types.content_types_request_builder')
+content_type_item_request_builder = lazy_import('msgraph.generated.me.drives.item.list.content_types.item.content_type_item_request_builder')
+drive_request_builder = lazy_import('msgraph.generated.me.drives.item.list.drive.drive_request_builder')
+items_request_builder = lazy_import('msgraph.generated.me.drives.item.list.items.items_request_builder')
+list_item_item_request_builder = lazy_import('msgraph.generated.me.drives.item.list.items.item.list_item_item_request_builder')
+operations_request_builder = lazy_import('msgraph.generated.me.drives.item.list.operations.operations_request_builder')
+rich_long_running_operation_item_request_builder = lazy_import('msgraph.generated.me.drives.item.list.operations.item.rich_long_running_operation_item_request_builder')
+subscriptions_request_builder = lazy_import('msgraph.generated.me.drives.item.list.subscriptions.subscriptions_request_builder')
+subscription_item_request_builder = lazy_import('msgraph.generated.me.drives.item.list.subscriptions.item.subscription_item_request_builder')
+list = lazy_import('msgraph.generated.models.list')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ListRequestBuilder():
     """

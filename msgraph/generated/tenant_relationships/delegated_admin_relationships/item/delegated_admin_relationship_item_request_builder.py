@@ -7,16 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import delegated_admin_relationship
-from ....models.o_data_errors import o_data_error
-from .access_assignments import access_assignments_request_builder
-from .access_assignments.item import delegated_admin_access_assignment_item_request_builder
-from .operations import operations_request_builder
-from .operations.item import delegated_admin_relationship_operation_item_request_builder
-from .requests import requests_request_builder
-from .requests.item import delegated_admin_relationship_request_item_request_builder
+delegated_admin_relationship = lazy_import('msgraph.generated.models.delegated_admin_relationship')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+access_assignments_request_builder = lazy_import('msgraph.generated.tenant_relationships.delegated_admin_relationships.item.access_assignments.access_assignments_request_builder')
+delegated_admin_access_assignment_item_request_builder = lazy_import('msgraph.generated.tenant_relationships.delegated_admin_relationships.item.access_assignments.item.delegated_admin_access_assignment_item_request_builder')
+operations_request_builder = lazy_import('msgraph.generated.tenant_relationships.delegated_admin_relationships.item.operations.operations_request_builder')
+delegated_admin_relationship_operation_item_request_builder = lazy_import('msgraph.generated.tenant_relationships.delegated_admin_relationships.item.operations.item.delegated_admin_relationship_operation_item_request_builder')
+requests_request_builder = lazy_import('msgraph.generated.tenant_relationships.delegated_admin_relationships.item.requests.requests_request_builder')
+delegated_admin_relationship_request_item_request_builder = lazy_import('msgraph.generated.tenant_relationships.delegated_admin_relationships.item.requests.item.delegated_admin_relationship_request_item_request_builder')
 
 class DelegatedAdminRelationshipItemRequestBuilder():
     """

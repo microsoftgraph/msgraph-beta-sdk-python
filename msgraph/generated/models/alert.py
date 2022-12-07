@@ -1,9 +1,30 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import alert_detection, alert_feedback, alert_history_state, alert_severity, alert_status, alert_trigger, cloud_app_security_state, entity, file_security_state, host_security_state, investigation_security_state, malware_state, message_security_state, network_connection, process, registry_key_state, security_resource, security_vendor_information, uri_click_security_state, user_security_state, vulnerability_state
+alert_detection = lazy_import('msgraph.generated.models.alert_detection')
+alert_feedback = lazy_import('msgraph.generated.models.alert_feedback')
+alert_history_state = lazy_import('msgraph.generated.models.alert_history_state')
+alert_severity = lazy_import('msgraph.generated.models.alert_severity')
+alert_status = lazy_import('msgraph.generated.models.alert_status')
+alert_trigger = lazy_import('msgraph.generated.models.alert_trigger')
+cloud_app_security_state = lazy_import('msgraph.generated.models.cloud_app_security_state')
+entity = lazy_import('msgraph.generated.models.entity')
+file_security_state = lazy_import('msgraph.generated.models.file_security_state')
+host_security_state = lazy_import('msgraph.generated.models.host_security_state')
+investigation_security_state = lazy_import('msgraph.generated.models.investigation_security_state')
+malware_state = lazy_import('msgraph.generated.models.malware_state')
+message_security_state = lazy_import('msgraph.generated.models.message_security_state')
+network_connection = lazy_import('msgraph.generated.models.network_connection')
+process = lazy_import('msgraph.generated.models.process')
+registry_key_state = lazy_import('msgraph.generated.models.registry_key_state')
+security_resource = lazy_import('msgraph.generated.models.security_resource')
+security_vendor_information = lazy_import('msgraph.generated.models.security_vendor_information')
+uri_click_security_state = lazy_import('msgraph.generated.models.uri_click_security_state')
+user_security_state = lazy_import('msgraph.generated.models.user_security_state')
+vulnerability_state = lazy_import('msgraph.generated.models.vulnerability_state')
 
 class Alert(entity.Entity):
     """

@@ -7,14 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import content_type, content_type_collection_response
-from ....models.o_data_errors import o_data_error
-from .add_copy import add_copy_request_builder
-from .add_copy_from_content_type_hub import add_copy_from_content_type_hub_request_builder
-from .count import count_request_builder
-from .get_compatible_hub_content_types import get_compatible_hub_content_types_request_builder
+add_copy_request_builder = lazy_import('msgraph.generated.drive.list.content_types.add_copy.add_copy_request_builder')
+add_copy_from_content_type_hub_request_builder = lazy_import('msgraph.generated.drive.list.content_types.add_copy_from_content_type_hub.add_copy_from_content_type_hub_request_builder')
+count_request_builder = lazy_import('msgraph.generated.drive.list.content_types.count.count_request_builder')
+get_compatible_hub_content_types_request_builder = lazy_import('msgraph.generated.drive.list.content_types.get_compatible_hub_content_types.get_compatible_hub_content_types_request_builder')
+content_type = lazy_import('msgraph.generated.models.content_type')
+content_type_collection_response = lazy_import('msgraph.generated.models.content_type_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ContentTypesRequestBuilder():
     """

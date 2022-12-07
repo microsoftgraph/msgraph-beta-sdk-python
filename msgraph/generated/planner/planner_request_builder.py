@@ -7,18 +7,19 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..models import planner
-from ..models.o_data_errors import o_data_error
-from .buckets import buckets_request_builder
-from .buckets.item import planner_bucket_item_request_builder
-from .plans import plans_request_builder
-from .plans.item import planner_plan_item_request_builder
-from .rosters import rosters_request_builder
-from .rosters.item import planner_roster_item_request_builder
-from .tasks import tasks_request_builder
-from .tasks.item import planner_task_item_request_builder
+planner = lazy_import('msgraph.generated.models.planner')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+buckets_request_builder = lazy_import('msgraph.generated.planner.buckets.buckets_request_builder')
+planner_bucket_item_request_builder = lazy_import('msgraph.generated.planner.buckets.item.planner_bucket_item_request_builder')
+plans_request_builder = lazy_import('msgraph.generated.planner.plans.plans_request_builder')
+planner_plan_item_request_builder = lazy_import('msgraph.generated.planner.plans.item.planner_plan_item_request_builder')
+rosters_request_builder = lazy_import('msgraph.generated.planner.rosters.rosters_request_builder')
+planner_roster_item_request_builder = lazy_import('msgraph.generated.planner.rosters.item.planner_roster_item_request_builder')
+tasks_request_builder = lazy_import('msgraph.generated.planner.tasks.tasks_request_builder')
+planner_task_item_request_builder = lazy_import('msgraph.generated.planner.tasks.item.planner_task_item_request_builder')
 
 class PlannerRequestBuilder():
     """

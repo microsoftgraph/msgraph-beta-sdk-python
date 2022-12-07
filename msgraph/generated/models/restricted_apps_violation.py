@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, managed_device_reported_app, policy_platform_type, restricted_apps_state
+entity = lazy_import('msgraph.generated.models.entity')
+managed_device_reported_app = lazy_import('msgraph.generated.models.managed_device_reported_app')
+policy_platform_type = lazy_import('msgraph.generated.models.policy_platform_type')
+restricted_apps_state = lazy_import('msgraph.generated.models.restricted_apps_state')
 
 class RestrictedAppsViolation(entity.Entity):
     """

@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import bit_locker_encryption_method, bit_locker_recovery_options
+bit_locker_encryption_method = lazy_import('msgraph.generated.models.bit_locker_encryption_method')
+bit_locker_recovery_options = lazy_import('msgraph.generated.models.bit_locker_recovery_options')
 
 class BitLockerFixedDrivePolicy(AdditionalDataHolder, Parsable):
     """

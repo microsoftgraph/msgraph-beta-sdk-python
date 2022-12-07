@@ -7,10 +7,11 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import can_sign_up_response
-from ...models.o_data_errors import o_data_error
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+can_sign_up_response = lazy_import('msgraph.generated.privileged_signup_status.can_sign_up.can_sign_up_response')
 
 class CanSignUpRequestBuilder():
     """

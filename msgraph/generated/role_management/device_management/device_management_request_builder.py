@@ -7,16 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import rbac_application_multiple
-from ...models.o_data_errors import o_data_error
-from .resource_namespaces import resource_namespaces_request_builder
-from .resource_namespaces.item import unified_rbac_resource_namespace_item_request_builder
-from .role_assignments import role_assignments_request_builder
-from .role_assignments.item import unified_role_assignment_multiple_item_request_builder
-from .role_definitions import role_definitions_request_builder
-from .role_definitions.item import unified_role_definition_item_request_builder
+rbac_application_multiple = lazy_import('msgraph.generated.models.rbac_application_multiple')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+resource_namespaces_request_builder = lazy_import('msgraph.generated.role_management.device_management.resource_namespaces.resource_namespaces_request_builder')
+unified_rbac_resource_namespace_item_request_builder = lazy_import('msgraph.generated.role_management.device_management.resource_namespaces.item.unified_rbac_resource_namespace_item_request_builder')
+role_assignments_request_builder = lazy_import('msgraph.generated.role_management.device_management.role_assignments.role_assignments_request_builder')
+unified_role_assignment_multiple_item_request_builder = lazy_import('msgraph.generated.role_management.device_management.role_assignments.item.unified_role_assignment_multiple_item_request_builder')
+role_definitions_request_builder = lazy_import('msgraph.generated.role_management.device_management.role_definitions.role_definitions_request_builder')
+unified_role_definition_item_request_builder = lazy_import('msgraph.generated.role_management.device_management.role_definitions.item.unified_role_definition_item_request_builder')
 
 class DeviceManagementRequestBuilder():
     """

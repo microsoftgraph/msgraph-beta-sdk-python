@@ -7,48 +7,49 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import profile
-from ....models.o_data_errors import o_data_error
-from .account import account_request_builder
-from .account.item import user_account_information_item_request_builder
-from .addresses import addresses_request_builder
-from .addresses.item import item_address_item_request_builder
-from .anniversaries import anniversaries_request_builder
-from .anniversaries.item import person_annual_event_item_request_builder
-from .awards import awards_request_builder
-from .awards.item import person_award_item_request_builder
-from .certifications import certifications_request_builder
-from .certifications.item import person_certification_item_request_builder
-from .educational_activities import educational_activities_request_builder
-from .educational_activities.item import educational_activity_item_request_builder
-from .emails import emails_request_builder
-from .emails.item import item_email_item_request_builder
-from .interests import interests_request_builder
-from .interests.item import person_interest_item_request_builder
-from .languages import languages_request_builder
-from .languages.item import language_proficiency_item_request_builder
-from .names import names_request_builder
-from .names.item import person_name_item_request_builder
-from .notes import notes_request_builder
-from .notes.item import person_annotation_item_request_builder
-from .patents import patents_request_builder
-from .patents.item import item_patent_item_request_builder
-from .phones import phones_request_builder
-from .phones.item import item_phone_item_request_builder
-from .positions import positions_request_builder
-from .positions.item import work_position_item_request_builder
-from .projects import projects_request_builder
-from .projects.item import project_participation_item_request_builder
-from .publications import publications_request_builder
-from .publications.item import item_publication_item_request_builder
-from .skills import skills_request_builder
-from .skills.item import skill_proficiency_item_request_builder
-from .web_accounts import web_accounts_request_builder
-from .web_accounts.item import web_account_item_request_builder
-from .websites import websites_request_builder
-from .websites.item import person_website_item_request_builder
+profile = lazy_import('msgraph.generated.models.profile')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+account_request_builder = lazy_import('msgraph.generated.users.item.profile.account.account_request_builder')
+user_account_information_item_request_builder = lazy_import('msgraph.generated.users.item.profile.account.item.user_account_information_item_request_builder')
+addresses_request_builder = lazy_import('msgraph.generated.users.item.profile.addresses.addresses_request_builder')
+item_address_item_request_builder = lazy_import('msgraph.generated.users.item.profile.addresses.item.item_address_item_request_builder')
+anniversaries_request_builder = lazy_import('msgraph.generated.users.item.profile.anniversaries.anniversaries_request_builder')
+person_annual_event_item_request_builder = lazy_import('msgraph.generated.users.item.profile.anniversaries.item.person_annual_event_item_request_builder')
+awards_request_builder = lazy_import('msgraph.generated.users.item.profile.awards.awards_request_builder')
+person_award_item_request_builder = lazy_import('msgraph.generated.users.item.profile.awards.item.person_award_item_request_builder')
+certifications_request_builder = lazy_import('msgraph.generated.users.item.profile.certifications.certifications_request_builder')
+person_certification_item_request_builder = lazy_import('msgraph.generated.users.item.profile.certifications.item.person_certification_item_request_builder')
+educational_activities_request_builder = lazy_import('msgraph.generated.users.item.profile.educational_activities.educational_activities_request_builder')
+educational_activity_item_request_builder = lazy_import('msgraph.generated.users.item.profile.educational_activities.item.educational_activity_item_request_builder')
+emails_request_builder = lazy_import('msgraph.generated.users.item.profile.emails.emails_request_builder')
+item_email_item_request_builder = lazy_import('msgraph.generated.users.item.profile.emails.item.item_email_item_request_builder')
+interests_request_builder = lazy_import('msgraph.generated.users.item.profile.interests.interests_request_builder')
+person_interest_item_request_builder = lazy_import('msgraph.generated.users.item.profile.interests.item.person_interest_item_request_builder')
+languages_request_builder = lazy_import('msgraph.generated.users.item.profile.languages.languages_request_builder')
+language_proficiency_item_request_builder = lazy_import('msgraph.generated.users.item.profile.languages.item.language_proficiency_item_request_builder')
+names_request_builder = lazy_import('msgraph.generated.users.item.profile.names.names_request_builder')
+person_name_item_request_builder = lazy_import('msgraph.generated.users.item.profile.names.item.person_name_item_request_builder')
+notes_request_builder = lazy_import('msgraph.generated.users.item.profile.notes.notes_request_builder')
+person_annotation_item_request_builder = lazy_import('msgraph.generated.users.item.profile.notes.item.person_annotation_item_request_builder')
+patents_request_builder = lazy_import('msgraph.generated.users.item.profile.patents.patents_request_builder')
+item_patent_item_request_builder = lazy_import('msgraph.generated.users.item.profile.patents.item.item_patent_item_request_builder')
+phones_request_builder = lazy_import('msgraph.generated.users.item.profile.phones.phones_request_builder')
+item_phone_item_request_builder = lazy_import('msgraph.generated.users.item.profile.phones.item.item_phone_item_request_builder')
+positions_request_builder = lazy_import('msgraph.generated.users.item.profile.positions.positions_request_builder')
+work_position_item_request_builder = lazy_import('msgraph.generated.users.item.profile.positions.item.work_position_item_request_builder')
+projects_request_builder = lazy_import('msgraph.generated.users.item.profile.projects.projects_request_builder')
+project_participation_item_request_builder = lazy_import('msgraph.generated.users.item.profile.projects.item.project_participation_item_request_builder')
+publications_request_builder = lazy_import('msgraph.generated.users.item.profile.publications.publications_request_builder')
+item_publication_item_request_builder = lazy_import('msgraph.generated.users.item.profile.publications.item.item_publication_item_request_builder')
+skills_request_builder = lazy_import('msgraph.generated.users.item.profile.skills.skills_request_builder')
+skill_proficiency_item_request_builder = lazy_import('msgraph.generated.users.item.profile.skills.item.skill_proficiency_item_request_builder')
+web_accounts_request_builder = lazy_import('msgraph.generated.users.item.profile.web_accounts.web_accounts_request_builder')
+web_account_item_request_builder = lazy_import('msgraph.generated.users.item.profile.web_accounts.item.web_account_item_request_builder')
+websites_request_builder = lazy_import('msgraph.generated.users.item.profile.websites.websites_request_builder')
+person_website_item_request_builder = lazy_import('msgraph.generated.users.item.profile.websites.item.person_website_item_request_builder')
 
 class ProfileRequestBuilder():
     """

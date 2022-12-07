@@ -1,9 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import authentication_combination_configuration, authentication_method_modes, authentication_strength_policy_type, authentication_strength_requirements, entity
+authentication_combination_configuration = lazy_import('msgraph.generated.models.authentication_combination_configuration')
+authentication_method_modes = lazy_import('msgraph.generated.models.authentication_method_modes')
+authentication_strength_policy_type = lazy_import('msgraph.generated.models.authentication_strength_policy_type')
+authentication_strength_requirements = lazy_import('msgraph.generated.models.authentication_strength_requirements')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class AuthenticationStrengthPolicy(entity.Entity):
     @property
@@ -42,7 +47,7 @@ class AuthenticationStrengthPolicy(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new AuthenticationStrengthPolicy and sets the default values.
+        Instantiates a new authenticationStrengthPolicy and sets the default values.
         """
         super().__init__()
         # A collection of authentication method modes that are required be used to satify this authentication strength.

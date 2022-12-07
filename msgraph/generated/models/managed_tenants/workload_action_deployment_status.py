@@ -1,10 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import workload_action_status
-from .. import generic_error
+generic_error = lazy_import('msgraph.generated.models.generic_error')
+workload_action_status = lazy_import('msgraph.generated.models.managed_tenants.workload_action_status')
 
 class WorkloadActionDeploymentStatus(AdditionalDataHolder, Parsable):
     @property

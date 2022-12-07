@@ -7,19 +7,20 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import organizational_branding
-from ....models.o_data_errors import o_data_error
-from .background_image import background_image_request_builder
-from .banner_logo import banner_logo_request_builder
-from .custom_c_s_s import custom_c_s_s_request_builder
-from .favicon import favicon_request_builder
-from .header_logo import header_logo_request_builder
-from .localizations import localizations_request_builder
-from .localizations.item import organizational_branding_localization_item_request_builder
-from .square_logo import square_logo_request_builder
-from .square_logo_dark import square_logo_dark_request_builder
+organizational_branding = lazy_import('msgraph.generated.models.organizational_branding')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+background_image_request_builder = lazy_import('msgraph.generated.organization.item.branding.background_image.background_image_request_builder')
+banner_logo_request_builder = lazy_import('msgraph.generated.organization.item.branding.banner_logo.banner_logo_request_builder')
+custom_c_s_s_request_builder = lazy_import('msgraph.generated.organization.item.branding.custom_c_s_s.custom_c_s_s_request_builder')
+favicon_request_builder = lazy_import('msgraph.generated.organization.item.branding.favicon.favicon_request_builder')
+header_logo_request_builder = lazy_import('msgraph.generated.organization.item.branding.header_logo.header_logo_request_builder')
+localizations_request_builder = lazy_import('msgraph.generated.organization.item.branding.localizations.localizations_request_builder')
+organizational_branding_localization_item_request_builder = lazy_import('msgraph.generated.organization.item.branding.localizations.item.organizational_branding_localization_item_request_builder')
+square_logo_request_builder = lazy_import('msgraph.generated.organization.item.branding.square_logo.square_logo_request_builder')
+square_logo_dark_request_builder = lazy_import('msgraph.generated.organization.item.branding.square_logo_dark.square_logo_dark_request_builder')
 
 class BrandingRequestBuilder():
     """

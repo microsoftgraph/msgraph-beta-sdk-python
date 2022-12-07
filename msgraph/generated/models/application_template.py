@@ -1,12 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, informational_urls, supported_claim_configuration
+entity = lazy_import('msgraph.generated.models.entity')
+informational_urls = lazy_import('msgraph.generated.models.informational_urls')
+supported_claim_configuration = lazy_import('msgraph.generated.models.supported_claim_configuration')
 
 class ApplicationTemplate(entity.Entity):
     """
-    Provides operations to manage the collection of applicationTemplate entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def categories(self,) -> Optional[List[str]]:

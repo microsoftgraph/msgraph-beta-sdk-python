@@ -1,9 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import alternative_security_id, command, directory_object, extension, on_premises_extension_attributes, usage_right
+alternative_security_id = lazy_import('msgraph.generated.models.alternative_security_id')
+command = lazy_import('msgraph.generated.models.command')
+directory_object = lazy_import('msgraph.generated.models.directory_object')
+extension = lazy_import('msgraph.generated.models.extension')
+on_premises_extension_attributes = lazy_import('msgraph.generated.models.on_premises_extension_attributes')
+usage_right = lazy_import('msgraph.generated.models.usage_right')
 
 class Device(directory_object.DirectoryObject):
     """
@@ -112,7 +118,7 @@ class Device(directory_object.DirectoryObject):
         self._compliance_expiration_date_time: Optional[datetime] = None
         # User-defined property set by Intune to automatically add devices to groups and simplify managing devices.
         self._device_category: Optional[str] = None
-        # Identifier set by Azure Device Registration Service at the time of registration. Supports $filter (eq, ne, not, startsWith).
+        # Unique Identifier set by Azure Device Registration Service at the time of registration. This is an alternate key that can be used to reference the device object. Also Supports $filter (eq, ne, not, startsWith).
         self._device_id: Optional[str] = None
         # For internal use only. Set to null.
         self._device_metadata: Optional[str] = None
@@ -219,7 +225,7 @@ class Device(directory_object.DirectoryObject):
     @property
     def device_id(self,) -> Optional[str]:
         """
-        Gets the deviceId property value. Identifier set by Azure Device Registration Service at the time of registration. Supports $filter (eq, ne, not, startsWith).
+        Gets the deviceId property value. Unique Identifier set by Azure Device Registration Service at the time of registration. This is an alternate key that can be used to reference the device object. Also Supports $filter (eq, ne, not, startsWith).
         Returns: Optional[str]
         """
         return self._device_id
@@ -227,7 +233,7 @@ class Device(directory_object.DirectoryObject):
     @device_id.setter
     def device_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the deviceId property value. Identifier set by Azure Device Registration Service at the time of registration. Supports $filter (eq, ne, not, startsWith).
+        Sets the deviceId property value. Unique Identifier set by Azure Device Registration Service at the time of registration. This is an alternate key that can be used to reference the device object. Also Supports $filter (eq, ne, not, startsWith).
         Args:
             value: Value to set for the deviceId property.
         """

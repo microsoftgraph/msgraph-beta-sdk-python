@@ -7,10 +7,11 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...........models import planner_task_details
-from ...........models.o_data_errors import o_data_error
+planner_task_details = lazy_import('msgraph.generated.models.planner_task_details')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class DetailsRequestBuilder():
     """
@@ -70,7 +71,7 @@ class DetailsRequestBuilder():
     
     def create_patch_request_information(self,body: Optional[planner_task_details.PlannerTaskDetails] = None, request_configuration: Optional[DetailsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the properties of **plannertaskdetails** object.
+        Update the properties of **plannerTaskDetails** object.
         Args:
             body: 
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -128,7 +129,7 @@ class DetailsRequestBuilder():
     
     async def patch(self,body: Optional[planner_task_details.PlannerTaskDetails] = None, request_configuration: Optional[DetailsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[planner_task_details.PlannerTaskDetails]:
         """
-        Update the properties of **plannertaskdetails** object.
+        Update the properties of **plannerTaskDetails** object.
         Args:
             body: 
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

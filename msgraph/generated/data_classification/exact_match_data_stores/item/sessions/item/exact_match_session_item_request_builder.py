@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import exact_match_session
-from ......models.o_data_errors import o_data_error
-from .cancel import cancel_request_builder
-from .commit import commit_request_builder
-from .renew import renew_request_builder
-from .upload_agent import upload_agent_request_builder
+cancel_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.sessions.item.cancel.cancel_request_builder')
+commit_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.sessions.item.commit.commit_request_builder')
+renew_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.sessions.item.renew.renew_request_builder')
+upload_agent_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.sessions.item.upload_agent.upload_agent_request_builder')
+exact_match_session = lazy_import('msgraph.generated.models.exact_match_session')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ExactMatchSessionItemRequestBuilder():
     """

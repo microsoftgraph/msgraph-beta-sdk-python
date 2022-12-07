@@ -1,13 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import data_policy_operation_status, entity
+data_policy_operation_status = lazy_import('msgraph.generated.models.data_policy_operation_status')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class DataPolicyOperation(entity.Entity):
     """
-    Provides operations to manage the collection of dataPolicyOperation entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def completed_date_time(self,) -> Optional[datetime]:

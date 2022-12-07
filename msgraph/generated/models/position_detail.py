@@ -1,9 +1,10 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import company_detail
+company_detail = lazy_import('msgraph.generated.models.company_detail')
 
 class PositionDetail(AdditionalDataHolder, Parsable):
     @property

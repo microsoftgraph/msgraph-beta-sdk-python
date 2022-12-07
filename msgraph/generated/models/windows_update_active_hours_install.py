@@ -1,9 +1,10 @@
 from __future__ import annotations
 from datetime import time
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import windows_update_install_schedule_type
+windows_update_install_schedule_type = lazy_import('msgraph.generated.models.windows_update_install_schedule_type')
 
 class WindowsUpdateActiveHoursInstall(windows_update_install_schedule_type.WindowsUpdateInstallScheduleType):
     @property

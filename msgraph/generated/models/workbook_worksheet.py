@@ -1,8 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, workbook_chart, workbook_named_item, workbook_pivot_table, workbook_table, workbook_worksheet_protection
+entity = lazy_import('msgraph.generated.models.entity')
+workbook_chart = lazy_import('msgraph.generated.models.workbook_chart')
+workbook_named_item = lazy_import('msgraph.generated.models.workbook_named_item')
+workbook_pivot_table = lazy_import('msgraph.generated.models.workbook_pivot_table')
+workbook_table = lazy_import('msgraph.generated.models.workbook_table')
+workbook_worksheet_protection = lazy_import('msgraph.generated.models.workbook_worksheet_protection')
 
 class WorkbookWorksheet(entity.Entity):
     @property

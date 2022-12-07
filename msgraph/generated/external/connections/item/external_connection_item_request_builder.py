@@ -7,18 +7,19 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models.external_connectors import external_connection
-from ....models.o_data_errors import o_data_error
-from .groups import groups_request_builder
-from .groups.item import external_group_item_request_builder
-from .items import items_request_builder
-from .items.item import external_item_item_request_builder
-from .operations import operations_request_builder
-from .operations.item import connection_operation_item_request_builder
-from .quota import quota_request_builder
-from .schema import schema_request_builder
+groups_request_builder = lazy_import('msgraph.generated.external.connections.item.groups.groups_request_builder')
+external_group_item_request_builder = lazy_import('msgraph.generated.external.connections.item.groups.item.external_group_item_request_builder')
+items_request_builder = lazy_import('msgraph.generated.external.connections.item.items.items_request_builder')
+external_item_item_request_builder = lazy_import('msgraph.generated.external.connections.item.items.item.external_item_item_request_builder')
+operations_request_builder = lazy_import('msgraph.generated.external.connections.item.operations.operations_request_builder')
+connection_operation_item_request_builder = lazy_import('msgraph.generated.external.connections.item.operations.item.connection_operation_item_request_builder')
+quota_request_builder = lazy_import('msgraph.generated.external.connections.item.quota.quota_request_builder')
+schema_request_builder = lazy_import('msgraph.generated.external.connections.item.schema.schema_request_builder')
+external_connection = lazy_import('msgraph.generated.models.external_connectors.external_connection')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ExternalConnectionItemRequestBuilder():
     """

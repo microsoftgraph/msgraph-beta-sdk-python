@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, windows_defender_product_status, windows_device_health_state, windows_device_malware_state
+entity = lazy_import('msgraph.generated.models.entity')
+windows_defender_product_status = lazy_import('msgraph.generated.models.windows_defender_product_status')
+windows_device_health_state = lazy_import('msgraph.generated.models.windows_device_health_state')
+windows_device_malware_state = lazy_import('msgraph.generated.models.windows_device_malware_state')
 
 class WindowsProtectionState(entity.Entity):
     @property

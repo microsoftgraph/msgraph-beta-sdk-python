@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import x509_certificate_authentication_mode, x509_certificate_rule_type
+x509_certificate_authentication_mode = lazy_import('msgraph.generated.models.x509_certificate_authentication_mode')
+x509_certificate_rule_type = lazy_import('msgraph.generated.models.x509_certificate_rule_type')
 
 class X509CertificateRule(AdditionalDataHolder, Parsable):
     @property

@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import base_item, content_type_info, publication_facet, web_part
+base_item = lazy_import('msgraph.generated.models.base_item')
+content_type_info = lazy_import('msgraph.generated.models.content_type_info')
+publication_facet = lazy_import('msgraph.generated.models.publication_facet')
+web_part = lazy_import('msgraph.generated.models.web_part')
 
 class SitePage(base_item.BaseItem):
     """
@@ -14,13 +18,13 @@ class SitePage(base_item.BaseItem):
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.sitePage"
-        # The content type of the page.
+        # Inherited from baseItem.
         self._content_type: Optional[content_type_info.ContentTypeInfo] = None
         # The pageLayoutType property
         self._page_layout_type: Optional[str] = None
-        # The publishingState property
+        # The publishing status and the MM.mm version of the page.
         self._publishing_state: Optional[publication_facet.PublicationFacet] = None
-        # The title property
+        # Title of the sitePage.
         self._title: Optional[str] = None
         # The webParts property
         self._web_parts: Optional[List[web_part.WebPart]] = None
@@ -28,7 +32,7 @@ class SitePage(base_item.BaseItem):
     @property
     def content_type(self,) -> Optional[content_type_info.ContentTypeInfo]:
         """
-        Gets the contentType property value. The content type of the page.
+        Gets the contentType property value. Inherited from baseItem.
         Returns: Optional[content_type_info.ContentTypeInfo]
         """
         return self._content_type
@@ -36,7 +40,7 @@ class SitePage(base_item.BaseItem):
     @content_type.setter
     def content_type(self,value: Optional[content_type_info.ContentTypeInfo] = None) -> None:
         """
-        Sets the contentType property value. The content type of the page.
+        Sets the contentType property value. Inherited from baseItem.
         Args:
             value: Value to set for the contentType property.
         """
@@ -90,7 +94,7 @@ class SitePage(base_item.BaseItem):
     @property
     def publishing_state(self,) -> Optional[publication_facet.PublicationFacet]:
         """
-        Gets the publishingState property value. The publishingState property
+        Gets the publishingState property value. The publishing status and the MM.mm version of the page.
         Returns: Optional[publication_facet.PublicationFacet]
         """
         return self._publishing_state
@@ -98,7 +102,7 @@ class SitePage(base_item.BaseItem):
     @publishing_state.setter
     def publishing_state(self,value: Optional[publication_facet.PublicationFacet] = None) -> None:
         """
-        Sets the publishingState property value. The publishingState property
+        Sets the publishingState property value. The publishing status and the MM.mm version of the page.
         Args:
             value: Value to set for the publishingState property.
         """
@@ -122,7 +126,7 @@ class SitePage(base_item.BaseItem):
     @property
     def title(self,) -> Optional[str]:
         """
-        Gets the title property value. The title property
+        Gets the title property value. Title of the sitePage.
         Returns: Optional[str]
         """
         return self._title
@@ -130,7 +134,7 @@ class SitePage(base_item.BaseItem):
     @title.setter
     def title(self,value: Optional[str] = None) -> None:
         """
-        Sets the title property value. The title property
+        Sets the title property value. Title of the sitePage.
         Args:
             value: Value to set for the title property.
         """

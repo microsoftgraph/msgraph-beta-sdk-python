@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import item_facet, person_annual_event_type
+item_facet = lazy_import('msgraph.generated.models.item_facet')
+person_annual_event_type = lazy_import('msgraph.generated.models.person_annual_event_type')
 
 class PersonAnnualEvent(item_facet.ItemFacet):
     def __init__(self,) -> None:

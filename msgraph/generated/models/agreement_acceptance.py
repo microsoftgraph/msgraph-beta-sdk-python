@@ -1,13 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import agreement_acceptance_state, entity
+agreement_acceptance_state = lazy_import('msgraph.generated.models.agreement_acceptance_state')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class AgreementAcceptance(entity.Entity):
     """
-    Provides operations to manage the collection of agreement entities.
+    Provides operations to manage the collection of agreementAcceptance entities.
     """
     @property
     def agreement_file_id(self,) -> Optional[str]:

@@ -7,28 +7,29 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..........models import event
-from ..........models.o_data_errors import o_data_error
-from .accept import accept_request_builder
-from .attachments import attachments_request_builder
-from .attachments.item import attachment_item_request_builder
-from .calendar import calendar_request_builder
-from .cancel import cancel_request_builder
-from .decline import decline_request_builder
-from .dismiss_reminder import dismiss_reminder_request_builder
-from .extensions import extensions_request_builder
-from .extensions.item import extension_item_request_builder
-from .forward import forward_request_builder
-from .instances import instances_request_builder
-from .instances.item import event_item_request_builder
-from .multi_value_extended_properties import multi_value_extended_properties_request_builder
-from .multi_value_extended_properties.item import multi_value_legacy_extended_property_item_request_builder
-from .single_value_extended_properties import single_value_extended_properties_request_builder
-from .single_value_extended_properties.item import single_value_legacy_extended_property_item_request_builder
-from .snooze_reminder import snooze_reminder_request_builder
-from .tentatively_accept import tentatively_accept_request_builder
+accept_request_builder = lazy_import('msgraph.generated.me.calendar_groups.item.calendars.item.events.item.exception_occurrences.item.accept.accept_request_builder')
+attachments_request_builder = lazy_import('msgraph.generated.me.calendar_groups.item.calendars.item.events.item.exception_occurrences.item.attachments.attachments_request_builder')
+attachment_item_request_builder = lazy_import('msgraph.generated.me.calendar_groups.item.calendars.item.events.item.exception_occurrences.item.attachments.item.attachment_item_request_builder')
+calendar_request_builder = lazy_import('msgraph.generated.me.calendar_groups.item.calendars.item.events.item.exception_occurrences.item.calendar.calendar_request_builder')
+cancel_request_builder = lazy_import('msgraph.generated.me.calendar_groups.item.calendars.item.events.item.exception_occurrences.item.cancel.cancel_request_builder')
+decline_request_builder = lazy_import('msgraph.generated.me.calendar_groups.item.calendars.item.events.item.exception_occurrences.item.decline.decline_request_builder')
+dismiss_reminder_request_builder = lazy_import('msgraph.generated.me.calendar_groups.item.calendars.item.events.item.exception_occurrences.item.dismiss_reminder.dismiss_reminder_request_builder')
+extensions_request_builder = lazy_import('msgraph.generated.me.calendar_groups.item.calendars.item.events.item.exception_occurrences.item.extensions.extensions_request_builder')
+extension_item_request_builder = lazy_import('msgraph.generated.me.calendar_groups.item.calendars.item.events.item.exception_occurrences.item.extensions.item.extension_item_request_builder')
+forward_request_builder = lazy_import('msgraph.generated.me.calendar_groups.item.calendars.item.events.item.exception_occurrences.item.forward.forward_request_builder')
+instances_request_builder = lazy_import('msgraph.generated.me.calendar_groups.item.calendars.item.events.item.exception_occurrences.item.instances.instances_request_builder')
+event_item_request_builder = lazy_import('msgraph.generated.me.calendar_groups.item.calendars.item.events.item.exception_occurrences.item.instances.item.event_item_request_builder')
+multi_value_extended_properties_request_builder = lazy_import('msgraph.generated.me.calendar_groups.item.calendars.item.events.item.exception_occurrences.item.multi_value_extended_properties.multi_value_extended_properties_request_builder')
+multi_value_legacy_extended_property_item_request_builder = lazy_import('msgraph.generated.me.calendar_groups.item.calendars.item.events.item.exception_occurrences.item.multi_value_extended_properties.item.multi_value_legacy_extended_property_item_request_builder')
+single_value_extended_properties_request_builder = lazy_import('msgraph.generated.me.calendar_groups.item.calendars.item.events.item.exception_occurrences.item.single_value_extended_properties.single_value_extended_properties_request_builder')
+single_value_legacy_extended_property_item_request_builder = lazy_import('msgraph.generated.me.calendar_groups.item.calendars.item.events.item.exception_occurrences.item.single_value_extended_properties.item.single_value_legacy_extended_property_item_request_builder')
+snooze_reminder_request_builder = lazy_import('msgraph.generated.me.calendar_groups.item.calendars.item.events.item.exception_occurrences.item.snooze_reminder.snooze_reminder_request_builder')
+tentatively_accept_request_builder = lazy_import('msgraph.generated.me.calendar_groups.item.calendars.item.events.item.exception_occurrences.item.tentatively_accept.tentatively_accept_request_builder')
+event = lazy_import('msgraph.generated.models.event')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class EventItemRequestBuilder():
     """

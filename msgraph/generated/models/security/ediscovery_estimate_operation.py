@@ -1,13 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import case_operation, ediscovery_search
+case_operation = lazy_import('msgraph.generated.models.security.case_operation')
+ediscovery_search = lazy_import('msgraph.generated.models.security.ediscovery_search')
 
 class EdiscoveryEstimateOperation(case_operation.CaseOperation):
     def __init__(self,) -> None:
         """
-        Instantiates a new ediscoveryEstimateOperation and sets the default values.
+        Instantiates a new EdiscoveryEstimateOperation and sets the default values.
         """
         super().__init__()
         # The estimated count of items for the search that matched the content query.

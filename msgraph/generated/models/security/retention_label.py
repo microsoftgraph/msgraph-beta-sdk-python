@@ -1,10 +1,18 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import action_after_retention_period, behavior_during_retention_period, default_record_behavior, disposition_review_stage, retention_duration, retention_event_type, retention_trigger
-from .. import entity, identity_set
+entity = lazy_import('msgraph.generated.models.entity')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+action_after_retention_period = lazy_import('msgraph.generated.models.security.action_after_retention_period')
+behavior_during_retention_period = lazy_import('msgraph.generated.models.security.behavior_during_retention_period')
+default_record_behavior = lazy_import('msgraph.generated.models.security.default_record_behavior')
+disposition_review_stage = lazy_import('msgraph.generated.models.security.disposition_review_stage')
+retention_duration = lazy_import('msgraph.generated.models.security.retention_duration')
+retention_event_type = lazy_import('msgraph.generated.models.security.retention_event_type')
+retention_trigger = lazy_import('msgraph.generated.models.security.retention_trigger')
 
 class RetentionLabel(entity.Entity):
     """

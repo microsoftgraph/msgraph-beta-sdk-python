@@ -1,14 +1,21 @@
 from __future__ import annotations
 from datetime import date, datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import cloud_pc_device_image_os_status, cloud_pc_device_image_status, cloud_pc_device_image_status_details, entity
+cloud_pc_device_image_os_status = lazy_import('msgraph.generated.models.cloud_pc_device_image_os_status')
+cloud_pc_device_image_status = lazy_import('msgraph.generated.models.cloud_pc_device_image_status')
+cloud_pc_device_image_status_details = lazy_import('msgraph.generated.models.cloud_pc_device_image_status_details')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class CloudPcDeviceImage(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new CloudPcDeviceImage and sets the default values.
+        Instantiates a new cloudPcDeviceImage and sets the default values.
         """
         super().__init__()
         # The image's display name.

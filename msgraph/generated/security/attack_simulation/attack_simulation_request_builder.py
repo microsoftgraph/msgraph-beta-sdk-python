@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import attack_simulation_root
-from ...models.o_data_errors import o_data_error
-from .simulation_automations import simulation_automations_request_builder
-from .simulation_automations.item import simulation_automation_item_request_builder
-from .simulations import simulations_request_builder
-from .simulations.item import simulation_item_request_builder
+attack_simulation_root = lazy_import('msgraph.generated.models.attack_simulation_root')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+simulation_automations_request_builder = lazy_import('msgraph.generated.security.attack_simulation.simulation_automations.simulation_automations_request_builder')
+simulation_automation_item_request_builder = lazy_import('msgraph.generated.security.attack_simulation.simulation_automations.item.simulation_automation_item_request_builder')
+simulations_request_builder = lazy_import('msgraph.generated.security.attack_simulation.simulations.simulations_request_builder')
+simulation_item_request_builder = lazy_import('msgraph.generated.security.attack_simulation.simulations.item.simulation_item_request_builder')
 
 class AttackSimulationRequestBuilder():
     """

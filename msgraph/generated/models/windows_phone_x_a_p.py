@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import mobile_lob_app, windows_minimum_operating_system
+mobile_lob_app = lazy_import('msgraph.generated.models.mobile_lob_app')
+windows_minimum_operating_system = lazy_import('msgraph.generated.models.windows_minimum_operating_system')
 
 class WindowsPhoneXAP(mobile_lob_app.MobileLobApp):
     def __init__(self,) -> None:

@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import rating_canada_movies_type, rating_canada_television_type
+rating_canada_movies_type = lazy_import('msgraph.generated.models.rating_canada_movies_type')
+rating_canada_television_type = lazy_import('msgraph.generated.models.rating_canada_television_type')
 
 class MediaContentRatingCanada(AdditionalDataHolder, Parsable):
     @property

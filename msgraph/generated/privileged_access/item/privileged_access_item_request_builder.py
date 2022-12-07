@@ -7,20 +7,21 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import privileged_access
-from ...models.o_data_errors import o_data_error
-from .resources import resources_request_builder
-from .resources.item import governance_resource_item_request_builder
-from .role_assignment_requests import role_assignment_requests_request_builder
-from .role_assignment_requests.item import governance_role_assignment_request_item_request_builder
-from .role_assignments import role_assignments_request_builder
-from .role_assignments.item import governance_role_assignment_item_request_builder
-from .role_definitions import role_definitions_request_builder
-from .role_definitions.item import governance_role_definition_item_request_builder
-from .role_settings import role_settings_request_builder
-from .role_settings.item import governance_role_setting_item_request_builder
+privileged_access = lazy_import('msgraph.generated.models.privileged_access')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+resources_request_builder = lazy_import('msgraph.generated.privileged_access.item.resources.resources_request_builder')
+governance_resource_item_request_builder = lazy_import('msgraph.generated.privileged_access.item.resources.item.governance_resource_item_request_builder')
+role_assignment_requests_request_builder = lazy_import('msgraph.generated.privileged_access.item.role_assignment_requests.role_assignment_requests_request_builder')
+governance_role_assignment_request_item_request_builder = lazy_import('msgraph.generated.privileged_access.item.role_assignment_requests.item.governance_role_assignment_request_item_request_builder')
+role_assignments_request_builder = lazy_import('msgraph.generated.privileged_access.item.role_assignments.role_assignments_request_builder')
+governance_role_assignment_item_request_builder = lazy_import('msgraph.generated.privileged_access.item.role_assignments.item.governance_role_assignment_item_request_builder')
+role_definitions_request_builder = lazy_import('msgraph.generated.privileged_access.item.role_definitions.role_definitions_request_builder')
+governance_role_definition_item_request_builder = lazy_import('msgraph.generated.privileged_access.item.role_definitions.item.governance_role_definition_item_request_builder')
+role_settings_request_builder = lazy_import('msgraph.generated.privileged_access.item.role_settings.role_settings_request_builder')
+governance_role_setting_item_request_builder = lazy_import('msgraph.generated.privileged_access.item.role_settings.item.governance_role_setting_item_request_builder')
 
 class PrivilegedAccessItemRequestBuilder():
     """

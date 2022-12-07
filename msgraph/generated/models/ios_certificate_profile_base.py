@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import apple_subject_name_format, certificate_validity_period_scale, ios_certificate_profile, subject_alternative_name_type
+apple_subject_name_format = lazy_import('msgraph.generated.models.apple_subject_name_format')
+certificate_validity_period_scale = lazy_import('msgraph.generated.models.certificate_validity_period_scale')
+ios_certificate_profile = lazy_import('msgraph.generated.models.ios_certificate_profile')
+subject_alternative_name_type = lazy_import('msgraph.generated.models.subject_alternative_name_type')
 
 class IosCertificateProfileBase(ios_certificate_profile.IosCertificateProfile):
     @property

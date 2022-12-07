@@ -1,13 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import base_collection_pagination_count_response, cloud_p_c_connectivity_issue
+base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
+cloud_p_c_connectivity_issue = lazy_import('msgraph.generated.models.cloud_p_c_connectivity_issue')
 
 class CloudPCConnectivityIssueCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the cloudPCConnectivityIssues property of the microsoft.graph.deviceManagement entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new CloudPCConnectivityIssueCollectionResponse and sets the default values.

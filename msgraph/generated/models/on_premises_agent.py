@@ -1,10 +1,17 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import agent_status, entity, on_premises_agent_group, on_premises_publishing_type
+agent_status = lazy_import('msgraph.generated.models.agent_status')
+entity = lazy_import('msgraph.generated.models.entity')
+on_premises_agent_group = lazy_import('msgraph.generated.models.on_premises_agent_group')
+on_premises_publishing_type = lazy_import('msgraph.generated.models.on_premises_publishing_type')
 
 class OnPremisesAgent(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def agent_groups(self,) -> Optional[List[on_premises_agent_group.OnPremisesAgentGroup]]:
         """
@@ -24,7 +31,7 @@ class OnPremisesAgent(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new OnPremisesAgent and sets the default values.
+        Instantiates a new onPremisesAgent and sets the default values.
         """
         super().__init__()
         # List of onPremisesAgentGroups that an onPremisesAgent is assigned to. Read-only. Nullable.

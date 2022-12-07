@@ -1,8 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import automatic_replies_mail_tips, email_address, mail_tips_error, recipient, recipient_scope_type
+automatic_replies_mail_tips = lazy_import('msgraph.generated.models.automatic_replies_mail_tips')
+email_address = lazy_import('msgraph.generated.models.email_address')
+mail_tips_error = lazy_import('msgraph.generated.models.mail_tips_error')
+recipient = lazy_import('msgraph.generated.models.recipient')
+recipient_scope_type = lazy_import('msgraph.generated.models.recipient_scope_type')
 
 class MailTips(AdditionalDataHolder, Parsable):
     @property

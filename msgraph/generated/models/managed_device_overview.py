@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_exchange_access_state_summary, device_operating_system_summary, entity, managed_device_models_and_manufacturers
+device_exchange_access_state_summary = lazy_import('msgraph.generated.models.device_exchange_access_state_summary')
+device_operating_system_summary = lazy_import('msgraph.generated.models.device_operating_system_summary')
+entity = lazy_import('msgraph.generated.models.entity')
+managed_device_models_and_manufacturers = lazy_import('msgraph.generated.models.managed_device_models_and_manufacturers')
 
 class ManagedDeviceOverview(entity.Entity):
     def __init__(self,) -> None:

@@ -7,18 +7,19 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import b2x_identity_user_flow
-from ....models.o_data_errors import o_data_error
-from .identity_providers import identity_providers_request_builder
-from .identity_providers.item import identity_provider_item_request_builder
-from .languages import languages_request_builder
-from .languages.item import user_flow_language_configuration_item_request_builder
-from .user_attribute_assignments import user_attribute_assignments_request_builder
-from .user_attribute_assignments.item import identity_user_flow_attribute_assignment_item_request_builder
-from .user_flow_identity_providers import user_flow_identity_providers_request_builder
-from .user_flow_identity_providers.item import identity_provider_base_item_request_builder
+identity_providers_request_builder = lazy_import('msgraph.generated.identity.b2x_user_flows.item.identity_providers.identity_providers_request_builder')
+identity_provider_item_request_builder = lazy_import('msgraph.generated.identity.b2x_user_flows.item.identity_providers.item.identity_provider_item_request_builder')
+languages_request_builder = lazy_import('msgraph.generated.identity.b2x_user_flows.item.languages.languages_request_builder')
+user_flow_language_configuration_item_request_builder = lazy_import('msgraph.generated.identity.b2x_user_flows.item.languages.item.user_flow_language_configuration_item_request_builder')
+user_attribute_assignments_request_builder = lazy_import('msgraph.generated.identity.b2x_user_flows.item.user_attribute_assignments.user_attribute_assignments_request_builder')
+identity_user_flow_attribute_assignment_item_request_builder = lazy_import('msgraph.generated.identity.b2x_user_flows.item.user_attribute_assignments.item.identity_user_flow_attribute_assignment_item_request_builder')
+user_flow_identity_providers_request_builder = lazy_import('msgraph.generated.identity.b2x_user_flows.item.user_flow_identity_providers.user_flow_identity_providers_request_builder')
+identity_provider_base_item_request_builder = lazy_import('msgraph.generated.identity.b2x_user_flows.item.user_flow_identity_providers.item.identity_provider_base_item_request_builder')
+b2x_identity_user_flow = lazy_import('msgraph.generated.models.b2x_identity_user_flow')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class B2xIdentityUserFlowItemRequestBuilder():
     """

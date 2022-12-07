@@ -1,8 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import item_body, planner_checklist_items, planner_delta, planner_external_references, planner_preview_type
+item_body = lazy_import('msgraph.generated.models.item_body')
+planner_checklist_items = lazy_import('msgraph.generated.models.planner_checklist_items')
+planner_delta = lazy_import('msgraph.generated.models.planner_delta')
+planner_external_references = lazy_import('msgraph.generated.models.planner_external_references')
+planner_preview_type = lazy_import('msgraph.generated.models.planner_preview_type')
 
 class PlannerTaskDetails(planner_delta.PlannerDelta):
     @property

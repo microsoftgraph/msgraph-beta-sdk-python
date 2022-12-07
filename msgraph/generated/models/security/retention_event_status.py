@@ -1,9 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import event_status_type
-from .. import public_error
+public_error = lazy_import('msgraph.generated.models.public_error')
+event_status_type = lazy_import('msgraph.generated.models.security.event_status_type')
 
 class RetentionEventStatus(AdditionalDataHolder, Parsable):
     @property

@@ -1,9 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, error_code, policy_set_assignment, policy_set_item, policy_set_status
+entity = lazy_import('msgraph.generated.models.entity')
+error_code = lazy_import('msgraph.generated.models.error_code')
+policy_set_assignment = lazy_import('msgraph.generated.models.policy_set_assignment')
+policy_set_item = lazy_import('msgraph.generated.models.policy_set_item')
+policy_set_status = lazy_import('msgraph.generated.models.policy_set_status')
 
 class PolicySet(entity.Entity):
     """

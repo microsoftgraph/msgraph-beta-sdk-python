@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import android_managed_store_app_track, mobile_app
+android_managed_store_app_track = lazy_import('msgraph.generated.models.android_managed_store_app_track')
+mobile_app = lazy_import('msgraph.generated.models.mobile_app')
 
 class AndroidManagedStoreApp(mobile_app.MobileApp):
     @property

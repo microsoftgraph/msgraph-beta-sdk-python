@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, teamwork_tag_member, teamwork_tag_type
+entity = lazy_import('msgraph.generated.models.entity')
+teamwork_tag_member = lazy_import('msgraph.generated.models.teamwork_tag_member')
+teamwork_tag_type = lazy_import('msgraph.generated.models.teamwork_tag_type')
 
 class TeamworkTag(entity.Entity):
     """

@@ -7,13 +7,14 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import role_scope_tag
-from ....models.o_data_errors import o_data_error
-from .assign import assign_request_builder
-from .assignments import assignments_request_builder
-from .assignments.item import role_scope_tag_auto_assignment_item_request_builder
+assign_request_builder = lazy_import('msgraph.generated.device_management.role_scope_tags.item.assign.assign_request_builder')
+assignments_request_builder = lazy_import('msgraph.generated.device_management.role_scope_tags.item.assignments.assignments_request_builder')
+role_scope_tag_auto_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.role_scope_tags.item.assignments.item.role_scope_tag_auto_assignment_item_request_builder')
+role_scope_tag = lazy_import('msgraph.generated.models.role_scope_tag')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class RoleScopeTagItemRequestBuilder():
     """

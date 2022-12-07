@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import access_package_subject_lifecycle, connected_organization, entity
+access_package_subject_lifecycle = lazy_import('msgraph.generated.models.access_package_subject_lifecycle')
+connected_organization = lazy_import('msgraph.generated.models.connected_organization')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class AccessPackageSubject(entity.Entity):
     @property

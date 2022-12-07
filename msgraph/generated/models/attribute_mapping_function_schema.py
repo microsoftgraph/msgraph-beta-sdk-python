@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import attribute_mapping_parameter_schema, entity
+attribute_mapping_parameter_schema = lazy_import('msgraph.generated.models.attribute_mapping_parameter_schema')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class AttributeMappingFunctionSchema(entity.Entity):
     def __init__(self,) -> None:

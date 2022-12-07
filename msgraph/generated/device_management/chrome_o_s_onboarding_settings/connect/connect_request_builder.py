@@ -7,11 +7,12 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import connect_post_request_body
-from ....models import chrome_o_s_onboarding_status
-from ....models.o_data_errors import o_data_error
+connect_post_request_body = lazy_import('msgraph.generated.device_management.chrome_o_s_onboarding_settings.connect.connect_post_request_body')
+chrome_o_s_onboarding_status = lazy_import('msgraph.generated.models.chrome_o_s_onboarding_status')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ConnectRequestBuilder():
     """

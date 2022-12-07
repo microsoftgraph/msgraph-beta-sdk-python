@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import action_capability, cloud_pc_remote_action_name
+action_capability = lazy_import('msgraph.generated.models.action_capability')
+cloud_pc_remote_action_name = lazy_import('msgraph.generated.models.cloud_pc_remote_action_name')
 
 class CloudPcRemoteActionCapability(AdditionalDataHolder, Parsable):
     @property

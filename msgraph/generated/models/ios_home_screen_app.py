@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import ios_home_screen_item
+ios_home_screen_item = lazy_import('msgraph.generated.models.ios_home_screen_item')
 
 class IosHomeScreenApp(ios_home_screen_item.IosHomeScreenItem):
     @property

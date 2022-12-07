@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import authentication_method_target
+authentication_method_target = lazy_import('msgraph.generated.models.authentication_method_target')
 
 class SmsAuthenticationMethodTarget(authentication_method_target.AuthenticationMethodTarget):
     def __init__(self,) -> None:

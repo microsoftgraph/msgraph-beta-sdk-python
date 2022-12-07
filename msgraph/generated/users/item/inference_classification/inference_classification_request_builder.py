@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import inference_classification
-from ....models.o_data_errors import o_data_error
-from .overrides import overrides_request_builder
-from .overrides.item import inference_classification_override_item_request_builder
+inference_classification = lazy_import('msgraph.generated.models.inference_classification')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+overrides_request_builder = lazy_import('msgraph.generated.users.item.inference_classification.overrides.overrides_request_builder')
+inference_classification_override_item_request_builder = lazy_import('msgraph.generated.users.item.inference_classification.overrides.item.inference_classification_override_item_request_builder')
 
 class InferenceClassificationRequestBuilder():
     """

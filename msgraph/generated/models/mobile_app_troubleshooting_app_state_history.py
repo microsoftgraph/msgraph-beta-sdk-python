@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import mobile_app_action_type, mobile_app_troubleshooting_history_item, run_state
+mobile_app_action_type = lazy_import('msgraph.generated.models.mobile_app_action_type')
+mobile_app_troubleshooting_history_item = lazy_import('msgraph.generated.models.mobile_app_troubleshooting_history_item')
+run_state = lazy_import('msgraph.generated.models.run_state')
 
 class MobileAppTroubleshootingAppStateHistory(mobile_app_troubleshooting_history_item.MobileAppTroubleshootingHistoryItem):
     @property

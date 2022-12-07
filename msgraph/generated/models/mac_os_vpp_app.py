@@ -1,9 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import mac_os_vpp_app_assigned_license, mac_os_vpp_app_revoke_licenses_action_result, mobile_app, vpp_licensing_type, vpp_token_account_type
+mac_os_vpp_app_assigned_license = lazy_import('msgraph.generated.models.mac_os_vpp_app_assigned_license')
+mac_os_vpp_app_revoke_licenses_action_result = lazy_import('msgraph.generated.models.mac_os_vpp_app_revoke_licenses_action_result')
+mobile_app = lazy_import('msgraph.generated.models.mobile_app')
+vpp_licensing_type = lazy_import('msgraph.generated.models.vpp_licensing_type')
+vpp_token_account_type = lazy_import('msgraph.generated.models.vpp_token_account_type')
 
 class MacOsVppApp(mobile_app.MobileApp):
     @property

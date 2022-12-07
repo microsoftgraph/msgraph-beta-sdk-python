@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import group_policy_migration_report
-from ....models.o_data_errors import o_data_error
-from .group_policy_setting_mappings import group_policy_setting_mappings_request_builder
-from .group_policy_setting_mappings.item import group_policy_setting_mapping_item_request_builder
-from .unsupported_group_policy_extensions import unsupported_group_policy_extensions_request_builder
-from .unsupported_group_policy_extensions.item import unsupported_group_policy_extension_item_request_builder
+group_policy_setting_mappings_request_builder = lazy_import('msgraph.generated.device_management.group_policy_migration_reports.item.group_policy_setting_mappings.group_policy_setting_mappings_request_builder')
+group_policy_setting_mapping_item_request_builder = lazy_import('msgraph.generated.device_management.group_policy_migration_reports.item.group_policy_setting_mappings.item.group_policy_setting_mapping_item_request_builder')
+unsupported_group_policy_extensions_request_builder = lazy_import('msgraph.generated.device_management.group_policy_migration_reports.item.unsupported_group_policy_extensions.unsupported_group_policy_extensions_request_builder')
+unsupported_group_policy_extension_item_request_builder = lazy_import('msgraph.generated.device_management.group_policy_migration_reports.item.unsupported_group_policy_extensions.item.unsupported_group_policy_extension_item_request_builder')
+group_policy_migration_report = lazy_import('msgraph.generated.models.group_policy_migration_report')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class GroupPolicyMigrationReportItemRequestBuilder():
     """

@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import base_collection_pagination_count_response, cloud_pc_connectivity_event
+base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
+cloud_pc_connectivity_event = lazy_import('msgraph.generated.models.cloud_pc_connectivity_event')
 
 class GetCloudPcConnectivityHistoryResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
     """

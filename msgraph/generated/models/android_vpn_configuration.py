@@ -1,8 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import android_certificate_profile_base, android_vpn_connection_type, device_configuration, key_value, key_value_pair, vpn_authentication_method, vpn_server
+android_certificate_profile_base = lazy_import('msgraph.generated.models.android_certificate_profile_base')
+android_vpn_connection_type = lazy_import('msgraph.generated.models.android_vpn_connection_type')
+device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+key_value = lazy_import('msgraph.generated.models.key_value')
+key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
+vpn_authentication_method = lazy_import('msgraph.generated.models.vpn_authentication_method')
+vpn_server = lazy_import('msgraph.generated.models.vpn_server')
 
 class AndroidVpnConfiguration(device_configuration.DeviceConfiguration):
     @property

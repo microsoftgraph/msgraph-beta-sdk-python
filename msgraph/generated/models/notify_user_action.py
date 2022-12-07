@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import dlp_action_info, override_option
+dlp_action_info = lazy_import('msgraph.generated.models.dlp_action_info')
+override_option = lazy_import('msgraph.generated.models.override_option')
 
 class NotifyUserAction(dlp_action_info.DlpActionInfo):
     @property

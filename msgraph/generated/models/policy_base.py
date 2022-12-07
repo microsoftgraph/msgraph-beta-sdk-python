@@ -1,12 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import directory_object
+directory_object = lazy_import('msgraph.generated.models.directory_object')
 
 class PolicyBase(directory_object.DirectoryObject):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Casts the previous resource to application.
     """
     def __init__(self,) -> None:
         """

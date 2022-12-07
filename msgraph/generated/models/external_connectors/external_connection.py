@@ -1,11 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import activity_settings, compliance_settings, configuration, connection_operation, connection_quota, connection_state, content_experience_type, external_group, external_item, schema, search_settings
-from .. import entity
+entity = lazy_import('msgraph.generated.models.entity')
+activity_settings = lazy_import('msgraph.generated.models.external_connectors.activity_settings')
+compliance_settings = lazy_import('msgraph.generated.models.external_connectors.compliance_settings')
+configuration = lazy_import('msgraph.generated.models.external_connectors.configuration')
+connection_operation = lazy_import('msgraph.generated.models.external_connectors.connection_operation')
+connection_quota = lazy_import('msgraph.generated.models.external_connectors.connection_quota')
+connection_state = lazy_import('msgraph.generated.models.external_connectors.connection_state')
+content_experience_type = lazy_import('msgraph.generated.models.external_connectors.content_experience_type')
+external_group = lazy_import('msgraph.generated.models.external_connectors.external_group')
+external_item = lazy_import('msgraph.generated.models.external_connectors.external_item')
+schema = lazy_import('msgraph.generated.models.external_connectors.schema')
+search_settings = lazy_import('msgraph.generated.models.external_connectors.search_settings')
 
 class ExternalConnection(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def activity_settings(self,) -> Optional[activity_settings.ActivitySettings]:
         """
@@ -76,7 +90,7 @@ class ExternalConnection(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new ExternalConnection and sets the default values.
+        Instantiates a new externalConnection and sets the default values.
         """
         super().__init__()
         # Collects configurable settings related to activities involving connector content.

@@ -1,8 +1,17 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import mobile_lob_app, win32_lob_app_detection, win32_lob_app_install_experience, win32_lob_app_msi_information, win32_lob_app_requirement, win32_lob_app_return_code, win32_lob_app_rule, windows_architecture, windows_minimum_operating_system
+mobile_lob_app = lazy_import('msgraph.generated.models.mobile_lob_app')
+win32_lob_app_detection = lazy_import('msgraph.generated.models.win32_lob_app_detection')
+win32_lob_app_install_experience = lazy_import('msgraph.generated.models.win32_lob_app_install_experience')
+win32_lob_app_msi_information = lazy_import('msgraph.generated.models.win32_lob_app_msi_information')
+win32_lob_app_requirement = lazy_import('msgraph.generated.models.win32_lob_app_requirement')
+win32_lob_app_return_code = lazy_import('msgraph.generated.models.win32_lob_app_return_code')
+win32_lob_app_rule = lazy_import('msgraph.generated.models.win32_lob_app_rule')
+windows_architecture = lazy_import('msgraph.generated.models.windows_architecture')
+windows_minimum_operating_system = lazy_import('msgraph.generated.models.windows_minimum_operating_system')
 
 class Win32LobApp(mobile_lob_app.MobileLobApp):
     @property

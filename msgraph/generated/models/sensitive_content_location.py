@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import sensitive_content_evidence
+sensitive_content_evidence = lazy_import('msgraph.generated.models.sensitive_content_evidence')
 
 class SensitiveContentLocation(AdditionalDataHolder, Parsable):
     @property

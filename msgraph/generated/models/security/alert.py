@@ -1,10 +1,18 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import alert_classification, alert_comment, alert_determination, alert_evidence, alert_severity, alert_status, detection_source, service_source
-from .. import entity
+entity = lazy_import('msgraph.generated.models.entity')
+alert_classification = lazy_import('msgraph.generated.models.security.alert_classification')
+alert_comment = lazy_import('msgraph.generated.models.security.alert_comment')
+alert_determination = lazy_import('msgraph.generated.models.security.alert_determination')
+alert_evidence = lazy_import('msgraph.generated.models.security.alert_evidence')
+alert_severity = lazy_import('msgraph.generated.models.security.alert_severity')
+alert_status = lazy_import('msgraph.generated.models.security.alert_status')
+detection_source = lazy_import('msgraph.generated.models.security.detection_source')
+service_source = lazy_import('msgraph.generated.models.security.service_source')
 
 class Alert(entity.Entity):
     """

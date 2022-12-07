@@ -1,8 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import application_enforced_restrictions_session_control, cloud_app_security_session_control, continuous_access_evaluation_session_control, persistent_browser_session_control, sign_in_frequency_session_control
+application_enforced_restrictions_session_control = lazy_import('msgraph.generated.models.application_enforced_restrictions_session_control')
+cloud_app_security_session_control = lazy_import('msgraph.generated.models.cloud_app_security_session_control')
+continuous_access_evaluation_session_control = lazy_import('msgraph.generated.models.continuous_access_evaluation_session_control')
+persistent_browser_session_control = lazy_import('msgraph.generated.models.persistent_browser_session_control')
+sign_in_frequency_session_control = lazy_import('msgraph.generated.models.sign_in_frequency_session_control')
 
 class ConditionalAccessSessionControls(AdditionalDataHolder, Parsable):
     @property

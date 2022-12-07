@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import risky_user
-from ....models.o_data_errors import o_data_error
-from .history import history_request_builder
-from .history.item import risky_user_history_item_item_request_builder
+history_request_builder = lazy_import('msgraph.generated.identity_protection.risky_users.item.history.history_request_builder')
+risky_user_history_item_item_request_builder = lazy_import('msgraph.generated.identity_protection.risky_users.item.history.item.risky_user_history_item_item_request_builder')
+risky_user = lazy_import('msgraph.generated.models.risky_user')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class RiskyUserItemRequestBuilder():
     """

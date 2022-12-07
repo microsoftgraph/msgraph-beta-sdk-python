@@ -1,9 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import ocr_settings, redundancy_detection_settings, topic_modeling_settings
-from .. import entity
+entity = lazy_import('msgraph.generated.models.entity')
+ocr_settings = lazy_import('msgraph.generated.models.ediscovery.ocr_settings')
+redundancy_detection_settings = lazy_import('msgraph.generated.models.ediscovery.redundancy_detection_settings')
+topic_modeling_settings = lazy_import('msgraph.generated.models.ediscovery.topic_modeling_settings')
 
 class CaseSettings(entity.Entity):
     def __init__(self,) -> None:

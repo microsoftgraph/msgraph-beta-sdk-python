@@ -1,9 +1,10 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import unified_role_schedule_instance_base
+unified_role_schedule_instance_base = lazy_import('msgraph.generated.models.unified_role_schedule_instance_base')
 
 class UnifiedRoleEligibilityScheduleInstance(unified_role_schedule_instance_base.UnifiedRoleScheduleInstanceBase):
     def __init__(self,) -> None:

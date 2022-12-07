@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import provisioning_status_error_category, status_base
+provisioning_status_error_category = lazy_import('msgraph.generated.models.provisioning_status_error_category')
+status_base = lazy_import('msgraph.generated.models.status_base')
 
 class StatusDetails(status_base.StatusBase):
     @property

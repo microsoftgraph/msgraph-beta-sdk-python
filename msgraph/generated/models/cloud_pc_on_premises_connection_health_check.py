@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import cloud_pc_on_premises_connection_health_check_error_type, cloud_pc_on_premises_connection_status
+cloud_pc_on_premises_connection_health_check_error_type = lazy_import('msgraph.generated.models.cloud_pc_on_premises_connection_health_check_error_type')
+cloud_pc_on_premises_connection_status = lazy_import('msgraph.generated.models.cloud_pc_on_premises_connection_status')
 
 class CloudPcOnPremisesConnectionHealthCheck(AdditionalDataHolder, Parsable):
     @property

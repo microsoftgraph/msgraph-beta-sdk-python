@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, registration_auth_method
+entity = lazy_import('msgraph.generated.models.entity')
+registration_auth_method = lazy_import('msgraph.generated.models.registration_auth_method')
 
 class CredentialUserRegistrationDetails(entity.Entity):
     @property

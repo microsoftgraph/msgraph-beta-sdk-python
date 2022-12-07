@@ -7,10 +7,11 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import summarize_device_performance_devices_with_summarize_by_response
-from ....models.o_data_errors import o_data_error
+summarize_device_performance_devices_with_summarize_by_response = lazy_import('msgraph.generated.device_management.user_experience_analytics_device_performance.summarize_device_performance_devices_with_summarize_by.summarize_device_performance_devices_with_summarize_by_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class SummarizeDevicePerformanceDevicesWithSummarizeByRequestBuilder():
     """

@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, planner_plan
+entity = lazy_import('msgraph.generated.models.entity')
+planner_plan = lazy_import('msgraph.generated.models.planner_plan')
 
 class PlannerGroup(entity.Entity):
     def __init__(self,) -> None:

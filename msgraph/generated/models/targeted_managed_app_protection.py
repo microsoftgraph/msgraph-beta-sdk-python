@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import app_management_level, managed_app_protection, targeted_managed_app_group_type, targeted_managed_app_policy_assignment
+app_management_level = lazy_import('msgraph.generated.models.app_management_level')
+managed_app_protection = lazy_import('msgraph.generated.models.managed_app_protection')
+targeted_managed_app_group_type = lazy_import('msgraph.generated.models.targeted_managed_app_group_type')
+targeted_managed_app_policy_assignment = lazy_import('msgraph.generated.models.targeted_managed_app_policy_assignment')
 
 class TargetedManagedAppProtection(managed_app_protection.ManagedAppProtection):
     @property

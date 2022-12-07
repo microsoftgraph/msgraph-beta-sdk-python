@@ -7,42 +7,43 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import drive_item
-from .....models.o_data_errors import o_data_error
-from .activities import activities_request_builder
-from .activities.item import item_activity_o_l_d_item_request_builder
-from .analytics import analytics_request_builder
-from .assign_sensitivity_label import assign_sensitivity_label_request_builder
-from .checkin import checkin_request_builder
-from .checkout import checkout_request_builder
-from .children import children_request_builder
-from .children.item import drive_item_item_request_builder
-from .content import content_request_builder
-from .copy import copy_request_builder
-from .create_link import create_link_request_builder
-from .create_upload_session import create_upload_session_request_builder
-from .delta import delta_request_builder
-from .delta_with_token import delta_with_token_request_builder
-from .extract_sensitivity_labels import extract_sensitivity_labels_request_builder
-from .follow import follow_request_builder
-from .get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval import get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder
-from .invite import invite_request_builder
-from .list_item import list_item_request_builder
-from .permissions import permissions_request_builder
-from .permissions.item import permission_item_request_builder
-from .preview import preview_request_builder
-from .restore import restore_request_builder
-from .search_with_q import search_with_q_request_builder
-from .subscriptions import subscriptions_request_builder
-from .subscriptions.item import subscription_item_request_builder
-from .thumbnails import thumbnails_request_builder
-from .thumbnails.item import thumbnail_set_item_request_builder
-from .unfollow import unfollow_request_builder
-from .validate_permission import validate_permission_request_builder
-from .versions import versions_request_builder
-from .versions.item import drive_item_version_item_request_builder
+activities_request_builder = lazy_import('msgraph.generated.me.drives.item.root.activities.activities_request_builder')
+item_activity_o_l_d_item_request_builder = lazy_import('msgraph.generated.me.drives.item.root.activities.item.item_activity_o_l_d_item_request_builder')
+analytics_request_builder = lazy_import('msgraph.generated.me.drives.item.root.analytics.analytics_request_builder')
+assign_sensitivity_label_request_builder = lazy_import('msgraph.generated.me.drives.item.root.assign_sensitivity_label.assign_sensitivity_label_request_builder')
+checkin_request_builder = lazy_import('msgraph.generated.me.drives.item.root.checkin.checkin_request_builder')
+checkout_request_builder = lazy_import('msgraph.generated.me.drives.item.root.checkout.checkout_request_builder')
+children_request_builder = lazy_import('msgraph.generated.me.drives.item.root.children.children_request_builder')
+drive_item_item_request_builder = lazy_import('msgraph.generated.me.drives.item.root.children.item.drive_item_item_request_builder')
+content_request_builder = lazy_import('msgraph.generated.me.drives.item.root.content.content_request_builder')
+copy_request_builder = lazy_import('msgraph.generated.me.drives.item.root.copy.copy_request_builder')
+create_link_request_builder = lazy_import('msgraph.generated.me.drives.item.root.create_link.create_link_request_builder')
+create_upload_session_request_builder = lazy_import('msgraph.generated.me.drives.item.root.create_upload_session.create_upload_session_request_builder')
+delta_request_builder = lazy_import('msgraph.generated.me.drives.item.root.delta.delta_request_builder')
+delta_with_token_request_builder = lazy_import('msgraph.generated.me.drives.item.root.delta_with_token.delta_with_token_request_builder')
+extract_sensitivity_labels_request_builder = lazy_import('msgraph.generated.me.drives.item.root.extract_sensitivity_labels.extract_sensitivity_labels_request_builder')
+follow_request_builder = lazy_import('msgraph.generated.me.drives.item.root.follow.follow_request_builder')
+get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder = lazy_import('msgraph.generated.me.drives.item.root.get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval.get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder')
+invite_request_builder = lazy_import('msgraph.generated.me.drives.item.root.invite.invite_request_builder')
+list_item_request_builder = lazy_import('msgraph.generated.me.drives.item.root.list_item.list_item_request_builder')
+permissions_request_builder = lazy_import('msgraph.generated.me.drives.item.root.permissions.permissions_request_builder')
+permission_item_request_builder = lazy_import('msgraph.generated.me.drives.item.root.permissions.item.permission_item_request_builder')
+preview_request_builder = lazy_import('msgraph.generated.me.drives.item.root.preview.preview_request_builder')
+restore_request_builder = lazy_import('msgraph.generated.me.drives.item.root.restore.restore_request_builder')
+search_with_q_request_builder = lazy_import('msgraph.generated.me.drives.item.root.search_with_q.search_with_q_request_builder')
+subscriptions_request_builder = lazy_import('msgraph.generated.me.drives.item.root.subscriptions.subscriptions_request_builder')
+subscription_item_request_builder = lazy_import('msgraph.generated.me.drives.item.root.subscriptions.item.subscription_item_request_builder')
+thumbnails_request_builder = lazy_import('msgraph.generated.me.drives.item.root.thumbnails.thumbnails_request_builder')
+thumbnail_set_item_request_builder = lazy_import('msgraph.generated.me.drives.item.root.thumbnails.item.thumbnail_set_item_request_builder')
+unfollow_request_builder = lazy_import('msgraph.generated.me.drives.item.root.unfollow.unfollow_request_builder')
+validate_permission_request_builder = lazy_import('msgraph.generated.me.drives.item.root.validate_permission.validate_permission_request_builder')
+versions_request_builder = lazy_import('msgraph.generated.me.drives.item.root.versions.versions_request_builder')
+drive_item_version_item_request_builder = lazy_import('msgraph.generated.me.drives.item.root.versions.item.drive_item_version_item_request_builder')
+drive_item = lazy_import('msgraph.generated.models.drive_item')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class RootRequestBuilder():
     """

@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import attribute_mapping, filter, metadata_entry, object_flow_types
+attribute_mapping = lazy_import('msgraph.generated.models.attribute_mapping')
+filter = lazy_import('msgraph.generated.models.filter')
+metadata_entry = lazy_import('msgraph.generated.models.metadata_entry')
+object_flow_types = lazy_import('msgraph.generated.models.object_flow_types')
 
 class ObjectMapping(AdditionalDataHolder, Parsable):
     @property

@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import planner_task_role_based_rule
+planner_task_role_based_rule = lazy_import('msgraph.generated.models.planner_task_role_based_rule')
 
 class PlannerTaskPolicy(AdditionalDataHolder, Parsable):
     @property

@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import recommended_action, simulation_events_content, training_events_content
+recommended_action = lazy_import('msgraph.generated.models.recommended_action')
+simulation_events_content = lazy_import('msgraph.generated.models.simulation_events_content')
+training_events_content = lazy_import('msgraph.generated.models.training_events_content')
 
 class SimulationReportOverview(AdditionalDataHolder, Parsable):
     @property

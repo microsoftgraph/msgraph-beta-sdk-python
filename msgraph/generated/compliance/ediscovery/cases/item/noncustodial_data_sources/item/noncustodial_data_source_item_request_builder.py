@@ -7,15 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .......models.ediscovery import noncustodial_data_source
-from .......models.o_data_errors import o_data_error
-from .apply_hold import apply_hold_request_builder
-from .data_source import data_source_request_builder
-from .release import release_request_builder
-from .remove_hold import remove_hold_request_builder
-from .update_index import update_index_request_builder
+apply_hold_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.noncustodial_data_sources.item.apply_hold.apply_hold_request_builder')
+data_source_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.noncustodial_data_sources.item.data_source.data_source_request_builder')
+release_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.noncustodial_data_sources.item.release.release_request_builder')
+remove_hold_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.noncustodial_data_sources.item.remove_hold.remove_hold_request_builder')
+update_index_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.noncustodial_data_sources.item.update_index.update_index_request_builder')
+noncustodial_data_source = lazy_import('msgraph.generated.models.ediscovery.noncustodial_data_source')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class NoncustodialDataSourceItemRequestBuilder():
     """

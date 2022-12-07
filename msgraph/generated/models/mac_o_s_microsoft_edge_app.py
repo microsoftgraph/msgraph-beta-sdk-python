@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import microsoft_edge_channel, mobile_app
+microsoft_edge_channel = lazy_import('msgraph.generated.models.microsoft_edge_channel')
+mobile_app = lazy_import('msgraph.generated.models.mobile_app')
 
 class MacOSMicrosoftEdgeApp(mobile_app.MobileApp):
     @property

@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import submission_detected_file, submission_result_category, submission_result_detail, user_mailbox_setting
+submission_detected_file = lazy_import('msgraph.generated.models.security.submission_detected_file')
+submission_result_category = lazy_import('msgraph.generated.models.security.submission_result_category')
+submission_result_detail = lazy_import('msgraph.generated.models.security.submission_result_detail')
+user_mailbox_setting = lazy_import('msgraph.generated.models.security.user_mailbox_setting')
 
 class SubmissionResult(AdditionalDataHolder, Parsable):
     @property

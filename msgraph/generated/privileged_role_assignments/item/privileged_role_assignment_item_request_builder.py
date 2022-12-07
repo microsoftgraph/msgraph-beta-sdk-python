@@ -7,13 +7,14 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import privileged_role_assignment
-from ...models.o_data_errors import o_data_error
-from .make_eligible import make_eligible_request_builder
-from .make_permanent import make_permanent_request_builder
-from .role_info import role_info_request_builder
+privileged_role_assignment = lazy_import('msgraph.generated.models.privileged_role_assignment')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+make_eligible_request_builder = lazy_import('msgraph.generated.privileged_role_assignments.item.make_eligible.make_eligible_request_builder')
+make_permanent_request_builder = lazy_import('msgraph.generated.privileged_role_assignments.item.make_permanent.make_permanent_request_builder')
+role_info_request_builder = lazy_import('msgraph.generated.privileged_role_assignments.item.role_info.role_info_request_builder')
 
 class PrivilegedRoleAssignmentItemRequestBuilder():
     """

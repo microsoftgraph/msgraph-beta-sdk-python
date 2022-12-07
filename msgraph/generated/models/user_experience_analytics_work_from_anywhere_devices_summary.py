@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import user_experience_analytics_autopilot_devices_summary, user_experience_analytics_cloud_identity_devices_summary, user_experience_analytics_cloud_management_devices_summary, user_experience_analytics_windows10_devices_summary
+user_experience_analytics_autopilot_devices_summary = lazy_import('msgraph.generated.models.user_experience_analytics_autopilot_devices_summary')
+user_experience_analytics_cloud_identity_devices_summary = lazy_import('msgraph.generated.models.user_experience_analytics_cloud_identity_devices_summary')
+user_experience_analytics_cloud_management_devices_summary = lazy_import('msgraph.generated.models.user_experience_analytics_cloud_management_devices_summary')
+user_experience_analytics_windows10_devices_summary = lazy_import('msgraph.generated.models.user_experience_analytics_windows10_devices_summary')
 
 class UserExperienceAnalyticsWorkFromAnywhereDevicesSummary(AdditionalDataHolder, Parsable):
     """

@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import date_time_time_zone, event_message, location
+date_time_time_zone = lazy_import('msgraph.generated.models.date_time_time_zone')
+event_message = lazy_import('msgraph.generated.models.event_message')
+location = lazy_import('msgraph.generated.models.location')
 
 class EventMessageRequest(event_message.EventMessage):
     @property

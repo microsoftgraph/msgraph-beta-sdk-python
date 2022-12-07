@@ -7,16 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import managed_app_registration
-from ....models.o_data_errors import o_data_error
-from .applied_policies import applied_policies_request_builder
-from .applied_policies.item import managed_app_policy_item_request_builder
-from .intended_policies import intended_policies_request_builder
-from .intended_policies.item import managed_app_policy_item_request_builder
-from .operations import operations_request_builder
-from .operations.item import managed_app_operation_item_request_builder
+applied_policies_request_builder = lazy_import('msgraph.generated.device_app_management.managed_app_registrations.item.applied_policies.applied_policies_request_builder')
+managed_app_policy_item_request_builder = lazy_import('msgraph.generated.device_app_management.managed_app_registrations.item.applied_policies.item.managed_app_policy_item_request_builder')
+intended_policies_request_builder = lazy_import('msgraph.generated.device_app_management.managed_app_registrations.item.intended_policies.intended_policies_request_builder')
+managed_app_policy_item_request_builder = lazy_import('msgraph.generated.device_app_management.managed_app_registrations.item.intended_policies.item.managed_app_policy_item_request_builder')
+operations_request_builder = lazy_import('msgraph.generated.device_app_management.managed_app_registrations.item.operations.operations_request_builder')
+managed_app_operation_item_request_builder = lazy_import('msgraph.generated.device_app_management.managed_app_registrations.item.operations.item.managed_app_operation_item_request_builder')
+managed_app_registration = lazy_import('msgraph.generated.models.managed_app_registration')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ManagedAppRegistrationItemRequestBuilder():
     """

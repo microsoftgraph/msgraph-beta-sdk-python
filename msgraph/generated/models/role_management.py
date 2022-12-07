@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import rbac_application, rbac_application_multiple
+rbac_application = lazy_import('msgraph.generated.models.rbac_application')
+rbac_application_multiple = lazy_import('msgraph.generated.models.rbac_application_multiple')
 
 class RoleManagement(AdditionalDataHolder, Parsable):
     @property

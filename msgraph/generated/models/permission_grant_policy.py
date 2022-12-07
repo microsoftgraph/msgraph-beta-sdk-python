@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import permission_grant_condition_set, policy_base
+permission_grant_condition_set = lazy_import('msgraph.generated.models.permission_grant_condition_set')
+policy_base = lazy_import('msgraph.generated.models.policy_base')
 
 class PermissionGrantPolicy(policy_base.PolicyBase):
     def __init__(self,) -> None:

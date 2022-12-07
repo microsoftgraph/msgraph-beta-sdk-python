@@ -7,21 +7,22 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import sales_invoice
-from ......models.o_data_errors import o_data_error
-from .cancel import cancel_request_builder
-from .cancel_and_send import cancel_and_send_request_builder
-from .currency import currency_request_builder
-from .customer import customer_request_builder
-from .payment_term import payment_term_request_builder
-from .post import post_request_builder
-from .post_and_send import post_and_send_request_builder
-from .sales_invoice_lines import sales_invoice_lines_request_builder
-from .sales_invoice_lines.item import sales_invoice_line_item_request_builder
-from .send import send_request_builder
-from .shipment_method import shipment_method_request_builder
+cancel_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.cancel.cancel_request_builder')
+cancel_and_send_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.cancel_and_send.cancel_and_send_request_builder')
+currency_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.currency.currency_request_builder')
+customer_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.customer.customer_request_builder')
+payment_term_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.payment_term.payment_term_request_builder')
+post_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.post.post_request_builder')
+post_and_send_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.post_and_send.post_and_send_request_builder')
+sales_invoice_lines_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.sales_invoice_lines.sales_invoice_lines_request_builder')
+sales_invoice_line_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.sales_invoice_lines.item.sales_invoice_line_item_request_builder')
+send_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.send.send_request_builder')
+shipment_method_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.shipment_method.shipment_method_request_builder')
+sales_invoice = lazy_import('msgraph.generated.models.sales_invoice')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class SalesInvoiceItemRequestBuilder():
     """

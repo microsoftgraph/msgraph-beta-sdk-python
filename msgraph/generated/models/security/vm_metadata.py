@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import vm_cloud_provider
+vm_cloud_provider = lazy_import('msgraph.generated.models.security.vm_cloud_provider')
 
 class VmMetadata(AdditionalDataHolder, Parsable):
     @property

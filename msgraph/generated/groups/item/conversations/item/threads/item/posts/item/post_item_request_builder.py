@@ -7,23 +7,24 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .........models import post
-from .........models.o_data_errors import o_data_error
-from .attachments import attachments_request_builder
-from .attachments.item import attachment_item_request_builder
-from .extensions import extensions_request_builder
-from .extensions.item import extension_item_request_builder
-from .forward import forward_request_builder
-from .in_reply_to import in_reply_to_request_builder
-from .mentions import mentions_request_builder
-from .mentions.item import mention_item_request_builder
-from .multi_value_extended_properties import multi_value_extended_properties_request_builder
-from .multi_value_extended_properties.item import multi_value_legacy_extended_property_item_request_builder
-from .reply import reply_request_builder
-from .single_value_extended_properties import single_value_extended_properties_request_builder
-from .single_value_extended_properties.item import single_value_legacy_extended_property_item_request_builder
+attachments_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.attachments.attachments_request_builder')
+attachment_item_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.attachments.item.attachment_item_request_builder')
+extensions_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.extensions.extensions_request_builder')
+extension_item_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.extensions.item.extension_item_request_builder')
+forward_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.forward.forward_request_builder')
+in_reply_to_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.in_reply_to.in_reply_to_request_builder')
+mentions_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.mentions.mentions_request_builder')
+mention_item_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.mentions.item.mention_item_request_builder')
+multi_value_extended_properties_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.multi_value_extended_properties.multi_value_extended_properties_request_builder')
+multi_value_legacy_extended_property_item_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.multi_value_extended_properties.item.multi_value_legacy_extended_property_item_request_builder')
+reply_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.reply.reply_request_builder')
+single_value_extended_properties_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.single_value_extended_properties.single_value_extended_properties_request_builder')
+single_value_legacy_extended_property_item_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.single_value_extended_properties.item.single_value_legacy_extended_property_item_request_builder')
+post = lazy_import('msgraph.generated.models.post')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class PostItemRequestBuilder():
     """

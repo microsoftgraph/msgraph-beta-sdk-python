@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import document_set_version_item, identity_set, list_item_version
+document_set_version_item = lazy_import('msgraph.generated.models.document_set_version_item')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+list_item_version = lazy_import('msgraph.generated.models.list_item_version')
 
 class DocumentSetVersion(list_item_version.ListItemVersion):
     @property

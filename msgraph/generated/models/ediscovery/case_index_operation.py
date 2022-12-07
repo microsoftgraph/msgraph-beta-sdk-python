@@ -1,13 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import case_operation
+case_operation = lazy_import('msgraph.generated.models.ediscovery.case_operation')
 
 class CaseIndexOperation(case_operation.CaseOperation):
     def __init__(self,) -> None:
         """
-        Instantiates a new CaseIndexOperation and sets the default values.
+        Instantiates a new caseIndexOperation and sets the default values.
         """
         super().__init__()
         # The OdataType property

@@ -7,22 +7,23 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import cloud_p_c
-from .....models.o_data_errors import o_data_error
-from .change_user_account_type import change_user_account_type_request_builder
-from .end_grace_period import end_grace_period_request_builder
-from .get_cloud_pc_connectivity_history import get_cloud_pc_connectivity_history_request_builder
-from .get_cloud_pc_launch_info import get_cloud_pc_launch_info_request_builder
-from .get_shift_work_cloud_pc_access_state import get_shift_work_cloud_pc_access_state_request_builder
-from .get_supported_cloud_pc_remote_actions import get_supported_cloud_pc_remote_actions_request_builder
-from .reboot import reboot_request_builder
-from .rename import rename_request_builder
-from .reprovision import reprovision_request_builder
-from .restore import restore_request_builder
-from .retry_partner_agent_installation import retry_partner_agent_installation_request_builder
-from .troubleshoot import troubleshoot_request_builder
+cloud_p_c = lazy_import('msgraph.generated.models.cloud_p_c')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+change_user_account_type_request_builder = lazy_import('msgraph.generated.users.item.cloud_p_cs.item.change_user_account_type.change_user_account_type_request_builder')
+end_grace_period_request_builder = lazy_import('msgraph.generated.users.item.cloud_p_cs.item.end_grace_period.end_grace_period_request_builder')
+get_cloud_pc_connectivity_history_request_builder = lazy_import('msgraph.generated.users.item.cloud_p_cs.item.get_cloud_pc_connectivity_history.get_cloud_pc_connectivity_history_request_builder')
+get_cloud_pc_launch_info_request_builder = lazy_import('msgraph.generated.users.item.cloud_p_cs.item.get_cloud_pc_launch_info.get_cloud_pc_launch_info_request_builder')
+get_shift_work_cloud_pc_access_state_request_builder = lazy_import('msgraph.generated.users.item.cloud_p_cs.item.get_shift_work_cloud_pc_access_state.get_shift_work_cloud_pc_access_state_request_builder')
+get_supported_cloud_pc_remote_actions_request_builder = lazy_import('msgraph.generated.users.item.cloud_p_cs.item.get_supported_cloud_pc_remote_actions.get_supported_cloud_pc_remote_actions_request_builder')
+reboot_request_builder = lazy_import('msgraph.generated.users.item.cloud_p_cs.item.reboot.reboot_request_builder')
+rename_request_builder = lazy_import('msgraph.generated.users.item.cloud_p_cs.item.rename.rename_request_builder')
+reprovision_request_builder = lazy_import('msgraph.generated.users.item.cloud_p_cs.item.reprovision.reprovision_request_builder')
+restore_request_builder = lazy_import('msgraph.generated.users.item.cloud_p_cs.item.restore.restore_request_builder')
+retry_partner_agent_installation_request_builder = lazy_import('msgraph.generated.users.item.cloud_p_cs.item.retry_partner_agent_installation.retry_partner_agent_installation_request_builder')
+troubleshoot_request_builder = lazy_import('msgraph.generated.users.item.cloud_p_cs.item.troubleshoot.troubleshoot_request_builder')
 
 class CloudPCItemRequestBuilder():
     """

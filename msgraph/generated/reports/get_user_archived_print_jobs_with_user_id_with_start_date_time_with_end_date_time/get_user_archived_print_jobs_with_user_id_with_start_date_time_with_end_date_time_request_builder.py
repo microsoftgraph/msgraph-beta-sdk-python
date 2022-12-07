@@ -8,10 +8,11 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import get_user_archived_print_jobs_with_user_id_with_start_date_time_with_end_date_time_response
-from ...models.o_data_errors import o_data_error
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+get_user_archived_print_jobs_with_user_id_with_start_date_time_with_end_date_time_response = lazy_import('msgraph.generated.reports.get_user_archived_print_jobs_with_user_id_with_start_date_time_with_end_date_time.get_user_archived_print_jobs_with_user_id_with_start_date_time_with_end_date_time_response')
 
 class GetUserArchivedPrintJobsWithUserIdWithStartDateTimeWithEndDateTimeRequestBuilder():
     """

@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, group_policy_migration_readiness, group_policy_setting_mapping, unsupported_group_policy_extension
+entity = lazy_import('msgraph.generated.models.entity')
+group_policy_migration_readiness = lazy_import('msgraph.generated.models.group_policy_migration_readiness')
+group_policy_setting_mapping = lazy_import('msgraph.generated.models.group_policy_setting_mapping')
+unsupported_group_policy_extension = lazy_import('msgraph.generated.models.unsupported_group_policy_extension')
 
 class GroupPolicyMigrationReport(entity.Entity):
     """

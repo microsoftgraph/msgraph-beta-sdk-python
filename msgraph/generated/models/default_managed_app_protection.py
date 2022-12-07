@@ -1,8 +1,17 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import android_managed_app_safety_net_apps_verification_type, android_managed_app_safety_net_device_attestation_type, android_managed_app_safety_net_evaluation_type, key_value_pair, managed_app_data_encryption_type, managed_app_policy_deployment_summary, managed_app_protection, managed_app_remediation_action, managed_mobile_app
+android_managed_app_safety_net_apps_verification_type = lazy_import('msgraph.generated.models.android_managed_app_safety_net_apps_verification_type')
+android_managed_app_safety_net_device_attestation_type = lazy_import('msgraph.generated.models.android_managed_app_safety_net_device_attestation_type')
+android_managed_app_safety_net_evaluation_type = lazy_import('msgraph.generated.models.android_managed_app_safety_net_evaluation_type')
+key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
+managed_app_data_encryption_type = lazy_import('msgraph.generated.models.managed_app_data_encryption_type')
+managed_app_policy_deployment_summary = lazy_import('msgraph.generated.models.managed_app_policy_deployment_summary')
+managed_app_protection = lazy_import('msgraph.generated.models.managed_app_protection')
+managed_app_remediation_action = lazy_import('msgraph.generated.models.managed_app_remediation_action')
+managed_mobile_app = lazy_import('msgraph.generated.models.managed_mobile_app')
 
 class DefaultManagedAppProtection(managed_app_protection.ManagedAppProtection):
     @property

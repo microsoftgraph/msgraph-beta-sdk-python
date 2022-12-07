@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import delivery_optimization_group_id_options_type, delivery_optimization_group_id_source
+delivery_optimization_group_id_options_type = lazy_import('msgraph.generated.models.delivery_optimization_group_id_options_type')
+delivery_optimization_group_id_source = lazy_import('msgraph.generated.models.delivery_optimization_group_id_source')
 
 class DeliveryOptimizationGroupIdSourceOptions(delivery_optimization_group_id_source.DeliveryOptimizationGroupIdSource):
     def __init__(self,) -> None:

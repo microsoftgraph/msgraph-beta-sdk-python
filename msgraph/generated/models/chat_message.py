@@ -1,9 +1,22 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import channel_identity, chat_message_attachment, chat_message_from_identity_set, chat_message_history_item, chat_message_hosted_content, chat_message_importance, chat_message_mention, chat_message_policy_violation, chat_message_reaction, chat_message_type, entity, event_message_detail, item_body
+channel_identity = lazy_import('msgraph.generated.models.channel_identity')
+chat_message_attachment = lazy_import('msgraph.generated.models.chat_message_attachment')
+chat_message_from_identity_set = lazy_import('msgraph.generated.models.chat_message_from_identity_set')
+chat_message_history_item = lazy_import('msgraph.generated.models.chat_message_history_item')
+chat_message_hosted_content = lazy_import('msgraph.generated.models.chat_message_hosted_content')
+chat_message_importance = lazy_import('msgraph.generated.models.chat_message_importance')
+chat_message_mention = lazy_import('msgraph.generated.models.chat_message_mention')
+chat_message_policy_violation = lazy_import('msgraph.generated.models.chat_message_policy_violation')
+chat_message_reaction = lazy_import('msgraph.generated.models.chat_message_reaction')
+chat_message_type = lazy_import('msgraph.generated.models.chat_message_type')
+entity = lazy_import('msgraph.generated.models.entity')
+event_message_detail = lazy_import('msgraph.generated.models.event_message_detail')
+item_body = lazy_import('msgraph.generated.models.item_body')
 
 class ChatMessage(entity.Entity):
     """
@@ -112,7 +125,7 @@ class ChatMessage(entity.Entity):
         self._locale: Optional[str] = None
         # List of entities mentioned in the chat message. Supported entities are: user, bot, team, channel, and tag.
         self._mentions: Optional[List[chat_message_mention.ChatMessageMention]] = None
-        # The messageHistory property
+        # List of activity history of a message item, including modification time and actions, such as reactionAdded, reactionRemoved, or reaction changes, on the message.
         self._message_history: Optional[List[chat_message_history_item.ChatMessageHistoryItem]] = None
         # The messageType property
         self._message_type: Optional[chat_message_type.ChatMessageType] = None
@@ -373,7 +386,7 @@ class ChatMessage(entity.Entity):
     @property
     def message_history(self,) -> Optional[List[chat_message_history_item.ChatMessageHistoryItem]]:
         """
-        Gets the messageHistory property value. The messageHistory property
+        Gets the messageHistory property value. List of activity history of a message item, including modification time and actions, such as reactionAdded, reactionRemoved, or reaction changes, on the message.
         Returns: Optional[List[chat_message_history_item.ChatMessageHistoryItem]]
         """
         return self._message_history
@@ -381,7 +394,7 @@ class ChatMessage(entity.Entity):
     @message_history.setter
     def message_history(self,value: Optional[List[chat_message_history_item.ChatMessageHistoryItem]] = None) -> None:
         """
-        Sets the messageHistory property value. The messageHistory property
+        Sets the messageHistory property value. List of activity history of a message item, including modification time and actions, such as reactionAdded, reactionRemoved, or reaction changes, on the message.
         Args:
             value: Value to set for the messageHistory property.
         """

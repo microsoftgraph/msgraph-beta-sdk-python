@@ -1,8 +1,39 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import audio, base_item, bundle, deleted, drive_item_source, drive_item_version, file, file_system_info, folder, geo_coordinates, image, item_activity_o_l_d, item_analytics, list_item, malware, media, package, pending_operations, permission, photo, publication_facet, remote_item, root, search_result, shared, sharepoint_ids, special_folder, subscription, thumbnail_set, video, workbook
+audio = lazy_import('msgraph.generated.models.audio')
+base_item = lazy_import('msgraph.generated.models.base_item')
+bundle = lazy_import('msgraph.generated.models.bundle')
+deleted = lazy_import('msgraph.generated.models.deleted')
+drive_item_source = lazy_import('msgraph.generated.models.drive_item_source')
+drive_item_version = lazy_import('msgraph.generated.models.drive_item_version')
+file = lazy_import('msgraph.generated.models.file')
+file_system_info = lazy_import('msgraph.generated.models.file_system_info')
+folder = lazy_import('msgraph.generated.models.folder')
+geo_coordinates = lazy_import('msgraph.generated.models.geo_coordinates')
+image = lazy_import('msgraph.generated.models.image')
+item_activity_o_l_d = lazy_import('msgraph.generated.models.item_activity_o_l_d')
+item_analytics = lazy_import('msgraph.generated.models.item_analytics')
+list_item = lazy_import('msgraph.generated.models.list_item')
+malware = lazy_import('msgraph.generated.models.malware')
+media = lazy_import('msgraph.generated.models.media')
+package = lazy_import('msgraph.generated.models.package')
+pending_operations = lazy_import('msgraph.generated.models.pending_operations')
+permission = lazy_import('msgraph.generated.models.permission')
+photo = lazy_import('msgraph.generated.models.photo')
+publication_facet = lazy_import('msgraph.generated.models.publication_facet')
+remote_item = lazy_import('msgraph.generated.models.remote_item')
+root = lazy_import('msgraph.generated.models.root')
+search_result = lazy_import('msgraph.generated.models.search_result')
+shared = lazy_import('msgraph.generated.models.shared')
+sharepoint_ids = lazy_import('msgraph.generated.models.sharepoint_ids')
+special_folder = lazy_import('msgraph.generated.models.special_folder')
+subscription = lazy_import('msgraph.generated.models.subscription')
+thumbnail_set = lazy_import('msgraph.generated.models.thumbnail_set')
+video = lazy_import('msgraph.generated.models.video')
+workbook = lazy_import('msgraph.generated.models.workbook')
 
 class DriveItem(base_item.BaseItem):
     @property

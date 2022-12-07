@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_and_app_management_assignment_source, device_and_app_management_assignment_target, device_config_assignment_intent, entity
+device_and_app_management_assignment_source = lazy_import('msgraph.generated.models.device_and_app_management_assignment_source')
+device_and_app_management_assignment_target = lazy_import('msgraph.generated.models.device_and_app_management_assignment_target')
+device_config_assignment_intent = lazy_import('msgraph.generated.models.device_config_assignment_intent')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class DeviceConfigurationAssignment(entity.Entity):
     """

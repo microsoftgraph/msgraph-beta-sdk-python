@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import threat_assessment_request
-from ......models.o_data_errors import o_data_error
-from .results import results_request_builder
-from .results.item import threat_assessment_result_item_request_builder
+threat_assessment_request = lazy_import('msgraph.generated.models.threat_assessment_request')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+results_request_builder = lazy_import('msgraph.generated.users.item.information_protection.threat_assessment_requests.item.results.results_request_builder')
+threat_assessment_result_item_request_builder = lazy_import('msgraph.generated.users.item.information_protection.threat_assessment_requests.item.results.item.threat_assessment_result_item_request_builder')
 
 class ThreatAssessmentRequestItemRequestBuilder():
     """

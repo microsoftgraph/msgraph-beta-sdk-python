@@ -1,10 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import event_propagation_result, event_query, retention_event_status, retention_event_type
-from .. import entity, identity_set
+entity = lazy_import('msgraph.generated.models.entity')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+event_propagation_result = lazy_import('msgraph.generated.models.security.event_propagation_result')
+event_query = lazy_import('msgraph.generated.models.security.event_query')
+retention_event_status = lazy_import('msgraph.generated.models.security.retention_event_status')
+retention_event_type = lazy_import('msgraph.generated.models.security.retention_event_type')
 
 class RetentionEvent(entity.Entity):
     """

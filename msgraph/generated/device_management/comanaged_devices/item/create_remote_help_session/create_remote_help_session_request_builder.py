@@ -7,11 +7,12 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import create_remote_help_session_post_request_body
-from .....models import create_remote_help_session_response
-from .....models.o_data_errors import o_data_error
+create_remote_help_session_post_request_body = lazy_import('msgraph.generated.device_management.comanaged_devices.item.create_remote_help_session.create_remote_help_session_post_request_body')
+create_remote_help_session_response = lazy_import('msgraph.generated.models.create_remote_help_session_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class CreateRemoteHelpSessionRequestBuilder():
     """

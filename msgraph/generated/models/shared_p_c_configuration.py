@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import time
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_configuration, enablement, shared_p_c_account_manager_policy, shared_p_c_allowed_account_type
+device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+enablement = lazy_import('msgraph.generated.models.enablement')
+shared_p_c_account_manager_policy = lazy_import('msgraph.generated.models.shared_p_c_account_manager_policy')
+shared_p_c_allowed_account_type = lazy_import('msgraph.generated.models.shared_p_c_allowed_account_type')
 
 class SharedPCConfiguration(device_configuration.DeviceConfiguration):
     @property

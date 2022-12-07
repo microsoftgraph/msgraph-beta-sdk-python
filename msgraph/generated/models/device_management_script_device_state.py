@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, managed_device, run_state
+entity = lazy_import('msgraph.generated.models.entity')
+managed_device = lazy_import('msgraph.generated.models.managed_device')
+run_state = lazy_import('msgraph.generated.models.run_state')
 
 class DeviceManagementScriptDeviceState(entity.Entity):
     """

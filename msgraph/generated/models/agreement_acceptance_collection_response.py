@@ -1,12 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import agreement_acceptance, base_collection_pagination_count_response
+agreement_acceptance = lazy_import('msgraph.generated.models.agreement_acceptance')
+base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
 
 class AgreementAcceptanceCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
     """
-    Provides operations to manage the acceptances property of the microsoft.graph.agreement entity.
+    Provides operations to manage the collection of agreementAcceptance entities.
     """
     def __init__(self,) -> None:
         """

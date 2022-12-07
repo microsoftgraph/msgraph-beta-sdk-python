@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import information_protection_policy_setting, sensitivity_label
-from .. import entity
+entity = lazy_import('msgraph.generated.models.entity')
+information_protection_policy_setting = lazy_import('msgraph.generated.models.security.information_protection_policy_setting')
+sensitivity_label = lazy_import('msgraph.generated.models.security.sensitivity_label')
 
 class InformationProtection(entity.Entity):
     def __init__(self,) -> None:

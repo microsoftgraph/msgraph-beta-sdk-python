@@ -1,8 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import data_source, data_source_scopes, ediscovery_add_to_review_set_operation, ediscovery_estimate_operation, ediscovery_noncustodial_data_source, search
+data_source = lazy_import('msgraph.generated.models.security.data_source')
+data_source_scopes = lazy_import('msgraph.generated.models.security.data_source_scopes')
+ediscovery_add_to_review_set_operation = lazy_import('msgraph.generated.models.security.ediscovery_add_to_review_set_operation')
+ediscovery_estimate_operation = lazy_import('msgraph.generated.models.security.ediscovery_estimate_operation')
+ediscovery_noncustodial_data_source = lazy_import('msgraph.generated.models.security.ediscovery_noncustodial_data_source')
+search = lazy_import('msgraph.generated.models.security.search')
 
 class EdiscoverySearch(search.Search):
     @property

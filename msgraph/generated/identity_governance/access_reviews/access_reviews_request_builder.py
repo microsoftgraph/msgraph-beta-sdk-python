@@ -7,17 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import access_review_set
-from ...models.o_data_errors import o_data_error
-from .decisions import decisions_request_builder
-from .decisions.item import access_review_instance_decision_item_item_request_builder
-from .definitions import definitions_request_builder
-from .definitions.item import access_review_schedule_definition_item_request_builder
-from .history_definitions import history_definitions_request_builder
-from .history_definitions.item import access_review_history_definition_item_request_builder
-from .policy import policy_request_builder
+decisions_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.decisions.decisions_request_builder')
+access_review_instance_decision_item_item_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.decisions.item.access_review_instance_decision_item_item_request_builder')
+definitions_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.definitions.definitions_request_builder')
+access_review_schedule_definition_item_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.definitions.item.access_review_schedule_definition_item_request_builder')
+history_definitions_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.history_definitions.history_definitions_request_builder')
+access_review_history_definition_item_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.history_definitions.item.access_review_history_definition_item_request_builder')
+policy_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.policy.policy_request_builder')
+access_review_set = lazy_import('msgraph.generated.models.access_review_set')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class AccessReviewsRequestBuilder():
     """

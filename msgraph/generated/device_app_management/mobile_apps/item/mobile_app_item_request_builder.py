@@ -7,26 +7,27 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import mobile_app
-from ....models.o_data_errors import o_data_error
-from .assign import assign_request_builder
-from .assignments import assignments_request_builder
-from .assignments.item import mobile_app_assignment_item_request_builder
-from .categories import categories_request_builder
-from .categories.item import mobile_app_category_item_request_builder
-from .device_statuses import device_statuses_request_builder
-from .device_statuses.item import mobile_app_install_status_item_request_builder
-from .get_related_app_states_with_user_principal_name_with_device_id import get_related_app_states_with_user_principal_name_with_device_id_request_builder
-from .install_summary import install_summary_request_builder
-from .managed_mobile_lob_app import managed_mobile_lob_app_request_builder
-from .mobile_lob_app import mobile_lob_app_request_builder
-from .relationships import relationships_request_builder
-from .relationships.item import mobile_app_relationship_item_request_builder
-from .update_relationships import update_relationships_request_builder
-from .user_statuses import user_statuses_request_builder
-from .user_statuses.item import user_app_install_status_item_request_builder
+assign_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.assign.assign_request_builder')
+assignments_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.assignments.assignments_request_builder')
+mobile_app_assignment_item_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.assignments.item.mobile_app_assignment_item_request_builder')
+categories_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.categories.categories_request_builder')
+mobile_app_category_item_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.categories.item.mobile_app_category_item_request_builder')
+device_statuses_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.device_statuses.device_statuses_request_builder')
+mobile_app_install_status_item_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.device_statuses.item.mobile_app_install_status_item_request_builder')
+get_related_app_states_with_user_principal_name_with_device_id_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.get_related_app_states_with_user_principal_name_with_device_id.get_related_app_states_with_user_principal_name_with_device_id_request_builder')
+install_summary_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.install_summary.install_summary_request_builder')
+managed_mobile_lob_app_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.managed_mobile_lob_app.managed_mobile_lob_app_request_builder')
+mobile_lob_app_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.mobile_lob_app.mobile_lob_app_request_builder')
+relationships_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.relationships.relationships_request_builder')
+mobile_app_relationship_item_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.relationships.item.mobile_app_relationship_item_request_builder')
+update_relationships_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.update_relationships.update_relationships_request_builder')
+user_statuses_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.user_statuses.user_statuses_request_builder')
+user_app_install_status_item_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.user_statuses.item.user_app_install_status_item_request_builder')
+mobile_app = lazy_import('msgraph.generated.models.mobile_app')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class MobileAppItemRequestBuilder():
     """

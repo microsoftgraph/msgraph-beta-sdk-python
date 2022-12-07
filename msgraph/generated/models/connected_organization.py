@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import connected_organization_state, directory_object, entity, identity_source
+connected_organization_state = lazy_import('msgraph.generated.models.connected_organization_state')
+directory_object = lazy_import('msgraph.generated.models.directory_object')
+entity = lazy_import('msgraph.generated.models.entity')
+identity_source = lazy_import('msgraph.generated.models.identity_source')
 
 class ConnectedOrganization(entity.Entity):
     def __init__(self,) -> None:

@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_management_constraint, device_management_setting_dependency, device_manangement_intent_value_type, entity
+device_management_constraint = lazy_import('msgraph.generated.models.device_management_constraint')
+device_management_setting_dependency = lazy_import('msgraph.generated.models.device_management_setting_dependency')
+device_manangement_intent_value_type = lazy_import('msgraph.generated.models.device_manangement_intent_value_type')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class DeviceManagementSettingDefinition(entity.Entity):
     """

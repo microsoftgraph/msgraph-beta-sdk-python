@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import display_name_localization
+display_name_localization = lazy_import('msgraph.generated.models.display_name_localization')
 
 class ColumnValidation(AdditionalDataHolder, Parsable):
     @property

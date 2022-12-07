@@ -1,13 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import base_collection_pagination_count_response, managed_e_book
+base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
+managed_e_book = lazy_import('msgraph.generated.models.managed_e_book')
 
 class ManagedEBookCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the managedEBooks property of the microsoft.graph.deviceAppManagement entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new ManagedEBookCollectionResponse and sets the default values.

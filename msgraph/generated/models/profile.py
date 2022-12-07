@@ -1,8 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import educational_activity, entity, item_address, item_email, item_patent, item_phone, item_publication, language_proficiency, person_annotation, person_annual_event, person_award, person_certification, person_interest, person_name, person_website, project_participation, skill_proficiency, user_account_information, web_account, work_position
+educational_activity = lazy_import('msgraph.generated.models.educational_activity')
+entity = lazy_import('msgraph.generated.models.entity')
+item_address = lazy_import('msgraph.generated.models.item_address')
+item_email = lazy_import('msgraph.generated.models.item_email')
+item_patent = lazy_import('msgraph.generated.models.item_patent')
+item_phone = lazy_import('msgraph.generated.models.item_phone')
+item_publication = lazy_import('msgraph.generated.models.item_publication')
+language_proficiency = lazy_import('msgraph.generated.models.language_proficiency')
+person_annotation = lazy_import('msgraph.generated.models.person_annotation')
+person_annual_event = lazy_import('msgraph.generated.models.person_annual_event')
+person_award = lazy_import('msgraph.generated.models.person_award')
+person_certification = lazy_import('msgraph.generated.models.person_certification')
+person_interest = lazy_import('msgraph.generated.models.person_interest')
+person_name = lazy_import('msgraph.generated.models.person_name')
+person_website = lazy_import('msgraph.generated.models.person_website')
+project_participation = lazy_import('msgraph.generated.models.project_participation')
+skill_proficiency = lazy_import('msgraph.generated.models.skill_proficiency')
+user_account_information = lazy_import('msgraph.generated.models.user_account_information')
+web_account = lazy_import('msgraph.generated.models.web_account')
+work_position = lazy_import('msgraph.generated.models.work_position')
 
 class Profile(entity.Entity):
     @property

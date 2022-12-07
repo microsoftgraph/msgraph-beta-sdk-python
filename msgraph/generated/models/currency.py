@@ -1,14 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity
+entity = lazy_import('msgraph.generated.models.entity')
 
 class Currency(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReviewDecision entities.
-    """
     @property
     def amount_decimal_places(self,) -> Optional[str]:
         """

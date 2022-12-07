@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import connector_group
-from .....models.o_data_errors import o_data_error
-from .applications import applications_request_builder
-from .applications.item import application_item_request_builder
-from .members import members_request_builder
-from .members.item import connector_item_request_builder
+connector_group = lazy_import('msgraph.generated.models.connector_group')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+applications_request_builder = lazy_import('msgraph.generated.on_premises_publishing_profiles.item.connector_groups.item.applications.applications_request_builder')
+application_item_request_builder = lazy_import('msgraph.generated.on_premises_publishing_profiles.item.connector_groups.item.applications.item.application_item_request_builder')
+members_request_builder = lazy_import('msgraph.generated.on_premises_publishing_profiles.item.connector_groups.item.members.members_request_builder')
+connector_item_request_builder = lazy_import('msgraph.generated.on_premises_publishing_profiles.item.connector_groups.item.members.item.connector_item_request_builder')
 
 class ConnectorGroupItemRequestBuilder():
     """

@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models.windows_updates import updatable_asset, update_category
+updatable_asset = lazy_import('msgraph.generated.models.windows_updates.updatable_asset')
+update_category = lazy_import('msgraph.generated.models.windows_updates.update_category')
 
 class EnrollAssetsPostRequestBody(AdditionalDataHolder, Parsable):
     """

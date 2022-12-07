@@ -7,15 +7,16 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import directory_object_collection_response
-from ....models.o_data_errors import o_data_error
-from .application import application_request_builder
-from .count import count_request_builder
-from .endpoint import endpoint_request_builder
-from .group import group_request_builder
-from .service_principal import service_principal_request_builder
+directory_object_collection_response = lazy_import('msgraph.generated.models.directory_object_collection_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+application_request_builder = lazy_import('msgraph.generated.service_principals.item.owned_objects.application.application_request_builder')
+count_request_builder = lazy_import('msgraph.generated.service_principals.item.owned_objects.count.count_request_builder')
+endpoint_request_builder = lazy_import('msgraph.generated.service_principals.item.owned_objects.endpoint.endpoint_request_builder')
+group_request_builder = lazy_import('msgraph.generated.service_principals.item.owned_objects.group.group_request_builder')
+service_principal_request_builder = lazy_import('msgraph.generated.service_principals.item.owned_objects.service_principal.service_principal_request_builder')
 
 class OwnedObjectsRequestBuilder():
     """

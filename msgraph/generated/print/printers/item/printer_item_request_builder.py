@@ -7,20 +7,21 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import printer
-from ....models.o_data_errors import o_data_error
-from .connectors import connectors_request_builder
-from .connectors.item import print_connector_item_request_builder
-from .get_capabilities import get_capabilities_request_builder
-from .reset_defaults import reset_defaults_request_builder
-from .restore_factory_defaults import restore_factory_defaults_request_builder
-from .share import share_request_builder
-from .shares import shares_request_builder
-from .shares.item import printer_share_item_request_builder
-from .task_triggers import task_triggers_request_builder
-from .task_triggers.item import print_task_trigger_item_request_builder
+printer = lazy_import('msgraph.generated.models.printer')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+connectors_request_builder = lazy_import('msgraph.generated.print.printers.item.connectors.connectors_request_builder')
+print_connector_item_request_builder = lazy_import('msgraph.generated.print.printers.item.connectors.item.print_connector_item_request_builder')
+get_capabilities_request_builder = lazy_import('msgraph.generated.print.printers.item.get_capabilities.get_capabilities_request_builder')
+reset_defaults_request_builder = lazy_import('msgraph.generated.print.printers.item.reset_defaults.reset_defaults_request_builder')
+restore_factory_defaults_request_builder = lazy_import('msgraph.generated.print.printers.item.restore_factory_defaults.restore_factory_defaults_request_builder')
+share_request_builder = lazy_import('msgraph.generated.print.printers.item.share.share_request_builder')
+shares_request_builder = lazy_import('msgraph.generated.print.printers.item.shares.shares_request_builder')
+printer_share_item_request_builder = lazy_import('msgraph.generated.print.printers.item.shares.item.printer_share_item_request_builder')
+task_triggers_request_builder = lazy_import('msgraph.generated.print.printers.item.task_triggers.task_triggers_request_builder')
+print_task_trigger_item_request_builder = lazy_import('msgraph.generated.print.printers.item.task_triggers.item.print_task_trigger_item_request_builder')
 
 class PrinterItemRequestBuilder():
     """

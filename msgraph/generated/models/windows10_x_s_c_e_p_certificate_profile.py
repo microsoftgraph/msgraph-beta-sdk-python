@@ -1,8 +1,17 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import certificate_store, certificate_validity_period_scale, extended_key_usage, hash_algorithms, key_size, key_storage_provider_option, key_usages, windows10_x_certificate_profile, windows10_x_custom_subject_alternative_name
+certificate_store = lazy_import('msgraph.generated.models.certificate_store')
+certificate_validity_period_scale = lazy_import('msgraph.generated.models.certificate_validity_period_scale')
+extended_key_usage = lazy_import('msgraph.generated.models.extended_key_usage')
+hash_algorithms = lazy_import('msgraph.generated.models.hash_algorithms')
+key_size = lazy_import('msgraph.generated.models.key_size')
+key_storage_provider_option = lazy_import('msgraph.generated.models.key_storage_provider_option')
+key_usages = lazy_import('msgraph.generated.models.key_usages')
+windows10_x_certificate_profile = lazy_import('msgraph.generated.models.windows10_x_certificate_profile')
+windows10_x_custom_subject_alternative_name = lazy_import('msgraph.generated.models.windows10_x_custom_subject_alternative_name')
 
 class Windows10XSCEPCertificateProfile(windows10_x_certificate_profile.Windows10XCertificateProfile):
     @property

@@ -1,10 +1,18 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import long_running_operation_status, submission_admin_review, submission_category, submission_client_source, submission_content_type, submission_result, submission_source, submission_user_identity
-from .. import entity
+entity = lazy_import('msgraph.generated.models.entity')
+long_running_operation_status = lazy_import('msgraph.generated.models.security.long_running_operation_status')
+submission_admin_review = lazy_import('msgraph.generated.models.security.submission_admin_review')
+submission_category = lazy_import('msgraph.generated.models.security.submission_category')
+submission_client_source = lazy_import('msgraph.generated.models.security.submission_client_source')
+submission_content_type = lazy_import('msgraph.generated.models.security.submission_content_type')
+submission_result = lazy_import('msgraph.generated.models.security.submission_result')
+submission_source = lazy_import('msgraph.generated.models.security.submission_source')
+submission_user_identity = lazy_import('msgraph.generated.models.security.submission_user_identity')
 
 class ThreatSubmission(entity.Entity):
     """

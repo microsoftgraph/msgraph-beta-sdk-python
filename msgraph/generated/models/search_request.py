@@ -1,8 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import aggregation_option, collapse_property, entity_type, result_template_option, search_alteration_options, search_query, share_point_one_drive_options, sort_property
+aggregation_option = lazy_import('msgraph.generated.models.aggregation_option')
+collapse_property = lazy_import('msgraph.generated.models.collapse_property')
+entity_type = lazy_import('msgraph.generated.models.entity_type')
+result_template_option = lazy_import('msgraph.generated.models.result_template_option')
+search_alteration_options = lazy_import('msgraph.generated.models.search_alteration_options')
+search_query = lazy_import('msgraph.generated.models.search_query')
+share_point_one_drive_options = lazy_import('msgraph.generated.models.share_point_one_drive_options')
+sort_property = lazy_import('msgraph.generated.models.sort_property')
 
 class SearchRequest(AdditionalDataHolder, Parsable):
     @property

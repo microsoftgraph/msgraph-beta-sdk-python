@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import android_device_compliance_local_action_base
+android_device_compliance_local_action_base = lazy_import('msgraph.generated.models.android_device_compliance_local_action_base')
 
 class AndroidDeviceComplianceLocalActionLockDevice(android_device_compliance_local_action_base.AndroidDeviceComplianceLocalActionBase):
     def __init__(self,) -> None:

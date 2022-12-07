@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import apple_user_initiated_enrollment_type, managed_device_owner_type
+apple_user_initiated_enrollment_type = lazy_import('msgraph.generated.models.apple_user_initiated_enrollment_type')
+managed_device_owner_type = lazy_import('msgraph.generated.models.managed_device_owner_type')
 
 class AppleOwnerTypeEnrollmentType(AdditionalDataHolder, Parsable):
     @property

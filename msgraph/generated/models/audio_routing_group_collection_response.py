@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import audio_routing_group, base_collection_pagination_count_response
+audio_routing_group = lazy_import('msgraph.generated.models.audio_routing_group')
+base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
 
 class AudioRoutingGroupCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
     """

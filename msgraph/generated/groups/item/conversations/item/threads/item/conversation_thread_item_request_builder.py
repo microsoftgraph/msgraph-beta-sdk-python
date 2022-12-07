@@ -7,13 +7,14 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .......models import conversation_thread
-from .......models.o_data_errors import o_data_error
-from .posts import posts_request_builder
-from .posts.item import post_item_request_builder
-from .reply import reply_request_builder
+posts_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.posts_request_builder')
+post_item_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.post_item_request_builder')
+reply_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.reply.reply_request_builder')
+conversation_thread = lazy_import('msgraph.generated.models.conversation_thread')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ConversationThreadItemRequestBuilder():
     """

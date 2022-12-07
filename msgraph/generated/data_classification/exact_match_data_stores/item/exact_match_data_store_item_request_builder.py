@@ -7,13 +7,14 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import exact_match_data_store
-from ....models.o_data_errors import o_data_error
-from .lookup import lookup_request_builder
-from .sessions import sessions_request_builder
-from .sessions.item import exact_match_session_item_request_builder
+lookup_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.lookup.lookup_request_builder')
+sessions_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.sessions.sessions_request_builder')
+exact_match_session_item_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.sessions.item.exact_match_session_item_request_builder')
+exact_match_data_store = lazy_import('msgraph.generated.models.exact_match_data_store')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ExactMatchDataStoreItemRequestBuilder():
     """

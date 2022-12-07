@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, group_policy_definition
+entity = lazy_import('msgraph.generated.models.entity')
+group_policy_definition = lazy_import('msgraph.generated.models.group_policy_definition')
 
 class GroupPolicyPresentation(entity.Entity):
     """

@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, item_activity_stat
+entity = lazy_import('msgraph.generated.models.entity')
+item_activity_stat = lazy_import('msgraph.generated.models.item_activity_stat')
 
 class ItemAnalytics(entity.Entity):
     @property

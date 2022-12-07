@@ -1,9 +1,15 @@
 from __future__ import annotations
 from datetime import date, datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import currency, customer, entity, payment_term, postal_address_type, sales_order_line
+currency = lazy_import('msgraph.generated.models.currency')
+customer = lazy_import('msgraph.generated.models.customer')
+entity = lazy_import('msgraph.generated.models.entity')
+payment_term = lazy_import('msgraph.generated.models.payment_term')
+postal_address_type = lazy_import('msgraph.generated.models.postal_address_type')
+sales_order_line = lazy_import('msgraph.generated.models.sales_order_line')
 
 class SalesOrder(entity.Entity):
     """

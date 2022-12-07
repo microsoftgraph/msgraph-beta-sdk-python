@@ -1,9 +1,11 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import access_review_recommendation_insight_setting, user_sign_in_recommendation_scope
+access_review_recommendation_insight_setting = lazy_import('msgraph.generated.models.access_review_recommendation_insight_setting')
+user_sign_in_recommendation_scope = lazy_import('msgraph.generated.models.user_sign_in_recommendation_scope')
 
 class UserLastSignInRecommendationInsightSetting(access_review_recommendation_insight_setting.AccessReviewRecommendationInsightSetting):
     def __init__(self,) -> None:

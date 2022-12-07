@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_compliance_script_error
+device_compliance_script_error = lazy_import('msgraph.generated.models.device_compliance_script_error')
 
 class DeviceComplianceScriptRuleError(device_compliance_script_error.DeviceComplianceScriptError):
     def __init__(self,) -> None:

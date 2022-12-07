@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import details_info, provisioning_result, provisioning_step_type
+details_info = lazy_import('msgraph.generated.models.details_info')
+provisioning_result = lazy_import('msgraph.generated.models.provisioning_result')
+provisioning_step_type = lazy_import('msgraph.generated.models.provisioning_step_type')
 
 class ProvisioningStep(AdditionalDataHolder, Parsable):
     @property

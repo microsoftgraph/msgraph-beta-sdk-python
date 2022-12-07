@@ -1,8 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, print_job, printer_capabilities, printer_defaults, printer_location, printer_status
+entity = lazy_import('msgraph.generated.models.entity')
+print_job = lazy_import('msgraph.generated.models.print_job')
+printer_capabilities = lazy_import('msgraph.generated.models.printer_capabilities')
+printer_defaults = lazy_import('msgraph.generated.models.printer_defaults')
+printer_location = lazy_import('msgraph.generated.models.printer_location')
+printer_status = lazy_import('msgraph.generated.models.printer_status')
 
 class PrinterBase(entity.Entity):
     """

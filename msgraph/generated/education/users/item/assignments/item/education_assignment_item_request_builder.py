@@ -7,20 +7,21 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models import education_assignment
-from ......models.o_data_errors import o_data_error
-from .categories import categories_request_builder
-from .categories.item import education_category_item_request_builder
-from .publish import publish_request_builder
-from .resources import resources_request_builder
-from .resources.item import education_assignment_resource_item_request_builder
-from .rubric import rubric_request_builder
-from .set_up_feedback_resources_folder import set_up_feedback_resources_folder_request_builder
-from .set_up_resources_folder import set_up_resources_folder_request_builder
-from .submissions import submissions_request_builder
-from .submissions.item import education_submission_item_request_builder
+categories_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.categories.categories_request_builder')
+education_category_item_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.categories.item.education_category_item_request_builder')
+publish_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.publish.publish_request_builder')
+resources_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.resources.resources_request_builder')
+education_assignment_resource_item_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.resources.item.education_assignment_resource_item_request_builder')
+rubric_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.rubric.rubric_request_builder')
+set_up_feedback_resources_folder_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.set_up_feedback_resources_folder.set_up_feedback_resources_folder_request_builder')
+set_up_resources_folder_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.set_up_resources_folder.set_up_resources_folder_request_builder')
+submissions_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.submissions.submissions_request_builder')
+education_submission_item_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.submissions.item.education_submission_item_request_builder')
+education_assignment = lazy_import('msgraph.generated.models.education_assignment')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class EducationAssignmentItemRequestBuilder():
     """

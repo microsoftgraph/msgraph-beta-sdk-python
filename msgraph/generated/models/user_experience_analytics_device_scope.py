@@ -1,9 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_scope_operator, device_scope_parameter, device_scope_status, entity
+device_scope_operator = lazy_import('msgraph.generated.models.device_scope_operator')
+device_scope_parameter = lazy_import('msgraph.generated.models.device_scope_parameter')
+device_scope_status = lazy_import('msgraph.generated.models.device_scope_status')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class UserExperienceAnalyticsDeviceScope(entity.Entity):
     def __init__(self,) -> None:

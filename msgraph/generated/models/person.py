@@ -1,8 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, location, person_data_source, phone, ranked_email_address, website
+entity = lazy_import('msgraph.generated.models.entity')
+location = lazy_import('msgraph.generated.models.location')
+person_data_source = lazy_import('msgraph.generated.models.person_data_source')
+phone = lazy_import('msgraph.generated.models.phone')
+ranked_email_address = lazy_import('msgraph.generated.models.ranked_email_address')
+website = lazy_import('msgraph.generated.models.website')
 
 class Person(entity.Entity):
     """

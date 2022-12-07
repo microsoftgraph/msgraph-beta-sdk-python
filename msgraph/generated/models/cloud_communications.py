@@ -1,9 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import call, entity, online_meeting, presence
-from .call_records import call_record
+call = lazy_import('msgraph.generated.models.call')
+entity = lazy_import('msgraph.generated.models.entity')
+online_meeting = lazy_import('msgraph.generated.models.online_meeting')
+presence = lazy_import('msgraph.generated.models.presence')
+call_record = lazy_import('msgraph.generated.models.call_records.call_record')
 
 class CloudCommunications(entity.Entity):
     """

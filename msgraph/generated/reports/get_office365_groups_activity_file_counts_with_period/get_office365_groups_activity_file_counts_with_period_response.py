@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import base_collection_pagination_count_response, office365_groups_activity_file_counts
+base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
+office365_groups_activity_file_counts = lazy_import('msgraph.generated.models.office365_groups_activity_file_counts')
 
 class GetOffice365GroupsActivityFileCountsWithPeriodResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
     """

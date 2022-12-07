@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, extension_schema_property
+entity = lazy_import('msgraph.generated.models.entity')
+extension_schema_property = lazy_import('msgraph.generated.models.extension_schema_property')
 
 class SchemaExtension(entity.Entity):
     def __init__(self,) -> None:

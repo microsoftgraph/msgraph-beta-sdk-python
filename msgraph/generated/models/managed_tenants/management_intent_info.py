@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import management_template_detailed_info
+management_template_detailed_info = lazy_import('msgraph.generated.models.managed_tenants.management_template_detailed_info')
 
 class ManagementIntentInfo(AdditionalDataHolder, Parsable):
     @property

@@ -1,9 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import apple_enrollment_profile_assignment, apple_owner_type_enrollment_type, apple_user_initiated_enrollment_type, device_platform_type, entity
+apple_enrollment_profile_assignment = lazy_import('msgraph.generated.models.apple_enrollment_profile_assignment')
+apple_owner_type_enrollment_type = lazy_import('msgraph.generated.models.apple_owner_type_enrollment_type')
+apple_user_initiated_enrollment_type = lazy_import('msgraph.generated.models.apple_user_initiated_enrollment_type')
+device_platform_type = lazy_import('msgraph.generated.models.device_platform_type')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class AppleUserInitiatedEnrollmentProfile(entity.Entity):
     """

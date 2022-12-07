@@ -7,13 +7,14 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...........models.o_data_errors import o_data_error
-from ...........models.term_store import relation
-from .from_term import from_term_request_builder
-from .set import set_request_builder
-from .to_term import to_term_request_builder
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+relation = lazy_import('msgraph.generated.models.term_store.relation')
+from_term_request_builder = lazy_import('msgraph.generated.term_store.sets.item.parent_group.sets.item.terms.item.relations.item.from_term.from_term_request_builder')
+set_request_builder = lazy_import('msgraph.generated.term_store.sets.item.parent_group.sets.item.terms.item.relations.item.set.set_request_builder')
+to_term_request_builder = lazy_import('msgraph.generated.term_store.sets.item.parent_group.sets.item.terms.item.relations.item.to_term.to_term_request_builder')
 
 class RelationItemRequestBuilder():
     """

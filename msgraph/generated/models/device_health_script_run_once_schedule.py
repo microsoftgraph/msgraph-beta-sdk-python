@@ -1,9 +1,10 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_health_script_time_schedule
+device_health_script_time_schedule = lazy_import('msgraph.generated.models.device_health_script_time_schedule')
 
 class DeviceHealthScriptRunOnceSchedule(device_health_script_time_schedule.DeviceHealthScriptTimeSchedule):
     def __init__(self,) -> None:

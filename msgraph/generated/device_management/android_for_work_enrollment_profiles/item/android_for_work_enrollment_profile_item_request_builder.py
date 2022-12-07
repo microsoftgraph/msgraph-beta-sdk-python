@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import android_for_work_enrollment_profile
-from ....models.o_data_errors import o_data_error
-from .create_token import create_token_request_builder
-from .revoke_token import revoke_token_request_builder
+create_token_request_builder = lazy_import('msgraph.generated.device_management.android_for_work_enrollment_profiles.item.create_token.create_token_request_builder')
+revoke_token_request_builder = lazy_import('msgraph.generated.device_management.android_for_work_enrollment_profiles.item.revoke_token.revoke_token_request_builder')
+android_for_work_enrollment_profile = lazy_import('msgraph.generated.models.android_for_work_enrollment_profile')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class AndroidForWorkEnrollmentProfileItemRequestBuilder():
     """

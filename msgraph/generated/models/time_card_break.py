@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import item_body, time_card_event
+item_body = lazy_import('msgraph.generated.models.item_body')
+time_card_event = lazy_import('msgraph.generated.models.time_card_event')
 
 class TimeCardBreak(AdditionalDataHolder, Parsable):
     @property

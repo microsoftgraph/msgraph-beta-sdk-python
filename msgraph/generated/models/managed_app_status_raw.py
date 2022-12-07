@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import json, managed_app_status
+json = lazy_import('msgraph.generated.models.json')
+managed_app_status = lazy_import('msgraph.generated.models.managed_app_status')
 
 class ManagedAppStatusRaw(managed_app_status.ManagedAppStatus):
     def __init__(self,) -> None:

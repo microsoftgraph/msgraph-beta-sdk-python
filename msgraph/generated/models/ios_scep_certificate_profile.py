@@ -1,8 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import certificate_store, custom_subject_alternative_name, extended_key_usage, ios_certificate_profile_base, ios_trusted_root_certificate, key_size, key_usages, managed_device_certificate_state
+certificate_store = lazy_import('msgraph.generated.models.certificate_store')
+custom_subject_alternative_name = lazy_import('msgraph.generated.models.custom_subject_alternative_name')
+extended_key_usage = lazy_import('msgraph.generated.models.extended_key_usage')
+ios_certificate_profile_base = lazy_import('msgraph.generated.models.ios_certificate_profile_base')
+ios_trusted_root_certificate = lazy_import('msgraph.generated.models.ios_trusted_root_certificate')
+key_size = lazy_import('msgraph.generated.models.key_size')
+key_usages = lazy_import('msgraph.generated.models.key_usages')
+managed_device_certificate_state = lazy_import('msgraph.generated.models.managed_device_certificate_state')
 
 class IosScepCertificateProfile(ios_certificate_profile_base.IosCertificateProfileBase):
     @property

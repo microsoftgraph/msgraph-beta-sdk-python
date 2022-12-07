@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import included_user_roles, included_user_types, user_registration_method_count
+included_user_roles = lazy_import('msgraph.generated.models.included_user_roles')
+included_user_types = lazy_import('msgraph.generated.models.included_user_types')
+user_registration_method_count = lazy_import('msgraph.generated.models.user_registration_method_count')
 
 class UserRegistrationMethodSummary(AdditionalDataHolder, Parsable):
     @property

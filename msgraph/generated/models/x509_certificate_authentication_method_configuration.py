@@ -1,8 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import authentication_method_configuration, authentication_method_target, x509_certificate_authentication_mode_configuration, x509_certificate_user_binding
+authentication_method_configuration = lazy_import('msgraph.generated.models.authentication_method_configuration')
+authentication_method_target = lazy_import('msgraph.generated.models.authentication_method_target')
+x509_certificate_authentication_mode_configuration = lazy_import('msgraph.generated.models.x509_certificate_authentication_mode_configuration')
+x509_certificate_user_binding = lazy_import('msgraph.generated.models.x509_certificate_user_binding')
 
 class X509CertificateAuthenticationMethodConfiguration(authentication_method_configuration.AuthenticationMethodConfiguration):
     @property

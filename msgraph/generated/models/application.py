@@ -1,9 +1,35 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import api_application, app_management_policy, app_role, certification, connector_group, directory_object, extension_property, federated_identity_credential, home_realm_discovery_policy, informational_url, key_credential, on_premises_publishing, optional_claims, parental_control_settings, password_credential, public_client_application, request_signature_verification, required_resource_access, service_principal_lock_configuration, spa_application, synchronization, token_issuance_policy, token_lifetime_policy, verified_publisher, web_application, windows_application
+api_application = lazy_import('msgraph.generated.models.api_application')
+app_management_policy = lazy_import('msgraph.generated.models.app_management_policy')
+app_role = lazy_import('msgraph.generated.models.app_role')
+certification = lazy_import('msgraph.generated.models.certification')
+connector_group = lazy_import('msgraph.generated.models.connector_group')
+directory_object = lazy_import('msgraph.generated.models.directory_object')
+extension_property = lazy_import('msgraph.generated.models.extension_property')
+federated_identity_credential = lazy_import('msgraph.generated.models.federated_identity_credential')
+home_realm_discovery_policy = lazy_import('msgraph.generated.models.home_realm_discovery_policy')
+informational_url = lazy_import('msgraph.generated.models.informational_url')
+key_credential = lazy_import('msgraph.generated.models.key_credential')
+on_premises_publishing = lazy_import('msgraph.generated.models.on_premises_publishing')
+optional_claims = lazy_import('msgraph.generated.models.optional_claims')
+parental_control_settings = lazy_import('msgraph.generated.models.parental_control_settings')
+password_credential = lazy_import('msgraph.generated.models.password_credential')
+public_client_application = lazy_import('msgraph.generated.models.public_client_application')
+request_signature_verification = lazy_import('msgraph.generated.models.request_signature_verification')
+required_resource_access = lazy_import('msgraph.generated.models.required_resource_access')
+service_principal_lock_configuration = lazy_import('msgraph.generated.models.service_principal_lock_configuration')
+spa_application = lazy_import('msgraph.generated.models.spa_application')
+synchronization = lazy_import('msgraph.generated.models.synchronization')
+token_issuance_policy = lazy_import('msgraph.generated.models.token_issuance_policy')
+token_lifetime_policy = lazy_import('msgraph.generated.models.token_lifetime_policy')
+verified_publisher = lazy_import('msgraph.generated.models.verified_publisher')
+web_application = lazy_import('msgraph.generated.models.web_application')
+windows_application = lazy_import('msgraph.generated.models.windows_application')
 
 class Application(directory_object.DirectoryObject):
     """
@@ -187,7 +213,7 @@ class Application(directory_object.DirectoryObject):
         self._service_management_reference: Optional[str] = None
         # Specifies whether sensitive properties of a multi-tenant application should be locked for editing after the application is provisioned in a tenant. Nullable. null by default.
         self._service_principal_lock_configuration: Optional[service_principal_lock_configuration.ServicePrincipalLockConfiguration] = None
-        # Specifies the Microsoft accounts that are supported for the current application. The possible values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount (default), and PersonalMicrosoftAccount. See more in the table. The value of this object also limits the number of permissions an app can request. For more information, see Limits on requested permissions per app. Supports $filter (eq, ne, not).
+        # Specifies the Microsoft accounts that are supported for the current application. The possible values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount (default), and PersonalMicrosoftAccount. See more in the table. The value of this object also limits the number of permissions an app can request. For more information, see Limits on requested permissions per app. The value for this property has implications on other app object properties. As a result, if you change this property, you may need to change other properties first. For more information, see Validation differences for signInAudience.Supports $filter (eq, ne, not).
         self._sign_in_audience: Optional[str] = None
         # Specifies settings for a single-page application, including sign out URLs and redirect URIs for authorization codes and access tokens.
         self._spa: Optional[spa_application.SpaApplication] = None
@@ -831,7 +857,7 @@ class Application(directory_object.DirectoryObject):
     @property
     def sign_in_audience(self,) -> Optional[str]:
         """
-        Gets the signInAudience property value. Specifies the Microsoft accounts that are supported for the current application. The possible values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount (default), and PersonalMicrosoftAccount. See more in the table. The value of this object also limits the number of permissions an app can request. For more information, see Limits on requested permissions per app. Supports $filter (eq, ne, not).
+        Gets the signInAudience property value. Specifies the Microsoft accounts that are supported for the current application. The possible values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount (default), and PersonalMicrosoftAccount. See more in the table. The value of this object also limits the number of permissions an app can request. For more information, see Limits on requested permissions per app. The value for this property has implications on other app object properties. As a result, if you change this property, you may need to change other properties first. For more information, see Validation differences for signInAudience.Supports $filter (eq, ne, not).
         Returns: Optional[str]
         """
         return self._sign_in_audience
@@ -839,7 +865,7 @@ class Application(directory_object.DirectoryObject):
     @sign_in_audience.setter
     def sign_in_audience(self,value: Optional[str] = None) -> None:
         """
-        Sets the signInAudience property value. Specifies the Microsoft accounts that are supported for the current application. The possible values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount (default), and PersonalMicrosoftAccount. See more in the table. The value of this object also limits the number of permissions an app can request. For more information, see Limits on requested permissions per app. Supports $filter (eq, ne, not).
+        Sets the signInAudience property value. Specifies the Microsoft accounts that are supported for the current application. The possible values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount (default), and PersonalMicrosoftAccount. See more in the table. The value of this object also limits the number of permissions an app can request. For more information, see Limits on requested permissions per app. The value for this property has implications on other app object properties. As a result, if you change this property, you may need to change other properties first. For more information, see Validation differences for signInAudience.Supports $filter (eq, ne, not).
         Args:
             value: Value to set for the signInAudience property.
         """

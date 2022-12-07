@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import aosp_device_owner_wi_fi_security_type, device_configuration
+aosp_device_owner_wi_fi_security_type = lazy_import('msgraph.generated.models.aosp_device_owner_wi_fi_security_type')
+device_configuration = lazy_import('msgraph.generated.models.device_configuration')
 
 class AospDeviceOwnerWiFiConfiguration(device_configuration.DeviceConfiguration):
     @property

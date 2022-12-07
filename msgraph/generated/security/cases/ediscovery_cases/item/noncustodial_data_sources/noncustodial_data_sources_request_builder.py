@@ -7,13 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ......models.o_data_errors import o_data_error
-from ......models.security import ediscovery_noncustodial_data_source, ediscovery_noncustodial_data_source_collection_response
-from .apply_hold import apply_hold_request_builder
-from .count import count_request_builder
-from .remove_hold import remove_hold_request_builder
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+ediscovery_noncustodial_data_source = lazy_import('msgraph.generated.models.security.ediscovery_noncustodial_data_source')
+ediscovery_noncustodial_data_source_collection_response = lazy_import('msgraph.generated.models.security.ediscovery_noncustodial_data_source_collection_response')
+apply_hold_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.noncustodial_data_sources.apply_hold.apply_hold_request_builder')
+count_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.noncustodial_data_sources.count.count_request_builder')
+remove_hold_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.noncustodial_data_sources.remove_hold.remove_hold_request_builder')
 
 class NoncustodialDataSourcesRequestBuilder():
     """

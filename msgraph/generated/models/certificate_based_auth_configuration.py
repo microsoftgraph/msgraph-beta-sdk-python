@@ -1,12 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import certificate_authority, entity
+certificate_authority = lazy_import('msgraph.generated.models.certificate_authority')
+entity = lazy_import('msgraph.generated.models.entity')
 
 class CertificateBasedAuthConfiguration(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def certificate_authorities(self,) -> Optional[List[certificate_authority.CertificateAuthority]]:

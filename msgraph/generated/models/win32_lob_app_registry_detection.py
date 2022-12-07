@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import win32_lob_app_detection, win32_lob_app_detection_operator, win32_lob_app_registry_detection_type
+win32_lob_app_detection = lazy_import('msgraph.generated.models.win32_lob_app_detection')
+win32_lob_app_detection_operator = lazy_import('msgraph.generated.models.win32_lob_app_detection_operator')
+win32_lob_app_registry_detection_type = lazy_import('msgraph.generated.models.win32_lob_app_registry_detection_type')
 
 class Win32LobAppRegistryDetection(win32_lob_app_detection.Win32LobAppDetection):
     @property

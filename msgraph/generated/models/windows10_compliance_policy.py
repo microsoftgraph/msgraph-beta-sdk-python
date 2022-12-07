@@ -1,8 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_compliance_policy, device_compliance_policy_script, device_threat_protection_level, operating_system_version_range, required_password_type
+device_compliance_policy = lazy_import('msgraph.generated.models.device_compliance_policy')
+device_compliance_policy_script = lazy_import('msgraph.generated.models.device_compliance_policy_script')
+device_threat_protection_level = lazy_import('msgraph.generated.models.device_threat_protection_level')
+operating_system_version_range = lazy_import('msgraph.generated.models.operating_system_version_range')
+required_password_type = lazy_import('msgraph.generated.models.required_password_type')
 
 class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
     @property

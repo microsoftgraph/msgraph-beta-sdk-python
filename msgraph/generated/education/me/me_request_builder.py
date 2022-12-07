@@ -7,21 +7,22 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import education_user
-from ...models.o_data_errors import o_data_error
-from .assignments import assignments_request_builder
-from .assignments.item import education_assignment_item_request_builder
-from .classes import classes_request_builder
-from .classes.item import education_class_item_request_builder
-from .rubrics import rubrics_request_builder
-from .rubrics.item import education_rubric_item_request_builder
-from .schools import schools_request_builder
-from .schools.item import education_school_item_request_builder
-from .taught_classes import taught_classes_request_builder
-from .taught_classes.item import education_class_item_request_builder
-from .user import user_request_builder
+assignments_request_builder = lazy_import('msgraph.generated.education.me.assignments.assignments_request_builder')
+education_assignment_item_request_builder = lazy_import('msgraph.generated.education.me.assignments.item.education_assignment_item_request_builder')
+classes_request_builder = lazy_import('msgraph.generated.education.me.classes.classes_request_builder')
+education_class_item_request_builder = lazy_import('msgraph.generated.education.me.classes.item.education_class_item_request_builder')
+rubrics_request_builder = lazy_import('msgraph.generated.education.me.rubrics.rubrics_request_builder')
+education_rubric_item_request_builder = lazy_import('msgraph.generated.education.me.rubrics.item.education_rubric_item_request_builder')
+schools_request_builder = lazy_import('msgraph.generated.education.me.schools.schools_request_builder')
+education_school_item_request_builder = lazy_import('msgraph.generated.education.me.schools.item.education_school_item_request_builder')
+taught_classes_request_builder = lazy_import('msgraph.generated.education.me.taught_classes.taught_classes_request_builder')
+education_class_item_request_builder = lazy_import('msgraph.generated.education.me.taught_classes.item.education_class_item_request_builder')
+user_request_builder = lazy_import('msgraph.generated.education.me.user.user_request_builder')
+education_user = lazy_import('msgraph.generated.models.education_user')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class MeRequestBuilder():
     """

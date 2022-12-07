@@ -1,9 +1,10 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import schedule_change_request
+schedule_change_request = lazy_import('msgraph.generated.models.schedule_change_request')
 
 class OfferShiftRequest(schedule_change_request.ScheduleChangeRequest):
     def __init__(self,) -> None:

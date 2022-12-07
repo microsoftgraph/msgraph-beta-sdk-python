@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import authentication_event_listener, on_token_issuance_start_handler
+authentication_event_listener = lazy_import('msgraph.generated.models.authentication_event_listener')
+on_token_issuance_start_handler = lazy_import('msgraph.generated.models.on_token_issuance_start_handler')
 
 class OnTokenIssuanceStartListener(authentication_event_listener.AuthenticationEventListener):
     def __init__(self,) -> None:

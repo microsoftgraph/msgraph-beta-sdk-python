@@ -1,9 +1,21 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import chat_message, chat_message_info, chat_type, chat_viewpoint, conversation_member, entity, pinned_chat_message_info, resource_specific_permission_grant, teams_app_installation, teams_async_operation, teams_tab, teamwork_online_meeting_info
+chat_message = lazy_import('msgraph.generated.models.chat_message')
+chat_message_info = lazy_import('msgraph.generated.models.chat_message_info')
+chat_type = lazy_import('msgraph.generated.models.chat_type')
+chat_viewpoint = lazy_import('msgraph.generated.models.chat_viewpoint')
+conversation_member = lazy_import('msgraph.generated.models.conversation_member')
+entity = lazy_import('msgraph.generated.models.entity')
+pinned_chat_message_info = lazy_import('msgraph.generated.models.pinned_chat_message_info')
+resource_specific_permission_grant = lazy_import('msgraph.generated.models.resource_specific_permission_grant')
+teams_app_installation = lazy_import('msgraph.generated.models.teams_app_installation')
+teams_async_operation = lazy_import('msgraph.generated.models.teams_async_operation')
+teams_tab = lazy_import('msgraph.generated.models.teams_tab')
+teamwork_online_meeting_info = lazy_import('msgraph.generated.models.teamwork_online_meeting_info')
 
 class Chat(entity.Entity):
     @property

@@ -1,9 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, managed_app_flagged_reason, managed_app_operation, managed_app_policy, mobile_app_identifier
+entity = lazy_import('msgraph.generated.models.entity')
+managed_app_flagged_reason = lazy_import('msgraph.generated.models.managed_app_flagged_reason')
+managed_app_operation = lazy_import('msgraph.generated.models.managed_app_operation')
+managed_app_policy = lazy_import('msgraph.generated.models.managed_app_policy')
+mobile_app_identifier = lazy_import('msgraph.generated.models.mobile_app_identifier')
 
 class ManagedAppRegistration(entity.Entity):
     """

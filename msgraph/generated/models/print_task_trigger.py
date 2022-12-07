@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, print_event, print_task_definition
+entity = lazy_import('msgraph.generated.models.entity')
+print_event = lazy_import('msgraph.generated.models.print_event')
+print_task_definition = lazy_import('msgraph.generated.models.print_task_definition')
 
 class PrintTaskTrigger(entity.Entity):
     """

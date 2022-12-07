@@ -1,8 +1,15 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import base_item, drive_item, identity_set, list, list_item, permission, site
+base_item = lazy_import('msgraph.generated.models.base_item')
+drive_item = lazy_import('msgraph.generated.models.drive_item')
+identity_set = lazy_import('msgraph.generated.models.identity_set')
+list = lazy_import('msgraph.generated.models.list')
+list_item = lazy_import('msgraph.generated.models.list_item')
+permission = lazy_import('msgraph.generated.models.permission')
+site = lazy_import('msgraph.generated.models.site')
 
 class SharedDriveItem(base_item.BaseItem):
     def __init__(self,) -> None:

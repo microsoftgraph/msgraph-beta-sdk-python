@@ -1,13 +1,18 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import diamond_model, entity, file_hash_type, ti_action, tlp_level
+diamond_model = lazy_import('msgraph.generated.models.diamond_model')
+entity = lazy_import('msgraph.generated.models.entity')
+file_hash_type = lazy_import('msgraph.generated.models.file_hash_type')
+ti_action = lazy_import('msgraph.generated.models.ti_action')
+tlp_level = lazy_import('msgraph.generated.models.tlp_level')
 
 class TiIndicator(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def action(self,) -> Optional[ti_action.TiAction]:

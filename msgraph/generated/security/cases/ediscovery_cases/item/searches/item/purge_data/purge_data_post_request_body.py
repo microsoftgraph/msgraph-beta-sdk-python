@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ........models.security import purge_areas, purge_type
+purge_areas = lazy_import('msgraph.generated.models.security.purge_areas')
+purge_type = lazy_import('msgraph.generated.models.security.purge_type')
 
 class PurgeDataPostRequestBody(AdditionalDataHolder, Parsable):
     """

@@ -1,13 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import base_collection_pagination_count_response, mobile_app_install_status
+base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
+mobile_app_install_status = lazy_import('msgraph.generated.models.mobile_app_install_status')
 
 class MobileAppInstallStatusCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the deviceStatuses property of the microsoft.graph.mobileApp entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new MobileAppInstallStatusCollectionResponse and sets the default values.

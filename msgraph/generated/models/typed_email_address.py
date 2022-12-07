@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import email_address, email_type
+email_address = lazy_import('msgraph.generated.models.email_address')
+email_type = lazy_import('msgraph.generated.models.email_type')
 
 class TypedEmailAddress(email_address.EmailAddress):
     def __init__(self,) -> None:

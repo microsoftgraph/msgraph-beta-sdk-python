@@ -1,8 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import network_connection_type, network_transport_protocol, trace_route_hop, wifi_band, wifi_radio_type
+network_connection_type = lazy_import('msgraph.generated.models.call_records.network_connection_type')
+network_transport_protocol = lazy_import('msgraph.generated.models.call_records.network_transport_protocol')
+trace_route_hop = lazy_import('msgraph.generated.models.call_records.trace_route_hop')
+wifi_band = lazy_import('msgraph.generated.models.call_records.wifi_band')
+wifi_radio_type = lazy_import('msgraph.generated.models.call_records.wifi_radio_type')
 
 class NetworkInfo(AdditionalDataHolder, Parsable):
     @property

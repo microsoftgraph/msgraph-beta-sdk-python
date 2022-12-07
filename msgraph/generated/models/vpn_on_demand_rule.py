@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import vpn_on_demand_rule_connection_action, vpn_on_demand_rule_connection_domain_action, vpn_on_demand_rule_interface_type_match
+vpn_on_demand_rule_connection_action = lazy_import('msgraph.generated.models.vpn_on_demand_rule_connection_action')
+vpn_on_demand_rule_connection_domain_action = lazy_import('msgraph.generated.models.vpn_on_demand_rule_connection_domain_action')
+vpn_on_demand_rule_interface_type_match = lazy_import('msgraph.generated.models.vpn_on_demand_rule_interface_type_match')
 
 class VpnOnDemandRule(AdditionalDataHolder, Parsable):
     """

@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import notebook, onenote_entity_hierarchy_model, onenote_section
+notebook = lazy_import('msgraph.generated.models.notebook')
+onenote_entity_hierarchy_model = lazy_import('msgraph.generated.models.onenote_entity_hierarchy_model')
+onenote_section = lazy_import('msgraph.generated.models.onenote_section')
 
 class SectionGroup(onenote_entity_hierarchy_model.OnenoteEntityHierarchyModel):
     """

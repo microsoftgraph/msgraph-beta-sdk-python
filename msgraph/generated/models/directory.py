@@ -1,8 +1,21 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import administrative_unit, attribute_set, custom_security_attribute_definition, directory_object, entity, feature_rollout_policy, identity_provider_base, inbound_shared_user_profile, on_premises_directory_synchronization, outbound_shared_user_profile, recommendation, recommendation_resource, shared_email_domain
+administrative_unit = lazy_import('msgraph.generated.models.administrative_unit')
+attribute_set = lazy_import('msgraph.generated.models.attribute_set')
+custom_security_attribute_definition = lazy_import('msgraph.generated.models.custom_security_attribute_definition')
+directory_object = lazy_import('msgraph.generated.models.directory_object')
+entity = lazy_import('msgraph.generated.models.entity')
+feature_rollout_policy = lazy_import('msgraph.generated.models.feature_rollout_policy')
+identity_provider_base = lazy_import('msgraph.generated.models.identity_provider_base')
+inbound_shared_user_profile = lazy_import('msgraph.generated.models.inbound_shared_user_profile')
+on_premises_directory_synchronization = lazy_import('msgraph.generated.models.on_premises_directory_synchronization')
+outbound_shared_user_profile = lazy_import('msgraph.generated.models.outbound_shared_user_profile')
+recommendation = lazy_import('msgraph.generated.models.recommendation')
+recommendation_resource = lazy_import('msgraph.generated.models.recommendation_resource')
+shared_email_domain = lazy_import('msgraph.generated.models.shared_email_domain')
 
 class Directory(entity.Entity):
     @property

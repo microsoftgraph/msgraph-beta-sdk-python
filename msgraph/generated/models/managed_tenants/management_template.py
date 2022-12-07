@@ -1,15 +1,19 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import management_category, management_provider, management_template_collection, management_template_step, template_parameter, workload_action
-from .. import action_url, entity
+action_url = lazy_import('msgraph.generated.models.action_url')
+entity = lazy_import('msgraph.generated.models.entity')
+management_category = lazy_import('msgraph.generated.models.managed_tenants.management_category')
+management_provider = lazy_import('msgraph.generated.models.managed_tenants.management_provider')
+management_template_collection = lazy_import('msgraph.generated.models.managed_tenants.management_template_collection')
+management_template_step = lazy_import('msgraph.generated.models.managed_tenants.management_template_step')
+template_parameter = lazy_import('msgraph.generated.models.managed_tenants.template_parameter')
+workload_action = lazy_import('msgraph.generated.models.managed_tenants.workload_action')
 
 class ManagementTemplate(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReviewDecision entities.
-    """
     @property
     def category(self,) -> Optional[management_category.ManagementCategory]:
         """

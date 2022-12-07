@@ -1,8 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import eap_type, network_single_sign_on_type, non_eap_authentication_method_for_eap_ttls_type, wi_fi_authentication_method, wifi_authentication_type, windows_certificate_profile_base, windows_wifi_configuration, windows81_trusted_root_certificate
+eap_type = lazy_import('msgraph.generated.models.eap_type')
+network_single_sign_on_type = lazy_import('msgraph.generated.models.network_single_sign_on_type')
+non_eap_authentication_method_for_eap_ttls_type = lazy_import('msgraph.generated.models.non_eap_authentication_method_for_eap_ttls_type')
+wi_fi_authentication_method = lazy_import('msgraph.generated.models.wi_fi_authentication_method')
+wifi_authentication_type = lazy_import('msgraph.generated.models.wifi_authentication_type')
+windows_certificate_profile_base = lazy_import('msgraph.generated.models.windows_certificate_profile_base')
+windows_wifi_configuration = lazy_import('msgraph.generated.models.windows_wifi_configuration')
+windows81_trusted_root_certificate = lazy_import('msgraph.generated.models.windows81_trusted_root_certificate')
 
 class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWifiConfiguration):
     @property

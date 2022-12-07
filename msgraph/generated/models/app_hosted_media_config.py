@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import media_config
+media_config = lazy_import('msgraph.generated.models.media_config')
 
 class AppHostedMediaConfig(media_config.MediaConfig):
     @property

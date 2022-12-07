@@ -1,8 +1,10 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import conversation_member, team_info
+conversation_member = lazy_import('msgraph.generated.models.conversation_member')
+team_info = lazy_import('msgraph.generated.models.team_info')
 
 class SharedWithChannelTeamInfo(team_info.TeamInfo):
     @property

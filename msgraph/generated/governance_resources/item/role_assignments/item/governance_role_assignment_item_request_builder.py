@@ -7,14 +7,15 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .....models import governance_role_assignment
-from .....models.o_data_errors import o_data_error
-from .linked_eligible_role_assignment import linked_eligible_role_assignment_request_builder
-from .resource import resource_request_builder
-from .role_definition import role_definition_request_builder
-from .subject import subject_request_builder
+linked_eligible_role_assignment_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_assignments.item.linked_eligible_role_assignment.linked_eligible_role_assignment_request_builder')
+resource_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_assignments.item.resource.resource_request_builder')
+role_definition_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_assignments.item.role_definition.role_definition_request_builder')
+subject_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_assignments.item.subject.subject_request_builder')
+governance_role_assignment = lazy_import('msgraph.generated.models.governance_role_assignment')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class GovernanceRoleAssignmentItemRequestBuilder():
     """

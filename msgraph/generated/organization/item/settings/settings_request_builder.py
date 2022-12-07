@@ -7,16 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import organization_settings
-from ....models.o_data_errors import o_data_error
-from .contact_insights import contact_insights_request_builder
-from .item_insights import item_insights_request_builder
-from .microsoft_application_data_access import microsoft_application_data_access_request_builder
-from .people_insights import people_insights_request_builder
-from .profile_card_properties import profile_card_properties_request_builder
-from .profile_card_properties.item import profile_card_property_item_request_builder
+organization_settings = lazy_import('msgraph.generated.models.organization_settings')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+contact_insights_request_builder = lazy_import('msgraph.generated.organization.item.settings.contact_insights.contact_insights_request_builder')
+item_insights_request_builder = lazy_import('msgraph.generated.organization.item.settings.item_insights.item_insights_request_builder')
+microsoft_application_data_access_request_builder = lazy_import('msgraph.generated.organization.item.settings.microsoft_application_data_access.microsoft_application_data_access_request_builder')
+people_insights_request_builder = lazy_import('msgraph.generated.organization.item.settings.people_insights.people_insights_request_builder')
+profile_card_properties_request_builder = lazy_import('msgraph.generated.organization.item.settings.profile_card_properties.profile_card_properties_request_builder')
+profile_card_property_item_request_builder = lazy_import('msgraph.generated.organization.item.settings.profile_card_properties.item.profile_card_property_item_request_builder')
 
 class SettingsRequestBuilder():
     """

@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from .......models import synchronization_job_restart_criteria
+synchronization_job_restart_criteria = lazy_import('msgraph.generated.models.synchronization_job_restart_criteria')
 
 class RestartPostRequestBody(AdditionalDataHolder, Parsable):
     """

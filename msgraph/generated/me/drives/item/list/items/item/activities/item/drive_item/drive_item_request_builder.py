@@ -7,11 +7,12 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ..........models import drive_item
-from ..........models.o_data_errors import o_data_error
-from .content import content_request_builder
+content_request_builder = lazy_import('msgraph.generated.me.drives.item.list.items.item.activities.item.drive_item.content.content_request_builder')
+drive_item = lazy_import('msgraph.generated.models.drive_item')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class DriveItemRequestBuilder():
     """

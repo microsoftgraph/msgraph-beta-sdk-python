@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import time
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, microsoft_tunnel_configuration, microsoft_tunnel_server
+entity = lazy_import('msgraph.generated.models.entity')
+microsoft_tunnel_configuration = lazy_import('msgraph.generated.models.microsoft_tunnel_configuration')
+microsoft_tunnel_server = lazy_import('msgraph.generated.models.microsoft_tunnel_server')
 
 class MicrosoftTunnelSite(entity.Entity):
     """

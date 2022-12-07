@@ -1,8 +1,9 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import single_sign_on_extension
+single_sign_on_extension = lazy_import('msgraph.generated.models.single_sign_on_extension')
 
 class IosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtension):
     def __init__(self,) -> None:

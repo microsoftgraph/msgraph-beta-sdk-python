@@ -1,9 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import entity, governance_schedule, privileged_role
+entity = lazy_import('msgraph.generated.models.entity')
+governance_schedule = lazy_import('msgraph.generated.models.governance_schedule')
+privileged_role = lazy_import('msgraph.generated.models.privileged_role')
 
 class PrivilegedRoleAssignmentRequest(entity.Entity):
     @property

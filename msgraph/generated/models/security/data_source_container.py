@@ -1,15 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import data_source_container_status, data_source_hold_status
-from .. import entity
+entity = lazy_import('msgraph.generated.models.entity')
+data_source_container_status = lazy_import('msgraph.generated.models.security.data_source_container_status')
+data_source_hold_status = lazy_import('msgraph.generated.models.security.data_source_hold_status')
 
 class DataSourceContainer(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReviewDecision entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new dataSourceContainer and sets the default values.

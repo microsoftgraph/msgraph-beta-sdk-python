@@ -7,23 +7,24 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ...models import domain
-from ...models.o_data_errors import o_data_error
-from .domain_name_references import domain_name_references_request_builder
-from .domain_name_references.item import directory_object_item_request_builder
-from .federation_configuration import federation_configuration_request_builder
-from .federation_configuration.item import internal_domain_federation_item_request_builder
-from .force_delete import force_delete_request_builder
-from .promote import promote_request_builder
-from .service_configuration_records import service_configuration_records_request_builder
-from .service_configuration_records.item import domain_dns_record_item_request_builder
-from .shared_email_domain_invitations import shared_email_domain_invitations_request_builder
-from .shared_email_domain_invitations.item import shared_email_domain_invitation_item_request_builder
-from .verification_dns_records import verification_dns_records_request_builder
-from .verification_dns_records.item import domain_dns_record_item_request_builder
-from .verify import verify_request_builder
+domain_name_references_request_builder = lazy_import('msgraph.generated.domains.item.domain_name_references.domain_name_references_request_builder')
+directory_object_item_request_builder = lazy_import('msgraph.generated.domains.item.domain_name_references.item.directory_object_item_request_builder')
+federation_configuration_request_builder = lazy_import('msgraph.generated.domains.item.federation_configuration.federation_configuration_request_builder')
+internal_domain_federation_item_request_builder = lazy_import('msgraph.generated.domains.item.federation_configuration.item.internal_domain_federation_item_request_builder')
+force_delete_request_builder = lazy_import('msgraph.generated.domains.item.force_delete.force_delete_request_builder')
+promote_request_builder = lazy_import('msgraph.generated.domains.item.promote.promote_request_builder')
+service_configuration_records_request_builder = lazy_import('msgraph.generated.domains.item.service_configuration_records.service_configuration_records_request_builder')
+domain_dns_record_item_request_builder = lazy_import('msgraph.generated.domains.item.service_configuration_records.item.domain_dns_record_item_request_builder')
+shared_email_domain_invitations_request_builder = lazy_import('msgraph.generated.domains.item.shared_email_domain_invitations.shared_email_domain_invitations_request_builder')
+shared_email_domain_invitation_item_request_builder = lazy_import('msgraph.generated.domains.item.shared_email_domain_invitations.item.shared_email_domain_invitation_item_request_builder')
+verification_dns_records_request_builder = lazy_import('msgraph.generated.domains.item.verification_dns_records.verification_dns_records_request_builder')
+domain_dns_record_item_request_builder = lazy_import('msgraph.generated.domains.item.verification_dns_records.item.domain_dns_record_item_request_builder')
+verify_request_builder = lazy_import('msgraph.generated.domains.item.verify.verify_request_builder')
+domain = lazy_import('msgraph.generated.models.domain')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class DomainItemRequestBuilder():
     """

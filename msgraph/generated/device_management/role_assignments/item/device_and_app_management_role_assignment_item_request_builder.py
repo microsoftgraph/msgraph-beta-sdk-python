@@ -7,12 +7,13 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ....models import device_and_app_management_role_assignment
-from ....models.o_data_errors import o_data_error
-from .role_scope_tags import role_scope_tags_request_builder
-from .role_scope_tags.item import role_scope_tag_item_request_builder
+role_scope_tags_request_builder = lazy_import('msgraph.generated.device_management.role_assignments.item.role_scope_tags.role_scope_tags_request_builder')
+role_scope_tag_item_request_builder = lazy_import('msgraph.generated.device_management.role_assignments.item.role_scope_tags.item.role_scope_tag_item_request_builder')
+device_and_app_management_role_assignment = lazy_import('msgraph.generated.models.device_and_app_management_role_assignment')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class DeviceAndAppManagementRoleAssignmentItemRequestBuilder():
     """

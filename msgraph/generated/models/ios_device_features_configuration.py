@@ -1,8 +1,19 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import apple_device_features_configuration_base, ios_certificate_profile_base, ios_home_screen_item, ios_home_screen_page, ios_notification_settings, ios_single_sign_on_extension, ios_single_sign_on_settings, ios_wallpaper_display_location, ios_web_content_filter_base, mime_content, single_sign_on_extension
+apple_device_features_configuration_base = lazy_import('msgraph.generated.models.apple_device_features_configuration_base')
+ios_certificate_profile_base = lazy_import('msgraph.generated.models.ios_certificate_profile_base')
+ios_home_screen_item = lazy_import('msgraph.generated.models.ios_home_screen_item')
+ios_home_screen_page = lazy_import('msgraph.generated.models.ios_home_screen_page')
+ios_notification_settings = lazy_import('msgraph.generated.models.ios_notification_settings')
+ios_single_sign_on_extension = lazy_import('msgraph.generated.models.ios_single_sign_on_extension')
+ios_single_sign_on_settings = lazy_import('msgraph.generated.models.ios_single_sign_on_settings')
+ios_wallpaper_display_location = lazy_import('msgraph.generated.models.ios_wallpaper_display_location')
+ios_web_content_filter_base = lazy_import('msgraph.generated.models.ios_web_content_filter_base')
+mime_content = lazy_import('msgraph.generated.models.mime_content')
+single_sign_on_extension = lazy_import('msgraph.generated.models.single_sign_on_extension')
 
 class IosDeviceFeaturesConfiguration(apple_device_features_configuration_base.AppleDeviceFeaturesConfigurationBase):
     @property

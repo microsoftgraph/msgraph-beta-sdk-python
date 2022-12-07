@@ -7,13 +7,14 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from ........models.identity_governance import user_processing_result
-from ........models.o_data_errors import o_data_error
-from .subject import subject_request_builder
-from .task_processing_results import task_processing_results_request_builder
-from .task_processing_results.item import task_processing_result_item_request_builder
+subject_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.user_processing_results.item.subject.subject_request_builder')
+task_processing_results_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.user_processing_results.item.task_processing_results.task_processing_results_request_builder')
+task_processing_result_item_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.user_processing_results.item.task_processing_results.item.task_processing_result_item_request_builder')
+user_processing_result = lazy_import('msgraph.generated.models.identity_governance.user_processing_result')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class UserProcessingResultItemRequestBuilder():
     """

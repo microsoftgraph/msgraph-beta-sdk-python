@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import device_configuration, wi_fi_proxy_setting, wi_fi_security_type
+device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+wi_fi_proxy_setting = lazy_import('msgraph.generated.models.wi_fi_proxy_setting')
+wi_fi_security_type = lazy_import('msgraph.generated.models.wi_fi_security_type')
 
 class MacOSWiFiConfiguration(device_configuration.DeviceConfiguration):
     @property

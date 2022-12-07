@@ -1,8 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-from . import alert_evidence, detection_status, file_details
+alert_evidence = lazy_import('msgraph.generated.models.security.alert_evidence')
+detection_status = lazy_import('msgraph.generated.models.security.detection_status')
+file_details = lazy_import('msgraph.generated.models.security.file_details')
 
 class FileEvidence(alert_evidence.AlertEvidence):
     def __init__(self,) -> None:
