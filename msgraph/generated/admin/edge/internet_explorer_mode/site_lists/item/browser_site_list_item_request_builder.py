@@ -22,18 +22,21 @@ class BrowserSiteListItemRequestBuilder():
     """
     Provides operations to manage the siteLists property of the microsoft.graph.internetExplorerMode entity.
     """
+    @property
     def publish(self) -> publish_request_builder.PublishRequestBuilder:
         """
         Provides operations to call the publish method.
         """
         return publish_request_builder.PublishRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def shared_cookies(self) -> shared_cookies_request_builder.SharedCookiesRequestBuilder:
         """
         Provides operations to manage the sharedCookies property of the microsoft.graph.browserSiteList entity.
         """
         return shared_cookies_request_builder.SharedCookiesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sites(self) -> sites_request_builder.SitesRequestBuilder:
         """
         Provides operations to manage the sites property of the microsoft.graph.browserSiteList entity.
@@ -96,7 +99,7 @@ class BrowserSiteListItemRequestBuilder():
         """
         Update the navigation property siteLists in admin
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -154,7 +157,7 @@ class BrowserSiteListItemRequestBuilder():
         """
         Update the navigation property siteLists in admin
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[browser_site_list.BrowserSiteList]

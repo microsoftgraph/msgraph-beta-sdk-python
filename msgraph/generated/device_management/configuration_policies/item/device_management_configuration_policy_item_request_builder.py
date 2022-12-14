@@ -24,30 +24,35 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
     """
     Provides operations to manage the configurationPolicies property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def assign(self) -> assign_request_builder.AssignRequestBuilder:
         """
         Provides operations to call the assign method.
         """
         return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.deviceManagementConfigurationPolicy entity.
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def create_copy(self) -> create_copy_request_builder.CreateCopyRequestBuilder:
         """
         Provides operations to call the createCopy method.
         """
         return create_copy_request_builder.CreateCopyRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def reorder(self) -> reorder_request_builder.ReorderRequestBuilder:
         """
         Provides operations to call the reorder method.
         """
         return reorder_request_builder.ReorderRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def settings(self) -> settings_request_builder.SettingsRequestBuilder:
         """
         Provides operations to manage the settings property of the microsoft.graph.deviceManagementConfigurationPolicy entity.
@@ -123,7 +128,7 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
         """
         Update the navigation property configurationPolicies in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -181,7 +186,7 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
         """
         Update the navigation property configurationPolicies in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_configuration_policy.DeviceManagementConfigurationPolicy]

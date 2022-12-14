@@ -27,36 +27,42 @@ class PrinterItemRequestBuilder():
     """
     Provides operations to manage the printers property of the microsoft.graph.print entity.
     """
+    @property
     def connectors(self) -> connectors_request_builder.ConnectorsRequestBuilder:
         """
         Provides operations to manage the connectors property of the microsoft.graph.printer entity.
         """
         return connectors_request_builder.ConnectorsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def reset_defaults(self) -> reset_defaults_request_builder.ResetDefaultsRequestBuilder:
         """
         Provides operations to call the resetDefaults method.
         """
         return reset_defaults_request_builder.ResetDefaultsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def restore_factory_defaults(self) -> restore_factory_defaults_request_builder.RestoreFactoryDefaultsRequestBuilder:
         """
         Provides operations to call the restoreFactoryDefaults method.
         """
         return restore_factory_defaults_request_builder.RestoreFactoryDefaultsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def share(self) -> share_request_builder.ShareRequestBuilder:
         """
         Provides operations to manage the share property of the microsoft.graph.printer entity.
         """
         return share_request_builder.ShareRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def shares(self) -> shares_request_builder.SharesRequestBuilder:
         """
         Provides operations to manage the shares property of the microsoft.graph.printer entity.
         """
         return shares_request_builder.SharesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def task_triggers(self) -> task_triggers_request_builder.TaskTriggersRequestBuilder:
         """
         Provides operations to manage the taskTriggers property of the microsoft.graph.printer entity.
@@ -132,7 +138,7 @@ class PrinterItemRequestBuilder():
         """
         Update the navigation property printers in print
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -197,7 +203,7 @@ class PrinterItemRequestBuilder():
         """
         Update the navigation property printers in print
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[printer.Printer]

@@ -19,6 +19,7 @@ class MobilityManagementPolicyItemRequestBuilder():
     """
     Provides operations to manage the mobileDeviceManagementPolicies property of the microsoft.graph.policyRoot entity.
     """
+    @property
     def included_groups(self) -> included_groups_request_builder.IncludedGroupsRequestBuilder:
         """
         Provides operations to manage the includedGroups property of the microsoft.graph.mobilityManagementPolicy entity.
@@ -81,7 +82,7 @@ class MobilityManagementPolicyItemRequestBuilder():
         """
         Update the navigation property mobileDeviceManagementPolicies in policies
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +153,7 @@ class MobilityManagementPolicyItemRequestBuilder():
         """
         Update the navigation property mobileDeviceManagementPolicies in policies
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mobility_management_policy.MobilityManagementPolicy]

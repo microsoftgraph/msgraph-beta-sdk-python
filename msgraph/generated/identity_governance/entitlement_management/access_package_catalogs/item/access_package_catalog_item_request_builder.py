@@ -27,30 +27,35 @@ class AccessPackageCatalogItemRequestBuilder():
     """
     Provides operations to manage the accessPackageCatalogs property of the microsoft.graph.entitlementManagement entity.
     """
+    @property
     def access_package_resource_roles(self) -> access_package_resource_roles_request_builder.AccessPackageResourceRolesRequestBuilder:
         """
         Provides operations to manage the accessPackageResourceRoles property of the microsoft.graph.accessPackageCatalog entity.
         """
         return access_package_resource_roles_request_builder.AccessPackageResourceRolesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def access_package_resources(self) -> access_package_resources_request_builder.AccessPackageResourcesRequestBuilder:
         """
         Provides operations to manage the accessPackageResources property of the microsoft.graph.accessPackageCatalog entity.
         """
         return access_package_resources_request_builder.AccessPackageResourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def access_package_resource_scopes(self) -> access_package_resource_scopes_request_builder.AccessPackageResourceScopesRequestBuilder:
         """
         Provides operations to manage the accessPackageResourceScopes property of the microsoft.graph.accessPackageCatalog entity.
         """
         return access_package_resource_scopes_request_builder.AccessPackageResourceScopesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def access_packages(self) -> access_packages_request_builder.AccessPackagesRequestBuilder:
         """
         Provides operations to manage the accessPackages property of the microsoft.graph.accessPackageCatalog entity.
         """
         return access_packages_request_builder.AccessPackagesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def custom_access_package_workflow_extensions(self) -> custom_access_package_workflow_extensions_request_builder.CustomAccessPackageWorkflowExtensionsRequestBuilder:
         """
         Provides operations to manage the customAccessPackageWorkflowExtensions property of the microsoft.graph.accessPackageCatalog entity.
@@ -165,7 +170,7 @@ class AccessPackageCatalogItemRequestBuilder():
         """
         Update the navigation property accessPackageCatalogs in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -236,7 +241,7 @@ class AccessPackageCatalogItemRequestBuilder():
         """
         Update the navigation property accessPackageCatalogs in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_catalog.AccessPackageCatalog]

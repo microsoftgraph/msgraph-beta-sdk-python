@@ -23,18 +23,21 @@ class DeviceManagementTemplateItemRequestBuilder():
     """
     Provides operations to manage the migratableTo property of the microsoft.graph.deviceManagementTemplate entity.
     """
+    @property
     def categories(self) -> categories_request_builder.CategoriesRequestBuilder:
         """
         Provides operations to manage the categories property of the microsoft.graph.deviceManagementTemplate entity.
         """
         return categories_request_builder.CategoriesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def create_instance(self) -> create_instance_request_builder.CreateInstanceRequestBuilder:
         """
         Provides operations to call the createInstance method.
         """
         return create_instance_request_builder.CreateInstanceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def settings(self) -> settings_request_builder.SettingsRequestBuilder:
         """
         Provides operations to manage the settings property of the microsoft.graph.deviceManagementTemplate entity.
@@ -121,7 +124,7 @@ class DeviceManagementTemplateItemRequestBuilder():
         """
         Update the navigation property migratableTo in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -179,7 +182,7 @@ class DeviceManagementTemplateItemRequestBuilder():
         """
         Update the navigation property migratableTo in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_template.DeviceManagementTemplate]

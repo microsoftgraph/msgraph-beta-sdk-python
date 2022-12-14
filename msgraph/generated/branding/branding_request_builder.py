@@ -26,48 +26,56 @@ class BrandingRequestBuilder():
     """
     Provides operations to manage the organizationalBranding singleton.
     """
+    @property
     def background_image(self) -> background_image_request_builder.BackgroundImageRequestBuilder:
         """
         Provides operations to manage the media for the organizationalBranding entity.
         """
         return background_image_request_builder.BackgroundImageRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def banner_logo(self) -> banner_logo_request_builder.BannerLogoRequestBuilder:
         """
         Provides operations to manage the media for the organizationalBranding entity.
         """
         return banner_logo_request_builder.BannerLogoRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def custom_c_s_s(self) -> custom_c_s_s_request_builder.CustomCSSRequestBuilder:
         """
         Provides operations to manage the media for the organizationalBranding entity.
         """
         return custom_c_s_s_request_builder.CustomCSSRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def favicon(self) -> favicon_request_builder.FaviconRequestBuilder:
         """
         Provides operations to manage the media for the organizationalBranding entity.
         """
         return favicon_request_builder.FaviconRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def header_logo(self) -> header_logo_request_builder.HeaderLogoRequestBuilder:
         """
         Provides operations to manage the media for the organizationalBranding entity.
         """
         return header_logo_request_builder.HeaderLogoRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def localizations(self) -> localizations_request_builder.LocalizationsRequestBuilder:
         """
         Provides operations to manage the localizations property of the microsoft.graph.organizationalBranding entity.
         """
         return localizations_request_builder.LocalizationsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def square_logo(self) -> square_logo_request_builder.SquareLogoRequestBuilder:
         """
         Provides operations to manage the media for the organizationalBranding entity.
         """
         return square_logo_request_builder.SquareLogoRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def square_logo_dark(self) -> square_logo_dark_request_builder.SquareLogoDarkRequestBuilder:
         """
         Provides operations to manage the media for the organizationalBranding entity.
@@ -114,7 +122,7 @@ class BrandingRequestBuilder():
         """
         Update branding
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -167,7 +175,7 @@ class BrandingRequestBuilder():
         """
         Update branding
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[organizational_branding.OrganizationalBranding]

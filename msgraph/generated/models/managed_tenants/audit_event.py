@@ -8,7 +8,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class AuditEvent(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def activity(self,) -> Optional[str]:

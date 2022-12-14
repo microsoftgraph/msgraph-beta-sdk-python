@@ -24,24 +24,28 @@ class UpdatesRequestBuilder():
     """
     Provides operations to manage the updates property of the microsoft.graph.windowsUpdates.windows entity.
     """
+    @property
     def catalog(self) -> catalog_request_builder.CatalogRequestBuilder:
         """
         Provides operations to manage the catalog property of the microsoft.graph.windowsUpdates.updates entity.
         """
         return catalog_request_builder.CatalogRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def deployments(self) -> deployments_request_builder.DeploymentsRequestBuilder:
         """
         Provides operations to manage the deployments property of the microsoft.graph.windowsUpdates.updates entity.
         """
         return deployments_request_builder.DeploymentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def resource_connections(self) -> resource_connections_request_builder.ResourceConnectionsRequestBuilder:
         """
         Provides operations to manage the resourceConnections property of the microsoft.graph.windowsUpdates.updates entity.
         """
         return resource_connections_request_builder.ResourceConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def updatable_assets(self) -> updatable_assets_request_builder.UpdatableAssetsRequestBuilder:
         """
         Provides operations to manage the updatableAssets property of the microsoft.graph.windowsUpdates.updates entity.
@@ -104,7 +108,7 @@ class UpdatesRequestBuilder():
         """
         Update the navigation property updates in admin
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -175,7 +179,7 @@ class UpdatesRequestBuilder():
         """
         Update the navigation property updates in admin
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[updates.Updates]

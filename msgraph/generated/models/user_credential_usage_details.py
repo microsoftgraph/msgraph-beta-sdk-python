@@ -10,7 +10,7 @@ usage_auth_method = lazy_import('msgraph.generated.models.usage_auth_method')
 
 class UserCredentialUsageDetails(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def auth_method(self,) -> Optional[usage_auth_method.UsageAuthMethod]:

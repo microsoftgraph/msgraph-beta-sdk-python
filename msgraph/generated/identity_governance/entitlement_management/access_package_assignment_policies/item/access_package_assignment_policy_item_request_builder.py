@@ -21,18 +21,21 @@ class AccessPackageAssignmentPolicyItemRequestBuilder():
     """
     Provides operations to manage the accessPackageAssignmentPolicies property of the microsoft.graph.entitlementManagement entity.
     """
+    @property
     def access_package(self) -> access_package_request_builder.AccessPackageRequestBuilder:
         """
         Provides operations to manage the accessPackage property of the microsoft.graph.accessPackageAssignmentPolicy entity.
         """
         return access_package_request_builder.AccessPackageRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def access_package_catalog(self) -> access_package_catalog_request_builder.AccessPackageCatalogRequestBuilder:
         """
         Provides operations to manage the accessPackageCatalog property of the microsoft.graph.accessPackageAssignmentPolicy entity.
         """
         return access_package_catalog_request_builder.AccessPackageCatalogRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def custom_extension_handlers(self) -> custom_extension_handlers_request_builder.CustomExtensionHandlersRequestBuilder:
         """
         Provides operations to manage the customExtensionHandlers property of the microsoft.graph.accessPackageAssignmentPolicy entity.
@@ -95,7 +98,7 @@ class AccessPackageAssignmentPolicyItemRequestBuilder():
         """
         Update the navigation property accessPackageAssignmentPolicies in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -166,7 +169,7 @@ class AccessPackageAssignmentPolicyItemRequestBuilder():
         """
         Update the navigation property accessPackageAssignmentPolicies in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_assignment_policy.AccessPackageAssignmentPolicy]

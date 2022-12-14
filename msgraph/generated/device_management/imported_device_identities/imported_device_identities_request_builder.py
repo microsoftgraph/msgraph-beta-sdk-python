@@ -21,18 +21,21 @@ class ImportedDeviceIdentitiesRequestBuilder():
     """
     Provides operations to manage the importedDeviceIdentities property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def import_device_identity_list(self) -> import_device_identity_list_request_builder.ImportDeviceIdentityListRequestBuilder:
         """
         Provides operations to call the importDeviceIdentityList method.
         """
         return import_device_identity_list_request_builder.ImportDeviceIdentityListRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def search_existing_identities(self) -> search_existing_identities_request_builder.SearchExistingIdentitiesRequestBuilder:
         """
         Provides operations to call the searchExistingIdentities method.
@@ -79,7 +82,7 @@ class ImportedDeviceIdentitiesRequestBuilder():
         """
         Create new navigation property to importedDeviceIdentities for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -119,7 +122,7 @@ class ImportedDeviceIdentitiesRequestBuilder():
         """
         Create new navigation property to importedDeviceIdentities for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[imported_device_identity.ImportedDeviceIdentity]

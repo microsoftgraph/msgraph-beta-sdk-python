@@ -21,12 +21,14 @@ class GroupPolicyMigrationReportItemRequestBuilder():
     """
     Provides operations to manage the groupPolicyMigrationReports property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def group_policy_setting_mappings(self) -> group_policy_setting_mappings_request_builder.GroupPolicySettingMappingsRequestBuilder:
         """
         Provides operations to manage the groupPolicySettingMappings property of the microsoft.graph.groupPolicyMigrationReport entity.
         """
         return group_policy_setting_mappings_request_builder.GroupPolicySettingMappingsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def unsupported_group_policy_extensions(self) -> unsupported_group_policy_extensions_request_builder.UnsupportedGroupPolicyExtensionsRequestBuilder:
         """
         Provides operations to manage the unsupportedGroupPolicyExtensions property of the microsoft.graph.groupPolicyMigrationReport entity.
@@ -89,7 +91,7 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         """
         Update the navigation property groupPolicyMigrationReports in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -160,7 +162,7 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         """
         Update the navigation property groupPolicyMigrationReports in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_policy_migration_report.GroupPolicyMigrationReport]

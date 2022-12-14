@@ -39,66 +39,77 @@ class AuthenticationRequestBuilder():
     """
     Provides operations to manage the authentication property of the microsoft.graph.user entity.
     """
+    @property
     def email_methods(self) -> email_methods_request_builder.EmailMethodsRequestBuilder:
         """
         Provides operations to manage the emailMethods property of the microsoft.graph.authentication entity.
         """
         return email_methods_request_builder.EmailMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def fido2_methods(self) -> fido2_methods_request_builder.Fido2MethodsRequestBuilder:
         """
         Provides operations to manage the fido2Methods property of the microsoft.graph.authentication entity.
         """
         return fido2_methods_request_builder.Fido2MethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def methods(self) -> methods_request_builder.MethodsRequestBuilder:
         """
         Provides operations to manage the methods property of the microsoft.graph.authentication entity.
         """
         return methods_request_builder.MethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def microsoft_authenticator_methods(self) -> microsoft_authenticator_methods_request_builder.MicrosoftAuthenticatorMethodsRequestBuilder:
         """
         Provides operations to manage the microsoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
         """
         return microsoft_authenticator_methods_request_builder.MicrosoftAuthenticatorMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def operations(self) -> operations_request_builder.OperationsRequestBuilder:
         """
         Provides operations to manage the operations property of the microsoft.graph.authentication entity.
         """
         return operations_request_builder.OperationsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def passwordless_microsoft_authenticator_methods(self) -> passwordless_microsoft_authenticator_methods_request_builder.PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder:
         """
         Provides operations to manage the passwordlessMicrosoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
         """
         return passwordless_microsoft_authenticator_methods_request_builder.PasswordlessMicrosoftAuthenticatorMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def password_methods(self) -> password_methods_request_builder.PasswordMethodsRequestBuilder:
         """
         Provides operations to manage the passwordMethods property of the microsoft.graph.authentication entity.
         """
         return password_methods_request_builder.PasswordMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def phone_methods(self) -> phone_methods_request_builder.PhoneMethodsRequestBuilder:
         """
         Provides operations to manage the phoneMethods property of the microsoft.graph.authentication entity.
         """
         return phone_methods_request_builder.PhoneMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def software_oath_methods(self) -> software_oath_methods_request_builder.SoftwareOathMethodsRequestBuilder:
         """
         Provides operations to manage the softwareOathMethods property of the microsoft.graph.authentication entity.
         """
         return software_oath_methods_request_builder.SoftwareOathMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def temporary_access_pass_methods(self) -> temporary_access_pass_methods_request_builder.TemporaryAccessPassMethodsRequestBuilder:
         """
         Provides operations to manage the temporaryAccessPassMethods property of the microsoft.graph.authentication entity.
         """
         return temporary_access_pass_methods_request_builder.TemporaryAccessPassMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def windows_hello_for_business_methods(self) -> windows_hello_for_business_methods_request_builder.WindowsHelloForBusinessMethodsRequestBuilder:
         """
         Provides operations to manage the windowsHelloForBusinessMethods property of the microsoft.graph.authentication entity.
@@ -161,7 +172,7 @@ class AuthenticationRequestBuilder():
         """
         Update the navigation property authentication in users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -310,7 +321,7 @@ class AuthenticationRequestBuilder():
         """
         Update the navigation property authentication in users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication.Authentication]

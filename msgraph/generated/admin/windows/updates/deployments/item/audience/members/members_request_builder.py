@@ -23,30 +23,35 @@ class MembersRequestBuilder():
     """
     Provides operations to manage the members property of the microsoft.graph.windowsUpdates.deploymentAudience entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def enroll_assets(self) -> enroll_assets_request_builder.EnrollAssetsRequestBuilder:
         """
         Provides operations to call the enrollAssets method.
         """
         return enroll_assets_request_builder.EnrollAssetsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def enroll_assets_by_id(self) -> enroll_assets_by_id_request_builder.EnrollAssetsByIdRequestBuilder:
         """
         Provides operations to call the enrollAssetsById method.
         """
         return enroll_assets_by_id_request_builder.EnrollAssetsByIdRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def unenroll_assets(self) -> unenroll_assets_request_builder.UnenrollAssetsRequestBuilder:
         """
         Provides operations to call the unenrollAssets method.
         """
         return unenroll_assets_request_builder.UnenrollAssetsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def unenroll_assets_by_id(self) -> unenroll_assets_by_id_request_builder.UnenrollAssetsByIdRequestBuilder:
         """
         Provides operations to call the unenrollAssetsById method.
@@ -93,7 +98,7 @@ class MembersRequestBuilder():
         """
         Create new navigation property to members for admin
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -133,7 +138,7 @@ class MembersRequestBuilder():
         """
         Create new navigation property to members for admin
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[updatable_asset.UpdatableAsset]

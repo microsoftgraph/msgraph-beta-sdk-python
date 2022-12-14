@@ -20,12 +20,14 @@ class DataLossPreventionPoliciesRequestBuilder():
     """
     Provides operations to manage the dataLossPreventionPolicies property of the microsoft.graph.informationProtection entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def evaluate(self) -> evaluate_request_builder.EvaluateRequestBuilder:
         """
         Provides operations to call the evaluate method.
@@ -72,7 +74,7 @@ class DataLossPreventionPoliciesRequestBuilder():
         """
         Create new navigation property to dataLossPreventionPolicies for informationProtection
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +114,7 @@ class DataLossPreventionPoliciesRequestBuilder():
         """
         Create new navigation property to dataLossPreventionPolicies for informationProtection
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[data_loss_prevention_policy.DataLossPreventionPolicy]

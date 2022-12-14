@@ -27,30 +27,35 @@ class OnPremisesPublishingProfileItemRequestBuilder():
     """
     Provides operations to manage the collection of onPremisesPublishingProfile entities.
     """
+    @property
     def agent_groups(self) -> agent_groups_request_builder.AgentGroupsRequestBuilder:
         """
         Provides operations to manage the agentGroups property of the microsoft.graph.onPremisesPublishingProfile entity.
         """
         return agent_groups_request_builder.AgentGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def agents(self) -> agents_request_builder.AgentsRequestBuilder:
         """
         Provides operations to manage the agents property of the microsoft.graph.onPremisesPublishingProfile entity.
         """
         return agents_request_builder.AgentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def connector_groups(self) -> connector_groups_request_builder.ConnectorGroupsRequestBuilder:
         """
         Provides operations to manage the connectorGroups property of the microsoft.graph.onPremisesPublishingProfile entity.
         """
         return connector_groups_request_builder.ConnectorGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def connectors(self) -> connectors_request_builder.ConnectorsRequestBuilder:
         """
         Provides operations to manage the connectors property of the microsoft.graph.onPremisesPublishingProfile entity.
         """
         return connectors_request_builder.ConnectorsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def published_resources(self) -> published_resources_request_builder.PublishedResourcesRequestBuilder:
         """
         Provides operations to manage the publishedResources property of the microsoft.graph.onPremisesPublishingProfile entity.
@@ -165,7 +170,7 @@ class OnPremisesPublishingProfileItemRequestBuilder():
         """
         Update entity in onPremisesPublishingProfiles
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -223,7 +228,7 @@ class OnPremisesPublishingProfileItemRequestBuilder():
         """
         Update entity in onPremisesPublishingProfiles
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[on_premises_publishing_profile.OnPremisesPublishingProfile]

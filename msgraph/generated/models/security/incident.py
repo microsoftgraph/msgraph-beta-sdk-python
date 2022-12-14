@@ -14,7 +14,7 @@ incident_status = lazy_import('msgraph.generated.models.security.incident_status
 
 class Incident(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def alerts(self,) -> Optional[List[alert.Alert]]:
@@ -99,6 +99,8 @@ class Incident(entity.Entity):
         self._comments: Optional[List[alert_comment.AlertComment]] = None
         # Time when the incident was first created.
         self._created_date_time: Optional[datetime] = None
+        # The customTags property
+        self._custom_tags: Optional[List[str]] = None
         # Specifies the determination of the incident. Possible values are: unknown, apt, malware, securityPersonnel, securityTesting, unwantedSoftware, other, multiStagedAttack, compromisedUser, phishing, maliciousUserActivity, clean, insufficientData, confirmedUserActivity, lineOfBusinessApplication, unknownFutureValue.
         self._determination: Optional[alert_determination.AlertDetermination] = None
         # The incident name.
@@ -115,8 +117,6 @@ class Incident(entity.Entity):
         self._severity: Optional[alert_severity.AlertSeverity] = None
         # The status property
         self._status: Optional[incident_status.IncidentStatus] = None
-        # Array of custom tags associated with an incident.
-        self._tags: Optional[List[str]] = None
         # The Azure Active Directory tenant in which the alert was created.
         self._tenant_id: Optional[str] = None
     
@@ -148,6 +148,23 @@ class Incident(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return Incident()
+    
+    @property
+    def custom_tags(self,) -> Optional[List[str]]:
+        """
+        Gets the customTags property value. The customTags property
+        Returns: Optional[List[str]]
+        """
+        return self._custom_tags
+    
+    @custom_tags.setter
+    def custom_tags(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the customTags property value. The customTags property
+        Args:
+            value: Value to set for the customTags property.
+        """
+        self._custom_tags = value
     
     @property
     def determination(self,) -> Optional[alert_determination.AlertDetermination]:
@@ -194,6 +211,7 @@ class Incident(entity.Entity):
             "classification": lambda n : setattr(self, 'classification', n.get_enum_value(alert_classification.AlertClassification)),
             "comments": lambda n : setattr(self, 'comments', n.get_collection_of_object_values(alert_comment.AlertComment)),
             "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "custom_tags": lambda n : setattr(self, 'custom_tags', n.get_collection_of_primitive_values(str)),
             "determination": lambda n : setattr(self, 'determination', n.get_enum_value(alert_determination.AlertDetermination)),
             "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "incident_web_url": lambda n : setattr(self, 'incident_web_url', n.get_str_value()),
@@ -201,7 +219,6 @@ class Incident(entity.Entity):
             "redirect_incident_id": lambda n : setattr(self, 'redirect_incident_id', n.get_str_value()),
             "severity": lambda n : setattr(self, 'severity', n.get_enum_value(alert_severity.AlertSeverity)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(incident_status.IncidentStatus)),
-            "tags": lambda n : setattr(self, 'tags', n.get_collection_of_primitive_values(str)),
             "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -273,6 +290,7 @@ class Incident(entity.Entity):
         writer.write_enum_value("classification", self.classification)
         writer.write_collection_of_object_values("comments", self.comments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
+        writer.write_collection_of_primitive_values("customTags", self.custom_tags)
         writer.write_enum_value("determination", self.determination)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("incidentWebUrl", self.incident_web_url)
@@ -280,7 +298,6 @@ class Incident(entity.Entity):
         writer.write_str_value("redirectIncidentId", self.redirect_incident_id)
         writer.write_enum_value("severity", self.severity)
         writer.write_enum_value("status", self.status)
-        writer.write_collection_of_primitive_values("tags", self.tags)
         writer.write_str_value("tenantId", self.tenant_id)
     
     @property
@@ -316,23 +333,6 @@ class Incident(entity.Entity):
             value: Value to set for the status property.
         """
         self._status = value
-    
-    @property
-    def tags(self,) -> Optional[List[str]]:
-        """
-        Gets the tags property value. Array of custom tags associated with an incident.
-        Returns: Optional[List[str]]
-        """
-        return self._tags
-    
-    @tags.setter
-    def tags(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the tags property value. Array of custom tags associated with an incident.
-        Args:
-            value: Value to set for the tags property.
-        """
-        self._tags = value
     
     @property
     def tenant_id(self,) -> Optional[str]:

@@ -19,12 +19,14 @@ class MicrosoftTunnelServerLogCollectionResponseItemRequestBuilder():
     """
     Provides operations to manage the microsoftTunnelServerLogCollectionResponses property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def create_download_url(self) -> create_download_url_request_builder.CreateDownloadUrlRequestBuilder:
         """
         Provides operations to call the createDownloadUrl method.
         """
         return create_download_url_request_builder.CreateDownloadUrlRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def generate_download_url(self) -> generate_download_url_request_builder.GenerateDownloadUrlRequestBuilder:
         """
         Provides operations to call the generateDownloadUrl method.
@@ -87,7 +89,7 @@ class MicrosoftTunnelServerLogCollectionResponseItemRequestBuilder():
         """
         Update the navigation property microsoftTunnelServerLogCollectionResponses in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +147,7 @@ class MicrosoftTunnelServerLogCollectionResponseItemRequestBuilder():
         """
         Update the navigation property microsoftTunnelServerLogCollectionResponses in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[microsoft_tunnel_server_log_collection_response.MicrosoftTunnelServerLogCollectionResponse]

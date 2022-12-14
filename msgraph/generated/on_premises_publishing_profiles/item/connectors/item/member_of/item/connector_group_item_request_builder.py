@@ -10,6 +10,7 @@ class ConnectorGroupItemRequestBuilder():
     """
     Builds and executes requests for operations under /onPremisesPublishingProfiles/{onPremisesPublishingProfile-id}/connectors/{connector-id}/memberOf/{connectorGroup-id}
     """
+    @property
     def ref(self) -> ref_request_builder.RefRequestBuilder:
         """
         Provides operations to manage the collection of onPremisesPublishingProfile entities.

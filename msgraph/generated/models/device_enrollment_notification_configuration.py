@@ -37,7 +37,7 @@ class DeviceEnrollmentNotificationConfiguration(device_enrollment_configuration.
         # DefaultLocale for the Enrollment Notification
         self._default_locale: Optional[str] = None
         # Notification Message Template Id
-        self._notification_message_template_id: Optional[str] = None
+        self._notification_message_template_id: Optional[Guid] = None
         # The list of notification data -
         self._notification_templates: Optional[List[str]] = None
         # This enum indicates the platform type for which the enrollment restriction applies.
@@ -82,7 +82,7 @@ class DeviceEnrollmentNotificationConfiguration(device_enrollment_configuration.
         fields = {
             "branding_options": lambda n : setattr(self, 'branding_options', n.get_enum_value(enrollment_notification_branding_options.EnrollmentNotificationBrandingOptions)),
             "default_locale": lambda n : setattr(self, 'default_locale', n.get_str_value()),
-            "notification_message_template_id": lambda n : setattr(self, 'notification_message_template_id', n.get_str_value()),
+            "notification_message_template_id": lambda n : setattr(self, 'notification_message_template_id', n.get_object_value(Guid)),
             "notification_templates": lambda n : setattr(self, 'notification_templates', n.get_collection_of_primitive_values(str)),
             "platform_type": lambda n : setattr(self, 'platform_type', n.get_enum_value(enrollment_restriction_platform_type.EnrollmentRestrictionPlatformType)),
             "template_type": lambda n : setattr(self, 'template_type', n.get_enum_value(enrollment_notification_template_type.EnrollmentNotificationTemplateType)),
@@ -92,15 +92,15 @@ class DeviceEnrollmentNotificationConfiguration(device_enrollment_configuration.
         return fields
     
     @property
-    def notification_message_template_id(self,) -> Optional[str]:
+    def notification_message_template_id(self,) -> Optional[Guid]:
         """
         Gets the notificationMessageTemplateId property value. Notification Message Template Id
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._notification_message_template_id
     
     @notification_message_template_id.setter
-    def notification_message_template_id(self,value: Optional[str] = None) -> None:
+    def notification_message_template_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the notificationMessageTemplateId property value. Notification Message Template Id
         Args:
@@ -153,7 +153,7 @@ class DeviceEnrollmentNotificationConfiguration(device_enrollment_configuration.
         super().serialize(writer)
         writer.write_enum_value("brandingOptions", self.branding_options)
         writer.write_str_value("defaultLocale", self.default_locale)
-        writer.write_str_value("notificationMessageTemplateId", self.notification_message_template_id)
+        writer.write_object_value("notificationMessageTemplateId", self.notification_message_template_id)
         writer.write_collection_of_primitive_values("notificationTemplates", self.notification_templates)
         writer.write_enum_value("platformType", self.platform_type)
         writer.write_enum_value("templateType", self.template_type)

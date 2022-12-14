@@ -21,18 +21,21 @@ class ChromeOSOnboardingSettingsRequestBuilder():
     """
     Provides operations to manage the chromeOSOnboardingSettings property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def connect(self) -> connect_request_builder.ConnectRequestBuilder:
         """
         Provides operations to call the connect method.
         """
         return connect_request_builder.ConnectRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def disconnect(self) -> disconnect_request_builder.DisconnectRequestBuilder:
         """
         Provides operations to call the disconnect method.
@@ -79,7 +82,7 @@ class ChromeOSOnboardingSettingsRequestBuilder():
         """
         Create new navigation property to chromeOSOnboardingSettings for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -119,7 +122,7 @@ class ChromeOSOnboardingSettingsRequestBuilder():
         """
         Create new navigation property to chromeOSOnboardingSettings for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings]

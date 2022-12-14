@@ -19,6 +19,7 @@ class CategoriesRequestBuilder():
     """
     Provides operations to manage the categories property of the microsoft.graph.deviceManagementTemplate entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
@@ -65,7 +66,7 @@ class CategoriesRequestBuilder():
         """
         Create new navigation property to categories for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +106,7 @@ class CategoriesRequestBuilder():
         """
         Create new navigation property to categories for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_template_setting_category.DeviceManagementTemplateSettingCategory]

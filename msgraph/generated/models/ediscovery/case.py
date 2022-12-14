@@ -18,7 +18,7 @@ tag = lazy_import('msgraph.generated.models.ediscovery.tag')
 
 class Case(entity.Entity):
     """
-    Provides operations to manage the compliance singleton.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def closed_by(self,) -> Optional[identity_set.IdentitySet]:

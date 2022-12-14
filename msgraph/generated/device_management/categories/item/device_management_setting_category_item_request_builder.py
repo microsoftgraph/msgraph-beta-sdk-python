@@ -19,6 +19,7 @@ class DeviceManagementSettingCategoryItemRequestBuilder():
     """
     Provides operations to manage the categories property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def setting_definitions(self) -> setting_definitions_request_builder.SettingDefinitionsRequestBuilder:
         """
         Provides operations to manage the settingDefinitions property of the microsoft.graph.deviceManagementSettingCategory entity.
@@ -81,7 +82,7 @@ class DeviceManagementSettingCategoryItemRequestBuilder():
         """
         Update the navigation property categories in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +140,7 @@ class DeviceManagementSettingCategoryItemRequestBuilder():
         """
         Update the navigation property categories in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_setting_category.DeviceManagementSettingCategory]

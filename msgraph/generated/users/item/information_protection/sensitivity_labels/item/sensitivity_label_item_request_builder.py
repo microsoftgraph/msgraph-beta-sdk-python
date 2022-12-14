@@ -19,6 +19,7 @@ class SensitivityLabelItemRequestBuilder():
     """
     Provides operations to manage the sensitivityLabels property of the microsoft.graph.informationProtection entity.
     """
+    @property
     def sublabels(self) -> sublabels_request_builder.SublabelsRequestBuilder:
         """
         Provides operations to manage the sublabels property of the microsoft.graph.sensitivityLabel entity.
@@ -81,7 +82,7 @@ class SensitivityLabelItemRequestBuilder():
         """
         Update the navigation property sensitivityLabels in users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +140,7 @@ class SensitivityLabelItemRequestBuilder():
         """
         Update the navigation property sensitivityLabels in users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sensitivity_label.SensitivityLabel]

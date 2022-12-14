@@ -19,6 +19,7 @@ class AdvancedThreatProtectionOnboardingDeviceSettingStatesRequestBuilder():
     """
     Provides operations to manage the advancedThreatProtectionOnboardingDeviceSettingStates property of the microsoft.graph.advancedThreatProtectionOnboardingStateSummary entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
@@ -65,7 +66,7 @@ class AdvancedThreatProtectionOnboardingDeviceSettingStatesRequestBuilder():
         """
         Create new navigation property to advancedThreatProtectionOnboardingDeviceSettingStates for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +106,7 @@ class AdvancedThreatProtectionOnboardingDeviceSettingStatesRequestBuilder():
         """
         Create new navigation property to advancedThreatProtectionOnboardingDeviceSettingStates for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[advanced_threat_protection_onboarding_device_setting_state.AdvancedThreatProtectionOnboardingDeviceSettingState]

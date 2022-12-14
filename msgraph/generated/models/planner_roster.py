@@ -9,7 +9,7 @@ planner_roster_member = lazy_import('msgraph.generated.models.planner_roster_mem
 
 class PlannerRoster(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     def __init__(self,) -> None:
         """

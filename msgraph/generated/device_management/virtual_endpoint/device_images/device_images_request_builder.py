@@ -20,6 +20,7 @@ class DeviceImagesRequestBuilder():
     """
     Provides operations to manage the deviceImages property of the microsoft.graph.virtualEndpoint entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
@@ -66,7 +67,7 @@ class DeviceImagesRequestBuilder():
         """
         Create a new cloudPcDeviceImage object. Upload a custom OS image that you can later provision on Cloud PCs.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -113,7 +114,7 @@ class DeviceImagesRequestBuilder():
         """
         Create a new cloudPcDeviceImage object. Upload a custom OS image that you can later provision on Cloud PCs.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_device_image.CloudPcDeviceImage]

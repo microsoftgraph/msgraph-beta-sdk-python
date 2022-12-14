@@ -19,6 +19,7 @@ class DimensionItemRequestBuilder():
     """
     Provides operations to manage the dimensions property of the microsoft.graph.company entity.
     """
+    @property
     def dimension_values(self) -> dimension_values_request_builder.DimensionValuesRequestBuilder:
         """
         Provides operations to manage the dimensionValues property of the microsoft.graph.dimension entity.

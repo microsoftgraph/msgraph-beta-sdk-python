@@ -20,12 +20,14 @@ class ManagementActionTenantDeploymentStatusesRequestBuilder():
     """
     Provides operations to manage the managementActionTenantDeploymentStatuses property of the microsoft.graph.managedTenants.managedTenant entity.
     """
+    @property
     def change_deployment_status(self) -> change_deployment_status_request_builder.ChangeDeploymentStatusRequestBuilder:
         """
         Provides operations to call the changeDeploymentStatus method.
         """
         return change_deployment_status_request_builder.ChangeDeploymentStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
@@ -72,7 +74,7 @@ class ManagementActionTenantDeploymentStatusesRequestBuilder():
         """
         Create new navigation property to managementActionTenantDeploymentStatuses for tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +114,7 @@ class ManagementActionTenantDeploymentStatusesRequestBuilder():
         """
         Create new navigation property to managementActionTenantDeploymentStatuses for tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_action_tenant_deployment_status.ManagementActionTenantDeploymentStatus]

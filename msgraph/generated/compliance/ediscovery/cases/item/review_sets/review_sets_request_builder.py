@@ -19,6 +19,7 @@ class ReviewSetsRequestBuilder():
     """
     Provides operations to manage the reviewSets property of the microsoft.graph.ediscovery.case entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
@@ -65,7 +66,7 @@ class ReviewSetsRequestBuilder():
         """
         Create a new reviewSet object. The request body contains the display name of the review set, which is the only writable property.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +106,7 @@ class ReviewSetsRequestBuilder():
         """
         Create a new reviewSet object. The request body contains the display name of the review set, which is the only writable property.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[review_set.ReviewSet]

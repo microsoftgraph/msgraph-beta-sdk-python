@@ -27,48 +27,56 @@ class OnlineMeetingItemRequestBuilder():
     """
     Provides operations to manage the onlineMeetings property of the microsoft.graph.user entity.
     """
+    @property
     def alternative_recording(self) -> alternative_recording_request_builder.AlternativeRecordingRequestBuilder:
         """
         Provides operations to manage the media for the user entity.
         """
         return alternative_recording_request_builder.AlternativeRecordingRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def attendance_reports(self) -> attendance_reports_request_builder.AttendanceReportsRequestBuilder:
         """
         Provides operations to manage the attendanceReports property of the microsoft.graph.onlineMeeting entity.
         """
         return attendance_reports_request_builder.AttendanceReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def attendee_report(self) -> attendee_report_request_builder.AttendeeReportRequestBuilder:
         """
         Provides operations to manage the media for the user entity.
         """
         return attendee_report_request_builder.AttendeeReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def meeting_attendance_report(self) -> meeting_attendance_report_request_builder.MeetingAttendanceReportRequestBuilder:
         """
         Provides operations to manage the meetingAttendanceReport property of the microsoft.graph.onlineMeeting entity.
         """
         return meeting_attendance_report_request_builder.MeetingAttendanceReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def recording(self) -> recording_request_builder.RecordingRequestBuilder:
         """
         Provides operations to manage the media for the user entity.
         """
         return recording_request_builder.RecordingRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def registration(self) -> registration_request_builder.RegistrationRequestBuilder:
         """
         Provides operations to manage the registration property of the microsoft.graph.onlineMeeting entity.
         """
         return registration_request_builder.RegistrationRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def transcripts(self) -> transcripts_request_builder.TranscriptsRequestBuilder:
         """
         Provides operations to manage the transcripts property of the microsoft.graph.onlineMeeting entity.
         """
         return transcripts_request_builder.TranscriptsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def virtual_appointment(self) -> virtual_appointment_request_builder.VirtualAppointmentRequestBuilder:
         """
         Provides operations to manage the virtualAppointment property of the microsoft.graph.onlineMeeting entity.
@@ -144,7 +152,7 @@ class OnlineMeetingItemRequestBuilder():
         """
         Update the navigation property onlineMeetings in users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -202,7 +210,7 @@ class OnlineMeetingItemRequestBuilder():
         """
         Update the navigation property onlineMeetings in users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[online_meeting.OnlineMeeting]

@@ -18,6 +18,7 @@ class WindowsRequestBuilder():
     """
     Provides operations to manage the windows property of the microsoft.graph.admin entity.
     """
+    @property
     def updates(self) -> updates_request_builder.UpdatesRequestBuilder:
         """
         Provides operations to manage the updates property of the microsoft.graph.windowsUpdates.windows entity.
@@ -80,7 +81,7 @@ class WindowsRequestBuilder():
         """
         Update the navigation property windows in admin
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class WindowsRequestBuilder():
         """
         Update the navigation property windows in admin
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows.Windows]

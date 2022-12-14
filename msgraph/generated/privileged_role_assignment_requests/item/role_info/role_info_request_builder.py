@@ -23,30 +23,35 @@ class RoleInfoRequestBuilder():
     """
     Provides operations to manage the roleInfo property of the microsoft.graph.privilegedRoleAssignmentRequest entity.
     """
+    @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.privilegedRole entity.
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def self_activate(self) -> self_activate_request_builder.SelfActivateRequestBuilder:
         """
         Provides operations to call the selfActivate method.
         """
         return self_activate_request_builder.SelfActivateRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def self_deactivate(self) -> self_deactivate_request_builder.SelfDeactivateRequestBuilder:
         """
         Provides operations to call the selfDeactivate method.
         """
         return self_deactivate_request_builder.SelfDeactivateRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def settings(self) -> settings_request_builder.SettingsRequestBuilder:
         """
         Provides operations to manage the settings property of the microsoft.graph.privilegedRole entity.
         """
         return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def summary(self) -> summary_request_builder.SummaryRequestBuilder:
         """
         Provides operations to manage the summary property of the microsoft.graph.privilegedRole entity.
@@ -122,7 +127,7 @@ class RoleInfoRequestBuilder():
         """
         Update the navigation property roleInfo in privilegedRoleAssignmentRequests
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -180,7 +185,7 @@ class RoleInfoRequestBuilder():
         """
         Update the navigation property roleInfo in privilegedRoleAssignmentRequests
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_role.PrivilegedRole]

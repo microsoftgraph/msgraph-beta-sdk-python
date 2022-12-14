@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 booking_currency = lazy_import('msgraph.generated.models.booking_currency')
 
 class BookingCurrencyCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the collection of bookingCurrency entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new BookingCurrencyCollectionResponse and sets the default values.

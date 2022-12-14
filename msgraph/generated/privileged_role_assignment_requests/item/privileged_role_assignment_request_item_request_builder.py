@@ -19,12 +19,14 @@ class PrivilegedRoleAssignmentRequestItemRequestBuilder():
     """
     Provides operations to manage the collection of privilegedRoleAssignmentRequest entities.
     """
+    @property
     def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
         """
         Provides operations to call the cancel method.
         """
         return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def role_info(self) -> role_info_request_builder.RoleInfoRequestBuilder:
         """
         Provides operations to manage the roleInfo property of the microsoft.graph.privilegedRoleAssignmentRequest entity.
@@ -87,7 +89,7 @@ class PrivilegedRoleAssignmentRequestItemRequestBuilder():
         """
         Update entity in privilegedRoleAssignmentRequests
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +147,7 @@ class PrivilegedRoleAssignmentRequestItemRequestBuilder():
         """
         Update entity in privilegedRoleAssignmentRequests
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest]

@@ -19,6 +19,7 @@ class DeviceManagementScriptUserStateItemRequestBuilder():
     """
     Provides operations to manage the userRunStates property of the microsoft.graph.deviceManagementScript entity.
     """
+    @property
     def device_run_states(self) -> device_run_states_request_builder.DeviceRunStatesRequestBuilder:
         """
         Provides operations to manage the deviceRunStates property of the microsoft.graph.deviceManagementScriptUserState entity.
@@ -81,7 +82,7 @@ class DeviceManagementScriptUserStateItemRequestBuilder():
         """
         Update the navigation property userRunStates in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +153,7 @@ class DeviceManagementScriptUserStateItemRequestBuilder():
         """
         Update the navigation property userRunStates in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_script_user_state.DeviceManagementScriptUserState]

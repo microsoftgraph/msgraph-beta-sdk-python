@@ -222,7 +222,7 @@ class Application(directory_object.DirectoryObject):
         # Custom strings that can be used to categorize and identify the application. Not nullable.Supports $filter (eq, not, ge, le, startsWith).
         self._tags: Optional[List[str]] = None
         # Specifies the keyId of a public key from the keyCredentials collection. When configured, Azure AD encrypts all the tokens it emits by using the key this property points to. The application code that receives the encrypted token must use the matching private key to decrypt the token before it can be used for the signed-in user.
-        self._token_encryption_key_id: Optional[str] = None
+        self._token_encryption_key_id: Optional[Guid] = None
         # The tokenIssuancePolicies property
         self._token_issuance_policies: Optional[List[token_issuance_policy.TokenIssuancePolicy]] = None
         # The tokenLifetimePolicies assigned to this application. Supports $expand.
@@ -429,7 +429,7 @@ class Application(directory_object.DirectoryObject):
             "spa": lambda n : setattr(self, 'spa', n.get_object_value(spa_application.SpaApplication)),
             "synchronization": lambda n : setattr(self, 'synchronization', n.get_object_value(synchronization.Synchronization)),
             "tags": lambda n : setattr(self, 'tags', n.get_collection_of_primitive_values(str)),
-            "token_encryption_key_id": lambda n : setattr(self, 'token_encryption_key_id', n.get_str_value()),
+            "token_encryption_key_id": lambda n : setattr(self, 'token_encryption_key_id', n.get_object_value(Guid)),
             "token_issuance_policies": lambda n : setattr(self, 'token_issuance_policies', n.get_collection_of_object_values(token_issuance_policy.TokenIssuancePolicy)),
             "token_lifetime_policies": lambda n : setattr(self, 'token_lifetime_policies', n.get_collection_of_object_values(token_lifetime_policy.TokenLifetimePolicy)),
             "unique_name": lambda n : setattr(self, 'unique_name', n.get_str_value()),
@@ -812,7 +812,7 @@ class Application(directory_object.DirectoryObject):
         writer.write_object_value("spa", self.spa)
         writer.write_object_value("synchronization", self.synchronization)
         writer.write_collection_of_primitive_values("tags", self.tags)
-        writer.write_str_value("tokenEncryptionKeyId", self.token_encryption_key_id)
+        writer.write_object_value("tokenEncryptionKeyId", self.token_encryption_key_id)
         writer.write_collection_of_object_values("tokenIssuancePolicies", self.token_issuance_policies)
         writer.write_collection_of_object_values("tokenLifetimePolicies", self.token_lifetime_policies)
         writer.write_str_value("uniqueName", self.unique_name)
@@ -923,15 +923,15 @@ class Application(directory_object.DirectoryObject):
         self._tags = value
     
     @property
-    def token_encryption_key_id(self,) -> Optional[str]:
+    def token_encryption_key_id(self,) -> Optional[Guid]:
         """
         Gets the tokenEncryptionKeyId property value. Specifies the keyId of a public key from the keyCredentials collection. When configured, Azure AD encrypts all the tokens it emits by using the key this property points to. The application code that receives the encrypted token must use the matching private key to decrypt the token before it can be used for the signed-in user.
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._token_encryption_key_id
     
     @token_encryption_key_id.setter
-    def token_encryption_key_id(self,value: Optional[str] = None) -> None:
+    def token_encryption_key_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the tokenEncryptionKeyId property value. Specifies the keyId of a public key from the keyCredentials collection. When configured, Azure AD encrypts all the tokens it emits by using the key this property points to. The application code that receives the encrypted token must use the matching private key to decrypt the token before it can be used for the signed-in user.
         Args:

@@ -21,12 +21,14 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
     """
     Provides operations to manage the authenticationStrengthPolicies property of the microsoft.graph.policyRoot entity.
     """
+    @property
     def combination_configurations(self) -> combination_configurations_request_builder.CombinationConfigurationsRequestBuilder:
         """
         Provides operations to manage the combinationConfigurations property of the microsoft.graph.authenticationStrengthPolicy entity.
         """
         return combination_configurations_request_builder.CombinationConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def update_allowed_combinations(self) -> update_allowed_combinations_request_builder.UpdateAllowedCombinationsRequestBuilder:
         """
         Provides operations to call the updateAllowedCombinations method.
@@ -102,7 +104,7 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
         """
         Update the navigation property authenticationStrengthPolicies in policies
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -160,7 +162,7 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
         """
         Update the navigation property authenticationStrengthPolicies in policies
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_strength_policy.AuthenticationStrengthPolicy]

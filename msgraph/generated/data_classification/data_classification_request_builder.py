@@ -37,66 +37,77 @@ class DataClassificationRequestBuilder():
     """
     Provides operations to manage the dataClassificationService singleton.
     """
+    @property
     def classify_exact_matches(self) -> classify_exact_matches_request_builder.ClassifyExactMatchesRequestBuilder:
         """
         Provides operations to call the classifyExactMatches method.
         """
         return classify_exact_matches_request_builder.ClassifyExactMatchesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def classify_file(self) -> classify_file_request_builder.ClassifyFileRequestBuilder:
         """
         Provides operations to call the classifyFile method.
         """
         return classify_file_request_builder.ClassifyFileRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def classify_file_jobs(self) -> classify_file_jobs_request_builder.ClassifyFileJobsRequestBuilder:
         """
         Provides operations to manage the classifyFileJobs property of the microsoft.graph.dataClassificationService entity.
         """
         return classify_file_jobs_request_builder.ClassifyFileJobsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def classify_text_jobs(self) -> classify_text_jobs_request_builder.ClassifyTextJobsRequestBuilder:
         """
         Provides operations to manage the classifyTextJobs property of the microsoft.graph.dataClassificationService entity.
         """
         return classify_text_jobs_request_builder.ClassifyTextJobsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def evaluate_dlp_policies_jobs(self) -> evaluate_dlp_policies_jobs_request_builder.EvaluateDlpPoliciesJobsRequestBuilder:
         """
         Provides operations to manage the evaluateDlpPoliciesJobs property of the microsoft.graph.dataClassificationService entity.
         """
         return evaluate_dlp_policies_jobs_request_builder.EvaluateDlpPoliciesJobsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def evaluate_label_jobs(self) -> evaluate_label_jobs_request_builder.EvaluateLabelJobsRequestBuilder:
         """
         Provides operations to manage the evaluateLabelJobs property of the microsoft.graph.dataClassificationService entity.
         """
         return evaluate_label_jobs_request_builder.EvaluateLabelJobsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def exact_match_data_stores(self) -> exact_match_data_stores_request_builder.ExactMatchDataStoresRequestBuilder:
         """
         Provides operations to manage the exactMatchDataStores property of the microsoft.graph.dataClassificationService entity.
         """
         return exact_match_data_stores_request_builder.ExactMatchDataStoresRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def exact_match_upload_agents(self) -> exact_match_upload_agents_request_builder.ExactMatchUploadAgentsRequestBuilder:
         """
         Provides operations to manage the exactMatchUploadAgents property of the microsoft.graph.dataClassificationService entity.
         """
         return exact_match_upload_agents_request_builder.ExactMatchUploadAgentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def jobs(self) -> jobs_request_builder.JobsRequestBuilder:
         """
         Provides operations to manage the jobs property of the microsoft.graph.dataClassificationService entity.
         """
         return jobs_request_builder.JobsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sensitive_types(self) -> sensitive_types_request_builder.SensitiveTypesRequestBuilder:
         """
         Provides operations to manage the sensitiveTypes property of the microsoft.graph.dataClassificationService entity.
         """
         return sensitive_types_request_builder.SensitiveTypesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sensitivity_labels(self) -> sensitivity_labels_request_builder.SensitivityLabelsRequestBuilder:
         """
         Provides operations to manage the sensitivityLabels property of the microsoft.graph.dataClassificationService entity.
@@ -169,7 +180,7 @@ class DataClassificationRequestBuilder():
         """
         Update dataClassification
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -274,7 +285,7 @@ class DataClassificationRequestBuilder():
         """
         Update dataClassification
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[data_classification_service.DataClassificationService]

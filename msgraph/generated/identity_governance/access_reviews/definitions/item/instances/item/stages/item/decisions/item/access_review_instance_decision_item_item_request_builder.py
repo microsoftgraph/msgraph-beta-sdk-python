@@ -20,12 +20,14 @@ class AccessReviewInstanceDecisionItemItemRequestBuilder():
     """
     Provides operations to manage the decisions property of the microsoft.graph.accessReviewStage entity.
     """
+    @property
     def insights(self) -> insights_request_builder.InsightsRequestBuilder:
         """
         Provides operations to manage the insights property of the microsoft.graph.accessReviewInstanceDecisionItem entity.
         """
         return insights_request_builder.InsightsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def instance(self) -> instance_request_builder.InstanceRequestBuilder:
         """
         Provides operations to manage the instance property of the microsoft.graph.accessReviewInstanceDecisionItem entity.
@@ -88,7 +90,7 @@ class AccessReviewInstanceDecisionItemItemRequestBuilder():
         """
         Update the navigation property decisions in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +161,7 @@ class AccessReviewInstanceDecisionItemItemRequestBuilder():
         """
         Update the navigation property decisions in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_instance_decision_item.AccessReviewInstanceDecisionItem]

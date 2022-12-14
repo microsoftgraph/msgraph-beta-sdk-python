@@ -25,36 +25,42 @@ class ChatMessageItemRequestBuilder():
     """
     Provides operations to manage the messages property of the microsoft.graph.chat entity.
     """
+    @property
     def hosted_contents(self) -> hosted_contents_request_builder.HostedContentsRequestBuilder:
         """
         Provides operations to manage the hostedContents property of the microsoft.graph.chatMessage entity.
         """
         return hosted_contents_request_builder.HostedContentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def replies(self) -> replies_request_builder.RepliesRequestBuilder:
         """
         Provides operations to manage the replies property of the microsoft.graph.chatMessage entity.
         """
         return replies_request_builder.RepliesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def set_reaction(self) -> set_reaction_request_builder.SetReactionRequestBuilder:
         """
         Provides operations to call the setReaction method.
         """
         return set_reaction_request_builder.SetReactionRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def soft_delete(self) -> soft_delete_request_builder.SoftDeleteRequestBuilder:
         """
         Provides operations to call the softDelete method.
         """
         return soft_delete_request_builder.SoftDeleteRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def undo_soft_delete(self) -> undo_soft_delete_request_builder.UndoSoftDeleteRequestBuilder:
         """
         Provides operations to call the undoSoftDelete method.
         """
         return undo_soft_delete_request_builder.UndoSoftDeleteRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def unset_reaction(self) -> unset_reaction_request_builder.UnsetReactionRequestBuilder:
         """
         Provides operations to call the unsetReaction method.
@@ -117,7 +123,7 @@ class ChatMessageItemRequestBuilder():
         """
         Update the navigation property messages in chats
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -188,7 +194,7 @@ class ChatMessageItemRequestBuilder():
         """
         Update the navigation property messages in chats
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[chat_message.ChatMessage]

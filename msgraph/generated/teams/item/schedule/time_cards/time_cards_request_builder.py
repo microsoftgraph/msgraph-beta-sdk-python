@@ -20,12 +20,14 @@ class TimeCardsRequestBuilder():
     """
     Provides operations to manage the timeCards property of the microsoft.graph.schedule entity.
     """
+    @property
     def clock_in(self) -> clock_in_request_builder.ClockInRequestBuilder:
         """
         Provides operations to call the clockIn method.
         """
         return clock_in_request_builder.ClockInRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
@@ -72,7 +74,7 @@ class TimeCardsRequestBuilder():
         """
         Create new navigation property to timeCards for teams
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +114,7 @@ class TimeCardsRequestBuilder():
         """
         Create new navigation property to timeCards for teams
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[time_card.TimeCard]

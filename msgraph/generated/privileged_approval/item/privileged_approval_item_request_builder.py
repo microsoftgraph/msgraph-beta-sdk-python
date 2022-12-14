@@ -19,12 +19,14 @@ class PrivilegedApprovalItemRequestBuilder():
     """
     Provides operations to manage the collection of privilegedApproval entities.
     """
+    @property
     def request(self) -> request_request_builder.RequestRequestBuilder:
         """
         Provides operations to manage the request property of the microsoft.graph.privilegedApproval entity.
         """
         return request_request_builder.RequestRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def role_info(self) -> role_info_request_builder.RoleInfoRequestBuilder:
         """
         Provides operations to manage the roleInfo property of the microsoft.graph.privilegedApproval entity.
@@ -87,7 +89,7 @@ class PrivilegedApprovalItemRequestBuilder():
         """
         Update the properties of privilegedapproval object.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +147,7 @@ class PrivilegedApprovalItemRequestBuilder():
         """
         Update the properties of privilegedapproval object.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_approval.PrivilegedApproval]

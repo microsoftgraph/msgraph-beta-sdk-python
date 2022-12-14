@@ -19,6 +19,7 @@ class EmployeeExperienceRequestBuilder():
     """
     Provides operations to manage the employeeExperience singleton.
     """
+    @property
     def learning_providers(self) -> learning_providers_request_builder.LearningProvidersRequestBuilder:
         """
         Provides operations to manage the learningProviders property of the microsoft.graph.employeeExperience entity.
@@ -65,7 +66,7 @@ class EmployeeExperienceRequestBuilder():
         """
         Update employeeExperience
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -118,7 +119,7 @@ class EmployeeExperienceRequestBuilder():
         """
         Update employeeExperience
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[employee_experience.EmployeeExperience]

@@ -24,42 +24,49 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
     """
     Provides operations to manage the androidManagedStoreAccountEnterpriseSettings property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def approve_apps(self) -> approve_apps_request_builder.ApproveAppsRequestBuilder:
         """
         Provides operations to call the approveApps method.
         """
         return approve_apps_request_builder.ApproveAppsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def complete_signup(self) -> complete_signup_request_builder.CompleteSignupRequestBuilder:
         """
         Provides operations to call the completeSignup method.
         """
         return complete_signup_request_builder.CompleteSignupRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def create_google_play_web_token(self) -> create_google_play_web_token_request_builder.CreateGooglePlayWebTokenRequestBuilder:
         """
         Provides operations to call the createGooglePlayWebToken method.
         """
         return create_google_play_web_token_request_builder.CreateGooglePlayWebTokenRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def request_signup_url(self) -> request_signup_url_request_builder.RequestSignupUrlRequestBuilder:
         """
         Provides operations to call the requestSignupUrl method.
         """
         return request_signup_url_request_builder.RequestSignupUrlRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def set_android_device_owner_fully_managed_enrollment_state(self) -> set_android_device_owner_fully_managed_enrollment_state_request_builder.SetAndroidDeviceOwnerFullyManagedEnrollmentStateRequestBuilder:
         """
         Provides operations to call the setAndroidDeviceOwnerFullyManagedEnrollmentState method.
         """
         return set_android_device_owner_fully_managed_enrollment_state_request_builder.SetAndroidDeviceOwnerFullyManagedEnrollmentStateRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sync_apps(self) -> sync_apps_request_builder.SyncAppsRequestBuilder:
         """
         Provides operations to call the syncApps method.
         """
         return sync_apps_request_builder.SyncAppsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def unbind(self) -> unbind_request_builder.UnbindRequestBuilder:
         """
         Provides operations to call the unbind method.
@@ -122,7 +129,7 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         """
         Update the navigation property androidManagedStoreAccountEnterpriseSettings in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -180,7 +187,7 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         """
         Update the navigation property androidManagedStoreAccountEnterpriseSettings in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]

@@ -22,18 +22,21 @@ class PolicySetItemRequestBuilder():
     """
     Provides operations to manage the policySets property of the microsoft.graph.deviceAppManagement entity.
     """
+    @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.policySet entity.
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def items(self) -> items_request_builder.ItemsRequestBuilder:
         """
         Provides operations to manage the items property of the microsoft.graph.policySet entity.
         """
         return items_request_builder.ItemsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def update(self) -> update_request_builder.UpdateRequestBuilder:
         """
         Provides operations to call the update method.
@@ -109,7 +112,7 @@ class PolicySetItemRequestBuilder():
         """
         Update the navigation property policySets in deviceAppManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -180,7 +183,7 @@ class PolicySetItemRequestBuilder():
         """
         Update the navigation property policySets in deviceAppManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[policy_set.PolicySet]

@@ -19,6 +19,7 @@ class DeviceAndAppManagementRoleAssignmentItemRequestBuilder():
     """
     Provides operations to manage the roleAssignments property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def role_scope_tags(self) -> role_scope_tags_request_builder.RoleScopeTagsRequestBuilder:
         """
         Provides operations to manage the roleScopeTags property of the microsoft.graph.deviceAndAppManagementRoleAssignment entity.
@@ -81,7 +82,7 @@ class DeviceAndAppManagementRoleAssignmentItemRequestBuilder():
         """
         Update the navigation property roleAssignments in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +140,7 @@ class DeviceAndAppManagementRoleAssignmentItemRequestBuilder():
         """
         Update the navigation property roleAssignments in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment]

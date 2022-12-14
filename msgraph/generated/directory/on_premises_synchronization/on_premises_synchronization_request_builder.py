@@ -19,6 +19,7 @@ class OnPremisesSynchronizationRequestBuilder():
     """
     Provides operations to manage the onPremisesSynchronization property of the microsoft.graph.directory entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
@@ -45,7 +46,7 @@ class OnPremisesSynchronizationRequestBuilder():
     
     def create_get_request_information(self,request_configuration: Optional[OnPremisesSynchronizationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get onPremisesSynchronization from directory
+        A container for on-premises directory synchronization functionalities that are available for the organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -65,7 +66,7 @@ class OnPremisesSynchronizationRequestBuilder():
         """
         Create new navigation property to onPremisesSynchronization for directory
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -84,7 +85,7 @@ class OnPremisesSynchronizationRequestBuilder():
     
     async def get(self,request_configuration: Optional[OnPremisesSynchronizationRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[on_premises_directory_synchronization_collection_response.OnPremisesDirectorySynchronizationCollectionResponse]:
         """
-        Get onPremisesSynchronization from directory
+        A container for on-premises directory synchronization functionalities that are available for the organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
@@ -105,7 +106,7 @@ class OnPremisesSynchronizationRequestBuilder():
         """
         Create new navigation property to onPremisesSynchronization for directory
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[on_premises_directory_synchronization.OnPremisesDirectorySynchronization]
@@ -126,7 +127,7 @@ class OnPremisesSynchronizationRequestBuilder():
     @dataclass
     class OnPremisesSynchronizationRequestBuilderGetQueryParameters():
         """
-        Get onPremisesSynchronization from directory
+        A container for on-premises directory synchronization functionalities that are available for the organization.
         """
         # Include count of items
         count: Optional[bool] = None

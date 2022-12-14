@@ -19,6 +19,7 @@ class MacOSSoftwareUpdateAccountSummaryItemRequestBuilder():
     """
     Provides operations to manage the macOSSoftwareUpdateAccountSummaries property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def category_summaries(self) -> category_summaries_request_builder.CategorySummariesRequestBuilder:
         """
         Provides operations to manage the categorySummaries property of the microsoft.graph.macOSSoftwareUpdateAccountSummary entity.
@@ -94,7 +95,7 @@ class MacOSSoftwareUpdateAccountSummaryItemRequestBuilder():
         """
         Update the navigation property macOSSoftwareUpdateAccountSummaries in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +153,7 @@ class MacOSSoftwareUpdateAccountSummaryItemRequestBuilder():
         """
         Update the navigation property macOSSoftwareUpdateAccountSummaries in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mac_o_s_software_update_account_summary.MacOSSoftwareUpdateAccountSummary]

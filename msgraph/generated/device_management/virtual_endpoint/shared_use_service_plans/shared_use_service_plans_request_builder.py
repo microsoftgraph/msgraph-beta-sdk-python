@@ -18,6 +18,7 @@ class SharedUseServicePlansRequestBuilder():
     """
     Provides operations to manage the sharedUseServicePlans property of the microsoft.graph.virtualEndpoint entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.

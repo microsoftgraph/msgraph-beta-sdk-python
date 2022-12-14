@@ -10,15 +10,15 @@ picture = lazy_import('msgraph.generated.models.picture')
 
 class Item(entity.Entity):
     @property
-    def base_unit_of_measure_id(self,) -> Optional[str]:
+    def base_unit_of_measure_id(self,) -> Optional[Guid]:
         """
         Gets the baseUnitOfMeasureId property value. The baseUnitOfMeasureId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._base_unit_of_measure_id
     
     @base_unit_of_measure_id.setter
-    def base_unit_of_measure_id(self,value: Optional[str] = None) -> None:
+    def base_unit_of_measure_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the baseUnitOfMeasureId property value. The baseUnitOfMeasureId property
         Args:
@@ -49,7 +49,7 @@ class Item(entity.Entity):
         """
         super().__init__()
         # The baseUnitOfMeasureId property
-        self._base_unit_of_measure_id: Optional[str] = None
+        self._base_unit_of_measure_id: Optional[Guid] = None
         # The blocked property
         self._blocked: Optional[bool] = None
         # The displayName property
@@ -63,7 +63,7 @@ class Item(entity.Entity):
         # The itemCategoryCode property
         self._item_category_code: Optional[str] = None
         # The itemCategoryId property
-        self._item_category_id: Optional[str] = None
+        self._item_category_id: Optional[Guid] = None
         # The lastModifiedDateTime property
         self._last_modified_date_time: Optional[datetime] = None
         # The number property
@@ -77,7 +77,7 @@ class Item(entity.Entity):
         # The taxGroupCode property
         self._tax_group_code: Optional[str] = None
         # The taxGroupId property
-        self._tax_group_id: Optional[str] = None
+        self._tax_group_id: Optional[Guid] = None
         # The type property
         self._type: Optional[str] = None
         # The unitCost property
@@ -120,20 +120,20 @@ class Item(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "base_unit_of_measure_id": lambda n : setattr(self, 'base_unit_of_measure_id', n.get_str_value()),
+            "base_unit_of_measure_id": lambda n : setattr(self, 'base_unit_of_measure_id', n.get_object_value(Guid)),
             "blocked": lambda n : setattr(self, 'blocked', n.get_bool_value()),
             "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "gtin": lambda n : setattr(self, 'gtin', n.get_str_value()),
             "inventory": lambda n : setattr(self, 'inventory', n.get_float_value()),
             "item_category": lambda n : setattr(self, 'item_category', n.get_object_value(item_category.ItemCategory)),
             "item_category_code": lambda n : setattr(self, 'item_category_code', n.get_str_value()),
-            "item_category_id": lambda n : setattr(self, 'item_category_id', n.get_str_value()),
+            "item_category_id": lambda n : setattr(self, 'item_category_id', n.get_object_value(Guid)),
             "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "number": lambda n : setattr(self, 'number', n.get_str_value()),
             "picture": lambda n : setattr(self, 'picture', n.get_collection_of_object_values(picture.Picture)),
             "price_includes_tax": lambda n : setattr(self, 'price_includes_tax', n.get_bool_value()),
             "tax_group_code": lambda n : setattr(self, 'tax_group_code', n.get_str_value()),
-            "tax_group_id": lambda n : setattr(self, 'tax_group_id', n.get_str_value()),
+            "tax_group_id": lambda n : setattr(self, 'tax_group_id', n.get_object_value(Guid)),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
             "unit_cost": lambda n : setattr(self, 'unit_cost', n.get_float_value()),
             "unit_price": lambda n : setattr(self, 'unit_price', n.get_float_value()),
@@ -211,15 +211,15 @@ class Item(entity.Entity):
         self._item_category_code = value
     
     @property
-    def item_category_id(self,) -> Optional[str]:
+    def item_category_id(self,) -> Optional[Guid]:
         """
         Gets the itemCategoryId property value. The itemCategoryId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._item_category_id
     
     @item_category_id.setter
-    def item_category_id(self,value: Optional[str] = None) -> None:
+    def item_category_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the itemCategoryId property value. The itemCategoryId property
         Args:
@@ -304,20 +304,20 @@ class Item(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_str_value("baseUnitOfMeasureId", self.base_unit_of_measure_id)
+        writer.write_object_value("baseUnitOfMeasureId", self.base_unit_of_measure_id)
         writer.write_bool_value("blocked", self.blocked)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("gtin", self.gtin)
         writer.write_float_value("inventory", self.inventory)
         writer.write_object_value("itemCategory", self.item_category)
         writer.write_str_value("itemCategoryCode", self.item_category_code)
-        writer.write_str_value("itemCategoryId", self.item_category_id)
+        writer.write_object_value("itemCategoryId", self.item_category_id)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("number", self.number)
         writer.write_collection_of_object_values("picture", self.picture)
         writer.write_bool_value("priceIncludesTax", self.price_includes_tax)
         writer.write_str_value("taxGroupCode", self.tax_group_code)
-        writer.write_str_value("taxGroupId", self.tax_group_id)
+        writer.write_object_value("taxGroupId", self.tax_group_id)
         writer.write_str_value("type", self.type)
         writer.write_float_value("unitCost", self.unit_cost)
         writer.write_float_value("unitPrice", self.unit_price)
@@ -340,15 +340,15 @@ class Item(entity.Entity):
         self._tax_group_code = value
     
     @property
-    def tax_group_id(self,) -> Optional[str]:
+    def tax_group_id(self,) -> Optional[Guid]:
         """
         Gets the taxGroupId property value. The taxGroupId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._tax_group_id
     
     @tax_group_id.setter
-    def tax_group_id(self,value: Optional[str] = None) -> None:
+    def tax_group_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the taxGroupId property value. The taxGroupId property
         Args:

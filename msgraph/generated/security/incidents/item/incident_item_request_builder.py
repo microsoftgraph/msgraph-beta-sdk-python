@@ -19,6 +19,7 @@ class IncidentItemRequestBuilder():
     """
     Provides operations to manage the incidents property of the microsoft.graph.security entity.
     """
+    @property
     def alerts(self) -> alerts_request_builder.AlertsRequestBuilder:
         """
         Provides operations to manage the alerts property of the microsoft.graph.security.incident entity.
@@ -94,7 +95,7 @@ class IncidentItemRequestBuilder():
         """
         Update the navigation property incidents in security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +153,7 @@ class IncidentItemRequestBuilder():
         """
         Update the navigation property incidents in security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[incident.Incident]

@@ -23,24 +23,28 @@ class WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder():
     """
     Provides operations to manage the wdacSupplementalPolicies property of the microsoft.graph.deviceAppManagement entity.
     """
+    @property
     def assign(self) -> assign_request_builder.AssignRequestBuilder:
         """
         Provides operations to call the assign method.
         """
         return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.windowsDefenderApplicationControlSupplementalPolicy entity.
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def deploy_summary(self) -> deploy_summary_request_builder.DeploySummaryRequestBuilder:
         """
         Provides operations to manage the deploySummary property of the microsoft.graph.windowsDefenderApplicationControlSupplementalPolicy entity.
         """
         return deploy_summary_request_builder.DeploySummaryRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def device_statuses(self) -> device_statuses_request_builder.DeviceStatusesRequestBuilder:
         """
         Provides operations to manage the deviceStatuses property of the microsoft.graph.windowsDefenderApplicationControlSupplementalPolicy entity.
@@ -116,7 +120,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder():
         """
         Update the navigation property wdacSupplementalPolicies in deviceAppManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -187,7 +191,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder():
         """
         Update the navigation property wdacSupplementalPolicies in deviceAppManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy]

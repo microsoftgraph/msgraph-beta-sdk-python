@@ -18,6 +18,7 @@ class SecurityActionItemRequestBuilder():
     """
     Provides operations to manage the securityActions property of the microsoft.graph.security entity.
     """
+    @property
     def cancel_security_action(self) -> cancel_security_action_request_builder.CancelSecurityActionRequestBuilder:
         """
         Provides operations to call the cancelSecurityAction method.
@@ -80,7 +81,7 @@ class SecurityActionItemRequestBuilder():
         """
         Update the navigation property securityActions in security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class SecurityActionItemRequestBuilder():
         """
         Update the navigation property securityActions in security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[security_action.SecurityAction]

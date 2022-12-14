@@ -18,6 +18,7 @@ class WindowsInformationProtectionDeviceRegistrationItemRequestBuilder():
     """
     Provides operations to manage the windowsInformationProtectionDeviceRegistrations property of the microsoft.graph.deviceAppManagement entity.
     """
+    @property
     def wipe(self) -> wipe_request_builder.WipeRequestBuilder:
         """
         Provides operations to call the wipe method.
@@ -80,7 +81,7 @@ class WindowsInformationProtectionDeviceRegistrationItemRequestBuilder():
         """
         Update the navigation property windowsInformationProtectionDeviceRegistrations in deviceAppManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class WindowsInformationProtectionDeviceRegistrationItemRequestBuilder():
         """
         Update the navigation property windowsInformationProtectionDeviceRegistrations in deviceAppManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_information_protection_device_registration.WindowsInformationProtectionDeviceRegistration]

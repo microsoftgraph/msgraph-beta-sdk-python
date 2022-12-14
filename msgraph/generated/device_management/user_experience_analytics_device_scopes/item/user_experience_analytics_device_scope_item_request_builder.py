@@ -18,6 +18,7 @@ class UserExperienceAnalyticsDeviceScopeItemRequestBuilder():
     """
     Provides operations to manage the userExperienceAnalyticsDeviceScopes property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def trigger_device_scope_action(self) -> trigger_device_scope_action_request_builder.TriggerDeviceScopeActionRequestBuilder:
         """
         Provides operations to call the triggerDeviceScopeAction method.
@@ -80,7 +81,7 @@ class UserExperienceAnalyticsDeviceScopeItemRequestBuilder():
         """
         Update the navigation property userExperienceAnalyticsDeviceScopes in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class UserExperienceAnalyticsDeviceScopeItemRequestBuilder():
         """
         Update the navigation property userExperienceAnalyticsDeviceScopes in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_device_scope.UserExperienceAnalyticsDeviceScope]

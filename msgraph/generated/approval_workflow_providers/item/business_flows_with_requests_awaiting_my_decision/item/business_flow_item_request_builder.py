@@ -18,6 +18,7 @@ class BusinessFlowItemRequestBuilder():
     """
     Provides operations to manage the businessFlowsWithRequestsAwaitingMyDecision property of the microsoft.graph.approvalWorkflowProvider entity.
     """
+    @property
     def record_decisions(self) -> record_decisions_request_builder.RecordDecisionsRequestBuilder:
         """
         Provides operations to call the recordDecisions method.
@@ -80,7 +81,7 @@ class BusinessFlowItemRequestBuilder():
         """
         Update the navigation property businessFlowsWithRequestsAwaitingMyDecision in approvalWorkflowProviders
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class BusinessFlowItemRequestBuilder():
         """
         Update the navigation property businessFlowsWithRequestsAwaitingMyDecision in approvalWorkflowProviders
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[business_flow.BusinessFlow]

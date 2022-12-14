@@ -24,7 +24,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @property
     def block_cloud_object_takeover_through_hard_match_enabled(self,) -> Optional[bool]:
         """
-        Gets the blockCloudObjectTakeoverThroughHardMatchEnabled property value. The blockCloudObjectTakeoverThroughHardMatchEnabled property
+        Gets the blockCloudObjectTakeoverThroughHardMatchEnabled property value. Used to block cloud object takeover via source anchor hard match if enabled.
         Returns: Optional[bool]
         """
         return self._block_cloud_object_takeover_through_hard_match_enabled
@@ -32,7 +32,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @block_cloud_object_takeover_through_hard_match_enabled.setter
     def block_cloud_object_takeover_through_hard_match_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the blockCloudObjectTakeoverThroughHardMatchEnabled property value. The blockCloudObjectTakeoverThroughHardMatchEnabled property
+        Sets the blockCloudObjectTakeoverThroughHardMatchEnabled property value. Used to block cloud object takeover via source anchor hard match if enabled.
         Args:
             value: Value to set for the blockCloudObjectTakeoverThroughHardMatchEnabled property.
         """
@@ -41,7 +41,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @property
     def block_soft_match_enabled(self,) -> Optional[bool]:
         """
-        Gets the blockSoftMatchEnabled property value. The blockSoftMatchEnabled property
+        Gets the blockSoftMatchEnabled property value. Use to block soft match for all objects if enabled for the  tenant. Customers are encouraged to enable this feature and keep it enabled until soft matching is required again for their tenancy. This flag should be enabled again after any soft matching has been completed and is no longer needed.
         Returns: Optional[bool]
         """
         return self._block_soft_match_enabled
@@ -49,7 +49,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @block_soft_match_enabled.setter
     def block_soft_match_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the blockSoftMatchEnabled property value. The blockSoftMatchEnabled property
+        Sets the blockSoftMatchEnabled property value. Use to block soft match for all objects if enabled for the  tenant. Customers are encouraged to enable this feature and keep it enabled until soft matching is required again for their tenancy. This flag should be enabled again after any soft matching has been completed and is no longer needed.
         Args:
             value: Value to set for the blockSoftMatchEnabled property.
         """
@@ -58,7 +58,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @property
     def bypass_dir_sync_overrides_enabled(self,) -> Optional[bool]:
         """
-        Gets the bypassDirSyncOverridesEnabled property value. The bypassDirSyncOverridesEnabled property
+        Gets the bypassDirSyncOverridesEnabled property value. When true, persists the values of Mobile and OtherMobile in on-premises AD during sync cycles instead of values of MobilePhone or AlternateMobilePhones in Azure AD.
         Returns: Optional[bool]
         """
         return self._bypass_dir_sync_overrides_enabled
@@ -66,7 +66,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @bypass_dir_sync_overrides_enabled.setter
     def bypass_dir_sync_overrides_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the bypassDirSyncOverridesEnabled property value. The bypassDirSyncOverridesEnabled property
+        Sets the bypassDirSyncOverridesEnabled property value. When true, persists the values of Mobile and OtherMobile in on-premises AD during sync cycles instead of values of MobilePhone or AlternateMobilePhones in Azure AD.
         Args:
             value: Value to set for the bypassDirSyncOverridesEnabled property.
         """
@@ -75,7 +75,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @property
     def cloud_password_policy_for_password_synced_users_enabled(self,) -> Optional[bool]:
         """
-        Gets the cloudPasswordPolicyForPasswordSyncedUsersEnabled property value. The cloudPasswordPolicyForPasswordSyncedUsersEnabled property
+        Gets the cloudPasswordPolicyForPasswordSyncedUsersEnabled property value. Used to indicate that cloud password policy applies to users whose passwords are synchronized from on-premises.
         Returns: Optional[bool]
         """
         return self._cloud_password_policy_for_password_synced_users_enabled
@@ -83,7 +83,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @cloud_password_policy_for_password_synced_users_enabled.setter
     def cloud_password_policy_for_password_synced_users_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the cloudPasswordPolicyForPasswordSyncedUsersEnabled property value. The cloudPasswordPolicyForPasswordSyncedUsersEnabled property
+        Sets the cloudPasswordPolicyForPasswordSyncedUsersEnabled property value. Used to indicate that cloud password policy applies to users whose passwords are synchronized from on-premises.
         Args:
             value: Value to set for the cloudPasswordPolicyForPasswordSyncedUsersEnabled property.
         """
@@ -92,7 +92,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @property
     def concurrent_credential_update_enabled(self,) -> Optional[bool]:
         """
-        Gets the concurrentCredentialUpdateEnabled property value. The concurrentCredentialUpdateEnabled property
+        Gets the concurrentCredentialUpdateEnabled property value. Used to enable concurrent user credentials update in OrgId.
         Returns: Optional[bool]
         """
         return self._concurrent_credential_update_enabled
@@ -100,7 +100,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @concurrent_credential_update_enabled.setter
     def concurrent_credential_update_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the concurrentCredentialUpdateEnabled property value. The concurrentCredentialUpdateEnabled property
+        Sets the concurrentCredentialUpdateEnabled property value. Used to enable concurrent user credentials update in OrgId.
         Args:
             value: Value to set for the concurrentCredentialUpdateEnabled property.
         """
@@ -109,7 +109,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @property
     def concurrent_org_id_provisioning_enabled(self,) -> Optional[bool]:
         """
-        Gets the concurrentOrgIdProvisioningEnabled property value. The concurrentOrgIdProvisioningEnabled property
+        Gets the concurrentOrgIdProvisioningEnabled property value. Used to enable concurrent user creation in OrgId.
         Returns: Optional[bool]
         """
         return self._concurrent_org_id_provisioning_enabled
@@ -117,7 +117,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @concurrent_org_id_provisioning_enabled.setter
     def concurrent_org_id_provisioning_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the concurrentOrgIdProvisioningEnabled property value. The concurrentOrgIdProvisioningEnabled property
+        Sets the concurrentOrgIdProvisioningEnabled property value. Used to enable concurrent user creation in OrgId.
         Args:
             value: Value to set for the concurrentOrgIdProvisioningEnabled property.
         """
@@ -130,45 +130,45 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The blockCloudObjectTakeoverThroughHardMatchEnabled property
+        # Used to block cloud object takeover via source anchor hard match if enabled.
         self._block_cloud_object_takeover_through_hard_match_enabled: Optional[bool] = None
-        # The blockSoftMatchEnabled property
+        # Use to block soft match for all objects if enabled for the  tenant. Customers are encouraged to enable this feature and keep it enabled until soft matching is required again for their tenancy. This flag should be enabled again after any soft matching has been completed and is no longer needed.
         self._block_soft_match_enabled: Optional[bool] = None
-        # The bypassDirSyncOverridesEnabled property
+        # When true, persists the values of Mobile and OtherMobile in on-premises AD during sync cycles instead of values of MobilePhone or AlternateMobilePhones in Azure AD.
         self._bypass_dir_sync_overrides_enabled: Optional[bool] = None
-        # The cloudPasswordPolicyForPasswordSyncedUsersEnabled property
+        # Used to indicate that cloud password policy applies to users whose passwords are synchronized from on-premises.
         self._cloud_password_policy_for_password_synced_users_enabled: Optional[bool] = None
-        # The concurrentCredentialUpdateEnabled property
+        # Used to enable concurrent user credentials update in OrgId.
         self._concurrent_credential_update_enabled: Optional[bool] = None
-        # The concurrentOrgIdProvisioningEnabled property
+        # Used to enable concurrent user creation in OrgId.
         self._concurrent_org_id_provisioning_enabled: Optional[bool] = None
-        # The deviceWritebackEnabled property
+        # Used to indicate that device write-back is enabled.
         self._device_writeback_enabled: Optional[bool] = None
-        # The directoryExtensionsEnabled property
+        # Used to indicate that directory extensions are being synced from on-premises AD to Azure AD.
         self._directory_extensions_enabled: Optional[bool] = None
-        # The fopeConflictResolutionEnabled property
+        # Used to indicate that for a Microsoft Forefront Online Protection for Exchange (FOPE) migrated tenant, the conflicting proxy address should be migrated over.
         self._fope_conflict_resolution_enabled: Optional[bool] = None
-        # The groupWriteBackEnabled property
+        # Used to enable object-level group writeback feature for additional group types.
         self._group_write_back_enabled: Optional[bool] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The passwordSyncEnabled property
+        # Used to indicate on-premise password synchronization is enabled.
         self._password_sync_enabled: Optional[bool] = None
-        # The passwordWritebackEnabled property
+        # Used to indicate that writeback of password resets from Azure AD to on-premises AD is enabled.
         self._password_writeback_enabled: Optional[bool] = None
-        # The quarantineUponProxyAddressesConflictEnabled property
+        # Used to indicate that we should quarantine objects with conflicting proxy address.
         self._quarantine_upon_proxy_addresses_conflict_enabled: Optional[bool] = None
-        # The quarantineUponUpnConflictEnabled property
+        # Used to indicate that we should quarantine objects conflicting with duplicate userPrincipalName.
         self._quarantine_upon_upn_conflict_enabled: Optional[bool] = None
-        # The softMatchOnUpnEnabled property
+        # Used to indicate that we should soft match objects based on userPrincipalName.
         self._soft_match_on_upn_enabled: Optional[bool] = None
-        # The synchronizeUpnForManagedUsersEnabled property
+        # Used to indicate that we should synchronize userPrincipalName objects for managed users with licenses.
         self._synchronize_upn_for_managed_users_enabled: Optional[bool] = None
-        # The unifiedGroupWritebackEnabled property
+        # Used to indicate that Microsoft 365 Group write-back is enabled.
         self._unified_group_writeback_enabled: Optional[bool] = None
-        # The userForcePasswordChangeOnLogonEnabled property
+        # Used to indicate that feature to force password change for a user on logon is enabled while synchronizing on-premise credentials.
         self._user_force_password_change_on_logon_enabled: Optional[bool] = None
-        # The userWritebackEnabled property
+        # Used to indicate that user writeback is enabled.
         self._user_writeback_enabled: Optional[bool] = None
     
     @staticmethod
@@ -186,7 +186,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @property
     def device_writeback_enabled(self,) -> Optional[bool]:
         """
-        Gets the deviceWritebackEnabled property value. The deviceWritebackEnabled property
+        Gets the deviceWritebackEnabled property value. Used to indicate that device write-back is enabled.
         Returns: Optional[bool]
         """
         return self._device_writeback_enabled
@@ -194,7 +194,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @device_writeback_enabled.setter
     def device_writeback_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the deviceWritebackEnabled property value. The deviceWritebackEnabled property
+        Sets the deviceWritebackEnabled property value. Used to indicate that device write-back is enabled.
         Args:
             value: Value to set for the deviceWritebackEnabled property.
         """
@@ -203,7 +203,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @property
     def directory_extensions_enabled(self,) -> Optional[bool]:
         """
-        Gets the directoryExtensionsEnabled property value. The directoryExtensionsEnabled property
+        Gets the directoryExtensionsEnabled property value. Used to indicate that directory extensions are being synced from on-premises AD to Azure AD.
         Returns: Optional[bool]
         """
         return self._directory_extensions_enabled
@@ -211,7 +211,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @directory_extensions_enabled.setter
     def directory_extensions_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the directoryExtensionsEnabled property value. The directoryExtensionsEnabled property
+        Sets the directoryExtensionsEnabled property value. Used to indicate that directory extensions are being synced from on-premises AD to Azure AD.
         Args:
             value: Value to set for the directoryExtensionsEnabled property.
         """
@@ -220,7 +220,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @property
     def fope_conflict_resolution_enabled(self,) -> Optional[bool]:
         """
-        Gets the fopeConflictResolutionEnabled property value. The fopeConflictResolutionEnabled property
+        Gets the fopeConflictResolutionEnabled property value. Used to indicate that for a Microsoft Forefront Online Protection for Exchange (FOPE) migrated tenant, the conflicting proxy address should be migrated over.
         Returns: Optional[bool]
         """
         return self._fope_conflict_resolution_enabled
@@ -228,7 +228,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @fope_conflict_resolution_enabled.setter
     def fope_conflict_resolution_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the fopeConflictResolutionEnabled property value. The fopeConflictResolutionEnabled property
+        Sets the fopeConflictResolutionEnabled property value. Used to indicate that for a Microsoft Forefront Online Protection for Exchange (FOPE) migrated tenant, the conflicting proxy address should be migrated over.
         Args:
             value: Value to set for the fopeConflictResolutionEnabled property.
         """
@@ -266,7 +266,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @property
     def group_write_back_enabled(self,) -> Optional[bool]:
         """
-        Gets the groupWriteBackEnabled property value. The groupWriteBackEnabled property
+        Gets the groupWriteBackEnabled property value. Used to enable object-level group writeback feature for additional group types.
         Returns: Optional[bool]
         """
         return self._group_write_back_enabled
@@ -274,7 +274,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @group_write_back_enabled.setter
     def group_write_back_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the groupWriteBackEnabled property value. The groupWriteBackEnabled property
+        Sets the groupWriteBackEnabled property value. Used to enable object-level group writeback feature for additional group types.
         Args:
             value: Value to set for the groupWriteBackEnabled property.
         """
@@ -300,7 +300,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @property
     def password_sync_enabled(self,) -> Optional[bool]:
         """
-        Gets the passwordSyncEnabled property value. The passwordSyncEnabled property
+        Gets the passwordSyncEnabled property value. Used to indicate on-premise password synchronization is enabled.
         Returns: Optional[bool]
         """
         return self._password_sync_enabled
@@ -308,7 +308,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @password_sync_enabled.setter
     def password_sync_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the passwordSyncEnabled property value. The passwordSyncEnabled property
+        Sets the passwordSyncEnabled property value. Used to indicate on-premise password synchronization is enabled.
         Args:
             value: Value to set for the passwordSyncEnabled property.
         """
@@ -317,7 +317,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @property
     def password_writeback_enabled(self,) -> Optional[bool]:
         """
-        Gets the passwordWritebackEnabled property value. The passwordWritebackEnabled property
+        Gets the passwordWritebackEnabled property value. Used to indicate that writeback of password resets from Azure AD to on-premises AD is enabled.
         Returns: Optional[bool]
         """
         return self._password_writeback_enabled
@@ -325,7 +325,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @password_writeback_enabled.setter
     def password_writeback_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the passwordWritebackEnabled property value. The passwordWritebackEnabled property
+        Sets the passwordWritebackEnabled property value. Used to indicate that writeback of password resets from Azure AD to on-premises AD is enabled.
         Args:
             value: Value to set for the passwordWritebackEnabled property.
         """
@@ -334,7 +334,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @property
     def quarantine_upon_proxy_addresses_conflict_enabled(self,) -> Optional[bool]:
         """
-        Gets the quarantineUponProxyAddressesConflictEnabled property value. The quarantineUponProxyAddressesConflictEnabled property
+        Gets the quarantineUponProxyAddressesConflictEnabled property value. Used to indicate that we should quarantine objects with conflicting proxy address.
         Returns: Optional[bool]
         """
         return self._quarantine_upon_proxy_addresses_conflict_enabled
@@ -342,7 +342,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @quarantine_upon_proxy_addresses_conflict_enabled.setter
     def quarantine_upon_proxy_addresses_conflict_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the quarantineUponProxyAddressesConflictEnabled property value. The quarantineUponProxyAddressesConflictEnabled property
+        Sets the quarantineUponProxyAddressesConflictEnabled property value. Used to indicate that we should quarantine objects with conflicting proxy address.
         Args:
             value: Value to set for the quarantineUponProxyAddressesConflictEnabled property.
         """
@@ -351,7 +351,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @property
     def quarantine_upon_upn_conflict_enabled(self,) -> Optional[bool]:
         """
-        Gets the quarantineUponUpnConflictEnabled property value. The quarantineUponUpnConflictEnabled property
+        Gets the quarantineUponUpnConflictEnabled property value. Used to indicate that we should quarantine objects conflicting with duplicate userPrincipalName.
         Returns: Optional[bool]
         """
         return self._quarantine_upon_upn_conflict_enabled
@@ -359,7 +359,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @quarantine_upon_upn_conflict_enabled.setter
     def quarantine_upon_upn_conflict_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the quarantineUponUpnConflictEnabled property value. The quarantineUponUpnConflictEnabled property
+        Sets the quarantineUponUpnConflictEnabled property value. Used to indicate that we should quarantine objects conflicting with duplicate userPrincipalName.
         Args:
             value: Value to set for the quarantineUponUpnConflictEnabled property.
         """
@@ -398,7 +398,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @property
     def soft_match_on_upn_enabled(self,) -> Optional[bool]:
         """
-        Gets the softMatchOnUpnEnabled property value. The softMatchOnUpnEnabled property
+        Gets the softMatchOnUpnEnabled property value. Used to indicate that we should soft match objects based on userPrincipalName.
         Returns: Optional[bool]
         """
         return self._soft_match_on_upn_enabled
@@ -406,7 +406,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @soft_match_on_upn_enabled.setter
     def soft_match_on_upn_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the softMatchOnUpnEnabled property value. The softMatchOnUpnEnabled property
+        Sets the softMatchOnUpnEnabled property value. Used to indicate that we should soft match objects based on userPrincipalName.
         Args:
             value: Value to set for the softMatchOnUpnEnabled property.
         """
@@ -415,7 +415,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @property
     def synchronize_upn_for_managed_users_enabled(self,) -> Optional[bool]:
         """
-        Gets the synchronizeUpnForManagedUsersEnabled property value. The synchronizeUpnForManagedUsersEnabled property
+        Gets the synchronizeUpnForManagedUsersEnabled property value. Used to indicate that we should synchronize userPrincipalName objects for managed users with licenses.
         Returns: Optional[bool]
         """
         return self._synchronize_upn_for_managed_users_enabled
@@ -423,7 +423,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @synchronize_upn_for_managed_users_enabled.setter
     def synchronize_upn_for_managed_users_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the synchronizeUpnForManagedUsersEnabled property value. The synchronizeUpnForManagedUsersEnabled property
+        Sets the synchronizeUpnForManagedUsersEnabled property value. Used to indicate that we should synchronize userPrincipalName objects for managed users with licenses.
         Args:
             value: Value to set for the synchronizeUpnForManagedUsersEnabled property.
         """
@@ -432,7 +432,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @property
     def unified_group_writeback_enabled(self,) -> Optional[bool]:
         """
-        Gets the unifiedGroupWritebackEnabled property value. The unifiedGroupWritebackEnabled property
+        Gets the unifiedGroupWritebackEnabled property value. Used to indicate that Microsoft 365 Group write-back is enabled.
         Returns: Optional[bool]
         """
         return self._unified_group_writeback_enabled
@@ -440,7 +440,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @unified_group_writeback_enabled.setter
     def unified_group_writeback_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the unifiedGroupWritebackEnabled property value. The unifiedGroupWritebackEnabled property
+        Sets the unifiedGroupWritebackEnabled property value. Used to indicate that Microsoft 365 Group write-back is enabled.
         Args:
             value: Value to set for the unifiedGroupWritebackEnabled property.
         """
@@ -449,7 +449,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @property
     def user_force_password_change_on_logon_enabled(self,) -> Optional[bool]:
         """
-        Gets the userForcePasswordChangeOnLogonEnabled property value. The userForcePasswordChangeOnLogonEnabled property
+        Gets the userForcePasswordChangeOnLogonEnabled property value. Used to indicate that feature to force password change for a user on logon is enabled while synchronizing on-premise credentials.
         Returns: Optional[bool]
         """
         return self._user_force_password_change_on_logon_enabled
@@ -457,7 +457,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @user_force_password_change_on_logon_enabled.setter
     def user_force_password_change_on_logon_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the userForcePasswordChangeOnLogonEnabled property value. The userForcePasswordChangeOnLogonEnabled property
+        Sets the userForcePasswordChangeOnLogonEnabled property value. Used to indicate that feature to force password change for a user on logon is enabled while synchronizing on-premise credentials.
         Args:
             value: Value to set for the userForcePasswordChangeOnLogonEnabled property.
         """
@@ -466,7 +466,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @property
     def user_writeback_enabled(self,) -> Optional[bool]:
         """
-        Gets the userWritebackEnabled property value. The userWritebackEnabled property
+        Gets the userWritebackEnabled property value. Used to indicate that user writeback is enabled.
         Returns: Optional[bool]
         """
         return self._user_writeback_enabled
@@ -474,7 +474,7 @@ class OnPremisesDirectorySynchronizationFeature(AdditionalDataHolder, Parsable):
     @user_writeback_enabled.setter
     def user_writeback_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the userWritebackEnabled property value. The userWritebackEnabled property
+        Sets the userWritebackEnabled property value. Used to indicate that user writeback is enabled.
         Args:
             value: Value to set for the userWritebackEnabled property.
         """

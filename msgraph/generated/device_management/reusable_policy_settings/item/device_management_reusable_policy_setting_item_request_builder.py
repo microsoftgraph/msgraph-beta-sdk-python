@@ -20,12 +20,14 @@ class DeviceManagementReusablePolicySettingItemRequestBuilder():
     """
     Provides operations to manage the reusablePolicySettings property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def clone(self) -> clone_request_builder.CloneRequestBuilder:
         """
         Provides operations to call the clone method.
         """
         return clone_request_builder.CloneRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def referencing_configuration_policies(self) -> referencing_configuration_policies_request_builder.ReferencingConfigurationPoliciesRequestBuilder:
         """
         Provides operations to manage the referencingConfigurationPolicies property of the microsoft.graph.deviceManagementReusablePolicySetting entity.
@@ -88,7 +90,7 @@ class DeviceManagementReusablePolicySettingItemRequestBuilder():
         """
         Update the navigation property reusablePolicySettings in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -146,7 +148,7 @@ class DeviceManagementReusablePolicySettingItemRequestBuilder():
         """
         Update the navigation property reusablePolicySettings in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_reusable_policy_setting.DeviceManagementReusablePolicySetting]

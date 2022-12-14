@@ -10,6 +10,7 @@ class IdentityProviderItemRequestBuilder():
     """
     Builds and executes requests for operations under /identity/b2cUserFlows/{b2cIdentityUserFlow-id}/identityProviders/{identityProvider-id}
     """
+    @property
     def ref(self) -> ref_request_builder.RefRequestBuilder:
         """
         Provides operations to manage the collection of identityContainer entities.

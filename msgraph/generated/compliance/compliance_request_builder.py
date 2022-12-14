@@ -18,6 +18,7 @@ class ComplianceRequestBuilder():
     """
     Provides operations to manage the compliance singleton.
     """
+    @property
     def ediscovery(self) -> ediscovery_request_builder.EdiscoveryRequestBuilder:
         """
         Provides operations to manage the ediscovery property of the microsoft.graph.compliance entity.
@@ -64,7 +65,7 @@ class ComplianceRequestBuilder():
         """
         Update compliance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +105,7 @@ class ComplianceRequestBuilder():
         """
         Update compliance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[compliance.Compliance]

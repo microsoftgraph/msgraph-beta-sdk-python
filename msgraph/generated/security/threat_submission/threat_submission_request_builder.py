@@ -25,24 +25,28 @@ class ThreatSubmissionRequestBuilder():
     """
     Provides operations to manage the threatSubmission property of the microsoft.graph.security entity.
     """
+    @property
     def email_threats(self) -> email_threats_request_builder.EmailThreatsRequestBuilder:
         """
         Provides operations to manage the emailThreats property of the microsoft.graph.security.threatSubmissionRoot entity.
         """
         return email_threats_request_builder.EmailThreatsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def email_threat_submission_policies(self) -> email_threat_submission_policies_request_builder.EmailThreatSubmissionPoliciesRequestBuilder:
         """
         Provides operations to manage the emailThreatSubmissionPolicies property of the microsoft.graph.security.threatSubmissionRoot entity.
         """
         return email_threat_submission_policies_request_builder.EmailThreatSubmissionPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def file_threats(self) -> file_threats_request_builder.FileThreatsRequestBuilder:
         """
         Provides operations to manage the fileThreats property of the microsoft.graph.security.threatSubmissionRoot entity.
         """
         return file_threats_request_builder.FileThreatsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def url_threats(self) -> url_threats_request_builder.UrlThreatsRequestBuilder:
         """
         Provides operations to manage the urlThreats property of the microsoft.graph.security.threatSubmissionRoot entity.
@@ -105,7 +109,7 @@ class ThreatSubmissionRequestBuilder():
         """
         Update the navigation property threatSubmission in security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -202,7 +206,7 @@ class ThreatSubmissionRequestBuilder():
         """
         Update the navigation property threatSubmission in security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[threat_submission_root.ThreatSubmissionRoot]

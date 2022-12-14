@@ -18,6 +18,7 @@ class CaseExportOperationRequestBuilder():
     """
     Casts the previous resource to caseExportOperation.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.

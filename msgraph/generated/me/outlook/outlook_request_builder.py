@@ -28,24 +28,28 @@ class OutlookRequestBuilder():
     """
     Provides operations to manage the outlook property of the microsoft.graph.user entity.
     """
+    @property
     def master_categories(self) -> master_categories_request_builder.MasterCategoriesRequestBuilder:
         """
         Provides operations to manage the masterCategories property of the microsoft.graph.outlookUser entity.
         """
         return master_categories_request_builder.MasterCategoriesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def task_folders(self) -> task_folders_request_builder.TaskFoldersRequestBuilder:
         """
         Provides operations to manage the taskFolders property of the microsoft.graph.outlookUser entity.
         """
         return task_folders_request_builder.TaskFoldersRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def task_groups(self) -> task_groups_request_builder.TaskGroupsRequestBuilder:
         """
         Provides operations to manage the taskGroups property of the microsoft.graph.outlookUser entity.
         """
         return task_groups_request_builder.TaskGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def tasks(self) -> tasks_request_builder.TasksRequestBuilder:
         """
         Provides operations to manage the tasks property of the microsoft.graph.outlookUser entity.

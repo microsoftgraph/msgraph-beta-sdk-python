@@ -19,6 +19,7 @@ class WorkflowTemplateItemRequestBuilder():
     """
     Provides operations to manage the workflowTemplates property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
     """
+    @property
     def tasks(self) -> tasks_request_builder.TasksRequestBuilder:
         """
         Provides operations to manage the tasks property of the microsoft.graph.identityGovernance.workflowTemplate entity.
@@ -81,7 +82,7 @@ class WorkflowTemplateItemRequestBuilder():
         """
         Update the navigation property workflowTemplates in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +140,7 @@ class WorkflowTemplateItemRequestBuilder():
         """
         Update the navigation property workflowTemplates in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[workflow_template.WorkflowTemplate]

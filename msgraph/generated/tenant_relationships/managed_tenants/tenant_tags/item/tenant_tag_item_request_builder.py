@@ -19,12 +19,14 @@ class TenantTagItemRequestBuilder():
     """
     Provides operations to manage the tenantTags property of the microsoft.graph.managedTenants.managedTenant entity.
     """
+    @property
     def assign_tag(self) -> assign_tag_request_builder.AssignTagRequestBuilder:
         """
         Provides operations to call the assignTag method.
         """
         return assign_tag_request_builder.AssignTagRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def unassign_tag(self) -> unassign_tag_request_builder.UnassignTagRequestBuilder:
         """
         Provides operations to call the unassignTag method.
@@ -87,7 +89,7 @@ class TenantTagItemRequestBuilder():
         """
         Update the navigation property tenantTags in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +147,7 @@ class TenantTagItemRequestBuilder():
         """
         Update the navigation property tenantTags in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_tag.TenantTag]

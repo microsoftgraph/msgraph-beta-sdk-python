@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 review_set = lazy_import('msgraph.generated.models.ediscovery.review_set')
 
 class ReviewSetCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the reviewSets property of the microsoft.graph.ediscovery.case entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new ReviewSetCollectionResponse and sets the default values.

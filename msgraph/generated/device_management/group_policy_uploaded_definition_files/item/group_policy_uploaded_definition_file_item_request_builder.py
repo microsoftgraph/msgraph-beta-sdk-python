@@ -24,36 +24,42 @@ class GroupPolicyUploadedDefinitionFileItemRequestBuilder():
     """
     Provides operations to manage the groupPolicyUploadedDefinitionFiles property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def add_language_files(self) -> add_language_files_request_builder.AddLanguageFilesRequestBuilder:
         """
         Provides operations to call the addLanguageFiles method.
         """
         return add_language_files_request_builder.AddLanguageFilesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def group_policy_operations(self) -> group_policy_operations_request_builder.GroupPolicyOperationsRequestBuilder:
         """
         Provides operations to manage the groupPolicyOperations property of the microsoft.graph.groupPolicyUploadedDefinitionFile entity.
         """
         return group_policy_operations_request_builder.GroupPolicyOperationsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def remove(self) -> remove_request_builder.RemoveRequestBuilder:
         """
         Provides operations to call the remove method.
         """
         return remove_request_builder.RemoveRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def remove_language_files(self) -> remove_language_files_request_builder.RemoveLanguageFilesRequestBuilder:
         """
         Provides operations to call the removeLanguageFiles method.
         """
         return remove_language_files_request_builder.RemoveLanguageFilesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def update_language_files(self) -> update_language_files_request_builder.UpdateLanguageFilesRequestBuilder:
         """
         Provides operations to call the updateLanguageFiles method.
         """
         return update_language_files_request_builder.UpdateLanguageFilesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def upload_new_version(self) -> upload_new_version_request_builder.UploadNewVersionRequestBuilder:
         """
         Provides operations to call the uploadNewVersion method.
@@ -116,7 +122,7 @@ class GroupPolicyUploadedDefinitionFileItemRequestBuilder():
         """
         Update the navigation property groupPolicyUploadedDefinitionFiles in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -187,7 +193,7 @@ class GroupPolicyUploadedDefinitionFileItemRequestBuilder():
         """
         Update the navigation property groupPolicyUploadedDefinitionFiles in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_policy_uploaded_definition_file.GroupPolicyUploadedDefinitionFile]

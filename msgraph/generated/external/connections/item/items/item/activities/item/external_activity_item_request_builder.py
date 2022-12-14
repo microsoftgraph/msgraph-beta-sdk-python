@@ -18,6 +18,7 @@ class ExternalActivityItemRequestBuilder():
     """
     Provides operations to manage the activities property of the microsoft.graph.externalConnectors.externalItem entity.
     """
+    @property
     def performed_by(self) -> performed_by_request_builder.PerformedByRequestBuilder:
         """
         Provides operations to manage the performedBy property of the microsoft.graph.externalConnectors.externalActivity entity.
@@ -80,7 +81,7 @@ class ExternalActivityItemRequestBuilder():
         """
         Update the navigation property activities in external
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class ExternalActivityItemRequestBuilder():
         """
         Update the navigation property activities in external
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[external_activity.ExternalActivity]

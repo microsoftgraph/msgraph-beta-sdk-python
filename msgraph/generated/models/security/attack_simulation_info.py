@@ -57,15 +57,15 @@ class AttackSimulationInfo(AdditionalDataHolder, Parsable):
         self._attack_sim_duration_time = value
     
     @property
-    def attack_sim_id(self,) -> Optional[str]:
+    def attack_sim_id(self,) -> Optional[Guid]:
         """
         Gets the attackSimId property value. The activity ID for the attack simulation.
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._attack_sim_id
     
     @attack_sim_id.setter
-    def attack_sim_id(self,value: Optional[str] = None) -> None:
+    def attack_sim_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the attackSimId property value. The activity ID for the attack simulation.
         Args:
@@ -102,7 +102,7 @@ class AttackSimulationInfo(AdditionalDataHolder, Parsable):
         # The duration (in time) for the attack simulation.
         self._attack_sim_duration_time: Optional[Timedelta] = None
         # The activity ID for the attack simulation.
-        self._attack_sim_id: Optional[str] = None
+        self._attack_sim_id: Optional[Guid] = None
         # The unique identifier for the user who got the attack simulation email.
         self._attack_sim_user_id: Optional[str] = None
         # The OdataType property
@@ -128,7 +128,7 @@ class AttackSimulationInfo(AdditionalDataHolder, Parsable):
         fields = {
             "attack_sim_date_time": lambda n : setattr(self, 'attack_sim_date_time', n.get_datetime_value()),
             "attack_sim_duration_time": lambda n : setattr(self, 'attack_sim_duration_time', n.get_object_value(Timedelta)),
-            "attack_sim_id": lambda n : setattr(self, 'attack_sim_id', n.get_str_value()),
+            "attack_sim_id": lambda n : setattr(self, 'attack_sim_id', n.get_object_value(Guid)),
             "attack_sim_user_id": lambda n : setattr(self, 'attack_sim_user_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -161,7 +161,7 @@ class AttackSimulationInfo(AdditionalDataHolder, Parsable):
             raise Exception("writer cannot be undefined")
         writer.write_datetime_value("attackSimDateTime", self.attack_sim_date_time)
         writer.write_object_value("attackSimDurationTime", self.attack_sim_duration_time)
-        writer.write_str_value("attackSimId", self.attack_sim_id)
+        writer.write_object_value("attackSimId", self.attack_sim_id)
         writer.write_str_value("attackSimUserId", self.attack_sim_user_id)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

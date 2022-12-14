@@ -18,6 +18,7 @@ class RetentionEventItemRequestBuilder():
     """
     Provides operations to manage the retentionEvents property of the microsoft.graph.security.triggersRoot entity.
     """
+    @property
     def retention_event_type(self) -> retention_event_type_request_builder.RetentionEventTypeRequestBuilder:
         """
         Provides operations to manage the retentionEventType property of the microsoft.graph.security.retentionEvent entity.
@@ -80,7 +81,7 @@ class RetentionEventItemRequestBuilder():
         """
         Update the navigation property retentionEvents in security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class RetentionEventItemRequestBuilder():
         """
         Update the navigation property retentionEvents in security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[retention_event.RetentionEvent]

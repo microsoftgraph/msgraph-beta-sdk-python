@@ -21,12 +21,14 @@ class AuthenticationStrengthsRequestBuilder():
     """
     Provides operations to manage the authenticationStrengths property of the microsoft.graph.conditionalAccessRoot entity.
     """
+    @property
     def authentication_method_modes(self) -> authentication_method_modes_request_builder.AuthenticationMethodModesRequestBuilder:
         """
         Provides operations to manage the authenticationMethodModes property of the microsoft.graph.authenticationStrengthRoot entity.
         """
         return authentication_method_modes_request_builder.AuthenticationMethodModesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def policies(self) -> policies_request_builder.PoliciesRequestBuilder:
         """
         Provides operations to manage the policies property of the microsoft.graph.authenticationStrengthRoot entity.
@@ -102,7 +104,7 @@ class AuthenticationStrengthsRequestBuilder():
         """
         Update the navigation property authenticationStrengths in identity
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -160,7 +162,7 @@ class AuthenticationStrengthsRequestBuilder():
         """
         Update the navigation property authenticationStrengths in identity
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_strength_root.AuthenticationStrengthRoot]

@@ -12,9 +12,6 @@ picture = lazy_import('msgraph.generated.models.picture')
 postal_address_type = lazy_import('msgraph.generated.models.postal_address_type')
 
 class Vendor(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def address(self,) -> Optional[postal_address_type.PostalAddressType]:
         """
@@ -82,7 +79,7 @@ class Vendor(entity.Entity):
         # The currencyCode property
         self._currency_code: Optional[str] = None
         # The currencyId property
-        self._currency_id: Optional[str] = None
+        self._currency_id: Optional[Guid] = None
         # The displayName property
         self._display_name: Optional[str] = None
         # The email property
@@ -96,11 +93,11 @@ class Vendor(entity.Entity):
         # The paymentMethod property
         self._payment_method: Optional[payment_method.PaymentMethod] = None
         # The paymentMethodId property
-        self._payment_method_id: Optional[str] = None
+        self._payment_method_id: Optional[Guid] = None
         # The paymentTerm property
         self._payment_term: Optional[payment_term.PaymentTerm] = None
         # The paymentTermsId property
-        self._payment_terms_id: Optional[str] = None
+        self._payment_terms_id: Optional[Guid] = None
         # The phoneNumber property
         self._phone_number: Optional[str] = None
         # The picture property
@@ -159,15 +156,15 @@ class Vendor(entity.Entity):
         self._currency_code = value
     
     @property
-    def currency_id(self,) -> Optional[str]:
+    def currency_id(self,) -> Optional[Guid]:
         """
         Gets the currencyId property value. The currencyId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._currency_id
     
     @currency_id.setter
-    def currency_id(self,value: Optional[str] = None) -> None:
+    def currency_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the currencyId property value. The currencyId property
         Args:
@@ -220,15 +217,15 @@ class Vendor(entity.Entity):
             "blocked": lambda n : setattr(self, 'blocked', n.get_str_value()),
             "currency": lambda n : setattr(self, 'currency', n.get_object_value(currency.Currency)),
             "currency_code": lambda n : setattr(self, 'currency_code', n.get_str_value()),
-            "currency_id": lambda n : setattr(self, 'currency_id', n.get_str_value()),
+            "currency_id": lambda n : setattr(self, 'currency_id', n.get_object_value(Guid)),
             "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
             "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "number": lambda n : setattr(self, 'number', n.get_str_value()),
             "payment_method": lambda n : setattr(self, 'payment_method', n.get_object_value(payment_method.PaymentMethod)),
-            "payment_method_id": lambda n : setattr(self, 'payment_method_id', n.get_str_value()),
+            "payment_method_id": lambda n : setattr(self, 'payment_method_id', n.get_object_value(Guid)),
             "payment_term": lambda n : setattr(self, 'payment_term', n.get_object_value(payment_term.PaymentTerm)),
-            "payment_terms_id": lambda n : setattr(self, 'payment_terms_id', n.get_str_value()),
+            "payment_terms_id": lambda n : setattr(self, 'payment_terms_id', n.get_object_value(Guid)),
             "phone_number": lambda n : setattr(self, 'phone_number', n.get_str_value()),
             "picture": lambda n : setattr(self, 'picture', n.get_collection_of_object_values(picture.Picture)),
             "tax_liable": lambda n : setattr(self, 'tax_liable', n.get_bool_value()),
@@ -291,15 +288,15 @@ class Vendor(entity.Entity):
         self._payment_method = value
     
     @property
-    def payment_method_id(self,) -> Optional[str]:
+    def payment_method_id(self,) -> Optional[Guid]:
         """
         Gets the paymentMethodId property value. The paymentMethodId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._payment_method_id
     
     @payment_method_id.setter
-    def payment_method_id(self,value: Optional[str] = None) -> None:
+    def payment_method_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the paymentMethodId property value. The paymentMethodId property
         Args:
@@ -325,15 +322,15 @@ class Vendor(entity.Entity):
         self._payment_term = value
     
     @property
-    def payment_terms_id(self,) -> Optional[str]:
+    def payment_terms_id(self,) -> Optional[Guid]:
         """
         Gets the paymentTermsId property value. The paymentTermsId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._payment_terms_id
     
     @payment_terms_id.setter
-    def payment_terms_id(self,value: Optional[str] = None) -> None:
+    def payment_terms_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the paymentTermsId property value. The paymentTermsId property
         Args:
@@ -389,15 +386,15 @@ class Vendor(entity.Entity):
         writer.write_str_value("blocked", self.blocked)
         writer.write_object_value("currency", self.currency)
         writer.write_str_value("currencyCode", self.currency_code)
-        writer.write_str_value("currencyId", self.currency_id)
+        writer.write_object_value("currencyId", self.currency_id)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("email", self.email)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("number", self.number)
         writer.write_object_value("paymentMethod", self.payment_method)
-        writer.write_str_value("paymentMethodId", self.payment_method_id)
+        writer.write_object_value("paymentMethodId", self.payment_method_id)
         writer.write_object_value("paymentTerm", self.payment_term)
-        writer.write_str_value("paymentTermsId", self.payment_terms_id)
+        writer.write_object_value("paymentTermsId", self.payment_terms_id)
         writer.write_str_value("phoneNumber", self.phone_number)
         writer.write_collection_of_object_values("picture", self.picture)
         writer.write_bool_value("taxLiable", self.tax_liable)

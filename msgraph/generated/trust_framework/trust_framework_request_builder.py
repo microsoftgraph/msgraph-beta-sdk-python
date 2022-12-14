@@ -21,12 +21,14 @@ class TrustFrameworkRequestBuilder():
     """
     Provides operations to manage the trustFramework singleton.
     """
+    @property
     def key_sets(self) -> key_sets_request_builder.KeySetsRequestBuilder:
         """
         Provides operations to manage the keySets property of the microsoft.graph.trustFramework entity.
         """
         return key_sets_request_builder.KeySetsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def policies(self) -> policies_request_builder.PoliciesRequestBuilder:
         """
         Provides operations to manage the policies property of the microsoft.graph.trustFramework entity.
@@ -73,7 +75,7 @@ class TrustFrameworkRequestBuilder():
         """
         Update trustFramework
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -126,7 +128,7 @@ class TrustFrameworkRequestBuilder():
         """
         Update trustFramework
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[trust_framework.TrustFramework]

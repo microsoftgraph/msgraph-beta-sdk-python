@@ -15,7 +15,7 @@ class Contract(directory_object.DirectoryObject):
         # The contractType property
         self._contract_type: Optional[str] = None
         # The customerId property
-        self._customer_id: Optional[str] = None
+        self._customer_id: Optional[Guid] = None
         # The defaultDomainName property
         self._default_domain_name: Optional[str] = None
         # The displayName property
@@ -51,15 +51,15 @@ class Contract(directory_object.DirectoryObject):
         return Contract()
     
     @property
-    def customer_id(self,) -> Optional[str]:
+    def customer_id(self,) -> Optional[Guid]:
         """
         Gets the customerId property value. The customerId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._customer_id
     
     @customer_id.setter
-    def customer_id(self,value: Optional[str] = None) -> None:
+    def customer_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the customerId property value. The customerId property
         Args:
@@ -108,7 +108,7 @@ class Contract(directory_object.DirectoryObject):
         """
         fields = {
             "contract_type": lambda n : setattr(self, 'contract_type', n.get_str_value()),
-            "customer_id": lambda n : setattr(self, 'customer_id', n.get_str_value()),
+            "customer_id": lambda n : setattr(self, 'customer_id', n.get_object_value(Guid)),
             "default_domain_name": lambda n : setattr(self, 'default_domain_name', n.get_str_value()),
             "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
         }
@@ -126,7 +126,7 @@ class Contract(directory_object.DirectoryObject):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_str_value("contractType", self.contract_type)
-        writer.write_str_value("customerId", self.customer_id)
+        writer.write_object_value("customerId", self.customer_id)
         writer.write_str_value("defaultDomainName", self.default_domain_name)
         writer.write_str_value("displayName", self.display_name)
     

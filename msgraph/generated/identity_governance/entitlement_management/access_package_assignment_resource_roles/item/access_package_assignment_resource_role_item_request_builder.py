@@ -22,24 +22,28 @@ class AccessPackageAssignmentResourceRoleItemRequestBuilder():
     """
     Provides operations to manage the accessPackageAssignmentResourceRoles property of the microsoft.graph.entitlementManagement entity.
     """
+    @property
     def access_package_assignments(self) -> access_package_assignments_request_builder.AccessPackageAssignmentsRequestBuilder:
         """
         Provides operations to manage the accessPackageAssignments property of the microsoft.graph.accessPackageAssignmentResourceRole entity.
         """
         return access_package_assignments_request_builder.AccessPackageAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def access_package_resource_role(self) -> access_package_resource_role_request_builder.AccessPackageResourceRoleRequestBuilder:
         """
         Provides operations to manage the accessPackageResourceRole property of the microsoft.graph.accessPackageAssignmentResourceRole entity.
         """
         return access_package_resource_role_request_builder.AccessPackageResourceRoleRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def access_package_resource_scope(self) -> access_package_resource_scope_request_builder.AccessPackageResourceScopeRequestBuilder:
         """
         Provides operations to manage the accessPackageResourceScope property of the microsoft.graph.accessPackageAssignmentResourceRole entity.
         """
         return access_package_resource_scope_request_builder.AccessPackageResourceScopeRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def access_package_subject(self) -> access_package_subject_request_builder.AccessPackageSubjectRequestBuilder:
         """
         Provides operations to manage the accessPackageSubject property of the microsoft.graph.accessPackageAssignmentResourceRole entity.
@@ -115,7 +119,7 @@ class AccessPackageAssignmentResourceRoleItemRequestBuilder():
         """
         Update the navigation property accessPackageAssignmentResourceRoles in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -173,7 +177,7 @@ class AccessPackageAssignmentResourceRoleItemRequestBuilder():
         """
         Update the navigation property accessPackageAssignmentResourceRoles in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_assignment_resource_role.AccessPackageAssignmentResourceRole]

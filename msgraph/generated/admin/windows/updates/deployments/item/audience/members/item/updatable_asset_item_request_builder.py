@@ -21,24 +21,28 @@ class UpdatableAssetItemRequestBuilder():
     """
     Provides operations to manage the members property of the microsoft.graph.windowsUpdates.deploymentAudience entity.
     """
+    @property
     def add_members(self) -> add_members_request_builder.AddMembersRequestBuilder:
         """
         Provides operations to call the addMembers method.
         """
         return add_members_request_builder.AddMembersRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def add_members_by_id(self) -> add_members_by_id_request_builder.AddMembersByIdRequestBuilder:
         """
         Provides operations to call the addMembersById method.
         """
         return add_members_by_id_request_builder.AddMembersByIdRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def remove_members(self) -> remove_members_request_builder.RemoveMembersRequestBuilder:
         """
         Provides operations to call the removeMembers method.
         """
         return remove_members_request_builder.RemoveMembersRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def remove_members_by_id(self) -> remove_members_by_id_request_builder.RemoveMembersByIdRequestBuilder:
         """
         Provides operations to call the removeMembersById method.
@@ -101,7 +105,7 @@ class UpdatableAssetItemRequestBuilder():
         """
         Update the navigation property members in admin
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +163,7 @@ class UpdatableAssetItemRequestBuilder():
         """
         Update the navigation property members in admin
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[updatable_asset.UpdatableAsset]

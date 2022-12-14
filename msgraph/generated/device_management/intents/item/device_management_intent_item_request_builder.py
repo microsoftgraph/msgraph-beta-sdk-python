@@ -36,72 +36,84 @@ class DeviceManagementIntentItemRequestBuilder():
     """
     Provides operations to manage the intents property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def assign(self) -> assign_request_builder.AssignRequestBuilder:
         """
         Provides operations to call the assign method.
         """
         return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.deviceManagementIntent entity.
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def categories(self) -> categories_request_builder.CategoriesRequestBuilder:
         """
         Provides operations to manage the categories property of the microsoft.graph.deviceManagementIntent entity.
         """
         return categories_request_builder.CategoriesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def create_copy(self) -> create_copy_request_builder.CreateCopyRequestBuilder:
         """
         Provides operations to call the createCopy method.
         """
         return create_copy_request_builder.CreateCopyRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def device_setting_state_summaries(self) -> device_setting_state_summaries_request_builder.DeviceSettingStateSummariesRequestBuilder:
         """
         Provides operations to manage the deviceSettingStateSummaries property of the microsoft.graph.deviceManagementIntent entity.
         """
         return device_setting_state_summaries_request_builder.DeviceSettingStateSummariesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def device_states(self) -> device_states_request_builder.DeviceStatesRequestBuilder:
         """
         Provides operations to manage the deviceStates property of the microsoft.graph.deviceManagementIntent entity.
         """
         return device_states_request_builder.DeviceStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def device_state_summary(self) -> device_state_summary_request_builder.DeviceStateSummaryRequestBuilder:
         """
         Provides operations to manage the deviceStateSummary property of the microsoft.graph.deviceManagementIntent entity.
         """
         return device_state_summary_request_builder.DeviceStateSummaryRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def migrate_to_template(self) -> migrate_to_template_request_builder.MigrateToTemplateRequestBuilder:
         """
         Provides operations to call the migrateToTemplate method.
         """
         return migrate_to_template_request_builder.MigrateToTemplateRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def settings(self) -> settings_request_builder.SettingsRequestBuilder:
         """
         Provides operations to manage the settings property of the microsoft.graph.deviceManagementIntent entity.
         """
         return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def update_settings(self) -> update_settings_request_builder.UpdateSettingsRequestBuilder:
         """
         Provides operations to call the updateSettings method.
         """
         return update_settings_request_builder.UpdateSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def user_states(self) -> user_states_request_builder.UserStatesRequestBuilder:
         """
         Provides operations to manage the userStates property of the microsoft.graph.deviceManagementIntent entity.
         """
         return user_states_request_builder.UserStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def user_state_summary(self) -> user_state_summary_request_builder.UserStateSummaryRequestBuilder:
         """
         Provides operations to manage the userStateSummary property of the microsoft.graph.deviceManagementIntent entity.
@@ -201,7 +213,7 @@ class DeviceManagementIntentItemRequestBuilder():
         """
         Update the navigation property intents in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -285,7 +297,7 @@ class DeviceManagementIntentItemRequestBuilder():
         """
         Update the navigation property intents in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_intent.DeviceManagementIntent]

@@ -24,24 +24,28 @@ class SearchRequestBuilder():
     """
     Provides operations to manage the searchEntity singleton.
     """
+    @property
     def acronyms(self) -> acronyms_request_builder.AcronymsRequestBuilder:
         """
         Provides operations to manage the acronyms property of the microsoft.graph.searchEntity entity.
         """
         return acronyms_request_builder.AcronymsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def bookmarks(self) -> bookmarks_request_builder.BookmarksRequestBuilder:
         """
         Provides operations to manage the bookmarks property of the microsoft.graph.searchEntity entity.
         """
         return bookmarks_request_builder.BookmarksRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def qnas(self) -> qnas_request_builder.QnasRequestBuilder:
         """
         Provides operations to manage the qnas property of the microsoft.graph.searchEntity entity.
         """
         return qnas_request_builder.QnasRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def query(self) -> query_request_builder.QueryRequestBuilder:
         """
         Provides operations to call the query method.
@@ -114,7 +118,7 @@ class SearchRequestBuilder():
         """
         Update search
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -154,7 +158,7 @@ class SearchRequestBuilder():
         """
         Update search
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[search_entity.SearchEntity]

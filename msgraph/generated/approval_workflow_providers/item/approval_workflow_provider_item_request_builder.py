@@ -23,18 +23,21 @@ class ApprovalWorkflowProviderItemRequestBuilder():
     """
     Provides operations to manage the collection of approvalWorkflowProvider entities.
     """
+    @property
     def business_flows(self) -> business_flows_request_builder.BusinessFlowsRequestBuilder:
         """
         Provides operations to manage the businessFlows property of the microsoft.graph.approvalWorkflowProvider entity.
         """
         return business_flows_request_builder.BusinessFlowsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def business_flows_with_requests_awaiting_my_decision(self) -> business_flows_with_requests_awaiting_my_decision_request_builder.BusinessFlowsWithRequestsAwaitingMyDecisionRequestBuilder:
         """
         Provides operations to manage the businessFlowsWithRequestsAwaitingMyDecision property of the microsoft.graph.approvalWorkflowProvider entity.
         """
         return business_flows_with_requests_awaiting_my_decision_request_builder.BusinessFlowsWithRequestsAwaitingMyDecisionRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def policy_templates(self) -> policy_templates_request_builder.PolicyTemplatesRequestBuilder:
         """
         Provides operations to manage the policyTemplates property of the microsoft.graph.approvalWorkflowProvider entity.
@@ -123,7 +126,7 @@ class ApprovalWorkflowProviderItemRequestBuilder():
         """
         Update entity in approvalWorkflowProviders
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -181,7 +184,7 @@ class ApprovalWorkflowProviderItemRequestBuilder():
         """
         Update entity in approvalWorkflowProviders
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[approval_workflow_provider.ApprovalWorkflowProvider]

@@ -19,6 +19,7 @@ class RegistrationRequestBuilder():
     """
     Provides operations to manage the registration property of the microsoft.graph.onlineMeeting entity.
     """
+    @property
     def custom_questions(self) -> custom_questions_request_builder.CustomQuestionsRequestBuilder:
         """
         Provides operations to manage the customQuestions property of the microsoft.graph.meetingRegistration entity.
@@ -81,7 +82,7 @@ class RegistrationRequestBuilder():
         """
         Update the details of a meetingRegistration object assciated with an onlineMeeting on behalf of the organizer.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +153,7 @@ class RegistrationRequestBuilder():
         """
         Update the details of a meetingRegistration object assciated with an onlineMeeting on behalf of the organizer.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[meeting_registration.MeetingRegistration]

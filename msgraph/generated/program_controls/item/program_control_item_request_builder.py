@@ -18,6 +18,7 @@ class ProgramControlItemRequestBuilder():
     """
     Provides operations to manage the collection of programControl entities.
     """
+    @property
     def program(self) -> program_request_builder.ProgramRequestBuilder:
         """
         Provides operations to manage the program property of the microsoft.graph.programControl entity.
@@ -80,7 +81,7 @@ class ProgramControlItemRequestBuilder():
         """
         Update entity in programControls
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class ProgramControlItemRequestBuilder():
         """
         Update entity in programControls
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[program_control.ProgramControl]

@@ -7,6 +7,9 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 booking_customer = lazy_import('msgraph.generated.models.booking_customer')
 
 class BookingCustomerCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
+    """
+    Provides operations to manage the customers property of the microsoft.graph.bookingBusiness entity.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new BookingCustomerCollectionResponse and sets the default values.

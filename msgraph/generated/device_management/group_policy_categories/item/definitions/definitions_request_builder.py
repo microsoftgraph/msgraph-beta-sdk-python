@@ -18,6 +18,7 @@ class DefinitionsRequestBuilder():
     """
     Provides operations to manage the definitions property of the microsoft.graph.groupPolicyCategory entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.

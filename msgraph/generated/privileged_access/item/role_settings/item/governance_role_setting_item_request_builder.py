@@ -19,12 +19,14 @@ class GovernanceRoleSettingItemRequestBuilder():
     """
     Provides operations to manage the roleSettings property of the microsoft.graph.privilegedAccess entity.
     """
+    @property
     def resource(self) -> resource_request_builder.ResourceRequestBuilder:
         """
         Provides operations to manage the resource property of the microsoft.graph.governanceRoleSetting entity.
         """
         return resource_request_builder.ResourceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def role_definition(self) -> role_definition_request_builder.RoleDefinitionRequestBuilder:
         """
         Provides operations to manage the roleDefinition property of the microsoft.graph.governanceRoleSetting entity.
@@ -87,7 +89,7 @@ class GovernanceRoleSettingItemRequestBuilder():
         """
         Update the navigation property roleSettings in privilegedAccess
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +147,7 @@ class GovernanceRoleSettingItemRequestBuilder():
         """
         Update the navigation property roleSettings in privilegedAccess
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_role_setting.GovernanceRoleSetting]

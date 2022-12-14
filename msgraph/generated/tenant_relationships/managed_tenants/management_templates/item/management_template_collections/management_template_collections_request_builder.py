@@ -18,6 +18,7 @@ class ManagementTemplateCollectionsRequestBuilder():
     """
     Provides operations to manage the managementTemplateCollections property of the microsoft.graph.managedTenants.managementTemplate entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.

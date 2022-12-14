@@ -19,12 +19,14 @@ class AndroidForWorkEnrollmentProfileItemRequestBuilder():
     """
     Provides operations to manage the androidForWorkEnrollmentProfiles property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def create_token(self) -> create_token_request_builder.CreateTokenRequestBuilder:
         """
         Provides operations to call the createToken method.
         """
         return create_token_request_builder.CreateTokenRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def revoke_token(self) -> revoke_token_request_builder.RevokeTokenRequestBuilder:
         """
         Provides operations to call the revokeToken method.
@@ -87,7 +89,7 @@ class AndroidForWorkEnrollmentProfileItemRequestBuilder():
         """
         Update the navigation property androidForWorkEnrollmentProfiles in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +147,7 @@ class AndroidForWorkEnrollmentProfileItemRequestBuilder():
         """
         Update the navigation property androidForWorkEnrollmentProfiles in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[android_for_work_enrollment_profile.AndroidForWorkEnrollmentProfile]

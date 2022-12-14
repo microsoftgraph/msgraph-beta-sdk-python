@@ -18,6 +18,7 @@ class SecurityRequestBuilder():
     """
     Provides operations to manage the security property of the microsoft.graph.user entity.
     """
+    @property
     def information_protection(self) -> information_protection_request_builder.InformationProtectionRequestBuilder:
         """
         Provides operations to manage the informationProtection property of the microsoft.graph.security.security entity.
@@ -80,7 +81,7 @@ class SecurityRequestBuilder():
         """
         Update the navigation property security in users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class SecurityRequestBuilder():
         """
         Update the navigation property security in users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[security.Security]

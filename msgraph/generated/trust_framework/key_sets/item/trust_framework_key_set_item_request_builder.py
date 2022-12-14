@@ -22,24 +22,28 @@ class TrustFrameworkKeySetItemRequestBuilder():
     """
     Provides operations to manage the keySets property of the microsoft.graph.trustFramework entity.
     """
+    @property
     def generate_key(self) -> generate_key_request_builder.GenerateKeyRequestBuilder:
         """
         Provides operations to call the generateKey method.
         """
         return generate_key_request_builder.GenerateKeyRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def upload_certificate(self) -> upload_certificate_request_builder.UploadCertificateRequestBuilder:
         """
         Provides operations to call the uploadCertificate method.
         """
         return upload_certificate_request_builder.UploadCertificateRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def upload_pkcs12(self) -> upload_pkcs12_request_builder.UploadPkcs12RequestBuilder:
         """
         Provides operations to call the uploadPkcs12 method.
         """
         return upload_pkcs12_request_builder.UploadPkcs12RequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def upload_secret(self) -> upload_secret_request_builder.UploadSecretRequestBuilder:
         """
         Provides operations to call the uploadSecret method.
@@ -102,7 +106,7 @@ class TrustFrameworkKeySetItemRequestBuilder():
         """
         Update the navigation property keySets in trustFramework
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -167,7 +171,7 @@ class TrustFrameworkKeySetItemRequestBuilder():
         """
         Update the navigation property keySets in trustFramework
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[trust_framework_key_set.TrustFrameworkKeySet]

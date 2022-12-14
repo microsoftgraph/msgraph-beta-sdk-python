@@ -83,7 +83,7 @@ class PowerliftIncidentMetadata(AdditionalDataHolder, Parsable):
         # The device's OS the diagnostic is from. Example: iOS
         self._platform: Optional[str] = None
         # The unique identifier of the app diagnostic. Example: 8520467a-49a9-44a4-8447-8dfb8bec6726
-        self._powerlift_id: Optional[str] = None
+        self._powerlift_id: Optional[Guid] = None
     
     @property
     def created_at_date_time(self,) -> Optional[datetime]:
@@ -162,7 +162,7 @@ class PowerliftIncidentMetadata(AdditionalDataHolder, Parsable):
             "locale": lambda n : setattr(self, 'locale', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "platform": lambda n : setattr(self, 'platform', n.get_str_value()),
-            "powerlift_id": lambda n : setattr(self, 'powerlift_id', n.get_str_value()),
+            "powerlift_id": lambda n : setattr(self, 'powerlift_id', n.get_object_value(Guid)),
         }
         return fields
     
@@ -218,15 +218,15 @@ class PowerliftIncidentMetadata(AdditionalDataHolder, Parsable):
         self._platform = value
     
     @property
-    def powerlift_id(self,) -> Optional[str]:
+    def powerlift_id(self,) -> Optional[Guid]:
         """
         Gets the powerliftId property value. The unique identifier of the app diagnostic. Example: 8520467a-49a9-44a4-8447-8dfb8bec6726
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._powerlift_id
     
     @powerlift_id.setter
-    def powerlift_id(self,value: Optional[str] = None) -> None:
+    def powerlift_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the powerliftId property value. The unique identifier of the app diagnostic. Example: 8520467a-49a9-44a4-8447-8dfb8bec6726
         Args:
@@ -250,7 +250,7 @@ class PowerliftIncidentMetadata(AdditionalDataHolder, Parsable):
         writer.write_str_value("locale", self.locale)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("platform", self.platform)
-        writer.write_str_value("powerliftId", self.powerlift_id)
+        writer.write_object_value("powerliftId", self.powerlift_id)
         writer.write_additional_data_value(self.additional_data)
     
 

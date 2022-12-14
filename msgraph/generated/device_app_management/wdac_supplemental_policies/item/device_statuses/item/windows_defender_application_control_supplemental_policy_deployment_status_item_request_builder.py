@@ -18,6 +18,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusItemReq
     """
     Provides operations to manage the deviceStatuses property of the microsoft.graph.windowsDefenderApplicationControlSupplementalPolicy entity.
     """
+    @property
     def policy(self) -> policy_request_builder.PolicyRequestBuilder:
         """
         Provides operations to manage the policy property of the microsoft.graph.windowsDefenderApplicationControlSupplementalPolicyDeploymentStatus entity.
@@ -80,7 +81,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusItemReq
         """
         Update the navigation property deviceStatuses in deviceAppManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusItemReq
         """
         Update the navigation property deviceStatuses in deviceAppManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_defender_application_control_supplemental_policy_deployment_status.WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus]

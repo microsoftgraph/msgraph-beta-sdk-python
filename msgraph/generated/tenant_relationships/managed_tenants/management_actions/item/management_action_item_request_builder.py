@@ -18,6 +18,7 @@ class ManagementActionItemRequestBuilder():
     """
     Provides operations to manage the managementActions property of the microsoft.graph.managedTenants.managedTenant entity.
     """
+    @property
     def apply(self) -> apply_request_builder.ApplyRequestBuilder:
         """
         Provides operations to call the apply method.
@@ -80,7 +81,7 @@ class ManagementActionItemRequestBuilder():
         """
         Update the navigation property managementActions in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class ManagementActionItemRequestBuilder():
         """
         Update the navigation property managementActions in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_action.ManagementAction]

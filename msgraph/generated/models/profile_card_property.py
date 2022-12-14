@@ -8,7 +8,7 @@ profile_card_annotation = lazy_import('msgraph.generated.models.profile_card_ann
 
 class ProfileCardProperty(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def annotations(self,) -> Optional[List[profile_card_annotation.ProfileCardAnnotation]]:

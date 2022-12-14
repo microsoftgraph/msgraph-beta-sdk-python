@@ -24,42 +24,49 @@ class WindowsAutopilotDeviceIdentityItemRequestBuilder():
     """
     Provides operations to manage the assignedDevices property of the microsoft.graph.windowsAutopilotDeploymentProfile entity.
     """
+    @property
     def assign_resource_account_to_device(self) -> assign_resource_account_to_device_request_builder.AssignResourceAccountToDeviceRequestBuilder:
         """
         Provides operations to call the assignResourceAccountToDevice method.
         """
         return assign_resource_account_to_device_request_builder.AssignResourceAccountToDeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def assign_user_to_device(self) -> assign_user_to_device_request_builder.AssignUserToDeviceRequestBuilder:
         """
         Provides operations to call the assignUserToDevice method.
         """
         return assign_user_to_device_request_builder.AssignUserToDeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def deployment_profile(self) -> deployment_profile_request_builder.DeploymentProfileRequestBuilder:
         """
         Provides operations to manage the deploymentProfile property of the microsoft.graph.windowsAutopilotDeviceIdentity entity.
         """
         return deployment_profile_request_builder.DeploymentProfileRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def intended_deployment_profile(self) -> intended_deployment_profile_request_builder.IntendedDeploymentProfileRequestBuilder:
         """
         Provides operations to manage the intendedDeploymentProfile property of the microsoft.graph.windowsAutopilotDeviceIdentity entity.
         """
         return intended_deployment_profile_request_builder.IntendedDeploymentProfileRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def unassign_resource_account_from_device(self) -> unassign_resource_account_from_device_request_builder.UnassignResourceAccountFromDeviceRequestBuilder:
         """
         Provides operations to call the unassignResourceAccountFromDevice method.
         """
         return unassign_resource_account_from_device_request_builder.UnassignResourceAccountFromDeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def unassign_user_from_device(self) -> unassign_user_from_device_request_builder.UnassignUserFromDeviceRequestBuilder:
         """
         Provides operations to call the unassignUserFromDevice method.
         """
         return unassign_user_from_device_request_builder.UnassignUserFromDeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def update_device_properties(self) -> update_device_properties_request_builder.UpdateDevicePropertiesRequestBuilder:
         """
         Provides operations to call the updateDeviceProperties method.
@@ -122,7 +129,7 @@ class WindowsAutopilotDeviceIdentityItemRequestBuilder():
         """
         Update the navigation property assignedDevices in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -180,7 +187,7 @@ class WindowsAutopilotDeviceIdentityItemRequestBuilder():
         """
         Update the navigation property assignedDevices in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_autopilot_device_identity.WindowsAutopilotDeviceIdentity]

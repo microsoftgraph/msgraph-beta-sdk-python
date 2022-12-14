@@ -18,6 +18,7 @@ class DeviceAppManagementTaskItemRequestBuilder():
     """
     Provides operations to manage the deviceAppManagementTasks property of the microsoft.graph.deviceAppManagement entity.
     """
+    @property
     def update_status(self) -> update_status_request_builder.UpdateStatusRequestBuilder:
         """
         Provides operations to call the updateStatus method.
@@ -80,7 +81,7 @@ class DeviceAppManagementTaskItemRequestBuilder():
         """
         Update the navigation property deviceAppManagementTasks in deviceAppManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class DeviceAppManagementTaskItemRequestBuilder():
         """
         Update the navigation property deviceAppManagementTasks in deviceAppManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_app_management_task.DeviceAppManagementTask]

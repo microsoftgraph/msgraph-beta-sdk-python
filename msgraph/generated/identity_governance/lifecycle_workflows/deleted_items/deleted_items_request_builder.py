@@ -19,6 +19,7 @@ class DeletedItemsRequestBuilder():
     """
     Provides operations to manage the deletedItems property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
     """
+    @property
     def workflows(self) -> workflows_request_builder.WorkflowsRequestBuilder:
         """
         Provides operations to manage the workflows property of the microsoft.graph.deletedItemContainer entity.
@@ -81,7 +82,7 @@ class DeletedItemsRequestBuilder():
         """
         Update the navigation property deletedItems in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +140,7 @@ class DeletedItemsRequestBuilder():
         """
         Update the navigation property deletedItems in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[deleted_item_container.DeletedItemContainer]

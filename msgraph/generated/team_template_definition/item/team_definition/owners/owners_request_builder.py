@@ -18,6 +18,7 @@ class OwnersRequestBuilder():
     """
     Provides operations to manage the owners property of the microsoft.graph.team entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.

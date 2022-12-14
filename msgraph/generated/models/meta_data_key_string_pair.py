@@ -3,7 +3,7 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-class SitePageData(AdditionalDataHolder, Parsable):
+class MetaDataKeyStringPair(AdditionalDataHolder, Parsable):
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,25 +23,29 @@ class SitePageData(AdditionalDataHolder, Parsable):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new sitePageData and sets the default values.
+        Instantiates a new metaDataKeyStringPair and sets the default values.
         """
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
+        # Key of the meta data.
+        self._key: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
+        # Value of the meta data.
+        self._value: Optional[str] = None
     
     @staticmethod
-    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SitePageData:
+    def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MetaDataKeyStringPair:
         """
         Creates a new instance of the appropriate class based on discriminator value
         Args:
             parseNode: The parse node to use to read the discriminator value and create the object
-        Returns: SitePageData
+        Returns: MetaDataKeyStringPair
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
-        return SitePageData()
+        return MetaDataKeyStringPair()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -49,9 +53,28 @@ class SitePageData(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
+            "key": lambda n : setattr(self, 'key', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "value": lambda n : setattr(self, 'value', n.get_str_value()),
         }
         return fields
+    
+    @property
+    def key(self,) -> Optional[str]:
+        """
+        Gets the key property value. Key of the meta data.
+        Returns: Optional[str]
+        """
+        return self._key
+    
+    @key.setter
+    def key(self,value: Optional[str] = None) -> None:
+        """
+        Sets the key property value. Key of the meta data.
+        Args:
+            value: Value to set for the key property.
+        """
+        self._key = value
     
     @property
     def odata_type(self,) -> Optional[str]:
@@ -78,7 +101,26 @@ class SitePageData(AdditionalDataHolder, Parsable):
         """
         if writer is None:
             raise Exception("writer cannot be undefined")
+        writer.write_str_value("key", self.key)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_str_value("value", self.value)
         writer.write_additional_data_value(self.additional_data)
+    
+    @property
+    def value(self,) -> Optional[str]:
+        """
+        Gets the value property value. Value of the meta data.
+        Returns: Optional[str]
+        """
+        return self._value
+    
+    @value.setter
+    def value(self,value: Optional[str] = None) -> None:
+        """
+        Sets the value property value. Value of the meta data.
+        Args:
+            value: Value to set for the value property.
+        """
+        self._value = value
     
 

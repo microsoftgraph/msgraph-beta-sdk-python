@@ -21,24 +21,28 @@ class SettingsRequestBuilder():
     """
     Provides operations to manage the settings property of the microsoft.graph.user entity.
     """
+    @property
     def contact_merge_suggestions(self) -> contact_merge_suggestions_request_builder.ContactMergeSuggestionsRequestBuilder:
         """
         Provides operations to manage the contactMergeSuggestions property of the microsoft.graph.userSettings entity.
         """
         return contact_merge_suggestions_request_builder.ContactMergeSuggestionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def item_insights(self) -> item_insights_request_builder.ItemInsightsRequestBuilder:
         """
         Provides operations to manage the itemInsights property of the microsoft.graph.userSettings entity.
         """
         return item_insights_request_builder.ItemInsightsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def regional_and_language_settings(self) -> regional_and_language_settings_request_builder.RegionalAndLanguageSettingsRequestBuilder:
         """
         Provides operations to manage the regionalAndLanguageSettings property of the microsoft.graph.userSettings entity.
         """
         return regional_and_language_settings_request_builder.RegionalAndLanguageSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def shift_preferences(self) -> shift_preferences_request_builder.ShiftPreferencesRequestBuilder:
         """
         Provides operations to manage the shiftPreferences property of the microsoft.graph.userSettings entity.
@@ -101,7 +105,7 @@ class SettingsRequestBuilder():
         """
         Update the navigation property settings in users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +163,7 @@ class SettingsRequestBuilder():
         """
         Update the navigation property settings in users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_settings.UserSettings]

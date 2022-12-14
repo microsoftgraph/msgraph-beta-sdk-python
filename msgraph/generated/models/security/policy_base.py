@@ -10,7 +10,7 @@ policy_status = lazy_import('msgraph.generated.models.security.policy_status')
 
 class PolicyBase(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     def __init__(self,) -> None:
         """

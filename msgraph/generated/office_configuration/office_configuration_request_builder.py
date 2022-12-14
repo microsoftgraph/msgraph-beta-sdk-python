@@ -19,6 +19,7 @@ class OfficeConfigurationRequestBuilder():
     """
     Provides operations to manage the officeConfiguration singleton.
     """
+    @property
     def client_configurations(self) -> client_configurations_request_builder.ClientConfigurationsRequestBuilder:
         """
         Provides operations to manage the clientConfigurations property of the microsoft.graph.officeConfiguration entity.
@@ -78,7 +79,7 @@ class OfficeConfigurationRequestBuilder():
         """
         Update officeConfiguration
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -118,7 +119,7 @@ class OfficeConfigurationRequestBuilder():
         """
         Update officeConfiguration
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[office_configuration.OfficeConfiguration]

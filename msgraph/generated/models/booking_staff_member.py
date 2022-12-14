@@ -51,7 +51,7 @@ class BookingStaffMember(booking_person.BookingPerson):
         self._availability_is_affected_by_personal_calendar: Optional[bool] = None
         # Identifies a color to represent the staff member. The color corresponds to the color palette in the Staff details page in the Bookings app.
         self._color_index: Optional[int] = None
-        # The isEmailNotificationEnabled property
+        # True indicates that a staff member will be notified via email when a booking assigned to them is created or changed.
         self._is_email_notification_enabled: Optional[bool] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
@@ -97,7 +97,7 @@ class BookingStaffMember(booking_person.BookingPerson):
     @property
     def is_email_notification_enabled(self,) -> Optional[bool]:
         """
-        Gets the isEmailNotificationEnabled property value. The isEmailNotificationEnabled property
+        Gets the isEmailNotificationEnabled property value. True indicates that a staff member will be notified via email when a booking assigned to them is created or changed.
         Returns: Optional[bool]
         """
         return self._is_email_notification_enabled
@@ -105,7 +105,7 @@ class BookingStaffMember(booking_person.BookingPerson):
     @is_email_notification_enabled.setter
     def is_email_notification_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isEmailNotificationEnabled property value. The isEmailNotificationEnabled property
+        Sets the isEmailNotificationEnabled property value. True indicates that a staff member will be notified via email when a booking assigned to them is created or changed.
         Args:
             value: Value to set for the isEmailNotificationEnabled property.
         """

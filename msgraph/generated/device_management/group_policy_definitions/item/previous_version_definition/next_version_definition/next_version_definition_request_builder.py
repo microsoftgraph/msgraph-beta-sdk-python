@@ -21,18 +21,21 @@ class NextVersionDefinitionRequestBuilder():
     """
     Provides operations to manage the nextVersionDefinition property of the microsoft.graph.groupPolicyDefinition entity.
     """
+    @property
     def category(self) -> category_request_builder.CategoryRequestBuilder:
         """
         Provides operations to manage the category property of the microsoft.graph.groupPolicyDefinition entity.
         """
         return category_request_builder.CategoryRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def definition_file(self) -> definition_file_request_builder.DefinitionFileRequestBuilder:
         """
         Provides operations to manage the definitionFile property of the microsoft.graph.groupPolicyDefinition entity.
         """
         return definition_file_request_builder.DefinitionFileRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def presentations(self) -> presentations_request_builder.PresentationsRequestBuilder:
         """
         Provides operations to manage the presentations property of the microsoft.graph.groupPolicyDefinition entity.
@@ -95,7 +98,7 @@ class NextVersionDefinitionRequestBuilder():
         """
         Update the navigation property nextVersionDefinition in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -153,7 +156,7 @@ class NextVersionDefinitionRequestBuilder():
         """
         Update the navigation property nextVersionDefinition in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_policy_definition.GroupPolicyDefinition]

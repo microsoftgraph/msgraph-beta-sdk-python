@@ -27,42 +27,49 @@ class AccessReviewItemRequestBuilder():
     """
     Provides operations to manage the instances property of the microsoft.graph.accessReview entity.
     """
+    @property
     def apply_decisions(self) -> apply_decisions_request_builder.ApplyDecisionsRequestBuilder:
         """
         Provides operations to call the applyDecisions method.
         """
         return apply_decisions_request_builder.ApplyDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def decisions(self) -> decisions_request_builder.DecisionsRequestBuilder:
         """
         Provides operations to manage the decisions property of the microsoft.graph.accessReview entity.
         """
         return decisions_request_builder.DecisionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def my_decisions(self) -> my_decisions_request_builder.MyDecisionsRequestBuilder:
         """
         Provides operations to manage the myDecisions property of the microsoft.graph.accessReview entity.
         """
         return my_decisions_request_builder.MyDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def reset_decisions(self) -> reset_decisions_request_builder.ResetDecisionsRequestBuilder:
         """
         Provides operations to call the resetDecisions method.
         """
         return reset_decisions_request_builder.ResetDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def reviewers(self) -> reviewers_request_builder.ReviewersRequestBuilder:
         """
         Provides operations to manage the reviewers property of the microsoft.graph.accessReview entity.
         """
         return reviewers_request_builder.ReviewersRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def send_reminder(self) -> send_reminder_request_builder.SendReminderRequestBuilder:
         """
         Provides operations to call the sendReminder method.
         """
         return send_reminder_request_builder.SendReminderRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def stop(self) -> stop_request_builder.StopRequestBuilder:
         """
         Provides operations to call the stop method.
@@ -125,7 +132,7 @@ class AccessReviewItemRequestBuilder():
         """
         Update the navigation property instances in accessReviews
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -209,7 +216,7 @@ class AccessReviewItemRequestBuilder():
         """
         Update the navigation property instances in accessReviews
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review.AccessReview]

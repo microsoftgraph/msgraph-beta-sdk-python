@@ -22,24 +22,28 @@ class VendorRequestBuilder():
     """
     Provides operations to manage the vendor property of the microsoft.graph.purchaseInvoice entity.
     """
+    @property
     def currency(self) -> currency_request_builder.CurrencyRequestBuilder:
         """
         Provides operations to manage the currency property of the microsoft.graph.vendor entity.
         """
         return currency_request_builder.CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def payment_method(self) -> payment_method_request_builder.PaymentMethodRequestBuilder:
         """
         Provides operations to manage the paymentMethod property of the microsoft.graph.vendor entity.
         """
         return payment_method_request_builder.PaymentMethodRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def payment_term(self) -> payment_term_request_builder.PaymentTermRequestBuilder:
         """
         Provides operations to manage the paymentTerm property of the microsoft.graph.vendor entity.
         """
         return payment_term_request_builder.PaymentTermRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def picture(self) -> picture_request_builder.PictureRequestBuilder:
         """
         Provides operations to manage the picture property of the microsoft.graph.vendor entity.
@@ -102,7 +106,7 @@ class VendorRequestBuilder():
         """
         Update the navigation property vendor in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -160,7 +164,7 @@ class VendorRequestBuilder():
         """
         Update the navigation property vendor in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[vendor.Vendor]

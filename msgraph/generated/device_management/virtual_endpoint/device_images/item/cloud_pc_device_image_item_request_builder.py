@@ -18,6 +18,7 @@ class CloudPcDeviceImageItemRequestBuilder():
     """
     Provides operations to manage the deviceImages property of the microsoft.graph.virtualEndpoint entity.
     """
+    @property
     def reupload(self) -> reupload_request_builder.ReuploadRequestBuilder:
         """
         Provides operations to call the reupload method.
@@ -80,7 +81,7 @@ class CloudPcDeviceImageItemRequestBuilder():
         """
         Update the navigation property deviceImages in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class CloudPcDeviceImageItemRequestBuilder():
         """
         Update the navigation property deviceImages in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_device_image.CloudPcDeviceImage]

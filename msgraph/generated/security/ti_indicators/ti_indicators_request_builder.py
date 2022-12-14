@@ -23,30 +23,35 @@ class TiIndicatorsRequestBuilder():
     """
     Provides operations to manage the tiIndicators property of the microsoft.graph.security entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def delete_ti_indicators(self) -> delete_ti_indicators_request_builder.DeleteTiIndicatorsRequestBuilder:
         """
         Provides operations to call the deleteTiIndicators method.
         """
         return delete_ti_indicators_request_builder.DeleteTiIndicatorsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def delete_ti_indicators_by_external_id(self) -> delete_ti_indicators_by_external_id_request_builder.DeleteTiIndicatorsByExternalIdRequestBuilder:
         """
         Provides operations to call the deleteTiIndicatorsByExternalId method.
         """
         return delete_ti_indicators_by_external_id_request_builder.DeleteTiIndicatorsByExternalIdRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def submit_ti_indicators(self) -> submit_ti_indicators_request_builder.SubmitTiIndicatorsRequestBuilder:
         """
         Provides operations to call the submitTiIndicators method.
         """
         return submit_ti_indicators_request_builder.SubmitTiIndicatorsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def update_ti_indicators(self) -> update_ti_indicators_request_builder.UpdateTiIndicatorsRequestBuilder:
         """
         Provides operations to call the updateTiIndicators method.
@@ -93,7 +98,7 @@ class TiIndicatorsRequestBuilder():
         """
         Create a new tiIndicator object.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -133,7 +138,7 @@ class TiIndicatorsRequestBuilder():
         """
         Create a new tiIndicator object.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ti_indicator.TiIndicator]

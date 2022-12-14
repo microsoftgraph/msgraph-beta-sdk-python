@@ -22,30 +22,35 @@ class GovernanceRoleAssignmentRequestItemRequestBuilder():
     """
     Provides operations to manage the collection of governanceRoleAssignmentRequest entities.
     """
+    @property
     def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
         """
         Provides operations to call the cancel method.
         """
         return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def resource(self) -> resource_request_builder.ResourceRequestBuilder:
         """
         Provides operations to manage the resource property of the microsoft.graph.governanceRoleAssignmentRequest entity.
         """
         return resource_request_builder.ResourceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def role_definition(self) -> role_definition_request_builder.RoleDefinitionRequestBuilder:
         """
         Provides operations to manage the roleDefinition property of the microsoft.graph.governanceRoleAssignmentRequest entity.
         """
         return role_definition_request_builder.RoleDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def subject(self) -> subject_request_builder.SubjectRequestBuilder:
         """
         Provides operations to manage the subject property of the microsoft.graph.governanceRoleAssignmentRequest entity.
         """
         return subject_request_builder.SubjectRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def update_request(self) -> update_request_request_builder.UpdateRequestRequestBuilder:
         """
         Provides operations to call the updateRequest method.
@@ -108,7 +113,7 @@ class GovernanceRoleAssignmentRequestItemRequestBuilder():
         """
         Update entity in governanceRoleAssignmentRequests
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -166,7 +171,7 @@ class GovernanceRoleAssignmentRequestItemRequestBuilder():
         """
         Update entity in governanceRoleAssignmentRequests
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_role_assignment_request.GovernanceRoleAssignmentRequest]

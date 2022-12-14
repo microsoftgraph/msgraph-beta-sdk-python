@@ -23,18 +23,21 @@ class AssignmentFiltersRequestBuilder():
     """
     Provides operations to manage the assignmentFilters property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def enable(self) -> enable_request_builder.EnableRequestBuilder:
         """
         Provides operations to call the enable method.
         """
         return enable_request_builder.EnableRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def validate_filter(self) -> validate_filter_request_builder.ValidateFilterRequestBuilder:
         """
         Provides operations to call the validateFilter method.
@@ -81,7 +84,7 @@ class AssignmentFiltersRequestBuilder():
         """
         Create new navigation property to assignmentFilters for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +142,7 @@ class AssignmentFiltersRequestBuilder():
         """
         Create new navigation property to assignmentFilters for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]

@@ -19,12 +19,14 @@ class GovernanceRoleDefinitionItemRequestBuilder():
     """
     Provides operations to manage the roleDefinitions property of the microsoft.graph.governanceResource entity.
     """
+    @property
     def resource(self) -> resource_request_builder.ResourceRequestBuilder:
         """
         Provides operations to manage the resource property of the microsoft.graph.governanceRoleDefinition entity.
         """
         return resource_request_builder.ResourceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def role_setting(self) -> role_setting_request_builder.RoleSettingRequestBuilder:
         """
         Provides operations to manage the roleSetting property of the microsoft.graph.governanceRoleDefinition entity.
@@ -87,7 +89,7 @@ class GovernanceRoleDefinitionItemRequestBuilder():
         """
         Update the navigation property roleDefinitions in privilegedAccess
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +147,7 @@ class GovernanceRoleDefinitionItemRequestBuilder():
         """
         Update the navigation property roleDefinitions in privilegedAccess
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_role_definition.GovernanceRoleDefinition]

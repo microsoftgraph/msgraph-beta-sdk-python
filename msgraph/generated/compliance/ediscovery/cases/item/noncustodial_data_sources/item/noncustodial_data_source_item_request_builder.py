@@ -22,30 +22,35 @@ class NoncustodialDataSourceItemRequestBuilder():
     """
     Provides operations to manage the noncustodialDataSources property of the microsoft.graph.ediscovery.case entity.
     """
+    @property
     def apply_hold(self) -> apply_hold_request_builder.ApplyHoldRequestBuilder:
         """
         Provides operations to call the applyHold method.
         """
         return apply_hold_request_builder.ApplyHoldRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def data_source(self) -> data_source_request_builder.DataSourceRequestBuilder:
         """
         Provides operations to manage the dataSource property of the microsoft.graph.ediscovery.noncustodialDataSource entity.
         """
         return data_source_request_builder.DataSourceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def release(self) -> release_request_builder.ReleaseRequestBuilder:
         """
         Provides operations to call the release method.
         """
         return release_request_builder.ReleaseRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def remove_hold(self) -> remove_hold_request_builder.RemoveHoldRequestBuilder:
         """
         Provides operations to call the removeHold method.
         """
         return remove_hold_request_builder.RemoveHoldRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def update_index(self) -> update_index_request_builder.UpdateIndexRequestBuilder:
         """
         Provides operations to call the updateIndex method.
@@ -108,7 +113,7 @@ class NoncustodialDataSourceItemRequestBuilder():
         """
         Update the navigation property noncustodialDataSources in compliance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -166,7 +171,7 @@ class NoncustodialDataSourceItemRequestBuilder():
         """
         Update the navigation property noncustodialDataSources in compliance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[noncustodial_data_source.NoncustodialDataSource]

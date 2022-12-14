@@ -25,42 +25,49 @@ class SalesQuoteItemRequestBuilder():
     """
     Provides operations to manage the salesQuotes property of the microsoft.graph.company entity.
     """
+    @property
     def currency(self) -> currency_request_builder.CurrencyRequestBuilder:
         """
         Provides operations to manage the currency property of the microsoft.graph.salesQuote entity.
         """
         return currency_request_builder.CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def customer(self) -> customer_request_builder.CustomerRequestBuilder:
         """
         Provides operations to manage the customer property of the microsoft.graph.salesQuote entity.
         """
         return customer_request_builder.CustomerRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def make_invoice(self) -> make_invoice_request_builder.MakeInvoiceRequestBuilder:
         """
         Provides operations to call the makeInvoice method.
         """
         return make_invoice_request_builder.MakeInvoiceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def payment_term(self) -> payment_term_request_builder.PaymentTermRequestBuilder:
         """
         Provides operations to manage the paymentTerm property of the microsoft.graph.salesQuote entity.
         """
         return payment_term_request_builder.PaymentTermRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sales_quote_lines(self) -> sales_quote_lines_request_builder.SalesQuoteLinesRequestBuilder:
         """
         Provides operations to manage the salesQuoteLines property of the microsoft.graph.salesQuote entity.
         """
         return sales_quote_lines_request_builder.SalesQuoteLinesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def send(self) -> send_request_builder.SendRequestBuilder:
         """
         Provides operations to call the send method.
         """
         return send_request_builder.SendRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def shipment_method(self) -> shipment_method_request_builder.ShipmentMethodRequestBuilder:
         """
         Provides operations to manage the shipmentMethod property of the microsoft.graph.salesQuote entity.
@@ -107,7 +114,7 @@ class SalesQuoteItemRequestBuilder():
         """
         Update the navigation property salesQuotes in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -147,7 +154,7 @@ class SalesQuoteItemRequestBuilder():
         """
         Update the navigation property salesQuotes in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sales_quote.SalesQuote]

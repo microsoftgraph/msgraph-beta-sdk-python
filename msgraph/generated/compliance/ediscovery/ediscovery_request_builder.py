@@ -19,6 +19,7 @@ class EdiscoveryRequestBuilder():
     """
     Provides operations to manage the ediscovery property of the microsoft.graph.compliance entity.
     """
+    @property
     def cases(self) -> cases_request_builder.CasesRequestBuilder:
         """
         Provides operations to manage the cases property of the microsoft.graph.ediscovery.ediscoveryroot entity.
@@ -94,7 +95,7 @@ class EdiscoveryRequestBuilder():
         """
         Update the navigation property ediscovery in compliance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +153,7 @@ class EdiscoveryRequestBuilder():
         """
         Update the navigation property ediscovery in compliance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscoveryroot.Ediscoveryroot]

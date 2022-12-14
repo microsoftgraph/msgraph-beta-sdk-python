@@ -19,12 +19,14 @@ class ItemActivityOLDItemRequestBuilder():
     """
     Provides operations to manage the activities property of the microsoft.graph.drive entity.
     """
+    @property
     def drive_item(self) -> drive_item_request_builder.DriveItemRequestBuilder:
         """
         Provides operations to manage the driveItem property of the microsoft.graph.itemActivityOLD entity.
         """
         return drive_item_request_builder.DriveItemRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def list_item(self) -> list_item_request_builder.ListItemRequestBuilder:
         """
         Provides operations to manage the listItem property of the microsoft.graph.itemActivityOLD entity.
@@ -87,7 +89,7 @@ class ItemActivityOLDItemRequestBuilder():
         """
         Update the navigation property activities in users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +147,7 @@ class ItemActivityOLDItemRequestBuilder():
         """
         Update the navigation property activities in users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[item_activity_o_l_d.ItemActivityOLD]

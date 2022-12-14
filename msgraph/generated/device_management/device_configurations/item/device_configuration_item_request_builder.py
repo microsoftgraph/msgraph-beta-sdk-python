@@ -33,60 +33,70 @@ class DeviceConfigurationItemRequestBuilder():
     """
     Provides operations to manage the deviceConfigurations property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def assign(self) -> assign_request_builder.AssignRequestBuilder:
         """
         Provides operations to call the assign method.
         """
         return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def assigned_access_multi_mode_profiles(self) -> assigned_access_multi_mode_profiles_request_builder.AssignedAccessMultiModeProfilesRequestBuilder:
         """
         Provides operations to call the assignedAccessMultiModeProfiles method.
         """
         return assigned_access_multi_mode_profiles_request_builder.AssignedAccessMultiModeProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.deviceConfiguration entity.
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def device_setting_state_summaries(self) -> device_setting_state_summaries_request_builder.DeviceSettingStateSummariesRequestBuilder:
         """
         Provides operations to manage the deviceSettingStateSummaries property of the microsoft.graph.deviceConfiguration entity.
         """
         return device_setting_state_summaries_request_builder.DeviceSettingStateSummariesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def device_statuses(self) -> device_statuses_request_builder.DeviceStatusesRequestBuilder:
         """
         Provides operations to manage the deviceStatuses property of the microsoft.graph.deviceConfiguration entity.
         """
         return device_statuses_request_builder.DeviceStatusesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def device_status_overview(self) -> device_status_overview_request_builder.DeviceStatusOverviewRequestBuilder:
         """
         Provides operations to manage the deviceStatusOverview property of the microsoft.graph.deviceConfiguration entity.
         """
         return device_status_overview_request_builder.DeviceStatusOverviewRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def group_assignments(self) -> group_assignments_request_builder.GroupAssignmentsRequestBuilder:
         """
         Provides operations to manage the groupAssignments property of the microsoft.graph.deviceConfiguration entity.
         """
         return group_assignments_request_builder.GroupAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def user_statuses(self) -> user_statuses_request_builder.UserStatusesRequestBuilder:
         """
         Provides operations to manage the userStatuses property of the microsoft.graph.deviceConfiguration entity.
         """
         return user_statuses_request_builder.UserStatusesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def user_status_overview(self) -> user_status_overview_request_builder.UserStatusOverviewRequestBuilder:
         """
         Provides operations to manage the userStatusOverview property of the microsoft.graph.deviceConfiguration entity.
         """
         return user_status_overview_request_builder.UserStatusOverviewRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def windows_privacy_access_controls(self) -> windows_privacy_access_controls_request_builder.WindowsPrivacyAccessControlsRequestBuilder:
         """
         Provides operations to call the windowsPrivacyAccessControls method.
@@ -162,7 +172,7 @@ class DeviceConfigurationItemRequestBuilder():
         """
         Update the navigation property deviceConfigurations in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -270,7 +280,7 @@ class DeviceConfigurationItemRequestBuilder():
         """
         Update the navigation property deviceConfigurations in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_configuration.DeviceConfiguration]

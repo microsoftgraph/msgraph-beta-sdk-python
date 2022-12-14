@@ -20,12 +20,14 @@ class IntuneBrandingProfileItemRequestBuilder():
     """
     Provides operations to manage the intuneBrandingProfiles property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def assign(self) -> assign_request_builder.AssignRequestBuilder:
         """
         Provides operations to call the assign method.
         """
         return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.intuneBrandingProfile entity.
@@ -101,7 +103,7 @@ class IntuneBrandingProfileItemRequestBuilder():
         """
         Update the navigation property intuneBrandingProfiles in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +161,7 @@ class IntuneBrandingProfileItemRequestBuilder():
         """
         Update the navigation property intuneBrandingProfiles in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[intune_branding_profile.IntuneBrandingProfile]

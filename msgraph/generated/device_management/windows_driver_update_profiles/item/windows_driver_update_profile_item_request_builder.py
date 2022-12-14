@@ -24,30 +24,35 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
     """
     Provides operations to manage the windowsDriverUpdateProfiles property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def assign(self) -> assign_request_builder.AssignRequestBuilder:
         """
         Provides operations to call the assign method.
         """
         return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.windowsDriverUpdateProfile entity.
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def driver_inventories(self) -> driver_inventories_request_builder.DriverInventoriesRequestBuilder:
         """
         Provides operations to manage the driverInventories property of the microsoft.graph.windowsDriverUpdateProfile entity.
         """
         return driver_inventories_request_builder.DriverInventoriesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def execute_action(self) -> execute_action_request_builder.ExecuteActionRequestBuilder:
         """
         Provides operations to call the executeAction method.
         """
         return execute_action_request_builder.ExecuteActionRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sync_inventory(self) -> sync_inventory_request_builder.SyncInventoryRequestBuilder:
         """
         Provides operations to call the syncInventory method.
@@ -123,7 +128,7 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
         """
         Update the navigation property windowsDriverUpdateProfiles in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -194,7 +199,7 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
         """
         Update the navigation property windowsDriverUpdateProfiles in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_driver_update_profile.WindowsDriverUpdateProfile]

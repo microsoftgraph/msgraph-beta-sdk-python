@@ -18,6 +18,7 @@ class VersionsRequestBuilder():
     """
     Provides operations to manage the versions property of the microsoft.graph.managedTenants.managementTemplateStep entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.

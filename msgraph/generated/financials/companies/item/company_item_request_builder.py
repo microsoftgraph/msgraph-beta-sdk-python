@@ -87,210 +87,245 @@ class CompanyItemRequestBuilder():
     """
     Provides operations to manage the companies property of the microsoft.graph.financials entity.
     """
+    @property
     def accounts(self) -> accounts_request_builder.AccountsRequestBuilder:
         """
         Provides operations to manage the accounts property of the microsoft.graph.company entity.
         """
         return accounts_request_builder.AccountsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def aged_accounts_payable(self) -> aged_accounts_payable_request_builder.AgedAccountsPayableRequestBuilder:
         """
         Provides operations to manage the agedAccountsPayable property of the microsoft.graph.company entity.
         """
         return aged_accounts_payable_request_builder.AgedAccountsPayableRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def aged_accounts_receivable(self) -> aged_accounts_receivable_request_builder.AgedAccountsReceivableRequestBuilder:
         """
         Provides operations to manage the agedAccountsReceivable property of the microsoft.graph.company entity.
         """
         return aged_accounts_receivable_request_builder.AgedAccountsReceivableRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def company_information(self) -> company_information_request_builder.CompanyInformationRequestBuilder:
         """
         Provides operations to manage the companyInformation property of the microsoft.graph.company entity.
         """
         return company_information_request_builder.CompanyInformationRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def countries_regions(self) -> countries_regions_request_builder.CountriesRegionsRequestBuilder:
         """
         Provides operations to manage the countriesRegions property of the microsoft.graph.company entity.
         """
         return countries_regions_request_builder.CountriesRegionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def currencies(self) -> currencies_request_builder.CurrenciesRequestBuilder:
         """
         Provides operations to manage the currencies property of the microsoft.graph.company entity.
         """
         return currencies_request_builder.CurrenciesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def customer_payment_journals(self) -> customer_payment_journals_request_builder.CustomerPaymentJournalsRequestBuilder:
         """
         Provides operations to manage the customerPaymentJournals property of the microsoft.graph.company entity.
         """
         return customer_payment_journals_request_builder.CustomerPaymentJournalsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def customer_payments(self) -> customer_payments_request_builder.CustomerPaymentsRequestBuilder:
         """
         Provides operations to manage the customerPayments property of the microsoft.graph.company entity.
         """
         return customer_payments_request_builder.CustomerPaymentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def customers(self) -> customers_request_builder.CustomersRequestBuilder:
         """
         Provides operations to manage the customers property of the microsoft.graph.company entity.
         """
         return customers_request_builder.CustomersRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def dimensions(self) -> dimensions_request_builder.DimensionsRequestBuilder:
         """
         Provides operations to manage the dimensions property of the microsoft.graph.company entity.
         """
         return dimensions_request_builder.DimensionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def dimension_values(self) -> dimension_values_request_builder.DimensionValuesRequestBuilder:
         """
         Provides operations to manage the dimensionValues property of the microsoft.graph.company entity.
         """
         return dimension_values_request_builder.DimensionValuesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def employees(self) -> employees_request_builder.EmployeesRequestBuilder:
         """
         Provides operations to manage the employees property of the microsoft.graph.company entity.
         """
         return employees_request_builder.EmployeesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def general_ledger_entries(self) -> general_ledger_entries_request_builder.GeneralLedgerEntriesRequestBuilder:
         """
         Provides operations to manage the generalLedgerEntries property of the microsoft.graph.company entity.
         """
         return general_ledger_entries_request_builder.GeneralLedgerEntriesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def item_categories(self) -> item_categories_request_builder.ItemCategoriesRequestBuilder:
         """
         Provides operations to manage the itemCategories property of the microsoft.graph.company entity.
         """
         return item_categories_request_builder.ItemCategoriesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def items(self) -> items_request_builder.ItemsRequestBuilder:
         """
         Provides operations to manage the items property of the microsoft.graph.company entity.
         """
         return items_request_builder.ItemsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def journal_lines(self) -> journal_lines_request_builder.JournalLinesRequestBuilder:
         """
         Provides operations to manage the journalLines property of the microsoft.graph.company entity.
         """
         return journal_lines_request_builder.JournalLinesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def journals(self) -> journals_request_builder.JournalsRequestBuilder:
         """
         Provides operations to manage the journals property of the microsoft.graph.company entity.
         """
         return journals_request_builder.JournalsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def payment_methods(self) -> payment_methods_request_builder.PaymentMethodsRequestBuilder:
         """
         Provides operations to manage the paymentMethods property of the microsoft.graph.company entity.
         """
         return payment_methods_request_builder.PaymentMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def payment_terms(self) -> payment_terms_request_builder.PaymentTermsRequestBuilder:
         """
         Provides operations to manage the paymentTerms property of the microsoft.graph.company entity.
         """
         return payment_terms_request_builder.PaymentTermsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def picture(self) -> picture_request_builder.PictureRequestBuilder:
         """
         Provides operations to manage the picture property of the microsoft.graph.company entity.
         """
         return picture_request_builder.PictureRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def purchase_invoice_lines(self) -> purchase_invoice_lines_request_builder.PurchaseInvoiceLinesRequestBuilder:
         """
         Provides operations to manage the purchaseInvoiceLines property of the microsoft.graph.company entity.
         """
         return purchase_invoice_lines_request_builder.PurchaseInvoiceLinesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def purchase_invoices(self) -> purchase_invoices_request_builder.PurchaseInvoicesRequestBuilder:
         """
         Provides operations to manage the purchaseInvoices property of the microsoft.graph.company entity.
         """
         return purchase_invoices_request_builder.PurchaseInvoicesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sales_credit_memo_lines(self) -> sales_credit_memo_lines_request_builder.SalesCreditMemoLinesRequestBuilder:
         """
         Provides operations to manage the salesCreditMemoLines property of the microsoft.graph.company entity.
         """
         return sales_credit_memo_lines_request_builder.SalesCreditMemoLinesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sales_credit_memos(self) -> sales_credit_memos_request_builder.SalesCreditMemosRequestBuilder:
         """
         Provides operations to manage the salesCreditMemos property of the microsoft.graph.company entity.
         """
         return sales_credit_memos_request_builder.SalesCreditMemosRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sales_invoice_lines(self) -> sales_invoice_lines_request_builder.SalesInvoiceLinesRequestBuilder:
         """
         Provides operations to manage the salesInvoiceLines property of the microsoft.graph.company entity.
         """
         return sales_invoice_lines_request_builder.SalesInvoiceLinesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sales_invoices(self) -> sales_invoices_request_builder.SalesInvoicesRequestBuilder:
         """
         Provides operations to manage the salesInvoices property of the microsoft.graph.company entity.
         """
         return sales_invoices_request_builder.SalesInvoicesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sales_order_lines(self) -> sales_order_lines_request_builder.SalesOrderLinesRequestBuilder:
         """
         Provides operations to manage the salesOrderLines property of the microsoft.graph.company entity.
         """
         return sales_order_lines_request_builder.SalesOrderLinesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sales_orders(self) -> sales_orders_request_builder.SalesOrdersRequestBuilder:
         """
         Provides operations to manage the salesOrders property of the microsoft.graph.company entity.
         """
         return sales_orders_request_builder.SalesOrdersRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sales_quote_lines(self) -> sales_quote_lines_request_builder.SalesQuoteLinesRequestBuilder:
         """
         Provides operations to manage the salesQuoteLines property of the microsoft.graph.company entity.
         """
         return sales_quote_lines_request_builder.SalesQuoteLinesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sales_quotes(self) -> sales_quotes_request_builder.SalesQuotesRequestBuilder:
         """
         Provides operations to manage the salesQuotes property of the microsoft.graph.company entity.
         """
         return sales_quotes_request_builder.SalesQuotesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def shipment_methods(self) -> shipment_methods_request_builder.ShipmentMethodsRequestBuilder:
         """
         Provides operations to manage the shipmentMethods property of the microsoft.graph.company entity.
         """
         return shipment_methods_request_builder.ShipmentMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def tax_areas(self) -> tax_areas_request_builder.TaxAreasRequestBuilder:
         """
         Provides operations to manage the taxAreas property of the microsoft.graph.company entity.
         """
         return tax_areas_request_builder.TaxAreasRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def tax_groups(self) -> tax_groups_request_builder.TaxGroupsRequestBuilder:
         """
         Provides operations to manage the taxGroups property of the microsoft.graph.company entity.
         """
         return tax_groups_request_builder.TaxGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def units_of_measure(self) -> units_of_measure_request_builder.UnitsOfMeasureRequestBuilder:
         """
         Provides operations to manage the unitsOfMeasure property of the microsoft.graph.company entity.
         """
         return units_of_measure_request_builder.UnitsOfMeasureRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def vendors(self) -> vendors_request_builder.VendorsRequestBuilder:
         """
         Provides operations to manage the vendors property of the microsoft.graph.company entity.

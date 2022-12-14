@@ -18,6 +18,7 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder()
     """
     Provides operations to manage the passwordlessMicrosoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
     """
+    @property
     def device(self) -> device_request_builder.DeviceRequestBuilder:
         """
         Provides operations to manage the device property of the microsoft.graph.passwordlessMicrosoftAuthenticatorAuthenticationMethod entity.

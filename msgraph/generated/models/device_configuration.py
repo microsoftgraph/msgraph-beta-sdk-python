@@ -17,9 +17,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 setting_state_device_summary = lazy_import('msgraph.generated.models.setting_state_device_summary')
 
 class DeviceConfiguration(entity.Entity):
-    """
-    Device Configuration.
-    """
     @property
     def assignments(self,) -> Optional[List[device_configuration_assignment.DeviceConfigurationAssignment]]:
         """

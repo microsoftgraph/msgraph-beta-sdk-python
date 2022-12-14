@@ -19,6 +19,7 @@ class LabelsRequestBuilder():
     """
     Provides operations to manage the labels property of the microsoft.graph.security entity.
     """
+    @property
     def retention_labels(self) -> retention_labels_request_builder.RetentionLabelsRequestBuilder:
         """
         Provides operations to manage the retentionLabels property of the microsoft.graph.security.labelsRoot entity.
@@ -81,7 +82,7 @@ class LabelsRequestBuilder():
         """
         Update the navigation property labels in security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +140,7 @@ class LabelsRequestBuilder():
         """
         Update the navigation property labels in security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[labels_root.LabelsRoot]

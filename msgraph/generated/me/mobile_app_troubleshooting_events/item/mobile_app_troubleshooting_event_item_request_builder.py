@@ -19,6 +19,7 @@ class MobileAppTroubleshootingEventItemRequestBuilder():
     """
     Provides operations to manage the mobileAppTroubleshootingEvents property of the microsoft.graph.user entity.
     """
+    @property
     def app_log_collection_requests(self) -> app_log_collection_requests_request_builder.AppLogCollectionRequestsRequestBuilder:
         """
         Provides operations to manage the appLogCollectionRequests property of the microsoft.graph.mobileAppTroubleshootingEvent entity.
@@ -94,7 +95,7 @@ class MobileAppTroubleshootingEventItemRequestBuilder():
         """
         Update the navigation property mobileAppTroubleshootingEvents in me
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +153,7 @@ class MobileAppTroubleshootingEventItemRequestBuilder():
         """
         Update the navigation property mobileAppTroubleshootingEvents in me
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mobile_app_troubleshooting_event.MobileAppTroubleshootingEvent]

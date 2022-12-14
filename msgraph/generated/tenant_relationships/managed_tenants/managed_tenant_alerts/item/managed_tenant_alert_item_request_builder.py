@@ -25,30 +25,35 @@ class ManagedTenantAlertItemRequestBuilder():
     """
     Provides operations to manage the managedTenantAlerts property of the microsoft.graph.managedTenants.managedTenant entity.
     """
+    @property
     def add_user_input_log(self) -> add_user_input_log_request_builder.AddUserInputLogRequestBuilder:
         """
         Provides operations to call the addUserInputLog method.
         """
         return add_user_input_log_request_builder.AddUserInputLogRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def alert_logs(self) -> alert_logs_request_builder.AlertLogsRequestBuilder:
         """
         Provides operations to manage the alertLogs property of the microsoft.graph.managedTenants.managedTenantAlert entity.
         """
         return alert_logs_request_builder.AlertLogsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def alert_rule(self) -> alert_rule_request_builder.AlertRuleRequestBuilder:
         """
         Provides operations to manage the alertRule property of the microsoft.graph.managedTenants.managedTenantAlert entity.
         """
         return alert_rule_request_builder.AlertRuleRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def api_notifications(self) -> api_notifications_request_builder.ApiNotificationsRequestBuilder:
         """
         Provides operations to manage the apiNotifications property of the microsoft.graph.managedTenants.managedTenantAlert entity.
         """
         return api_notifications_request_builder.ApiNotificationsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def email_notifications(self) -> email_notifications_request_builder.EmailNotificationsRequestBuilder:
         """
         Provides operations to manage the emailNotifications property of the microsoft.graph.managedTenants.managedTenantAlert entity.
@@ -137,7 +142,7 @@ class ManagedTenantAlertItemRequestBuilder():
         """
         Update the navigation property managedTenantAlerts in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -208,7 +213,7 @@ class ManagedTenantAlertItemRequestBuilder():
         """
         Update the navigation property managedTenantAlerts in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_tenant_alert.ManagedTenantAlert]

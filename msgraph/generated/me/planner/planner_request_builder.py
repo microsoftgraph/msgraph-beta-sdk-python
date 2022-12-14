@@ -29,36 +29,42 @@ class PlannerRequestBuilder():
     """
     Provides operations to manage the planner property of the microsoft.graph.user entity.
     """
+    @property
     def all(self) -> all_request_builder.AllRequestBuilder:
         """
         Provides operations to manage the all property of the microsoft.graph.plannerUser entity.
         """
         return all_request_builder.AllRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def favorite_plans(self) -> favorite_plans_request_builder.FavoritePlansRequestBuilder:
         """
         Provides operations to manage the favoritePlans property of the microsoft.graph.plannerUser entity.
         """
         return favorite_plans_request_builder.FavoritePlansRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def plans(self) -> plans_request_builder.PlansRequestBuilder:
         """
         Provides operations to manage the plans property of the microsoft.graph.plannerUser entity.
         """
         return plans_request_builder.PlansRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def recent_plans(self) -> recent_plans_request_builder.RecentPlansRequestBuilder:
         """
         Provides operations to manage the recentPlans property of the microsoft.graph.plannerUser entity.
         """
         return recent_plans_request_builder.RecentPlansRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def roster_plans(self) -> roster_plans_request_builder.RosterPlansRequestBuilder:
         """
         Provides operations to manage the rosterPlans property of the microsoft.graph.plannerUser entity.
         """
         return roster_plans_request_builder.RosterPlansRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def tasks(self) -> tasks_request_builder.TasksRequestBuilder:
         """
         Provides operations to manage the tasks property of the microsoft.graph.plannerUser entity.
@@ -134,7 +140,7 @@ class PlannerRequestBuilder():
         """
         Update the properties of a plannerUser object. You can use this operation to add or remove plans from a user's favorite plans list, and to indicate which plans the user has recently viewed.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -205,7 +211,7 @@ class PlannerRequestBuilder():
         """
         Update the properties of a plannerUser object. You can use this operation to add or remove plans from a user's favorite plans list, and to indicate which plans the user has recently viewed.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[planner_user.PlannerUser]

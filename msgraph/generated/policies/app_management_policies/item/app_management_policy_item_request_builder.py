@@ -19,6 +19,7 @@ class AppManagementPolicyItemRequestBuilder():
     """
     Provides operations to manage the appManagementPolicies property of the microsoft.graph.policyRoot entity.
     """
+    @property
     def applies_to(self) -> applies_to_request_builder.AppliesToRequestBuilder:
         """
         Provides operations to manage the appliesTo property of the microsoft.graph.appManagementPolicy entity.
@@ -94,7 +95,7 @@ class AppManagementPolicyItemRequestBuilder():
         """
         Update the navigation property appManagementPolicies in policies
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +153,7 @@ class AppManagementPolicyItemRequestBuilder():
         """
         Update the navigation property appManagementPolicies in policies
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[app_management_policy.AppManagementPolicy]

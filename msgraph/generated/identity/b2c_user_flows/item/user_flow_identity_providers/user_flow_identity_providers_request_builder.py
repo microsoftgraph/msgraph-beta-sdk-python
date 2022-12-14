@@ -18,6 +18,7 @@ class UserFlowIdentityProvidersRequestBuilder():
     """
     Provides operations to manage the userFlowIdentityProviders property of the microsoft.graph.b2cIdentityUserFlow entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.

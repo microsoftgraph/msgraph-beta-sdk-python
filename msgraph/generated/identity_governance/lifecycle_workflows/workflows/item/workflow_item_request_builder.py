@@ -30,48 +30,56 @@ class WorkflowItemRequestBuilder():
     """
     Provides operations to manage the workflows property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
     """
+    @property
     def activate(self) -> activate_request_builder.ActivateRequestBuilder:
         """
         Provides operations to call the activate method.
         """
         return activate_request_builder.ActivateRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def create_new_version(self) -> create_new_version_request_builder.CreateNewVersionRequestBuilder:
         """
         Provides operations to call the createNewVersion method.
         """
         return create_new_version_request_builder.CreateNewVersionRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def execution_scope(self) -> execution_scope_request_builder.ExecutionScopeRequestBuilder:
         """
         Provides operations to manage the executionScope property of the microsoft.graph.identityGovernance.workflow entity.
         """
         return execution_scope_request_builder.ExecutionScopeRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def restore(self) -> restore_request_builder.RestoreRequestBuilder:
         """
         Provides operations to call the restore method.
         """
         return restore_request_builder.RestoreRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def runs(self) -> runs_request_builder.RunsRequestBuilder:
         """
         Provides operations to manage the runs property of the microsoft.graph.identityGovernance.workflow entity.
         """
         return runs_request_builder.RunsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def task_reports(self) -> task_reports_request_builder.TaskReportsRequestBuilder:
         """
         Provides operations to manage the taskReports property of the microsoft.graph.identityGovernance.workflow entity.
         """
         return task_reports_request_builder.TaskReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def user_processing_results(self) -> user_processing_results_request_builder.UserProcessingResultsRequestBuilder:
         """
         Provides operations to manage the userProcessingResults property of the microsoft.graph.identityGovernance.workflow entity.
         """
         return user_processing_results_request_builder.UserProcessingResultsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def versions(self) -> versions_request_builder.VersionsRequestBuilder:
         """
         Provides operations to manage the versions property of the microsoft.graph.identityGovernance.workflow entity.
@@ -134,7 +142,7 @@ class WorkflowItemRequestBuilder():
         """
         Update the navigation property workflows in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -205,7 +213,7 @@ class WorkflowItemRequestBuilder():
         """
         Update the navigation property workflows in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[workflow.Workflow]

@@ -20,18 +20,21 @@ class PrivilegedRoleAssignmentItemRequestBuilder():
     """
     Provides operations to manage the collection of privilegedRoleAssignment entities.
     """
+    @property
     def make_eligible(self) -> make_eligible_request_builder.MakeEligibleRequestBuilder:
         """
         Provides operations to call the makeEligible method.
         """
         return make_eligible_request_builder.MakeEligibleRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def make_permanent(self) -> make_permanent_request_builder.MakePermanentRequestBuilder:
         """
         Provides operations to call the makePermanent method.
         """
         return make_permanent_request_builder.MakePermanentRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def role_info(self) -> role_info_request_builder.RoleInfoRequestBuilder:
         """
         Provides operations to manage the roleInfo property of the microsoft.graph.privilegedRoleAssignment entity.
@@ -94,7 +97,7 @@ class PrivilegedRoleAssignmentItemRequestBuilder():
         """
         Update entity in privilegedRoleAssignments
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +155,7 @@ class PrivilegedRoleAssignmentItemRequestBuilder():
         """
         Update entity in privilegedRoleAssignments
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_role_assignment.PrivilegedRoleAssignment]

@@ -19,6 +19,7 @@ class LegalHoldsRequestBuilder():
     """
     Provides operations to manage the legalHolds property of the microsoft.graph.security.ediscoveryCase entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
@@ -65,7 +66,7 @@ class LegalHoldsRequestBuilder():
         """
         Create a new ediscoveryHoldPolicy object.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +106,7 @@ class LegalHoldsRequestBuilder():
         """
         Create a new ediscoveryHoldPolicy object.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscovery_hold_policy.EdiscoveryHoldPolicy]

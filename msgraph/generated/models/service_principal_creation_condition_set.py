@@ -7,7 +7,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class ServicePrincipalCreationConditionSet(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Casts the previous resource to application.
     """
     @property
     def application_ids(self,) -> Optional[List[str]]:

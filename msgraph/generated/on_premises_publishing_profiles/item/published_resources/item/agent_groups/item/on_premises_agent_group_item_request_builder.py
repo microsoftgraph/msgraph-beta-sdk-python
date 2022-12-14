@@ -10,6 +10,7 @@ class OnPremisesAgentGroupItemRequestBuilder():
     """
     Builds and executes requests for operations under /onPremisesPublishingProfiles/{onPremisesPublishingProfile-id}/publishedResources/{publishedResource-id}/agentGroups/{onPremisesAgentGroup-id}
     """
+    @property
     def ref(self) -> ref_request_builder.RefRequestBuilder:
         """
         Provides operations to manage the collection of onPremisesPublishingProfile entities.

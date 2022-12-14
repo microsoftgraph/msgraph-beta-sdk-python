@@ -19,12 +19,14 @@ class PurchaseInvoiceLineItemRequestBuilder():
     """
     Provides operations to manage the purchaseInvoiceLines property of the microsoft.graph.purchaseInvoice entity.
     """
+    @property
     def account(self) -> account_request_builder.AccountRequestBuilder:
         """
         Provides operations to manage the account property of the microsoft.graph.purchaseInvoiceLine entity.
         """
         return account_request_builder.AccountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def item(self) -> item_request_builder.ItemRequestBuilder:
         """
         Provides operations to manage the item property of the microsoft.graph.purchaseInvoiceLine entity.
@@ -71,7 +73,7 @@ class PurchaseInvoiceLineItemRequestBuilder():
         """
         Update the navigation property purchaseInvoiceLines in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -111,7 +113,7 @@ class PurchaseInvoiceLineItemRequestBuilder():
         """
         Update the navigation property purchaseInvoiceLines in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[purchase_invoice_line.PurchaseInvoiceLine]

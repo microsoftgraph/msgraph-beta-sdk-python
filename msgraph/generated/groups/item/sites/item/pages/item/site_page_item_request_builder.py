@@ -10,7 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
+canvas_layout_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.pages.item.canvas_layout.canvas_layout_request_builder')
+get_web_parts_by_position_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.pages.item.get_web_parts_by_position.get_web_parts_by_position_request_builder')
 publish_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.pages.item.publish.publish_request_builder')
+web_parts_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.pages.item.web_parts.web_parts_request_builder')
+web_part_item_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.pages.item.web_parts.item.web_part_item_request_builder')
 site_page = lazy_import('msgraph.generated.models.site_page')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -18,11 +22,33 @@ class SitePageItemRequestBuilder():
     """
     Provides operations to manage the pages property of the microsoft.graph.site entity.
     """
+    @property
+    def canvas_layout(self) -> canvas_layout_request_builder.CanvasLayoutRequestBuilder:
+        """
+        Provides operations to manage the canvasLayout property of the microsoft.graph.sitePage entity.
+        """
+        return canvas_layout_request_builder.CanvasLayoutRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_web_parts_by_position(self) -> get_web_parts_by_position_request_builder.GetWebPartsByPositionRequestBuilder:
+        """
+        Provides operations to call the getWebPartsByPosition method.
+        """
+        return get_web_parts_by_position_request_builder.GetWebPartsByPositionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def publish(self) -> publish_request_builder.PublishRequestBuilder:
         """
         Provides operations to call the publish method.
         """
         return publish_request_builder.PublishRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def web_parts(self) -> web_parts_request_builder.WebPartsRequestBuilder:
+        """
+        Provides operations to manage the webParts property of the microsoft.graph.sitePage entity.
+        """
+        return web_parts_request_builder.WebPartsRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -80,7 +106,7 @@ class SitePageItemRequestBuilder():
         """
         Update the navigation property pages in groups
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +164,7 @@ class SitePageItemRequestBuilder():
         """
         Update the navigation property pages in groups
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[site_page.SitePage]
@@ -155,6 +181,19 @@ class SitePageItemRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, site_page.SitePage, response_handler, error_mapping)
+    
+    def web_parts_by_id(self,id: str) -> web_part_item_request_builder.WebPartItemRequestBuilder:
+        """
+        Provides operations to manage the webParts property of the microsoft.graph.sitePage entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: web_part_item_request_builder.WebPartItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["webPart%2Did"] = id
+        return web_part_item_request_builder.WebPartItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     @dataclass
     class SitePageItemRequestBuilderDeleteRequestConfiguration():

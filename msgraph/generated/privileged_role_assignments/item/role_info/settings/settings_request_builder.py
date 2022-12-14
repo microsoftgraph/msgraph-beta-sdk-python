@@ -73,7 +73,7 @@ class SettingsRequestBuilder():
         """
         Update the role settings for the given role setting. A privilegedRoleSettings object will be returned.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -131,7 +131,7 @@ class SettingsRequestBuilder():
         """
         Update the role settings for the given role setting. A privilegedRoleSettings object will be returned.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_role_settings.PrivilegedRoleSettings]

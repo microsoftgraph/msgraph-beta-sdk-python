@@ -18,6 +18,7 @@ class CaseOperationItemRequestBuilder():
     """
     Provides operations to manage the operations property of the microsoft.graph.ediscovery.case entity.
     """
+    @property
     def case_export_operation(self) -> case_export_operation_request_builder.CaseExportOperationRequestBuilder:
         """
         Casts the previous resource to caseExportOperation.
@@ -80,7 +81,7 @@ class CaseOperationItemRequestBuilder():
         """
         Update the navigation property operations in compliance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class CaseOperationItemRequestBuilder():
         """
         Update the navigation property operations in compliance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[case_operation.CaseOperation]

@@ -25,24 +25,28 @@ class IdentityProtectionRequestBuilder():
     """
     Provides operations to manage the identityProtectionRoot singleton.
     """
+    @property
     def risk_detections(self) -> risk_detections_request_builder.RiskDetectionsRequestBuilder:
         """
         Provides operations to manage the riskDetections property of the microsoft.graph.identityProtectionRoot entity.
         """
         return risk_detections_request_builder.RiskDetectionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def risky_service_principals(self) -> risky_service_principals_request_builder.RiskyServicePrincipalsRequestBuilder:
         """
         Provides operations to manage the riskyServicePrincipals property of the microsoft.graph.identityProtectionRoot entity.
         """
         return risky_service_principals_request_builder.RiskyServicePrincipalsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def risky_users(self) -> risky_users_request_builder.RiskyUsersRequestBuilder:
         """
         Provides operations to manage the riskyUsers property of the microsoft.graph.identityProtectionRoot entity.
         """
         return risky_users_request_builder.RiskyUsersRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def service_principal_risk_detections(self) -> service_principal_risk_detections_request_builder.ServicePrincipalRiskDetectionsRequestBuilder:
         """
         Provides operations to manage the servicePrincipalRiskDetections property of the microsoft.graph.identityProtectionRoot entity.
@@ -89,7 +93,7 @@ class IdentityProtectionRequestBuilder():
         """
         Update identityProtection
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -129,7 +133,7 @@ class IdentityProtectionRequestBuilder():
         """
         Update identityProtection
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[identity_protection_root.IdentityProtectionRoot]

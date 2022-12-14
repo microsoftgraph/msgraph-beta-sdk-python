@@ -9,18 +9,18 @@ synchronization_schema = lazy_import('msgraph.generated.models.synchronization_s
 
 class SynchronizationTemplate(entity.Entity):
     """
-    Casts the previous resource to application.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
-    def application_id(self,) -> Optional[str]:
+    def application_id(self,) -> Optional[Guid]:
         """
         Gets the applicationId property value. Identifier of the application this template belongs to.
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._application_id
     
     @application_id.setter
-    def application_id(self,value: Optional[str] = None) -> None:
+    def application_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the applicationId property value. Identifier of the application this template belongs to.
         Args:
@@ -34,7 +34,7 @@ class SynchronizationTemplate(entity.Entity):
         """
         super().__init__()
         # Identifier of the application this template belongs to.
-        self._application_id: Optional[str] = None
+        self._application_id: Optional[Guid] = None
         # true if this template is recommended to be the default for the application.
         self._default: Optional[bool] = None
         # Description of the template.
@@ -136,7 +136,7 @@ class SynchronizationTemplate(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "application_id": lambda n : setattr(self, 'application_id', n.get_str_value()),
+            "application_id": lambda n : setattr(self, 'application_id', n.get_object_value(Guid)),
             "default": lambda n : setattr(self, 'default', n.get_bool_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "discoverable": lambda n : setattr(self, 'discoverable', n.get_bool_value()),
@@ -191,7 +191,7 @@ class SynchronizationTemplate(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_str_value("applicationId", self.application_id)
+        writer.write_object_value("applicationId", self.application_id)
         writer.write_bool_value("default", self.default)
         writer.write_str_value("description", self.description)
         writer.write_bool_value("discoverable", self.discoverable)

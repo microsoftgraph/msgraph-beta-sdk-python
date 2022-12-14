@@ -27,36 +27,42 @@ class TeamworkRequestBuilder():
     """
     Provides operations to manage the teamwork singleton.
     """
+    @property
     def deleted_teams(self) -> deleted_teams_request_builder.DeletedTeamsRequestBuilder:
         """
         Provides operations to manage the deletedTeams property of the microsoft.graph.teamwork entity.
         """
         return deleted_teams_request_builder.DeletedTeamsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def devices(self) -> devices_request_builder.DevicesRequestBuilder:
         """
         Provides operations to manage the devices property of the microsoft.graph.teamwork entity.
         """
         return devices_request_builder.DevicesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def send_activity_notification_to_recipients(self) -> send_activity_notification_to_recipients_request_builder.SendActivityNotificationToRecipientsRequestBuilder:
         """
         Provides operations to call the sendActivityNotificationToRecipients method.
         """
         return send_activity_notification_to_recipients_request_builder.SendActivityNotificationToRecipientsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def teams_app_settings(self) -> teams_app_settings_request_builder.TeamsAppSettingsRequestBuilder:
         """
         Provides operations to manage the teamsAppSettings property of the microsoft.graph.teamwork entity.
         """
         return teams_app_settings_request_builder.TeamsAppSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def team_templates(self) -> team_templates_request_builder.TeamTemplatesRequestBuilder:
         """
         Provides operations to manage the teamTemplates property of the microsoft.graph.teamwork entity.
         """
         return team_templates_request_builder.TeamTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def workforce_integrations(self) -> workforce_integrations_request_builder.WorkforceIntegrationsRequestBuilder:
         """
         Provides operations to manage the workforceIntegrations property of the microsoft.graph.teamwork entity.
@@ -103,7 +109,7 @@ class TeamworkRequestBuilder():
         """
         Update teamwork
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -169,7 +175,7 @@ class TeamworkRequestBuilder():
         """
         Update teamwork
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[teamwork.Teamwork]

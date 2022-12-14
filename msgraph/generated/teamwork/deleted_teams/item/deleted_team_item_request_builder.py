@@ -19,6 +19,7 @@ class DeletedTeamItemRequestBuilder():
     """
     Provides operations to manage the deletedTeams property of the microsoft.graph.teamwork entity.
     """
+    @property
     def channels(self) -> channels_request_builder.ChannelsRequestBuilder:
         """
         Provides operations to manage the channels property of the microsoft.graph.deletedTeam entity.
@@ -94,7 +95,7 @@ class DeletedTeamItemRequestBuilder():
         """
         Update the navigation property deletedTeams in teamwork
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +153,7 @@ class DeletedTeamItemRequestBuilder():
         """
         Update the navigation property deletedTeams in teamwork
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[deleted_team.DeletedTeam]

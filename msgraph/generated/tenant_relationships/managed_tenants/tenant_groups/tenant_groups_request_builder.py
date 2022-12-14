@@ -20,12 +20,14 @@ class TenantGroupsRequestBuilder():
     """
     Provides operations to manage the tenantGroups property of the microsoft.graph.managedTenants.managedTenant entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def tenant_search(self) -> tenant_search_request_builder.TenantSearchRequestBuilder:
         """
         Provides operations to call the tenantSearch method.
@@ -72,7 +74,7 @@ class TenantGroupsRequestBuilder():
         """
         Create new navigation property to tenantGroups for tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +114,7 @@ class TenantGroupsRequestBuilder():
         """
         Create new navigation property to tenantGroups for tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_group.TenantGroup]

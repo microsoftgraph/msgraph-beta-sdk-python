@@ -21,12 +21,14 @@ class MonitoringRequestBuilder():
     """
     Provides operations to manage the monitoring singleton.
     """
+    @property
     def alert_records(self) -> alert_records_request_builder.AlertRecordsRequestBuilder:
         """
         Provides operations to manage the alertRecords property of the microsoft.graph.deviceManagement.monitoring entity.
         """
         return alert_records_request_builder.AlertRecordsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def alert_rules(self) -> alert_rules_request_builder.AlertRulesRequestBuilder:
         """
         Provides operations to manage the alertRules property of the microsoft.graph.deviceManagement.monitoring entity.
@@ -99,7 +101,7 @@ class MonitoringRequestBuilder():
         """
         Update monitoring
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +141,7 @@ class MonitoringRequestBuilder():
         """
         Update monitoring
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[monitoring.Monitoring]

@@ -23,24 +23,28 @@ class DeviceComplianceScriptItemRequestBuilder():
     """
     Provides operations to manage the deviceComplianceScripts property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def assign(self) -> assign_request_builder.AssignRequestBuilder:
         """
         Provides operations to call the assign method.
         """
         return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.deviceComplianceScript entity.
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def device_run_states(self) -> device_run_states_request_builder.DeviceRunStatesRequestBuilder:
         """
         Provides operations to manage the deviceRunStates property of the microsoft.graph.deviceComplianceScript entity.
         """
         return device_run_states_request_builder.DeviceRunStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def run_summary(self) -> run_summary_request_builder.RunSummaryRequestBuilder:
         """
         Provides operations to manage the runSummary property of the microsoft.graph.deviceComplianceScript entity.
@@ -116,7 +120,7 @@ class DeviceComplianceScriptItemRequestBuilder():
         """
         Update the navigation property deviceComplianceScripts in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -187,7 +191,7 @@ class DeviceComplianceScriptItemRequestBuilder():
         """
         Update the navigation property deviceComplianceScripts in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_compliance_script.DeviceComplianceScript]

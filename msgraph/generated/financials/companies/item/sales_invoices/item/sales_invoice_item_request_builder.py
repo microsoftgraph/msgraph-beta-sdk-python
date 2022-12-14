@@ -28,60 +28,70 @@ class SalesInvoiceItemRequestBuilder():
     """
     Provides operations to manage the salesInvoices property of the microsoft.graph.company entity.
     """
+    @property
     def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
         """
         Provides operations to call the cancel method.
         """
         return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def cancel_and_send(self) -> cancel_and_send_request_builder.CancelAndSendRequestBuilder:
         """
         Provides operations to call the cancelAndSend method.
         """
         return cancel_and_send_request_builder.CancelAndSendRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def currency(self) -> currency_request_builder.CurrencyRequestBuilder:
         """
         Provides operations to manage the currency property of the microsoft.graph.salesInvoice entity.
         """
         return currency_request_builder.CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def customer(self) -> customer_request_builder.CustomerRequestBuilder:
         """
         Provides operations to manage the customer property of the microsoft.graph.salesInvoice entity.
         """
         return customer_request_builder.CustomerRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def payment_term(self) -> payment_term_request_builder.PaymentTermRequestBuilder:
         """
         Provides operations to manage the paymentTerm property of the microsoft.graph.salesInvoice entity.
         """
         return payment_term_request_builder.PaymentTermRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def post(self) -> post_request_builder.PostRequestBuilder:
         """
         Provides operations to call the post method.
         """
         return post_request_builder.PostRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def post_and_send(self) -> post_and_send_request_builder.PostAndSendRequestBuilder:
         """
         Provides operations to call the postAndSend method.
         """
         return post_and_send_request_builder.PostAndSendRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sales_invoice_lines(self) -> sales_invoice_lines_request_builder.SalesInvoiceLinesRequestBuilder:
         """
         Provides operations to manage the salesInvoiceLines property of the microsoft.graph.salesInvoice entity.
         """
         return sales_invoice_lines_request_builder.SalesInvoiceLinesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def send(self) -> send_request_builder.SendRequestBuilder:
         """
         Provides operations to call the send method.
         """
         return send_request_builder.SendRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def shipment_method(self) -> shipment_method_request_builder.ShipmentMethodRequestBuilder:
         """
         Provides operations to manage the shipmentMethod property of the microsoft.graph.salesInvoice entity.
@@ -128,7 +138,7 @@ class SalesInvoiceItemRequestBuilder():
         """
         Update the navigation property salesInvoices in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -168,7 +178,7 @@ class SalesInvoiceItemRequestBuilder():
         """
         Update the navigation property salesInvoices in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sales_invoice.SalesInvoice]

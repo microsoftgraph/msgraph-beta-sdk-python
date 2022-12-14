@@ -18,6 +18,7 @@ class ManagedTenantApiNotificationItemRequestBuilder():
     """
     Provides operations to manage the managedTenantApiNotifications property of the microsoft.graph.managedTenants.managedTenant entity.
     """
+    @property
     def alert(self) -> alert_request_builder.AlertRequestBuilder:
         """
         Provides operations to manage the alert property of the microsoft.graph.managedTenants.managedTenantApiNotification entity.
@@ -80,7 +81,7 @@ class ManagedTenantApiNotificationItemRequestBuilder():
         """
         Update the navigation property managedTenantApiNotifications in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class ManagedTenantApiNotificationItemRequestBuilder():
         """
         Update the navigation property managedTenantApiNotifications in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_tenant_api_notification.ManagedTenantApiNotification]

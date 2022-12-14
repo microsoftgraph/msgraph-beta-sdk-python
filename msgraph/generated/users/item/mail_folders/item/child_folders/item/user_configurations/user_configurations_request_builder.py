@@ -18,6 +18,7 @@ class UserConfigurationsRequestBuilder():
     """
     Provides operations to manage the userConfigurations property of the microsoft.graph.mailFolder entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.

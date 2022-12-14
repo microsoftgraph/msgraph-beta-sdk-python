@@ -19,12 +19,14 @@ class AccessPackageResourceRequestItemRequestBuilder():
     """
     Provides operations to manage the accessPackageResourceRequests property of the microsoft.graph.entitlementManagement entity.
     """
+    @property
     def access_package_resource(self) -> access_package_resource_request_builder.AccessPackageResourceRequestBuilder:
         """
         Provides operations to manage the accessPackageResource property of the microsoft.graph.accessPackageResourceRequest entity.
         """
         return access_package_resource_request_builder.AccessPackageResourceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def requestor(self) -> requestor_request_builder.RequestorRequestBuilder:
         """
         Provides operations to manage the requestor property of the microsoft.graph.accessPackageResourceRequest entity.
@@ -87,7 +89,7 @@ class AccessPackageResourceRequestItemRequestBuilder():
         """
         Update the navigation property accessPackageResourceRequests in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +147,7 @@ class AccessPackageResourceRequestItemRequestBuilder():
         """
         Update the navigation property accessPackageResourceRequests in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_resource_request.AccessPackageResourceRequest]

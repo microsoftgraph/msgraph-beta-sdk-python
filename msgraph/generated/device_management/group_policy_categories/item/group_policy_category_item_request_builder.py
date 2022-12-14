@@ -23,24 +23,28 @@ class GroupPolicyCategoryItemRequestBuilder():
     """
     Provides operations to manage the groupPolicyCategories property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def children(self) -> children_request_builder.ChildrenRequestBuilder:
         """
         Provides operations to manage the children property of the microsoft.graph.groupPolicyCategory entity.
         """
         return children_request_builder.ChildrenRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def definition_file(self) -> definition_file_request_builder.DefinitionFileRequestBuilder:
         """
         Provides operations to manage the definitionFile property of the microsoft.graph.groupPolicyCategory entity.
         """
         return definition_file_request_builder.DefinitionFileRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def definitions(self) -> definitions_request_builder.DefinitionsRequestBuilder:
         """
         Provides operations to manage the definitions property of the microsoft.graph.groupPolicyCategory entity.
         """
         return definitions_request_builder.DefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def parent(self) -> parent_request_builder.ParentRequestBuilder:
         """
         Provides operations to manage the parent property of the microsoft.graph.groupPolicyCategory entity.
@@ -116,7 +120,7 @@ class GroupPolicyCategoryItemRequestBuilder():
         """
         Update the navigation property groupPolicyCategories in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -187,7 +191,7 @@ class GroupPolicyCategoryItemRequestBuilder():
         """
         Update the navigation property groupPolicyCategories in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_policy_category.GroupPolicyCategory]

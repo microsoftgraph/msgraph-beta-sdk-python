@@ -22,24 +22,28 @@ class SalesOrderItemRequestBuilder():
     """
     Provides operations to manage the salesOrders property of the microsoft.graph.company entity.
     """
+    @property
     def currency(self) -> currency_request_builder.CurrencyRequestBuilder:
         """
         Provides operations to manage the currency property of the microsoft.graph.salesOrder entity.
         """
         return currency_request_builder.CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def customer(self) -> customer_request_builder.CustomerRequestBuilder:
         """
         Provides operations to manage the customer property of the microsoft.graph.salesOrder entity.
         """
         return customer_request_builder.CustomerRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def payment_term(self) -> payment_term_request_builder.PaymentTermRequestBuilder:
         """
         Provides operations to manage the paymentTerm property of the microsoft.graph.salesOrder entity.
         """
         return payment_term_request_builder.PaymentTermRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sales_order_lines(self) -> sales_order_lines_request_builder.SalesOrderLinesRequestBuilder:
         """
         Provides operations to manage the salesOrderLines property of the microsoft.graph.salesOrder entity.
@@ -86,7 +90,7 @@ class SalesOrderItemRequestBuilder():
         """
         Update the navigation property salesOrders in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -126,7 +130,7 @@ class SalesOrderItemRequestBuilder():
         """
         Update the navigation property salesOrders in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sales_order.SalesOrder]

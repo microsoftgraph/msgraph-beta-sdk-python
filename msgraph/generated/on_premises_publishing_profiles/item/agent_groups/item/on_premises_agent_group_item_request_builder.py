@@ -21,12 +21,14 @@ class OnPremisesAgentGroupItemRequestBuilder():
     """
     Provides operations to manage the agentGroups property of the microsoft.graph.onPremisesPublishingProfile entity.
     """
+    @property
     def agents(self) -> agents_request_builder.AgentsRequestBuilder:
         """
         Provides operations to manage the agents property of the microsoft.graph.onPremisesAgentGroup entity.
         """
         return agents_request_builder.AgentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def published_resources(self) -> published_resources_request_builder.PublishedResourcesRequestBuilder:
         """
         Provides operations to manage the publishedResources property of the microsoft.graph.onPremisesAgentGroup entity.
@@ -102,7 +104,7 @@ class OnPremisesAgentGroupItemRequestBuilder():
         """
         Update the navigation property agentGroups in onPremisesPublishingProfiles
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -160,7 +162,7 @@ class OnPremisesAgentGroupItemRequestBuilder():
         """
         Update the navigation property agentGroups in onPremisesPublishingProfiles
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[on_premises_agent_group.OnPremisesAgentGroup]

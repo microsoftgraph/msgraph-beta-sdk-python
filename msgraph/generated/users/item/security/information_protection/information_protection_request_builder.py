@@ -20,12 +20,14 @@ class InformationProtectionRequestBuilder():
     """
     Provides operations to manage the informationProtection property of the microsoft.graph.security.security entity.
     """
+    @property
     def label_policy_settings(self) -> label_policy_settings_request_builder.LabelPolicySettingsRequestBuilder:
         """
         Provides operations to manage the labelPolicySettings property of the microsoft.graph.security.informationProtection entity.
         """
         return label_policy_settings_request_builder.LabelPolicySettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sensitivity_labels(self) -> sensitivity_labels_request_builder.SensitivityLabelsRequestBuilder:
         """
         Provides operations to manage the sensitivityLabels property of the microsoft.graph.security.informationProtection entity.
@@ -88,7 +90,7 @@ class InformationProtectionRequestBuilder():
         """
         Update the navigation property informationProtection in users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -146,7 +148,7 @@ class InformationProtectionRequestBuilder():
         """
         Update the navigation property informationProtection in users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[information_protection.InformationProtection]

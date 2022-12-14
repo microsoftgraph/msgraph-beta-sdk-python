@@ -24,18 +24,21 @@ class TenantRelationshipsRequestBuilder():
     """
     Provides operations to manage the tenantRelationship singleton.
     """
+    @property
     def delegated_admin_customers(self) -> delegated_admin_customers_request_builder.DelegatedAdminCustomersRequestBuilder:
         """
         Provides operations to manage the delegatedAdminCustomers property of the microsoft.graph.tenantRelationship entity.
         """
         return delegated_admin_customers_request_builder.DelegatedAdminCustomersRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def delegated_admin_relationships(self) -> delegated_admin_relationships_request_builder.DelegatedAdminRelationshipsRequestBuilder:
         """
         Provides operations to manage the delegatedAdminRelationships property of the microsoft.graph.tenantRelationship entity.
         """
         return delegated_admin_relationships_request_builder.DelegatedAdminRelationshipsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def managed_tenants(self) -> managed_tenants_request_builder.ManagedTenantsRequestBuilder:
         """
         Provides operations to manage the managedTenants property of the microsoft.graph.tenantRelationship entity.
@@ -82,7 +85,7 @@ class TenantRelationshipsRequestBuilder():
         """
         Update tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -170,7 +173,7 @@ class TenantRelationshipsRequestBuilder():
         """
         Update tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_relationship.TenantRelationship]

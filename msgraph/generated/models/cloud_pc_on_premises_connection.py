@@ -117,6 +117,8 @@ class CloudPcOnPremisesConnection(entity.Entity):
         self._type: Optional[cloud_pc_on_premises_connection_type.CloudPcOnPremisesConnectionType] = None
         # The ID of the target virtual network. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}.
         self._virtual_network_id: Optional[str] = None
+        # The virtualNetworkLocation property
+        self._virtual_network_location: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcOnPremisesConnection:
@@ -169,6 +171,7 @@ class CloudPcOnPremisesConnection(entity.Entity):
             "subscription_name": lambda n : setattr(self, 'subscription_name', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(cloud_pc_on_premises_connection_type.CloudPcOnPremisesConnectionType)),
             "virtual_network_id": lambda n : setattr(self, 'virtual_network_id', n.get_str_value()),
+            "virtual_network_location": lambda n : setattr(self, 'virtual_network_location', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -301,6 +304,7 @@ class CloudPcOnPremisesConnection(entity.Entity):
         writer.write_str_value("subscriptionName", self.subscription_name)
         writer.write_enum_value("type", self.type)
         writer.write_str_value("virtualNetworkId", self.virtual_network_id)
+        writer.write_str_value("virtualNetworkLocation", self.virtual_network_location)
     
     @property
     def subnet_id(self,) -> Optional[str]:
@@ -386,5 +390,22 @@ class CloudPcOnPremisesConnection(entity.Entity):
             value: Value to set for the virtualNetworkId property.
         """
         self._virtual_network_id = value
+    
+    @property
+    def virtual_network_location(self,) -> Optional[str]:
+        """
+        Gets the virtualNetworkLocation property value. The virtualNetworkLocation property
+        Returns: Optional[str]
+        """
+        return self._virtual_network_location
+    
+    @virtual_network_location.setter
+    def virtual_network_location(self,value: Optional[str] = None) -> None:
+        """
+        Sets the virtualNetworkLocation property value. The virtualNetworkLocation property
+        Args:
+            value: Value to set for the virtualNetworkLocation property.
+        """
+        self._virtual_network_location = value
     
 

@@ -22,24 +22,28 @@ class EdiscoveryFileItemRequestBuilder():
     """
     Provides operations to manage the files property of the microsoft.graph.security.ediscoveryReviewSet entity.
     """
+    @property
     def content(self) -> content_request_builder.ContentRequestBuilder:
         """
         Provides operations to manage the media for the security entity.
         """
         return content_request_builder.ContentRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def custodian(self) -> custodian_request_builder.CustodianRequestBuilder:
         """
         Provides operations to manage the custodian property of the microsoft.graph.security.ediscoveryFile entity.
         """
         return custodian_request_builder.CustodianRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def extracted_text_content(self) -> extracted_text_content_request_builder.ExtractedTextContentRequestBuilder:
         """
         Provides operations to manage the media for the security entity.
         """
         return extracted_text_content_request_builder.ExtractedTextContentRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def tags(self) -> tags_request_builder.TagsRequestBuilder:
         """
         Provides operations to manage the tags property of the microsoft.graph.security.ediscoveryFile entity.
@@ -102,7 +106,7 @@ class EdiscoveryFileItemRequestBuilder():
         """
         Update the navigation property files in security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -160,7 +164,7 @@ class EdiscoveryFileItemRequestBuilder():
         """
         Update the navigation property files in security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscovery_file.EdiscoveryFile]

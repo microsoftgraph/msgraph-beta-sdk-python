@@ -26,42 +26,49 @@ class ManagedDevicesRequestBuilder():
     """
     Provides operations to manage the managedDevices property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def bulk_reprovision_cloud_pc(self) -> bulk_reprovision_cloud_pc_request_builder.BulkReprovisionCloudPcRequestBuilder:
         """
         Provides operations to call the bulkReprovisionCloudPc method.
         """
         return bulk_reprovision_cloud_pc_request_builder.BulkReprovisionCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def bulk_restore_cloud_pc(self) -> bulk_restore_cloud_pc_request_builder.BulkRestoreCloudPcRequestBuilder:
         """
         Provides operations to call the bulkRestoreCloudPc method.
         """
         return bulk_restore_cloud_pc_request_builder.BulkRestoreCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def bulk_set_cloud_pc_review_status(self) -> bulk_set_cloud_pc_review_status_request_builder.BulkSetCloudPcReviewStatusRequestBuilder:
         """
         Provides operations to call the bulkSetCloudPcReviewStatus method.
         """
         return bulk_set_cloud_pc_review_status_request_builder.BulkSetCloudPcReviewStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def download_app_diagnostics(self) -> download_app_diagnostics_request_builder.DownloadAppDiagnosticsRequestBuilder:
         """
         Provides operations to call the downloadAppDiagnostics method.
         """
         return download_app_diagnostics_request_builder.DownloadAppDiagnosticsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def execute_action(self) -> execute_action_request_builder.ExecuteActionRequestBuilder:
         """
         Provides operations to call the executeAction method.
         """
         return execute_action_request_builder.ExecuteActionRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def move_devices_to_o_u(self) -> move_devices_to_o_u_request_builder.MoveDevicesToOURequestBuilder:
         """
         Provides operations to call the moveDevicesToOU method.
@@ -119,7 +126,7 @@ class ManagedDevicesRequestBuilder():
         """
         Create new navigation property to managedDevices for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +166,7 @@ class ManagedDevicesRequestBuilder():
         """
         Create new navigation property to managedDevices for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_device.ManagedDevice]

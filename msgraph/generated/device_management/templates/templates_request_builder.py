@@ -20,12 +20,14 @@ class TemplatesRequestBuilder():
     """
     Provides operations to manage the templates property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def import_office365_device_configuration_policies(self) -> import_office365_device_configuration_policies_request_builder.ImportOffice365DeviceConfigurationPoliciesRequestBuilder:
         """
         Provides operations to call the importOffice365DeviceConfigurationPolicies method.
@@ -72,7 +74,7 @@ class TemplatesRequestBuilder():
         """
         Create new navigation property to templates for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +114,7 @@ class TemplatesRequestBuilder():
         """
         Create new navigation property to templates for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_template.DeviceManagementTemplate]

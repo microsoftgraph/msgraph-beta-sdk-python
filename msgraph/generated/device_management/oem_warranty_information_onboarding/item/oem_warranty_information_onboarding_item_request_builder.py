@@ -19,12 +19,14 @@ class OemWarrantyInformationOnboardingItemRequestBuilder():
     """
     Provides operations to manage the oemWarrantyInformationOnboarding property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def disable(self) -> disable_request_builder.DisableRequestBuilder:
         """
         Provides operations to call the disable method.
         """
         return disable_request_builder.DisableRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def enable(self) -> enable_request_builder.EnableRequestBuilder:
         """
         Provides operations to call the enable method.
@@ -87,7 +89,7 @@ class OemWarrantyInformationOnboardingItemRequestBuilder():
         """
         Update the navigation property oemWarrantyInformationOnboarding in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +147,7 @@ class OemWarrantyInformationOnboardingItemRequestBuilder():
         """
         Update the navigation property oemWarrantyInformationOnboarding in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[oem_warranty_information_onboarding.OemWarrantyInformationOnboarding]

@@ -23,6 +23,7 @@ class AuthenticationMethodsRequestBuilder():
     """
     Provides operations to manage the authenticationMethods property of the microsoft.graph.reportRoot entity.
     """
+    @property
     def user_registration_details(self) -> user_registration_details_request_builder.UserRegistrationDetailsRequestBuilder:
         """
         Provides operations to manage the userRegistrationDetails property of the microsoft.graph.authenticationMethodsRoot entity.
@@ -85,7 +86,7 @@ class AuthenticationMethodsRequestBuilder():
         """
         Update the navigation property authenticationMethods in print
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -143,7 +144,7 @@ class AuthenticationMethodsRequestBuilder():
         """
         Update the navigation property authenticationMethods in print
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_methods_root.AuthenticationMethodsRoot]

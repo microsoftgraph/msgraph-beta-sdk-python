@@ -24,42 +24,49 @@ class UserExperienceAnalyticsBaselineItemRequestBuilder():
     """
     Provides operations to manage the userExperienceAnalyticsBaselines property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def app_health_metrics(self) -> app_health_metrics_request_builder.AppHealthMetricsRequestBuilder:
         """
         Provides operations to manage the appHealthMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
         """
         return app_health_metrics_request_builder.AppHealthMetricsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def battery_health_metrics(self) -> battery_health_metrics_request_builder.BatteryHealthMetricsRequestBuilder:
         """
         Provides operations to manage the batteryHealthMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
         """
         return battery_health_metrics_request_builder.BatteryHealthMetricsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def best_practices_metrics(self) -> best_practices_metrics_request_builder.BestPracticesMetricsRequestBuilder:
         """
         Provides operations to manage the bestPracticesMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
         """
         return best_practices_metrics_request_builder.BestPracticesMetricsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def device_boot_performance_metrics(self) -> device_boot_performance_metrics_request_builder.DeviceBootPerformanceMetricsRequestBuilder:
         """
         Provides operations to manage the deviceBootPerformanceMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
         """
         return device_boot_performance_metrics_request_builder.DeviceBootPerformanceMetricsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def reboot_analytics_metrics(self) -> reboot_analytics_metrics_request_builder.RebootAnalyticsMetricsRequestBuilder:
         """
         Provides operations to manage the rebootAnalyticsMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
         """
         return reboot_analytics_metrics_request_builder.RebootAnalyticsMetricsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def resource_performance_metrics(self) -> resource_performance_metrics_request_builder.ResourcePerformanceMetricsRequestBuilder:
         """
         Provides operations to manage the resourcePerformanceMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
         """
         return resource_performance_metrics_request_builder.ResourcePerformanceMetricsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def work_from_anywhere_metrics(self) -> work_from_anywhere_metrics_request_builder.WorkFromAnywhereMetricsRequestBuilder:
         """
         Provides operations to manage the workFromAnywhereMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
@@ -122,7 +129,7 @@ class UserExperienceAnalyticsBaselineItemRequestBuilder():
         """
         Update the navigation property userExperienceAnalyticsBaselines in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -180,7 +187,7 @@ class UserExperienceAnalyticsBaselineItemRequestBuilder():
         """
         Update the navigation property userExperienceAnalyticsBaselines in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_baseline.UserExperienceAnalyticsBaseline]

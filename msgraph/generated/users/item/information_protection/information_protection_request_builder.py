@@ -30,60 +30,70 @@ class InformationProtectionRequestBuilder():
     """
     Provides operations to manage the informationProtection property of the microsoft.graph.user entity.
     """
+    @property
     def bitlocker(self) -> bitlocker_request_builder.BitlockerRequestBuilder:
         """
         Provides operations to manage the bitlocker property of the microsoft.graph.informationProtection entity.
         """
         return bitlocker_request_builder.BitlockerRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def data_loss_prevention_policies(self) -> data_loss_prevention_policies_request_builder.DataLossPreventionPoliciesRequestBuilder:
         """
         Provides operations to manage the dataLossPreventionPolicies property of the microsoft.graph.informationProtection entity.
         """
         return data_loss_prevention_policies_request_builder.DataLossPreventionPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def decrypt_buffer(self) -> decrypt_buffer_request_builder.DecryptBufferRequestBuilder:
         """
         Provides operations to call the decryptBuffer method.
         """
         return decrypt_buffer_request_builder.DecryptBufferRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def encrypt_buffer(self) -> encrypt_buffer_request_builder.EncryptBufferRequestBuilder:
         """
         Provides operations to call the encryptBuffer method.
         """
         return encrypt_buffer_request_builder.EncryptBufferRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def policy(self) -> policy_request_builder.PolicyRequestBuilder:
         """
         Provides operations to manage the policy property of the microsoft.graph.informationProtection entity.
         """
         return policy_request_builder.PolicyRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sensitivity_labels(self) -> sensitivity_labels_request_builder.SensitivityLabelsRequestBuilder:
         """
         Provides operations to manage the sensitivityLabels property of the microsoft.graph.informationProtection entity.
         """
         return sensitivity_labels_request_builder.SensitivityLabelsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sensitivity_policy_settings(self) -> sensitivity_policy_settings_request_builder.SensitivityPolicySettingsRequestBuilder:
         """
         Provides operations to manage the sensitivityPolicySettings property of the microsoft.graph.informationProtection entity.
         """
         return sensitivity_policy_settings_request_builder.SensitivityPolicySettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sign_digest(self) -> sign_digest_request_builder.SignDigestRequestBuilder:
         """
         Provides operations to call the signDigest method.
         """
         return sign_digest_request_builder.SignDigestRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def threat_assessment_requests(self) -> threat_assessment_requests_request_builder.ThreatAssessmentRequestsRequestBuilder:
         """
         Provides operations to manage the threatAssessmentRequests property of the microsoft.graph.informationProtection entity.
         """
         return threat_assessment_requests_request_builder.ThreatAssessmentRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def verify_signature(self) -> verify_signature_request_builder.VerifySignatureRequestBuilder:
         """
         Provides operations to call the verifySignature method.
@@ -146,7 +156,7 @@ class InformationProtectionRequestBuilder():
         """
         Update the navigation property informationProtection in users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -217,7 +227,7 @@ class InformationProtectionRequestBuilder():
         """
         Update the navigation property informationProtection in users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[information_protection.InformationProtection]

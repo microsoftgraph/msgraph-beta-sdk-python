@@ -55,7 +55,7 @@ class RecommendLabelAction(information_protection_action.InformationProtectionAc
         # The label that is being recommended.
         self._label: Optional[label_details.LabelDetails] = None
         # The sensitive information type GUIDs that caused the recommendation to be given.
-        self._responsible_sensitive_type_ids: Optional[List[str]] = None
+        self._responsible_sensitive_type_ids: Optional[List[Guid]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RecommendLabelAction:
@@ -78,7 +78,7 @@ class RecommendLabelAction(information_protection_action.InformationProtectionAc
             "actions": lambda n : setattr(self, 'actions', n.get_collection_of_object_values(information_protection_action.InformationProtectionAction)),
             "action_source": lambda n : setattr(self, 'action_source', n.get_enum_value(action_source.ActionSource)),
             "label": lambda n : setattr(self, 'label', n.get_object_value(label_details.LabelDetails)),
-            "responsible_sensitive_type_ids": lambda n : setattr(self, 'responsible_sensitive_type_ids', n.get_collection_of_primitive_values(str)),
+            "responsible_sensitive_type_ids": lambda n : setattr(self, 'responsible_sensitive_type_ids', n.get_collection_of_primitive_values(guid)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -102,15 +102,15 @@ class RecommendLabelAction(information_protection_action.InformationProtectionAc
         self._label = value
     
     @property
-    def responsible_sensitive_type_ids(self,) -> Optional[List[str]]:
+    def responsible_sensitive_type_ids(self,) -> Optional[List[Guid]]:
         """
         Gets the responsibleSensitiveTypeIds property value. The sensitive information type GUIDs that caused the recommendation to be given.
-        Returns: Optional[List[str]]
+        Returns: Optional[List[Guid]]
         """
         return self._responsible_sensitive_type_ids
     
     @responsible_sensitive_type_ids.setter
-    def responsible_sensitive_type_ids(self,value: Optional[List[str]] = None) -> None:
+    def responsible_sensitive_type_ids(self,value: Optional[List[Guid]] = None) -> None:
         """
         Sets the responsibleSensitiveTypeIds property value. The sensitive information type GUIDs that caused the recommendation to be given.
         Args:

@@ -24,42 +24,49 @@ class SynchronizationJobItemRequestBuilder():
     """
     Provides operations to manage the jobs property of the microsoft.graph.synchronization entity.
     """
+    @property
     def pause(self) -> pause_request_builder.PauseRequestBuilder:
         """
         Provides operations to call the pause method.
         """
         return pause_request_builder.PauseRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def provision_on_demand(self) -> provision_on_demand_request_builder.ProvisionOnDemandRequestBuilder:
         """
         Provides operations to call the provisionOnDemand method.
         """
         return provision_on_demand_request_builder.ProvisionOnDemandRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def restart(self) -> restart_request_builder.RestartRequestBuilder:
         """
         Provides operations to call the restart method.
         """
         return restart_request_builder.RestartRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def schema(self) -> schema_request_builder.SchemaRequestBuilder:
         """
         Provides operations to manage the schema property of the microsoft.graph.synchronizationJob entity.
         """
         return schema_request_builder.SchemaRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def start(self) -> start_request_builder.StartRequestBuilder:
         """
         Provides operations to call the start method.
         """
         return start_request_builder.StartRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def stop(self) -> stop_request_builder.StopRequestBuilder:
         """
         Provides operations to call the stop method.
         """
         return stop_request_builder.StopRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def validate_credentials(self) -> validate_credentials_request_builder.ValidateCredentialsRequestBuilder:
         """
         Provides operations to call the validateCredentials method.
@@ -122,7 +129,7 @@ class SynchronizationJobItemRequestBuilder():
         """
         Update the navigation property jobs in servicePrincipals
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -180,7 +187,7 @@ class SynchronizationJobItemRequestBuilder():
         """
         Update the navigation property jobs in servicePrincipals
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[synchronization_job.SynchronizationJob]

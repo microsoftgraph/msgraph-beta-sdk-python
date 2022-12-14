@@ -18,6 +18,7 @@ class JournalLineItemRequestBuilder():
     """
     Provides operations to manage the journalLines property of the microsoft.graph.company entity.
     """
+    @property
     def account(self) -> account_request_builder.AccountRequestBuilder:
         """
         Provides operations to manage the account property of the microsoft.graph.journalLine entity.
@@ -80,7 +81,7 @@ class JournalLineItemRequestBuilder():
         """
         Update the navigation property journalLines in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class JournalLineItemRequestBuilder():
         """
         Update the navigation property journalLines in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[journal_line.JournalLine]

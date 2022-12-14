@@ -21,18 +21,21 @@ class ParticipantsRequestBuilder():
     """
     Provides operations to manage the participants property of the microsoft.graph.call entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def invite(self) -> invite_request_builder.InviteRequestBuilder:
         """
         Provides operations to call the invite method.
         """
         return invite_request_builder.InviteRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def mute_all(self) -> mute_all_request_builder.MuteAllRequestBuilder:
         """
         Provides operations to call the muteAll method.
@@ -79,7 +82,7 @@ class ParticipantsRequestBuilder():
         """
         Create new navigation property to participants for communications
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -119,7 +122,7 @@ class ParticipantsRequestBuilder():
         """
         Create new navigation property to participants for communications
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[participant.Participant]

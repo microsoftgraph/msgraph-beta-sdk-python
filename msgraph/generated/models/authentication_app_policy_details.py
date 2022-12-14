@@ -28,7 +28,7 @@ class AuthenticationAppPolicyDetails(AdditionalDataHolder, Parsable):
     @property
     def admin_configuration(self,) -> Optional[authentication_app_admin_configuration.AuthenticationAppAdminConfiguration]:
         """
-        Gets the adminConfiguration property value. The adminConfiguration property
+        Gets the adminConfiguration property value. The admin configuration of the policy on the user's authentication app. For a policy that does not impact the success/failure of the authentication, the evaluation defaults to notApplicable. The possible values are: notApplicable, enabled, disabled, unknownFutureValue.
         Returns: Optional[authentication_app_admin_configuration.AuthenticationAppAdminConfiguration]
         """
         return self._admin_configuration
@@ -36,7 +36,7 @@ class AuthenticationAppPolicyDetails(AdditionalDataHolder, Parsable):
     @admin_configuration.setter
     def admin_configuration(self,value: Optional[authentication_app_admin_configuration.AuthenticationAppAdminConfiguration] = None) -> None:
         """
-        Sets the adminConfiguration property value. The adminConfiguration property
+        Sets the adminConfiguration property value. The admin configuration of the policy on the user's authentication app. For a policy that does not impact the success/failure of the authentication, the evaluation defaults to notApplicable. The possible values are: notApplicable, enabled, disabled, unknownFutureValue.
         Args:
             value: Value to set for the adminConfiguration property.
         """
@@ -45,7 +45,7 @@ class AuthenticationAppPolicyDetails(AdditionalDataHolder, Parsable):
     @property
     def authentication_evaluation(self,) -> Optional[authentication_app_evaluation.AuthenticationAppEvaluation]:
         """
-        Gets the authenticationEvaluation property value. The authenticationEvaluation property
+        Gets the authenticationEvaluation property value. Evaluates the success/failure of the authentication based on the admin configuration of the policy on the user's client authentication app. The possible values are: success, failure, unknownFutureValue.
         Returns: Optional[authentication_app_evaluation.AuthenticationAppEvaluation]
         """
         return self._authentication_evaluation
@@ -53,7 +53,7 @@ class AuthenticationAppPolicyDetails(AdditionalDataHolder, Parsable):
     @authentication_evaluation.setter
     def authentication_evaluation(self,value: Optional[authentication_app_evaluation.AuthenticationAppEvaluation] = None) -> None:
         """
-        Sets the authenticationEvaluation property value. The authenticationEvaluation property
+        Sets the authenticationEvaluation property value. Evaluates the success/failure of the authentication based on the admin configuration of the policy on the user's client authentication app. The possible values are: success, failure, unknownFutureValue.
         Args:
             value: Value to set for the authenticationEvaluation property.
         """
@@ -66,15 +66,15 @@ class AuthenticationAppPolicyDetails(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The adminConfiguration property
+        # The admin configuration of the policy on the user's authentication app. For a policy that does not impact the success/failure of the authentication, the evaluation defaults to notApplicable. The possible values are: notApplicable, enabled, disabled, unknownFutureValue.
         self._admin_configuration: Optional[authentication_app_admin_configuration.AuthenticationAppAdminConfiguration] = None
-        # The authenticationEvaluation property
+        # Evaluates the success/failure of the authentication based on the admin configuration of the policy on the user's client authentication app. The possible values are: success, failure, unknownFutureValue.
         self._authentication_evaluation: Optional[authentication_app_evaluation.AuthenticationAppEvaluation] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The policyName property
+        # The name of the policy enforced on the user's authentication app.
         self._policy_name: Optional[str] = None
-        # The status property
+        # Refers to whether the policy executed as expected on the user's client authentication app. The possible values are: unknown, appLockOutOfDate, appLockEnabled, appLockDisabled, appContextOutOfDate, appContextShown, appContextNotShown, locationContextOutOfDate, locationContextShown, locationContextNotShown, numberMatchOutOfDate, numberMatchCorrectNumberEntered, numberMatchIncorrectNumberEntered, numberMatchDeny, tamperResistantHardwareOutOfDate, tamperResistantHardwareUsed, tamperResistantHardwareNotUsed, unknownFutureValue.
         self._status: Optional[authentication_app_policy_status.AuthenticationAppPolicyStatus] = None
     
     @staticmethod
@@ -123,7 +123,7 @@ class AuthenticationAppPolicyDetails(AdditionalDataHolder, Parsable):
     @property
     def policy_name(self,) -> Optional[str]:
         """
-        Gets the policyName property value. The policyName property
+        Gets the policyName property value. The name of the policy enforced on the user's authentication app.
         Returns: Optional[str]
         """
         return self._policy_name
@@ -131,7 +131,7 @@ class AuthenticationAppPolicyDetails(AdditionalDataHolder, Parsable):
     @policy_name.setter
     def policy_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the policyName property value. The policyName property
+        Sets the policyName property value. The name of the policy enforced on the user's authentication app.
         Args:
             value: Value to set for the policyName property.
         """
@@ -155,7 +155,7 @@ class AuthenticationAppPolicyDetails(AdditionalDataHolder, Parsable):
     @property
     def status(self,) -> Optional[authentication_app_policy_status.AuthenticationAppPolicyStatus]:
         """
-        Gets the status property value. The status property
+        Gets the status property value. Refers to whether the policy executed as expected on the user's client authentication app. The possible values are: unknown, appLockOutOfDate, appLockEnabled, appLockDisabled, appContextOutOfDate, appContextShown, appContextNotShown, locationContextOutOfDate, locationContextShown, locationContextNotShown, numberMatchOutOfDate, numberMatchCorrectNumberEntered, numberMatchIncorrectNumberEntered, numberMatchDeny, tamperResistantHardwareOutOfDate, tamperResistantHardwareUsed, tamperResistantHardwareNotUsed, unknownFutureValue.
         Returns: Optional[authentication_app_policy_status.AuthenticationAppPolicyStatus]
         """
         return self._status
@@ -163,7 +163,7 @@ class AuthenticationAppPolicyDetails(AdditionalDataHolder, Parsable):
     @status.setter
     def status(self,value: Optional[authentication_app_policy_status.AuthenticationAppPolicyStatus] = None) -> None:
         """
-        Sets the status property value. The status property
+        Sets the status property value. Refers to whether the policy executed as expected on the user's client authentication app. The possible values are: unknown, appLockOutOfDate, appLockEnabled, appLockDisabled, appContextOutOfDate, appContextShown, appContextNotShown, locationContextOutOfDate, locationContextShown, locationContextNotShown, numberMatchOutOfDate, numberMatchCorrectNumberEntered, numberMatchIncorrectNumberEntered, numberMatchDeny, tamperResistantHardwareOutOfDate, tamperResistantHardwareUsed, tamperResistantHardwareNotUsed, unknownFutureValue.
         Args:
             value: Value to set for the status property.
         """

@@ -25,30 +25,35 @@ class MobileAppsRequestBuilder():
     """
     Provides operations to manage the mobileApps property of the microsoft.graph.deviceAppManagement entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def has_payload_links(self) -> has_payload_links_request_builder.HasPayloadLinksRequestBuilder:
         """
         Provides operations to call the hasPayloadLinks method.
         """
         return has_payload_links_request_builder.HasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def managed_mobile_lob_app(self) -> managed_mobile_lob_app_request_builder.ManagedMobileLobAppRequestBuilder:
         """
         Casts the previous resource to managedMobileLobApp.
         """
         return managed_mobile_lob_app_request_builder.ManagedMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def mobile_lob_app(self) -> mobile_lob_app_request_builder.MobileLobAppRequestBuilder:
         """
         Casts the previous resource to mobileLobApp.
         """
         return mobile_lob_app_request_builder.MobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def validate_xml(self) -> validate_xml_request_builder.ValidateXmlRequestBuilder:
         """
         Provides operations to call the validateXml method.
@@ -95,7 +100,7 @@ class MobileAppsRequestBuilder():
         """
         Create new navigation property to mobileApps for deviceAppManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -160,7 +165,7 @@ class MobileAppsRequestBuilder():
         """
         Create new navigation property to mobileApps for deviceAppManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mobile_app.MobileApp]

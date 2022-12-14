@@ -18,6 +18,7 @@ class OutlineIconRequestBuilder():
     """
     Provides operations to manage the outlineIcon property of the microsoft.graph.teamsAppDefinition entity.
     """
+    @property
     def hosted_content(self) -> hosted_content_request_builder.HostedContentRequestBuilder:
         """
         Provides operations to manage the hostedContent property of the microsoft.graph.teamsAppIcon entity.
@@ -80,7 +81,7 @@ class OutlineIconRequestBuilder():
         """
         Update the navigation property outlineIcon in appCatalogs
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class OutlineIconRequestBuilder():
         """
         Update the navigation property outlineIcon in appCatalogs
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[teams_app_icon.TeamsAppIcon]

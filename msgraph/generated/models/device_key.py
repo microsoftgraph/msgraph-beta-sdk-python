@@ -29,7 +29,7 @@ class DeviceKey(AdditionalDataHolder, Parsable):
         self._additional_data: Dict[str, Any] = {}
 
         # The deviceId property
-        self._device_id: Optional[str] = None
+        self._device_id: Optional[Guid] = None
         # The keyMaterial property
         self._key_material: Optional[bytes] = None
         # The keyType property
@@ -50,15 +50,15 @@ class DeviceKey(AdditionalDataHolder, Parsable):
         return DeviceKey()
     
     @property
-    def device_id(self,) -> Optional[str]:
+    def device_id(self,) -> Optional[Guid]:
         """
         Gets the deviceId property value. The deviceId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._device_id
     
     @device_id.setter
-    def device_id(self,value: Optional[str] = None) -> None:
+    def device_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the deviceId property value. The deviceId property
         Args:
@@ -72,7 +72,7 @@ class DeviceKey(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "device_id": lambda n : setattr(self, 'device_id', n.get_object_value(Guid)),
             "key_material": lambda n : setattr(self, 'key_material', n.get_bytes_value()),
             "key_type": lambda n : setattr(self, 'key_type', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -138,7 +138,7 @@ class DeviceKey(AdditionalDataHolder, Parsable):
         """
         if writer is None:
             raise Exception("writer cannot be undefined")
-        writer.write_str_value("deviceId", self.device_id)
+        writer.write_object_value("deviceId", self.device_id)
         writer.write_object_value("keyMaterial", self.key_material)
         writer.write_str_value("keyType", self.key_type)
         writer.write_str_value("@odata.type", self.odata_type)

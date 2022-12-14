@@ -13,6 +13,7 @@ from typing import Any, Callable, Dict, List, Optional, Union
 clear_presence_request_builder = lazy_import('msgraph.generated.me.presence.clear_presence.clear_presence_request_builder')
 clear_user_preferred_presence_request_builder = lazy_import('msgraph.generated.me.presence.clear_user_preferred_presence.clear_user_preferred_presence_request_builder')
 set_presence_request_builder = lazy_import('msgraph.generated.me.presence.set_presence.set_presence_request_builder')
+set_status_message_request_builder = lazy_import('msgraph.generated.me.presence.set_status_message.set_status_message_request_builder')
 set_user_preferred_presence_request_builder = lazy_import('msgraph.generated.me.presence.set_user_preferred_presence.set_user_preferred_presence_request_builder')
 presence = lazy_import('msgraph.generated.models.presence')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -21,24 +22,35 @@ class PresenceRequestBuilder():
     """
     Provides operations to manage the presence property of the microsoft.graph.user entity.
     """
+    @property
     def clear_presence(self) -> clear_presence_request_builder.ClearPresenceRequestBuilder:
         """
         Provides operations to call the clearPresence method.
         """
         return clear_presence_request_builder.ClearPresenceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def clear_user_preferred_presence(self) -> clear_user_preferred_presence_request_builder.ClearUserPreferredPresenceRequestBuilder:
         """
         Provides operations to call the clearUserPreferredPresence method.
         """
         return clear_user_preferred_presence_request_builder.ClearUserPreferredPresenceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def set_presence(self) -> set_presence_request_builder.SetPresenceRequestBuilder:
         """
         Provides operations to call the setPresence method.
         """
         return set_presence_request_builder.SetPresenceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def set_status_message(self) -> set_status_message_request_builder.SetStatusMessageRequestBuilder:
+        """
+        Provides operations to call the setStatusMessage method.
+        """
+        return set_status_message_request_builder.SetStatusMessageRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def set_user_preferred_presence(self) -> set_user_preferred_presence_request_builder.SetUserPreferredPresenceRequestBuilder:
         """
         Provides operations to call the setUserPreferredPresence method.
@@ -101,7 +113,7 @@ class PresenceRequestBuilder():
         """
         Update the navigation property presence in me
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +171,7 @@ class PresenceRequestBuilder():
         """
         Update the navigation property presence in me
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[presence.Presence]

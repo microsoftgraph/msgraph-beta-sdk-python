@@ -19,6 +19,7 @@ class DelegatedAdminCustomerItemRequestBuilder():
     """
     Provides operations to manage the delegatedAdminCustomers property of the microsoft.graph.tenantRelationship entity.
     """
+    @property
     def service_management_details(self) -> service_management_details_request_builder.ServiceManagementDetailsRequestBuilder:
         """
         Provides operations to manage the serviceManagementDetails property of the microsoft.graph.delegatedAdminCustomer entity.
@@ -81,7 +82,7 @@ class DelegatedAdminCustomerItemRequestBuilder():
         """
         Update the navigation property delegatedAdminCustomers in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +140,7 @@ class DelegatedAdminCustomerItemRequestBuilder():
         """
         Update the navigation property delegatedAdminCustomers in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[delegated_admin_customer.DelegatedAdminCustomer]

@@ -22,30 +22,35 @@ class AdminRequestBuilder():
     """
     Provides operations to manage the admin singleton.
     """
+    @property
     def edge(self) -> edge_request_builder.EdgeRequestBuilder:
         """
         Provides operations to manage the edge property of the microsoft.graph.admin entity.
         """
         return edge_request_builder.EdgeRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def report_settings(self) -> report_settings_request_builder.ReportSettingsRequestBuilder:
         """
         Provides operations to manage the reportSettings property of the microsoft.graph.admin entity.
         """
         return report_settings_request_builder.ReportSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def service_announcement(self) -> service_announcement_request_builder.ServiceAnnouncementRequestBuilder:
         """
         Provides operations to manage the serviceAnnouncement property of the microsoft.graph.admin entity.
         """
         return service_announcement_request_builder.ServiceAnnouncementRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sharepoint(self) -> sharepoint_request_builder.SharepointRequestBuilder:
         """
         Provides operations to manage the sharepoint property of the microsoft.graph.admin entity.
         """
         return sharepoint_request_builder.SharepointRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def windows(self) -> windows_request_builder.WindowsRequestBuilder:
         """
         Provides operations to manage the windows property of the microsoft.graph.admin entity.
@@ -92,7 +97,7 @@ class AdminRequestBuilder():
         """
         Update admin
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -132,7 +137,7 @@ class AdminRequestBuilder():
         """
         Update admin
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[admin.Admin]

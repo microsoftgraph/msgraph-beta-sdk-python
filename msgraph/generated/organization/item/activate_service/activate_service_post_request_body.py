@@ -34,9 +34,9 @@ class ActivateServicePostRequestBody(AdditionalDataHolder, Parsable):
         # The service property
         self._service: Optional[str] = None
         # The servicePlanId property
-        self._service_plan_id: Optional[str] = None
+        self._service_plan_id: Optional[Guid] = None
         # The skuId property
-        self._sku_id: Optional[str] = None
+        self._sku_id: Optional[Guid] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ActivateServicePostRequestBody:
@@ -57,8 +57,8 @@ class ActivateServicePostRequestBody(AdditionalDataHolder, Parsable):
         """
         fields = {
             "service": lambda n : setattr(self, 'service', n.get_str_value()),
-            "service_plan_id": lambda n : setattr(self, 'service_plan_id', n.get_str_value()),
-            "sku_id": lambda n : setattr(self, 'sku_id', n.get_str_value()),
+            "service_plan_id": lambda n : setattr(self, 'service_plan_id', n.get_object_value(Guid)),
+            "sku_id": lambda n : setattr(self, 'sku_id', n.get_object_value(Guid)),
         }
         return fields
     
@@ -71,8 +71,8 @@ class ActivateServicePostRequestBody(AdditionalDataHolder, Parsable):
         if writer is None:
             raise Exception("writer cannot be undefined")
         writer.write_str_value("service", self.service)
-        writer.write_str_value("servicePlanId", self.service_plan_id)
-        writer.write_str_value("skuId", self.sku_id)
+        writer.write_object_value("servicePlanId", self.service_plan_id)
+        writer.write_object_value("skuId", self.sku_id)
         writer.write_additional_data_value(self.additional_data)
     
     @property
@@ -93,15 +93,15 @@ class ActivateServicePostRequestBody(AdditionalDataHolder, Parsable):
         self._service = value
     
     @property
-    def service_plan_id(self,) -> Optional[str]:
+    def service_plan_id(self,) -> Optional[Guid]:
         """
         Gets the servicePlanId property value. The servicePlanId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._service_plan_id
     
     @service_plan_id.setter
-    def service_plan_id(self,value: Optional[str] = None) -> None:
+    def service_plan_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the servicePlanId property value. The servicePlanId property
         Args:
@@ -110,15 +110,15 @@ class ActivateServicePostRequestBody(AdditionalDataHolder, Parsable):
         self._service_plan_id = value
     
     @property
-    def sku_id(self,) -> Optional[str]:
+    def sku_id(self,) -> Optional[Guid]:
         """
         Gets the skuId property value. The skuId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._sku_id
     
     @sku_id.setter
-    def sku_id(self,value: Optional[str] = None) -> None:
+    def sku_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the skuId property value. The skuId property
         Args:

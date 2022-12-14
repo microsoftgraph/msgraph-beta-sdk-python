@@ -53,7 +53,7 @@ class OnPremisesDirectorySynchronizationItemRequestBuilder():
     
     def create_get_request_information(self,request_configuration: Optional[OnPremisesDirectorySynchronizationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get onPremisesSynchronization from directory
+        A container for on-premises directory synchronization functionalities that are available for the organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -73,7 +73,7 @@ class OnPremisesDirectorySynchronizationItemRequestBuilder():
         """
         Update the navigation property onPremisesSynchronization in directory
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -110,7 +110,7 @@ class OnPremisesDirectorySynchronizationItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[OnPremisesDirectorySynchronizationItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[on_premises_directory_synchronization.OnPremisesDirectorySynchronization]:
         """
-        Get onPremisesSynchronization from directory
+        A container for on-premises directory synchronization functionalities that are available for the organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
@@ -131,7 +131,7 @@ class OnPremisesDirectorySynchronizationItemRequestBuilder():
         """
         Update the navigation property onPremisesSynchronization in directory
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[on_premises_directory_synchronization.OnPremisesDirectorySynchronization]
@@ -164,7 +164,7 @@ class OnPremisesDirectorySynchronizationItemRequestBuilder():
     @dataclass
     class OnPremisesDirectorySynchronizationItemRequestBuilderGetQueryParameters():
         """
-        Get onPremisesSynchronization from directory
+        A container for on-premises directory synchronization functionalities that are available for the organization.
         """
         # Expand related entities
         expand: Optional[List[str]] = None

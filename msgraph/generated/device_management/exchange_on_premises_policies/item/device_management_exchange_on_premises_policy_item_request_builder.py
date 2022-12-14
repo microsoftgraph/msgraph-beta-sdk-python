@@ -18,6 +18,7 @@ class DeviceManagementExchangeOnPremisesPolicyItemRequestBuilder():
     """
     Provides operations to manage the exchangeOnPremisesPolicies property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def conditional_access_settings(self) -> conditional_access_settings_request_builder.ConditionalAccessSettingsRequestBuilder:
         """
         Provides operations to manage the conditionalAccessSettings property of the microsoft.graph.deviceManagementExchangeOnPremisesPolicy entity.
@@ -80,7 +81,7 @@ class DeviceManagementExchangeOnPremisesPolicyItemRequestBuilder():
         """
         Update the navigation property exchangeOnPremisesPolicies in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class DeviceManagementExchangeOnPremisesPolicyItemRequestBuilder():
         """
         Update the navigation property exchangeOnPremisesPolicies in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy]

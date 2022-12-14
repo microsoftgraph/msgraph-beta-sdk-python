@@ -20,12 +20,14 @@ class ClientConfigurationsRequestBuilder():
     """
     Provides operations to manage the clientConfigurations property of the microsoft.graph.officeConfiguration entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def update_priorities(self) -> update_priorities_request_builder.UpdatePrioritiesRequestBuilder:
         """
         Provides operations to call the updatePriorities method.
@@ -72,7 +74,7 @@ class ClientConfigurationsRequestBuilder():
         """
         Create new navigation property to clientConfigurations for officeConfiguration
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +114,7 @@ class ClientConfigurationsRequestBuilder():
         """
         Create new navigation property to clientConfigurations for officeConfiguration
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[office_client_configuration.OfficeClientConfiguration]

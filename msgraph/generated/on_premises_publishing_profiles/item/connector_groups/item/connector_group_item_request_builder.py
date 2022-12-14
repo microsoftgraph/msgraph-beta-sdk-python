@@ -21,12 +21,14 @@ class ConnectorGroupItemRequestBuilder():
     """
     Provides operations to manage the connectorGroups property of the microsoft.graph.onPremisesPublishingProfile entity.
     """
+    @property
     def applications(self) -> applications_request_builder.ApplicationsRequestBuilder:
         """
         Provides operations to manage the applications property of the microsoft.graph.connectorGroup entity.
         """
         return applications_request_builder.ApplicationsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def members(self) -> members_request_builder.MembersRequestBuilder:
         """
         Provides operations to manage the members property of the microsoft.graph.connectorGroup entity.
@@ -102,7 +104,7 @@ class ConnectorGroupItemRequestBuilder():
         """
         Update the navigation property connectorGroups in onPremisesPublishingProfiles
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -173,7 +175,7 @@ class ConnectorGroupItemRequestBuilder():
         """
         Update the navigation property connectorGroups in onPremisesPublishingProfiles
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[connector_group.ConnectorGroup]

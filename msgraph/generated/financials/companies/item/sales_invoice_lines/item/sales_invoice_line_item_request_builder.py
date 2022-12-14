@@ -19,12 +19,14 @@ class SalesInvoiceLineItemRequestBuilder():
     """
     Provides operations to manage the salesInvoiceLines property of the microsoft.graph.company entity.
     """
+    @property
     def account(self) -> account_request_builder.AccountRequestBuilder:
         """
         Provides operations to manage the account property of the microsoft.graph.salesInvoiceLine entity.
         """
         return account_request_builder.AccountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def item(self) -> item_request_builder.ItemRequestBuilder:
         """
         Provides operations to manage the item property of the microsoft.graph.salesInvoiceLine entity.
@@ -71,7 +73,7 @@ class SalesInvoiceLineItemRequestBuilder():
         """
         Update the navigation property salesInvoiceLines in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -111,7 +113,7 @@ class SalesInvoiceLineItemRequestBuilder():
         """
         Update the navigation property salesInvoiceLines in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sales_invoice_line.SalesInvoiceLine]

@@ -19,6 +19,7 @@ class SharedEmailDomainInvitationsRequestBuilder():
     """
     Provides operations to manage the sharedEmailDomainInvitations property of the microsoft.graph.domain entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
@@ -65,7 +66,7 @@ class SharedEmailDomainInvitationsRequestBuilder():
         """
         Create new navigation property to sharedEmailDomainInvitations for domains
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +106,7 @@ class SharedEmailDomainInvitationsRequestBuilder():
         """
         Create new navigation property to sharedEmailDomainInvitations for domains
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[shared_email_domain_invitation.SharedEmailDomainInvitation]

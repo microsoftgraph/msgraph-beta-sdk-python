@@ -19,12 +19,14 @@ class CustomTaskExtensionItemRequestBuilder():
     """
     Provides operations to manage the customTaskExtensions property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
     """
+    @property
     def created_by(self) -> created_by_request_builder.CreatedByRequestBuilder:
         """
         Provides operations to manage the createdBy property of the microsoft.graph.identityGovernance.customTaskExtension entity.
         """
         return created_by_request_builder.CreatedByRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def last_modified_by(self) -> last_modified_by_request_builder.LastModifiedByRequestBuilder:
         """
         Provides operations to manage the lastModifiedBy property of the microsoft.graph.identityGovernance.customTaskExtension entity.
@@ -87,7 +89,7 @@ class CustomTaskExtensionItemRequestBuilder():
         """
         Update the navigation property customTaskExtensions in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +147,7 @@ class CustomTaskExtensionItemRequestBuilder():
         """
         Update the navigation property customTaskExtensions in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[custom_task_extension.CustomTaskExtension]

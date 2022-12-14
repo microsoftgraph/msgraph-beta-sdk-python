@@ -22,24 +22,28 @@ class PurchaseInvoiceItemRequestBuilder():
     """
     Provides operations to manage the purchaseInvoices property of the microsoft.graph.company entity.
     """
+    @property
     def currency(self) -> currency_request_builder.CurrencyRequestBuilder:
         """
         Provides operations to manage the currency property of the microsoft.graph.purchaseInvoice entity.
         """
         return currency_request_builder.CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def post(self) -> post_request_builder.PostRequestBuilder:
         """
         Provides operations to call the post method.
         """
         return post_request_builder.PostRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def purchase_invoice_lines(self) -> purchase_invoice_lines_request_builder.PurchaseInvoiceLinesRequestBuilder:
         """
         Provides operations to manage the purchaseInvoiceLines property of the microsoft.graph.purchaseInvoice entity.
         """
         return purchase_invoice_lines_request_builder.PurchaseInvoiceLinesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def vendor(self) -> vendor_request_builder.VendorRequestBuilder:
         """
         Provides operations to manage the vendor property of the microsoft.graph.purchaseInvoice entity.
@@ -86,7 +90,7 @@ class PurchaseInvoiceItemRequestBuilder():
         """
         Update the navigation property purchaseInvoices in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -126,7 +130,7 @@ class PurchaseInvoiceItemRequestBuilder():
         """
         Update the navigation property purchaseInvoices in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[purchase_invoice.PurchaseInvoice]

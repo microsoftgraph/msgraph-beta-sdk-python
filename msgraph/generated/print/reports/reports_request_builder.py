@@ -119,6 +119,7 @@ get_teams_team_activity_counts_with_period_request_builder = lazy_import('msgrap
 get_teams_team_activity_detail_with_date_request_builder = lazy_import('msgraph.generated.print.reports.get_teams_team_activity_detail_with_date.get_teams_team_activity_detail_with_date_request_builder')
 get_teams_team_activity_detail_with_period_request_builder = lazy_import('msgraph.generated.print.reports.get_teams_team_activity_detail_with_period.get_teams_team_activity_detail_with_period_request_builder')
 get_teams_team_activity_distribution_counts_with_period_request_builder = lazy_import('msgraph.generated.print.reports.get_teams_team_activity_distribution_counts_with_period.get_teams_team_activity_distribution_counts_with_period_request_builder')
+get_teams_team_counts_with_period_request_builder = lazy_import('msgraph.generated.print.reports.get_teams_team_counts_with_period.get_teams_team_counts_with_period_request_builder')
 get_teams_user_activity_counts_with_period_request_builder = lazy_import('msgraph.generated.print.reports.get_teams_user_activity_counts_with_period.get_teams_user_activity_counts_with_period_request_builder')
 get_teams_user_activity_distribution_total_user_counts_with_period_request_builder = lazy_import('msgraph.generated.print.reports.get_teams_user_activity_distribution_total_user_counts_with_period.get_teams_user_activity_distribution_total_user_counts_with_period_request_builder')
 get_teams_user_activity_distribution_user_counts_with_period_request_builder = lazy_import('msgraph.generated.print.reports.get_teams_user_activity_distribution_user_counts_with_period.get_teams_user_activity_distribution_user_counts_with_period_request_builder')
@@ -164,84 +165,98 @@ class ReportsRequestBuilder():
     """
     Provides operations to manage the reports property of the microsoft.graph.print entity.
     """
+    @property
     def application_sign_in_detailed_summary(self) -> application_sign_in_detailed_summary_request_builder.ApplicationSignInDetailedSummaryRequestBuilder:
         """
         Provides operations to manage the applicationSignInDetailedSummary property of the microsoft.graph.reportRoot entity.
         """
         return application_sign_in_detailed_summary_request_builder.ApplicationSignInDetailedSummaryRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def authentication_methods(self) -> authentication_methods_request_builder.AuthenticationMethodsRequestBuilder:
         """
         Provides operations to manage the authenticationMethods property of the microsoft.graph.reportRoot entity.
         """
         return authentication_methods_request_builder.AuthenticationMethodsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def credential_user_registration_details(self) -> credential_user_registration_details_request_builder.CredentialUserRegistrationDetailsRequestBuilder:
         """
         Provides operations to manage the credentialUserRegistrationDetails property of the microsoft.graph.reportRoot entity.
         """
         return credential_user_registration_details_request_builder.CredentialUserRegistrationDetailsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def daily_print_usage(self) -> daily_print_usage_request_builder.DailyPrintUsageRequestBuilder:
         """
         Provides operations to manage the dailyPrintUsage property of the microsoft.graph.reportRoot entity.
         """
         return daily_print_usage_request_builder.DailyPrintUsageRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def daily_print_usage_by_printer(self) -> daily_print_usage_by_printer_request_builder.DailyPrintUsageByPrinterRequestBuilder:
         """
         Provides operations to manage the dailyPrintUsageByPrinter property of the microsoft.graph.reportRoot entity.
         """
         return daily_print_usage_by_printer_request_builder.DailyPrintUsageByPrinterRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def daily_print_usage_by_user(self) -> daily_print_usage_by_user_request_builder.DailyPrintUsageByUserRequestBuilder:
         """
         Provides operations to manage the dailyPrintUsageByUser property of the microsoft.graph.reportRoot entity.
         """
         return daily_print_usage_by_user_request_builder.DailyPrintUsageByUserRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def daily_print_usage_summaries_by_printer(self) -> daily_print_usage_summaries_by_printer_request_builder.DailyPrintUsageSummariesByPrinterRequestBuilder:
         """
         Provides operations to manage the dailyPrintUsageSummariesByPrinter property of the microsoft.graph.reportRoot entity.
         """
         return daily_print_usage_summaries_by_printer_request_builder.DailyPrintUsageSummariesByPrinterRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def daily_print_usage_summaries_by_user(self) -> daily_print_usage_summaries_by_user_request_builder.DailyPrintUsageSummariesByUserRequestBuilder:
         """
         Provides operations to manage the dailyPrintUsageSummariesByUser property of the microsoft.graph.reportRoot entity.
         """
         return daily_print_usage_summaries_by_user_request_builder.DailyPrintUsageSummariesByUserRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def monthly_print_usage_by_printer(self) -> monthly_print_usage_by_printer_request_builder.MonthlyPrintUsageByPrinterRequestBuilder:
         """
         Provides operations to manage the monthlyPrintUsageByPrinter property of the microsoft.graph.reportRoot entity.
         """
         return monthly_print_usage_by_printer_request_builder.MonthlyPrintUsageByPrinterRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def monthly_print_usage_by_user(self) -> monthly_print_usage_by_user_request_builder.MonthlyPrintUsageByUserRequestBuilder:
         """
         Provides operations to manage the monthlyPrintUsageByUser property of the microsoft.graph.reportRoot entity.
         """
         return monthly_print_usage_by_user_request_builder.MonthlyPrintUsageByUserRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def monthly_print_usage_summaries_by_printer(self) -> monthly_print_usage_summaries_by_printer_request_builder.MonthlyPrintUsageSummariesByPrinterRequestBuilder:
         """
         Provides operations to manage the monthlyPrintUsageSummariesByPrinter property of the microsoft.graph.reportRoot entity.
         """
         return monthly_print_usage_summaries_by_printer_request_builder.MonthlyPrintUsageSummariesByPrinterRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def monthly_print_usage_summaries_by_user(self) -> monthly_print_usage_summaries_by_user_request_builder.MonthlyPrintUsageSummariesByUserRequestBuilder:
         """
         Provides operations to manage the monthlyPrintUsageSummariesByUser property of the microsoft.graph.reportRoot entity.
         """
         return monthly_print_usage_summaries_by_user_request_builder.MonthlyPrintUsageSummariesByUserRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def security(self) -> security_request_builder.SecurityRequestBuilder:
         """
         Provides operations to manage the security property of the microsoft.graph.reportRoot entity.
         """
         return security_request_builder.SecurityRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def user_credential_usage_details(self) -> user_credential_usage_details_request_builder.UserCredentialUsageDetailsRequestBuilder:
         """
         Provides operations to manage the userCredentialUsageDetails property of the microsoft.graph.reportRoot entity.
@@ -317,7 +332,7 @@ class ReportsRequestBuilder():
         """
         Update the navigation property reports in print
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -1426,6 +1441,17 @@ class ReportsRequestBuilder():
             raise Exception("period cannot be undefined")
         return get_teams_team_activity_distribution_counts_with_period_request_builder.GetTeamsTeamActivityDistributionCountsWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
     
+    def get_teams_team_counts_with_period(self,period: Optional[str] = None) -> get_teams_team_counts_with_period_request_builder.GetTeamsTeamCountsWithPeriodRequestBuilder:
+        """
+        Provides operations to call the getTeamsTeamCounts method.
+        Args:
+            period: Usage: period='{period}'
+        Returns: get_teams_team_counts_with_period_request_builder.GetTeamsTeamCountsWithPeriodRequestBuilder
+        """
+        if period is None:
+            raise Exception("period cannot be undefined")
+        return get_teams_team_counts_with_period_request_builder.GetTeamsTeamCountsWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
+    
     def get_teams_user_activity_counts_with_period(self,period: Optional[str] = None) -> get_teams_user_activity_counts_with_period_request_builder.GetTeamsUserActivityCountsWithPeriodRequestBuilder:
         """
         Provides operations to call the getTeamsUserActivityCounts method.
@@ -1822,7 +1848,7 @@ class ReportsRequestBuilder():
         """
         Update the navigation property reports in print
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[report_root.ReportRoot]

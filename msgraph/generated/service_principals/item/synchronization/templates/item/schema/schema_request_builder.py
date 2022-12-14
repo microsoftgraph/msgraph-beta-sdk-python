@@ -22,12 +22,14 @@ class SchemaRequestBuilder():
     """
     Provides operations to manage the schema property of the microsoft.graph.synchronizationTemplate entity.
     """
+    @property
     def directories(self) -> directories_request_builder.DirectoriesRequestBuilder:
         """
         Provides operations to manage the directories property of the microsoft.graph.synchronizationSchema entity.
         """
         return directories_request_builder.DirectoriesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def parse_expression(self) -> parse_expression_request_builder.ParseExpressionRequestBuilder:
         """
         Provides operations to call the parseExpression method.
@@ -90,7 +92,7 @@ class SchemaRequestBuilder():
         """
         Update the navigation property schema in servicePrincipals
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -175,7 +177,7 @@ class SchemaRequestBuilder():
         """
         Update the navigation property schema in servicePrincipals
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[synchronization_schema.SynchronizationSchema]

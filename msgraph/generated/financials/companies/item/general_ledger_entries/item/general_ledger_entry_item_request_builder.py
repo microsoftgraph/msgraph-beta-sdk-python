@@ -18,6 +18,7 @@ class GeneralLedgerEntryItemRequestBuilder():
     """
     Provides operations to manage the generalLedgerEntries property of the microsoft.graph.company entity.
     """
+    @property
     def account(self) -> account_request_builder.AccountRequestBuilder:
         """
         Provides operations to manage the account property of the microsoft.graph.generalLedgerEntry entity.

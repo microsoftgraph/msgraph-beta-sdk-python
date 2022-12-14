@@ -5,6 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 entity = lazy_import('msgraph.generated.models.entity')
 out_of_office_settings = lazy_import('msgraph.generated.models.out_of_office_settings')
+presence_status_message = lazy_import('msgraph.generated.models.presence_status_message')
 
 class Presence(entity.Entity):
     @property
@@ -54,6 +55,8 @@ class Presence(entity.Entity):
         self.odata_type: Optional[str] = None
         # The out of office settings for a user.
         self._out_of_office_settings: Optional[out_of_office_settings.OutOfOfficeSettings] = None
+        # The statusMessage property
+        self._status_message: Optional[presence_status_message.PresenceStatusMessage] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Presence:
@@ -76,6 +79,7 @@ class Presence(entity.Entity):
             "activity": lambda n : setattr(self, 'activity', n.get_str_value()),
             "availability": lambda n : setattr(self, 'availability', n.get_str_value()),
             "out_of_office_settings": lambda n : setattr(self, 'out_of_office_settings', n.get_object_value(out_of_office_settings.OutOfOfficeSettings)),
+            "status_message": lambda n : setattr(self, 'status_message', n.get_object_value(presence_status_message.PresenceStatusMessage)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -110,5 +114,23 @@ class Presence(entity.Entity):
         writer.write_str_value("activity", self.activity)
         writer.write_str_value("availability", self.availability)
         writer.write_object_value("outOfOfficeSettings", self.out_of_office_settings)
+        writer.write_object_value("statusMessage", self.status_message)
+    
+    @property
+    def status_message(self,) -> Optional[presence_status_message.PresenceStatusMessage]:
+        """
+        Gets the statusMessage property value. The statusMessage property
+        Returns: Optional[presence_status_message.PresenceStatusMessage]
+        """
+        return self._status_message
+    
+    @status_message.setter
+    def status_message(self,value: Optional[presence_status_message.PresenceStatusMessage] = None) -> None:
+        """
+        Sets the statusMessage property value. The statusMessage property
+        Args:
+            value: Value to set for the statusMessage property.
+        """
+        self._status_message = value
     
 

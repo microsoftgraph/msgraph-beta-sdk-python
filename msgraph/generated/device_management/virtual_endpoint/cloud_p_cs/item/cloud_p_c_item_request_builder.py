@@ -29,48 +29,56 @@ class CloudPCItemRequestBuilder():
     """
     Provides operations to manage the cloudPCs property of the microsoft.graph.virtualEndpoint entity.
     """
+    @property
     def change_user_account_type(self) -> change_user_account_type_request_builder.ChangeUserAccountTypeRequestBuilder:
         """
         Provides operations to call the changeUserAccountType method.
         """
         return change_user_account_type_request_builder.ChangeUserAccountTypeRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def end_grace_period(self) -> end_grace_period_request_builder.EndGracePeriodRequestBuilder:
         """
         Provides operations to call the endGracePeriod method.
         """
         return end_grace_period_request_builder.EndGracePeriodRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def reboot(self) -> reboot_request_builder.RebootRequestBuilder:
         """
         Provides operations to call the reboot method.
         """
         return reboot_request_builder.RebootRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def rename(self) -> rename_request_builder.RenameRequestBuilder:
         """
         Provides operations to call the rename method.
         """
         return rename_request_builder.RenameRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def reprovision(self) -> reprovision_request_builder.ReprovisionRequestBuilder:
         """
         Provides operations to call the reprovision method.
         """
         return reprovision_request_builder.ReprovisionRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def restore(self) -> restore_request_builder.RestoreRequestBuilder:
         """
         Provides operations to call the restore method.
         """
         return restore_request_builder.RestoreRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def retry_partner_agent_installation(self) -> retry_partner_agent_installation_request_builder.RetryPartnerAgentInstallationRequestBuilder:
         """
         Provides operations to call the retryPartnerAgentInstallation method.
         """
         return retry_partner_agent_installation_request_builder.RetryPartnerAgentInstallationRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def troubleshoot(self) -> troubleshoot_request_builder.TroubleshootRequestBuilder:
         """
         Provides operations to call the troubleshoot method.
@@ -133,7 +141,7 @@ class CloudPCItemRequestBuilder():
         """
         Update the navigation property cloudPCs in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -219,7 +227,7 @@ class CloudPCItemRequestBuilder():
         """
         Update the navigation property cloudPCs in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_p_c.CloudPC]

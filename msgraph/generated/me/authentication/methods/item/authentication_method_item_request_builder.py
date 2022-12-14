@@ -20,18 +20,21 @@ class AuthenticationMethodItemRequestBuilder():
     """
     Provides operations to manage the methods property of the microsoft.graph.authentication entity.
     """
+    @property
     def disable_sms_sign_in(self) -> disable_sms_sign_in_request_builder.DisableSmsSignInRequestBuilder:
         """
         Provides operations to call the disableSmsSignIn method.
         """
         return disable_sms_sign_in_request_builder.DisableSmsSignInRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def enable_sms_sign_in(self) -> enable_sms_sign_in_request_builder.EnableSmsSignInRequestBuilder:
         """
         Provides operations to call the enableSmsSignIn method.
         """
         return enable_sms_sign_in_request_builder.EnableSmsSignInRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def reset_password(self) -> reset_password_request_builder.ResetPasswordRequestBuilder:
         """
         Provides operations to call the resetPassword method.
@@ -78,7 +81,7 @@ class AuthenticationMethodItemRequestBuilder():
         """
         Update the navigation property methods in me
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -118,7 +121,7 @@ class AuthenticationMethodItemRequestBuilder():
         """
         Update the navigation property methods in me
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_method.AuthenticationMethod]

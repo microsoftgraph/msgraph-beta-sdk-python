@@ -19,6 +19,7 @@ class InternetExplorerModeRequestBuilder():
     """
     Provides operations to manage the internetExplorerMode property of the microsoft.graph.edge entity.
     """
+    @property
     def site_lists(self) -> site_lists_request_builder.SiteListsRequestBuilder:
         """
         Provides operations to manage the siteLists property of the microsoft.graph.internetExplorerMode entity.
@@ -81,7 +82,7 @@ class InternetExplorerModeRequestBuilder():
         """
         Update the navigation property internetExplorerMode in admin
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +140,7 @@ class InternetExplorerModeRequestBuilder():
         """
         Update the navigation property internetExplorerMode in admin
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[internet_explorer_mode.InternetExplorerMode]

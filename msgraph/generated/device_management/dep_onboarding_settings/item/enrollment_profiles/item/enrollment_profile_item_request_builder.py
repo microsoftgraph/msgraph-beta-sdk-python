@@ -20,12 +20,14 @@ class EnrollmentProfileItemRequestBuilder():
     """
     Provides operations to manage the enrollmentProfiles property of the microsoft.graph.depOnboardingSetting entity.
     """
+    @property
     def set_default_profile(self) -> set_default_profile_request_builder.SetDefaultProfileRequestBuilder:
         """
         Provides operations to call the setDefaultProfile method.
         """
         return set_default_profile_request_builder.SetDefaultProfileRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def update_device_profile_assignment(self) -> update_device_profile_assignment_request_builder.UpdateDeviceProfileAssignmentRequestBuilder:
         """
         Provides operations to call the updateDeviceProfileAssignment method.
@@ -88,7 +90,7 @@ class EnrollmentProfileItemRequestBuilder():
         """
         Update the navigation property enrollmentProfiles in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -153,7 +155,7 @@ class EnrollmentProfileItemRequestBuilder():
         """
         Update the navigation property enrollmentProfiles in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[enrollment_profile.EnrollmentProfile]

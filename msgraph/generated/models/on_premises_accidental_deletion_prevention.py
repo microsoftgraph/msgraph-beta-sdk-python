@@ -26,7 +26,7 @@ class OnPremisesAccidentalDeletionPrevention(AdditionalDataHolder, Parsable):
     @property
     def alert_threshold(self,) -> Optional[int]:
         """
-        Gets the alertThreshold property value. The alertThreshold property
+        Gets the alertThreshold property value. Threshold value which triggers accidental deletion prevention. The threshold is either an absolute number of objects or a percentage number of objects.
         Returns: Optional[int]
         """
         return self._alert_threshold
@@ -34,7 +34,7 @@ class OnPremisesAccidentalDeletionPrevention(AdditionalDataHolder, Parsable):
     @alert_threshold.setter
     def alert_threshold(self,value: Optional[int] = None) -> None:
         """
-        Sets the alertThreshold property value. The alertThreshold property
+        Sets the alertThreshold property value. Threshold value which triggers accidental deletion prevention. The threshold is either an absolute number of objects or a percentage number of objects.
         Args:
             value: Value to set for the alertThreshold property.
         """
@@ -47,11 +47,11 @@ class OnPremisesAccidentalDeletionPrevention(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The alertThreshold property
+        # Threshold value which triggers accidental deletion prevention. The threshold is either an absolute number of objects or a percentage number of objects.
         self._alert_threshold: Optional[int] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The synchronizationPreventionType property
+        # The status of the accidental deletion prevention feature. The possible values are: disabled, enabledForCount, enabledForPercentage.
         self._synchronization_prevention_type: Optional[on_premises_directory_synchronization_deletion_prevention_type.OnPremisesDirectorySynchronizationDeletionPreventionType] = None
     
     @staticmethod
@@ -111,7 +111,7 @@ class OnPremisesAccidentalDeletionPrevention(AdditionalDataHolder, Parsable):
     @property
     def synchronization_prevention_type(self,) -> Optional[on_premises_directory_synchronization_deletion_prevention_type.OnPremisesDirectorySynchronizationDeletionPreventionType]:
         """
-        Gets the synchronizationPreventionType property value. The synchronizationPreventionType property
+        Gets the synchronizationPreventionType property value. The status of the accidental deletion prevention feature. The possible values are: disabled, enabledForCount, enabledForPercentage.
         Returns: Optional[on_premises_directory_synchronization_deletion_prevention_type.OnPremisesDirectorySynchronizationDeletionPreventionType]
         """
         return self._synchronization_prevention_type
@@ -119,7 +119,7 @@ class OnPremisesAccidentalDeletionPrevention(AdditionalDataHolder, Parsable):
     @synchronization_prevention_type.setter
     def synchronization_prevention_type(self,value: Optional[on_premises_directory_synchronization_deletion_prevention_type.OnPremisesDirectorySynchronizationDeletionPreventionType] = None) -> None:
         """
-        Sets the synchronizationPreventionType property value. The synchronizationPreventionType property
+        Sets the synchronizationPreventionType property value. The status of the accidental deletion prevention feature. The possible values are: disabled, enabledForCount, enabledForPercentage.
         Args:
             value: Value to set for the synchronizationPreventionType property.
         """

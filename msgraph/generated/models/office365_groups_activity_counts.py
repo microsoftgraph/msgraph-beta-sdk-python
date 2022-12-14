@@ -22,6 +22,10 @@ class Office365GroupsActivityCounts(entity.Entity):
         self._report_period: Optional[str] = None
         # The latest date of the content.
         self._report_refresh_date: Optional[Date] = None
+        # The teamsChannelMessages property
+        self._teams_channel_messages: Optional[int] = None
+        # The teamsMeetingsOrganized property
+        self._teams_meetings_organized: Optional[int] = None
         # The number of messages liked in Yammer groups.
         self._yammer_messages_liked: Optional[int] = None
         # The number of messages posted to Yammer groups.
@@ -68,6 +72,8 @@ class Office365GroupsActivityCounts(entity.Entity):
             "report_date": lambda n : setattr(self, 'report_date', n.get_object_value(Date)),
             "report_period": lambda n : setattr(self, 'report_period', n.get_str_value()),
             "report_refresh_date": lambda n : setattr(self, 'report_refresh_date', n.get_object_value(Date)),
+            "teams_channel_messages": lambda n : setattr(self, 'teams_channel_messages', n.get_int_value()),
+            "teams_meetings_organized": lambda n : setattr(self, 'teams_meetings_organized', n.get_int_value()),
             "yammer_messages_liked": lambda n : setattr(self, 'yammer_messages_liked', n.get_int_value()),
             "yammer_messages_posted": lambda n : setattr(self, 'yammer_messages_posted', n.get_int_value()),
             "yammer_messages_read": lambda n : setattr(self, 'yammer_messages_read', n.get_int_value()),
@@ -140,9 +146,45 @@ class Office365GroupsActivityCounts(entity.Entity):
         writer.write_object_value("reportDate", self.report_date)
         writer.write_str_value("reportPeriod", self.report_period)
         writer.write_object_value("reportRefreshDate", self.report_refresh_date)
+        writer.write_int_value("teamsChannelMessages", self.teams_channel_messages)
+        writer.write_int_value("teamsMeetingsOrganized", self.teams_meetings_organized)
         writer.write_int_value("yammerMessagesLiked", self.yammer_messages_liked)
         writer.write_int_value("yammerMessagesPosted", self.yammer_messages_posted)
         writer.write_int_value("yammerMessagesRead", self.yammer_messages_read)
+    
+    @property
+    def teams_channel_messages(self,) -> Optional[int]:
+        """
+        Gets the teamsChannelMessages property value. The teamsChannelMessages property
+        Returns: Optional[int]
+        """
+        return self._teams_channel_messages
+    
+    @teams_channel_messages.setter
+    def teams_channel_messages(self,value: Optional[int] = None) -> None:
+        """
+        Sets the teamsChannelMessages property value. The teamsChannelMessages property
+        Args:
+            value: Value to set for the teamsChannelMessages property.
+        """
+        self._teams_channel_messages = value
+    
+    @property
+    def teams_meetings_organized(self,) -> Optional[int]:
+        """
+        Gets the teamsMeetingsOrganized property value. The teamsMeetingsOrganized property
+        Returns: Optional[int]
+        """
+        return self._teams_meetings_organized
+    
+    @teams_meetings_organized.setter
+    def teams_meetings_organized(self,value: Optional[int] = None) -> None:
+        """
+        Sets the teamsMeetingsOrganized property value. The teamsMeetingsOrganized property
+        Args:
+            value: Value to set for the teamsMeetingsOrganized property.
+        """
+        self._teams_meetings_organized = value
     
     @property
     def yammer_messages_liked(self,) -> Optional[int]:

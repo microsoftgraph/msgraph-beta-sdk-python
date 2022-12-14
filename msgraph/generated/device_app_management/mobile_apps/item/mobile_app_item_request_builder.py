@@ -33,60 +33,70 @@ class MobileAppItemRequestBuilder():
     """
     Provides operations to manage the mobileApps property of the microsoft.graph.deviceAppManagement entity.
     """
+    @property
     def assign(self) -> assign_request_builder.AssignRequestBuilder:
         """
         Provides operations to call the assign method.
         """
         return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def categories(self) -> categories_request_builder.CategoriesRequestBuilder:
         """
         Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.
         """
         return categories_request_builder.CategoriesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def device_statuses(self) -> device_statuses_request_builder.DeviceStatusesRequestBuilder:
         """
         Provides operations to manage the deviceStatuses property of the microsoft.graph.mobileApp entity.
         """
         return device_statuses_request_builder.DeviceStatusesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def install_summary(self) -> install_summary_request_builder.InstallSummaryRequestBuilder:
         """
         Provides operations to manage the installSummary property of the microsoft.graph.mobileApp entity.
         """
         return install_summary_request_builder.InstallSummaryRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def managed_mobile_lob_app(self) -> managed_mobile_lob_app_request_builder.ManagedMobileLobAppRequestBuilder:
         """
         Casts the previous resource to managedMobileLobApp.
         """
         return managed_mobile_lob_app_request_builder.ManagedMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def mobile_lob_app(self) -> mobile_lob_app_request_builder.MobileLobAppRequestBuilder:
         """
         Casts the previous resource to mobileLobApp.
         """
         return mobile_lob_app_request_builder.MobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def relationships(self) -> relationships_request_builder.RelationshipsRequestBuilder:
         """
         Provides operations to manage the relationships property of the microsoft.graph.mobileApp entity.
         """
         return relationships_request_builder.RelationshipsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def update_relationships(self) -> update_relationships_request_builder.UpdateRelationshipsRequestBuilder:
         """
         Provides operations to call the updateRelationships method.
         """
         return update_relationships_request_builder.UpdateRelationshipsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def user_statuses(self) -> user_statuses_request_builder.UserStatusesRequestBuilder:
         """
         Provides operations to manage the userStatuses property of the microsoft.graph.mobileApp entity.
@@ -175,7 +185,7 @@ class MobileAppItemRequestBuilder():
         """
         Update the navigation property mobileApps in deviceAppManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -260,7 +270,7 @@ class MobileAppItemRequestBuilder():
         """
         Update the navigation property mobileApps in deviceAppManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mobile_app.MobileApp]

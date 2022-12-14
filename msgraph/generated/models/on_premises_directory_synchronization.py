@@ -9,12 +9,12 @@ on_premises_directory_synchronization_feature = lazy_import('msgraph.generated.m
 
 class OnPremisesDirectorySynchronization(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def configuration(self,) -> Optional[on_premises_directory_synchronization_configuration.OnPremisesDirectorySynchronizationConfiguration]:
         """
-        Gets the configuration property value. The configuration property
+        Gets the configuration property value. Consists of configurations that can be fine-tuned and impact the on-premises directory synchronization process for a tenant.
         Returns: Optional[on_premises_directory_synchronization_configuration.OnPremisesDirectorySynchronizationConfiguration]
         """
         return self._configuration
@@ -22,7 +22,7 @@ class OnPremisesDirectorySynchronization(entity.Entity):
     @configuration.setter
     def configuration(self,value: Optional[on_premises_directory_synchronization_configuration.OnPremisesDirectorySynchronizationConfiguration] = None) -> None:
         """
-        Sets the configuration property value. The configuration property
+        Sets the configuration property value. Consists of configurations that can be fine-tuned and impact the on-premises directory synchronization process for a tenant.
         Args:
             value: Value to set for the configuration property.
         """
@@ -33,7 +33,7 @@ class OnPremisesDirectorySynchronization(entity.Entity):
         Instantiates a new onPremisesDirectorySynchronization and sets the default values.
         """
         super().__init__()
-        # The configuration property
+        # Consists of configurations that can be fine-tuned and impact the on-premises directory synchronization process for a tenant.
         self._configuration: Optional[on_premises_directory_synchronization_configuration.OnPremisesDirectorySynchronizationConfiguration] = None
         # The features property
         self._features: Optional[on_premises_directory_synchronization_feature.OnPremisesDirectorySynchronizationFeature] = None
