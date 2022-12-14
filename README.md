@@ -98,7 +98,7 @@ async def get_user():
 asyncio.run(get_user())
 ```
 
-Note that to calling `me()` requires a signed-in user and therefore delegated permissions (obtained using the `authorization_code` flow):
+Note that to calling `me` requires a signed-in user and therefore delegated permissions (obtained using the `authorization_code` flow):
 
 ```py
 import asyncio
@@ -119,7 +119,7 @@ request_adapter = GraphRequestAdapter(auth_provider)
 client = GraphServiceClient(request_adapter)
 
 async def me():
-    me = await client.me().get()
+    me = await client.me.get()
     print(me.display_name)
 
 asyncio.run(me())
