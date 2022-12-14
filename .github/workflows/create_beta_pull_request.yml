@@ -12,7 +12,7 @@ name: "Create pull request on generation update"
 on:
   push:
     branches:
-      - "microsoftgraph/beta/pipelinebuild/*"
+      - "beta/pipelinebuild/*"
     paths:
       - 'msgraph/generated/**'
 
