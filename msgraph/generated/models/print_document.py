@@ -9,7 +9,7 @@ printer_document_configuration = lazy_import('msgraph.generated.models.printer_d
 
 class PrintDocument(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the admin singleton.
     """
     @property
     def configuration(self,) -> Optional[printer_document_configuration.PrinterDocumentConfiguration]:

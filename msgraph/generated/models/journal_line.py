@@ -9,7 +9,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class JournalLine(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the admin singleton.
     """
     @property
     def account(self,) -> Optional[account.Account]:
@@ -29,15 +29,15 @@ class JournalLine(entity.Entity):
         self._account = value
     
     @property
-    def account_id(self,) -> Optional[str]:
+    def account_id(self,) -> Optional[Guid]:
         """
         Gets the accountId property value. The accountId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._account_id
     
     @account_id.setter
-    def account_id(self,value: Optional[str] = None) -> None:
+    def account_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the accountId property value. The accountId property
         Args:
@@ -104,7 +104,7 @@ class JournalLine(entity.Entity):
         # The account property
         self._account: Optional[account.Account] = None
         # The accountId property
-        self._account_id: Optional[str] = None
+        self._account_id: Optional[Guid] = None
         # The accountNumber property
         self._account_number: Optional[str] = None
         # The amount property
@@ -198,7 +198,7 @@ class JournalLine(entity.Entity):
         """
         fields = {
             "account": lambda n : setattr(self, 'account', n.get_object_value(account.Account)),
-            "account_id": lambda n : setattr(self, 'account_id', n.get_str_value()),
+            "account_id": lambda n : setattr(self, 'account_id', n.get_object_value(Guid)),
             "account_number": lambda n : setattr(self, 'account_number', n.get_str_value()),
             "amount": lambda n : setattr(self, 'amount', n.get_float_value()),
             "comment": lambda n : setattr(self, 'comment', n.get_str_value()),
@@ -292,7 +292,7 @@ class JournalLine(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_object_value("account", self.account)
-        writer.write_str_value("accountId", self.account_id)
+        writer.write_object_value("accountId", self.account_id)
         writer.write_str_value("accountNumber", self.account_number)
         writer.write_float_value("amount", self.amount)
         writer.write_str_value("comment", self.comment)

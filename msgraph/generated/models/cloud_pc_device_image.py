@@ -10,12 +10,9 @@ cloud_pc_device_image_status_details = lazy_import('msgraph.generated.models.clo
 entity = lazy_import('msgraph.generated.models.entity')
 
 class CloudPcDeviceImage(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new cloudPcDeviceImage and sets the default values.
+        Instantiates a new CloudPcDeviceImage and sets the default values.
         """
         super().__init__()
         # The image's display name.

@@ -8,7 +8,7 @@ resource_connection_state = lazy_import('msgraph.generated.models.windows_update
 
 class ResourceConnection(entity.Entity):
     """
-    Provides operations to manage the admin singleton.
+    Provides operations to manage the collection of accessReview entities.
     """
     def __init__(self,) -> None:
         """

@@ -80,7 +80,7 @@ class CaseOperationItemRequestBuilder():
         """
         Update the navigation property operations in compliance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class CaseOperationItemRequestBuilder():
         """
         Update the navigation property operations in compliance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[case_operation.CaseOperation]

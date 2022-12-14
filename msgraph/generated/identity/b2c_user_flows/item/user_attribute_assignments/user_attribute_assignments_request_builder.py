@@ -73,7 +73,7 @@ class UserAttributeAssignmentsRequestBuilder():
         """
         Create a new identityUserFlowAttributeAssignment object in a b2cIdentityUserFlow.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -120,7 +120,7 @@ class UserAttributeAssignmentsRequestBuilder():
         """
         Create a new identityUserFlowAttributeAssignment object in a b2cIdentityUserFlow.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[identity_user_flow_attribute_assignment.IdentityUserFlowAttributeAssignment]

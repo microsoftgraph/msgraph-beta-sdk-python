@@ -150,7 +150,7 @@ class CaseItemRequestBuilder():
         """
         Update the navigation property cases in compliance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -260,7 +260,7 @@ class CaseItemRequestBuilder():
         """
         Update the navigation property cases in compliance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[case.Case]

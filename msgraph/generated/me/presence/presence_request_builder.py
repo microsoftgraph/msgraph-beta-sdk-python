@@ -13,6 +13,7 @@ from typing import Any, Callable, Dict, List, Optional, Union
 clear_presence_request_builder = lazy_import('msgraph.generated.me.presence.clear_presence.clear_presence_request_builder')
 clear_user_preferred_presence_request_builder = lazy_import('msgraph.generated.me.presence.clear_user_preferred_presence.clear_user_preferred_presence_request_builder')
 set_presence_request_builder = lazy_import('msgraph.generated.me.presence.set_presence.set_presence_request_builder')
+set_status_message_request_builder = lazy_import('msgraph.generated.me.presence.set_status_message.set_status_message_request_builder')
 set_user_preferred_presence_request_builder = lazy_import('msgraph.generated.me.presence.set_user_preferred_presence.set_user_preferred_presence_request_builder')
 presence = lazy_import('msgraph.generated.models.presence')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -38,6 +39,12 @@ class PresenceRequestBuilder():
         Provides operations to call the setPresence method.
         """
         return set_presence_request_builder.SetPresenceRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    def set_status_message(self) -> set_status_message_request_builder.SetStatusMessageRequestBuilder:
+        """
+        Provides operations to call the setStatusMessage method.
+        """
+        return set_status_message_request_builder.SetStatusMessageRequestBuilder(self.request_adapter, self.path_parameters)
     
     def set_user_preferred_presence(self) -> set_user_preferred_presence_request_builder.SetUserPreferredPresenceRequestBuilder:
         """
@@ -101,7 +108,7 @@ class PresenceRequestBuilder():
         """
         Update the navigation property presence in me
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +166,7 @@ class PresenceRequestBuilder():
         """
         Update the navigation property presence in me
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[presence.Presence]

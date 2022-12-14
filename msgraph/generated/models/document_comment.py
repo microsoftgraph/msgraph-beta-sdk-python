@@ -7,9 +7,12 @@ document_comment_reply = lazy_import('msgraph.generated.models.document_comment_
 entity = lazy_import('msgraph.generated.models.entity')
 
 class DocumentComment(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReviewDecision entities.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new DocumentComment and sets the default values.
+        Instantiates a new documentComment and sets the default values.
         """
         super().__init__()
         # The content property

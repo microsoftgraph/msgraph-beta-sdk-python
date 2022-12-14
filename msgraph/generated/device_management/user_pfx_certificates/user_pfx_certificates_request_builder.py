@@ -65,7 +65,7 @@ class UserPfxCertificatesRequestBuilder():
         """
         Create new navigation property to userPfxCertificates for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +105,7 @@ class UserPfxCertificatesRequestBuilder():
         """
         Create new navigation property to userPfxCertificates for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_p_f_x_certificate.UserPFXCertificate]

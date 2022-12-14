@@ -12,7 +12,7 @@ tlp_level = lazy_import('msgraph.generated.models.tlp_level')
 
 class TiIndicator(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the admin singleton.
     """
     @property
     def action(self,) -> Optional[ti_action.TiAction]:

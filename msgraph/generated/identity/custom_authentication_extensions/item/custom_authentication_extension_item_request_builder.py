@@ -80,7 +80,7 @@ class CustomAuthenticationExtensionItemRequestBuilder():
         """
         Update the navigation property customAuthenticationExtensions in identity
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class CustomAuthenticationExtensionItemRequestBuilder():
         """
         Update the navigation property customAuthenticationExtensions in identity
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[custom_authentication_extension.CustomAuthenticationExtension]

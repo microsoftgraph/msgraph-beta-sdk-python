@@ -122,7 +122,7 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         """
         Update the navigation property androidManagedStoreAccountEnterpriseSettings in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -180,7 +180,7 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         """
         Update the navigation property androidManagedStoreAccountEnterpriseSettings in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]

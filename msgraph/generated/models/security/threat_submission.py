@@ -16,7 +16,7 @@ submission_user_identity = lazy_import('msgraph.generated.models.security.submis
 
 class ThreatSubmission(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def admin_review(self,) -> Optional[submission_admin_review.SubmissionAdminReview]:

@@ -40,7 +40,7 @@ class ProvisionOnDemandRequestBuilder():
         """
         Select a user and provision the account on-demand. The rate limit for this API is 5 requests per 10 seconds. 
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -61,7 +61,7 @@ class ProvisionOnDemandRequestBuilder():
         """
         Select a user and provision the account on-demand. The rate limit for this API is 5 requests per 10 seconds. 
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[string_key_string_value_pair.StringKeyStringValuePair]

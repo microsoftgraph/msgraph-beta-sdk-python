@@ -15,7 +15,7 @@ threat_expected_assessment = lazy_import('msgraph.generated.models.threat_expect
 
 class ThreatAssessmentRequest(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the admin singleton.
     """
     @property
     def category(self,) -> Optional[threat_category.ThreatCategory]:

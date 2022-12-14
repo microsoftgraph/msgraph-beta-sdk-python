@@ -52,7 +52,7 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         # The authenticatorFlavor property
         self._authenticator_flavor: Optional[str] = None
         # The deviceId property
-        self._device_id: Optional[str] = None
+        self._device_id: Optional[Guid] = None
         # The deviceName property
         self._device_name: Optional[str] = None
         # The deviceTag property
@@ -93,15 +93,15 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         return StrongAuthenticationPhoneAppDetail()
     
     @property
-    def device_id(self,) -> Optional[str]:
+    def device_id(self,) -> Optional[Guid]:
         """
         Gets the deviceId property value. The deviceId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._device_id
     
     @device_id.setter
-    def device_id(self,value: Optional[str] = None) -> None:
+    def device_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the deviceId property value. The deviceId property
         Args:
@@ -168,7 +168,7 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         fields = {
             "authentication_type": lambda n : setattr(self, 'authentication_type', n.get_str_value()),
             "authenticator_flavor": lambda n : setattr(self, 'authenticator_flavor', n.get_str_value()),
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "device_id": lambda n : setattr(self, 'device_id', n.get_object_value(Guid)),
             "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
             "device_tag": lambda n : setattr(self, 'device_tag', n.get_str_value()),
             "device_token": lambda n : setattr(self, 'device_token', n.get_str_value()),
@@ -316,7 +316,7 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         super().serialize(writer)
         writer.write_str_value("authenticationType", self.authentication_type)
         writer.write_str_value("authenticatorFlavor", self.authenticator_flavor)
-        writer.write_str_value("deviceId", self.device_id)
+        writer.write_object_value("deviceId", self.device_id)
         writer.write_str_value("deviceName", self.device_name)
         writer.write_str_value("deviceTag", self.device_tag)
         writer.write_str_value("deviceToken", self.device_token)

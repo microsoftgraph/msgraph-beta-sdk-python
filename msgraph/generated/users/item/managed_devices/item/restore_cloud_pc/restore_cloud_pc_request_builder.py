@@ -39,7 +39,7 @@ class RestoreCloudPcRequestBuilder():
         """
         Restore a Cloud PC device to a previous state with an Intune managed device ID.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -59,7 +59,7 @@ class RestoreCloudPcRequestBuilder():
         """
         Restore a Cloud PC device to a previous state with an Intune managed device ID.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         """

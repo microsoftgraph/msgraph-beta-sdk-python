@@ -7,6 +7,9 @@ base_authentication_method = lazy_import('msgraph.generated.models.base_authenti
 entity = lazy_import('msgraph.generated.models.entity')
 
 class AuthenticationMethodModeDetail(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReviewDecision entities.
+    """
     @property
     def authentication_method(self,) -> Optional[base_authentication_method.BaseAuthenticationMethod]:
         """
@@ -26,7 +29,7 @@ class AuthenticationMethodModeDetail(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new AuthenticationMethodModeDetail and sets the default values.
+        Instantiates a new authenticationMethodModeDetail and sets the default values.
         """
         super().__init__()
         # The authenticationMethod property

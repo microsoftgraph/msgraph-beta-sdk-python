@@ -65,7 +65,7 @@ class PartnersRequestBuilder():
         """
         Create a new partner configuration in a cross-tenant access policy.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +105,7 @@ class PartnersRequestBuilder():
         """
         Create a new partner configuration in a cross-tenant access policy.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner]

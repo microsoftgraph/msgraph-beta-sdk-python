@@ -73,7 +73,7 @@ class TagsRequestBuilder():
         """
         Create a new tag for the specified case.  The tags are used in review sets while reviewing content.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -113,7 +113,7 @@ class TagsRequestBuilder():
         """
         Create a new tag for the specified case.  The tags are used in review sets while reviewing content.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tag.Tag]

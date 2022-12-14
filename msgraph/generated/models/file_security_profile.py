@@ -12,7 +12,7 @@ vulnerability_state = lazy_import('msgraph.generated.models.vulnerability_state'
 
 class FileSecurityProfile(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def activity_group_names(self,) -> Optional[List[str]]:

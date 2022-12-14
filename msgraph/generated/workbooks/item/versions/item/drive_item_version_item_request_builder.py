@@ -87,7 +87,7 @@ class DriveItemVersionItemRequestBuilder():
         """
         Update the navigation property versions in workbooks
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +145,7 @@ class DriveItemVersionItemRequestBuilder():
         """
         Update the navigation property versions in workbooks
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[drive_item_version.DriveItemVersion]

@@ -7,7 +7,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class UpdatableAsset(entity.Entity):
     """
-    Provides operations to manage the admin singleton.
+    Provides operations to manage the collection of accessReview entities.
     """
     def __init__(self,) -> None:
         """

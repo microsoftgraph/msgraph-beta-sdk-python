@@ -74,7 +74,7 @@ class ChannelsRequestBuilder():
         """
         Create a new channel in a team, as specified in the request body.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -121,7 +121,7 @@ class ChannelsRequestBuilder():
         """
         Create a new channel in a team, as specified in the request body.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[channel.Channel]

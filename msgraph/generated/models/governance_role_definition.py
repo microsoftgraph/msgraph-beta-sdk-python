@@ -8,6 +8,9 @@ governance_resource = lazy_import('msgraph.generated.models.governance_resource'
 governance_role_setting = lazy_import('msgraph.generated.models.governance_role_setting')
 
 class GovernanceRoleDefinition(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new governanceRoleDefinition and sets the default values.

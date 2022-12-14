@@ -65,7 +65,7 @@ class AssignmentsRequestBuilder():
         """
         Create new navigation property to assignments for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +105,7 @@ class AssignmentsRequestBuilder():
         """
         Create new navigation property to assignments for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[embedded_s_i_m_activation_code_pool_assignment.EmbeddedSIMActivationCodePoolAssignment]

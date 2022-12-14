@@ -16,6 +16,7 @@ get_daily_aggregated_remote_connection_reports_request_builder = lazy_import('ms
 get_real_time_remote_connection_latency_with_cloud_pc_id_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.reports.get_real_time_remote_connection_latency_with_cloud_pc_id.get_real_time_remote_connection_latency_with_cloud_pc_id_request_builder')
 get_real_time_remote_connection_status_with_cloud_pc_id_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.reports.get_real_time_remote_connection_status_with_cloud_pc_id.get_real_time_remote_connection_status_with_cloud_pc_id_request_builder')
 get_remote_connection_historical_reports_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.reports.get_remote_connection_historical_reports.get_remote_connection_historical_reports_request_builder')
+get_shared_use_license_usage_report_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.reports.get_shared_use_license_usage_report.get_shared_use_license_usage_report_request_builder')
 get_total_aggregated_remote_connection_reports_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.reports.get_total_aggregated_remote_connection_reports.get_total_aggregated_remote_connection_reports_request_builder')
 cloud_pc_reports = lazy_import('msgraph.generated.models.cloud_pc_reports')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -41,6 +42,12 @@ class ReportsRequestBuilder():
         Provides operations to call the getRemoteConnectionHistoricalReports method.
         """
         return get_remote_connection_historical_reports_request_builder.GetRemoteConnectionHistoricalReportsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    def get_shared_use_license_usage_report(self) -> get_shared_use_license_usage_report_request_builder.GetSharedUseLicenseUsageReportRequestBuilder:
+        """
+        Provides operations to call the getSharedUseLicenseUsageReport method.
+        """
+        return get_shared_use_license_usage_report_request_builder.GetSharedUseLicenseUsageReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     def get_total_aggregated_remote_connection_reports(self) -> get_total_aggregated_remote_connection_reports_request_builder.GetTotalAggregatedRemoteConnectionReportsRequestBuilder:
         """
@@ -104,7 +111,7 @@ class ReportsRequestBuilder():
         """
         Update the navigation property reports in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -197,7 +204,7 @@ class ReportsRequestBuilder():
         """
         Update the navigation property reports in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_reports.CloudPcReports]

@@ -9,14 +9,14 @@ planner_task = lazy_import('msgraph.generated.models.planner_task')
 
 class PlannerBucket(planner_delta.PlannerDelta):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the admin singleton.
     """
     def __init__(self,) -> None:
         """
         Instantiates a new plannerBucket and sets the default values.
         """
         super().__init__()
-        # The creationSource property
+        # Contains information about the origin of the bucket.
         self._creation_source: Optional[planner_bucket_creation.PlannerBucketCreation] = None
         # Name of the bucket.
         self._name: Optional[str] = None
@@ -44,7 +44,7 @@ class PlannerBucket(planner_delta.PlannerDelta):
     @property
     def creation_source(self,) -> Optional[planner_bucket_creation.PlannerBucketCreation]:
         """
-        Gets the creationSource property value. The creationSource property
+        Gets the creationSource property value. Contains information about the origin of the bucket.
         Returns: Optional[planner_bucket_creation.PlannerBucketCreation]
         """
         return self._creation_source
@@ -52,7 +52,7 @@ class PlannerBucket(planner_delta.PlannerDelta):
     @creation_source.setter
     def creation_source(self,value: Optional[planner_bucket_creation.PlannerBucketCreation] = None) -> None:
         """
-        Sets the creationSource property value. The creationSource property
+        Sets the creationSource property value. Contains information about the origin of the bucket.
         Args:
             value: Value to set for the creationSource property.
         """

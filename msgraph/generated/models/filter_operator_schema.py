@@ -9,9 +9,6 @@ scope_operator_multi_valued_comparison_type = lazy_import('msgraph.generated.mod
 scope_operator_type = lazy_import('msgraph.generated.models.scope_operator_type')
 
 class FilterOperatorSchema(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def arity(self,) -> Optional[scope_operator_type.ScopeOperatorType]:
         """

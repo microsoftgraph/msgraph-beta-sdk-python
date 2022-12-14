@@ -12,7 +12,7 @@ vendor = lazy_import('msgraph.generated.models.vendor')
 
 class PurchaseInvoice(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def buy_from_address(self,) -> Optional[postal_address_type.PostalAddressType]:
@@ -43,7 +43,7 @@ class PurchaseInvoice(entity.Entity):
         # The currencyCode property
         self._currency_code: Optional[str] = None
         # The currencyId property
-        self._currency_id: Optional[str] = None
+        self._currency_id: Optional[Guid] = None
         # The discountAmount property
         self._discount_amount: Optional[float] = None
         # The discountAppliedBeforeTax property
@@ -65,7 +65,7 @@ class PurchaseInvoice(entity.Entity):
         # The payToName property
         self._pay_to_name: Optional[str] = None
         # The payToVendorId property
-        self._pay_to_vendor_id: Optional[str] = None
+        self._pay_to_vendor_id: Optional[Guid] = None
         # The payToVendorNumber property
         self._pay_to_vendor_number: Optional[str] = None
         # The pricesIncludeTax property
@@ -89,7 +89,7 @@ class PurchaseInvoice(entity.Entity):
         # The vendor property
         self._vendor: Optional[vendor.Vendor] = None
         # The vendorId property
-        self._vendor_id: Optional[str] = None
+        self._vendor_id: Optional[Guid] = None
         # The vendorInvoiceNumber property
         self._vendor_invoice_number: Optional[str] = None
         # The vendorName property
@@ -144,15 +144,15 @@ class PurchaseInvoice(entity.Entity):
         self._currency_code = value
     
     @property
-    def currency_id(self,) -> Optional[str]:
+    def currency_id(self,) -> Optional[Guid]:
         """
         Gets the currencyId property value. The currencyId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._currency_id
     
     @currency_id.setter
-    def currency_id(self,value: Optional[str] = None) -> None:
+    def currency_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the currencyId property value. The currencyId property
         Args:
@@ -220,7 +220,7 @@ class PurchaseInvoice(entity.Entity):
             "buy_from_address": lambda n : setattr(self, 'buy_from_address', n.get_object_value(postal_address_type.PostalAddressType)),
             "currency": lambda n : setattr(self, 'currency', n.get_object_value(currency.Currency)),
             "currency_code": lambda n : setattr(self, 'currency_code', n.get_str_value()),
-            "currency_id": lambda n : setattr(self, 'currency_id', n.get_str_value()),
+            "currency_id": lambda n : setattr(self, 'currency_id', n.get_object_value(Guid)),
             "discount_amount": lambda n : setattr(self, 'discount_amount', n.get_float_value()),
             "discount_applied_before_tax": lambda n : setattr(self, 'discount_applied_before_tax', n.get_bool_value()),
             "due_date": lambda n : setattr(self, 'due_date', n.get_object_value(Date)),
@@ -230,7 +230,7 @@ class PurchaseInvoice(entity.Entity):
             "pay_to_address": lambda n : setattr(self, 'pay_to_address', n.get_object_value(postal_address_type.PostalAddressType)),
             "pay_to_contact": lambda n : setattr(self, 'pay_to_contact', n.get_str_value()),
             "pay_to_name": lambda n : setattr(self, 'pay_to_name', n.get_str_value()),
-            "pay_to_vendor_id": lambda n : setattr(self, 'pay_to_vendor_id', n.get_str_value()),
+            "pay_to_vendor_id": lambda n : setattr(self, 'pay_to_vendor_id', n.get_object_value(Guid)),
             "pay_to_vendor_number": lambda n : setattr(self, 'pay_to_vendor_number', n.get_str_value()),
             "prices_include_tax": lambda n : setattr(self, 'prices_include_tax', n.get_bool_value()),
             "purchase_invoice_lines": lambda n : setattr(self, 'purchase_invoice_lines', n.get_collection_of_object_values(purchase_invoice_line.PurchaseInvoiceLine)),
@@ -242,7 +242,7 @@ class PurchaseInvoice(entity.Entity):
             "total_amount_including_tax": lambda n : setattr(self, 'total_amount_including_tax', n.get_float_value()),
             "total_tax_amount": lambda n : setattr(self, 'total_tax_amount', n.get_float_value()),
             "vendor": lambda n : setattr(self, 'vendor', n.get_object_value(vendor.Vendor)),
-            "vendor_id": lambda n : setattr(self, 'vendor_id', n.get_str_value()),
+            "vendor_id": lambda n : setattr(self, 'vendor_id', n.get_object_value(Guid)),
             "vendor_invoice_number": lambda n : setattr(self, 'vendor_invoice_number', n.get_str_value()),
             "vendor_name": lambda n : setattr(self, 'vendor_name', n.get_str_value()),
             "vendor_number": lambda n : setattr(self, 'vendor_number', n.get_str_value()),
@@ -354,15 +354,15 @@ class PurchaseInvoice(entity.Entity):
         self._pay_to_name = value
     
     @property
-    def pay_to_vendor_id(self,) -> Optional[str]:
+    def pay_to_vendor_id(self,) -> Optional[Guid]:
         """
         Gets the payToVendorId property value. The payToVendorId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._pay_to_vendor_id
     
     @pay_to_vendor_id.setter
-    def pay_to_vendor_id(self,value: Optional[str] = None) -> None:
+    def pay_to_vendor_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the payToVendorId property value. The payToVendorId property
         Args:
@@ -433,7 +433,7 @@ class PurchaseInvoice(entity.Entity):
         writer.write_object_value("buyFromAddress", self.buy_from_address)
         writer.write_object_value("currency", self.currency)
         writer.write_str_value("currencyCode", self.currency_code)
-        writer.write_str_value("currencyId", self.currency_id)
+        writer.write_object_value("currencyId", self.currency_id)
         writer.write_float_value("discountAmount", self.discount_amount)
         writer.write_bool_value("discountAppliedBeforeTax", self.discount_applied_before_tax)
         writer.write_object_value("dueDate", self.due_date)
@@ -443,7 +443,7 @@ class PurchaseInvoice(entity.Entity):
         writer.write_object_value("payToAddress", self.pay_to_address)
         writer.write_str_value("payToContact", self.pay_to_contact)
         writer.write_str_value("payToName", self.pay_to_name)
-        writer.write_str_value("payToVendorId", self.pay_to_vendor_id)
+        writer.write_object_value("payToVendorId", self.pay_to_vendor_id)
         writer.write_str_value("payToVendorNumber", self.pay_to_vendor_number)
         writer.write_bool_value("pricesIncludeTax", self.prices_include_tax)
         writer.write_collection_of_object_values("purchaseInvoiceLines", self.purchase_invoice_lines)
@@ -455,7 +455,7 @@ class PurchaseInvoice(entity.Entity):
         writer.write_float_value("totalAmountIncludingTax", self.total_amount_including_tax)
         writer.write_float_value("totalTaxAmount", self.total_tax_amount)
         writer.write_object_value("vendor", self.vendor)
-        writer.write_str_value("vendorId", self.vendor_id)
+        writer.write_object_value("vendorId", self.vendor_id)
         writer.write_str_value("vendorInvoiceNumber", self.vendor_invoice_number)
         writer.write_str_value("vendorName", self.vendor_name)
         writer.write_str_value("vendorNumber", self.vendor_number)
@@ -597,15 +597,15 @@ class PurchaseInvoice(entity.Entity):
         self._vendor = value
     
     @property
-    def vendor_id(self,) -> Optional[str]:
+    def vendor_id(self,) -> Optional[Guid]:
         """
         Gets the vendorId property value. The vendorId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._vendor_id
     
     @vendor_id.setter
-    def vendor_id(self,value: Optional[str] = None) -> None:
+    def vendor_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the vendorId property value. The vendorId property
         Args:

@@ -169,15 +169,15 @@ class ServicePrincipal(directory_object.DirectoryObject):
         self._app_management_policies = value
     
     @property
-    def app_owner_organization_id(self,) -> Optional[str]:
+    def app_owner_organization_id(self,) -> Optional[Guid]:
         """
         Gets the appOwnerOrganizationId property value. Contains the tenant id where the application is registered. This is applicable only to service principals backed by applications.Supports $filter (eq, ne, NOT, ge, le).
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._app_owner_organization_id
     
     @app_owner_organization_id.setter
-    def app_owner_organization_id(self,value: Optional[str] = None) -> None:
+    def app_owner_organization_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the appOwnerOrganizationId property value. Contains the tenant id where the application is registered. This is applicable only to service principals backed by applications.Supports $filter (eq, ne, NOT, ge, le).
         Args:
@@ -293,7 +293,7 @@ class ServicePrincipal(directory_object.DirectoryObject):
         # The appManagementPolicy applied to this service principal.
         self._app_management_policies: Optional[List[app_management_policy.AppManagementPolicy]] = None
         # Contains the tenant id where the application is registered. This is applicable only to service principals backed by applications.Supports $filter (eq, ne, NOT, ge, le).
-        self._app_owner_organization_id: Optional[str] = None
+        self._app_owner_organization_id: Optional[Guid] = None
         # App role assignments for this app or service, granted to users, groups, and other service principals.Supports $expand.
         self._app_role_assigned_to: Optional[List[app_role_assignment.AppRoleAssignment]] = None
         # Specifies whether users or other service principals need to be granted an app role assignment for this service principal before users can sign in or apps can get tokens. The default value is false. Not nullable. Supports $filter (eq, ne, NOT).
@@ -379,7 +379,7 @@ class ServicePrincipal(directory_object.DirectoryObject):
         # Custom strings that can be used to categorize and identify the service principal. Not nullable. Supports $filter (eq, not, ge, le, startsWith).
         self._tags: Optional[List[str]] = None
         # Specifies the keyId of a public key from the keyCredentials collection. When configured, Azure AD issues tokens for this application encrypted using the key specified by this property. The application code that receives the encrypted token must use the matching private key to decrypt the token before it can be used for the signed-in user.
-        self._token_encryption_key_id: Optional[str] = None
+        self._token_encryption_key_id: Optional[Guid] = None
         # The tokenIssuancePolicies assigned to this service principal. Supports $expand.
         self._token_issuance_policies: Optional[List[token_issuance_policy.TokenIssuancePolicy]] = None
         # The tokenLifetimePolicies assigned to this service principal. Supports $expand.
@@ -568,7 +568,7 @@ class ServicePrincipal(directory_object.DirectoryObject):
             "app_id": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "application_template_id": lambda n : setattr(self, 'application_template_id', n.get_str_value()),
             "app_management_policies": lambda n : setattr(self, 'app_management_policies', n.get_collection_of_object_values(app_management_policy.AppManagementPolicy)),
-            "app_owner_organization_id": lambda n : setattr(self, 'app_owner_organization_id', n.get_str_value()),
+            "app_owner_organization_id": lambda n : setattr(self, 'app_owner_organization_id', n.get_object_value(Guid)),
             "app_role_assigned_to": lambda n : setattr(self, 'app_role_assigned_to', n.get_collection_of_object_values(app_role_assignment.AppRoleAssignment)),
             "app_role_assignment_required": lambda n : setattr(self, 'app_role_assignment_required', n.get_bool_value()),
             "app_role_assignments": lambda n : setattr(self, 'app_role_assignments', n.get_collection_of_object_values(app_role_assignment.AppRoleAssignment)),
@@ -611,7 +611,7 @@ class ServicePrincipal(directory_object.DirectoryObject):
             "sign_in_audience": lambda n : setattr(self, 'sign_in_audience', n.get_str_value()),
             "synchronization": lambda n : setattr(self, 'synchronization', n.get_object_value(synchronization.Synchronization)),
             "tags": lambda n : setattr(self, 'tags', n.get_collection_of_primitive_values(str)),
-            "token_encryption_key_id": lambda n : setattr(self, 'token_encryption_key_id', n.get_str_value()),
+            "token_encryption_key_id": lambda n : setattr(self, 'token_encryption_key_id', n.get_object_value(Guid)),
             "token_issuance_policies": lambda n : setattr(self, 'token_issuance_policies', n.get_collection_of_object_values(token_issuance_policy.TokenIssuancePolicy)),
             "token_lifetime_policies": lambda n : setattr(self, 'token_lifetime_policies', n.get_collection_of_object_values(token_lifetime_policy.TokenLifetimePolicy)),
             "transitive_member_of": lambda n : setattr(self, 'transitive_member_of', n.get_collection_of_object_values(directory_object.DirectoryObject)),
@@ -1029,7 +1029,7 @@ class ServicePrincipal(directory_object.DirectoryObject):
         writer.write_str_value("appId", self.app_id)
         writer.write_str_value("applicationTemplateId", self.application_template_id)
         writer.write_collection_of_object_values("appManagementPolicies", self.app_management_policies)
-        writer.write_str_value("appOwnerOrganizationId", self.app_owner_organization_id)
+        writer.write_object_value("appOwnerOrganizationId", self.app_owner_organization_id)
         writer.write_collection_of_object_values("appRoleAssignedTo", self.app_role_assigned_to)
         writer.write_bool_value("appRoleAssignmentRequired", self.app_role_assignment_required)
         writer.write_collection_of_object_values("appRoleAssignments", self.app_role_assignments)
@@ -1072,7 +1072,7 @@ class ServicePrincipal(directory_object.DirectoryObject):
         writer.write_str_value("signInAudience", self.sign_in_audience)
         writer.write_object_value("synchronization", self.synchronization)
         writer.write_collection_of_primitive_values("tags", self.tags)
-        writer.write_str_value("tokenEncryptionKeyId", self.token_encryption_key_id)
+        writer.write_object_value("tokenEncryptionKeyId", self.token_encryption_key_id)
         writer.write_collection_of_object_values("tokenIssuancePolicies", self.token_issuance_policies)
         writer.write_collection_of_object_values("tokenLifetimePolicies", self.token_lifetime_policies)
         writer.write_collection_of_object_values("transitiveMemberOf", self.transitive_member_of)
@@ -1164,15 +1164,15 @@ class ServicePrincipal(directory_object.DirectoryObject):
         self._tags = value
     
     @property
-    def token_encryption_key_id(self,) -> Optional[str]:
+    def token_encryption_key_id(self,) -> Optional[Guid]:
         """
         Gets the tokenEncryptionKeyId property value. Specifies the keyId of a public key from the keyCredentials collection. When configured, Azure AD issues tokens for this application encrypted using the key specified by this property. The application code that receives the encrypted token must use the matching private key to decrypt the token before it can be used for the signed-in user.
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._token_encryption_key_id
     
     @token_encryption_key_id.setter
-    def token_encryption_key_id(self,value: Optional[str] = None) -> None:
+    def token_encryption_key_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the tokenEncryptionKeyId property value. Specifies the keyId of a public key from the keyCredentials collection. When configured, Azure AD issues tokens for this application encrypted using the key specified by this property. The application code that receives the encrypted token must use the matching private key to decrypt the token before it can be used for the signed-in user.
         Args:

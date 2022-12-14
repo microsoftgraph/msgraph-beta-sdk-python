@@ -12,17 +12,17 @@ class PlannerExternalPlanSource(planner_plan_creation.PlannerPlanCreation):
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.plannerExternalPlanSource"
-        # The contextScenarioId property
+        # Nullable. An identifier for the scenario associated with this external source. This should be in reverse DNS format. For example, Contoso company owned application for customer support would have a value like 'com.constoso.customerSupport'.
         self._context_scenario_id: Optional[str] = None
-        # The externalContextId property
+        # Nullable. The id of the external entity's containing entity or context.
         self._external_context_id: Optional[str] = None
-        # The externalObjectId property
+        # Nullable. The id of the entity that an external service associates with a plan.
         self._external_object_id: Optional[str] = None
     
     @property
     def context_scenario_id(self,) -> Optional[str]:
         """
-        Gets the contextScenarioId property value. The contextScenarioId property
+        Gets the contextScenarioId property value. Nullable. An identifier for the scenario associated with this external source. This should be in reverse DNS format. For example, Contoso company owned application for customer support would have a value like 'com.constoso.customerSupport'.
         Returns: Optional[str]
         """
         return self._context_scenario_id
@@ -30,7 +30,7 @@ class PlannerExternalPlanSource(planner_plan_creation.PlannerPlanCreation):
     @context_scenario_id.setter
     def context_scenario_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the contextScenarioId property value. The contextScenarioId property
+        Sets the contextScenarioId property value. Nullable. An identifier for the scenario associated with this external source. This should be in reverse DNS format. For example, Contoso company owned application for customer support would have a value like 'com.constoso.customerSupport'.
         Args:
             value: Value to set for the contextScenarioId property.
         """
@@ -51,7 +51,7 @@ class PlannerExternalPlanSource(planner_plan_creation.PlannerPlanCreation):
     @property
     def external_context_id(self,) -> Optional[str]:
         """
-        Gets the externalContextId property value. The externalContextId property
+        Gets the externalContextId property value. Nullable. The id of the external entity's containing entity or context.
         Returns: Optional[str]
         """
         return self._external_context_id
@@ -59,7 +59,7 @@ class PlannerExternalPlanSource(planner_plan_creation.PlannerPlanCreation):
     @external_context_id.setter
     def external_context_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the externalContextId property value. The externalContextId property
+        Sets the externalContextId property value. Nullable. The id of the external entity's containing entity or context.
         Args:
             value: Value to set for the externalContextId property.
         """
@@ -68,7 +68,7 @@ class PlannerExternalPlanSource(planner_plan_creation.PlannerPlanCreation):
     @property
     def external_object_id(self,) -> Optional[str]:
         """
-        Gets the externalObjectId property value. The externalObjectId property
+        Gets the externalObjectId property value. Nullable. The id of the entity that an external service associates with a plan.
         Returns: Optional[str]
         """
         return self._external_object_id
@@ -76,7 +76,7 @@ class PlannerExternalPlanSource(planner_plan_creation.PlannerPlanCreation):
     @external_object_id.setter
     def external_object_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the externalObjectId property value. The externalObjectId property
+        Sets the externalObjectId property value. Nullable. The id of the entity that an external service associates with a plan.
         Args:
             value: Value to set for the externalObjectId property.
         """

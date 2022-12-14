@@ -119,6 +119,7 @@ get_teams_team_activity_counts_with_period_request_builder = lazy_import('msgrap
 get_teams_team_activity_detail_with_date_request_builder = lazy_import('msgraph.generated.reports.get_teams_team_activity_detail_with_date.get_teams_team_activity_detail_with_date_request_builder')
 get_teams_team_activity_detail_with_period_request_builder = lazy_import('msgraph.generated.reports.get_teams_team_activity_detail_with_period.get_teams_team_activity_detail_with_period_request_builder')
 get_teams_team_activity_distribution_counts_with_period_request_builder = lazy_import('msgraph.generated.reports.get_teams_team_activity_distribution_counts_with_period.get_teams_team_activity_distribution_counts_with_period_request_builder')
+get_teams_team_counts_with_period_request_builder = lazy_import('msgraph.generated.reports.get_teams_team_counts_with_period.get_teams_team_counts_with_period_request_builder')
 get_teams_user_activity_counts_with_period_request_builder = lazy_import('msgraph.generated.reports.get_teams_user_activity_counts_with_period.get_teams_user_activity_counts_with_period_request_builder')
 get_teams_user_activity_distribution_total_user_counts_with_period_request_builder = lazy_import('msgraph.generated.reports.get_teams_user_activity_distribution_total_user_counts_with_period.get_teams_user_activity_distribution_total_user_counts_with_period_request_builder')
 get_teams_user_activity_distribution_user_counts_with_period_request_builder = lazy_import('msgraph.generated.reports.get_teams_user_activity_distribution_user_counts_with_period.get_teams_user_activity_distribution_user_counts_with_period_request_builder')
@@ -301,7 +302,7 @@ class ReportsRequestBuilder():
         """
         Update reports
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -1392,6 +1393,17 @@ class ReportsRequestBuilder():
             raise Exception("period cannot be undefined")
         return get_teams_team_activity_distribution_counts_with_period_request_builder.GetTeamsTeamActivityDistributionCountsWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
     
+    def get_teams_team_counts_with_period(self,period: Optional[str] = None) -> get_teams_team_counts_with_period_request_builder.GetTeamsTeamCountsWithPeriodRequestBuilder:
+        """
+        Provides operations to call the getTeamsTeamCounts method.
+        Args:
+            period: Usage: period='{period}'
+        Returns: get_teams_team_counts_with_period_request_builder.GetTeamsTeamCountsWithPeriodRequestBuilder
+        """
+        if period is None:
+            raise Exception("period cannot be undefined")
+        return get_teams_team_counts_with_period_request_builder.GetTeamsTeamCountsWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
+    
     def get_teams_user_activity_counts_with_period(self,period: Optional[str] = None) -> get_teams_user_activity_counts_with_period_request_builder.GetTeamsUserActivityCountsWithPeriodRequestBuilder:
         """
         Provides operations to call the getTeamsUserActivityCounts method.
@@ -1788,7 +1800,7 @@ class ReportsRequestBuilder():
         """
         Update reports
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[report_root.ReportRoot]

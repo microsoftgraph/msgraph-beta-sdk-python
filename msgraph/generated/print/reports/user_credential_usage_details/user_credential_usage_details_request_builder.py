@@ -65,7 +65,7 @@ class UserCredentialUsageDetailsRequestBuilder():
         """
         Create new navigation property to userCredentialUsageDetails for print
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +105,7 @@ class UserCredentialUsageDetailsRequestBuilder():
         """
         Create new navigation property to userCredentialUsageDetails for print
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_credential_usage_details.UserCredentialUsageDetails]

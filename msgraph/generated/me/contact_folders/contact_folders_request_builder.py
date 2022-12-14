@@ -66,7 +66,7 @@ class ContactFoldersRequestBuilder():
         """
         Create a new contactFolder under the user's default contacts folder. You can also create a new contactfolder as a child of any specified contact folder.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -113,7 +113,7 @@ class ContactFoldersRequestBuilder():
         """
         Create a new contactFolder under the user's default contacts folder. You can also create a new contactfolder as a child of any specified contact folder.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[contact_folder.ContactFolder]

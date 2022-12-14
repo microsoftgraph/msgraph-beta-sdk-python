@@ -81,7 +81,7 @@ class RegistrationRequestBuilder():
         """
         Update the details of a meetingRegistration object assciated with an onlineMeeting on behalf of the organizer.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +152,7 @@ class RegistrationRequestBuilder():
         """
         Update the details of a meetingRegistration object assciated with an onlineMeeting on behalf of the organizer.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[meeting_registration.MeetingRegistration]

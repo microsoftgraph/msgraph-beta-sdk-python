@@ -65,7 +65,7 @@ class MessageEventsRequestBuilder():
         """
         Add new entity to messageEvents
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +105,7 @@ class MessageEventsRequestBuilder():
         """
         Add new entity to messageEvents
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[message_event.MessageEvent]

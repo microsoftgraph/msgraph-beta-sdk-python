@@ -117,7 +117,7 @@ class EducationSynchronizationProfileItemRequestBuilder():
         """
         Update the navigation property synchronizationProfiles in education
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -188,7 +188,7 @@ class EducationSynchronizationProfileItemRequestBuilder():
         """
         Update the navigation property synchronizationProfiles in education
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[education_synchronization_profile.EducationSynchronizationProfile]

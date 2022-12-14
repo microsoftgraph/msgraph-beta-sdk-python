@@ -19,7 +19,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class CloudPC(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the admin singleton.
     """
     @property
     def aad_device_id(self,) -> Optional[str]:
@@ -88,7 +88,7 @@ class CloudPC(entity.Entity):
         self._on_premises_connection_name: Optional[str] = None
         # The version of the operating system (OS) to provision on Cloud PCs. Possible values are: windows10, windows11, and unknownFutureValue.
         self._os_version: Optional[cloud_pc_operating_system.CloudPcOperatingSystem] = None
-        # The partnerAgentInstallResults property
+        # The results of every partner agent's installation status on Cloud PC.
         self._partner_agent_install_results: Optional[List[cloud_pc_partner_agent_install_result.CloudPcPartnerAgentInstallResult]] = None
         # The provisioning policy ID of the Cloud PC.
         self._provisioning_policy_id: Optional[str] = None
@@ -348,7 +348,7 @@ class CloudPC(entity.Entity):
     @property
     def partner_agent_install_results(self,) -> Optional[List[cloud_pc_partner_agent_install_result.CloudPcPartnerAgentInstallResult]]:
         """
-        Gets the partnerAgentInstallResults property value. The partnerAgentInstallResults property
+        Gets the partnerAgentInstallResults property value. The results of every partner agent's installation status on Cloud PC.
         Returns: Optional[List[cloud_pc_partner_agent_install_result.CloudPcPartnerAgentInstallResult]]
         """
         return self._partner_agent_install_results
@@ -356,7 +356,7 @@ class CloudPC(entity.Entity):
     @partner_agent_install_results.setter
     def partner_agent_install_results(self,value: Optional[List[cloud_pc_partner_agent_install_result.CloudPcPartnerAgentInstallResult]] = None) -> None:
         """
-        Sets the partnerAgentInstallResults property value. The partnerAgentInstallResults property
+        Sets the partnerAgentInstallResults property value. The results of every partner agent's installation status on Cloud PC.
         Args:
             value: Value to set for the partnerAgentInstallResults property.
         """

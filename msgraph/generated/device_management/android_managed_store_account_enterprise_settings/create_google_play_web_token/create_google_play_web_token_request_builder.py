@@ -40,7 +40,7 @@ class CreateGooglePlayWebTokenRequestBuilder():
         """
         Generates a web token that is used in an embeddable component.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -61,7 +61,7 @@ class CreateGooglePlayWebTokenRequestBuilder():
         """
         Generates a web token that is used in an embeddable component.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[create_google_play_web_token_response.CreateGooglePlayWebTokenResponse]

@@ -109,7 +109,7 @@ class AgreementItemRequestBuilder():
         """
         Update the navigation property agreements in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -180,7 +180,7 @@ class AgreementItemRequestBuilder():
         """
         Update the navigation property agreements in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[agreement.Agreement]

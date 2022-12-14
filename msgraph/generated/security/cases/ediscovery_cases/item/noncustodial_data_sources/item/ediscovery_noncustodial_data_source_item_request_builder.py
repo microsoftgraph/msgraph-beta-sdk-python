@@ -115,7 +115,7 @@ class EdiscoveryNoncustodialDataSourceItemRequestBuilder():
         """
         Update the navigation property noncustodialDataSources in security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -173,7 +173,7 @@ class EdiscoveryNoncustodialDataSourceItemRequestBuilder():
         """
         Update the navigation property noncustodialDataSources in security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscovery_noncustodial_data_source.EdiscoveryNoncustodialDataSource]

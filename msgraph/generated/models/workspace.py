@@ -7,7 +7,7 @@ place = lazy_import('msgraph.generated.models.place')
 
 class Workspace(place.Place):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def building(self,) -> Optional[str]:

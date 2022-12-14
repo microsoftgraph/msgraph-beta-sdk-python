@@ -8,9 +8,12 @@ invited_user_message_info = lazy_import('msgraph.generated.models.invited_user_m
 user = lazy_import('msgraph.generated.models.user')
 
 class Invitation(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new Invitation and sets the default values.
+        Instantiates a new invitation and sets the default values.
         """
         super().__init__()
         # The user created as part of the invitation creation. Read-Only

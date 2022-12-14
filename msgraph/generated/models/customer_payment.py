@@ -29,15 +29,15 @@ class CustomerPayment(entity.Entity):
         self._amount = value
     
     @property
-    def applies_to_invoice_id(self,) -> Optional[str]:
+    def applies_to_invoice_id(self,) -> Optional[Guid]:
         """
         Gets the appliesToInvoiceId property value. The appliesToInvoiceId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._applies_to_invoice_id
     
     @applies_to_invoice_id.setter
-    def applies_to_invoice_id(self,value: Optional[str] = None) -> None:
+    def applies_to_invoice_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the appliesToInvoiceId property value. The appliesToInvoiceId property
         Args:
@@ -87,7 +87,7 @@ class CustomerPayment(entity.Entity):
         # The amount property
         self._amount: Optional[float] = None
         # The appliesToInvoiceId property
-        self._applies_to_invoice_id: Optional[str] = None
+        self._applies_to_invoice_id: Optional[Guid] = None
         # The appliesToInvoiceNumber property
         self._applies_to_invoice_number: Optional[str] = None
         # The comment property
@@ -97,7 +97,7 @@ class CustomerPayment(entity.Entity):
         # The customer property
         self._customer: Optional[customer.Customer] = None
         # The customerId property
-        self._customer_id: Optional[str] = None
+        self._customer_id: Optional[Guid] = None
         # The customerNumber property
         self._customer_number: Optional[str] = None
         # The description property
@@ -164,15 +164,15 @@ class CustomerPayment(entity.Entity):
         self._customer = value
     
     @property
-    def customer_id(self,) -> Optional[str]:
+    def customer_id(self,) -> Optional[Guid]:
         """
         Gets the customerId property value. The customerId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._customer_id
     
     @customer_id.setter
-    def customer_id(self,value: Optional[str] = None) -> None:
+    def customer_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the customerId property value. The customerId property
         Args:
@@ -255,12 +255,12 @@ class CustomerPayment(entity.Entity):
         """
         fields = {
             "amount": lambda n : setattr(self, 'amount', n.get_float_value()),
-            "applies_to_invoice_id": lambda n : setattr(self, 'applies_to_invoice_id', n.get_str_value()),
+            "applies_to_invoice_id": lambda n : setattr(self, 'applies_to_invoice_id', n.get_object_value(Guid)),
             "applies_to_invoice_number": lambda n : setattr(self, 'applies_to_invoice_number', n.get_str_value()),
             "comment": lambda n : setattr(self, 'comment', n.get_str_value()),
             "contact_id": lambda n : setattr(self, 'contact_id', n.get_str_value()),
             "customer": lambda n : setattr(self, 'customer', n.get_object_value(customer.Customer)),
-            "customer_id": lambda n : setattr(self, 'customer_id', n.get_str_value()),
+            "customer_id": lambda n : setattr(self, 'customer_id', n.get_object_value(Guid)),
             "customer_number": lambda n : setattr(self, 'customer_number', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "document_number": lambda n : setattr(self, 'document_number', n.get_str_value()),
@@ -352,12 +352,12 @@ class CustomerPayment(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_float_value("amount", self.amount)
-        writer.write_str_value("appliesToInvoiceId", self.applies_to_invoice_id)
+        writer.write_object_value("appliesToInvoiceId", self.applies_to_invoice_id)
         writer.write_str_value("appliesToInvoiceNumber", self.applies_to_invoice_number)
         writer.write_str_value("comment", self.comment)
         writer.write_str_value("contactId", self.contact_id)
         writer.write_object_value("customer", self.customer)
-        writer.write_str_value("customerId", self.customer_id)
+        writer.write_object_value("customerId", self.customer_id)
         writer.write_str_value("customerNumber", self.customer_number)
         writer.write_str_value("description", self.description)
         writer.write_str_value("documentNumber", self.document_number)

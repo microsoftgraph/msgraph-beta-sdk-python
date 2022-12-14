@@ -12,7 +12,7 @@ deployment_state = lazy_import('msgraph.generated.models.windows_updates.deploym
 
 class Deployment(entity.Entity):
     """
-    Provides operations to manage the admin singleton.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def audience(self,) -> Optional[deployment_audience.DeploymentAudience]:

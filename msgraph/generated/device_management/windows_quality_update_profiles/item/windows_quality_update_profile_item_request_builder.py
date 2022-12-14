@@ -101,7 +101,7 @@ class WindowsQualityUpdateProfileItemRequestBuilder():
         """
         Update the navigation property windowsQualityUpdateProfiles in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +159,7 @@ class WindowsQualityUpdateProfileItemRequestBuilder():
         """
         Update the navigation property windowsQualityUpdateProfiles in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_quality_update_profile.WindowsQualityUpdateProfile]

@@ -73,7 +73,7 @@ class UserExperienceAnalyticsAppHealthApplicationPerformanceItemRequestBuilder()
         """
         Update the navigation property userExperienceAnalyticsAppHealthApplicationPerformance in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -131,7 +131,7 @@ class UserExperienceAnalyticsAppHealthApplicationPerformanceItemRequestBuilder()
         """
         Update the navigation property userExperienceAnalyticsAppHealthApplicationPerformance in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_app_health_application_performance.UserExperienceAnalyticsAppHealthApplicationPerformance]

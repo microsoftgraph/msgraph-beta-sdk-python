@@ -8,7 +8,7 @@ setup_status = lazy_import('msgraph.generated.models.setup_status')
 
 class PrivilegedSignupStatus(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     def __init__(self,) -> None:
         """

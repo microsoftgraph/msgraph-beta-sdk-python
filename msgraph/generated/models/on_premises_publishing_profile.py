@@ -12,6 +12,9 @@ on_premises_agent_group = lazy_import('msgraph.generated.models.on_premises_agen
 published_resource = lazy_import('msgraph.generated.models.published_resource')
 
 class OnPremisesPublishingProfile(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReviewDecision entities.
+    """
     @property
     def agent_groups(self,) -> Optional[List[on_premises_agent_group.OnPremisesAgentGroup]]:
         """
@@ -82,7 +85,7 @@ class OnPremisesPublishingProfile(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new OnPremisesPublishingProfile and sets the default values.
+        Instantiates a new onPremisesPublishingProfile and sets the default values.
         """
         super().__init__()
         # List of existing onPremisesAgentGroup objects. Read-only. Nullable.

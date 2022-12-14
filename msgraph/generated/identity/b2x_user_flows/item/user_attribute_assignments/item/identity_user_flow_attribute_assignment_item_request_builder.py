@@ -80,7 +80,7 @@ class IdentityUserFlowAttributeAssignmentItemRequestBuilder():
         """
         Update the navigation property userAttributeAssignments in identity
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +138,7 @@ class IdentityUserFlowAttributeAssignmentItemRequestBuilder():
         """
         Update the navigation property userAttributeAssignments in identity
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[identity_user_flow_attribute_assignment.IdentityUserFlowAttributeAssignment]

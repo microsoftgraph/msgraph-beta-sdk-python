@@ -50,7 +50,7 @@ class DetectedSensitiveContentBase(AdditionalDataHolder, Parsable):
         # The displayName property
         self._display_name: Optional[str] = None
         # The id property
-        self._id: Optional[str] = None
+        self._id: Optional[Guid] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
         # The recommendedConfidence property
@@ -95,7 +95,7 @@ class DetectedSensitiveContentBase(AdditionalDataHolder, Parsable):
         fields = {
             "confidence": lambda n : setattr(self, 'confidence', n.get_int_value()),
             "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "id": lambda n : setattr(self, 'id', n.get_str_value()),
+            "id": lambda n : setattr(self, 'id', n.get_object_value(Guid)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "recommended_confidence": lambda n : setattr(self, 'recommended_confidence', n.get_int_value()),
             "unique_count": lambda n : setattr(self, 'unique_count', n.get_int_value()),
@@ -103,15 +103,15 @@ class DetectedSensitiveContentBase(AdditionalDataHolder, Parsable):
         return fields
     
     @property
-    def id(self,) -> Optional[str]:
+    def id(self,) -> Optional[Guid]:
         """
         Gets the id property value. The id property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._id
     
     @id.setter
-    def id(self,value: Optional[str] = None) -> None:
+    def id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the id property value. The id property
         Args:
@@ -163,7 +163,7 @@ class DetectedSensitiveContentBase(AdditionalDataHolder, Parsable):
             raise Exception("writer cannot be undefined")
         writer.write_int_value("confidence", self.confidence)
         writer.write_str_value("displayName", self.display_name)
-        writer.write_str_value("id", self.id)
+        writer.write_object_value("id", self.id)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("recommendedConfidence", self.recommended_confidence)
         writer.write_int_value("uniqueCount", self.unique_count)

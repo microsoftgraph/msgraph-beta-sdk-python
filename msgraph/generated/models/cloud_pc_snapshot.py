@@ -8,6 +8,9 @@ cloud_pc_snapshot_status = lazy_import('msgraph.generated.models.cloud_pc_snapsh
 entity = lazy_import('msgraph.generated.models.entity')
 
 class CloudPcSnapshot(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def cloud_pc_id(self,) -> Optional[str]:
         """
@@ -27,7 +30,7 @@ class CloudPcSnapshot(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new CloudPcSnapshot and sets the default values.
+        Instantiates a new cloudPcSnapshot and sets the default values.
         """
         super().__init__()
         # The unique identifier for the Cloud PC.

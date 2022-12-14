@@ -73,7 +73,7 @@ class MeetingRegistrationQuestionItemRequestBuilder():
         """
         Update the navigation property customQuestions in app
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -131,7 +131,7 @@ class MeetingRegistrationQuestionItemRequestBuilder():
         """
         Update the navigation property customQuestions in app
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[meeting_registration_question.MeetingRegistrationQuestion]

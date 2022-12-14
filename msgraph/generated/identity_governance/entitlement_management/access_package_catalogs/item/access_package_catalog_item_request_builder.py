@@ -165,7 +165,7 @@ class AccessPackageCatalogItemRequestBuilder():
         """
         Update the navigation property accessPackageCatalogs in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -236,7 +236,7 @@ class AccessPackageCatalogItemRequestBuilder():
         """
         Update the navigation property accessPackageCatalogs in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_catalog.AccessPackageCatalog]

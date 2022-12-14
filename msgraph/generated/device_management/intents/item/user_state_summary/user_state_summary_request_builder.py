@@ -73,7 +73,7 @@ class UserStateSummaryRequestBuilder():
         """
         Update the navigation property userStateSummary in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -131,7 +131,7 @@ class UserStateSummaryRequestBuilder():
         """
         Update the navigation property userStateSummary in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_intent_user_state_summary.DeviceManagementIntentUserStateSummary]

@@ -9,7 +9,7 @@ exact_data_match_store_column = lazy_import('msgraph.generated.models.exact_data
 
 class ExactMatchDataStoreBase(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the admin singleton.
     """
     @property
     def columns(self,) -> Optional[List[exact_data_match_store_column.ExactDataMatchStoreColumn]]:

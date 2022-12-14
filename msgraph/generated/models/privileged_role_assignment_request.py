@@ -9,6 +9,9 @@ governance_schedule = lazy_import('msgraph.generated.models.governance_schedule'
 privileged_role = lazy_import('msgraph.generated.models.privileged_role')
 
 class PrivilegedRoleAssignmentRequest(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReviewDecision entities.
+    """
     @property
     def assignment_state(self,) -> Optional[str]:
         """

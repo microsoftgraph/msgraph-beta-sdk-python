@@ -65,7 +65,7 @@ class RoleAssignmentRequestsRequestBuilder():
         """
         Create a role assignment request to represent the operation you want on a role assignment. The following table lists the operations.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +105,7 @@ class RoleAssignmentRequestsRequestBuilder():
         """
         Create a role assignment request to represent the operation you want on a role assignment. The following table lists the operations.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_role_assignment_request.GovernanceRoleAssignmentRequest]

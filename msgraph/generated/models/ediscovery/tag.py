@@ -10,7 +10,7 @@ child_selectability = lazy_import('msgraph.generated.models.ediscovery.child_sel
 
 class Tag(entity.Entity):
     """
-    Provides operations to manage the compliance singleton.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def child_selectability(self,) -> Optional[child_selectability.ChildSelectability]:

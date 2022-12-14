@@ -13,7 +13,7 @@ user_identity = lazy_import('msgraph.generated.models.user_identity')
 
 class PrintJob(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the admin singleton.
     """
     @property
     def acknowledged_date_time(self,) -> Optional[datetime]:

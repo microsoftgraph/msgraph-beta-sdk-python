@@ -8,9 +8,12 @@ cloud_pc_external_partner_status = lazy_import('msgraph.generated.models.cloud_p
 entity = lazy_import('msgraph.generated.models.entity')
 
 class CloudPcExternalPartnerSetting(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new CloudPcExternalPartnerSetting and sets the default values.
+        Instantiates a new cloudPcExternalPartnerSetting and sets the default values.
         """
         super().__init__()
         # Enable or disable the connection to an external partner. If true, an external partner API will accept incoming calls from external partners. Required. Supports $filter (eq).

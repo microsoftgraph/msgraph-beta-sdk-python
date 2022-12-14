@@ -136,7 +136,7 @@ class AuthorizationPolicy(policy_base.PolicyBase):
         # List of features enabled for private preview on the tenant.
         self._enabled_preview_features: Optional[List[str]] = None
         # Represents role templateId for the role that should be granted to guest user. Refer to List unifiedRoleDefinitions to find the list of available role templates. Currently following roles are supported:  User (a0b1b346-4d3e-4e8b-98f8-753987be4970), Guest User (10dae51f-b6af-4016-8d66-8c2a99b929b3), and Restricted Guest User (2af84b1e-32c8-42b7-82bc-daa82404023b).
-        self._guest_user_role_id: Optional[str] = None
+        self._guest_user_role_id: Optional[Guid] = None
         # Indicates if user consent to apps is allowed, and if it is, which app consent policy (permissionGrantPolicy) governs the permission for users to grant consent. Values should be in the format managePermissionGrantsForSelf.{id}, where {id} is the id of a built-in or custom app consent policy. An empty list indicates user consent to apps is disabled.
         self._permission_grant_policy_ids_assigned_to_default_user_role: Optional[List[str]] = None
     
@@ -218,7 +218,7 @@ class AuthorizationPolicy(policy_base.PolicyBase):
             "default_user_role_overrides": lambda n : setattr(self, 'default_user_role_overrides', n.get_collection_of_object_values(default_user_role_override.DefaultUserRoleOverride)),
             "default_user_role_permissions": lambda n : setattr(self, 'default_user_role_permissions', n.get_object_value(default_user_role_permissions.DefaultUserRolePermissions)),
             "enabled_preview_features": lambda n : setattr(self, 'enabled_preview_features', n.get_collection_of_primitive_values(str)),
-            "guest_user_role_id": lambda n : setattr(self, 'guest_user_role_id', n.get_str_value()),
+            "guest_user_role_id": lambda n : setattr(self, 'guest_user_role_id', n.get_object_value(Guid)),
             "permission_grant_policy_ids_assigned_to_default_user_role": lambda n : setattr(self, 'permission_grant_policy_ids_assigned_to_default_user_role', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
@@ -226,15 +226,15 @@ class AuthorizationPolicy(policy_base.PolicyBase):
         return fields
     
     @property
-    def guest_user_role_id(self,) -> Optional[str]:
+    def guest_user_role_id(self,) -> Optional[Guid]:
         """
         Gets the guestUserRoleId property value. Represents role templateId for the role that should be granted to guest user. Refer to List unifiedRoleDefinitions to find the list of available role templates. Currently following roles are supported:  User (a0b1b346-4d3e-4e8b-98f8-753987be4970), Guest User (10dae51f-b6af-4016-8d66-8c2a99b929b3), and Restricted Guest User (2af84b1e-32c8-42b7-82bc-daa82404023b).
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._guest_user_role_id
     
     @guest_user_role_id.setter
-    def guest_user_role_id(self,value: Optional[str] = None) -> None:
+    def guest_user_role_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the guestUserRoleId property value. Represents role templateId for the role that should be granted to guest user. Refer to List unifiedRoleDefinitions to find the list of available role templates. Currently following roles are supported:  User (a0b1b346-4d3e-4e8b-98f8-753987be4970), Guest User (10dae51f-b6af-4016-8d66-8c2a99b929b3), and Restricted Guest User (2af84b1e-32c8-42b7-82bc-daa82404023b).
         Args:
@@ -277,7 +277,7 @@ class AuthorizationPolicy(policy_base.PolicyBase):
         writer.write_collection_of_object_values("defaultUserRoleOverrides", self.default_user_role_overrides)
         writer.write_object_value("defaultUserRolePermissions", self.default_user_role_permissions)
         writer.write_collection_of_primitive_values("enabledPreviewFeatures", self.enabled_preview_features)
-        writer.write_str_value("guestUserRoleId", self.guest_user_role_id)
+        writer.write_object_value("guestUserRoleId", self.guest_user_role_id)
         writer.write_collection_of_primitive_values("permissionGrantPolicyIdsAssignedToDefaultUserRole", self.permission_grant_policy_ids_assigned_to_default_user_role)
     
 

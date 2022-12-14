@@ -9,7 +9,7 @@ postal_address_type = lazy_import('msgraph.generated.models.postal_address_type'
 
 class CompanyInformation(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the admin singleton.
     """
     @property
     def address(self,) -> Optional[postal_address_type.PostalAddressType]:

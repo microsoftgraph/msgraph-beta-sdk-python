@@ -13,7 +13,7 @@ sales_credit_memo_line = lazy_import('msgraph.generated.models.sales_credit_memo
 
 class SalesCreditMemo(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def billing_postal_address(self,) -> Optional[postal_address_type.PostalAddressType]:
@@ -33,15 +33,15 @@ class SalesCreditMemo(entity.Entity):
         self._billing_postal_address = value
     
     @property
-    def bill_to_customer_id(self,) -> Optional[str]:
+    def bill_to_customer_id(self,) -> Optional[Guid]:
         """
         Gets the billToCustomerId property value. The billToCustomerId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._bill_to_customer_id
     
     @bill_to_customer_id.setter
-    def bill_to_customer_id(self,value: Optional[str] = None) -> None:
+    def bill_to_customer_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the billToCustomerId property value. The billToCustomerId property
         Args:
@@ -91,7 +91,7 @@ class SalesCreditMemo(entity.Entity):
         # The billingPostalAddress property
         self._billing_postal_address: Optional[postal_address_type.PostalAddressType] = None
         # The billToCustomerId property
-        self._bill_to_customer_id: Optional[str] = None
+        self._bill_to_customer_id: Optional[Guid] = None
         # The billToCustomerNumber property
         self._bill_to_customer_number: Optional[str] = None
         # The billToName property
@@ -103,11 +103,11 @@ class SalesCreditMemo(entity.Entity):
         # The currencyCode property
         self._currency_code: Optional[str] = None
         # The currencyId property
-        self._currency_id: Optional[str] = None
+        self._currency_id: Optional[Guid] = None
         # The customer property
         self._customer: Optional[customer.Customer] = None
         # The customerId property
-        self._customer_id: Optional[str] = None
+        self._customer_id: Optional[Guid] = None
         # The customerName property
         self._customer_name: Optional[str] = None
         # The customerNumber property
@@ -123,7 +123,7 @@ class SalesCreditMemo(entity.Entity):
         # The externalDocumentNumber property
         self._external_document_number: Optional[str] = None
         # The invoiceId property
-        self._invoice_id: Optional[str] = None
+        self._invoice_id: Optional[Guid] = None
         # The invoiceNumber property
         self._invoice_number: Optional[str] = None
         # The lastModifiedDateTime property
@@ -135,7 +135,7 @@ class SalesCreditMemo(entity.Entity):
         # The paymentTerm property
         self._payment_term: Optional[payment_term.PaymentTerm] = None
         # The paymentTermsId property
-        self._payment_terms_id: Optional[str] = None
+        self._payment_terms_id: Optional[Guid] = None
         # The phoneNumber property
         self._phone_number: Optional[str] = None
         # The pricesIncludeTax property
@@ -219,15 +219,15 @@ class SalesCreditMemo(entity.Entity):
         self._currency_code = value
     
     @property
-    def currency_id(self,) -> Optional[str]:
+    def currency_id(self,) -> Optional[Guid]:
         """
         Gets the currencyId property value. The currencyId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._currency_id
     
     @currency_id.setter
-    def currency_id(self,value: Optional[str] = None) -> None:
+    def currency_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the currencyId property value. The currencyId property
         Args:
@@ -253,15 +253,15 @@ class SalesCreditMemo(entity.Entity):
         self._customer = value
     
     @property
-    def customer_id(self,) -> Optional[str]:
+    def customer_id(self,) -> Optional[Guid]:
         """
         Gets the customerId property value. The customerId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._customer_id
     
     @customer_id.setter
-    def customer_id(self,value: Optional[str] = None) -> None:
+    def customer_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the customerId property value. The customerId property
         Args:
@@ -395,15 +395,15 @@ class SalesCreditMemo(entity.Entity):
         """
         fields = {
             "billing_postal_address": lambda n : setattr(self, 'billing_postal_address', n.get_object_value(postal_address_type.PostalAddressType)),
-            "bill_to_customer_id": lambda n : setattr(self, 'bill_to_customer_id', n.get_str_value()),
+            "bill_to_customer_id": lambda n : setattr(self, 'bill_to_customer_id', n.get_object_value(Guid)),
             "bill_to_customer_number": lambda n : setattr(self, 'bill_to_customer_number', n.get_str_value()),
             "bill_to_name": lambda n : setattr(self, 'bill_to_name', n.get_str_value()),
             "credit_memo_date": lambda n : setattr(self, 'credit_memo_date', n.get_object_value(Date)),
             "currency": lambda n : setattr(self, 'currency', n.get_object_value(currency.Currency)),
             "currency_code": lambda n : setattr(self, 'currency_code', n.get_str_value()),
-            "currency_id": lambda n : setattr(self, 'currency_id', n.get_str_value()),
+            "currency_id": lambda n : setattr(self, 'currency_id', n.get_object_value(Guid)),
             "customer": lambda n : setattr(self, 'customer', n.get_object_value(customer.Customer)),
-            "customer_id": lambda n : setattr(self, 'customer_id', n.get_str_value()),
+            "customer_id": lambda n : setattr(self, 'customer_id', n.get_object_value(Guid)),
             "customer_name": lambda n : setattr(self, 'customer_name', n.get_str_value()),
             "customer_number": lambda n : setattr(self, 'customer_number', n.get_str_value()),
             "discount_amount": lambda n : setattr(self, 'discount_amount', n.get_float_value()),
@@ -411,12 +411,12 @@ class SalesCreditMemo(entity.Entity):
             "due_date": lambda n : setattr(self, 'due_date', n.get_object_value(Date)),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
             "external_document_number": lambda n : setattr(self, 'external_document_number', n.get_str_value()),
-            "invoice_id": lambda n : setattr(self, 'invoice_id', n.get_str_value()),
+            "invoice_id": lambda n : setattr(self, 'invoice_id', n.get_object_value(Guid)),
             "invoice_number": lambda n : setattr(self, 'invoice_number', n.get_str_value()),
             "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "number": lambda n : setattr(self, 'number', n.get_str_value()),
             "payment_term": lambda n : setattr(self, 'payment_term', n.get_object_value(payment_term.PaymentTerm)),
-            "payment_terms_id": lambda n : setattr(self, 'payment_terms_id', n.get_str_value()),
+            "payment_terms_id": lambda n : setattr(self, 'payment_terms_id', n.get_object_value(Guid)),
             "phone_number": lambda n : setattr(self, 'phone_number', n.get_str_value()),
             "prices_include_tax": lambda n : setattr(self, 'prices_include_tax', n.get_bool_value()),
             "sales_credit_memo_lines": lambda n : setattr(self, 'sales_credit_memo_lines', n.get_collection_of_object_values(sales_credit_memo_line.SalesCreditMemoLine)),
@@ -432,15 +432,15 @@ class SalesCreditMemo(entity.Entity):
         return fields
     
     @property
-    def invoice_id(self,) -> Optional[str]:
+    def invoice_id(self,) -> Optional[Guid]:
         """
         Gets the invoiceId property value. The invoiceId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._invoice_id
     
     @invoice_id.setter
-    def invoice_id(self,value: Optional[str] = None) -> None:
+    def invoice_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the invoiceId property value. The invoiceId property
         Args:
@@ -517,15 +517,15 @@ class SalesCreditMemo(entity.Entity):
         self._payment_term = value
     
     @property
-    def payment_terms_id(self,) -> Optional[str]:
+    def payment_terms_id(self,) -> Optional[Guid]:
         """
         Gets the paymentTermsId property value. The paymentTermsId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._payment_terms_id
     
     @payment_terms_id.setter
-    def payment_terms_id(self,value: Optional[str] = None) -> None:
+    def payment_terms_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the paymentTermsId property value. The paymentTermsId property
         Args:
@@ -628,15 +628,15 @@ class SalesCreditMemo(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_object_value("billingPostalAddress", self.billing_postal_address)
-        writer.write_str_value("billToCustomerId", self.bill_to_customer_id)
+        writer.write_object_value("billToCustomerId", self.bill_to_customer_id)
         writer.write_str_value("billToCustomerNumber", self.bill_to_customer_number)
         writer.write_str_value("billToName", self.bill_to_name)
         writer.write_object_value("creditMemoDate", self.credit_memo_date)
         writer.write_object_value("currency", self.currency)
         writer.write_str_value("currencyCode", self.currency_code)
-        writer.write_str_value("currencyId", self.currency_id)
+        writer.write_object_value("currencyId", self.currency_id)
         writer.write_object_value("customer", self.customer)
-        writer.write_str_value("customerId", self.customer_id)
+        writer.write_object_value("customerId", self.customer_id)
         writer.write_str_value("customerName", self.customer_name)
         writer.write_str_value("customerNumber", self.customer_number)
         writer.write_float_value("discountAmount", self.discount_amount)
@@ -644,12 +644,12 @@ class SalesCreditMemo(entity.Entity):
         writer.write_object_value("dueDate", self.due_date)
         writer.write_str_value("email", self.email)
         writer.write_str_value("externalDocumentNumber", self.external_document_number)
-        writer.write_str_value("invoiceId", self.invoice_id)
+        writer.write_object_value("invoiceId", self.invoice_id)
         writer.write_str_value("invoiceNumber", self.invoice_number)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("number", self.number)
         writer.write_object_value("paymentTerm", self.payment_term)
-        writer.write_str_value("paymentTermsId", self.payment_terms_id)
+        writer.write_object_value("paymentTermsId", self.payment_terms_id)
         writer.write_str_value("phoneNumber", self.phone_number)
         writer.write_bool_value("pricesIncludeTax", self.prices_include_tax)
         writer.write_collection_of_object_values("salesCreditMemoLines", self.sales_credit_memo_lines)

@@ -13,25 +13,25 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.plannerExternalTaskSource"
-        # The contextScenarioId property
+        # Nullable. An identifier for the scenario associated with this external source. This should be in reverse DNS format. For example, Contoso company owned application for customer support would have a value like 'com.constoso.customerSupport'.
         self._context_scenario_id: Optional[str] = None
-        # The displayLinkType property
+        # Specifies how an application should display the link to the associated plannerExternalTaskSource. The possible values are: none, default.
         self._display_link_type: Optional[planner_external_task_source_display_type.PlannerExternalTaskSourceDisplayType] = None
-        # The displayNameSegments property
+        # The segments of the name of the external experience. Segments represent a hierarchical structure that allows other apps to display the relationship.
         self._display_name_segments: Optional[List[str]] = None
-        # The externalContextId property
+        # Nullable. The id of the external entity's containing entity or context.
         self._external_context_id: Optional[str] = None
-        # The externalObjectId property
+        # Nullable. The id of the entity that an external service associates with a task.
         self._external_object_id: Optional[str] = None
-        # The externalObjectVersion property
+        # Nullable. The external Item Version for the object specified by the externalObjectId.
         self._external_object_version: Optional[str] = None
-        # The webUrl property
+        # Nullable. URL of the user experience represented by the associated plannerExternalTaskSource.
         self._web_url: Optional[str] = None
     
     @property
     def context_scenario_id(self,) -> Optional[str]:
         """
-        Gets the contextScenarioId property value. The contextScenarioId property
+        Gets the contextScenarioId property value. Nullable. An identifier for the scenario associated with this external source. This should be in reverse DNS format. For example, Contoso company owned application for customer support would have a value like 'com.constoso.customerSupport'.
         Returns: Optional[str]
         """
         return self._context_scenario_id
@@ -39,7 +39,7 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
     @context_scenario_id.setter
     def context_scenario_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the contextScenarioId property value. The contextScenarioId property
+        Sets the contextScenarioId property value. Nullable. An identifier for the scenario associated with this external source. This should be in reverse DNS format. For example, Contoso company owned application for customer support would have a value like 'com.constoso.customerSupport'.
         Args:
             value: Value to set for the contextScenarioId property.
         """
@@ -60,7 +60,7 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
     @property
     def display_link_type(self,) -> Optional[planner_external_task_source_display_type.PlannerExternalTaskSourceDisplayType]:
         """
-        Gets the displayLinkType property value. The displayLinkType property
+        Gets the displayLinkType property value. Specifies how an application should display the link to the associated plannerExternalTaskSource. The possible values are: none, default.
         Returns: Optional[planner_external_task_source_display_type.PlannerExternalTaskSourceDisplayType]
         """
         return self._display_link_type
@@ -68,7 +68,7 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
     @display_link_type.setter
     def display_link_type(self,value: Optional[planner_external_task_source_display_type.PlannerExternalTaskSourceDisplayType] = None) -> None:
         """
-        Sets the displayLinkType property value. The displayLinkType property
+        Sets the displayLinkType property value. Specifies how an application should display the link to the associated plannerExternalTaskSource. The possible values are: none, default.
         Args:
             value: Value to set for the displayLinkType property.
         """
@@ -77,7 +77,7 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
     @property
     def display_name_segments(self,) -> Optional[List[str]]:
         """
-        Gets the displayNameSegments property value. The displayNameSegments property
+        Gets the displayNameSegments property value. The segments of the name of the external experience. Segments represent a hierarchical structure that allows other apps to display the relationship.
         Returns: Optional[List[str]]
         """
         return self._display_name_segments
@@ -85,7 +85,7 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
     @display_name_segments.setter
     def display_name_segments(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the displayNameSegments property value. The displayNameSegments property
+        Sets the displayNameSegments property value. The segments of the name of the external experience. Segments represent a hierarchical structure that allows other apps to display the relationship.
         Args:
             value: Value to set for the displayNameSegments property.
         """
@@ -94,7 +94,7 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
     @property
     def external_context_id(self,) -> Optional[str]:
         """
-        Gets the externalContextId property value. The externalContextId property
+        Gets the externalContextId property value. Nullable. The id of the external entity's containing entity or context.
         Returns: Optional[str]
         """
         return self._external_context_id
@@ -102,7 +102,7 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
     @external_context_id.setter
     def external_context_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the externalContextId property value. The externalContextId property
+        Sets the externalContextId property value. Nullable. The id of the external entity's containing entity or context.
         Args:
             value: Value to set for the externalContextId property.
         """
@@ -111,7 +111,7 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
     @property
     def external_object_id(self,) -> Optional[str]:
         """
-        Gets the externalObjectId property value. The externalObjectId property
+        Gets the externalObjectId property value. Nullable. The id of the entity that an external service associates with a task.
         Returns: Optional[str]
         """
         return self._external_object_id
@@ -119,7 +119,7 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
     @external_object_id.setter
     def external_object_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the externalObjectId property value. The externalObjectId property
+        Sets the externalObjectId property value. Nullable. The id of the entity that an external service associates with a task.
         Args:
             value: Value to set for the externalObjectId property.
         """
@@ -128,7 +128,7 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
     @property
     def external_object_version(self,) -> Optional[str]:
         """
-        Gets the externalObjectVersion property value. The externalObjectVersion property
+        Gets the externalObjectVersion property value. Nullable. The external Item Version for the object specified by the externalObjectId.
         Returns: Optional[str]
         """
         return self._external_object_version
@@ -136,7 +136,7 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
     @external_object_version.setter
     def external_object_version(self,value: Optional[str] = None) -> None:
         """
-        Sets the externalObjectVersion property value. The externalObjectVersion property
+        Sets the externalObjectVersion property value. Nullable. The external Item Version for the object specified by the externalObjectId.
         Args:
             value: Value to set for the externalObjectVersion property.
         """
@@ -180,7 +180,7 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
     @property
     def web_url(self,) -> Optional[str]:
         """
-        Gets the webUrl property value. The webUrl property
+        Gets the webUrl property value. Nullable. URL of the user experience represented by the associated plannerExternalTaskSource.
         Returns: Optional[str]
         """
         return self._web_url
@@ -188,7 +188,7 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
     @web_url.setter
     def web_url(self,value: Optional[str] = None) -> None:
         """
-        Sets the webUrl property value. The webUrl property
+        Sets the webUrl property value. Nullable. URL of the user experience represented by the associated plannerExternalTaskSource.
         Args:
             value: Value to set for the webUrl property.
         """

@@ -32,7 +32,7 @@ class MoveDevicesToOUPostRequestBody(AdditionalDataHolder, Parsable):
         self._additional_data: Dict[str, Any] = {}
 
         # The deviceIds property
-        self._device_ids: Optional[List[str]] = None
+        self._device_ids: Optional[List[Guid]] = None
         # The organizationalUnitPath property
         self._organizational_unit_path: Optional[str] = None
     
@@ -49,15 +49,15 @@ class MoveDevicesToOUPostRequestBody(AdditionalDataHolder, Parsable):
         return MoveDevicesToOUPostRequestBody()
     
     @property
-    def device_ids(self,) -> Optional[List[str]]:
+    def device_ids(self,) -> Optional[List[Guid]]:
         """
         Gets the deviceIds property value. The deviceIds property
-        Returns: Optional[List[str]]
+        Returns: Optional[List[Guid]]
         """
         return self._device_ids
     
     @device_ids.setter
-    def device_ids(self,value: Optional[List[str]] = None) -> None:
+    def device_ids(self,value: Optional[List[Guid]] = None) -> None:
         """
         Sets the deviceIds property value. The deviceIds property
         Args:
@@ -71,7 +71,7 @@ class MoveDevicesToOUPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_ids": lambda n : setattr(self, 'device_ids', n.get_collection_of_primitive_values(str)),
+            "device_ids": lambda n : setattr(self, 'device_ids', n.get_collection_of_primitive_values(guid)),
             "organizational_unit_path": lambda n : setattr(self, 'organizational_unit_path', n.get_str_value()),
         }
         return fields

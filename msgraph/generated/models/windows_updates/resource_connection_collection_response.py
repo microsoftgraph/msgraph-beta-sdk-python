@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 resource_connection = lazy_import('msgraph.generated.models.windows_updates.resource_connection')
 
 class ResourceConnectionCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the resourceConnections property of the microsoft.graph.windowsUpdates.updates entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new ResourceConnectionCollectionResponse and sets the default values.

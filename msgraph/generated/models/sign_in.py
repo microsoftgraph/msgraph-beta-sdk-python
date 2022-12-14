@@ -104,7 +104,7 @@ class SignIn(entity.Entity):
     @property
     def authentication_app_device_details(self,) -> Optional[authentication_app_device_details.AuthenticationAppDeviceDetails]:
         """
-        Gets the authenticationAppDeviceDetails property value. The authenticationAppDeviceDetails property
+        Gets the authenticationAppDeviceDetails property value. Provides details about the app and device used during an Azure AD authentication step.
         Returns: Optional[authentication_app_device_details.AuthenticationAppDeviceDetails]
         """
         return self._authentication_app_device_details
@@ -112,7 +112,7 @@ class SignIn(entity.Entity):
     @authentication_app_device_details.setter
     def authentication_app_device_details(self,value: Optional[authentication_app_device_details.AuthenticationAppDeviceDetails] = None) -> None:
         """
-        Sets the authenticationAppDeviceDetails property value. The authenticationAppDeviceDetails property
+        Sets the authenticationAppDeviceDetails property value. Provides details about the app and device used during an Azure AD authentication step.
         Args:
             value: Value to set for the authenticationAppDeviceDetails property.
         """
@@ -121,7 +121,7 @@ class SignIn(entity.Entity):
     @property
     def authentication_app_policy_evaluation_details(self,) -> Optional[List[authentication_app_policy_details.AuthenticationAppPolicyDetails]]:
         """
-        Gets the authenticationAppPolicyEvaluationDetails property value. The authenticationAppPolicyEvaluationDetails property
+        Gets the authenticationAppPolicyEvaluationDetails property value. Provides details of the Azure AD policies applied to a user and client authentication app during an authentication step.
         Returns: Optional[List[authentication_app_policy_details.AuthenticationAppPolicyDetails]]
         """
         return self._authentication_app_policy_evaluation_details
@@ -129,7 +129,7 @@ class SignIn(entity.Entity):
     @authentication_app_policy_evaluation_details.setter
     def authentication_app_policy_evaluation_details(self,value: Optional[List[authentication_app_policy_details.AuthenticationAppPolicyDetails]] = None) -> None:
         """
-        Sets the authenticationAppPolicyEvaluationDetails property value. The authenticationAppPolicyEvaluationDetails property
+        Sets the authenticationAppPolicyEvaluationDetails property value. Provides details of the Azure AD policies applied to a user and client authentication app during an authentication step.
         Args:
             value: Value to set for the authenticationAppPolicyEvaluationDetails property.
         """
@@ -352,9 +352,9 @@ class SignIn(entity.Entity):
         self._applied_conditional_access_policies: Optional[List[applied_conditional_access_policy.AppliedConditionalAccessPolicy]] = None
         # The appliedEventListeners property
         self._applied_event_listeners: Optional[List[applied_authentication_event_listener.AppliedAuthenticationEventListener]] = None
-        # The authenticationAppDeviceDetails property
+        # Provides details about the app and device used during an Azure AD authentication step.
         self._authentication_app_device_details: Optional[authentication_app_device_details.AuthenticationAppDeviceDetails] = None
-        # The authenticationAppPolicyEvaluationDetails property
+        # Provides details of the Azure AD policies applied to a user and client authentication app during an authentication step.
         self._authentication_app_policy_evaluation_details: Optional[List[authentication_app_policy_details.AuthenticationAppPolicyDetails]] = None
         # Contains a collection of values that represent the conditional access authentication contexts applied to the sign-in.
         self._authentication_context_class_references: Optional[List[authentication_context.AuthenticationContext]] = None

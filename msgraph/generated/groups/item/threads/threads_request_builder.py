@@ -65,7 +65,7 @@ class ThreadsRequestBuilder():
         """
         Start a new group conversation by first creating a thread. A new conversation, conversation thread, and post are created in the group. Use reply thread or reply post to further post to that thread. Note: You can also start a new thread in an existing conversation.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +105,7 @@ class ThreadsRequestBuilder():
         """
         Start a new group conversation by first creating a thread. A new conversation, conversation thread, and post are created in the group. Use reply thread or reply post to further post to that thread. Note: You can also start a new thread in an existing conversation.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[conversation_thread.ConversationThread]

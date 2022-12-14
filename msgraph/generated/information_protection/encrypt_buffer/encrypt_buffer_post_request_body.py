@@ -51,7 +51,7 @@ class EncryptBufferPostRequestBody(AdditionalDataHolder, Parsable):
         # The buffer property
         self._buffer: Optional[bytes] = None
         # The labelId property
-        self._label_id: Optional[str] = None
+        self._label_id: Optional[Guid] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EncryptBufferPostRequestBody:
@@ -72,20 +72,20 @@ class EncryptBufferPostRequestBody(AdditionalDataHolder, Parsable):
         """
         fields = {
             "buffer": lambda n : setattr(self, 'buffer', n.get_bytes_value()),
-            "label_id": lambda n : setattr(self, 'label_id', n.get_str_value()),
+            "label_id": lambda n : setattr(self, 'label_id', n.get_object_value(Guid)),
         }
         return fields
     
     @property
-    def label_id(self,) -> Optional[str]:
+    def label_id(self,) -> Optional[Guid]:
         """
         Gets the labelId property value. The labelId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._label_id
     
     @label_id.setter
-    def label_id(self,value: Optional[str] = None) -> None:
+    def label_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the labelId property value. The labelId property
         Args:
@@ -102,7 +102,7 @@ class EncryptBufferPostRequestBody(AdditionalDataHolder, Parsable):
         if writer is None:
             raise Exception("writer cannot be undefined")
         writer.write_object_value("buffer", self.buffer)
-        writer.write_str_value("labelId", self.label_id)
+        writer.write_object_value("labelId", self.label_id)
         writer.write_additional_data_value(self.additional_data)
     
 

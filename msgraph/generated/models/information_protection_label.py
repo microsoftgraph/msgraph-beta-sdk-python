@@ -8,7 +8,7 @@ parent_label_details = lazy_import('msgraph.generated.models.parent_label_detail
 
 class InformationProtectionLabel(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the admin singleton.
     """
     @property
     def color(self,) -> Optional[str]:

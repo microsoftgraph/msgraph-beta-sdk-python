@@ -11,15 +11,15 @@ sharing_domain_restriction_mode = lazy_import('msgraph.generated.models.tenant_a
 
 class Settings(entity.Entity):
     @property
-    def allowed_domain_guids_for_sync_app(self,) -> Optional[List[str]]:
+    def allowed_domain_guids_for_sync_app(self,) -> Optional[List[Guid]]:
         """
         Gets the allowedDomainGuidsForSyncApp property value. Collection of trusted domain GUIDs for the OneDrive sync app.
-        Returns: Optional[List[str]]
+        Returns: Optional[List[Guid]]
         """
         return self._allowed_domain_guids_for_sync_app
     
     @allowed_domain_guids_for_sync_app.setter
-    def allowed_domain_guids_for_sync_app(self,value: Optional[List[str]] = None) -> None:
+    def allowed_domain_guids_for_sync_app(self,value: Optional[List[Guid]] = None) -> None:
         """
         Sets the allowedDomainGuidsForSyncApp property value. Collection of trusted domain GUIDs for the OneDrive sync app.
         Args:
@@ -50,7 +50,7 @@ class Settings(entity.Entity):
         """
         super().__init__()
         # Collection of trusted domain GUIDs for the OneDrive sync app.
-        self._allowed_domain_guids_for_sync_app: Optional[List[str]] = None
+        self._allowed_domain_guids_for_sync_app: Optional[List[Guid]] = None
         # Collection of managed paths available for site creation. Read-only.
         self._available_managed_paths_for_site_creation: Optional[List[str]] = None
         # The number of days for preserving a deleted user's OneDrive.
@@ -162,7 +162,7 @@ class Settings(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_domain_guids_for_sync_app": lambda n : setattr(self, 'allowed_domain_guids_for_sync_app', n.get_collection_of_primitive_values(str)),
+            "allowed_domain_guids_for_sync_app": lambda n : setattr(self, 'allowed_domain_guids_for_sync_app', n.get_collection_of_primitive_values(guid)),
             "available_managed_paths_for_site_creation": lambda n : setattr(self, 'available_managed_paths_for_site_creation', n.get_collection_of_primitive_values(str)),
             "deleted_user_personal_site_retention_period_in_days": lambda n : setattr(self, 'deleted_user_personal_site_retention_period_in_days', n.get_int_value()),
             "excluded_file_extensions_for_sync_app": lambda n : setattr(self, 'excluded_file_extensions_for_sync_app', n.get_collection_of_primitive_values(str)),

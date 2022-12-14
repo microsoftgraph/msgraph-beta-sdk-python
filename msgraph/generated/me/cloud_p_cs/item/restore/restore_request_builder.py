@@ -39,7 +39,7 @@ class RestoreRequestBuilder():
         """
         Restore a specific Cloud PC. Use this API to trigger a remote action that restores a Cloud PC device to a previous state.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -59,7 +59,7 @@ class RestoreRequestBuilder():
         """
         Restore a specific Cloud PC. Use this API to trigger a remote action that restores a Cloud PC device to a previous state.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         """

@@ -15,7 +15,7 @@ planner_task = lazy_import('msgraph.generated.models.planner_task')
 
 class PlannerPlan(planner_delta.PlannerDelta):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the admin singleton.
     """
     @property
     def buckets(self,) -> Optional[List[planner_bucket.PlannerBucket]]:
@@ -49,7 +49,7 @@ class PlannerPlan(planner_delta.PlannerDelta):
         self._created_by: Optional[identity_set.IdentitySet] = None
         # Read-only. Date and time at which the plan is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         self._created_date_time: Optional[datetime] = None
-        # The creationSource property
+        # Contains information about the origin of the plan.
         self._creation_source: Optional[planner_plan_creation.PlannerPlanCreation] = None
         # Additional details about the plan. Read-only. Nullable.
         self._details: Optional[planner_plan_details.PlannerPlanDetails] = None
@@ -145,7 +145,7 @@ class PlannerPlan(planner_delta.PlannerDelta):
     @property
     def creation_source(self,) -> Optional[planner_plan_creation.PlannerPlanCreation]:
         """
-        Gets the creationSource property value. The creationSource property
+        Gets the creationSource property value. Contains information about the origin of the plan.
         Returns: Optional[planner_plan_creation.PlannerPlanCreation]
         """
         return self._creation_source
@@ -153,7 +153,7 @@ class PlannerPlan(planner_delta.PlannerDelta):
     @creation_source.setter
     def creation_source(self,value: Optional[planner_plan_creation.PlannerPlanCreation] = None) -> None:
         """
-        Sets the creationSource property value. The creationSource property
+        Sets the creationSource property value. Contains information about the origin of the plan.
         Args:
             value: Value to set for the creationSource property.
         """

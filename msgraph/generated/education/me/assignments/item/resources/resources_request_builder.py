@@ -65,7 +65,7 @@ class ResourcesRequestBuilder():
         """
         Create an assignment resource. You can create the following types of assignment resources: Every resource has an @odata.type property to indicate which type of resource is being created. 
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +105,7 @@ class ResourcesRequestBuilder():
         """
         Create an assignment resource. You can create the following types of assignment resources: Every resource has an @odata.type property to indicate which type of resource is being created. 
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[education_assignment_resource.EducationAssignmentResource]

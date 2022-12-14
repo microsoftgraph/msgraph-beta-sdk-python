@@ -108,7 +108,7 @@ class ResourceSpecificPermissionGrantItemRequestBuilder():
         """
         Update entity in permissionGrants
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -166,7 +166,7 @@ class ResourceSpecificPermissionGrantItemRequestBuilder():
         """
         Update entity in permissionGrants
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[resource_specific_permission_grant.ResourceSpecificPermissionGrant]

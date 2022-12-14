@@ -13,7 +13,7 @@ sales_order_line = lazy_import('msgraph.generated.models.sales_order_line')
 
 class SalesOrder(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def billing_postal_address(self,) -> Optional[postal_address_type.PostalAddressType]:
@@ -33,15 +33,15 @@ class SalesOrder(entity.Entity):
         self._billing_postal_address = value
     
     @property
-    def bill_to_customer_id(self,) -> Optional[str]:
+    def bill_to_customer_id(self,) -> Optional[Guid]:
         """
         Gets the billToCustomerId property value. The billToCustomerId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._bill_to_customer_id
     
     @bill_to_customer_id.setter
-    def bill_to_customer_id(self,value: Optional[str] = None) -> None:
+    def bill_to_customer_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the billToCustomerId property value. The billToCustomerId property
         Args:
@@ -91,7 +91,7 @@ class SalesOrder(entity.Entity):
         # The billingPostalAddress property
         self._billing_postal_address: Optional[postal_address_type.PostalAddressType] = None
         # The billToCustomerId property
-        self._bill_to_customer_id: Optional[str] = None
+        self._bill_to_customer_id: Optional[Guid] = None
         # The billToCustomerNumber property
         self._bill_to_customer_number: Optional[str] = None
         # The billToName property
@@ -101,11 +101,11 @@ class SalesOrder(entity.Entity):
         # The currencyCode property
         self._currency_code: Optional[str] = None
         # The currencyId property
-        self._currency_id: Optional[str] = None
+        self._currency_id: Optional[Guid] = None
         # The customer property
         self._customer: Optional[customer.Customer] = None
         # The customerId property
-        self._customer_id: Optional[str] = None
+        self._customer_id: Optional[Guid] = None
         # The customerName property
         self._customer_name: Optional[str] = None
         # The customerNumber property
@@ -133,7 +133,7 @@ class SalesOrder(entity.Entity):
         # The paymentTerm property
         self._payment_term: Optional[payment_term.PaymentTerm] = None
         # The paymentTermsId property
-        self._payment_terms_id: Optional[str] = None
+        self._payment_terms_id: Optional[Guid] = None
         # The phoneNumber property
         self._phone_number: Optional[str] = None
         # The pricesIncludeTax property
@@ -208,15 +208,15 @@ class SalesOrder(entity.Entity):
         self._currency_code = value
     
     @property
-    def currency_id(self,) -> Optional[str]:
+    def currency_id(self,) -> Optional[Guid]:
         """
         Gets the currencyId property value. The currencyId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._currency_id
     
     @currency_id.setter
-    def currency_id(self,value: Optional[str] = None) -> None:
+    def currency_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the currencyId property value. The currencyId property
         Args:
@@ -242,15 +242,15 @@ class SalesOrder(entity.Entity):
         self._customer = value
     
     @property
-    def customer_id(self,) -> Optional[str]:
+    def customer_id(self,) -> Optional[Guid]:
         """
         Gets the customerId property value. The customerId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._customer_id
     
     @customer_id.setter
-    def customer_id(self,value: Optional[str] = None) -> None:
+    def customer_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the customerId property value. The customerId property
         Args:
@@ -384,14 +384,14 @@ class SalesOrder(entity.Entity):
         """
         fields = {
             "billing_postal_address": lambda n : setattr(self, 'billing_postal_address', n.get_object_value(postal_address_type.PostalAddressType)),
-            "bill_to_customer_id": lambda n : setattr(self, 'bill_to_customer_id', n.get_str_value()),
+            "bill_to_customer_id": lambda n : setattr(self, 'bill_to_customer_id', n.get_object_value(Guid)),
             "bill_to_customer_number": lambda n : setattr(self, 'bill_to_customer_number', n.get_str_value()),
             "bill_to_name": lambda n : setattr(self, 'bill_to_name', n.get_str_value()),
             "currency": lambda n : setattr(self, 'currency', n.get_object_value(currency.Currency)),
             "currency_code": lambda n : setattr(self, 'currency_code', n.get_str_value()),
-            "currency_id": lambda n : setattr(self, 'currency_id', n.get_str_value()),
+            "currency_id": lambda n : setattr(self, 'currency_id', n.get_object_value(Guid)),
             "customer": lambda n : setattr(self, 'customer', n.get_object_value(customer.Customer)),
-            "customer_id": lambda n : setattr(self, 'customer_id', n.get_str_value()),
+            "customer_id": lambda n : setattr(self, 'customer_id', n.get_object_value(Guid)),
             "customer_name": lambda n : setattr(self, 'customer_name', n.get_str_value()),
             "customer_number": lambda n : setattr(self, 'customer_number', n.get_str_value()),
             "discount_amount": lambda n : setattr(self, 'discount_amount', n.get_float_value()),
@@ -404,7 +404,7 @@ class SalesOrder(entity.Entity):
             "order_date": lambda n : setattr(self, 'order_date', n.get_object_value(Date)),
             "partial_shipping": lambda n : setattr(self, 'partial_shipping', n.get_bool_value()),
             "payment_term": lambda n : setattr(self, 'payment_term', n.get_object_value(payment_term.PaymentTerm)),
-            "payment_terms_id": lambda n : setattr(self, 'payment_terms_id', n.get_str_value()),
+            "payment_terms_id": lambda n : setattr(self, 'payment_terms_id', n.get_object_value(Guid)),
             "phone_number": lambda n : setattr(self, 'phone_number', n.get_str_value()),
             "prices_include_tax": lambda n : setattr(self, 'prices_include_tax', n.get_bool_value()),
             "requested_delivery_date": lambda n : setattr(self, 'requested_delivery_date', n.get_object_value(Date)),
@@ -509,15 +509,15 @@ class SalesOrder(entity.Entity):
         self._payment_term = value
     
     @property
-    def payment_terms_id(self,) -> Optional[str]:
+    def payment_terms_id(self,) -> Optional[Guid]:
         """
         Gets the paymentTermsId property value. The paymentTermsId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._payment_terms_id
     
     @payment_terms_id.setter
-    def payment_terms_id(self,value: Optional[str] = None) -> None:
+    def payment_terms_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the paymentTermsId property value. The paymentTermsId property
         Args:
@@ -637,14 +637,14 @@ class SalesOrder(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_object_value("billingPostalAddress", self.billing_postal_address)
-        writer.write_str_value("billToCustomerId", self.bill_to_customer_id)
+        writer.write_object_value("billToCustomerId", self.bill_to_customer_id)
         writer.write_str_value("billToCustomerNumber", self.bill_to_customer_number)
         writer.write_str_value("billToName", self.bill_to_name)
         writer.write_object_value("currency", self.currency)
         writer.write_str_value("currencyCode", self.currency_code)
-        writer.write_str_value("currencyId", self.currency_id)
+        writer.write_object_value("currencyId", self.currency_id)
         writer.write_object_value("customer", self.customer)
-        writer.write_str_value("customerId", self.customer_id)
+        writer.write_object_value("customerId", self.customer_id)
         writer.write_str_value("customerName", self.customer_name)
         writer.write_str_value("customerNumber", self.customer_number)
         writer.write_float_value("discountAmount", self.discount_amount)
@@ -657,7 +657,7 @@ class SalesOrder(entity.Entity):
         writer.write_object_value("orderDate", self.order_date)
         writer.write_bool_value("partialShipping", self.partial_shipping)
         writer.write_object_value("paymentTerm", self.payment_term)
-        writer.write_str_value("paymentTermsId", self.payment_terms_id)
+        writer.write_object_value("paymentTermsId", self.payment_terms_id)
         writer.write_str_value("phoneNumber", self.phone_number)
         writer.write_bool_value("pricesIncludeTax", self.prices_include_tax)
         writer.write_object_value("requestedDeliveryDate", self.requested_delivery_date)

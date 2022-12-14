@@ -72,7 +72,7 @@ class ManagementActionTenantDeploymentStatusesRequestBuilder():
         """
         Create new navigation property to managementActionTenantDeploymentStatuses for tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +112,7 @@ class ManagementActionTenantDeploymentStatusesRequestBuilder():
         """
         Create new navigation property to managementActionTenantDeploymentStatuses for tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_action_tenant_deployment_status.ManagementActionTenantDeploymentStatus]

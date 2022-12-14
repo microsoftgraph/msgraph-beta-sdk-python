@@ -7,7 +7,7 @@ workflow_base = lazy_import('msgraph.generated.models.identity_governance.workfl
 
 class WorkflowVersion(workflow_base.WorkflowBase):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the admin singleton.
     """
     def __init__(self,) -> None:
         """

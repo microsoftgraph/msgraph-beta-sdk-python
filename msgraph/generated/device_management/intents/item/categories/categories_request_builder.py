@@ -65,7 +65,7 @@ class CategoriesRequestBuilder():
         """
         Create new navigation property to categories for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +105,7 @@ class CategoriesRequestBuilder():
         """
         Create new navigation property to categories for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_intent_setting_category.DeviceManagementIntentSettingCategory]

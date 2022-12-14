@@ -10,7 +10,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class DelegatedAdminRelationshipRequest(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the admin singleton.
     """
     @property
     def action(self,) -> Optional[delegated_admin_relationship_request_action.DelegatedAdminRelationshipRequestAction]:

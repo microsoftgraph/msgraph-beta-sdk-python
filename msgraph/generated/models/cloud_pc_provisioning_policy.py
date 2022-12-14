@@ -13,9 +13,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 microsoft_managed_desktop = lazy_import('msgraph.generated.models.microsoft_managed_desktop')
 
 class CloudPcProvisioningPolicy(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def alternate_resource_url(self,) -> Optional[str]:
         """
@@ -69,7 +66,7 @@ class CloudPcProvisioningPolicy(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new cloudPcProvisioningPolicy and sets the default values.
+        Instantiates a new CloudPcProvisioningPolicy and sets the default values.
         """
         super().__init__()
         # The URL of the alternate resource that links to this provisioning policy. Read-only.
@@ -84,6 +81,8 @@ class CloudPcProvisioningPolicy(entity.Entity):
         self._display_name: Optional[str] = None
         # Specifies how Cloud PCs will join Azure Active Directory.
         self._domain_join_configuration: Optional[cloud_pc_domain_join_configuration.CloudPcDomainJoinConfiguration] = None
+        # The enableSingleSignOn property
+        self._enable_single_sign_on: Optional[bool] = None
         # The number of hours to wait before reprovisioning/deprovisioning happens. Read-only.
         self._grace_period_in_hours: Optional[int] = None
         # The display name for the OS image you’re provisioning.
@@ -170,6 +169,23 @@ class CloudPcProvisioningPolicy(entity.Entity):
         """
         self._domain_join_configuration = value
     
+    @property
+    def enable_single_sign_on(self,) -> Optional[bool]:
+        """
+        Gets the enableSingleSignOn property value. The enableSingleSignOn property
+        Returns: Optional[bool]
+        """
+        return self._enable_single_sign_on
+    
+    @enable_single_sign_on.setter
+    def enable_single_sign_on(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the enableSingleSignOn property value. The enableSingleSignOn property
+        Args:
+            value: Value to set for the enableSingleSignOn property.
+        """
+        self._enable_single_sign_on = value
+    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -182,6 +198,7 @@ class CloudPcProvisioningPolicy(entity.Entity):
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "domain_join_configuration": lambda n : setattr(self, 'domain_join_configuration', n.get_object_value(cloud_pc_domain_join_configuration.CloudPcDomainJoinConfiguration)),
+            "enable_single_sign_on": lambda n : setattr(self, 'enable_single_sign_on', n.get_bool_value()),
             "grace_period_in_hours": lambda n : setattr(self, 'grace_period_in_hours', n.get_int_value()),
             "image_display_name": lambda n : setattr(self, 'image_display_name', n.get_str_value()),
             "image_id": lambda n : setattr(self, 'image_id', n.get_str_value()),
@@ -365,6 +382,7 @@ class CloudPcProvisioningPolicy(entity.Entity):
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_object_value("domainJoinConfiguration", self.domain_join_configuration)
+        writer.write_bool_value("enableSingleSignOn", self.enable_single_sign_on)
         writer.write_int_value("gracePeriodInHours", self.grace_period_in_hours)
         writer.write_str_value("imageDisplayName", self.image_display_name)
         writer.write_str_value("imageId", self.image_id)

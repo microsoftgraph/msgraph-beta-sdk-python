@@ -72,7 +72,7 @@ class JobsRequestBuilder():
         """
         Create new synchronization job with a default synchronization schema. The job is created in a disabled state. Call Start job to start synchronization.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +112,7 @@ class JobsRequestBuilder():
         """
         Create new synchronization job with a default synchronization schema. The job is created in a disabled state. Call Start job to start synchronization.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[synchronization_job.SynchronizationJob]

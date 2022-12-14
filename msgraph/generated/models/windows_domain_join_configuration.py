@@ -6,6 +6,9 @@ from typing import Any, Callable, Dict, List, Optional, Union
 device_configuration = lazy_import('msgraph.generated.models.device_configuration')
 
 class WindowsDomainJoinConfiguration(device_configuration.DeviceConfiguration):
+    """
+    Windows Domain Join device configuration.
+    """
     @property
     def active_directory_domain_name(self,) -> Optional[str]:
         """
@@ -59,7 +62,7 @@ class WindowsDomainJoinConfiguration(device_configuration.DeviceConfiguration):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new WindowsDomainJoinConfiguration and sets the default values.
+        Instantiates a new windowsDomainJoinConfiguration and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.windowsDomainJoinConfiguration"

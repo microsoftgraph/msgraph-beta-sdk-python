@@ -142,7 +142,7 @@ class CalendarRequestBuilder():
         """
         Update the properties of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -208,7 +208,7 @@ class CalendarRequestBuilder():
         """
         Update the properties of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[calendar.Calendar]

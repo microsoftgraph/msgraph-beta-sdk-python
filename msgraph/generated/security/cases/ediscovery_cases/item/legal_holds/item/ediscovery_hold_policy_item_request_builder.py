@@ -89,7 +89,7 @@ class EdiscoveryHoldPolicyItemRequestBuilder():
         """
         Update the navigation property legalHolds in security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -147,7 +147,7 @@ class EdiscoveryHoldPolicyItemRequestBuilder():
         """
         Update the navigation property legalHolds in security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscovery_hold_policy.EdiscoveryHoldPolicy]

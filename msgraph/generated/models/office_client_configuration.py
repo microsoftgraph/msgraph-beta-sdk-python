@@ -10,7 +10,7 @@ office_user_checkin_summary = lazy_import('msgraph.generated.models.office_user_
 
 class OfficeClientConfiguration(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def assignments(self,) -> Optional[List[office_client_configuration_assignment.OfficeClientConfigurationAssignment]]:

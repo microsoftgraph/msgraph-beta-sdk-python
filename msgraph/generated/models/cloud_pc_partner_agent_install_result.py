@@ -31,15 +31,15 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The installStatus property
+        # The status of a partner agent installation. Possible values are: installed, installFailed, installing, uninstalling, uninstallFailed and licensed. Read-Only.
         self._install_status: Optional[cloud_pc_partner_agent_install_status.CloudPcPartnerAgentInstallStatus] = None
-        # The isThirdPartyPartner property
+        # Indicates if the partner agent is a third party. When 'TRUE', the agent is a third-party (non-Microsoft) agent.  When 'FALSE', the agent is a Microsoft agent or is not known.  The default value is 'FALSE'.
         self._is_third_party_partner: Optional[bool] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The partnerAgentName property
+        # Indicates the name of a partner agent and includes first-party and third-party. Currently, Citrix is the only third-party value. Read-Only.
         self._partner_agent_name: Optional[cloud_pc_partner_agent_name.CloudPcPartnerAgentName] = None
-        # The retriable property
+        # Indicates if the partner agent is a third party. When 'TRUE', the agent is a third-party (non-Microsoft) agent. When 'FALSE', the agent is a Microsoft agent or is not known. The default value is 'FALSE'.
         self._retriable: Optional[bool] = None
     
     @staticmethod
@@ -71,7 +71,7 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, Parsable):
     @property
     def install_status(self,) -> Optional[cloud_pc_partner_agent_install_status.CloudPcPartnerAgentInstallStatus]:
         """
-        Gets the installStatus property value. The installStatus property
+        Gets the installStatus property value. The status of a partner agent installation. Possible values are: installed, installFailed, installing, uninstalling, uninstallFailed and licensed. Read-Only.
         Returns: Optional[cloud_pc_partner_agent_install_status.CloudPcPartnerAgentInstallStatus]
         """
         return self._install_status
@@ -79,7 +79,7 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, Parsable):
     @install_status.setter
     def install_status(self,value: Optional[cloud_pc_partner_agent_install_status.CloudPcPartnerAgentInstallStatus] = None) -> None:
         """
-        Sets the installStatus property value. The installStatus property
+        Sets the installStatus property value. The status of a partner agent installation. Possible values are: installed, installFailed, installing, uninstalling, uninstallFailed and licensed. Read-Only.
         Args:
             value: Value to set for the installStatus property.
         """
@@ -88,7 +88,7 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, Parsable):
     @property
     def is_third_party_partner(self,) -> Optional[bool]:
         """
-        Gets the isThirdPartyPartner property value. The isThirdPartyPartner property
+        Gets the isThirdPartyPartner property value. Indicates if the partner agent is a third party. When 'TRUE', the agent is a third-party (non-Microsoft) agent.  When 'FALSE', the agent is a Microsoft agent or is not known.  The default value is 'FALSE'.
         Returns: Optional[bool]
         """
         return self._is_third_party_partner
@@ -96,7 +96,7 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, Parsable):
     @is_third_party_partner.setter
     def is_third_party_partner(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isThirdPartyPartner property value. The isThirdPartyPartner property
+        Sets the isThirdPartyPartner property value. Indicates if the partner agent is a third party. When 'TRUE', the agent is a third-party (non-Microsoft) agent.  When 'FALSE', the agent is a Microsoft agent or is not known.  The default value is 'FALSE'.
         Args:
             value: Value to set for the isThirdPartyPartner property.
         """
@@ -122,7 +122,7 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, Parsable):
     @property
     def partner_agent_name(self,) -> Optional[cloud_pc_partner_agent_name.CloudPcPartnerAgentName]:
         """
-        Gets the partnerAgentName property value. The partnerAgentName property
+        Gets the partnerAgentName property value. Indicates the name of a partner agent and includes first-party and third-party. Currently, Citrix is the only third-party value. Read-Only.
         Returns: Optional[cloud_pc_partner_agent_name.CloudPcPartnerAgentName]
         """
         return self._partner_agent_name
@@ -130,7 +130,7 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, Parsable):
     @partner_agent_name.setter
     def partner_agent_name(self,value: Optional[cloud_pc_partner_agent_name.CloudPcPartnerAgentName] = None) -> None:
         """
-        Sets the partnerAgentName property value. The partnerAgentName property
+        Sets the partnerAgentName property value. Indicates the name of a partner agent and includes first-party and third-party. Currently, Citrix is the only third-party value. Read-Only.
         Args:
             value: Value to set for the partnerAgentName property.
         """
@@ -139,7 +139,7 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, Parsable):
     @property
     def retriable(self,) -> Optional[bool]:
         """
-        Gets the retriable property value. The retriable property
+        Gets the retriable property value. Indicates if the partner agent is a third party. When 'TRUE', the agent is a third-party (non-Microsoft) agent. When 'FALSE', the agent is a Microsoft agent or is not known. The default value is 'FALSE'.
         Returns: Optional[bool]
         """
         return self._retriable
@@ -147,7 +147,7 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, Parsable):
     @retriable.setter
     def retriable(self,value: Optional[bool] = None) -> None:
         """
-        Sets the retriable property value. The retriable property
+        Sets the retriable property value. Indicates if the partner agent is a third party. When 'TRUE', the agent is a third-party (non-Microsoft) agent. When 'FALSE', the agent is a Microsoft agent or is not known. The default value is 'FALSE'.
         Args:
             value: Value to set for the retriable property.
         """

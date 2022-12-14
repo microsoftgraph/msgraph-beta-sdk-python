@@ -66,7 +66,7 @@ class AlertRecordsRequestBuilder():
         """
         Create new navigation property to alertRecords for monitoring
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -113,7 +113,7 @@ class AlertRecordsRequestBuilder():
         """
         Create new navigation property to alertRecords for monitoring
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[alert_record.AlertRecord]
