@@ -19,6 +19,7 @@ class TriggerTypesRequestBuilder():
     """
     Provides operations to manage the triggerTypes property of the microsoft.graph.security entity.
     """
+    @property
     def retention_event_types(self) -> retention_event_types_request_builder.RetentionEventTypesRequestBuilder:
         """
         Provides operations to manage the retentionEventTypes property of the microsoft.graph.security.triggerTypesRoot entity.
@@ -81,7 +82,7 @@ class TriggerTypesRequestBuilder():
         """
         Update the navigation property triggerTypes in security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +140,7 @@ class TriggerTypesRequestBuilder():
         """
         Update the navigation property triggerTypes in security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[trigger_types_root.TriggerTypesRoot]

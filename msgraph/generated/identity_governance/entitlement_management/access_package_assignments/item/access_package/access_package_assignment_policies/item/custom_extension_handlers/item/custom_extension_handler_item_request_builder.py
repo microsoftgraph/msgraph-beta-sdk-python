@@ -18,6 +18,7 @@ class CustomExtensionHandlerItemRequestBuilder():
     """
     Provides operations to manage the customExtensionHandlers property of the microsoft.graph.accessPackageAssignmentPolicy entity.
     """
+    @property
     def custom_extension(self) -> custom_extension_request_builder.CustomExtensionRequestBuilder:
         """
         Provides operations to manage the customExtension property of the microsoft.graph.customExtensionHandler entity.
@@ -80,7 +81,7 @@ class CustomExtensionHandlerItemRequestBuilder():
         """
         Update the navigation property customExtensionHandlers in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class CustomExtensionHandlerItemRequestBuilder():
         """
         Update the navigation property customExtensionHandlers in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[custom_extension_handler.CustomExtensionHandler]

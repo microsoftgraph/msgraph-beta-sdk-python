@@ -25,24 +25,28 @@ class AuditLogsRequestBuilder():
     """
     Provides operations to manage the auditLogRoot singleton.
     """
+    @property
     def directory_audits(self) -> directory_audits_request_builder.DirectoryAuditsRequestBuilder:
         """
         Provides operations to manage the directoryAudits property of the microsoft.graph.auditLogRoot entity.
         """
         return directory_audits_request_builder.DirectoryAuditsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def directory_provisioning(self) -> directory_provisioning_request_builder.DirectoryProvisioningRequestBuilder:
         """
         Provides operations to manage the directoryProvisioning property of the microsoft.graph.auditLogRoot entity.
         """
         return directory_provisioning_request_builder.DirectoryProvisioningRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def provisioning(self) -> provisioning_request_builder.ProvisioningRequestBuilder:
         """
         Provides operations to manage the provisioning property of the microsoft.graph.auditLogRoot entity.
         """
         return provisioning_request_builder.ProvisioningRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sign_ins(self) -> sign_ins_request_builder.SignInsRequestBuilder:
         """
         Provides operations to manage the signIns property of the microsoft.graph.auditLogRoot entity.
@@ -89,7 +93,7 @@ class AuditLogsRequestBuilder():
         """
         Update auditLogs
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -155,7 +159,7 @@ class AuditLogsRequestBuilder():
         """
         Update auditLogs
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[audit_log_root.AuditLogRoot]

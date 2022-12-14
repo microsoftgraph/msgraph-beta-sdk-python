@@ -21,18 +21,21 @@ class TaskReportItemRequestBuilder():
     """
     Provides operations to manage the taskReports property of the microsoft.graph.identityGovernance.workflow entity.
     """
+    @property
     def task(self) -> task_request_builder.TaskRequestBuilder:
         """
         Provides operations to manage the task property of the microsoft.graph.identityGovernance.taskReport entity.
         """
         return task_request_builder.TaskRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def task_definition(self) -> task_definition_request_builder.TaskDefinitionRequestBuilder:
         """
         Provides operations to manage the taskDefinition property of the microsoft.graph.identityGovernance.taskReport entity.
         """
         return task_definition_request_builder.TaskDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def task_processing_results(self) -> task_processing_results_request_builder.TaskProcessingResultsRequestBuilder:
         """
         Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.taskReport entity.
@@ -95,7 +98,7 @@ class TaskReportItemRequestBuilder():
         """
         Update the navigation property taskReports in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -153,7 +156,7 @@ class TaskReportItemRequestBuilder():
         """
         Update the navigation property taskReports in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[task_report.TaskReport]

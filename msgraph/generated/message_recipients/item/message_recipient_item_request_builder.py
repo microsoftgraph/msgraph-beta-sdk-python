@@ -19,6 +19,7 @@ class MessageRecipientItemRequestBuilder():
     """
     Provides operations to manage the collection of messageRecipient entities.
     """
+    @property
     def events(self) -> events_request_builder.EventsRequestBuilder:
         """
         Provides operations to manage the events property of the microsoft.graph.messageRecipient entity.
@@ -81,7 +82,7 @@ class MessageRecipientItemRequestBuilder():
         """
         Update entity in messageRecipients
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +153,7 @@ class MessageRecipientItemRequestBuilder():
         """
         Update entity in messageRecipients
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[message_recipient.MessageRecipient]

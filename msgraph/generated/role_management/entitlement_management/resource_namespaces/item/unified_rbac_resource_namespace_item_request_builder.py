@@ -20,12 +20,14 @@ class UnifiedRbacResourceNamespaceItemRequestBuilder():
     """
     Provides operations to manage the resourceNamespaces property of the microsoft.graph.rbacApplication entity.
     """
+    @property
     def import_resource_actions(self) -> import_resource_actions_request_builder.ImportResourceActionsRequestBuilder:
         """
         Provides operations to call the importResourceActions method.
         """
         return import_resource_actions_request_builder.ImportResourceActionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def resource_actions(self) -> resource_actions_request_builder.ResourceActionsRequestBuilder:
         """
         Provides operations to manage the resourceActions property of the microsoft.graph.unifiedRbacResourceNamespace entity.
@@ -88,7 +90,7 @@ class UnifiedRbacResourceNamespaceItemRequestBuilder():
         """
         Update the navigation property resourceNamespaces in roleManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -146,7 +148,7 @@ class UnifiedRbacResourceNamespaceItemRequestBuilder():
         """
         Update the navigation property resourceNamespaces in roleManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_rbac_resource_namespace.UnifiedRbacResourceNamespace]

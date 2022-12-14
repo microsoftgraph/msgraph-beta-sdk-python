@@ -22,18 +22,21 @@ class AccessPackageResourceItemRequestBuilder():
     """
     Provides operations to manage the accessPackageResources property of the microsoft.graph.entitlementManagement entity.
     """
+    @property
     def access_package_resource_environment(self) -> access_package_resource_environment_request_builder.AccessPackageResourceEnvironmentRequestBuilder:
         """
         Provides operations to manage the accessPackageResourceEnvironment property of the microsoft.graph.accessPackageResource entity.
         """
         return access_package_resource_environment_request_builder.AccessPackageResourceEnvironmentRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def access_package_resource_roles(self) -> access_package_resource_roles_request_builder.AccessPackageResourceRolesRequestBuilder:
         """
         Provides operations to manage the accessPackageResourceRoles property of the microsoft.graph.accessPackageResource entity.
         """
         return access_package_resource_roles_request_builder.AccessPackageResourceRolesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def access_package_resource_scopes(self) -> access_package_resource_scopes_request_builder.AccessPackageResourceScopesRequestBuilder:
         """
         Provides operations to manage the accessPackageResourceScopes property of the microsoft.graph.accessPackageResource entity.
@@ -122,7 +125,7 @@ class AccessPackageResourceItemRequestBuilder():
         """
         Update the navigation property accessPackageResources in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -180,7 +183,7 @@ class AccessPackageResourceItemRequestBuilder():
         """
         Update the navigation property accessPackageResources in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_resource.AccessPackageResource]

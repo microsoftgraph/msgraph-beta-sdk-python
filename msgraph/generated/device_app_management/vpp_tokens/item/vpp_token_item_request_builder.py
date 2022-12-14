@@ -19,12 +19,14 @@ class VppTokenItemRequestBuilder():
     """
     Provides operations to manage the vppTokens property of the microsoft.graph.deviceAppManagement entity.
     """
+    @property
     def revoke_licenses(self) -> revoke_licenses_request_builder.RevokeLicensesRequestBuilder:
         """
         Provides operations to call the revokeLicenses method.
         """
         return revoke_licenses_request_builder.RevokeLicensesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sync_licenses(self) -> sync_licenses_request_builder.SyncLicensesRequestBuilder:
         """
         Provides operations to call the syncLicenses method.
@@ -87,7 +89,7 @@ class VppTokenItemRequestBuilder():
         """
         Update the navigation property vppTokens in deviceAppManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +147,7 @@ class VppTokenItemRequestBuilder():
         """
         Update the navigation property vppTokens in deviceAppManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[vpp_token.VppToken]

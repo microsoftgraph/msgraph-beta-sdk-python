@@ -25,36 +25,42 @@ class DeviceCompliancePoliciesRequestBuilder():
     """
     Provides operations to manage the deviceCompliancePolicies property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_noncompliant_devices_to_retire(self) -> get_noncompliant_devices_to_retire_request_builder.GetNoncompliantDevicesToRetireRequestBuilder:
         """
         Provides operations to call the getNoncompliantDevicesToRetire method.
         """
         return get_noncompliant_devices_to_retire_request_builder.GetNoncompliantDevicesToRetireRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def has_payload_links(self) -> has_payload_links_request_builder.HasPayloadLinksRequestBuilder:
         """
         Provides operations to call the hasPayloadLinks method.
         """
         return has_payload_links_request_builder.HasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def refresh_device_compliance_report_summarization(self) -> refresh_device_compliance_report_summarization_request_builder.RefreshDeviceComplianceReportSummarizationRequestBuilder:
         """
         Provides operations to call the refreshDeviceComplianceReportSummarization method.
         """
         return refresh_device_compliance_report_summarization_request_builder.RefreshDeviceComplianceReportSummarizationRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def set_scheduled_retire_state(self) -> set_scheduled_retire_state_request_builder.SetScheduledRetireStateRequestBuilder:
         """
         Provides operations to call the setScheduledRetireState method.
         """
         return set_scheduled_retire_state_request_builder.SetScheduledRetireStateRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def validate_compliance_script(self) -> validate_compliance_script_request_builder.ValidateComplianceScriptRequestBuilder:
         """
         Provides operations to call the validateComplianceScript method.
@@ -101,7 +107,7 @@ class DeviceCompliancePoliciesRequestBuilder():
         """
         Create new navigation property to deviceCompliancePolicies for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -148,7 +154,7 @@ class DeviceCompliancePoliciesRequestBuilder():
         """
         Create new navigation property to deviceCompliancePolicies for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_compliance_policy.DeviceCompliancePolicy]

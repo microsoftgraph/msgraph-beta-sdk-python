@@ -20,12 +20,14 @@ class CloudPcProvisioningPolicyItemRequestBuilder():
     """
     Provides operations to manage the provisioningPolicies property of the microsoft.graph.virtualEndpoint entity.
     """
+    @property
     def assign(self) -> assign_request_builder.AssignRequestBuilder:
         """
         Provides operations to call the assign method.
         """
         return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.cloudPcProvisioningPolicy entity.
@@ -101,7 +103,7 @@ class CloudPcProvisioningPolicyItemRequestBuilder():
         """
         Update the navigation property provisioningPolicies in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +161,7 @@ class CloudPcProvisioningPolicyItemRequestBuilder():
         """
         Update the navigation property provisioningPolicies in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_provisioning_policy.CloudPcProvisioningPolicy]

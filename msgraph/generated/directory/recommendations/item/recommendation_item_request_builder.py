@@ -23,30 +23,35 @@ class RecommendationItemRequestBuilder():
     """
     Provides operations to manage the recommendations property of the microsoft.graph.directory entity.
     """
+    @property
     def complete(self) -> complete_request_builder.CompleteRequestBuilder:
         """
         Provides operations to call the complete method.
         """
         return complete_request_builder.CompleteRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def dismiss(self) -> dismiss_request_builder.DismissRequestBuilder:
         """
         Provides operations to call the dismiss method.
         """
         return dismiss_request_builder.DismissRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def impacted_resources(self) -> impacted_resources_request_builder.ImpactedResourcesRequestBuilder:
         """
         Provides operations to manage the impactedResources property of the microsoft.graph.recommendation entity.
         """
         return impacted_resources_request_builder.ImpactedResourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def postpone(self) -> postpone_request_builder.PostponeRequestBuilder:
         """
         Provides operations to call the postpone method.
         """
         return postpone_request_builder.PostponeRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def reactivate(self) -> reactivate_request_builder.ReactivateRequestBuilder:
         """
         Provides operations to call the reactivate method.
@@ -109,7 +114,7 @@ class RecommendationItemRequestBuilder():
         """
         Update the navigation property recommendations in directory
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -180,7 +185,7 @@ class RecommendationItemRequestBuilder():
         """
         Update the navigation property recommendations in directory
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[recommendation.Recommendation]

@@ -36,7 +36,7 @@ class PowerliftDownloadRequest(AdditionalDataHolder, Parsable):
         # The OdataType property
         self._odata_type: Optional[str] = None
         # The unique id for the request
-        self._powerlift_id: Optional[str] = None
+        self._powerlift_id: Optional[Guid] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PowerliftDownloadRequest:
@@ -75,7 +75,7 @@ class PowerliftDownloadRequest(AdditionalDataHolder, Parsable):
         fields = {
             "files": lambda n : setattr(self, 'files', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "powerlift_id": lambda n : setattr(self, 'powerlift_id', n.get_str_value()),
+            "powerlift_id": lambda n : setattr(self, 'powerlift_id', n.get_object_value(Guid)),
         }
         return fields
     
@@ -97,15 +97,15 @@ class PowerliftDownloadRequest(AdditionalDataHolder, Parsable):
         self._odata_type = value
     
     @property
-    def powerlift_id(self,) -> Optional[str]:
+    def powerlift_id(self,) -> Optional[Guid]:
         """
         Gets the powerliftId property value. The unique id for the request
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._powerlift_id
     
     @powerlift_id.setter
-    def powerlift_id(self,value: Optional[str] = None) -> None:
+    def powerlift_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the powerliftId property value. The unique id for the request
         Args:
@@ -123,7 +123,7 @@ class PowerliftDownloadRequest(AdditionalDataHolder, Parsable):
             raise Exception("writer cannot be undefined")
         writer.write_collection_of_primitive_values("files", self.files)
         writer.write_str_value("@odata.type", self.odata_type)
-        writer.write_str_value("powerliftId", self.powerlift_id)
+        writer.write_object_value("powerliftId", self.powerlift_id)
         writer.write_additional_data_value(self.additional_data)
     
 

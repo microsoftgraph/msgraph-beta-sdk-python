@@ -18,6 +18,7 @@ class DeviceComplianceScriptDeviceStateItemRequestBuilder():
     """
     Provides operations to manage the deviceRunStates property of the microsoft.graph.deviceComplianceScript entity.
     """
+    @property
     def managed_device(self) -> managed_device_request_builder.ManagedDeviceRequestBuilder:
         """
         Provides operations to manage the managedDevice property of the microsoft.graph.deviceComplianceScriptDeviceState entity.
@@ -80,7 +81,7 @@ class DeviceComplianceScriptDeviceStateItemRequestBuilder():
         """
         Update the navigation property deviceRunStates in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class DeviceComplianceScriptDeviceStateItemRequestBuilder():
         """
         Update the navigation property deviceRunStates in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_compliance_script_device_state.DeviceComplianceScriptDeviceState]

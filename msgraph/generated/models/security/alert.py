@@ -16,7 +16,7 @@ service_source = lazy_import('msgraph.generated.models.security.service_source')
 
 class Alert(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def actor_display_name(self,) -> Optional[str]:

@@ -40,7 +40,7 @@ class RenewGroupRequestBuilder():
         """
         Renew a group's expiration. When a group is renewed, the group expiration is extended by the number of days defined in the policy.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -61,7 +61,7 @@ class RenewGroupRequestBuilder():
         """
         Renew a group's expiration. When a group is renewed, the group expiration is extended by the number of days defined in the policy.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[renew_group_response.RenewGroupResponse]

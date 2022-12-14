@@ -20,12 +20,14 @@ class RetentionLabelItemRequestBuilder():
     """
     Provides operations to manage the retentionLabels property of the microsoft.graph.security.labelsRoot entity.
     """
+    @property
     def disposition_review_stages(self) -> disposition_review_stages_request_builder.DispositionReviewStagesRequestBuilder:
         """
         Provides operations to manage the dispositionReviewStages property of the microsoft.graph.security.retentionLabel entity.
         """
         return disposition_review_stages_request_builder.DispositionReviewStagesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def retention_event_type(self) -> retention_event_type_request_builder.RetentionEventTypeRequestBuilder:
         """
         Provides operations to manage the retentionEventType property of the microsoft.graph.security.retentionLabel entity.
@@ -88,7 +90,7 @@ class RetentionLabelItemRequestBuilder():
         """
         Update the navigation property retentionLabels in security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +161,7 @@ class RetentionLabelItemRequestBuilder():
         """
         Update the navigation property retentionLabels in security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[retention_label.RetentionLabel]

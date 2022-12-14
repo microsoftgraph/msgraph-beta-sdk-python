@@ -19,6 +19,7 @@ class MessageTraceItemRequestBuilder():
     """
     Provides operations to manage the collection of messageTrace entities.
     """
+    @property
     def recipients(self) -> recipients_request_builder.RecipientsRequestBuilder:
         """
         Provides operations to manage the recipients property of the microsoft.graph.messageTrace entity.
@@ -81,7 +82,7 @@ class MessageTraceItemRequestBuilder():
         """
         Update entity in messageTraces
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +140,7 @@ class MessageTraceItemRequestBuilder():
         """
         Update entity in messageTraces
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[message_trace.MessageTrace]

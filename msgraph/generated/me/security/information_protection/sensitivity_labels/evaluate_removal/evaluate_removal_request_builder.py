@@ -38,9 +38,9 @@ class EvaluateRemovalRequestBuilder():
     
     def create_post_request_information(self,body: Optional[evaluate_removal_post_request_body.EvaluateRemovalPostRequestBody] = None, request_configuration: Optional[EvaluateRemovalRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action evaluateRemoval
+        Indicate to the consuming application what actions it should take to remove the label information. Given contentInfo as an input, which includes existing content metadata key-value pairs, the API returns an informationProtectionAction that contains some combination of one or more of the following: 
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -59,9 +59,9 @@ class EvaluateRemovalRequestBuilder():
     
     async def post(self,body: Optional[evaluate_removal_post_request_body.EvaluateRemovalPostRequestBody] = None, request_configuration: Optional[EvaluateRemovalRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[evaluate_removal_response.EvaluateRemovalResponse]:
         """
-        Invoke action evaluateRemoval
+        Indicate to the consuming application what actions it should take to remove the label information. Given contentInfo as an input, which includes existing content metadata key-value pairs, the API returns an informationProtectionAction that contains some combination of one or more of the following: 
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[evaluate_removal_response.EvaluateRemovalResponse]

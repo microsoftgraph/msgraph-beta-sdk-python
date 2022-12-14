@@ -10,7 +10,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class CustomerPaymentJournal(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def account(self,) -> Optional[account.Account]:
@@ -30,15 +30,15 @@ class CustomerPaymentJournal(entity.Entity):
         self._account = value
     
     @property
-    def balancing_account_id(self,) -> Optional[str]:
+    def balancing_account_id(self,) -> Optional[Guid]:
         """
         Gets the balancingAccountId property value. The balancingAccountId property
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._balancing_account_id
     
     @balancing_account_id.setter
-    def balancing_account_id(self,value: Optional[str] = None) -> None:
+    def balancing_account_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the balancingAccountId property value. The balancingAccountId property
         Args:
@@ -88,7 +88,7 @@ class CustomerPaymentJournal(entity.Entity):
         # The account property
         self._account: Optional[account.Account] = None
         # The balancingAccountId property
-        self._balancing_account_id: Optional[str] = None
+        self._balancing_account_id: Optional[Guid] = None
         # The balancingAccountNumber property
         self._balancing_account_number: Optional[str] = None
         # The code property
@@ -155,7 +155,7 @@ class CustomerPaymentJournal(entity.Entity):
         """
         fields = {
             "account": lambda n : setattr(self, 'account', n.get_object_value(account.Account)),
-            "balancing_account_id": lambda n : setattr(self, 'balancing_account_id', n.get_str_value()),
+            "balancing_account_id": lambda n : setattr(self, 'balancing_account_id', n.get_object_value(Guid)),
             "balancing_account_number": lambda n : setattr(self, 'balancing_account_number', n.get_str_value()),
             "code": lambda n : setattr(self, 'code', n.get_str_value()),
             "customer_payments": lambda n : setattr(self, 'customer_payments', n.get_collection_of_object_values(customer_payment.CustomerPayment)),
@@ -193,7 +193,7 @@ class CustomerPaymentJournal(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_object_value("account", self.account)
-        writer.write_str_value("balancingAccountId", self.balancing_account_id)
+        writer.write_object_value("balancingAccountId", self.balancing_account_id)
         writer.write_str_value("balancingAccountNumber", self.balancing_account_number)
         writer.write_str_value("code", self.code)
         writer.write_collection_of_object_values("customerPayments", self.customer_payments)

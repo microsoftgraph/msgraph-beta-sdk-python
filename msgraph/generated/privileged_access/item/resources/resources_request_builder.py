@@ -20,12 +20,14 @@ class ResourcesRequestBuilder():
     """
     Provides operations to manage the resources property of the microsoft.graph.privilegedAccess entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def register(self) -> register_request_builder.RegisterRequestBuilder:
         """
         Provides operations to call the register method.
@@ -72,7 +74,7 @@ class ResourcesRequestBuilder():
         """
         Create new navigation property to resources for privilegedAccess
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +114,7 @@ class ResourcesRequestBuilder():
         """
         Create new navigation property to resources for privilegedAccess
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_resource.GovernanceResource]

@@ -22,24 +22,28 @@ class OfficeClientConfigurationItemRequestBuilder():
     """
     Provides operations to manage the clientConfigurations property of the microsoft.graph.officeConfiguration entity.
     """
+    @property
     def assign(self) -> assign_request_builder.AssignRequestBuilder:
         """
         Provides operations to call the assign method.
         """
         return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.officeClientConfiguration entity.
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def policy_payload(self) -> policy_payload_request_builder.PolicyPayloadRequestBuilder:
         """
         Provides operations to manage the media for the officeConfiguration entity.
         """
         return policy_payload_request_builder.PolicyPayloadRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def user_preference_payload(self) -> user_preference_payload_request_builder.UserPreferencePayloadRequestBuilder:
         """
         Provides operations to manage the media for the officeConfiguration entity.
@@ -115,7 +119,7 @@ class OfficeClientConfigurationItemRequestBuilder():
         """
         Update the navigation property clientConfigurations in officeConfiguration
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -173,7 +177,7 @@ class OfficeClientConfigurationItemRequestBuilder():
         """
         Update the navigation property clientConfigurations in officeConfiguration
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[office_client_configuration.OfficeClientConfiguration]

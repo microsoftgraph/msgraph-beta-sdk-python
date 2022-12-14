@@ -23,18 +23,21 @@ class SynchronizationRequestBuilder():
     """
     Provides operations to manage the synchronization property of the microsoft.graph.application entity.
     """
+    @property
     def acquire_access_token(self) -> acquire_access_token_request_builder.AcquireAccessTokenRequestBuilder:
         """
         Provides operations to call the acquireAccessToken method.
         """
         return acquire_access_token_request_builder.AcquireAccessTokenRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def jobs(self) -> jobs_request_builder.JobsRequestBuilder:
         """
         Provides operations to manage the jobs property of the microsoft.graph.synchronization entity.
         """
         return jobs_request_builder.JobsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def templates(self) -> templates_request_builder.TemplatesRequestBuilder:
         """
         Provides operations to manage the templates property of the microsoft.graph.synchronization entity.
@@ -97,7 +100,7 @@ class SynchronizationRequestBuilder():
         """
         Update the navigation property synchronization in applications
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -168,7 +171,7 @@ class SynchronizationRequestBuilder():
         """
         Update the navigation property synchronization in applications
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[synchronization.Synchronization]

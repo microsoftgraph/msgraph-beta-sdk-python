@@ -18,6 +18,7 @@ class DeviceConfigurationGroupAssignmentItemRequestBuilder():
     """
     Provides operations to manage the groupAssignments property of the microsoft.graph.deviceConfiguration entity.
     """
+    @property
     def device_configuration(self) -> device_configuration_request_builder.DeviceConfigurationRequestBuilder:
         """
         Provides operations to manage the deviceConfiguration property of the microsoft.graph.deviceConfigurationGroupAssignment entity.
@@ -80,7 +81,7 @@ class DeviceConfigurationGroupAssignmentItemRequestBuilder():
         """
         Update the navigation property groupAssignments in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class DeviceConfigurationGroupAssignmentItemRequestBuilder():
         """
         Update the navigation property groupAssignments in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_configuration_group_assignment.DeviceConfigurationGroupAssignment]

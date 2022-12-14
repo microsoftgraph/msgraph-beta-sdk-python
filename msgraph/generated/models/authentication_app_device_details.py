@@ -24,7 +24,7 @@ class AuthenticationAppDeviceDetails(AdditionalDataHolder, Parsable):
     @property
     def app_version(self,) -> Optional[str]:
         """
-        Gets the appVersion property value. The appVersion property
+        Gets the appVersion property value. The version of the client authentication app used during the authentication step.
         Returns: Optional[str]
         """
         return self._app_version
@@ -32,7 +32,7 @@ class AuthenticationAppDeviceDetails(AdditionalDataHolder, Parsable):
     @app_version.setter
     def app_version(self,value: Optional[str] = None) -> None:
         """
-        Sets the appVersion property value. The appVersion property
+        Sets the appVersion property value. The version of the client authentication app used during the authentication step.
         Args:
             value: Value to set for the appVersion property.
         """
@@ -41,7 +41,7 @@ class AuthenticationAppDeviceDetails(AdditionalDataHolder, Parsable):
     @property
     def client_app(self,) -> Optional[str]:
         """
-        Gets the clientApp property value. The clientApp property
+        Gets the clientApp property value. The name of the client authentication app used during the authentication step.
         Returns: Optional[str]
         """
         return self._client_app
@@ -49,7 +49,7 @@ class AuthenticationAppDeviceDetails(AdditionalDataHolder, Parsable):
     @client_app.setter
     def client_app(self,value: Optional[str] = None) -> None:
         """
-        Sets the clientApp property value. The clientApp property
+        Sets the clientApp property value. The name of the client authentication app used during the authentication step.
         Args:
             value: Value to set for the clientApp property.
         """
@@ -62,15 +62,15 @@ class AuthenticationAppDeviceDetails(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The appVersion property
+        # The version of the client authentication app used during the authentication step.
         self._app_version: Optional[str] = None
-        # The clientApp property
+        # The name of the client authentication app used during the authentication step.
         self._client_app: Optional[str] = None
-        # The deviceId property
+        # ID of the device used during the authentication step.
         self._device_id: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The operatingSystem property
+        # The operating system running on the device used for the authentication step.
         self._operating_system: Optional[str] = None
     
     @staticmethod
@@ -88,7 +88,7 @@ class AuthenticationAppDeviceDetails(AdditionalDataHolder, Parsable):
     @property
     def device_id(self,) -> Optional[str]:
         """
-        Gets the deviceId property value. The deviceId property
+        Gets the deviceId property value. ID of the device used during the authentication step.
         Returns: Optional[str]
         """
         return self._device_id
@@ -96,7 +96,7 @@ class AuthenticationAppDeviceDetails(AdditionalDataHolder, Parsable):
     @device_id.setter
     def device_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the deviceId property value. The deviceId property
+        Sets the deviceId property value. ID of the device used during the authentication step.
         Args:
             value: Value to set for the deviceId property.
         """
@@ -136,7 +136,7 @@ class AuthenticationAppDeviceDetails(AdditionalDataHolder, Parsable):
     @property
     def operating_system(self,) -> Optional[str]:
         """
-        Gets the operatingSystem property value. The operatingSystem property
+        Gets the operatingSystem property value. The operating system running on the device used for the authentication step.
         Returns: Optional[str]
         """
         return self._operating_system
@@ -144,7 +144,7 @@ class AuthenticationAppDeviceDetails(AdditionalDataHolder, Parsable):
     @operating_system.setter
     def operating_system(self,value: Optional[str] = None) -> None:
         """
-        Sets the operatingSystem property value. The operatingSystem property
+        Sets the operatingSystem property value. The operating system running on the device used for the authentication step.
         Args:
             value: Value to set for the operatingSystem property.
         """

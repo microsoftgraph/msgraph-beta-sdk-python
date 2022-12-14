@@ -19,6 +19,7 @@ class ApprovalItemRequestBuilder():
     """
     Provides operations to manage the approvals property of the microsoft.graph.user entity.
     """
+    @property
     def steps(self) -> steps_request_builder.StepsRequestBuilder:
         """
         Provides operations to manage the steps property of the microsoft.graph.approval entity.
@@ -81,7 +82,7 @@ class ApprovalItemRequestBuilder():
         """
         Update the navigation property approvals in users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +140,7 @@ class ApprovalItemRequestBuilder():
         """
         Update the navigation property approvals in users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[approval.Approval]

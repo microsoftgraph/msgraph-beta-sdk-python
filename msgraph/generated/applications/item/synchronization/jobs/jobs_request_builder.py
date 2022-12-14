@@ -20,12 +20,14 @@ class JobsRequestBuilder():
     """
     Provides operations to manage the jobs property of the microsoft.graph.synchronization entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def validate_credentials(self) -> validate_credentials_request_builder.ValidateCredentialsRequestBuilder:
         """
         Provides operations to call the validateCredentials method.
@@ -72,7 +74,7 @@ class JobsRequestBuilder():
         """
         Create new synchronization job with a default synchronization schema. The job is created in a disabled state. Call Start job to start synchronization.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +114,7 @@ class JobsRequestBuilder():
         """
         Create new synchronization job with a default synchronization schema. The job is created in a disabled state. Call Start job to start synchronization.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[synchronization_job.SynchronizationJob]

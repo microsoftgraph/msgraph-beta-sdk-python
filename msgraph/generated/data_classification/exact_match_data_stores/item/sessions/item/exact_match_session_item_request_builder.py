@@ -21,24 +21,28 @@ class ExactMatchSessionItemRequestBuilder():
     """
     Provides operations to manage the sessions property of the microsoft.graph.exactMatchDataStore entity.
     """
+    @property
     def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
         """
         Provides operations to call the cancel method.
         """
         return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def commit(self) -> commit_request_builder.CommitRequestBuilder:
         """
         Provides operations to call the commit method.
         """
         return commit_request_builder.CommitRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def renew(self) -> renew_request_builder.RenewRequestBuilder:
         """
         Provides operations to call the renew method.
         """
         return renew_request_builder.RenewRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def upload_agent(self) -> upload_agent_request_builder.UploadAgentRequestBuilder:
         """
         Provides operations to manage the uploadAgent property of the microsoft.graph.exactMatchSession entity.
@@ -101,7 +105,7 @@ class ExactMatchSessionItemRequestBuilder():
         """
         Update the navigation property sessions in dataClassification
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +163,7 @@ class ExactMatchSessionItemRequestBuilder():
         """
         Update the navigation property sessions in dataClassification
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[exact_match_session.ExactMatchSession]

@@ -20,12 +20,14 @@ class UserAppInstallStatusItemRequestBuilder():
     """
     Provides operations to manage the userStatuses property of the microsoft.graph.mobileApp entity.
     """
+    @property
     def app(self) -> app_request_builder.AppRequestBuilder:
         """
         Provides operations to manage the app property of the microsoft.graph.userAppInstallStatus entity.
         """
         return app_request_builder.AppRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def device_statuses(self) -> device_statuses_request_builder.DeviceStatusesRequestBuilder:
         """
         Provides operations to manage the deviceStatuses property of the microsoft.graph.userAppInstallStatus entity.
@@ -88,7 +90,7 @@ class UserAppInstallStatusItemRequestBuilder():
         """
         Update the navigation property userStatuses in deviceAppManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +161,7 @@ class UserAppInstallStatusItemRequestBuilder():
         """
         Update the navigation property userStatuses in deviceAppManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_app_install_status.UserAppInstallStatus]

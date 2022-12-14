@@ -21,24 +21,28 @@ class AndroidForWorkSettingsRequestBuilder():
     """
     Provides operations to manage the androidForWorkSettings property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def complete_signup(self) -> complete_signup_request_builder.CompleteSignupRequestBuilder:
         """
         Provides operations to call the completeSignup method.
         """
         return complete_signup_request_builder.CompleteSignupRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def request_signup_url(self) -> request_signup_url_request_builder.RequestSignupUrlRequestBuilder:
         """
         Provides operations to call the requestSignupUrl method.
         """
         return request_signup_url_request_builder.RequestSignupUrlRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sync_apps(self) -> sync_apps_request_builder.SyncAppsRequestBuilder:
         """
         Provides operations to call the syncApps method.
         """
         return sync_apps_request_builder.SyncAppsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def unbind(self) -> unbind_request_builder.UnbindRequestBuilder:
         """
         Provides operations to call the unbind method.
@@ -101,7 +105,7 @@ class AndroidForWorkSettingsRequestBuilder():
         """
         Update the navigation property androidForWorkSettings in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +163,7 @@ class AndroidForWorkSettingsRequestBuilder():
         """
         Update the navigation property androidForWorkSettings in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[android_for_work_settings.AndroidForWorkSettings]

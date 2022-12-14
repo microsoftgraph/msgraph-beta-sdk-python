@@ -21,18 +21,21 @@ class SignInsRequestBuilder():
     """
     Provides operations to manage the signIns property of the microsoft.graph.auditLogRoot entity.
     """
+    @property
     def confirm_compromised(self) -> confirm_compromised_request_builder.ConfirmCompromisedRequestBuilder:
         """
         Provides operations to call the confirmCompromised method.
         """
         return confirm_compromised_request_builder.ConfirmCompromisedRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def confirm_safe(self) -> confirm_safe_request_builder.ConfirmSafeRequestBuilder:
         """
         Provides operations to call the confirmSafe method.
         """
         return confirm_safe_request_builder.ConfirmSafeRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
@@ -79,7 +82,7 @@ class SignInsRequestBuilder():
         """
         Create new navigation property to signIns for auditLogs
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -119,7 +122,7 @@ class SignInsRequestBuilder():
         """
         Create new navigation property to signIns for auditLogs
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sign_in.SignIn]

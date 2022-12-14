@@ -23,30 +23,35 @@ class CustomerRequestBuilder():
     """
     Provides operations to manage the customer property of the microsoft.graph.salesOrder entity.
     """
+    @property
     def currency(self) -> currency_request_builder.CurrencyRequestBuilder:
         """
         Provides operations to manage the currency property of the microsoft.graph.customer entity.
         """
         return currency_request_builder.CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def payment_method(self) -> payment_method_request_builder.PaymentMethodRequestBuilder:
         """
         Provides operations to manage the paymentMethod property of the microsoft.graph.customer entity.
         """
         return payment_method_request_builder.PaymentMethodRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def payment_term(self) -> payment_term_request_builder.PaymentTermRequestBuilder:
         """
         Provides operations to manage the paymentTerm property of the microsoft.graph.customer entity.
         """
         return payment_term_request_builder.PaymentTermRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def picture(self) -> picture_request_builder.PictureRequestBuilder:
         """
         Provides operations to manage the picture property of the microsoft.graph.customer entity.
         """
         return picture_request_builder.PictureRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def shipment_method(self) -> shipment_method_request_builder.ShipmentMethodRequestBuilder:
         """
         Provides operations to manage the shipmentMethod property of the microsoft.graph.customer entity.
@@ -109,7 +114,7 @@ class CustomerRequestBuilder():
         """
         Update the navigation property customer in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -167,7 +172,7 @@ class CustomerRequestBuilder():
         """
         Update the navigation property customer in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[customer.Customer]

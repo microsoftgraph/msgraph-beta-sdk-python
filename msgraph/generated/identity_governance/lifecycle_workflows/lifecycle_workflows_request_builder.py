@@ -27,36 +27,42 @@ class LifecycleWorkflowsRequestBuilder():
     """
     Provides operations to manage the lifecycleWorkflows property of the microsoft.graph.identityGovernance entity.
     """
+    @property
     def custom_task_extensions(self) -> custom_task_extensions_request_builder.CustomTaskExtensionsRequestBuilder:
         """
         Provides operations to manage the customTaskExtensions property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
         """
         return custom_task_extensions_request_builder.CustomTaskExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def deleted_items(self) -> deleted_items_request_builder.DeletedItemsRequestBuilder:
         """
         Provides operations to manage the deletedItems property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
         """
         return deleted_items_request_builder.DeletedItemsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def settings(self) -> settings_request_builder.SettingsRequestBuilder:
         """
         Provides operations to manage the settings property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
         """
         return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def task_definitions(self) -> task_definitions_request_builder.TaskDefinitionsRequestBuilder:
         """
         Provides operations to manage the taskDefinitions property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
         """
         return task_definitions_request_builder.TaskDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def workflows(self) -> workflows_request_builder.WorkflowsRequestBuilder:
         """
         Provides operations to manage the workflows property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
         """
         return workflows_request_builder.WorkflowsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def workflow_templates(self) -> workflow_templates_request_builder.WorkflowTemplatesRequestBuilder:
         """
         Provides operations to manage the workflowTemplates property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
@@ -119,7 +125,7 @@ class LifecycleWorkflowsRequestBuilder():
         """
         Update the navigation property lifecycleWorkflows in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -190,7 +196,7 @@ class LifecycleWorkflowsRequestBuilder():
         """
         Update the navigation property lifecycleWorkflows in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[lifecycle_workflows_container.LifecycleWorkflowsContainer]

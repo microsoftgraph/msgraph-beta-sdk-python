@@ -13,7 +13,7 @@ teamwork_bot = lazy_import('msgraph.generated.models.teamwork_bot')
 
 class TeamsAppDefinition(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def allowed_installation_scopes(self,) -> Optional[teams_app_installation_scopes.TeamsAppInstallationScopes]:

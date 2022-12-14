@@ -18,6 +18,7 @@ class ExecutionScopeRequestBuilder():
     """
     Provides operations to manage the executionScope property of the microsoft.graph.identityGovernance.workflow entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.

@@ -35,60 +35,70 @@ class IdentityRequestBuilder():
     """
     Provides operations to manage the identityContainer singleton.
     """
+    @property
     def api_connectors(self) -> api_connectors_request_builder.ApiConnectorsRequestBuilder:
         """
         Provides operations to manage the apiConnectors property of the microsoft.graph.identityContainer entity.
         """
         return api_connectors_request_builder.ApiConnectorsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def authentication_event_listeners(self) -> authentication_event_listeners_request_builder.AuthenticationEventListenersRequestBuilder:
         """
         Provides operations to manage the authenticationEventListeners property of the microsoft.graph.identityContainer entity.
         """
         return authentication_event_listeners_request_builder.AuthenticationEventListenersRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def b2c_user_flows(self) -> b2c_user_flows_request_builder.B2cUserFlowsRequestBuilder:
         """
         Provides operations to manage the b2cUserFlows property of the microsoft.graph.identityContainer entity.
         """
         return b2c_user_flows_request_builder.B2cUserFlowsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def b2x_user_flows(self) -> b2x_user_flows_request_builder.B2xUserFlowsRequestBuilder:
         """
         Provides operations to manage the b2xUserFlows property of the microsoft.graph.identityContainer entity.
         """
         return b2x_user_flows_request_builder.B2xUserFlowsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def conditional_access(self) -> conditional_access_request_builder.ConditionalAccessRequestBuilder:
         """
         Provides operations to manage the conditionalAccess property of the microsoft.graph.identityContainer entity.
         """
         return conditional_access_request_builder.ConditionalAccessRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def continuous_access_evaluation_policy(self) -> continuous_access_evaluation_policy_request_builder.ContinuousAccessEvaluationPolicyRequestBuilder:
         """
         Provides operations to manage the continuousAccessEvaluationPolicy property of the microsoft.graph.identityContainer entity.
         """
         return continuous_access_evaluation_policy_request_builder.ContinuousAccessEvaluationPolicyRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def custom_authentication_extensions(self) -> custom_authentication_extensions_request_builder.CustomAuthenticationExtensionsRequestBuilder:
         """
         Provides operations to manage the customAuthenticationExtensions property of the microsoft.graph.identityContainer entity.
         """
         return custom_authentication_extensions_request_builder.CustomAuthenticationExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def identity_providers(self) -> identity_providers_request_builder.IdentityProvidersRequestBuilder:
         """
         Provides operations to manage the identityProviders property of the microsoft.graph.identityContainer entity.
         """
         return identity_providers_request_builder.IdentityProvidersRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def user_flow_attributes(self) -> user_flow_attributes_request_builder.UserFlowAttributesRequestBuilder:
         """
         Provides operations to manage the userFlowAttributes property of the microsoft.graph.identityContainer entity.
         """
         return user_flow_attributes_request_builder.UserFlowAttributesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def user_flows(self) -> user_flows_request_builder.UserFlowsRequestBuilder:
         """
         Provides operations to manage the userFlows property of the microsoft.graph.identityContainer entity.
@@ -187,7 +197,7 @@ class IdentityRequestBuilder():
         """
         Update identity
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -253,7 +263,7 @@ class IdentityRequestBuilder():
         """
         Update identity
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[identity_container.IdentityContainer]

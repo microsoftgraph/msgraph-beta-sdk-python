@@ -20,12 +20,14 @@ class ExactMatchDataStoreItemRequestBuilder():
     """
     Provides operations to manage the exactMatchDataStores property of the microsoft.graph.dataClassificationService entity.
     """
+    @property
     def lookup(self) -> lookup_request_builder.LookupRequestBuilder:
         """
         Provides operations to call the lookup method.
         """
         return lookup_request_builder.LookupRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sessions(self) -> sessions_request_builder.SessionsRequestBuilder:
         """
         Provides operations to manage the sessions property of the microsoft.graph.exactMatchDataStore entity.
@@ -88,7 +90,7 @@ class ExactMatchDataStoreItemRequestBuilder():
         """
         Update the navigation property exactMatchDataStores in dataClassification
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -146,7 +148,7 @@ class ExactMatchDataStoreItemRequestBuilder():
         """
         Update the navigation property exactMatchDataStores in dataClassification
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[exact_match_data_store.ExactMatchDataStore]

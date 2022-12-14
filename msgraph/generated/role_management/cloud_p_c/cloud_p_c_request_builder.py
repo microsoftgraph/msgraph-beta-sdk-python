@@ -23,18 +23,21 @@ class CloudPCRequestBuilder():
     """
     Provides operations to manage the cloudPC property of the microsoft.graph.roleManagement entity.
     """
+    @property
     def resource_namespaces(self) -> resource_namespaces_request_builder.ResourceNamespacesRequestBuilder:
         """
         Provides operations to manage the resourceNamespaces property of the microsoft.graph.rbacApplicationMultiple entity.
         """
         return resource_namespaces_request_builder.ResourceNamespacesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def role_assignments(self) -> role_assignments_request_builder.RoleAssignmentsRequestBuilder:
         """
         Provides operations to manage the roleAssignments property of the microsoft.graph.rbacApplicationMultiple entity.
         """
         return role_assignments_request_builder.RoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def role_definitions(self) -> role_definitions_request_builder.RoleDefinitionsRequestBuilder:
         """
         Provides operations to manage the roleDefinitions property of the microsoft.graph.rbacApplicationMultiple entity.
@@ -97,7 +100,7 @@ class CloudPCRequestBuilder():
         """
         Update the navigation property cloudPC in roleManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -155,7 +158,7 @@ class CloudPCRequestBuilder():
         """
         Update the navigation property cloudPC in roleManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[rbac_application_multiple.RbacApplicationMultiple]

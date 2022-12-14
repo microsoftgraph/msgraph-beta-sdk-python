@@ -18,6 +18,7 @@ class HostedContentRequestBuilder():
     """
     Provides operations to manage the hostedContent property of the microsoft.graph.teamsAppIcon entity.
     """
+    @property
     def content(self) -> content_request_builder.ContentRequestBuilder:
         """
         Provides operations to manage the media for the appCatalogs entity.
@@ -80,7 +81,7 @@ class HostedContentRequestBuilder():
         """
         Update the navigation property hostedContent in appCatalogs
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class HostedContentRequestBuilder():
         """
         Update the navigation property hostedContent in appCatalogs
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[teamwork_hosted_content.TeamworkHostedContent]

@@ -16,6 +16,7 @@ get_daily_aggregated_remote_connection_reports_request_builder = lazy_import('ms
 get_real_time_remote_connection_latency_with_cloud_pc_id_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.reports.get_real_time_remote_connection_latency_with_cloud_pc_id.get_real_time_remote_connection_latency_with_cloud_pc_id_request_builder')
 get_real_time_remote_connection_status_with_cloud_pc_id_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.reports.get_real_time_remote_connection_status_with_cloud_pc_id.get_real_time_remote_connection_status_with_cloud_pc_id_request_builder')
 get_remote_connection_historical_reports_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.reports.get_remote_connection_historical_reports.get_remote_connection_historical_reports_request_builder')
+get_shared_use_license_usage_report_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.reports.get_shared_use_license_usage_report.get_shared_use_license_usage_report_request_builder')
 get_total_aggregated_remote_connection_reports_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.reports.get_total_aggregated_remote_connection_reports.get_total_aggregated_remote_connection_reports_request_builder')
 cloud_pc_reports = lazy_import('msgraph.generated.models.cloud_pc_reports')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -24,24 +25,35 @@ class ReportsRequestBuilder():
     """
     Provides operations to manage the reports property of the microsoft.graph.virtualEndpoint entity.
     """
+    @property
     def export_jobs(self) -> export_jobs_request_builder.ExportJobsRequestBuilder:
         """
         Provides operations to manage the exportJobs property of the microsoft.graph.cloudPcReports entity.
         """
         return export_jobs_request_builder.ExportJobsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_daily_aggregated_remote_connection_reports(self) -> get_daily_aggregated_remote_connection_reports_request_builder.GetDailyAggregatedRemoteConnectionReportsRequestBuilder:
         """
         Provides operations to call the getDailyAggregatedRemoteConnectionReports method.
         """
         return get_daily_aggregated_remote_connection_reports_request_builder.GetDailyAggregatedRemoteConnectionReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_remote_connection_historical_reports(self) -> get_remote_connection_historical_reports_request_builder.GetRemoteConnectionHistoricalReportsRequestBuilder:
         """
         Provides operations to call the getRemoteConnectionHistoricalReports method.
         """
         return get_remote_connection_historical_reports_request_builder.GetRemoteConnectionHistoricalReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def get_shared_use_license_usage_report(self) -> get_shared_use_license_usage_report_request_builder.GetSharedUseLicenseUsageReportRequestBuilder:
+        """
+        Provides operations to call the getSharedUseLicenseUsageReport method.
+        """
+        return get_shared_use_license_usage_report_request_builder.GetSharedUseLicenseUsageReportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def get_total_aggregated_remote_connection_reports(self) -> get_total_aggregated_remote_connection_reports_request_builder.GetTotalAggregatedRemoteConnectionReportsRequestBuilder:
         """
         Provides operations to call the getTotalAggregatedRemoteConnectionReports method.
@@ -104,7 +116,7 @@ class ReportsRequestBuilder():
         """
         Update the navigation property reports in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -197,7 +209,7 @@ class ReportsRequestBuilder():
         """
         Update the navigation property reports in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_reports.CloudPcReports]

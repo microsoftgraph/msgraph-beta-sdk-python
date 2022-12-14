@@ -12,7 +12,7 @@ workflow_execution_type = lazy_import('msgraph.generated.models.identity_governa
 
 class Run(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def completed_date_time(self,) -> Optional[datetime]:

@@ -19,6 +19,7 @@ class ProgramRequestBuilder():
     """
     Provides operations to manage the program property of the microsoft.graph.programControl entity.
     """
+    @property
     def controls(self) -> controls_request_builder.ControlsRequestBuilder:
         """
         Provides operations to manage the controls property of the microsoft.graph.program entity.
@@ -94,7 +95,7 @@ class ProgramRequestBuilder():
         """
         Update the navigation property program in programControls
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +153,7 @@ class ProgramRequestBuilder():
         """
         Update the navigation property program in programControls
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[program.Program]

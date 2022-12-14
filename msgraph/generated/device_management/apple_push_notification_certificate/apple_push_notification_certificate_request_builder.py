@@ -19,6 +19,7 @@ class ApplePushNotificationCertificateRequestBuilder():
     """
     Provides operations to manage the applePushNotificationCertificate property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def generate_apple_push_notification_certificate_signing_request(self) -> generate_apple_push_notification_certificate_signing_request_request_builder.GenerateApplePushNotificationCertificateSigningRequestRequestBuilder:
         """
         Provides operations to call the generateApplePushNotificationCertificateSigningRequest method.
@@ -81,7 +82,7 @@ class ApplePushNotificationCertificateRequestBuilder():
         """
         Update the navigation property applePushNotificationCertificate in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -146,7 +147,7 @@ class ApplePushNotificationCertificateRequestBuilder():
         """
         Update the navigation property applePushNotificationCertificate in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[apple_push_notification_certificate.ApplePushNotificationCertificate]

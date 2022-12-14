@@ -23,18 +23,21 @@ class PrivilegedSignupStatusRequestBuilder():
     """
     Provides operations to manage the collection of privilegedSignupStatus entities.
     """
+    @property
     def complete_setup(self) -> complete_setup_request_builder.CompleteSetupRequestBuilder:
         """
         Provides operations to call the completeSetup method.
         """
         return complete_setup_request_builder.CompleteSetupRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sign_up(self) -> sign_up_request_builder.SignUpRequestBuilder:
         """
         Provides operations to call the signUp method.
@@ -88,7 +91,7 @@ class PrivilegedSignupStatusRequestBuilder():
         """
         Add new entity to privilegedSignupStatus
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -135,7 +138,7 @@ class PrivilegedSignupStatusRequestBuilder():
         """
         Add new entity to privilegedSignupStatus
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_signup_status.PrivilegedSignupStatus]

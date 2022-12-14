@@ -28,42 +28,49 @@ class ListItemRequestBuilder():
     """
     Provides operations to manage the listItem property of the microsoft.graph.sharedDriveItem entity.
     """
+    @property
     def activities(self) -> activities_request_builder.ActivitiesRequestBuilder:
         """
         Provides operations to manage the activities property of the microsoft.graph.listItem entity.
         """
         return activities_request_builder.ActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def analytics(self) -> analytics_request_builder.AnalyticsRequestBuilder:
         """
         Provides operations to manage the analytics property of the microsoft.graph.listItem entity.
         """
         return analytics_request_builder.AnalyticsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def create_link(self) -> create_link_request_builder.CreateLinkRequestBuilder:
         """
         Provides operations to call the createLink method.
         """
         return create_link_request_builder.CreateLinkRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def document_set_versions(self) -> document_set_versions_request_builder.DocumentSetVersionsRequestBuilder:
         """
         Provides operations to manage the documentSetVersions property of the microsoft.graph.listItem entity.
         """
         return document_set_versions_request_builder.DocumentSetVersionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def drive_item(self) -> drive_item_request_builder.DriveItemRequestBuilder:
         """
         Provides operations to manage the driveItem property of the microsoft.graph.listItem entity.
         """
         return drive_item_request_builder.DriveItemRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def fields(self) -> fields_request_builder.FieldsRequestBuilder:
         """
         Provides operations to manage the fields property of the microsoft.graph.listItem entity.
         """
         return fields_request_builder.FieldsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def versions(self) -> versions_request_builder.VersionsRequestBuilder:
         """
         Provides operations to manage the versions property of the microsoft.graph.listItem entity.
@@ -139,7 +146,7 @@ class ListItemRequestBuilder():
         """
         Update the navigation property listItem in shares
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -227,7 +234,7 @@ class ListItemRequestBuilder():
         """
         Update the navigation property listItem in shares
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[list_item.ListItem]

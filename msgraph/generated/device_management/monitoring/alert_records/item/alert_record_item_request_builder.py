@@ -18,6 +18,7 @@ class AlertRecordItemRequestBuilder():
     """
     Provides operations to manage the alertRecords property of the microsoft.graph.deviceManagement.monitoring entity.
     """
+    @property
     def set_portal_notification_as_sent(self) -> set_portal_notification_as_sent_request_builder.SetPortalNotificationAsSentRequestBuilder:
         """
         Provides operations to call the setPortalNotificationAsSent method.
@@ -80,7 +81,7 @@ class AlertRecordItemRequestBuilder():
         """
         Update the navigation property alertRecords in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class AlertRecordItemRequestBuilder():
         """
         Update the navigation property alertRecords in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[alert_record.AlertRecord]

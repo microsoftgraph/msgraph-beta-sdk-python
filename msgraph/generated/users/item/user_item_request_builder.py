@@ -161,516 +161,602 @@ class UserItemRequestBuilder():
     """
     Provides operations to manage the collection of user entities.
     """
+    @property
     def activate_service_plan(self) -> activate_service_plan_request_builder.ActivateServicePlanRequestBuilder:
         """
         Provides operations to call the activateServicePlan method.
         """
         return activate_service_plan_request_builder.ActivateServicePlanRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def activities(self) -> activities_request_builder.ActivitiesRequestBuilder:
         """
         Provides operations to manage the activities property of the microsoft.graph.user entity.
         """
         return activities_request_builder.ActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def agreement_acceptances(self) -> agreement_acceptances_request_builder.AgreementAcceptancesRequestBuilder:
         """
         Provides operations to manage the agreementAcceptances property of the microsoft.graph.user entity.
         """
         return agreement_acceptances_request_builder.AgreementAcceptancesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def analytics(self) -> analytics_request_builder.AnalyticsRequestBuilder:
         """
         Provides operations to manage the analytics property of the microsoft.graph.user entity.
         """
         return analytics_request_builder.AnalyticsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def app_consent_requests_for_approval(self) -> app_consent_requests_for_approval_request_builder.AppConsentRequestsForApprovalRequestBuilder:
         """
         Provides operations to manage the appConsentRequestsForApproval property of the microsoft.graph.user entity.
         """
         return app_consent_requests_for_approval_request_builder.AppConsentRequestsForApprovalRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def app_role_assigned_resources(self) -> app_role_assigned_resources_request_builder.AppRoleAssignedResourcesRequestBuilder:
         """
         Provides operations to manage the appRoleAssignedResources property of the microsoft.graph.user entity.
         """
         return app_role_assigned_resources_request_builder.AppRoleAssignedResourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def app_role_assignments(self) -> app_role_assignments_request_builder.AppRoleAssignmentsRequestBuilder:
         """
         Provides operations to manage the appRoleAssignments property of the microsoft.graph.user entity.
         """
         return app_role_assignments_request_builder.AppRoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def approvals(self) -> approvals_request_builder.ApprovalsRequestBuilder:
         """
         Provides operations to manage the approvals property of the microsoft.graph.user entity.
         """
         return approvals_request_builder.ApprovalsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def assign_license(self) -> assign_license_request_builder.AssignLicenseRequestBuilder:
         """
         Provides operations to call the assignLicense method.
         """
         return assign_license_request_builder.AssignLicenseRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def authentication(self) -> authentication_request_builder.AuthenticationRequestBuilder:
         """
         Provides operations to manage the authentication property of the microsoft.graph.user entity.
         """
         return authentication_request_builder.AuthenticationRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def calendar(self) -> calendar_request_builder.CalendarRequestBuilder:
         """
         Provides operations to manage the calendar property of the microsoft.graph.user entity.
         """
         return calendar_request_builder.CalendarRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def calendar_groups(self) -> calendar_groups_request_builder.CalendarGroupsRequestBuilder:
         """
         Provides operations to manage the calendarGroups property of the microsoft.graph.user entity.
         """
         return calendar_groups_request_builder.CalendarGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def calendars(self) -> calendars_request_builder.CalendarsRequestBuilder:
         """
         Provides operations to manage the calendars property of the microsoft.graph.user entity.
         """
         return calendars_request_builder.CalendarsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def calendar_view(self) -> calendar_view_request_builder.CalendarViewRequestBuilder:
         """
         Provides operations to manage the calendarView property of the microsoft.graph.user entity.
         """
         return calendar_view_request_builder.CalendarViewRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def change_password(self) -> change_password_request_builder.ChangePasswordRequestBuilder:
         """
         Provides operations to call the changePassword method.
         """
         return change_password_request_builder.ChangePasswordRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def chats(self) -> chats_request_builder.ChatsRequestBuilder:
         """
         Provides operations to manage the chats property of the microsoft.graph.user entity.
         """
         return chats_request_builder.ChatsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def check_member_groups(self) -> check_member_groups_request_builder.CheckMemberGroupsRequestBuilder:
         """
         Provides operations to call the checkMemberGroups method.
         """
         return check_member_groups_request_builder.CheckMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def check_member_objects(self) -> check_member_objects_request_builder.CheckMemberObjectsRequestBuilder:
         """
         Provides operations to call the checkMemberObjects method.
         """
         return check_member_objects_request_builder.CheckMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def cloud_p_cs(self) -> cloud_p_cs_request_builder.CloudPCsRequestBuilder:
         """
         Provides operations to manage the cloudPCs property of the microsoft.graph.user entity.
         """
         return cloud_p_cs_request_builder.CloudPCsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def contact_folders(self) -> contact_folders_request_builder.ContactFoldersRequestBuilder:
         """
         Provides operations to manage the contactFolders property of the microsoft.graph.user entity.
         """
         return contact_folders_request_builder.ContactFoldersRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def contacts(self) -> contacts_request_builder.ContactsRequestBuilder:
         """
         Provides operations to manage the contacts property of the microsoft.graph.user entity.
         """
         return contacts_request_builder.ContactsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def created_objects(self) -> created_objects_request_builder.CreatedObjectsRequestBuilder:
         """
         Provides operations to manage the createdObjects property of the microsoft.graph.user entity.
         """
         return created_objects_request_builder.CreatedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def device_enrollment_configurations(self) -> device_enrollment_configurations_request_builder.DeviceEnrollmentConfigurationsRequestBuilder:
         """
         Provides operations to manage the deviceEnrollmentConfigurations property of the microsoft.graph.user entity.
         """
         return device_enrollment_configurations_request_builder.DeviceEnrollmentConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def device_management_troubleshooting_events(self) -> device_management_troubleshooting_events_request_builder.DeviceManagementTroubleshootingEventsRequestBuilder:
         """
         Provides operations to manage the deviceManagementTroubleshootingEvents property of the microsoft.graph.user entity.
         """
         return device_management_troubleshooting_events_request_builder.DeviceManagementTroubleshootingEventsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def devices(self) -> devices_request_builder.DevicesRequestBuilder:
         """
         Provides operations to manage the devices property of the microsoft.graph.user entity.
         """
         return devices_request_builder.DevicesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def direct_reports(self) -> direct_reports_request_builder.DirectReportsRequestBuilder:
         """
         Provides operations to manage the directReports property of the microsoft.graph.user entity.
         """
         return direct_reports_request_builder.DirectReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def drive(self) -> drive_request_builder.DriveRequestBuilder:
         """
         Provides operations to manage the drive property of the microsoft.graph.user entity.
         """
         return drive_request_builder.DriveRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def drives(self) -> drives_request_builder.DrivesRequestBuilder:
         """
         Provides operations to manage the drives property of the microsoft.graph.user entity.
         """
         return drives_request_builder.DrivesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def events(self) -> events_request_builder.EventsRequestBuilder:
         """
         Provides operations to manage the events property of the microsoft.graph.user entity.
         """
         return events_request_builder.EventsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def export_personal_data(self) -> export_personal_data_request_builder.ExportPersonalDataRequestBuilder:
         """
         Provides operations to call the exportPersonalData method.
         """
         return export_personal_data_request_builder.ExportPersonalDataRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def extensions(self) -> extensions_request_builder.ExtensionsRequestBuilder:
         """
         Provides operations to manage the extensions property of the microsoft.graph.user entity.
         """
         return extensions_request_builder.ExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def find_meeting_times(self) -> find_meeting_times_request_builder.FindMeetingTimesRequestBuilder:
         """
         Provides operations to call the findMeetingTimes method.
         """
         return find_meeting_times_request_builder.FindMeetingTimesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def followed_sites(self) -> followed_sites_request_builder.FollowedSitesRequestBuilder:
         """
         Provides operations to manage the followedSites property of the microsoft.graph.user entity.
         """
         return followed_sites_request_builder.FollowedSitesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_mail_tips(self) -> get_mail_tips_request_builder.GetMailTipsRequestBuilder:
         """
         Provides operations to call the getMailTips method.
         """
         return get_mail_tips_request_builder.GetMailTipsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_member_groups(self) -> get_member_groups_request_builder.GetMemberGroupsRequestBuilder:
         """
         Provides operations to call the getMemberGroups method.
         """
         return get_member_groups_request_builder.GetMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_member_objects(self) -> get_member_objects_request_builder.GetMemberObjectsRequestBuilder:
         """
         Provides operations to call the getMemberObjects method.
         """
         return get_member_objects_request_builder.GetMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def inference_classification(self) -> inference_classification_request_builder.InferenceClassificationRequestBuilder:
         """
         Provides operations to manage the inferenceClassification property of the microsoft.graph.user entity.
         """
         return inference_classification_request_builder.InferenceClassificationRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def information_protection(self) -> information_protection_request_builder.InformationProtectionRequestBuilder:
         """
         Provides operations to manage the informationProtection property of the microsoft.graph.user entity.
         """
         return information_protection_request_builder.InformationProtectionRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def insights(self) -> insights_request_builder.InsightsRequestBuilder:
         """
         Provides operations to manage the insights property of the microsoft.graph.user entity.
         """
         return insights_request_builder.InsightsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def invalidate_all_refresh_tokens(self) -> invalidate_all_refresh_tokens_request_builder.InvalidateAllRefreshTokensRequestBuilder:
         """
         Provides operations to call the invalidateAllRefreshTokens method.
         """
         return invalidate_all_refresh_tokens_request_builder.InvalidateAllRefreshTokensRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def joined_groups(self) -> joined_groups_request_builder.JoinedGroupsRequestBuilder:
         """
         Provides operations to manage the joinedGroups property of the microsoft.graph.user entity.
         """
         return joined_groups_request_builder.JoinedGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def joined_teams(self) -> joined_teams_request_builder.JoinedTeamsRequestBuilder:
         """
         Provides operations to manage the joinedTeams property of the microsoft.graph.user entity.
         """
         return joined_teams_request_builder.JoinedTeamsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def license_details(self) -> license_details_request_builder.LicenseDetailsRequestBuilder:
         """
         Provides operations to manage the licenseDetails property of the microsoft.graph.user entity.
         """
         return license_details_request_builder.LicenseDetailsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def mail_folders(self) -> mail_folders_request_builder.MailFoldersRequestBuilder:
         """
         Provides operations to manage the mailFolders property of the microsoft.graph.user entity.
         """
         return mail_folders_request_builder.MailFoldersRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def managed_app_registrations(self) -> managed_app_registrations_request_builder.ManagedAppRegistrationsRequestBuilder:
         """
         Provides operations to manage the managedAppRegistrations property of the microsoft.graph.user entity.
         """
         return managed_app_registrations_request_builder.ManagedAppRegistrationsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def managed_devices(self) -> managed_devices_request_builder.ManagedDevicesRequestBuilder:
         """
         Provides operations to manage the managedDevices property of the microsoft.graph.user entity.
         """
         return managed_devices_request_builder.ManagedDevicesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def manager(self) -> manager_request_builder.ManagerRequestBuilder:
         """
         Provides operations to manage the manager property of the microsoft.graph.user entity.
         """
         return manager_request_builder.ManagerRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def member_of(self) -> member_of_request_builder.MemberOfRequestBuilder:
         """
         Provides operations to manage the memberOf property of the microsoft.graph.user entity.
         """
         return member_of_request_builder.MemberOfRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def messages(self) -> messages_request_builder.MessagesRequestBuilder:
         """
         Provides operations to manage the messages property of the microsoft.graph.user entity.
         """
         return messages_request_builder.MessagesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def mobile_app_intent_and_states(self) -> mobile_app_intent_and_states_request_builder.MobileAppIntentAndStatesRequestBuilder:
         """
         Provides operations to manage the mobileAppIntentAndStates property of the microsoft.graph.user entity.
         """
         return mobile_app_intent_and_states_request_builder.MobileAppIntentAndStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def mobile_app_troubleshooting_events(self) -> mobile_app_troubleshooting_events_request_builder.MobileAppTroubleshootingEventsRequestBuilder:
         """
         Provides operations to manage the mobileAppTroubleshootingEvents property of the microsoft.graph.user entity.
         """
         return mobile_app_troubleshooting_events_request_builder.MobileAppTroubleshootingEventsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def notifications(self) -> notifications_request_builder.NotificationsRequestBuilder:
         """
         Provides operations to manage the notifications property of the microsoft.graph.user entity.
         """
         return notifications_request_builder.NotificationsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def oauth2_permission_grants(self) -> oauth2_permission_grants_request_builder.Oauth2PermissionGrantsRequestBuilder:
         """
         Provides operations to manage the oauth2PermissionGrants property of the microsoft.graph.user entity.
         """
         return oauth2_permission_grants_request_builder.Oauth2PermissionGrantsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def onenote(self) -> onenote_request_builder.OnenoteRequestBuilder:
         """
         Provides operations to manage the onenote property of the microsoft.graph.user entity.
         """
         return onenote_request_builder.OnenoteRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def online_meetings(self) -> online_meetings_request_builder.OnlineMeetingsRequestBuilder:
         """
         Provides operations to manage the onlineMeetings property of the microsoft.graph.user entity.
         """
         return online_meetings_request_builder.OnlineMeetingsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def outlook(self) -> outlook_request_builder.OutlookRequestBuilder:
         """
         Provides operations to manage the outlook property of the microsoft.graph.user entity.
         """
         return outlook_request_builder.OutlookRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def owned_devices(self) -> owned_devices_request_builder.OwnedDevicesRequestBuilder:
         """
         Provides operations to manage the ownedDevices property of the microsoft.graph.user entity.
         """
         return owned_devices_request_builder.OwnedDevicesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def owned_objects(self) -> owned_objects_request_builder.OwnedObjectsRequestBuilder:
         """
         Provides operations to manage the ownedObjects property of the microsoft.graph.user entity.
         """
         return owned_objects_request_builder.OwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def pending_access_review_instances(self) -> pending_access_review_instances_request_builder.PendingAccessReviewInstancesRequestBuilder:
         """
         Provides operations to manage the pendingAccessReviewInstances property of the microsoft.graph.user entity.
         """
         return pending_access_review_instances_request_builder.PendingAccessReviewInstancesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def people(self) -> people_request_builder.PeopleRequestBuilder:
         """
         Provides operations to manage the people property of the microsoft.graph.user entity.
         """
         return people_request_builder.PeopleRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def photo(self) -> photo_request_builder.PhotoRequestBuilder:
         """
         Provides operations to manage the photo property of the microsoft.graph.user entity.
         """
         return photo_request_builder.PhotoRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def photos(self) -> photos_request_builder.PhotosRequestBuilder:
         """
         Provides operations to manage the photos property of the microsoft.graph.user entity.
         """
         return photos_request_builder.PhotosRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def planner(self) -> planner_request_builder.PlannerRequestBuilder:
         """
         Provides operations to manage the planner property of the microsoft.graph.user entity.
         """
         return planner_request_builder.PlannerRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def presence(self) -> presence_request_builder.PresenceRequestBuilder:
         """
         Provides operations to manage the presence property of the microsoft.graph.user entity.
         """
         return presence_request_builder.PresenceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def profile(self) -> profile_request_builder.ProfileRequestBuilder:
         """
         Provides operations to manage the profile property of the microsoft.graph.user entity.
         """
         return profile_request_builder.ProfileRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def registered_devices(self) -> registered_devices_request_builder.RegisteredDevicesRequestBuilder:
         """
         Provides operations to manage the registeredDevices property of the microsoft.graph.user entity.
         """
         return registered_devices_request_builder.RegisteredDevicesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def remove_all_devices_from_management(self) -> remove_all_devices_from_management_request_builder.RemoveAllDevicesFromManagementRequestBuilder:
         """
         Provides operations to call the removeAllDevicesFromManagement method.
         """
         return remove_all_devices_from_management_request_builder.RemoveAllDevicesFromManagementRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def reprocess_license_assignment(self) -> reprocess_license_assignment_request_builder.ReprocessLicenseAssignmentRequestBuilder:
         """
         Provides operations to call the reprocessLicenseAssignment method.
         """
         return reprocess_license_assignment_request_builder.ReprocessLicenseAssignmentRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def restore(self) -> restore_request_builder.RestoreRequestBuilder:
         """
         Provides operations to call the restore method.
         """
         return restore_request_builder.RestoreRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def revoke_sign_in_sessions(self) -> revoke_sign_in_sessions_request_builder.RevokeSignInSessionsRequestBuilder:
         """
         Provides operations to call the revokeSignInSessions method.
         """
         return revoke_sign_in_sessions_request_builder.RevokeSignInSessionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def scoped_role_member_of(self) -> scoped_role_member_of_request_builder.ScopedRoleMemberOfRequestBuilder:
         """
         Provides operations to manage the scopedRoleMemberOf property of the microsoft.graph.user entity.
         """
         return scoped_role_member_of_request_builder.ScopedRoleMemberOfRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def security(self) -> security_request_builder.SecurityRequestBuilder:
         """
         Provides operations to manage the security property of the microsoft.graph.user entity.
         """
         return security_request_builder.SecurityRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def send_mail(self) -> send_mail_request_builder.SendMailRequestBuilder:
         """
         Provides operations to call the sendMail method.
         """
         return send_mail_request_builder.SendMailRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def settings(self) -> settings_request_builder.SettingsRequestBuilder:
         """
         Provides operations to manage the settings property of the microsoft.graph.user entity.
         """
         return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def teamwork(self) -> teamwork_request_builder.TeamworkRequestBuilder:
         """
         Provides operations to manage the teamwork property of the microsoft.graph.user entity.
         """
         return teamwork_request_builder.TeamworkRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def todo(self) -> todo_request_builder.TodoRequestBuilder:
         """
         Provides operations to manage the todo property of the microsoft.graph.user entity.
         """
         return todo_request_builder.TodoRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def transitive_member_of(self) -> transitive_member_of_request_builder.TransitiveMemberOfRequestBuilder:
         """
         Provides operations to manage the transitiveMemberOf property of the microsoft.graph.user entity.
         """
         return transitive_member_of_request_builder.TransitiveMemberOfRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def transitive_reports(self) -> transitive_reports_request_builder.TransitiveReportsRequestBuilder:
         """
         Provides operations to manage the transitiveReports property of the microsoft.graph.user entity.
         """
         return transitive_reports_request_builder.TransitiveReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def translate_exchange_ids(self) -> translate_exchange_ids_request_builder.TranslateExchangeIdsRequestBuilder:
         """
         Provides operations to call the translateExchangeIds method.
         """
         return translate_exchange_ids_request_builder.TranslateExchangeIdsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def unblock_managed_apps(self) -> unblock_managed_apps_request_builder.UnblockManagedAppsRequestBuilder:
         """
         Provides operations to call the unblockManagedApps method.
         """
         return unblock_managed_apps_request_builder.UnblockManagedAppsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def usage_rights(self) -> usage_rights_request_builder.UsageRightsRequestBuilder:
         """
         Provides operations to manage the usageRights property of the microsoft.graph.user entity.
         """
         return usage_rights_request_builder.UsageRightsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def windows_information_protection_device_registrations(self) -> windows_information_protection_device_registrations_request_builder.WindowsInformationProtectionDeviceRegistrationsRequestBuilder:
         """
         Provides operations to manage the windowsInformationProtectionDeviceRegistrations property of the microsoft.graph.user entity.
         """
         return windows_information_protection_device_registrations_request_builder.WindowsInformationProtectionDeviceRegistrationsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def wipe_and_block_managed_apps(self) -> wipe_and_block_managed_apps_request_builder.WipeAndBlockManagedAppsRequestBuilder:
         """
         Provides operations to call the wipeAndBlockManagedApps method.
         """
         return wipe_and_block_managed_apps_request_builder.WipeAndBlockManagedAppsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def wipe_managed_app_registration_by_device_tag(self) -> wipe_managed_app_registration_by_device_tag_request_builder.WipeManagedAppRegistrationByDeviceTagRequestBuilder:
         """
         Provides operations to call the wipeManagedAppRegistrationByDeviceTag method.
         """
         return wipe_managed_app_registration_by_device_tag_request_builder.WipeManagedAppRegistrationByDeviceTagRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def wipe_managed_app_registrations_by_azure_ad_device_id(self) -> wipe_managed_app_registrations_by_azure_ad_device_id_request_builder.WipeManagedAppRegistrationsByAzureAdDeviceIdRequestBuilder:
         """
         Provides operations to call the wipeManagedAppRegistrationsByAzureAdDeviceId method.
         """
         return wipe_managed_app_registrations_by_azure_ad_device_id_request_builder.WipeManagedAppRegistrationsByAzureAdDeviceIdRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def wipe_managed_app_registrations_by_device_tag(self) -> wipe_managed_app_registrations_by_device_tag_request_builder.WipeManagedAppRegistrationsByDeviceTagRequestBuilder:
         """
         Provides operations to call the wipeManagedAppRegistrationsByDeviceTag method.
@@ -915,7 +1001,7 @@ class UserItemRequestBuilder():
         """
         Update the properties of a user object. Not all properties can be updated by Member or Guest users with their default permissions without Administrator roles. Compare member and guest default permissions to see properties they can manage.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -1354,7 +1440,7 @@ class UserItemRequestBuilder():
         """
         Update the properties of a user object. Not all properties can be updated by Member or Guest users with their default permissions without Administrator roles. Compare member and guest default permissions to see properties they can manage.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user.User]

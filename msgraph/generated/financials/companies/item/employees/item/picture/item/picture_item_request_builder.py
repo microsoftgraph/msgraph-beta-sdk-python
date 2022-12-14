@@ -18,6 +18,7 @@ class PictureItemRequestBuilder():
     """
     Provides operations to manage the picture property of the microsoft.graph.employee entity.
     """
+    @property
     def content(self) -> content_request_builder.ContentRequestBuilder:
         """
         Provides operations to manage the media for the financials entity.
@@ -80,7 +81,7 @@ class PictureItemRequestBuilder():
         """
         Update the navigation property picture in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class PictureItemRequestBuilder():
         """
         Update the navigation property picture in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[picture.Picture]

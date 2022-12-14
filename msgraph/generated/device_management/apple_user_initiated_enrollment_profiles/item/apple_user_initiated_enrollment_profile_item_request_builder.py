@@ -20,12 +20,14 @@ class AppleUserInitiatedEnrollmentProfileItemRequestBuilder():
     """
     Provides operations to manage the appleUserInitiatedEnrollmentProfiles property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.appleUserInitiatedEnrollmentProfile entity.
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def set_priority(self) -> set_priority_request_builder.SetPriorityRequestBuilder:
         """
         Provides operations to call the setPriority method.
@@ -101,7 +103,7 @@ class AppleUserInitiatedEnrollmentProfileItemRequestBuilder():
         """
         Update the navigation property appleUserInitiatedEnrollmentProfiles in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +161,7 @@ class AppleUserInitiatedEnrollmentProfileItemRequestBuilder():
         """
         Update the navigation property appleUserInitiatedEnrollmentProfiles in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[apple_user_initiated_enrollment_profile.AppleUserInitiatedEnrollmentProfile]

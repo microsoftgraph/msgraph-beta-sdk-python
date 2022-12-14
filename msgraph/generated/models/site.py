@@ -21,6 +21,9 @@ site_settings = lazy_import('msgraph.generated.models.site_settings')
 store = lazy_import('msgraph.generated.models.term_store.store')
 
 class Site(base_item.BaseItem):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def analytics(self,) -> Optional[item_analytics.ItemAnalytics]:
         """
@@ -57,7 +60,7 @@ class Site(base_item.BaseItem):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new Site and sets the default values.
+        Instantiates a new site and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.site"
@@ -98,7 +101,7 @@ class Site(base_item.BaseItem):
         # Provides details about the site's site collection. Available only on the root site. Read-only.
         self._site_collection: Optional[site_collection.SiteCollection] = None
         # The collection of the sub-sites under this site.
-        self._sites: Optional[List[site.Site]] = None
+        self._sites: Optional[List[Site]] = None
         # The termStore under this site.
         self._term_store: Optional[store.Store] = None
     
@@ -240,7 +243,7 @@ class Site(base_item.BaseItem):
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(site_settings.SiteSettings)),
             "sharepoint_ids": lambda n : setattr(self, 'sharepoint_ids', n.get_object_value(sharepoint_ids.SharepointIds)),
             "site_collection": lambda n : setattr(self, 'site_collection', n.get_object_value(site_collection.SiteCollection)),
-            "sites": lambda n : setattr(self, 'sites', n.get_collection_of_object_values(site.Site)),
+            "sites": lambda n : setattr(self, 'sites', n.get_collection_of_object_values(Site)),
             "term_store": lambda n : setattr(self, 'term_store', n.get_object_value(store.Store)),
         }
         super_fields = super().get_field_deserializers()
@@ -448,15 +451,15 @@ class Site(base_item.BaseItem):
         self._site_collection = value
     
     @property
-    def sites(self,) -> Optional[List[site.Site]]:
+    def sites(self,) -> Optional[List[Site]]:
         """
         Gets the sites property value. The collection of the sub-sites under this site.
-        Returns: Optional[List[site.Site]]
+        Returns: Optional[List[Site]]
         """
         return self._sites
     
     @sites.setter
-    def sites(self,value: Optional[List[site.Site]] = None) -> None:
+    def sites(self,value: Optional[List[Site]] = None) -> None:
         """
         Sets the sites property value. The collection of the sub-sites under this site.
         Args:

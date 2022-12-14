@@ -19,6 +19,7 @@ class AuthorizationPolicyItemRequestBuilder():
     """
     Provides operations to manage the authorizationPolicy property of the microsoft.graph.policyRoot entity.
     """
+    @property
     def default_user_role_overrides(self) -> default_user_role_overrides_request_builder.DefaultUserRoleOverridesRequestBuilder:
         """
         Provides operations to manage the defaultUserRoleOverrides property of the microsoft.graph.authorizationPolicy entity.
@@ -81,7 +82,7 @@ class AuthorizationPolicyItemRequestBuilder():
         """
         Update the navigation property authorizationPolicy in policies
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +153,7 @@ class AuthorizationPolicyItemRequestBuilder():
         """
         Update the navigation property authorizationPolicy in policies
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authorization_policy.AuthorizationPolicy]

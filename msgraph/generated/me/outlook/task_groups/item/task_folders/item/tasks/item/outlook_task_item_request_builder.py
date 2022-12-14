@@ -24,24 +24,28 @@ class OutlookTaskItemRequestBuilder():
     """
     Provides operations to manage the tasks property of the microsoft.graph.outlookTaskFolder entity.
     """
+    @property
     def attachments(self) -> attachments_request_builder.AttachmentsRequestBuilder:
         """
         Provides operations to manage the attachments property of the microsoft.graph.outlookTask entity.
         """
         return attachments_request_builder.AttachmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def complete(self) -> complete_request_builder.CompleteRequestBuilder:
         """
         Provides operations to call the complete method.
         """
         return complete_request_builder.CompleteRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def multi_value_extended_properties(self) -> multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder:
         """
         Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.outlookTask entity.
         """
         return multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def single_value_extended_properties(self) -> single_value_extended_properties_request_builder.SingleValueExtendedPropertiesRequestBuilder:
         """
         Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.outlookTask entity.
@@ -117,7 +121,7 @@ class OutlookTaskItemRequestBuilder():
         """
         Update the navigation property tasks in me
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -188,7 +192,7 @@ class OutlookTaskItemRequestBuilder():
         """
         Update the navigation property tasks in me
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[outlook_task.OutlookTask]

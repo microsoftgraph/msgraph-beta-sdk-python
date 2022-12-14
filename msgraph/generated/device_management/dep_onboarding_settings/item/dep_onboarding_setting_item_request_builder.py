@@ -29,54 +29,63 @@ class DepOnboardingSettingItemRequestBuilder():
     """
     Provides operations to manage the depOnboardingSettings property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def default_ios_enrollment_profile(self) -> default_ios_enrollment_profile_request_builder.DefaultIosEnrollmentProfileRequestBuilder:
         """
         Provides operations to manage the defaultIosEnrollmentProfile property of the microsoft.graph.depOnboardingSetting entity.
         """
         return default_ios_enrollment_profile_request_builder.DefaultIosEnrollmentProfileRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def default_mac_os_enrollment_profile(self) -> default_mac_os_enrollment_profile_request_builder.DefaultMacOsEnrollmentProfileRequestBuilder:
         """
         Provides operations to manage the defaultMacOsEnrollmentProfile property of the microsoft.graph.depOnboardingSetting entity.
         """
         return default_mac_os_enrollment_profile_request_builder.DefaultMacOsEnrollmentProfileRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def enrollment_profiles(self) -> enrollment_profiles_request_builder.EnrollmentProfilesRequestBuilder:
         """
         Provides operations to manage the enrollmentProfiles property of the microsoft.graph.depOnboardingSetting entity.
         """
         return enrollment_profiles_request_builder.EnrollmentProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def generate_encryption_public_key(self) -> generate_encryption_public_key_request_builder.GenerateEncryptionPublicKeyRequestBuilder:
         """
         Provides operations to call the generateEncryptionPublicKey method.
         """
         return generate_encryption_public_key_request_builder.GenerateEncryptionPublicKeyRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def imported_apple_device_identities(self) -> imported_apple_device_identities_request_builder.ImportedAppleDeviceIdentitiesRequestBuilder:
         """
         Provides operations to manage the importedAppleDeviceIdentities property of the microsoft.graph.depOnboardingSetting entity.
         """
         return imported_apple_device_identities_request_builder.ImportedAppleDeviceIdentitiesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def share_for_school_data_sync_service(self) -> share_for_school_data_sync_service_request_builder.ShareForSchoolDataSyncServiceRequestBuilder:
         """
         Provides operations to call the shareForSchoolDataSyncService method.
         """
         return share_for_school_data_sync_service_request_builder.ShareForSchoolDataSyncServiceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sync_with_apple_device_enrollment_program(self) -> sync_with_apple_device_enrollment_program_request_builder.SyncWithAppleDeviceEnrollmentProgramRequestBuilder:
         """
         Provides operations to call the syncWithAppleDeviceEnrollmentProgram method.
         """
         return sync_with_apple_device_enrollment_program_request_builder.SyncWithAppleDeviceEnrollmentProgramRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def unshare_for_school_data_sync_service(self) -> unshare_for_school_data_sync_service_request_builder.UnshareForSchoolDataSyncServiceRequestBuilder:
         """
         Provides operations to call the unshareForSchoolDataSyncService method.
         """
         return unshare_for_school_data_sync_service_request_builder.UnshareForSchoolDataSyncServiceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def upload_dep_token(self) -> upload_dep_token_request_builder.UploadDepTokenRequestBuilder:
         """
         Provides operations to call the uploadDepToken method.
@@ -139,7 +148,7 @@ class DepOnboardingSettingItemRequestBuilder():
         """
         Update the navigation property depOnboardingSettings in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -230,7 +239,7 @@ class DepOnboardingSettingItemRequestBuilder():
         """
         Update the navigation property depOnboardingSettings in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[dep_onboarding_setting.DepOnboardingSetting]

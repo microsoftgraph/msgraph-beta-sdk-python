@@ -19,6 +19,7 @@ class ConnectorItemRequestBuilder():
     """
     Provides operations to manage the connectors property of the microsoft.graph.onPremisesPublishingProfile entity.
     """
+    @property
     def member_of(self) -> member_of_request_builder.MemberOfRequestBuilder:
         """
         Provides operations to manage the memberOf property of the microsoft.graph.connector entity.
@@ -81,7 +82,7 @@ class ConnectorItemRequestBuilder():
         """
         Update the navigation property connectors in onPremisesPublishingProfiles
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +153,7 @@ class ConnectorItemRequestBuilder():
         """
         Update the navigation property connectors in onPremisesPublishingProfiles
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[connector.Connector]

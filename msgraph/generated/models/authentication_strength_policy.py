@@ -47,7 +47,7 @@ class AuthenticationStrengthPolicy(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new authenticationStrengthPolicy and sets the default values.
+        Instantiates a new AuthenticationStrengthPolicy and sets the default values.
         """
         super().__init__()
         # A collection of authentication method modes that are required be used to satify this authentication strength.

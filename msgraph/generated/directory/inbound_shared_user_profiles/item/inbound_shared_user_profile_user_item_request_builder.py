@@ -19,12 +19,14 @@ class InboundSharedUserProfileUserItemRequestBuilder():
     """
     Provides operations to manage the inboundSharedUserProfiles property of the microsoft.graph.directory entity.
     """
+    @property
     def export_personal_data(self) -> export_personal_data_request_builder.ExportPersonalDataRequestBuilder:
         """
         Provides operations to call the exportPersonalData method.
         """
         return export_personal_data_request_builder.ExportPersonalDataRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def remove_personal_data(self) -> remove_personal_data_request_builder.RemovePersonalDataRequestBuilder:
         """
         Provides operations to call the removePersonalData method.
@@ -87,7 +89,7 @@ class InboundSharedUserProfileUserItemRequestBuilder():
         """
         Update the navigation property inboundSharedUserProfiles in directory
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +147,7 @@ class InboundSharedUserProfileUserItemRequestBuilder():
         """
         Update the navigation property inboundSharedUserProfiles in directory
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[inbound_shared_user_profile.InboundSharedUserProfile]

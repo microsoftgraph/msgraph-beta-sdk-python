@@ -19,6 +19,7 @@ class DeviceManagementAutopilotEventItemRequestBuilder():
     """
     Provides operations to manage the autopilotEvents property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def policy_status_details(self) -> policy_status_details_request_builder.PolicyStatusDetailsRequestBuilder:
         """
         Provides operations to manage the policyStatusDetails property of the microsoft.graph.deviceManagementAutopilotEvent entity.
@@ -81,7 +82,7 @@ class DeviceManagementAutopilotEventItemRequestBuilder():
         """
         Update the navigation property autopilotEvents in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +140,7 @@ class DeviceManagementAutopilotEventItemRequestBuilder():
         """
         Update the navigation property autopilotEvents in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_autopilot_event.DeviceManagementAutopilotEvent]

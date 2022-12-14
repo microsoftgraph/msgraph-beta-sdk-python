@@ -19,6 +19,7 @@ class AnalyticsRequestBuilder():
     """
     Provides operations to manage the analytics property of the microsoft.graph.user entity.
     """
+    @property
     def activity_statistics(self) -> activity_statistics_request_builder.ActivityStatisticsRequestBuilder:
         """
         Provides operations to manage the activityStatistics property of the microsoft.graph.userAnalytics entity.
@@ -94,7 +95,7 @@ class AnalyticsRequestBuilder():
         """
         Update the navigation property analytics in users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +153,7 @@ class AnalyticsRequestBuilder():
         """
         Update the navigation property analytics in users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_analytics.UserAnalytics]

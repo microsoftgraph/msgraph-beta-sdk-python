@@ -19,6 +19,7 @@ class GroupPolicyDefinitionFileItemRequestBuilder():
     """
     Provides operations to manage the groupPolicyDefinitionFiles property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def definitions(self) -> definitions_request_builder.DefinitionsRequestBuilder:
         """
         Provides operations to manage the definitions property of the microsoft.graph.groupPolicyDefinitionFile entity.
@@ -81,7 +82,7 @@ class GroupPolicyDefinitionFileItemRequestBuilder():
         """
         Update the navigation property groupPolicyDefinitionFiles in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +153,7 @@ class GroupPolicyDefinitionFileItemRequestBuilder():
         """
         Update the navigation property groupPolicyDefinitionFiles in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_policy_definition_file.GroupPolicyDefinitionFile]

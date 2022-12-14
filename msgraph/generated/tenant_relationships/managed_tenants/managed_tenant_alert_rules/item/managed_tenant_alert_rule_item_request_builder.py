@@ -20,12 +20,14 @@ class ManagedTenantAlertRuleItemRequestBuilder():
     """
     Provides operations to manage the managedTenantAlertRules property of the microsoft.graph.managedTenants.managedTenant entity.
     """
+    @property
     def alerts(self) -> alerts_request_builder.AlertsRequestBuilder:
         """
         Provides operations to manage the alerts property of the microsoft.graph.managedTenants.managedTenantAlertRule entity.
         """
         return alerts_request_builder.AlertsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def rule_definition(self) -> rule_definition_request_builder.RuleDefinitionRequestBuilder:
         """
         Provides operations to manage the ruleDefinition property of the microsoft.graph.managedTenants.managedTenantAlertRule entity.
@@ -101,7 +103,7 @@ class ManagedTenantAlertRuleItemRequestBuilder():
         """
         Update the navigation property managedTenantAlertRules in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +161,7 @@ class ManagedTenantAlertRuleItemRequestBuilder():
         """
         Update the navigation property managedTenantAlertRules in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_tenant_alert_rule.ManagedTenantAlertRule]

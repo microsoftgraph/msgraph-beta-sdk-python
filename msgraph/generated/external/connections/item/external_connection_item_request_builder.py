@@ -25,30 +25,35 @@ class ExternalConnectionItemRequestBuilder():
     """
     Provides operations to manage the connections property of the microsoft.graph.externalConnectors.external entity.
     """
+    @property
     def groups(self) -> groups_request_builder.GroupsRequestBuilder:
         """
         Provides operations to manage the groups property of the microsoft.graph.externalConnectors.externalConnection entity.
         """
         return groups_request_builder.GroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def items(self) -> items_request_builder.ItemsRequestBuilder:
         """
         Provides operations to manage the items property of the microsoft.graph.externalConnectors.externalConnection entity.
         """
         return items_request_builder.ItemsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def operations(self) -> operations_request_builder.OperationsRequestBuilder:
         """
         Provides operations to manage the operations property of the microsoft.graph.externalConnectors.externalConnection entity.
         """
         return operations_request_builder.OperationsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def quota(self) -> quota_request_builder.QuotaRequestBuilder:
         """
         Provides operations to manage the quota property of the microsoft.graph.externalConnectors.externalConnection entity.
         """
         return quota_request_builder.QuotaRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def schema(self) -> schema_request_builder.SchemaRequestBuilder:
         """
         Provides operations to manage the schema property of the microsoft.graph.externalConnectors.externalConnection entity.
@@ -111,7 +116,7 @@ class ExternalConnectionItemRequestBuilder():
         """
         Update the navigation property connections in external
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -208,7 +213,7 @@ class ExternalConnectionItemRequestBuilder():
         """
         Update the navigation property connections in external
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[external_connection.ExternalConnection]

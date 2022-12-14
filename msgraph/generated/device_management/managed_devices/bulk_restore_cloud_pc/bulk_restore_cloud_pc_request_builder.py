@@ -40,7 +40,7 @@ class BulkRestoreCloudPcRequestBuilder():
         """
         Restore multiple Cloud PC devices with a single request that includes the IDs of Intune managed devices and a restore point date and time.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -61,7 +61,7 @@ class BulkRestoreCloudPcRequestBuilder():
         """
         Restore multiple Cloud PC devices with a single request that includes the IDs of Intune managed devices and a restore point date and time.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_bulk_remote_action_result.CloudPcBulkRemoteActionResult]

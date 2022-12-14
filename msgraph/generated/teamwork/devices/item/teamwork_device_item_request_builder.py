@@ -25,42 +25,49 @@ class TeamworkDeviceItemRequestBuilder():
     """
     Provides operations to manage the devices property of the microsoft.graph.teamwork entity.
     """
+    @property
     def activity(self) -> activity_request_builder.ActivityRequestBuilder:
         """
         Provides operations to manage the activity property of the microsoft.graph.teamworkDevice entity.
         """
         return activity_request_builder.ActivityRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def configuration(self) -> configuration_request_builder.ConfigurationRequestBuilder:
         """
         Provides operations to manage the configuration property of the microsoft.graph.teamworkDevice entity.
         """
         return configuration_request_builder.ConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def health(self) -> health_request_builder.HealthRequestBuilder:
         """
         Provides operations to manage the health property of the microsoft.graph.teamworkDevice entity.
         """
         return health_request_builder.HealthRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def operations(self) -> operations_request_builder.OperationsRequestBuilder:
         """
         Provides operations to manage the operations property of the microsoft.graph.teamworkDevice entity.
         """
         return operations_request_builder.OperationsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def restart(self) -> restart_request_builder.RestartRequestBuilder:
         """
         Provides operations to call the restart method.
         """
         return restart_request_builder.RestartRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def run_diagnostics(self) -> run_diagnostics_request_builder.RunDiagnosticsRequestBuilder:
         """
         Provides operations to call the runDiagnostics method.
         """
         return run_diagnostics_request_builder.RunDiagnosticsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def update_software(self) -> update_software_request_builder.UpdateSoftwareRequestBuilder:
         """
         Provides operations to call the updateSoftware method.
@@ -123,7 +130,7 @@ class TeamworkDeviceItemRequestBuilder():
         """
         Update the navigation property devices in teamwork
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -194,7 +201,7 @@ class TeamworkDeviceItemRequestBuilder():
         """
         Update the navigation property devices in teamwork
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[teamwork_device.TeamworkDevice]

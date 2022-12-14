@@ -25,30 +25,35 @@ class DeviceManagementCompliancePolicyItemRequestBuilder():
     """
     Provides operations to manage the compliancePolicies property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def assign(self) -> assign_request_builder.AssignRequestBuilder:
         """
         Provides operations to call the assign method.
         """
         return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.deviceManagementCompliancePolicy entity.
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def scheduled_actions_for_rule(self) -> scheduled_actions_for_rule_request_builder.ScheduledActionsForRuleRequestBuilder:
         """
         Provides operations to manage the scheduledActionsForRule property of the microsoft.graph.deviceManagementCompliancePolicy entity.
         """
         return scheduled_actions_for_rule_request_builder.ScheduledActionsForRuleRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def set_scheduled_actions(self) -> set_scheduled_actions_request_builder.SetScheduledActionsRequestBuilder:
         """
         Provides operations to call the setScheduledActions method.
         """
         return set_scheduled_actions_request_builder.SetScheduledActionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def settings(self) -> settings_request_builder.SettingsRequestBuilder:
         """
         Provides operations to manage the settings property of the microsoft.graph.deviceManagementCompliancePolicy entity.
@@ -124,7 +129,7 @@ class DeviceManagementCompliancePolicyItemRequestBuilder():
         """
         Update the navigation property compliancePolicies in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -182,7 +187,7 @@ class DeviceManagementCompliancePolicyItemRequestBuilder():
         """
         Update the navigation property compliancePolicies in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_compliance_policy.DeviceManagementCompliancePolicy]

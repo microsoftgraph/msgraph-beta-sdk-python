@@ -18,6 +18,7 @@ class UnifiedGroupSourceItemRequestBuilder():
     """
     Provides operations to manage the unifiedGroupSources property of the microsoft.graph.ediscovery.legalHold entity.
     """
+    @property
     def group(self) -> group_request_builder.GroupRequestBuilder:
         """
         Provides operations to manage the group property of the microsoft.graph.ediscovery.unifiedGroupSource entity.
@@ -80,7 +81,7 @@ class UnifiedGroupSourceItemRequestBuilder():
         """
         Update the navigation property unifiedGroupSources in compliance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class UnifiedGroupSourceItemRequestBuilder():
         """
         Update the navigation property unifiedGroupSources in compliance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_group_source.UnifiedGroupSource]

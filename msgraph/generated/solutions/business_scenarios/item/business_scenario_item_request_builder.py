@@ -18,6 +18,7 @@ class BusinessScenarioItemRequestBuilder():
     """
     Provides operations to manage the businessScenarios property of the microsoft.graph.solutionsRoot entity.
     """
+    @property
     def planner(self) -> planner_request_builder.PlannerRequestBuilder:
         """
         Provides operations to manage the planner property of the microsoft.graph.businessScenario entity.
@@ -80,7 +81,7 @@ class BusinessScenarioItemRequestBuilder():
         """
         Update the navigation property businessScenarios in solutions
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class BusinessScenarioItemRequestBuilder():
         """
         Update the navigation property businessScenarios in solutions
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[business_scenario.BusinessScenario]

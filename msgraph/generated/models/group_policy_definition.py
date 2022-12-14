@@ -81,7 +81,7 @@ class GroupPolicyDefinition(entity.Entity):
         # The localized explanation or help text associated with the policy. The default value is empty.
         self._explain_text: Optional[str] = None
         # The category id of the parent category
-        self._group_policy_category_id: Optional[str] = None
+        self._group_policy_category_id: Optional[Guid] = None
         # Signifies whether or not there are related definitions to this definition
         self._has_related_definitions: Optional[bool] = None
         # The date and time the entity was last modified.
@@ -180,7 +180,7 @@ class GroupPolicyDefinition(entity.Entity):
             "definition_file": lambda n : setattr(self, 'definition_file', n.get_object_value(group_policy_definition_file.GroupPolicyDefinitionFile)),
             "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "explain_text": lambda n : setattr(self, 'explain_text', n.get_str_value()),
-            "group_policy_category_id": lambda n : setattr(self, 'group_policy_category_id', n.get_str_value()),
+            "group_policy_category_id": lambda n : setattr(self, 'group_policy_category_id', n.get_object_value(Guid)),
             "has_related_definitions": lambda n : setattr(self, 'has_related_definitions', n.get_bool_value()),
             "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "min_device_csp_version": lambda n : setattr(self, 'min_device_csp_version', n.get_str_value()),
@@ -197,15 +197,15 @@ class GroupPolicyDefinition(entity.Entity):
         return fields
     
     @property
-    def group_policy_category_id(self,) -> Optional[str]:
+    def group_policy_category_id(self,) -> Optional[Guid]:
         """
         Gets the groupPolicyCategoryId property value. The category id of the parent category
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._group_policy_category_id
     
     @group_policy_category_id.setter
-    def group_policy_category_id(self,value: Optional[str] = None) -> None:
+    def group_policy_category_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the groupPolicyCategoryId property value. The category id of the parent category
         Args:
@@ -364,7 +364,7 @@ class GroupPolicyDefinition(entity.Entity):
         writer.write_object_value("definitionFile", self.definition_file)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("explainText", self.explain_text)
-        writer.write_str_value("groupPolicyCategoryId", self.group_policy_category_id)
+        writer.write_object_value("groupPolicyCategoryId", self.group_policy_category_id)
         writer.write_bool_value("hasRelatedDefinitions", self.has_related_definitions)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("minDeviceCspVersion", self.min_device_csp_version)

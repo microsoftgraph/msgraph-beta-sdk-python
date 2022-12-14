@@ -26,36 +26,42 @@ class DeviceHealthScriptItemRequestBuilder():
     """
     Provides operations to manage the deviceHealthScripts property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def assign(self) -> assign_request_builder.AssignRequestBuilder:
         """
         Provides operations to call the assign method.
         """
         return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.deviceHealthScript entity.
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def device_run_states(self) -> device_run_states_request_builder.DeviceRunStatesRequestBuilder:
         """
         Provides operations to manage the deviceRunStates property of the microsoft.graph.deviceHealthScript entity.
         """
         return device_run_states_request_builder.DeviceRunStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_global_script_highest_available_version(self) -> get_global_script_highest_available_version_request_builder.GetGlobalScriptHighestAvailableVersionRequestBuilder:
         """
         Provides operations to call the getGlobalScriptHighestAvailableVersion method.
         """
         return get_global_script_highest_available_version_request_builder.GetGlobalScriptHighestAvailableVersionRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def run_summary(self) -> run_summary_request_builder.RunSummaryRequestBuilder:
         """
         Provides operations to manage the runSummary property of the microsoft.graph.deviceHealthScript entity.
         """
         return run_summary_request_builder.RunSummaryRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def update_global_script(self) -> update_global_script_request_builder.UpdateGlobalScriptRequestBuilder:
         """
         Provides operations to call the updateGlobalScript method.
@@ -131,7 +137,7 @@ class DeviceHealthScriptItemRequestBuilder():
         """
         Update the navigation property deviceHealthScripts in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -209,7 +215,7 @@ class DeviceHealthScriptItemRequestBuilder():
         """
         Update the navigation property deviceHealthScripts in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_health_script.DeviceHealthScript]

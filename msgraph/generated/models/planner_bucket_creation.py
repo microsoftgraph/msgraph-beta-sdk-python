@@ -30,7 +30,7 @@ class PlannerBucketCreation(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The creationSourceKind property
+        # Specifies what kind of creation source the bucket is created with. The possible values are: external, publication and unknownFutureValue.
         self._creation_source_kind: Optional[planner_creation_source_kind.PlannerCreationSourceKind] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
@@ -50,7 +50,7 @@ class PlannerBucketCreation(AdditionalDataHolder, Parsable):
     @property
     def creation_source_kind(self,) -> Optional[planner_creation_source_kind.PlannerCreationSourceKind]:
         """
-        Gets the creationSourceKind property value. The creationSourceKind property
+        Gets the creationSourceKind property value. Specifies what kind of creation source the bucket is created with. The possible values are: external, publication and unknownFutureValue.
         Returns: Optional[planner_creation_source_kind.PlannerCreationSourceKind]
         """
         return self._creation_source_kind
@@ -58,7 +58,7 @@ class PlannerBucketCreation(AdditionalDataHolder, Parsable):
     @creation_source_kind.setter
     def creation_source_kind(self,value: Optional[planner_creation_source_kind.PlannerCreationSourceKind] = None) -> None:
         """
-        Sets the creationSourceKind property value. The creationSourceKind property
+        Sets the creationSourceKind property value. Specifies what kind of creation source the bucket is created with. The possible values are: external, publication and unknownFutureValue.
         Args:
             value: Value to set for the creationSourceKind property.
         """

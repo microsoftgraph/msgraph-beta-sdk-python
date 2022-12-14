@@ -22,24 +22,28 @@ class JoinedGroupsRequestBuilder():
     """
     Provides operations to manage the joinedGroups property of the microsoft.graph.user entity.
     """
+    @property
     def evaluate_dynamic_membership(self) -> evaluate_dynamic_membership_request_builder.EvaluateDynamicMembershipRequestBuilder:
         """
         Provides operations to call the evaluateDynamicMembership method.
         """
         return evaluate_dynamic_membership_request_builder.EvaluateDynamicMembershipRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_by_ids(self) -> get_by_ids_request_builder.GetByIdsRequestBuilder:
         """
         Provides operations to call the getByIds method.
         """
         return get_by_ids_request_builder.GetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_user_owned_objects(self) -> get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder:
         """
         Provides operations to call the getUserOwnedObjects method.
         """
         return get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def validate_properties(self) -> validate_properties_request_builder.ValidatePropertiesRequestBuilder:
         """
         Provides operations to call the validateProperties method.

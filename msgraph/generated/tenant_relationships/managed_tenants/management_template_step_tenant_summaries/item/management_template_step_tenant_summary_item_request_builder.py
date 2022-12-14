@@ -73,7 +73,7 @@ class ManagementTemplateStepTenantSummaryItemRequestBuilder():
         """
         Update the navigation property managementTemplateStepTenantSummaries in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -131,7 +131,7 @@ class ManagementTemplateStepTenantSummaryItemRequestBuilder():
         """
         Update the navigation property managementTemplateStepTenantSummaries in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_template_step_tenant_summary.ManagementTemplateStepTenantSummary]

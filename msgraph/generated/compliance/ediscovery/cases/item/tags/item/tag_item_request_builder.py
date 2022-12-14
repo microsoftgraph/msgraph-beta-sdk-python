@@ -20,12 +20,14 @@ class TagItemRequestBuilder():
     """
     Provides operations to manage the tags property of the microsoft.graph.ediscovery.case entity.
     """
+    @property
     def child_tags(self) -> child_tags_request_builder.ChildTagsRequestBuilder:
         """
         Provides operations to manage the childTags property of the microsoft.graph.ediscovery.tag entity.
         """
         return child_tags_request_builder.ChildTagsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def parent(self) -> parent_request_builder.ParentRequestBuilder:
         """
         Provides operations to manage the parent property of the microsoft.graph.ediscovery.tag entity.
@@ -101,7 +103,7 @@ class TagItemRequestBuilder():
         """
         Update the navigation property tags in compliance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +161,7 @@ class TagItemRequestBuilder():
         """
         Update the navigation property tags in compliance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tag.Tag]

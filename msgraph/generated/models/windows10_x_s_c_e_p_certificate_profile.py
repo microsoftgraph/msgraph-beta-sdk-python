@@ -90,7 +90,7 @@ class Windows10XSCEPCertificateProfile(windows10_x_certificate_profile.Windows10
         # Certificate renewal threshold percentage
         self._renewal_threshold_percentage: Optional[int] = None
         # Trusted Root Certificate ID
-        self._root_certificate_id: Optional[str] = None
+        self._root_certificate_id: Optional[Guid] = None
         # SCEP Server Url(s).
         self._scep_server_urls: Optional[List[str]] = None
         # Custom AAD Attributes.
@@ -142,7 +142,7 @@ class Windows10XSCEPCertificateProfile(windows10_x_certificate_profile.Windows10
             "key_storage_provider": lambda n : setattr(self, 'key_storage_provider', n.get_enum_value(key_storage_provider_option.KeyStorageProviderOption)),
             "key_usage": lambda n : setattr(self, 'key_usage', n.get_enum_value(key_usages.KeyUsages)),
             "renewal_threshold_percentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
-            "root_certificate_id": lambda n : setattr(self, 'root_certificate_id', n.get_str_value()),
+            "root_certificate_id": lambda n : setattr(self, 'root_certificate_id', n.get_object_value(Guid)),
             "scep_server_urls": lambda n : setattr(self, 'scep_server_urls', n.get_collection_of_primitive_values(str)),
             "subject_alternative_name_formats": lambda n : setattr(self, 'subject_alternative_name_formats', n.get_collection_of_object_values(windows10_x_custom_subject_alternative_name.Windows10XCustomSubjectAlternativeName)),
             "subject_name_format_string": lambda n : setattr(self, 'subject_name_format_string', n.get_str_value()),
@@ -237,15 +237,15 @@ class Windows10XSCEPCertificateProfile(windows10_x_certificate_profile.Windows10
         self._renewal_threshold_percentage = value
     
     @property
-    def root_certificate_id(self,) -> Optional[str]:
+    def root_certificate_id(self,) -> Optional[Guid]:
         """
         Gets the rootCertificateId property value. Trusted Root Certificate ID
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._root_certificate_id
     
     @root_certificate_id.setter
-    def root_certificate_id(self,value: Optional[str] = None) -> None:
+    def root_certificate_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the rootCertificateId property value. Trusted Root Certificate ID
         Args:
@@ -288,7 +288,7 @@ class Windows10XSCEPCertificateProfile(windows10_x_certificate_profile.Windows10
         writer.write_enum_value("keyStorageProvider", self.key_storage_provider)
         writer.write_enum_value("keyUsage", self.key_usage)
         writer.write_int_value("renewalThresholdPercentage", self.renewal_threshold_percentage)
-        writer.write_str_value("rootCertificateId", self.root_certificate_id)
+        writer.write_object_value("rootCertificateId", self.root_certificate_id)
         writer.write_collection_of_primitive_values("scepServerUrls", self.scep_server_urls)
         writer.write_collection_of_object_values("subjectAlternativeNameFormats", self.subject_alternative_name_formats)
         writer.write_str_value("subjectNameFormatString", self.subject_name_format_string)

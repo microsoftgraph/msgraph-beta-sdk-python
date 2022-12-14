@@ -45,90 +45,105 @@ class VirtualEndpointRequestBuilder():
     """
     Provides operations to manage the virtualEndpoint property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def audit_events(self) -> audit_events_request_builder.AuditEventsRequestBuilder:
         """
         Provides operations to manage the auditEvents property of the microsoft.graph.virtualEndpoint entity.
         """
         return audit_events_request_builder.AuditEventsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def cloud_p_cs(self) -> cloud_p_cs_request_builder.CloudPCsRequestBuilder:
         """
         Provides operations to manage the cloudPCs property of the microsoft.graph.virtualEndpoint entity.
         """
         return cloud_p_cs_request_builder.CloudPCsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def cross_cloud_government_organization_mapping(self) -> cross_cloud_government_organization_mapping_request_builder.CrossCloudGovernmentOrganizationMappingRequestBuilder:
         """
         Provides operations to manage the crossCloudGovernmentOrganizationMapping property of the microsoft.graph.virtualEndpoint entity.
         """
         return cross_cloud_government_organization_mapping_request_builder.CrossCloudGovernmentOrganizationMappingRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def device_images(self) -> device_images_request_builder.DeviceImagesRequestBuilder:
         """
         Provides operations to manage the deviceImages property of the microsoft.graph.virtualEndpoint entity.
         """
         return device_images_request_builder.DeviceImagesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def external_partner_settings(self) -> external_partner_settings_request_builder.ExternalPartnerSettingsRequestBuilder:
         """
         Provides operations to manage the externalPartnerSettings property of the microsoft.graph.virtualEndpoint entity.
         """
         return external_partner_settings_request_builder.ExternalPartnerSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def gallery_images(self) -> gallery_images_request_builder.GalleryImagesRequestBuilder:
         """
         Provides operations to manage the galleryImages property of the microsoft.graph.virtualEndpoint entity.
         """
         return gallery_images_request_builder.GalleryImagesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def on_premises_connections(self) -> on_premises_connections_request_builder.OnPremisesConnectionsRequestBuilder:
         """
         Provides operations to manage the onPremisesConnections property of the microsoft.graph.virtualEndpoint entity.
         """
         return on_premises_connections_request_builder.OnPremisesConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def organization_settings(self) -> organization_settings_request_builder.OrganizationSettingsRequestBuilder:
         """
         Provides operations to manage the organizationSettings property of the microsoft.graph.virtualEndpoint entity.
         """
         return organization_settings_request_builder.OrganizationSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def provisioning_policies(self) -> provisioning_policies_request_builder.ProvisioningPoliciesRequestBuilder:
         """
         Provides operations to manage the provisioningPolicies property of the microsoft.graph.virtualEndpoint entity.
         """
         return provisioning_policies_request_builder.ProvisioningPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def reports(self) -> reports_request_builder.ReportsRequestBuilder:
         """
         Provides operations to manage the reports property of the microsoft.graph.virtualEndpoint entity.
         """
         return reports_request_builder.ReportsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def service_plans(self) -> service_plans_request_builder.ServicePlansRequestBuilder:
         """
         Provides operations to manage the servicePlans property of the microsoft.graph.virtualEndpoint entity.
         """
         return service_plans_request_builder.ServicePlansRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def shared_use_service_plans(self) -> shared_use_service_plans_request_builder.SharedUseServicePlansRequestBuilder:
         """
         Provides operations to manage the sharedUseServicePlans property of the microsoft.graph.virtualEndpoint entity.
         """
         return shared_use_service_plans_request_builder.SharedUseServicePlansRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def snapshots(self) -> snapshots_request_builder.SnapshotsRequestBuilder:
         """
         Provides operations to manage the snapshots property of the microsoft.graph.virtualEndpoint entity.
         """
         return snapshots_request_builder.SnapshotsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def supported_regions(self) -> supported_regions_request_builder.SupportedRegionsRequestBuilder:
         """
         Provides operations to manage the supportedRegions property of the microsoft.graph.virtualEndpoint entity.
         """
         return supported_regions_request_builder.SupportedRegionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def user_settings(self) -> user_settings_request_builder.UserSettingsRequestBuilder:
         """
         Provides operations to manage the userSettings property of the microsoft.graph.virtualEndpoint entity.
@@ -217,7 +232,7 @@ class VirtualEndpointRequestBuilder():
         """
         Update the navigation property virtualEndpoint in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -334,7 +349,7 @@ class VirtualEndpointRequestBuilder():
         """
         Update the navigation property virtualEndpoint in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[virtual_endpoint.VirtualEndpoint]

@@ -41,72 +41,84 @@ class DirectoryRequestBuilder():
     """
     Provides operations to manage the directory singleton.
     """
+    @property
     def administrative_units(self) -> administrative_units_request_builder.AdministrativeUnitsRequestBuilder:
         """
         Provides operations to manage the administrativeUnits property of the microsoft.graph.directory entity.
         """
         return administrative_units_request_builder.AdministrativeUnitsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def attribute_sets(self) -> attribute_sets_request_builder.AttributeSetsRequestBuilder:
         """
         Provides operations to manage the attributeSets property of the microsoft.graph.directory entity.
         """
         return attribute_sets_request_builder.AttributeSetsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def custom_security_attribute_definitions(self) -> custom_security_attribute_definitions_request_builder.CustomSecurityAttributeDefinitionsRequestBuilder:
         """
         Provides operations to manage the customSecurityAttributeDefinitions property of the microsoft.graph.directory entity.
         """
         return custom_security_attribute_definitions_request_builder.CustomSecurityAttributeDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def deleted_items(self) -> deleted_items_request_builder.DeletedItemsRequestBuilder:
         """
         Provides operations to manage the deletedItems property of the microsoft.graph.directory entity.
         """
         return deleted_items_request_builder.DeletedItemsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def feature_rollout_policies(self) -> feature_rollout_policies_request_builder.FeatureRolloutPoliciesRequestBuilder:
         """
         Provides operations to manage the featureRolloutPolicies property of the microsoft.graph.directory entity.
         """
         return feature_rollout_policies_request_builder.FeatureRolloutPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def federation_configurations(self) -> federation_configurations_request_builder.FederationConfigurationsRequestBuilder:
         """
         Provides operations to manage the federationConfigurations property of the microsoft.graph.directory entity.
         """
         return federation_configurations_request_builder.FederationConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def impacted_resources(self) -> impacted_resources_request_builder.ImpactedResourcesRequestBuilder:
         """
         Provides operations to manage the impactedResources property of the microsoft.graph.directory entity.
         """
         return impacted_resources_request_builder.ImpactedResourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def inbound_shared_user_profiles(self) -> inbound_shared_user_profiles_request_builder.InboundSharedUserProfilesRequestBuilder:
         """
         Provides operations to manage the inboundSharedUserProfiles property of the microsoft.graph.directory entity.
         """
         return inbound_shared_user_profiles_request_builder.InboundSharedUserProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def on_premises_synchronization(self) -> on_premises_synchronization_request_builder.OnPremisesSynchronizationRequestBuilder:
         """
         Provides operations to manage the onPremisesSynchronization property of the microsoft.graph.directory entity.
         """
         return on_premises_synchronization_request_builder.OnPremisesSynchronizationRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def outbound_shared_user_profiles(self) -> outbound_shared_user_profiles_request_builder.OutboundSharedUserProfilesRequestBuilder:
         """
         Provides operations to manage the outboundSharedUserProfiles property of the microsoft.graph.directory entity.
         """
         return outbound_shared_user_profiles_request_builder.OutboundSharedUserProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def recommendations(self) -> recommendations_request_builder.RecommendationsRequestBuilder:
         """
         Provides operations to manage the recommendations property of the microsoft.graph.directory entity.
         """
         return recommendations_request_builder.RecommendationsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def shared_email_domains(self) -> shared_email_domains_request_builder.SharedEmailDomainsRequestBuilder:
         """
         Provides operations to manage the sharedEmailDomains property of the microsoft.graph.directory entity.
@@ -179,7 +191,7 @@ class DirectoryRequestBuilder():
         """
         Update directory
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -323,7 +335,7 @@ class DirectoryRequestBuilder():
         """
         Update directory
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory.Directory]

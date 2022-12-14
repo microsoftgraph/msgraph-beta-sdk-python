@@ -37,9 +37,9 @@ class ApplyHoldRequestBuilder():
     
     def create_post_request_information(self,body: Optional[apply_hold_post_request_body.ApplyHoldPostRequestBody] = None, request_configuration: Optional[ApplyHoldRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action applyHold
+        Start the process of applying hold on eDiscovery custodians. After the operation is created, you can get the status by retrieving the `Location` parameter from the response headers. The location provides a URL that will return an eDiscoveryHoldOperation object.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -57,9 +57,9 @@ class ApplyHoldRequestBuilder():
     
     async def post(self,body: Optional[apply_hold_post_request_body.ApplyHoldPostRequestBody] = None, request_configuration: Optional[ApplyHoldRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
-        Invoke action applyHold
+        Start the process of applying hold on eDiscovery custodians. After the operation is created, you can get the status by retrieving the `Location` parameter from the response headers. The location provides a URL that will return an eDiscoveryHoldOperation object.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         """

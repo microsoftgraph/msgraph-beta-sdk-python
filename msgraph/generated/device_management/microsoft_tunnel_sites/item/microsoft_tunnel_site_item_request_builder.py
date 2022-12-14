@@ -21,18 +21,21 @@ class MicrosoftTunnelSiteItemRequestBuilder():
     """
     Provides operations to manage the microsoftTunnelSites property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def microsoft_tunnel_configuration(self) -> microsoft_tunnel_configuration_request_builder.MicrosoftTunnelConfigurationRequestBuilder:
         """
         Provides operations to manage the microsoftTunnelConfiguration property of the microsoft.graph.microsoftTunnelSite entity.
         """
         return microsoft_tunnel_configuration_request_builder.MicrosoftTunnelConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def microsoft_tunnel_servers(self) -> microsoft_tunnel_servers_request_builder.MicrosoftTunnelServersRequestBuilder:
         """
         Provides operations to manage the microsoftTunnelServers property of the microsoft.graph.microsoftTunnelSite entity.
         """
         return microsoft_tunnel_servers_request_builder.MicrosoftTunnelServersRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def request_upgrade(self) -> request_upgrade_request_builder.RequestUpgradeRequestBuilder:
         """
         Provides operations to call the requestUpgrade method.
@@ -95,7 +98,7 @@ class MicrosoftTunnelSiteItemRequestBuilder():
         """
         Update the navigation property microsoftTunnelSites in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -166,7 +169,7 @@ class MicrosoftTunnelSiteItemRequestBuilder():
         """
         Update the navigation property microsoftTunnelSites in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[microsoft_tunnel_site.MicrosoftTunnelSite]

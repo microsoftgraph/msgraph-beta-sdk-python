@@ -9,9 +9,6 @@ office_client_configuration_assignment = lazy_import('msgraph.generated.models.o
 office_user_checkin_summary = lazy_import('msgraph.generated.models.office_user_checkin_summary')
 
 class OfficeClientConfiguration(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def assignments(self,) -> Optional[List[office_client_configuration_assignment.OfficeClientConfigurationAssignment]]:
         """
@@ -48,7 +45,7 @@ class OfficeClientConfiguration(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new officeClientConfiguration and sets the default values.
+        Instantiates a new OfficeClientConfiguration and sets the default values.
         """
         super().__init__()
         # The list of group assignments for the policy.

@@ -19,12 +19,14 @@ class AccessPackageResourceRoleScopeItemRequestBuilder():
     """
     Provides operations to manage the accessPackageResourceRoleScopes property of the microsoft.graph.accessPackage entity.
     """
+    @property
     def access_package_resource_role(self) -> access_package_resource_role_request_builder.AccessPackageResourceRoleRequestBuilder:
         """
         Provides operations to manage the accessPackageResourceRole property of the microsoft.graph.accessPackageResourceRoleScope entity.
         """
         return access_package_resource_role_request_builder.AccessPackageResourceRoleRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def access_package_resource_scope(self) -> access_package_resource_scope_request_builder.AccessPackageResourceScopeRequestBuilder:
         """
         Provides operations to manage the accessPackageResourceScope property of the microsoft.graph.accessPackageResourceRoleScope entity.
@@ -87,7 +89,7 @@ class AccessPackageResourceRoleScopeItemRequestBuilder():
         """
         Update the navigation property accessPackageResourceRoleScopes in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +147,7 @@ class AccessPackageResourceRoleScopeItemRequestBuilder():
         """
         Update the navigation property accessPackageResourceRoleScopes in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_resource_role_scope.AccessPackageResourceRoleScope]

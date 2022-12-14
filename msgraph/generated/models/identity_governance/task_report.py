@@ -12,7 +12,7 @@ task_processing_result = lazy_import('msgraph.generated.models.identity_governan
 
 class TaskReport(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def completed_date_time(self,) -> Optional[datetime]:

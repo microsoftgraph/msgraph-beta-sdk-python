@@ -19,6 +19,7 @@ class CatalogRequestBuilder():
     """
     Provides operations to manage the catalog property of the microsoft.graph.windowsUpdates.updates entity.
     """
+    @property
     def entries(self) -> entries_request_builder.EntriesRequestBuilder:
         """
         Provides operations to manage the entries property of the microsoft.graph.windowsUpdates.catalog entity.
@@ -81,7 +82,7 @@ class CatalogRequestBuilder():
         """
         Update the navigation property catalog in admin
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +153,7 @@ class CatalogRequestBuilder():
         """
         Update the navigation property catalog in admin
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[catalog.Catalog]

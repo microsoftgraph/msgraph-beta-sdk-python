@@ -55,138 +55,161 @@ class SecurityRequestBuilder():
     """
     Provides operations to manage the security singleton.
     """
+    @property
     def alerts(self) -> alerts_request_builder.AlertsRequestBuilder:
         """
         Provides operations to manage the alerts property of the microsoft.graph.security entity.
         """
         return alerts_request_builder.AlertsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def alerts_v2(self) -> alerts_v2_request_builder.Alerts_v2RequestBuilder:
         """
         Provides operations to manage the alerts_v2 property of the microsoft.graph.security entity.
         """
         return alerts_v2_request_builder.Alerts_v2RequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def attack_simulation(self) -> attack_simulation_request_builder.AttackSimulationRequestBuilder:
         """
         Provides operations to manage the attackSimulation property of the microsoft.graph.security entity.
         """
         return attack_simulation_request_builder.AttackSimulationRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def cases(self) -> cases_request_builder.CasesRequestBuilder:
         """
         Provides operations to manage the cases property of the microsoft.graph.security entity.
         """
         return cases_request_builder.CasesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def cloud_app_security_profiles(self) -> cloud_app_security_profiles_request_builder.CloudAppSecurityProfilesRequestBuilder:
         """
         Provides operations to manage the cloudAppSecurityProfiles property of the microsoft.graph.security entity.
         """
         return cloud_app_security_profiles_request_builder.CloudAppSecurityProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def domain_security_profiles(self) -> domain_security_profiles_request_builder.DomainSecurityProfilesRequestBuilder:
         """
         Provides operations to manage the domainSecurityProfiles property of the microsoft.graph.security entity.
         """
         return domain_security_profiles_request_builder.DomainSecurityProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def file_security_profiles(self) -> file_security_profiles_request_builder.FileSecurityProfilesRequestBuilder:
         """
         Provides operations to manage the fileSecurityProfiles property of the microsoft.graph.security entity.
         """
         return file_security_profiles_request_builder.FileSecurityProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def host_security_profiles(self) -> host_security_profiles_request_builder.HostSecurityProfilesRequestBuilder:
         """
         Provides operations to manage the hostSecurityProfiles property of the microsoft.graph.security entity.
         """
         return host_security_profiles_request_builder.HostSecurityProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def incidents(self) -> incidents_request_builder.IncidentsRequestBuilder:
         """
         Provides operations to manage the incidents property of the microsoft.graph.security entity.
         """
         return incidents_request_builder.IncidentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def information_protection(self) -> information_protection_request_builder.InformationProtectionRequestBuilder:
         """
         Provides operations to manage the informationProtection property of the microsoft.graph.security entity.
         """
         return information_protection_request_builder.InformationProtectionRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def ip_security_profiles(self) -> ip_security_profiles_request_builder.IpSecurityProfilesRequestBuilder:
         """
         Provides operations to manage the ipSecurityProfiles property of the microsoft.graph.security entity.
         """
         return ip_security_profiles_request_builder.IpSecurityProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def labels(self) -> labels_request_builder.LabelsRequestBuilder:
         """
         Provides operations to manage the labels property of the microsoft.graph.security entity.
         """
         return labels_request_builder.LabelsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def provider_tenant_settings(self) -> provider_tenant_settings_request_builder.ProviderTenantSettingsRequestBuilder:
         """
         Provides operations to manage the providerTenantSettings property of the microsoft.graph.security entity.
         """
         return provider_tenant_settings_request_builder.ProviderTenantSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def run_hunting_query(self) -> run_hunting_query_request_builder.RunHuntingQueryRequestBuilder:
         """
         Provides operations to call the runHuntingQuery method.
         """
         return run_hunting_query_request_builder.RunHuntingQueryRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def secure_score_control_profiles(self) -> secure_score_control_profiles_request_builder.SecureScoreControlProfilesRequestBuilder:
         """
         Provides operations to manage the secureScoreControlProfiles property of the microsoft.graph.security entity.
         """
         return secure_score_control_profiles_request_builder.SecureScoreControlProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def secure_scores(self) -> secure_scores_request_builder.SecureScoresRequestBuilder:
         """
         Provides operations to manage the secureScores property of the microsoft.graph.security entity.
         """
         return secure_scores_request_builder.SecureScoresRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def security_actions(self) -> security_actions_request_builder.SecurityActionsRequestBuilder:
         """
         Provides operations to manage the securityActions property of the microsoft.graph.security entity.
         """
         return security_actions_request_builder.SecurityActionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def subject_rights_requests(self) -> subject_rights_requests_request_builder.SubjectRightsRequestsRequestBuilder:
         """
         Provides operations to manage the subjectRightsRequests property of the microsoft.graph.security entity.
         """
         return subject_rights_requests_request_builder.SubjectRightsRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def threat_submission(self) -> threat_submission_request_builder.ThreatSubmissionRequestBuilder:
         """
         Provides operations to manage the threatSubmission property of the microsoft.graph.security entity.
         """
         return threat_submission_request_builder.ThreatSubmissionRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def ti_indicators(self) -> ti_indicators_request_builder.TiIndicatorsRequestBuilder:
         """
         Provides operations to manage the tiIndicators property of the microsoft.graph.security entity.
         """
         return ti_indicators_request_builder.TiIndicatorsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def triggers(self) -> triggers_request_builder.TriggersRequestBuilder:
         """
         Provides operations to manage the triggers property of the microsoft.graph.security entity.
         """
         return triggers_request_builder.TriggersRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def trigger_types(self) -> trigger_types_request_builder.TriggerTypesRequestBuilder:
         """
         Provides operations to manage the triggerTypes property of the microsoft.graph.security entity.
         """
         return trigger_types_request_builder.TriggerTypesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def user_security_profiles(self) -> user_security_profiles_request_builder.UserSecurityProfilesRequestBuilder:
         """
         Provides operations to manage the userSecurityProfiles property of the microsoft.graph.security entity.
@@ -272,7 +295,7 @@ class SecurityRequestBuilder():
         """
         Update security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -377,7 +400,7 @@ class SecurityRequestBuilder():
         """
         Update security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[security.Security]

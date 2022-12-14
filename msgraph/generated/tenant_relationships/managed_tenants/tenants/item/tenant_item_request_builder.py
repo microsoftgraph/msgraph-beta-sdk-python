@@ -19,12 +19,14 @@ class TenantItemRequestBuilder():
     """
     Provides operations to manage the tenants property of the microsoft.graph.managedTenants.managedTenant entity.
     """
+    @property
     def offboard_tenant(self) -> offboard_tenant_request_builder.OffboardTenantRequestBuilder:
         """
         Provides operations to call the offboardTenant method.
         """
         return offboard_tenant_request_builder.OffboardTenantRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def reset_tenant_onboarding_status(self) -> reset_tenant_onboarding_status_request_builder.ResetTenantOnboardingStatusRequestBuilder:
         """
         Provides operations to call the resetTenantOnboardingStatus method.
@@ -87,7 +89,7 @@ class TenantItemRequestBuilder():
         """
         Update the navigation property tenants in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +147,7 @@ class TenantItemRequestBuilder():
         """
         Update the navigation property tenants in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant.Tenant]

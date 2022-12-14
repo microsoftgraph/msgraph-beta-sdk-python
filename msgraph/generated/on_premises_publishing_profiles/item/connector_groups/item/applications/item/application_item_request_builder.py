@@ -18,6 +18,7 @@ class ApplicationItemRequestBuilder():
     """
     Provides operations to manage the applications property of the microsoft.graph.connectorGroup entity.
     """
+    @property
     def logo(self) -> logo_request_builder.LogoRequestBuilder:
         """
         Provides operations to manage the media for the onPremisesPublishingProfile entity.

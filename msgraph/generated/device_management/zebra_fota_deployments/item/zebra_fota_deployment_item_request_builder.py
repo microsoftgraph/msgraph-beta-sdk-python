@@ -18,6 +18,7 @@ class ZebraFotaDeploymentItemRequestBuilder():
     """
     Provides operations to manage the zebraFotaDeployments property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
         """
         Provides operations to call the cancel method.
@@ -80,7 +81,7 @@ class ZebraFotaDeploymentItemRequestBuilder():
         """
         Update the navigation property zebraFotaDeployments in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class ZebraFotaDeploymentItemRequestBuilder():
         """
         Update the navigation property zebraFotaDeployments in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[zebra_fota_deployment.ZebraFotaDeployment]

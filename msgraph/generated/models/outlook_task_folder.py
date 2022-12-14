@@ -10,7 +10,7 @@ single_value_legacy_extended_property = lazy_import('msgraph.generated.models.si
 
 class OutlookTaskFolder(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def change_key(self,) -> Optional[str]:
@@ -45,7 +45,7 @@ class OutlookTaskFolder(entity.Entity):
         # The OdataType property
         self.odata_type: Optional[str] = None
         # The unique GUID identifier for the task folder's parent group.
-        self._parent_group_key: Optional[str] = None
+        self._parent_group_key: Optional[Guid] = None
         # The collection of single-value extended properties defined for the task folder. Read-only. Nullable.
         self._single_value_extended_properties: Optional[List[single_value_legacy_extended_property.SingleValueLegacyExtendedProperty]] = None
         # The tasks in this task folder. Read-only. Nullable.
@@ -73,7 +73,7 @@ class OutlookTaskFolder(entity.Entity):
             "is_default_folder": lambda n : setattr(self, 'is_default_folder', n.get_bool_value()),
             "multi_value_extended_properties": lambda n : setattr(self, 'multi_value_extended_properties', n.get_collection_of_object_values(multi_value_legacy_extended_property.MultiValueLegacyExtendedProperty)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "parent_group_key": lambda n : setattr(self, 'parent_group_key', n.get_str_value()),
+            "parent_group_key": lambda n : setattr(self, 'parent_group_key', n.get_object_value(Guid)),
             "single_value_extended_properties": lambda n : setattr(self, 'single_value_extended_properties', n.get_collection_of_object_values(single_value_legacy_extended_property.SingleValueLegacyExtendedProperty)),
             "tasks": lambda n : setattr(self, 'tasks', n.get_collection_of_object_values(outlook_task.OutlookTask)),
         }
@@ -133,15 +133,15 @@ class OutlookTaskFolder(entity.Entity):
         self._name = value
     
     @property
-    def parent_group_key(self,) -> Optional[str]:
+    def parent_group_key(self,) -> Optional[Guid]:
         """
         Gets the parentGroupKey property value. The unique GUID identifier for the task folder's parent group.
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._parent_group_key
     
     @parent_group_key.setter
-    def parent_group_key(self,value: Optional[str] = None) -> None:
+    def parent_group_key(self,value: Optional[Guid] = None) -> None:
         """
         Sets the parentGroupKey property value. The unique GUID identifier for the task folder's parent group.
         Args:
@@ -162,7 +162,7 @@ class OutlookTaskFolder(entity.Entity):
         writer.write_bool_value("isDefaultFolder", self.is_default_folder)
         writer.write_collection_of_object_values("multiValueExtendedProperties", self.multi_value_extended_properties)
         writer.write_str_value("name", self.name)
-        writer.write_str_value("parentGroupKey", self.parent_group_key)
+        writer.write_object_value("parentGroupKey", self.parent_group_key)
         writer.write_collection_of_object_values("singleValueExtendedProperties", self.single_value_extended_properties)
         writer.write_collection_of_object_values("tasks", self.tasks)
     

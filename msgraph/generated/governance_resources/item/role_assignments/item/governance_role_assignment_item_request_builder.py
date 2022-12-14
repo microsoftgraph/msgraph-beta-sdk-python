@@ -21,24 +21,28 @@ class GovernanceRoleAssignmentItemRequestBuilder():
     """
     Provides operations to manage the roleAssignments property of the microsoft.graph.governanceResource entity.
     """
+    @property
     def linked_eligible_role_assignment(self) -> linked_eligible_role_assignment_request_builder.LinkedEligibleRoleAssignmentRequestBuilder:
         """
         Provides operations to manage the linkedEligibleRoleAssignment property of the microsoft.graph.governanceRoleAssignment entity.
         """
         return linked_eligible_role_assignment_request_builder.LinkedEligibleRoleAssignmentRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def resource(self) -> resource_request_builder.ResourceRequestBuilder:
         """
         Provides operations to manage the resource property of the microsoft.graph.governanceRoleAssignment entity.
         """
         return resource_request_builder.ResourceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def role_definition(self) -> role_definition_request_builder.RoleDefinitionRequestBuilder:
         """
         Provides operations to manage the roleDefinition property of the microsoft.graph.governanceRoleAssignment entity.
         """
         return role_definition_request_builder.RoleDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def subject(self) -> subject_request_builder.SubjectRequestBuilder:
         """
         Provides operations to manage the subject property of the microsoft.graph.governanceRoleAssignment entity.
@@ -101,7 +105,7 @@ class GovernanceRoleAssignmentItemRequestBuilder():
         """
         Update the navigation property roleAssignments in governanceResources
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +163,7 @@ class GovernanceRoleAssignmentItemRequestBuilder():
         """
         Update the navigation property roleAssignments in governanceResources
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_role_assignment.GovernanceRoleAssignment]

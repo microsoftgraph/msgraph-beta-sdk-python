@@ -37,9 +37,9 @@ class RemoveHoldRequestBuilder():
     
     def create_post_request_information(self,body: Optional[remove_hold_post_request_body.RemoveHoldPostRequestBody] = None, request_configuration: Optional[RemoveHoldRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action removeHold
+        Start the process of removing hold from eDiscovery non-custodial data sources. After the operation is created, you can get the status by retrieving the `Location` parameter from the response headers. The location provides a URL that will return an eDiscoveryHoldOperation object.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -57,9 +57,9 @@ class RemoveHoldRequestBuilder():
     
     async def post(self,body: Optional[remove_hold_post_request_body.RemoveHoldPostRequestBody] = None, request_configuration: Optional[RemoveHoldRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
-        Invoke action removeHold
+        Start the process of removing hold from eDiscovery non-custodial data sources. After the operation is created, you can get the status by retrieving the `Location` parameter from the response headers. The location provides a URL that will return an eDiscoveryHoldOperation object.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         """

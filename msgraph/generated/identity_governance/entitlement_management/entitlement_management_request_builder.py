@@ -44,84 +44,98 @@ class EntitlementManagementRequestBuilder():
     """
     Provides operations to manage the entitlementManagement property of the microsoft.graph.identityGovernance entity.
     """
+    @property
     def access_package_assignment_approvals(self) -> access_package_assignment_approvals_request_builder.AccessPackageAssignmentApprovalsRequestBuilder:
         """
         Provides operations to manage the accessPackageAssignmentApprovals property of the microsoft.graph.entitlementManagement entity.
         """
         return access_package_assignment_approvals_request_builder.AccessPackageAssignmentApprovalsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def access_package_assignment_policies(self) -> access_package_assignment_policies_request_builder.AccessPackageAssignmentPoliciesRequestBuilder:
         """
         Provides operations to manage the accessPackageAssignmentPolicies property of the microsoft.graph.entitlementManagement entity.
         """
         return access_package_assignment_policies_request_builder.AccessPackageAssignmentPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def access_package_assignment_requests(self) -> access_package_assignment_requests_request_builder.AccessPackageAssignmentRequestsRequestBuilder:
         """
         Provides operations to manage the accessPackageAssignmentRequests property of the microsoft.graph.entitlementManagement entity.
         """
         return access_package_assignment_requests_request_builder.AccessPackageAssignmentRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def access_package_assignment_resource_roles(self) -> access_package_assignment_resource_roles_request_builder.AccessPackageAssignmentResourceRolesRequestBuilder:
         """
         Provides operations to manage the accessPackageAssignmentResourceRoles property of the microsoft.graph.entitlementManagement entity.
         """
         return access_package_assignment_resource_roles_request_builder.AccessPackageAssignmentResourceRolesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def access_package_assignments(self) -> access_package_assignments_request_builder.AccessPackageAssignmentsRequestBuilder:
         """
         Provides operations to manage the accessPackageAssignments property of the microsoft.graph.entitlementManagement entity.
         """
         return access_package_assignments_request_builder.AccessPackageAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def access_package_catalogs(self) -> access_package_catalogs_request_builder.AccessPackageCatalogsRequestBuilder:
         """
         Provides operations to manage the accessPackageCatalogs property of the microsoft.graph.entitlementManagement entity.
         """
         return access_package_catalogs_request_builder.AccessPackageCatalogsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def access_package_resource_environments(self) -> access_package_resource_environments_request_builder.AccessPackageResourceEnvironmentsRequestBuilder:
         """
         Provides operations to manage the accessPackageResourceEnvironments property of the microsoft.graph.entitlementManagement entity.
         """
         return access_package_resource_environments_request_builder.AccessPackageResourceEnvironmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def access_package_resource_requests(self) -> access_package_resource_requests_request_builder.AccessPackageResourceRequestsRequestBuilder:
         """
         Provides operations to manage the accessPackageResourceRequests property of the microsoft.graph.entitlementManagement entity.
         """
         return access_package_resource_requests_request_builder.AccessPackageResourceRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def access_package_resource_role_scopes(self) -> access_package_resource_role_scopes_request_builder.AccessPackageResourceRoleScopesRequestBuilder:
         """
         Provides operations to manage the accessPackageResourceRoleScopes property of the microsoft.graph.entitlementManagement entity.
         """
         return access_package_resource_role_scopes_request_builder.AccessPackageResourceRoleScopesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def access_package_resources(self) -> access_package_resources_request_builder.AccessPackageResourcesRequestBuilder:
         """
         Provides operations to manage the accessPackageResources property of the microsoft.graph.entitlementManagement entity.
         """
         return access_package_resources_request_builder.AccessPackageResourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def access_packages(self) -> access_packages_request_builder.AccessPackagesRequestBuilder:
         """
         Provides operations to manage the accessPackages property of the microsoft.graph.entitlementManagement entity.
         """
         return access_packages_request_builder.AccessPackagesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def connected_organizations(self) -> connected_organizations_request_builder.ConnectedOrganizationsRequestBuilder:
         """
         Provides operations to manage the connectedOrganizations property of the microsoft.graph.entitlementManagement entity.
         """
         return connected_organizations_request_builder.ConnectedOrganizationsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def settings(self) -> settings_request_builder.SettingsRequestBuilder:
         """
         Provides operations to manage the settings property of the microsoft.graph.entitlementManagement entity.
         """
         return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def subjects(self) -> subjects_request_builder.SubjectsRequestBuilder:
         """
         Provides operations to manage the subjects property of the microsoft.graph.entitlementManagement entity.
@@ -340,7 +354,7 @@ class EntitlementManagementRequestBuilder():
         """
         Update the navigation property entitlementManagement in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -398,7 +412,7 @@ class EntitlementManagementRequestBuilder():
         """
         Update the navigation property entitlementManagement in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[entitlement_management.EntitlementManagement]

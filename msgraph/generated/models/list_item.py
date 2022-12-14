@@ -15,6 +15,9 @@ list_item_version = lazy_import('msgraph.generated.models.list_item_version')
 sharepoint_ids = lazy_import('msgraph.generated.models.sharepoint_ids')
 
 class ListItem(base_item.BaseItem):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def activities(self,) -> Optional[List[item_activity_o_l_d.ItemActivityOLD]]:
         """

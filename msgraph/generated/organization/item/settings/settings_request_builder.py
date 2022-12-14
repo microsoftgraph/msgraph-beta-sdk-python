@@ -23,30 +23,35 @@ class SettingsRequestBuilder():
     """
     Provides operations to manage the settings property of the microsoft.graph.organization entity.
     """
+    @property
     def contact_insights(self) -> contact_insights_request_builder.ContactInsightsRequestBuilder:
         """
         Provides operations to manage the contactInsights property of the microsoft.graph.organizationSettings entity.
         """
         return contact_insights_request_builder.ContactInsightsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def item_insights(self) -> item_insights_request_builder.ItemInsightsRequestBuilder:
         """
         Provides operations to manage the itemInsights property of the microsoft.graph.organizationSettings entity.
         """
         return item_insights_request_builder.ItemInsightsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def microsoft_application_data_access(self) -> microsoft_application_data_access_request_builder.MicrosoftApplicationDataAccessRequestBuilder:
         """
         Provides operations to manage the microsoftApplicationDataAccess property of the microsoft.graph.organizationSettings entity.
         """
         return microsoft_application_data_access_request_builder.MicrosoftApplicationDataAccessRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def people_insights(self) -> people_insights_request_builder.PeopleInsightsRequestBuilder:
         """
         Provides operations to manage the peopleInsights property of the microsoft.graph.organizationSettings entity.
         """
         return people_insights_request_builder.PeopleInsightsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def profile_card_properties(self) -> profile_card_properties_request_builder.ProfileCardPropertiesRequestBuilder:
         """
         Provides operations to manage the profileCardProperties property of the microsoft.graph.organizationSettings entity.
@@ -109,7 +114,7 @@ class SettingsRequestBuilder():
         """
         Update the navigation property settings in organization
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -167,7 +172,7 @@ class SettingsRequestBuilder():
         """
         Update the navigation property settings in organization
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[organization_settings.OrganizationSettings]

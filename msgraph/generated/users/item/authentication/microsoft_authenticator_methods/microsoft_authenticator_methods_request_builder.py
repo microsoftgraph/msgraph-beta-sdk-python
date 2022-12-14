@@ -18,6 +18,7 @@ class MicrosoftAuthenticatorMethodsRequestBuilder():
     """
     Provides operations to manage the microsoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.

@@ -24,24 +24,28 @@ class AccessReviewsRequestBuilder():
     """
     Provides operations to manage the accessReviews property of the microsoft.graph.identityGovernance entity.
     """
+    @property
     def decisions(self) -> decisions_request_builder.DecisionsRequestBuilder:
         """
         Provides operations to manage the decisions property of the microsoft.graph.accessReviewSet entity.
         """
         return decisions_request_builder.DecisionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def definitions(self) -> definitions_request_builder.DefinitionsRequestBuilder:
         """
         Provides operations to manage the definitions property of the microsoft.graph.accessReviewSet entity.
         """
         return definitions_request_builder.DefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def history_definitions(self) -> history_definitions_request_builder.HistoryDefinitionsRequestBuilder:
         """
         Provides operations to manage the historyDefinitions property of the microsoft.graph.accessReviewSet entity.
         """
         return history_definitions_request_builder.HistoryDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def policy(self) -> policy_request_builder.PolicyRequestBuilder:
         """
         Provides operations to manage the policy property of the microsoft.graph.accessReviewSet entity.
@@ -104,7 +108,7 @@ class AccessReviewsRequestBuilder():
         """
         Update the navigation property accessReviews in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -201,7 +205,7 @@ class AccessReviewsRequestBuilder():
         """
         Update the navigation property accessReviews in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_set.AccessReviewSet]

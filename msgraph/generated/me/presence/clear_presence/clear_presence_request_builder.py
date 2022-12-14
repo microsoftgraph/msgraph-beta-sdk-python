@@ -39,7 +39,7 @@ class ClearPresenceRequestBuilder():
         """
         Clear a presence session of an application for a user. If it is the user's only presence session, a successful **clearPresence** changes the user's presence to `Offline/Offline`. Read more about presence sessions and their time-out and expiration. 
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -59,7 +59,7 @@ class ClearPresenceRequestBuilder():
         """
         Clear a presence session of an application for a user. If it is the user's only presence session, a successful **clearPresence** changes the user's presence to `Offline/Offline`. Read more about presence sessions and their time-out and expiration. 
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         """

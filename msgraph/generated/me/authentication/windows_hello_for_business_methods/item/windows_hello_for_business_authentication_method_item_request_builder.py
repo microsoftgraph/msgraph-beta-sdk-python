@@ -18,6 +18,7 @@ class WindowsHelloForBusinessAuthenticationMethodItemRequestBuilder():
     """
     Provides operations to manage the windowsHelloForBusinessMethods property of the microsoft.graph.authentication entity.
     """
+    @property
     def device(self) -> device_request_builder.DeviceRequestBuilder:
         """
         Provides operations to manage the device property of the microsoft.graph.windowsHelloForBusinessAuthenticationMethod entity.

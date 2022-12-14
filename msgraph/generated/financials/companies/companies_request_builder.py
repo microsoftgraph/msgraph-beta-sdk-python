@@ -18,6 +18,7 @@ class CompaniesRequestBuilder():
     """
     Provides operations to manage the companies property of the microsoft.graph.financials entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.

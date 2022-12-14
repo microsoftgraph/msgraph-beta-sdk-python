@@ -16,6 +16,9 @@ subscription = lazy_import('msgraph.generated.models.subscription')
 system_facet = lazy_import('msgraph.generated.models.system_facet')
 
 class List(base_item.BaseItem):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def activities(self,) -> Optional[List[item_activity_o_l_d.ItemActivityOLD]]:
         """

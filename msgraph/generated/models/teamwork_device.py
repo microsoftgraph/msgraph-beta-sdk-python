@@ -18,7 +18,7 @@ teamwork_user_identity = lazy_import('msgraph.generated.models.teamwork_user_ide
 
 class TeamworkDevice(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def activity(self,) -> Optional[teamwork_device_activity.TeamworkDeviceActivity]:

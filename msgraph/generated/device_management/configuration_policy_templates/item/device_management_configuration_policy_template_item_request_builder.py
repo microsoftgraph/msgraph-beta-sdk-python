@@ -19,6 +19,7 @@ class DeviceManagementConfigurationPolicyTemplateItemRequestBuilder():
     """
     Provides operations to manage the configurationPolicyTemplates property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def setting_templates(self) -> setting_templates_request_builder.SettingTemplatesRequestBuilder:
         """
         Provides operations to manage the settingTemplates property of the microsoft.graph.deviceManagementConfigurationPolicyTemplate entity.
@@ -81,7 +82,7 @@ class DeviceManagementConfigurationPolicyTemplateItemRequestBuilder():
         """
         Update the navigation property configurationPolicyTemplates in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +140,7 @@ class DeviceManagementConfigurationPolicyTemplateItemRequestBuilder():
         """
         Update the navigation property configurationPolicyTemplates in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_configuration_policy_template.DeviceManagementConfigurationPolicyTemplate]

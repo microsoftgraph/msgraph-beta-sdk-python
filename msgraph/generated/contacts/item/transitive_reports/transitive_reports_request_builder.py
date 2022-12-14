@@ -18,6 +18,7 @@ class TransitiveReportsRequestBuilder():
     """
     Provides operations to manage the transitiveReports property of the microsoft.graph.orgContact entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.

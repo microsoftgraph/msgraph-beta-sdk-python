@@ -19,6 +19,7 @@ class OutboundSharedUserProfileUserItemRequestBuilder():
     """
     Provides operations to manage the outboundSharedUserProfiles property of the microsoft.graph.directory entity.
     """
+    @property
     def tenants(self) -> tenants_request_builder.TenantsRequestBuilder:
         """
         Provides operations to manage the tenants property of the microsoft.graph.outboundSharedUserProfile entity.
@@ -81,7 +82,7 @@ class OutboundSharedUserProfileUserItemRequestBuilder():
         """
         Update the navigation property outboundSharedUserProfiles in directory
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +140,7 @@ class OutboundSharedUserProfileUserItemRequestBuilder():
         """
         Update the navigation property outboundSharedUserProfiles in directory
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[outbound_shared_user_profile.OutboundSharedUserProfile]

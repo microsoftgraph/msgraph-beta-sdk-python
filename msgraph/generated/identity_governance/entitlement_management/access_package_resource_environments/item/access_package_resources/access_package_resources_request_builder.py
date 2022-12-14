@@ -18,6 +18,7 @@ class AccessPackageResourcesRequestBuilder():
     """
     Provides operations to manage the accessPackageResources property of the microsoft.graph.accessPackageResourceEnvironment entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.

@@ -18,6 +18,7 @@ class DeviceLogCollectionResponseItemRequestBuilder():
     """
     Provides operations to manage the logCollectionRequests property of the microsoft.graph.managedDevice entity.
     """
+    @property
     def create_download_url(self) -> create_download_url_request_builder.CreateDownloadUrlRequestBuilder:
         """
         Provides operations to call the createDownloadUrl method.
@@ -80,7 +81,7 @@ class DeviceLogCollectionResponseItemRequestBuilder():
         """
         Update the navigation property logCollectionRequests in users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class DeviceLogCollectionResponseItemRequestBuilder():
         """
         Update the navigation property logCollectionRequests in users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_log_collection_response.DeviceLogCollectionResponse]

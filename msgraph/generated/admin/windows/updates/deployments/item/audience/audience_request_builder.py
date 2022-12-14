@@ -23,24 +23,28 @@ class AudienceRequestBuilder():
     """
     Provides operations to manage the audience property of the microsoft.graph.windowsUpdates.deployment entity.
     """
+    @property
     def exclusions(self) -> exclusions_request_builder.ExclusionsRequestBuilder:
         """
         Provides operations to manage the exclusions property of the microsoft.graph.windowsUpdates.deploymentAudience entity.
         """
         return exclusions_request_builder.ExclusionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def members(self) -> members_request_builder.MembersRequestBuilder:
         """
         Provides operations to manage the members property of the microsoft.graph.windowsUpdates.deploymentAudience entity.
         """
         return members_request_builder.MembersRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def update_audience(self) -> update_audience_request_builder.UpdateAudienceRequestBuilder:
         """
         Provides operations to call the updateAudience method.
         """
         return update_audience_request_builder.UpdateAudienceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def update_audience_by_id(self) -> update_audience_by_id_request_builder.UpdateAudienceByIdRequestBuilder:
         """
         Provides operations to call the updateAudienceById method.
@@ -103,7 +107,7 @@ class AudienceRequestBuilder():
         """
         Update the navigation property audience in admin
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -187,7 +191,7 @@ class AudienceRequestBuilder():
         """
         Update the navigation property audience in admin
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[deployment_audience.DeploymentAudience]

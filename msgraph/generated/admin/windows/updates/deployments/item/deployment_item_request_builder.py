@@ -18,6 +18,7 @@ class DeploymentItemRequestBuilder():
     """
     Provides operations to manage the deployments property of the microsoft.graph.windowsUpdates.updates entity.
     """
+    @property
     def audience(self) -> audience_request_builder.AudienceRequestBuilder:
         """
         Provides operations to manage the audience property of the microsoft.graph.windowsUpdates.deployment entity.
@@ -80,7 +81,7 @@ class DeploymentItemRequestBuilder():
         """
         Update the navigation property deployments in admin
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class DeploymentItemRequestBuilder():
         """
         Update the navigation property deployments in admin
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[deployment.Deployment]

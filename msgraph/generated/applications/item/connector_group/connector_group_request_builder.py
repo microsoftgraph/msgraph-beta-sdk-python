@@ -18,6 +18,7 @@ class ConnectorGroupRequestBuilder():
     """
     Provides operations to manage the connectorGroup property of the microsoft.graph.application entity.
     """
+    @property
     def ref(self) -> ref_request_builder.RefRequestBuilder:
         """
         Provides operations to manage the collection of application entities.

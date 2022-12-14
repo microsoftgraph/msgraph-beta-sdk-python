@@ -21,12 +21,14 @@ class RunItemRequestBuilder():
     """
     Provides operations to manage the runs property of the microsoft.graph.identityGovernance.workflow entity.
     """
+    @property
     def task_processing_results(self) -> task_processing_results_request_builder.TaskProcessingResultsRequestBuilder:
         """
         Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.run entity.
         """
         return task_processing_results_request_builder.TaskProcessingResultsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def user_processing_results(self) -> user_processing_results_request_builder.UserProcessingResultsRequestBuilder:
         """
         Provides operations to manage the userProcessingResults property of the microsoft.graph.identityGovernance.run entity.
@@ -89,7 +91,7 @@ class RunItemRequestBuilder():
         """
         Update the navigation property runs in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -147,7 +149,7 @@ class RunItemRequestBuilder():
         """
         Update the navigation property runs in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[run.Run]

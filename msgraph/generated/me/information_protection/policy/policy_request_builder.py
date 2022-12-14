@@ -19,6 +19,7 @@ class PolicyRequestBuilder():
     """
     Provides operations to manage the policy property of the microsoft.graph.informationProtection entity.
     """
+    @property
     def labels(self) -> labels_request_builder.LabelsRequestBuilder:
         """
         Provides operations to manage the labels property of the microsoft.graph.informationProtectionPolicy entity.
@@ -81,7 +82,7 @@ class PolicyRequestBuilder():
         """
         Update the navigation property policy in me
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +153,7 @@ class PolicyRequestBuilder():
         """
         Update the navigation property policy in me
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[information_protection_policy.InformationProtectionPolicy]

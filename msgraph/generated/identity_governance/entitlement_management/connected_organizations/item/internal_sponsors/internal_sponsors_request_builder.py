@@ -23,30 +23,35 @@ class InternalSponsorsRequestBuilder():
     """
     Provides operations to manage the internalSponsors property of the microsoft.graph.connectedOrganization entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_by_ids(self) -> get_by_ids_request_builder.GetByIdsRequestBuilder:
         """
         Provides operations to call the getByIds method.
         """
         return get_by_ids_request_builder.GetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_user_owned_objects(self) -> get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder:
         """
         Provides operations to call the getUserOwnedObjects method.
         """
         return get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def ref(self) -> ref_request_builder.RefRequestBuilder:
         """
         Provides operations to manage the collection of identityGovernance entities.
         """
         return ref_request_builder.RefRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def validate_properties(self) -> validate_properties_request_builder.ValidatePropertiesRequestBuilder:
         """
         Provides operations to call the validateProperties method.
@@ -93,7 +98,7 @@ class InternalSponsorsRequestBuilder():
         """
         Create new navigation property to internalSponsors for identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -133,7 +138,7 @@ class InternalSponsorsRequestBuilder():
         """
         Create new navigation property to internalSponsors for identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_object.DirectoryObject]

@@ -18,6 +18,7 @@ class CompanyInformationItemRequestBuilder():
     """
     Provides operations to manage the companyInformation property of the microsoft.graph.company entity.
     """
+    @property
     def picture(self) -> picture_request_builder.PictureRequestBuilder:
         """
         Provides operations to manage the media for the financials entity.
@@ -64,7 +65,7 @@ class CompanyInformationItemRequestBuilder():
         """
         Update the navigation property companyInformation in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -104,7 +105,7 @@ class CompanyInformationItemRequestBuilder():
         """
         Update the navigation property companyInformation in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[company_information.CompanyInformation]

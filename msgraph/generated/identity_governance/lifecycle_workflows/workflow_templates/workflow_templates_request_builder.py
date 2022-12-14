@@ -19,6 +19,7 @@ class WorkflowTemplatesRequestBuilder():
     """
     Provides operations to manage the workflowTemplates property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
@@ -65,7 +66,7 @@ class WorkflowTemplatesRequestBuilder():
         """
         Create new navigation property to workflowTemplates for identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +106,7 @@ class WorkflowTemplatesRequestBuilder():
         """
         Create new navigation property to workflowTemplates for identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[workflow_template.WorkflowTemplate]

@@ -10,6 +10,9 @@ governance_role_definition = lazy_import('msgraph.generated.models.governance_ro
 governance_rule_setting = lazy_import('msgraph.generated.models.governance_rule_setting')
 
 class GovernanceRoleSetting(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def admin_eligible_settings(self,) -> Optional[List[governance_rule_setting.GovernanceRuleSetting]]:
         """

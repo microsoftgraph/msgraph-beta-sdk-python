@@ -8,6 +8,9 @@ agreement_file_data = lazy_import('msgraph.generated.models.agreement_file_data'
 entity = lazy_import('msgraph.generated.models.entity')
 
 class AgreementFileProperties(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new agreementFileProperties and sets the default values.

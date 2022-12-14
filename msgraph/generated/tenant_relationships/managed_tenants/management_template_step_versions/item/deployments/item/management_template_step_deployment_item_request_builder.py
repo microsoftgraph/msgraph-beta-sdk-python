@@ -19,12 +19,14 @@ class ManagementTemplateStepDeploymentItemRequestBuilder():
     """
     Provides operations to manage the deployments property of the microsoft.graph.managedTenants.managementTemplateStepVersion entity.
     """
+    @property
     def change_deployment_status(self) -> change_deployment_status_request_builder.ChangeDeploymentStatusRequestBuilder:
         """
         Provides operations to call the changeDeploymentStatus method.
         """
         return change_deployment_status_request_builder.ChangeDeploymentStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def template_step_version(self) -> template_step_version_request_builder.TemplateStepVersionRequestBuilder:
         """
         Provides operations to manage the templateStepVersion property of the microsoft.graph.managedTenants.managementTemplateStepDeployment entity.
@@ -87,7 +89,7 @@ class ManagementTemplateStepDeploymentItemRequestBuilder():
         """
         Update the navigation property deployments in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +147,7 @@ class ManagementTemplateStepDeploymentItemRequestBuilder():
         """
         Update the navigation property deployments in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_template_step_deployment.ManagementTemplateStepDeployment]

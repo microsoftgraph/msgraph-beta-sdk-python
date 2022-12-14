@@ -19,12 +19,14 @@ class GroupPolicyPresentationValueItemRequestBuilder():
     """
     Provides operations to manage the presentationValues property of the microsoft.graph.groupPolicyDefinitionValue entity.
     """
+    @property
     def definition_value(self) -> definition_value_request_builder.DefinitionValueRequestBuilder:
         """
         Provides operations to manage the definitionValue property of the microsoft.graph.groupPolicyPresentationValue entity.
         """
         return definition_value_request_builder.DefinitionValueRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def presentation(self) -> presentation_request_builder.PresentationRequestBuilder:
         """
         Provides operations to manage the presentation property of the microsoft.graph.groupPolicyPresentationValue entity.
@@ -87,7 +89,7 @@ class GroupPolicyPresentationValueItemRequestBuilder():
         """
         Update the navigation property presentationValues in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +147,7 @@ class GroupPolicyPresentationValueItemRequestBuilder():
         """
         Update the navigation property presentationValues in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_policy_presentation_value.GroupPolicyPresentationValue]

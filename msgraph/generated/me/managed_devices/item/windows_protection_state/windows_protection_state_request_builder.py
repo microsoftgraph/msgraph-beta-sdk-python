@@ -19,6 +19,7 @@ class WindowsProtectionStateRequestBuilder():
     """
     Provides operations to manage the windowsProtectionState property of the microsoft.graph.managedDevice entity.
     """
+    @property
     def detected_malware_state(self) -> detected_malware_state_request_builder.DetectedMalwareStateRequestBuilder:
         """
         Provides operations to manage the detectedMalwareState property of the microsoft.graph.windowsProtectionState entity.
@@ -81,7 +82,7 @@ class WindowsProtectionStateRequestBuilder():
         """
         Update the navigation property windowsProtectionState in me
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +153,7 @@ class WindowsProtectionStateRequestBuilder():
         """
         Update the navigation property windowsProtectionState in me
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_protection_state.WindowsProtectionState]

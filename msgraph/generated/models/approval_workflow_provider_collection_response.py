@@ -7,6 +7,9 @@ approval_workflow_provider = lazy_import('msgraph.generated.models.approval_work
 base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
 
 class ApprovalWorkflowProviderCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
+    """
+    Provides operations to manage the collection of approvalWorkflowProvider entities.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new ApprovalWorkflowProviderCollectionResponse and sets the default values.

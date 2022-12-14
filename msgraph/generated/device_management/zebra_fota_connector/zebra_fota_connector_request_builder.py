@@ -21,24 +21,28 @@ class ZebraFotaConnectorRequestBuilder():
     """
     Provides operations to manage the zebraFotaConnector property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def approve_fota_apps(self) -> approve_fota_apps_request_builder.ApproveFotaAppsRequestBuilder:
         """
         Provides operations to call the approveFotaApps method.
         """
         return approve_fota_apps_request_builder.ApproveFotaAppsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def connect(self) -> connect_request_builder.ConnectRequestBuilder:
         """
         Provides operations to call the connect method.
         """
         return connect_request_builder.ConnectRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def disconnect(self) -> disconnect_request_builder.DisconnectRequestBuilder:
         """
         Provides operations to call the disconnect method.
         """
         return disconnect_request_builder.DisconnectRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def has_active_deployments(self) -> has_active_deployments_request_builder.HasActiveDeploymentsRequestBuilder:
         """
         Provides operations to call the hasActiveDeployments method.
@@ -101,7 +105,7 @@ class ZebraFotaConnectorRequestBuilder():
         """
         Update the navigation property zebraFotaConnector in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +163,7 @@ class ZebraFotaConnectorRequestBuilder():
         """
         Update the navigation property zebraFotaConnector in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[zebra_fota_connector.ZebraFotaConnector]

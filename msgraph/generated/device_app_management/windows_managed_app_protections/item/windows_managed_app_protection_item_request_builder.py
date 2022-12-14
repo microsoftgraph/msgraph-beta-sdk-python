@@ -23,24 +23,28 @@ class WindowsManagedAppProtectionItemRequestBuilder():
     """
     Provides operations to manage the windowsManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
     """
+    @property
     def apps(self) -> apps_request_builder.AppsRequestBuilder:
         """
         Provides operations to manage the apps property of the microsoft.graph.windowsManagedAppProtection entity.
         """
         return apps_request_builder.AppsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def assign(self) -> assign_request_builder.AssignRequestBuilder:
         """
         Provides operations to call the assign method.
         """
         return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.windowsManagedAppProtection entity.
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def target_apps(self) -> target_apps_request_builder.TargetAppsRequestBuilder:
         """
         Provides operations to call the targetApps method.
@@ -129,7 +133,7 @@ class WindowsManagedAppProtectionItemRequestBuilder():
         """
         Update the navigation property windowsManagedAppProtections in deviceAppManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -187,7 +191,7 @@ class WindowsManagedAppProtectionItemRequestBuilder():
         """
         Update the navigation property windowsManagedAppProtections in deviceAppManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_managed_app_protection.WindowsManagedAppProtection]

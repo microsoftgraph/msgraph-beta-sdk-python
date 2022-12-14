@@ -9,7 +9,7 @@ user_identity = lazy_import('msgraph.generated.models.user_identity')
 
 class AccessReviewDecision(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def access_recommendation(self,) -> Optional[str]:

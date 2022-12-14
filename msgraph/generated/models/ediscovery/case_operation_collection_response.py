@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 case_operation = lazy_import('msgraph.generated.models.ediscovery.case_operation')
 
 class CaseOperationCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the operations property of the microsoft.graph.ediscovery.case entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new CaseOperationCollectionResponse and sets the default values.

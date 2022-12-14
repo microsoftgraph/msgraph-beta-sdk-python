@@ -21,18 +21,21 @@ class JournalItemRequestBuilder():
     """
     Provides operations to manage the journals property of the microsoft.graph.company entity.
     """
+    @property
     def account(self) -> account_request_builder.AccountRequestBuilder:
         """
         Provides operations to manage the account property of the microsoft.graph.journal entity.
         """
         return account_request_builder.AccountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def journal_lines(self) -> journal_lines_request_builder.JournalLinesRequestBuilder:
         """
         Provides operations to manage the journalLines property of the microsoft.graph.journal entity.
         """
         return journal_lines_request_builder.JournalLinesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def post(self) -> post_request_builder.PostRequestBuilder:
         """
         Provides operations to call the post method.
@@ -95,7 +98,7 @@ class JournalItemRequestBuilder():
         """
         Update the navigation property journals in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -166,7 +169,7 @@ class JournalItemRequestBuilder():
         """
         Update the navigation property journals in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[journal.Journal]

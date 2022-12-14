@@ -22,30 +22,35 @@ class AccessPackageAssignmentRequestItemRequestBuilder():
     """
     Provides operations to manage the accessPackageAssignmentRequests property of the microsoft.graph.accessPackageAssignment entity.
     """
+    @property
     def access_package(self) -> access_package_request_builder.AccessPackageRequestBuilder:
         """
         Provides operations to manage the accessPackage property of the microsoft.graph.accessPackageAssignmentRequest entity.
         """
         return access_package_request_builder.AccessPackageRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def access_package_assignment(self) -> access_package_assignment_request_builder.AccessPackageAssignmentRequestBuilder:
         """
         Provides operations to manage the accessPackageAssignment property of the microsoft.graph.accessPackageAssignmentRequest entity.
         """
         return access_package_assignment_request_builder.AccessPackageAssignmentRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
         """
         Provides operations to call the cancel method.
         """
         return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def reprocess(self) -> reprocess_request_builder.ReprocessRequestBuilder:
         """
         Provides operations to call the reprocess method.
         """
         return reprocess_request_builder.ReprocessRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def requestor(self) -> requestor_request_builder.RequestorRequestBuilder:
         """
         Provides operations to manage the requestor property of the microsoft.graph.accessPackageAssignmentRequest entity.
@@ -108,7 +113,7 @@ class AccessPackageAssignmentRequestItemRequestBuilder():
         """
         Update the navigation property accessPackageAssignmentRequests in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -166,7 +171,7 @@ class AccessPackageAssignmentRequestItemRequestBuilder():
         """
         Update the navigation property accessPackageAssignmentRequests in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_assignment_request.AccessPackageAssignmentRequest]

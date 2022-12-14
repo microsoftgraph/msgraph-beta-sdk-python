@@ -23,30 +23,35 @@ class LabelsRequestBuilder():
     """
     Provides operations to manage the labels property of the microsoft.graph.informationProtectionPolicy entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def evaluate_application(self) -> evaluate_application_request_builder.EvaluateApplicationRequestBuilder:
         """
         Provides operations to call the evaluateApplication method.
         """
         return evaluate_application_request_builder.EvaluateApplicationRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def evaluate_classification_results(self) -> evaluate_classification_results_request_builder.EvaluateClassificationResultsRequestBuilder:
         """
         Provides operations to call the evaluateClassificationResults method.
         """
         return evaluate_classification_results_request_builder.EvaluateClassificationResultsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def evaluate_removal(self) -> evaluate_removal_request_builder.EvaluateRemovalRequestBuilder:
         """
         Provides operations to call the evaluateRemoval method.
         """
         return evaluate_removal_request_builder.EvaluateRemovalRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def extract_label(self) -> extract_label_request_builder.ExtractLabelRequestBuilder:
         """
         Provides operations to call the extractLabel method.
@@ -93,7 +98,7 @@ class LabelsRequestBuilder():
         """
         Create new navigation property to labels for informationProtection
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -133,7 +138,7 @@ class LabelsRequestBuilder():
         """
         Create new navigation property to labels for informationProtection
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[information_protection_label.InformationProtectionLabel]

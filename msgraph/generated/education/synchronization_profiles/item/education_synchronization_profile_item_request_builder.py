@@ -25,36 +25,42 @@ class EducationSynchronizationProfileItemRequestBuilder():
     """
     Provides operations to manage the synchronizationProfiles property of the microsoft.graph.educationRoot entity.
     """
+    @property
     def errors(self) -> errors_request_builder.ErrorsRequestBuilder:
         """
         Provides operations to manage the errors property of the microsoft.graph.educationSynchronizationProfile entity.
         """
         return errors_request_builder.ErrorsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def pause(self) -> pause_request_builder.PauseRequestBuilder:
         """
         Provides operations to call the pause method.
         """
         return pause_request_builder.PauseRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def profile_status(self) -> profile_status_request_builder.ProfileStatusRequestBuilder:
         """
         Provides operations to manage the profileStatus property of the microsoft.graph.educationSynchronizationProfile entity.
         """
         return profile_status_request_builder.ProfileStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def reset(self) -> reset_request_builder.ResetRequestBuilder:
         """
         Provides operations to call the reset method.
         """
         return reset_request_builder.ResetRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def resume(self) -> resume_request_builder.ResumeRequestBuilder:
         """
         Provides operations to call the resume method.
         """
         return resume_request_builder.ResumeRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def start(self) -> start_request_builder.StartRequestBuilder:
         """
         Provides operations to call the start method.
@@ -117,7 +123,7 @@ class EducationSynchronizationProfileItemRequestBuilder():
         """
         Update the navigation property synchronizationProfiles in education
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -188,7 +194,7 @@ class EducationSynchronizationProfileItemRequestBuilder():
         """
         Update the navigation property synchronizationProfiles in education
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[education_synchronization_profile.EducationSynchronizationProfile]

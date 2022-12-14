@@ -21,24 +21,28 @@ class MicrosoftTunnelServerItemRequestBuilder():
     """
     Provides operations to manage the microsoftTunnelServers property of the microsoft.graph.microsoftTunnelSite entity.
     """
+    @property
     def create_server_log_collection_request(self) -> create_server_log_collection_request_request_builder.CreateServerLogCollectionRequestRequestBuilder:
         """
         Provides operations to call the createServerLogCollectionRequest method.
         """
         return create_server_log_collection_request_request_builder.CreateServerLogCollectionRequestRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def generate_server_log_collection_request(self) -> generate_server_log_collection_request_request_builder.GenerateServerLogCollectionRequestRequestBuilder:
         """
         Provides operations to call the generateServerLogCollectionRequest method.
         """
         return generate_server_log_collection_request_request_builder.GenerateServerLogCollectionRequestRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_health_metrics(self) -> get_health_metrics_request_builder.GetHealthMetricsRequestBuilder:
         """
         Provides operations to call the getHealthMetrics method.
         """
         return get_health_metrics_request_builder.GetHealthMetricsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_health_metric_time_series(self) -> get_health_metric_time_series_request_builder.GetHealthMetricTimeSeriesRequestBuilder:
         """
         Provides operations to call the getHealthMetricTimeSeries method.
@@ -101,7 +105,7 @@ class MicrosoftTunnelServerItemRequestBuilder():
         """
         Update the navigation property microsoftTunnelServers in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +163,7 @@ class MicrosoftTunnelServerItemRequestBuilder():
         """
         Update the navigation property microsoftTunnelServers in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[microsoft_tunnel_server.MicrosoftTunnelServer]

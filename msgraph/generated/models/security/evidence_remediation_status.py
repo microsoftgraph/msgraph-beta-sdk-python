@@ -6,10 +6,5 @@ class EvidenceRemediationStatus(Enum):
     Prevented = "prevented",
     Blocked = "blocked",
     NotFound = "notFound",
-    Active = "active",
-    PendingApproval = "pendingApproval",
-    Declined = "declined",
-    NotRemediated = "notRemediated",
-    Running = "running",
     UnknownFutureValue = "unknownFutureValue",
 

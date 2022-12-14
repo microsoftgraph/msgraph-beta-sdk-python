@@ -20,12 +20,14 @@ class ItemRequestBuilder():
     """
     Provides operations to manage the item property of the microsoft.graph.salesQuoteLine entity.
     """
+    @property
     def item_category(self) -> item_category_request_builder.ItemCategoryRequestBuilder:
         """
         Provides operations to manage the itemCategory property of the microsoft.graph.item entity.
         """
         return item_category_request_builder.ItemCategoryRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def picture(self) -> picture_request_builder.PictureRequestBuilder:
         """
         Provides operations to manage the picture property of the microsoft.graph.item entity.
@@ -88,7 +90,7 @@ class ItemRequestBuilder():
         """
         Update the navigation property item in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -146,7 +148,7 @@ class ItemRequestBuilder():
         """
         Update the navigation property item in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[item.Item]

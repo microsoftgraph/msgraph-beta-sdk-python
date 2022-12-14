@@ -23,24 +23,28 @@ class EdiscoveryReviewSetItemRequestBuilder():
     """
     Provides operations to manage the reviewSets property of the microsoft.graph.security.ediscoveryCase entity.
     """
+    @property
     def add_to_review_set(self) -> add_to_review_set_request_builder.AddToReviewSetRequestBuilder:
         """
         Provides operations to call the addToReviewSet method.
         """
         return add_to_review_set_request_builder.AddToReviewSetRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def export(self) -> export_request_builder.ExportRequestBuilder:
         """
         Provides operations to call the export method.
         """
         return export_request_builder.ExportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def files(self) -> files_request_builder.FilesRequestBuilder:
         """
         Provides operations to manage the files property of the microsoft.graph.security.ediscoveryReviewSet entity.
         """
         return files_request_builder.FilesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def queries(self) -> queries_request_builder.QueriesRequestBuilder:
         """
         Provides operations to manage the queries property of the microsoft.graph.security.ediscoveryReviewSet entity.
@@ -103,7 +107,7 @@ class EdiscoveryReviewSetItemRequestBuilder():
         """
         Update the navigation property reviewSets in security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -174,7 +178,7 @@ class EdiscoveryReviewSetItemRequestBuilder():
         """
         Update the navigation property reviewSets in security
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscovery_review_set.EdiscoveryReviewSet]

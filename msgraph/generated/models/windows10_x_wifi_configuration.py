@@ -7,15 +7,15 @@ device_management_resource_access_profile_base = lazy_import('msgraph.generated.
 
 class Windows10XWifiConfiguration(device_management_resource_access_profile_base.DeviceManagementResourceAccessProfileBase):
     @property
-    def authentication_certificate_id(self,) -> Optional[str]:
+    def authentication_certificate_id(self,) -> Optional[Guid]:
         """
         Gets the authenticationCertificateId property value. ID to the Authentication Certificate
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._authentication_certificate_id
     
     @authentication_certificate_id.setter
-    def authentication_certificate_id(self,value: Optional[str] = None) -> None:
+    def authentication_certificate_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the authenticationCertificateId property value. ID to the Authentication Certificate
         Args:
@@ -30,7 +30,7 @@ class Windows10XWifiConfiguration(device_management_resource_access_profile_base
         super().__init__()
         self.odata_type = "#microsoft.graph.windows10XWifiConfiguration"
         # ID to the Authentication Certificate
-        self._authentication_certificate_id: Optional[str] = None
+        self._authentication_certificate_id: Optional[Guid] = None
         # Custom XML commands that configures the VPN connection. (UTF8 byte encoding)
         self._custom_xml: Optional[bytes] = None
         # Custom Xml file name.
@@ -88,7 +88,7 @@ class Windows10XWifiConfiguration(device_management_resource_access_profile_base
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authentication_certificate_id": lambda n : setattr(self, 'authentication_certificate_id', n.get_str_value()),
+            "authentication_certificate_id": lambda n : setattr(self, 'authentication_certificate_id', n.get_object_value(Guid)),
             "custom_xml": lambda n : setattr(self, 'custom_xml', n.get_bytes_value()),
             "custom_xml_file_name": lambda n : setattr(self, 'custom_xml_file_name', n.get_str_value()),
         }
@@ -105,7 +105,7 @@ class Windows10XWifiConfiguration(device_management_resource_access_profile_base
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_str_value("authenticationCertificateId", self.authentication_certificate_id)
+        writer.write_object_value("authenticationCertificateId", self.authentication_certificate_id)
         writer.write_object_value("customXml", self.custom_xml)
         writer.write_str_value("customXmlFileName", self.custom_xml_file_name)
     

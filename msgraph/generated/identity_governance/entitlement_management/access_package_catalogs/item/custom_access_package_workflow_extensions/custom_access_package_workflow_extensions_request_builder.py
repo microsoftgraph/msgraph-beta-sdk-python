@@ -19,6 +19,7 @@ class CustomAccessPackageWorkflowExtensionsRequestBuilder():
     """
     Provides operations to manage the customAccessPackageWorkflowExtensions property of the microsoft.graph.accessPackageCatalog entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
@@ -65,7 +66,7 @@ class CustomAccessPackageWorkflowExtensionsRequestBuilder():
         """
         Create a new customAccessPackageWorkflowExtension object and add it to an existing accessPackageCatalog object.  
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -105,7 +106,7 @@ class CustomAccessPackageWorkflowExtensionsRequestBuilder():
         """
         Create a new customAccessPackageWorkflowExtension object and add it to an existing accessPackageCatalog object.  
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension]

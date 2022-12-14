@@ -19,6 +19,7 @@ class UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilder():
     """
     Provides operations to manage the userExperienceAnalyticsWorkFromAnywhereMetrics property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def metric_devices(self) -> metric_devices_request_builder.MetricDevicesRequestBuilder:
         """
         Provides operations to manage the metricDevices property of the microsoft.graph.userExperienceAnalyticsWorkFromAnywhereMetric entity.
@@ -81,7 +82,7 @@ class UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilder():
         """
         Update the navigation property userExperienceAnalyticsWorkFromAnywhereMetrics in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +153,7 @@ class UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilder():
         """
         Update the navigation property userExperienceAnalyticsWorkFromAnywhereMetrics in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_work_from_anywhere_metric.UserExperienceAnalyticsWorkFromAnywhereMetric]

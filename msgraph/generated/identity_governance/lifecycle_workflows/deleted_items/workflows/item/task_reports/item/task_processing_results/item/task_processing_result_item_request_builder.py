@@ -20,18 +20,21 @@ class TaskProcessingResultItemRequestBuilder():
     """
     Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.taskReport entity.
     """
+    @property
     def resume(self) -> resume_request_builder.ResumeRequestBuilder:
         """
         Provides operations to call the resume method.
         """
         return resume_request_builder.ResumeRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def subject(self) -> subject_request_builder.SubjectRequestBuilder:
         """
         Provides operations to manage the subject property of the microsoft.graph.identityGovernance.taskProcessingResult entity.
         """
         return subject_request_builder.SubjectRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def task(self) -> task_request_builder.TaskRequestBuilder:
         """
         Provides operations to manage the task property of the microsoft.graph.identityGovernance.taskProcessingResult entity.
@@ -94,7 +97,7 @@ class TaskProcessingResultItemRequestBuilder():
         """
         Update the navigation property taskProcessingResults in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +155,7 @@ class TaskProcessingResultItemRequestBuilder():
         """
         Update the navigation property taskProcessingResults in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[task_processing_result.TaskProcessingResult]

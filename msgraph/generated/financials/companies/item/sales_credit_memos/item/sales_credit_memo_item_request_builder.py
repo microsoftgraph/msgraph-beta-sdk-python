@@ -22,24 +22,28 @@ class SalesCreditMemoItemRequestBuilder():
     """
     Provides operations to manage the salesCreditMemos property of the microsoft.graph.company entity.
     """
+    @property
     def currency(self) -> currency_request_builder.CurrencyRequestBuilder:
         """
         Provides operations to manage the currency property of the microsoft.graph.salesCreditMemo entity.
         """
         return currency_request_builder.CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def customer(self) -> customer_request_builder.CustomerRequestBuilder:
         """
         Provides operations to manage the customer property of the microsoft.graph.salesCreditMemo entity.
         """
         return customer_request_builder.CustomerRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def payment_term(self) -> payment_term_request_builder.PaymentTermRequestBuilder:
         """
         Provides operations to manage the paymentTerm property of the microsoft.graph.salesCreditMemo entity.
         """
         return payment_term_request_builder.PaymentTermRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def sales_credit_memo_lines(self) -> sales_credit_memo_lines_request_builder.SalesCreditMemoLinesRequestBuilder:
         """
         Provides operations to manage the salesCreditMemoLines property of the microsoft.graph.salesCreditMemo entity.
@@ -86,7 +90,7 @@ class SalesCreditMemoItemRequestBuilder():
         """
         Update the navigation property salesCreditMemos in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -126,7 +130,7 @@ class SalesCreditMemoItemRequestBuilder():
         """
         Update the navigation property salesCreditMemos in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sales_credit_memo.SalesCreditMemo]

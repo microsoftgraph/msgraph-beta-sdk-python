@@ -75,7 +75,7 @@ class Directory(entity.Entity):
         self._inbound_shared_user_profiles: Optional[List[inbound_shared_user_profile.InboundSharedUserProfile]] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The onPremisesSynchronization property
+        # A container for on-premises directory synchronization functionalities that are available for the organization.
         self._on_premises_synchronization: Optional[List[on_premises_directory_synchronization.OnPremisesDirectorySynchronization]] = None
         # The outboundSharedUserProfiles property
         self._outbound_shared_user_profiles: Optional[List[outbound_shared_user_profile.OutboundSharedUserProfile]] = None
@@ -224,7 +224,7 @@ class Directory(entity.Entity):
     @property
     def on_premises_synchronization(self,) -> Optional[List[on_premises_directory_synchronization.OnPremisesDirectorySynchronization]]:
         """
-        Gets the onPremisesSynchronization property value. The onPremisesSynchronization property
+        Gets the onPremisesSynchronization property value. A container for on-premises directory synchronization functionalities that are available for the organization.
         Returns: Optional[List[on_premises_directory_synchronization.OnPremisesDirectorySynchronization]]
         """
         return self._on_premises_synchronization
@@ -232,7 +232,7 @@ class Directory(entity.Entity):
     @on_premises_synchronization.setter
     def on_premises_synchronization(self,value: Optional[List[on_premises_directory_synchronization.OnPremisesDirectorySynchronization]] = None) -> None:
         """
-        Sets the onPremisesSynchronization property value. The onPremisesSynchronization property
+        Sets the onPremisesSynchronization property value. A container for on-premises directory synchronization functionalities that are available for the organization.
         Args:
             value: Value to set for the onPremisesSynchronization property.
         """

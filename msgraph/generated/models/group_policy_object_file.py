@@ -20,7 +20,7 @@ class GroupPolicyObjectFile(entity.Entity):
         # The date and time at which the GroupPolicy was first uploaded.
         self._created_date_time: Optional[datetime] = None
         # The Group Policy Object GUID from GPO Xml content
-        self._group_policy_object_id: Optional[str] = None
+        self._group_policy_object_id: Optional[Guid] = None
         # The date and time at which the GroupPolicyObjectFile was last modified.
         self._last_modified_date_time: Optional[datetime] = None
         # The OdataType property
@@ -84,7 +84,7 @@ class GroupPolicyObjectFile(entity.Entity):
         fields = {
             "content": lambda n : setattr(self, 'content', n.get_str_value()),
             "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "group_policy_object_id": lambda n : setattr(self, 'group_policy_object_id', n.get_str_value()),
+            "group_policy_object_id": lambda n : setattr(self, 'group_policy_object_id', n.get_object_value(Guid)),
             "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "ou_distinguished_name": lambda n : setattr(self, 'ou_distinguished_name', n.get_str_value()),
             "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
@@ -94,15 +94,15 @@ class GroupPolicyObjectFile(entity.Entity):
         return fields
     
     @property
-    def group_policy_object_id(self,) -> Optional[str]:
+    def group_policy_object_id(self,) -> Optional[Guid]:
         """
         Gets the groupPolicyObjectId property value. The Group Policy Object GUID from GPO Xml content
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._group_policy_object_id
     
     @group_policy_object_id.setter
-    def group_policy_object_id(self,value: Optional[str] = None) -> None:
+    def group_policy_object_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the groupPolicyObjectId property value. The Group Policy Object GUID from GPO Xml content
         Args:
@@ -172,7 +172,7 @@ class GroupPolicyObjectFile(entity.Entity):
         super().serialize(writer)
         writer.write_str_value("content", self.content)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
-        writer.write_str_value("groupPolicyObjectId", self.group_policy_object_id)
+        writer.write_object_value("groupPolicyObjectId", self.group_policy_object_id)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("ouDistinguishedName", self.ou_distinguished_name)
         writer.write_collection_of_primitive_values("roleScopeTagIds", self.role_scope_tag_ids)

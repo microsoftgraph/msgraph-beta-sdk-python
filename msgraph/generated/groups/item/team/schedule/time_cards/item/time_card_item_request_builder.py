@@ -21,24 +21,28 @@ class TimeCardItemRequestBuilder():
     """
     Provides operations to manage the timeCards property of the microsoft.graph.schedule entity.
     """
+    @property
     def clock_out(self) -> clock_out_request_builder.ClockOutRequestBuilder:
         """
         Provides operations to call the clockOut method.
         """
         return clock_out_request_builder.ClockOutRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def confirm(self) -> confirm_request_builder.ConfirmRequestBuilder:
         """
         Provides operations to call the confirm method.
         """
         return confirm_request_builder.ConfirmRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def end_break(self) -> end_break_request_builder.EndBreakRequestBuilder:
         """
         Provides operations to call the endBreak method.
         """
         return end_break_request_builder.EndBreakRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def start_break(self) -> start_break_request_builder.StartBreakRequestBuilder:
         """
         Provides operations to call the startBreak method.
@@ -101,7 +105,7 @@ class TimeCardItemRequestBuilder():
         """
         Update the navigation property timeCards in groups
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +163,7 @@ class TimeCardItemRequestBuilder():
         """
         Update the navigation property timeCards in groups
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[time_card.TimeCard]

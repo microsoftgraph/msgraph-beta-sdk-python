@@ -23,30 +23,35 @@ class SensitivityLabelsRequestBuilder():
     """
     Provides operations to manage the sensitivityLabels property of the microsoft.graph.security.informationProtection entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def evaluate_application(self) -> evaluate_application_request_builder.EvaluateApplicationRequestBuilder:
         """
         Provides operations to call the evaluateApplication method.
         """
         return evaluate_application_request_builder.EvaluateApplicationRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def evaluate_classification_results(self) -> evaluate_classification_results_request_builder.EvaluateClassificationResultsRequestBuilder:
         """
         Provides operations to call the evaluateClassificationResults method.
         """
         return evaluate_classification_results_request_builder.EvaluateClassificationResultsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def evaluate_removal(self) -> evaluate_removal_request_builder.EvaluateRemovalRequestBuilder:
         """
         Provides operations to call the evaluateRemoval method.
         """
         return evaluate_removal_request_builder.EvaluateRemovalRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def extract_content_label(self) -> extract_content_label_request_builder.ExtractContentLabelRequestBuilder:
         """
         Provides operations to call the extractContentLabel method.
@@ -93,7 +98,7 @@ class SensitivityLabelsRequestBuilder():
         """
         Create new navigation property to sensitivityLabels for users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -133,7 +138,7 @@ class SensitivityLabelsRequestBuilder():
         """
         Create new navigation property to sensitivityLabels for users
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sensitivity_label.SensitivityLabel]

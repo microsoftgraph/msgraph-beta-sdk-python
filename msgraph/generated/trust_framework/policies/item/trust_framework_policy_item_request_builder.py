@@ -18,6 +18,7 @@ class TrustFrameworkPolicyItemRequestBuilder():
     """
     Provides operations to manage the policies property of the microsoft.graph.trustFramework entity.
     """
+    @property
     def content(self) -> content_request_builder.ContentRequestBuilder:
         """
         Provides operations to manage the media for the trustFramework entity.
@@ -80,7 +81,7 @@ class TrustFrameworkPolicyItemRequestBuilder():
         """
         Update the navigation property policies in trustFramework
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class TrustFrameworkPolicyItemRequestBuilder():
         """
         Update the navigation property policies in trustFramework
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[trust_framework_policy.TrustFrameworkPolicy]

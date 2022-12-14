@@ -24,7 +24,7 @@ class DeviceLogCollectionResponse(entity.Entity):
         # The UPN for who initiated the request
         self._initiated_by_user_principal_name: Optional[str] = None
         # The device Id
-        self._managed_device_id: Optional[str] = None
+        self._managed_device_id: Optional[Guid] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
         # The DateTime the request was received
@@ -109,7 +109,7 @@ class DeviceLogCollectionResponse(entity.Entity):
             "error_code": lambda n : setattr(self, 'error_code', n.get_int_value()),
             "expiration_date_time_u_t_c": lambda n : setattr(self, 'expiration_date_time_u_t_c', n.get_datetime_value()),
             "initiated_by_user_principal_name": lambda n : setattr(self, 'initiated_by_user_principal_name', n.get_str_value()),
-            "managed_device_id": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
+            "managed_device_id": lambda n : setattr(self, 'managed_device_id', n.get_object_value(Guid)),
             "received_date_time_u_t_c": lambda n : setattr(self, 'received_date_time_u_t_c', n.get_datetime_value()),
             "requested_date_time_u_t_c": lambda n : setattr(self, 'requested_date_time_u_t_c', n.get_datetime_value()),
             "size": lambda n : setattr(self, 'size', n.get_float_value()),
@@ -137,15 +137,15 @@ class DeviceLogCollectionResponse(entity.Entity):
         self._initiated_by_user_principal_name = value
     
     @property
-    def managed_device_id(self,) -> Optional[str]:
+    def managed_device_id(self,) -> Optional[Guid]:
         """
         Gets the managedDeviceId property value. The device Id
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._managed_device_id
     
     @managed_device_id.setter
-    def managed_device_id(self,value: Optional[str] = None) -> None:
+    def managed_device_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the managedDeviceId property value. The device Id
         Args:
@@ -200,7 +200,7 @@ class DeviceLogCollectionResponse(entity.Entity):
         writer.write_int_value("errorCode", self.error_code)
         writer.write_datetime_value("expirationDateTimeUTC", self.expiration_date_time_u_t_c)
         writer.write_str_value("initiatedByUserPrincipalName", self.initiated_by_user_principal_name)
-        writer.write_str_value("managedDeviceId", self.managed_device_id)
+        writer.write_object_value("managedDeviceId", self.managed_device_id)
         writer.write_datetime_value("receivedDateTimeUTC", self.received_date_time_u_t_c)
         writer.write_datetime_value("requestedDateTimeUTC", self.requested_date_time_u_t_c)
         writer.write_float_value("size", self.size)

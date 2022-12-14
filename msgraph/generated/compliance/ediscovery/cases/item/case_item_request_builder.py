@@ -34,60 +34,70 @@ class CaseItemRequestBuilder():
     """
     Provides operations to manage the cases property of the microsoft.graph.ediscovery.ediscoveryroot entity.
     """
+    @property
     def close(self) -> close_request_builder.CloseRequestBuilder:
         """
         Provides operations to call the close method.
         """
         return close_request_builder.CloseRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def custodians(self) -> custodians_request_builder.CustodiansRequestBuilder:
         """
         Provides operations to manage the custodians property of the microsoft.graph.ediscovery.case entity.
         """
         return custodians_request_builder.CustodiansRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def legal_holds(self) -> legal_holds_request_builder.LegalHoldsRequestBuilder:
         """
         Provides operations to manage the legalHolds property of the microsoft.graph.ediscovery.case entity.
         """
         return legal_holds_request_builder.LegalHoldsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def noncustodial_data_sources(self) -> noncustodial_data_sources_request_builder.NoncustodialDataSourcesRequestBuilder:
         """
         Provides operations to manage the noncustodialDataSources property of the microsoft.graph.ediscovery.case entity.
         """
         return noncustodial_data_sources_request_builder.NoncustodialDataSourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def operations(self) -> operations_request_builder.OperationsRequestBuilder:
         """
         Provides operations to manage the operations property of the microsoft.graph.ediscovery.case entity.
         """
         return operations_request_builder.OperationsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def reopen(self) -> reopen_request_builder.ReopenRequestBuilder:
         """
         Provides operations to call the reopen method.
         """
         return reopen_request_builder.ReopenRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def review_sets(self) -> review_sets_request_builder.ReviewSetsRequestBuilder:
         """
         Provides operations to manage the reviewSets property of the microsoft.graph.ediscovery.case entity.
         """
         return review_sets_request_builder.ReviewSetsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def settings(self) -> settings_request_builder.SettingsRequestBuilder:
         """
         Provides operations to manage the settings property of the microsoft.graph.ediscovery.case entity.
         """
         return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def source_collections(self) -> source_collections_request_builder.SourceCollectionsRequestBuilder:
         """
         Provides operations to manage the sourceCollections property of the microsoft.graph.ediscovery.case entity.
         """
         return source_collections_request_builder.SourceCollectionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def tags(self) -> tags_request_builder.TagsRequestBuilder:
         """
         Provides operations to manage the tags property of the microsoft.graph.ediscovery.case entity.
@@ -150,7 +160,7 @@ class CaseItemRequestBuilder():
         """
         Update the navigation property cases in compliance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -260,7 +270,7 @@ class CaseItemRequestBuilder():
         """
         Update the navigation property cases in compliance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[case.Case]

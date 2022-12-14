@@ -20,12 +20,14 @@ class CustomerPaymentJournalItemRequestBuilder():
     """
     Provides operations to manage the customerPaymentJournals property of the microsoft.graph.company entity.
     """
+    @property
     def account(self) -> account_request_builder.AccountRequestBuilder:
         """
         Provides operations to manage the account property of the microsoft.graph.customerPaymentJournal entity.
         """
         return account_request_builder.AccountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def customer_payments(self) -> customer_payments_request_builder.CustomerPaymentsRequestBuilder:
         """
         Provides operations to manage the customerPayments property of the microsoft.graph.customerPaymentJournal entity.
@@ -88,7 +90,7 @@ class CustomerPaymentJournalItemRequestBuilder():
         """
         Update the navigation property customerPaymentJournals in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -159,7 +161,7 @@ class CustomerPaymentJournalItemRequestBuilder():
         """
         Update the navigation property customerPaymentJournals in financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[customer_payment_journal.CustomerPaymentJournal]

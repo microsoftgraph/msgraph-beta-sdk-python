@@ -25,24 +25,28 @@ class PlannerRequestBuilder():
     """
     Provides operations to manage the planner singleton.
     """
+    @property
     def buckets(self) -> buckets_request_builder.BucketsRequestBuilder:
         """
         Provides operations to manage the buckets property of the microsoft.graph.planner entity.
         """
         return buckets_request_builder.BucketsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def plans(self) -> plans_request_builder.PlansRequestBuilder:
         """
         Provides operations to manage the plans property of the microsoft.graph.planner entity.
         """
         return plans_request_builder.PlansRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def rosters(self) -> rosters_request_builder.RostersRequestBuilder:
         """
         Provides operations to manage the rosters property of the microsoft.graph.planner entity.
         """
         return rosters_request_builder.RostersRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def tasks(self) -> tasks_request_builder.TasksRequestBuilder:
         """
         Provides operations to manage the tasks property of the microsoft.graph.planner entity.
@@ -102,7 +106,7 @@ class PlannerRequestBuilder():
         """
         Update planner
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -142,7 +146,7 @@ class PlannerRequestBuilder():
         """
         Update planner
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[planner.Planner]

@@ -19,6 +19,7 @@ class DeviceManagementConfigurationSettingTemplateItemRequestBuilder():
     """
     Provides operations to manage the templateSettings property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def setting_definitions(self) -> setting_definitions_request_builder.SettingDefinitionsRequestBuilder:
         """
         Provides operations to manage the settingDefinitions property of the microsoft.graph.deviceManagementConfigurationSettingTemplate entity.
@@ -81,7 +82,7 @@ class DeviceManagementConfigurationSettingTemplateItemRequestBuilder():
         """
         Update the navigation property templateSettings in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +140,7 @@ class DeviceManagementConfigurationSettingTemplateItemRequestBuilder():
         """
         Update the navigation property templateSettings in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_configuration_setting_template.DeviceManagementConfigurationSettingTemplate]

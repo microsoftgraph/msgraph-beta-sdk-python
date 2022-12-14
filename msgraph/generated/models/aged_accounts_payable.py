@@ -7,6 +7,9 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class AgedAccountsPayable(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def aged_as_of_date(self,) -> Optional[Date]:
         """
@@ -43,7 +46,7 @@ class AgedAccountsPayable(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new AgedAccountsPayable and sets the default values.
+        Instantiates a new agedAccountsPayable and sets the default values.
         """
         super().__init__()
         # The agedAsOfDate property

@@ -18,6 +18,7 @@ class AccessPackageSubjectRequestBuilder():
     """
     Provides operations to manage the accessPackageSubject property of the microsoft.graph.accessPackageAssignmentResourceRole entity.
     """
+    @property
     def connected_organization(self) -> connected_organization_request_builder.ConnectedOrganizationRequestBuilder:
         """
         Provides operations to manage the connectedOrganization property of the microsoft.graph.accessPackageSubject entity.
@@ -80,7 +81,7 @@ class AccessPackageSubjectRequestBuilder():
         """
         Update the navigation property accessPackageSubject in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class AccessPackageSubjectRequestBuilder():
         """
         Update the navigation property accessPackageSubject in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_subject.AccessPackageSubject]

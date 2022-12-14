@@ -62,168 +62,196 @@ class ServicePrincipalItemRequestBuilder():
     """
     Provides operations to manage the collection of servicePrincipal entities.
     """
+    @property
     def add_token_signing_certificate(self) -> add_token_signing_certificate_request_builder.AddTokenSigningCertificateRequestBuilder:
         """
         Provides operations to call the addTokenSigningCertificate method.
         """
         return add_token_signing_certificate_request_builder.AddTokenSigningCertificateRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def app_management_policies(self) -> app_management_policies_request_builder.AppManagementPoliciesRequestBuilder:
         """
         Provides operations to manage the appManagementPolicies property of the microsoft.graph.servicePrincipal entity.
         """
         return app_management_policies_request_builder.AppManagementPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def app_role_assigned_to(self) -> app_role_assigned_to_request_builder.AppRoleAssignedToRequestBuilder:
         """
         Provides operations to manage the appRoleAssignedTo property of the microsoft.graph.servicePrincipal entity.
         """
         return app_role_assigned_to_request_builder.AppRoleAssignedToRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def app_role_assignments(self) -> app_role_assignments_request_builder.AppRoleAssignmentsRequestBuilder:
         """
         Provides operations to manage the appRoleAssignments property of the microsoft.graph.servicePrincipal entity.
         """
         return app_role_assignments_request_builder.AppRoleAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def check_member_groups(self) -> check_member_groups_request_builder.CheckMemberGroupsRequestBuilder:
         """
         Provides operations to call the checkMemberGroups method.
         """
         return check_member_groups_request_builder.CheckMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def check_member_objects(self) -> check_member_objects_request_builder.CheckMemberObjectsRequestBuilder:
         """
         Provides operations to call the checkMemberObjects method.
         """
         return check_member_objects_request_builder.CheckMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def claims_mapping_policies(self) -> claims_mapping_policies_request_builder.ClaimsMappingPoliciesRequestBuilder:
         """
         Provides operations to manage the claimsMappingPolicies property of the microsoft.graph.servicePrincipal entity.
         """
         return claims_mapping_policies_request_builder.ClaimsMappingPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def created_objects(self) -> created_objects_request_builder.CreatedObjectsRequestBuilder:
         """
         Provides operations to manage the createdObjects property of the microsoft.graph.servicePrincipal entity.
         """
         return created_objects_request_builder.CreatedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def create_password_single_sign_on_credentials(self) -> create_password_single_sign_on_credentials_request_builder.CreatePasswordSingleSignOnCredentialsRequestBuilder:
         """
         Provides operations to call the createPasswordSingleSignOnCredentials method.
         """
         return create_password_single_sign_on_credentials_request_builder.CreatePasswordSingleSignOnCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def delegated_permission_classifications(self) -> delegated_permission_classifications_request_builder.DelegatedPermissionClassificationsRequestBuilder:
         """
         Provides operations to manage the delegatedPermissionClassifications property of the microsoft.graph.servicePrincipal entity.
         """
         return delegated_permission_classifications_request_builder.DelegatedPermissionClassificationsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def delete_password_single_sign_on_credentials(self) -> delete_password_single_sign_on_credentials_request_builder.DeletePasswordSingleSignOnCredentialsRequestBuilder:
         """
         Provides operations to call the deletePasswordSingleSignOnCredentials method.
         """
         return delete_password_single_sign_on_credentials_request_builder.DeletePasswordSingleSignOnCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def endpoints(self) -> endpoints_request_builder.EndpointsRequestBuilder:
         """
         Provides operations to manage the endpoints property of the microsoft.graph.servicePrincipal entity.
         """
         return endpoints_request_builder.EndpointsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def federated_identity_credentials(self) -> federated_identity_credentials_request_builder.FederatedIdentityCredentialsRequestBuilder:
         """
         Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.servicePrincipal entity.
         """
         return federated_identity_credentials_request_builder.FederatedIdentityCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_member_groups(self) -> get_member_groups_request_builder.GetMemberGroupsRequestBuilder:
         """
         Provides operations to call the getMemberGroups method.
         """
         return get_member_groups_request_builder.GetMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_member_objects(self) -> get_member_objects_request_builder.GetMemberObjectsRequestBuilder:
         """
         Provides operations to call the getMemberObjects method.
         """
         return get_member_objects_request_builder.GetMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_password_single_sign_on_credentials(self) -> get_password_single_sign_on_credentials_request_builder.GetPasswordSingleSignOnCredentialsRequestBuilder:
         """
         Provides operations to call the getPasswordSingleSignOnCredentials method.
         """
         return get_password_single_sign_on_credentials_request_builder.GetPasswordSingleSignOnCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def home_realm_discovery_policies(self) -> home_realm_discovery_policies_request_builder.HomeRealmDiscoveryPoliciesRequestBuilder:
         """
         Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.servicePrincipal entity.
         """
         return home_realm_discovery_policies_request_builder.HomeRealmDiscoveryPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def license_details(self) -> license_details_request_builder.LicenseDetailsRequestBuilder:
         """
         Provides operations to manage the licenseDetails property of the microsoft.graph.servicePrincipal entity.
         """
         return license_details_request_builder.LicenseDetailsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def member_of(self) -> member_of_request_builder.MemberOfRequestBuilder:
         """
         Provides operations to manage the memberOf property of the microsoft.graph.servicePrincipal entity.
         """
         return member_of_request_builder.MemberOfRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def oauth2_permission_grants(self) -> oauth2_permission_grants_request_builder.Oauth2PermissionGrantsRequestBuilder:
         """
         Provides operations to manage the oauth2PermissionGrants property of the microsoft.graph.servicePrincipal entity.
         """
         return oauth2_permission_grants_request_builder.Oauth2PermissionGrantsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def owned_objects(self) -> owned_objects_request_builder.OwnedObjectsRequestBuilder:
         """
         Provides operations to manage the ownedObjects property of the microsoft.graph.servicePrincipal entity.
         """
         return owned_objects_request_builder.OwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def owners(self) -> owners_request_builder.OwnersRequestBuilder:
         """
         Provides operations to manage the owners property of the microsoft.graph.servicePrincipal entity.
         """
         return owners_request_builder.OwnersRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def restore(self) -> restore_request_builder.RestoreRequestBuilder:
         """
         Provides operations to call the restore method.
         """
         return restore_request_builder.RestoreRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def synchronization(self) -> synchronization_request_builder.SynchronizationRequestBuilder:
         """
         Provides operations to manage the synchronization property of the microsoft.graph.servicePrincipal entity.
         """
         return synchronization_request_builder.SynchronizationRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def token_issuance_policies(self) -> token_issuance_policies_request_builder.TokenIssuancePoliciesRequestBuilder:
         """
         Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.servicePrincipal entity.
         """
         return token_issuance_policies_request_builder.TokenIssuancePoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def token_lifetime_policies(self) -> token_lifetime_policies_request_builder.TokenLifetimePoliciesRequestBuilder:
         """
         Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.servicePrincipal entity.
         """
         return token_lifetime_policies_request_builder.TokenLifetimePoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def transitive_member_of(self) -> transitive_member_of_request_builder.TransitiveMemberOfRequestBuilder:
         """
         Provides operations to manage the transitiveMemberOf property of the microsoft.graph.servicePrincipal entity.
         """
         return transitive_member_of_request_builder.TransitiveMemberOfRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def update_password_single_sign_on_credentials(self) -> update_password_single_sign_on_credentials_request_builder.UpdatePasswordSingleSignOnCredentialsRequestBuilder:
         """
         Provides operations to call the updatePasswordSingleSignOnCredentials method.
@@ -351,7 +379,7 @@ class ServicePrincipalItemRequestBuilder():
         """
         Update the properties of servicePrincipal object.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -526,7 +554,7 @@ class ServicePrincipalItemRequestBuilder():
         """
         Update the properties of servicePrincipal object.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[service_principal.ServicePrincipal]

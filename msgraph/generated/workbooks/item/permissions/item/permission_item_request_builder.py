@@ -19,12 +19,14 @@ class PermissionItemRequestBuilder():
     """
     Provides operations to manage the permissions property of the microsoft.graph.driveItem entity.
     """
+    @property
     def grant(self) -> grant_request_builder.GrantRequestBuilder:
         """
         Provides operations to call the grant method.
         """
         return grant_request_builder.GrantRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def revoke_grants(self) -> revoke_grants_request_builder.RevokeGrantsRequestBuilder:
         """
         Provides operations to call the revokeGrants method.
@@ -87,7 +89,7 @@ class PermissionItemRequestBuilder():
         """
         Update the navigation property permissions in workbooks
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +147,7 @@ class PermissionItemRequestBuilder():
         """
         Update the navigation property permissions in workbooks
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[permission.Permission]

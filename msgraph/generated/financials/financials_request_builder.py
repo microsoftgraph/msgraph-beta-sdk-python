@@ -19,6 +19,7 @@ class FinancialsRequestBuilder():
     """
     Provides operations to manage the financials singleton.
     """
+    @property
     def companies(self) -> companies_request_builder.CompaniesRequestBuilder:
         """
         Provides operations to manage the companies property of the microsoft.graph.financials entity.
@@ -78,7 +79,7 @@ class FinancialsRequestBuilder():
         """
         Update financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -118,7 +119,7 @@ class FinancialsRequestBuilder():
         """
         Update financials
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[financials.Financials]

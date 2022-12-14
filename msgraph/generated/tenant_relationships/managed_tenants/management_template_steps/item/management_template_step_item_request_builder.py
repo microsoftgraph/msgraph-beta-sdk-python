@@ -21,18 +21,21 @@ class ManagementTemplateStepItemRequestBuilder():
     """
     Provides operations to manage the managementTemplateSteps property of the microsoft.graph.managedTenants.managedTenant entity.
     """
+    @property
     def accepted_version(self) -> accepted_version_request_builder.AcceptedVersionRequestBuilder:
         """
         Provides operations to manage the acceptedVersion property of the microsoft.graph.managedTenants.managementTemplateStep entity.
         """
         return accepted_version_request_builder.AcceptedVersionRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def management_template(self) -> management_template_request_builder.ManagementTemplateRequestBuilder:
         """
         Provides operations to manage the managementTemplate property of the microsoft.graph.managedTenants.managementTemplateStep entity.
         """
         return management_template_request_builder.ManagementTemplateRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def versions(self) -> versions_request_builder.VersionsRequestBuilder:
         """
         Provides operations to manage the versions property of the microsoft.graph.managedTenants.managementTemplateStep entity.
@@ -95,7 +98,7 @@ class ManagementTemplateStepItemRequestBuilder():
         """
         Update the navigation property managementTemplateSteps in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -153,7 +156,7 @@ class ManagementTemplateStepItemRequestBuilder():
         """
         Update the navigation property managementTemplateSteps in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_template_step.ManagementTemplateStep]

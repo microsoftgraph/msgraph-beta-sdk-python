@@ -39,7 +39,7 @@ class RenameRequestBuilder():
         """
         Rename a specific Cloud PC. Use this API to update the **displayName** for the Cloud PC entity.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -59,7 +59,7 @@ class RenameRequestBuilder():
         """
         Rename a specific Cloud PC. Use this API to update the **displayName** for the Cloud PC entity.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         """

@@ -18,6 +18,7 @@ class TenantReferenceTenantItemRequestBuilder():
     """
     Provides operations to manage the tenants property of the microsoft.graph.outboundSharedUserProfile entity.
     """
+    @property
     def remove_personal_data(self) -> remove_personal_data_request_builder.RemovePersonalDataRequestBuilder:
         """
         Provides operations to call the removePersonalData method.
@@ -80,7 +81,7 @@ class TenantReferenceTenantItemRequestBuilder():
         """
         Update the navigation property tenants in directory
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class TenantReferenceTenantItemRequestBuilder():
         """
         Update the navigation property tenants in directory
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_reference.TenantReference]

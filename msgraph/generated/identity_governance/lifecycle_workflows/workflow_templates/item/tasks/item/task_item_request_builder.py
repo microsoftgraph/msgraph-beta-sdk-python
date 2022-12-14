@@ -19,6 +19,7 @@ class TaskItemRequestBuilder():
     """
     Provides operations to manage the tasks property of the microsoft.graph.identityGovernance.workflowTemplate entity.
     """
+    @property
     def task_processing_results(self) -> task_processing_results_request_builder.TaskProcessingResultsRequestBuilder:
         """
         Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.task entity.
@@ -81,7 +82,7 @@ class TaskItemRequestBuilder():
         """
         Update the navigation property tasks in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +140,7 @@ class TaskItemRequestBuilder():
         """
         Update the navigation property tasks in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[task.Task]

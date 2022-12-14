@@ -21,12 +21,14 @@ class ManagementTemplateItemRequestBuilder():
     """
     Provides operations to manage the managementTemplates property of the microsoft.graph.managedTenants.managedTenant entity.
     """
+    @property
     def management_template_collections(self) -> management_template_collections_request_builder.ManagementTemplateCollectionsRequestBuilder:
         """
         Provides operations to manage the managementTemplateCollections property of the microsoft.graph.managedTenants.managementTemplate entity.
         """
         return management_template_collections_request_builder.ManagementTemplateCollectionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def management_template_steps(self) -> management_template_steps_request_builder.ManagementTemplateStepsRequestBuilder:
         """
         Provides operations to manage the managementTemplateSteps property of the microsoft.graph.managedTenants.managementTemplate entity.
@@ -89,7 +91,7 @@ class ManagementTemplateItemRequestBuilder():
         """
         Update the navigation property managementTemplates in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -173,7 +175,7 @@ class ManagementTemplateItemRequestBuilder():
         """
         Update the navigation property managementTemplates in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_template.ManagementTemplate]

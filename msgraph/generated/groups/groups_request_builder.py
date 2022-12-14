@@ -24,30 +24,35 @@ class GroupsRequestBuilder():
     """
     Provides operations to manage the collection of group entities.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def evaluate_dynamic_membership(self) -> evaluate_dynamic_membership_request_builder.EvaluateDynamicMembershipRequestBuilder:
         """
         Provides operations to call the evaluateDynamicMembership method.
         """
         return evaluate_dynamic_membership_request_builder.EvaluateDynamicMembershipRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_by_ids(self) -> get_by_ids_request_builder.GetByIdsRequestBuilder:
         """
         Provides operations to call the getByIds method.
         """
         return get_by_ids_request_builder.GetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_user_owned_objects(self) -> get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder:
         """
         Provides operations to call the getUserOwnedObjects method.
         """
         return get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def validate_properties(self) -> validate_properties_request_builder.ValidatePropertiesRequestBuilder:
         """
         Provides operations to call the validateProperties method.
@@ -94,7 +99,7 @@ class GroupsRequestBuilder():
         """
         Create a new group as specified in the request body. You can create one of the following groups: This operation returns by default only a subset of the properties for each group. These default properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation and specify the properties in a `$select` OData query option. **Note**: To create a team, first create a group then add a team to it, see create team.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -141,7 +146,7 @@ class GroupsRequestBuilder():
         """
         Create a new group as specified in the request body. You can create one of the following groups: This operation returns by default only a subset of the properties for each group. These default properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation and specify the properties in a `$select` OData query option. **Note**: To create a team, first create a group then add a team to it, see create team.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group.Group]

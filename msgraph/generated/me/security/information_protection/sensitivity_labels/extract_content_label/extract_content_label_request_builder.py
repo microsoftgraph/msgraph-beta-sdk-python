@@ -38,9 +38,9 @@ class ExtractContentLabelRequestBuilder():
     
     def create_post_request_information(self,body: Optional[extract_content_label_post_request_body.ExtractContentLabelPostRequestBody] = None, request_configuration: Optional[ExtractContentLabelRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Invoke action extractContentLabel
+        Use the metadata that exists on an already-labeled piece of information to resolve the metadata to a specific sensitivity label. The contentInfo input is resolved to informationProtectionContentLabel.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -59,9 +59,9 @@ class ExtractContentLabelRequestBuilder():
     
     async def post(self,body: Optional[extract_content_label_post_request_body.ExtractContentLabelPostRequestBody] = None, request_configuration: Optional[ExtractContentLabelRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[content_label.ContentLabel]:
         """
-        Invoke action extractContentLabel
+        Use the metadata that exists on an already-labeled piece of information to resolve the metadata to a specific sensitivity label. The contentInfo input is resolved to informationProtectionContentLabel.
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[content_label.ContentLabel]

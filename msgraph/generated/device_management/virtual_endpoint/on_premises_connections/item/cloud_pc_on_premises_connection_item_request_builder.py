@@ -19,12 +19,14 @@ class CloudPcOnPremisesConnectionItemRequestBuilder():
     """
     Provides operations to manage the onPremisesConnections property of the microsoft.graph.virtualEndpoint entity.
     """
+    @property
     def run_health_checks(self) -> run_health_checks_request_builder.RunHealthChecksRequestBuilder:
         """
         Provides operations to call the runHealthChecks method.
         """
         return run_health_checks_request_builder.RunHealthChecksRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def update_ad_domain_password(self) -> update_ad_domain_password_request_builder.UpdateAdDomainPasswordRequestBuilder:
         """
         Provides operations to call the updateAdDomainPassword method.
@@ -87,7 +89,7 @@ class CloudPcOnPremisesConnectionItemRequestBuilder():
         """
         Update the navigation property onPremisesConnections in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +147,7 @@ class CloudPcOnPremisesConnectionItemRequestBuilder():
         """
         Update the navigation property onPremisesConnections in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]

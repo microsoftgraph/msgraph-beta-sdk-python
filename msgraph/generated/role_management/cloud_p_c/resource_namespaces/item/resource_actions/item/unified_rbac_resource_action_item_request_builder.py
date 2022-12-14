@@ -18,6 +18,7 @@ class UnifiedRbacResourceActionItemRequestBuilder():
     """
     Provides operations to manage the resourceActions property of the microsoft.graph.unifiedRbacResourceNamespace entity.
     """
+    @property
     def resource_scope(self) -> resource_scope_request_builder.ResourceScopeRequestBuilder:
         """
         Provides operations to manage the resourceScope property of the microsoft.graph.unifiedRbacResourceAction entity.
@@ -80,7 +81,7 @@ class UnifiedRbacResourceActionItemRequestBuilder():
         """
         Update the navigation property resourceActions in roleManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class UnifiedRbacResourceActionItemRequestBuilder():
         """
         Update the navigation property resourceActions in roleManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_rbac_resource_action.UnifiedRbacResourceAction]

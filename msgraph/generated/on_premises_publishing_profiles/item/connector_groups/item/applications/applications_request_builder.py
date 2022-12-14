@@ -18,6 +18,7 @@ class ApplicationsRequestBuilder():
     """
     Provides operations to manage the applications property of the microsoft.graph.connectorGroup entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.

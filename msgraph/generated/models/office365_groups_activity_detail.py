@@ -46,6 +46,10 @@ class Office365GroupsActivityDetail(entity.Entity):
         self._share_point_site_storage_used_in_bytes: Optional[int] = None
         # The total number of files in SharePoint Group site.
         self._share_point_total_file_count: Optional[int] = None
+        # The teamsChannelMessagesCount property
+        self._teams_channel_messages_count: Optional[int] = None
+        # The teamsMeetingsOrganizedCount property
+        self._teams_meetings_organized_count: Optional[int] = None
         # The number of messages liked in Yammer groups.
         self._yammer_liked_message_count: Optional[int] = None
         # The number of messages posted to Yammer groups.
@@ -155,6 +159,8 @@ class Office365GroupsActivityDetail(entity.Entity):
             "share_point_active_file_count": lambda n : setattr(self, 'share_point_active_file_count', n.get_int_value()),
             "share_point_site_storage_used_in_bytes": lambda n : setattr(self, 'share_point_site_storage_used_in_bytes', n.get_int_value()),
             "share_point_total_file_count": lambda n : setattr(self, 'share_point_total_file_count', n.get_int_value()),
+            "teams_channel_messages_count": lambda n : setattr(self, 'teams_channel_messages_count', n.get_int_value()),
+            "teams_meetings_organized_count": lambda n : setattr(self, 'teams_meetings_organized_count', n.get_int_value()),
             "yammer_liked_message_count": lambda n : setattr(self, 'yammer_liked_message_count', n.get_int_value()),
             "yammer_posted_message_count": lambda n : setattr(self, 'yammer_posted_message_count', n.get_int_value()),
             "yammer_read_message_count": lambda n : setattr(self, 'yammer_read_message_count', n.get_int_value()),
@@ -341,6 +347,8 @@ class Office365GroupsActivityDetail(entity.Entity):
         writer.write_int_value("sharePointActiveFileCount", self.share_point_active_file_count)
         writer.write_int_value("sharePointSiteStorageUsedInBytes", self.share_point_site_storage_used_in_bytes)
         writer.write_int_value("sharePointTotalFileCount", self.share_point_total_file_count)
+        writer.write_int_value("teamsChannelMessagesCount", self.teams_channel_messages_count)
+        writer.write_int_value("teamsMeetingsOrganizedCount", self.teams_meetings_organized_count)
         writer.write_int_value("yammerLikedMessageCount", self.yammer_liked_message_count)
         writer.write_int_value("yammerPostedMessageCount", self.yammer_posted_message_count)
         writer.write_int_value("yammerReadMessageCount", self.yammer_read_message_count)
@@ -395,6 +403,40 @@ class Office365GroupsActivityDetail(entity.Entity):
             value: Value to set for the sharePointTotalFileCount property.
         """
         self._share_point_total_file_count = value
+    
+    @property
+    def teams_channel_messages_count(self,) -> Optional[int]:
+        """
+        Gets the teamsChannelMessagesCount property value. The teamsChannelMessagesCount property
+        Returns: Optional[int]
+        """
+        return self._teams_channel_messages_count
+    
+    @teams_channel_messages_count.setter
+    def teams_channel_messages_count(self,value: Optional[int] = None) -> None:
+        """
+        Sets the teamsChannelMessagesCount property value. The teamsChannelMessagesCount property
+        Args:
+            value: Value to set for the teamsChannelMessagesCount property.
+        """
+        self._teams_channel_messages_count = value
+    
+    @property
+    def teams_meetings_organized_count(self,) -> Optional[int]:
+        """
+        Gets the teamsMeetingsOrganizedCount property value. The teamsMeetingsOrganizedCount property
+        Returns: Optional[int]
+        """
+        return self._teams_meetings_organized_count
+    
+    @teams_meetings_organized_count.setter
+    def teams_meetings_organized_count(self,value: Optional[int] = None) -> None:
+        """
+        Sets the teamsMeetingsOrganizedCount property value. The teamsMeetingsOrganizedCount property
+        Args:
+            value: Value to set for the teamsMeetingsOrganizedCount property.
+        """
+        self._teams_meetings_organized_count = value
     
     @property
     def yammer_liked_message_count(self,) -> Optional[int]:

@@ -21,12 +21,14 @@ class RoleScopeTagsRequestBuilder():
     """
     Provides operations to manage the roleScopeTags property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_role_scope_tags_by_id(self) -> get_role_scope_tags_by_id_request_builder.GetRoleScopeTagsByIdRequestBuilder:
         """
         Provides operations to call the getRoleScopeTagsById method.
@@ -73,7 +75,7 @@ class RoleScopeTagsRequestBuilder():
         """
         Create new navigation property to roleScopeTags for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -120,7 +122,7 @@ class RoleScopeTagsRequestBuilder():
         """
         Create new navigation property to roleScopeTags for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[role_scope_tag.RoleScopeTag]

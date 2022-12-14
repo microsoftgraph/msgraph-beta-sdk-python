@@ -19,6 +19,7 @@ class SecurityBaselineStateItemRequestBuilder():
     """
     Provides operations to manage the securityBaselineStates property of the microsoft.graph.managedDevice entity.
     """
+    @property
     def setting_states(self) -> setting_states_request_builder.SettingStatesRequestBuilder:
         """
         Provides operations to manage the settingStates property of the microsoft.graph.securityBaselineState entity.
@@ -81,7 +82,7 @@ class SecurityBaselineStateItemRequestBuilder():
         """
         Update the navigation property securityBaselineStates in me
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -139,7 +140,7 @@ class SecurityBaselineStateItemRequestBuilder():
         """
         Update the navigation property securityBaselineStates in me
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[security_baseline_state.SecurityBaselineState]

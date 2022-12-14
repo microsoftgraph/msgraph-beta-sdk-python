@@ -24,24 +24,28 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
     """
     Provides operations to manage the roleAssignments property of the microsoft.graph.rbacApplicationMultiple entity.
     """
+    @property
     def app_scopes(self) -> app_scopes_request_builder.AppScopesRequestBuilder:
         """
         Provides operations to manage the appScopes property of the microsoft.graph.unifiedRoleAssignmentMultiple entity.
         """
         return app_scopes_request_builder.AppScopesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def directory_scopes(self) -> directory_scopes_request_builder.DirectoryScopesRequestBuilder:
         """
         Provides operations to manage the directoryScopes property of the microsoft.graph.unifiedRoleAssignmentMultiple entity.
         """
         return directory_scopes_request_builder.DirectoryScopesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def principals(self) -> principals_request_builder.PrincipalsRequestBuilder:
         """
         Provides operations to manage the principals property of the microsoft.graph.unifiedRoleAssignmentMultiple entity.
         """
         return principals_request_builder.PrincipalsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def role_definition(self) -> role_definition_request_builder.RoleDefinitionRequestBuilder:
         """
         Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleAssignmentMultiple entity.
@@ -117,7 +121,7 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
         """
         Update the navigation property roleAssignments in roleManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -188,7 +192,7 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
         """
         Update the navigation property roleAssignments in roleManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple]

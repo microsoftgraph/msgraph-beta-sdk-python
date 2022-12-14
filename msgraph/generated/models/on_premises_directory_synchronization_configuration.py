@@ -10,7 +10,7 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Pars
     @property
     def accidental_deletion_prevention(self,) -> Optional[on_premises_accidental_deletion_prevention.OnPremisesAccidentalDeletionPrevention]:
         """
-        Gets the accidentalDeletionPrevention property value. The accidentalDeletionPrevention property
+        Gets the accidentalDeletionPrevention property value. Contains the accidental deletion prevention configuration for a tenant.
         Returns: Optional[on_premises_accidental_deletion_prevention.OnPremisesAccidentalDeletionPrevention]
         """
         return self._accidental_deletion_prevention
@@ -18,7 +18,7 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Pars
     @accidental_deletion_prevention.setter
     def accidental_deletion_prevention(self,value: Optional[on_premises_accidental_deletion_prevention.OnPremisesAccidentalDeletionPrevention] = None) -> None:
         """
-        Sets the accidentalDeletionPrevention property value. The accidentalDeletionPrevention property
+        Sets the accidentalDeletionPrevention property value. Contains the accidental deletion prevention configuration for a tenant.
         Args:
             value: Value to set for the accidentalDeletionPrevention property.
         """
@@ -48,13 +48,13 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Pars
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The accidentalDeletionPrevention property
+        # Contains the accidental deletion prevention configuration for a tenant.
         self._accidental_deletion_prevention: Optional[on_premises_accidental_deletion_prevention.OnPremisesAccidentalDeletionPrevention] = None
-        # The customerRequestedSynchronizationInterval property
+        # Interval of time that the customer requested the sync client waits between sync cycles.
         self._customer_requested_synchronization_interval: Optional[Timedelta] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The synchronizationInterval property
+        # Interval of time the sync client should honor between sync cycles
         self._synchronization_interval: Optional[Timedelta] = None
     
     @staticmethod
@@ -72,7 +72,7 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Pars
     @property
     def customer_requested_synchronization_interval(self,) -> Optional[Timedelta]:
         """
-        Gets the customerRequestedSynchronizationInterval property value. The customerRequestedSynchronizationInterval property
+        Gets the customerRequestedSynchronizationInterval property value. Interval of time that the customer requested the sync client waits between sync cycles.
         Returns: Optional[Timedelta]
         """
         return self._customer_requested_synchronization_interval
@@ -80,7 +80,7 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Pars
     @customer_requested_synchronization_interval.setter
     def customer_requested_synchronization_interval(self,value: Optional[Timedelta] = None) -> None:
         """
-        Sets the customerRequestedSynchronizationInterval property value. The customerRequestedSynchronizationInterval property
+        Sets the customerRequestedSynchronizationInterval property value. Interval of time that the customer requested the sync client waits between sync cycles.
         Args:
             value: Value to set for the customerRequestedSynchronizationInterval property.
         """
@@ -133,7 +133,7 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Pars
     @property
     def synchronization_interval(self,) -> Optional[Timedelta]:
         """
-        Gets the synchronizationInterval property value. The synchronizationInterval property
+        Gets the synchronizationInterval property value. Interval of time the sync client should honor between sync cycles
         Returns: Optional[Timedelta]
         """
         return self._synchronization_interval
@@ -141,7 +141,7 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Pars
     @synchronization_interval.setter
     def synchronization_interval(self,value: Optional[Timedelta] = None) -> None:
         """
-        Sets the synchronizationInterval property value. The synchronizationInterval property
+        Sets the synchronizationInterval property value. Interval of time the sync client should honor between sync cycles
         Args:
             value: Value to set for the synchronizationInterval property.
         """

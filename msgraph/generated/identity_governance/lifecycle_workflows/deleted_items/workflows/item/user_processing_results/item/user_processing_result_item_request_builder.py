@@ -20,12 +20,14 @@ class UserProcessingResultItemRequestBuilder():
     """
     Provides operations to manage the userProcessingResults property of the microsoft.graph.identityGovernance.workflow entity.
     """
+    @property
     def subject(self) -> subject_request_builder.SubjectRequestBuilder:
         """
         Provides operations to manage the subject property of the microsoft.graph.identityGovernance.userProcessingResult entity.
         """
         return subject_request_builder.SubjectRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def task_processing_results(self) -> task_processing_results_request_builder.TaskProcessingResultsRequestBuilder:
         """
         Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.userProcessingResult entity.
@@ -88,7 +90,7 @@ class UserProcessingResultItemRequestBuilder():
         """
         Update the navigation property userProcessingResults in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -146,7 +148,7 @@ class UserProcessingResultItemRequestBuilder():
         """
         Update the navigation property userProcessingResults in identityGovernance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_processing_result.UserProcessingResult]

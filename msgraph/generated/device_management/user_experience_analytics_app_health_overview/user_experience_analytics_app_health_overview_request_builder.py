@@ -19,6 +19,7 @@ class UserExperienceAnalyticsAppHealthOverviewRequestBuilder():
     """
     Provides operations to manage the userExperienceAnalyticsAppHealthOverview property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def metric_values(self) -> metric_values_request_builder.MetricValuesRequestBuilder:
         """
         Provides operations to manage the metricValues property of the microsoft.graph.userExperienceAnalyticsCategory entity.
@@ -81,7 +82,7 @@ class UserExperienceAnalyticsAppHealthOverviewRequestBuilder():
         """
         Update the navigation property userExperienceAnalyticsAppHealthOverview in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +153,7 @@ class UserExperienceAnalyticsAppHealthOverviewRequestBuilder():
         """
         Update the navigation property userExperienceAnalyticsAppHealthOverview in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_category.UserExperienceAnalyticsCategory]

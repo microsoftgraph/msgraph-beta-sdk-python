@@ -18,6 +18,7 @@ class WindowsInformationProtectionDeviceRegistrationsRequestBuilder():
     """
     Provides operations to manage the windowsInformationProtectionDeviceRegistrations property of the microsoft.graph.user entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.

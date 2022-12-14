@@ -18,6 +18,7 @@ class DataSharingConsentItemRequestBuilder():
     """
     Provides operations to manage the dataSharingConsents property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def consent_to_data_sharing(self) -> consent_to_data_sharing_request_builder.ConsentToDataSharingRequestBuilder:
         """
         Provides operations to call the consentToDataSharing method.
@@ -80,7 +81,7 @@ class DataSharingConsentItemRequestBuilder():
         """
         Update the navigation property dataSharingConsents in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class DataSharingConsentItemRequestBuilder():
         """
         Update the navigation property dataSharingConsents in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[data_sharing_consent.DataSharingConsent]

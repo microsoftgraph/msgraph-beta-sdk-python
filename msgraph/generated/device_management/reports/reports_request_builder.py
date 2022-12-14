@@ -80,366 +80,427 @@ class ReportsRequestBuilder():
     """
     Provides operations to manage the reports property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def cached_report_configurations(self) -> cached_report_configurations_request_builder.CachedReportConfigurationsRequestBuilder:
         """
         Provides operations to manage the cachedReportConfigurations property of the microsoft.graph.deviceManagementReports entity.
         """
         return cached_report_configurations_request_builder.CachedReportConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def export_jobs(self) -> export_jobs_request_builder.ExportJobsRequestBuilder:
         """
         Provides operations to manage the exportJobs property of the microsoft.graph.deviceManagementReports entity.
         """
         return export_jobs_request_builder.ExportJobsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_active_malware_report(self) -> get_active_malware_report_request_builder.GetActiveMalwareReportRequestBuilder:
         """
         Provides operations to call the getActiveMalwareReport method.
         """
         return get_active_malware_report_request_builder.GetActiveMalwareReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_active_malware_summary_report(self) -> get_active_malware_summary_report_request_builder.GetActiveMalwareSummaryReportRequestBuilder:
         """
         Provides operations to call the getActiveMalwareSummaryReport method.
         """
         return get_active_malware_summary_report_request_builder.GetActiveMalwareSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_all_certificates_report(self) -> get_all_certificates_report_request_builder.GetAllCertificatesReportRequestBuilder:
         """
         Provides operations to call the getAllCertificatesReport method.
         """
         return get_all_certificates_report_request_builder.GetAllCertificatesReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_apps_install_summary_report(self) -> get_apps_install_summary_report_request_builder.GetAppsInstallSummaryReportRequestBuilder:
         """
         Provides operations to call the getAppsInstallSummaryReport method.
         """
         return get_apps_install_summary_report_request_builder.GetAppsInstallSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_app_status_overview_report(self) -> get_app_status_overview_report_request_builder.GetAppStatusOverviewReportRequestBuilder:
         """
         Provides operations to call the getAppStatusOverviewReport method.
         """
         return get_app_status_overview_report_request_builder.GetAppStatusOverviewReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_cached_report(self) -> get_cached_report_request_builder.GetCachedReportRequestBuilder:
         """
         Provides operations to call the getCachedReport method.
         """
         return get_cached_report_request_builder.GetCachedReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_certificates_report(self) -> get_certificates_report_request_builder.GetCertificatesReportRequestBuilder:
         """
         Provides operations to call the getCertificatesReport method.
         """
         return get_certificates_report_request_builder.GetCertificatesReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_compliance_policies_report_for_device(self) -> get_compliance_policies_report_for_device_request_builder.GetCompliancePoliciesReportForDeviceRequestBuilder:
         """
         Provides operations to call the getCompliancePoliciesReportForDevice method.
         """
         return get_compliance_policies_report_for_device_request_builder.GetCompliancePoliciesReportForDeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_compliance_policy_devices_report(self) -> get_compliance_policy_devices_report_request_builder.GetCompliancePolicyDevicesReportRequestBuilder:
         """
         Provides operations to call the getCompliancePolicyDevicesReport method.
         """
         return get_compliance_policy_devices_report_request_builder.GetCompliancePolicyDevicesReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_compliance_policy_device_summary_report(self) -> get_compliance_policy_device_summary_report_request_builder.GetCompliancePolicyDeviceSummaryReportRequestBuilder:
         """
         Provides operations to call the getCompliancePolicyDeviceSummaryReport method.
         """
         return get_compliance_policy_device_summary_report_request_builder.GetCompliancePolicyDeviceSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_compliance_policy_non_compliance_report(self) -> get_compliance_policy_non_compliance_report_request_builder.GetCompliancePolicyNonComplianceReportRequestBuilder:
         """
         Provides operations to call the getCompliancePolicyNonComplianceReport method.
         """
         return get_compliance_policy_non_compliance_report_request_builder.GetCompliancePolicyNonComplianceReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_compliance_policy_non_compliance_summary_report(self) -> get_compliance_policy_non_compliance_summary_report_request_builder.GetCompliancePolicyNonComplianceSummaryReportRequestBuilder:
         """
         Provides operations to call the getCompliancePolicyNonComplianceSummaryReport method.
         """
         return get_compliance_policy_non_compliance_summary_report_request_builder.GetCompliancePolicyNonComplianceSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_compliance_setting_details_report(self) -> get_compliance_setting_details_report_request_builder.GetComplianceSettingDetailsReportRequestBuilder:
         """
         Provides operations to call the getComplianceSettingDetailsReport method.
         """
         return get_compliance_setting_details_report_request_builder.GetComplianceSettingDetailsReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_compliance_setting_non_compliance_report(self) -> get_compliance_setting_non_compliance_report_request_builder.GetComplianceSettingNonComplianceReportRequestBuilder:
         """
         Provides operations to call the getComplianceSettingNonComplianceReport method.
         """
         return get_compliance_setting_non_compliance_report_request_builder.GetComplianceSettingNonComplianceReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_compliance_settings_report(self) -> get_compliance_settings_report_request_builder.GetComplianceSettingsReportRequestBuilder:
         """
         Provides operations to call the getComplianceSettingsReport method.
         """
         return get_compliance_settings_report_request_builder.GetComplianceSettingsReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_config_manager_device_policy_status_report(self) -> get_config_manager_device_policy_status_report_request_builder.GetConfigManagerDevicePolicyStatusReportRequestBuilder:
         """
         Provides operations to call the getConfigManagerDevicePolicyStatusReport method.
         """
         return get_config_manager_device_policy_status_report_request_builder.GetConfigManagerDevicePolicyStatusReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_configuration_policies_report_for_device(self) -> get_configuration_policies_report_for_device_request_builder.GetConfigurationPoliciesReportForDeviceRequestBuilder:
         """
         Provides operations to call the getConfigurationPoliciesReportForDevice method.
         """
         return get_configuration_policies_report_for_device_request_builder.GetConfigurationPoliciesReportForDeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_configuration_policy_devices_report(self) -> get_configuration_policy_devices_report_request_builder.GetConfigurationPolicyDevicesReportRequestBuilder:
         """
         Provides operations to call the getConfigurationPolicyDevicesReport method.
         """
         return get_configuration_policy_devices_report_request_builder.GetConfigurationPolicyDevicesReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_configuration_policy_device_summary_report(self) -> get_configuration_policy_device_summary_report_request_builder.GetConfigurationPolicyDeviceSummaryReportRequestBuilder:
         """
         Provides operations to call the getConfigurationPolicyDeviceSummaryReport method.
         """
         return get_configuration_policy_device_summary_report_request_builder.GetConfigurationPolicyDeviceSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_configuration_policy_non_compliance_report(self) -> get_configuration_policy_non_compliance_report_request_builder.GetConfigurationPolicyNonComplianceReportRequestBuilder:
         """
         Provides operations to call the getConfigurationPolicyNonComplianceReport method.
         """
         return get_configuration_policy_non_compliance_report_request_builder.GetConfigurationPolicyNonComplianceReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_configuration_policy_non_compliance_summary_report(self) -> get_configuration_policy_non_compliance_summary_report_request_builder.GetConfigurationPolicyNonComplianceSummaryReportRequestBuilder:
         """
         Provides operations to call the getConfigurationPolicyNonComplianceSummaryReport method.
         """
         return get_configuration_policy_non_compliance_summary_report_request_builder.GetConfigurationPolicyNonComplianceSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_configuration_policy_settings_device_summary_report(self) -> get_configuration_policy_settings_device_summary_report_request_builder.GetConfigurationPolicySettingsDeviceSummaryReportRequestBuilder:
         """
         Provides operations to call the getConfigurationPolicySettingsDeviceSummaryReport method.
         """
         return get_configuration_policy_settings_device_summary_report_request_builder.GetConfigurationPolicySettingsDeviceSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_configuration_setting_details_report(self) -> get_configuration_setting_details_report_request_builder.GetConfigurationSettingDetailsReportRequestBuilder:
         """
         Provides operations to call the getConfigurationSettingDetailsReport method.
         """
         return get_configuration_setting_details_report_request_builder.GetConfigurationSettingDetailsReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_configuration_setting_non_compliance_report(self) -> get_configuration_setting_non_compliance_report_request_builder.GetConfigurationSettingNonComplianceReportRequestBuilder:
         """
         Provides operations to call the getConfigurationSettingNonComplianceReport method.
         """
         return get_configuration_setting_non_compliance_report_request_builder.GetConfigurationSettingNonComplianceReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_configuration_settings_report(self) -> get_configuration_settings_report_request_builder.GetConfigurationSettingsReportRequestBuilder:
         """
         Provides operations to call the getConfigurationSettingsReport method.
         """
         return get_configuration_settings_report_request_builder.GetConfigurationSettingsReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_device_configuration_policy_settings_summary_report(self) -> get_device_configuration_policy_settings_summary_report_request_builder.GetDeviceConfigurationPolicySettingsSummaryReportRequestBuilder:
         """
         Provides operations to call the getDeviceConfigurationPolicySettingsSummaryReport method.
         """
         return get_device_configuration_policy_settings_summary_report_request_builder.GetDeviceConfigurationPolicySettingsSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_device_configuration_policy_status_summary(self) -> get_device_configuration_policy_status_summary_request_builder.GetDeviceConfigurationPolicyStatusSummaryRequestBuilder:
         """
         Provides operations to call the getDeviceConfigurationPolicyStatusSummary method.
         """
         return get_device_configuration_policy_status_summary_request_builder.GetDeviceConfigurationPolicyStatusSummaryRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_device_install_status_report(self) -> get_device_install_status_report_request_builder.GetDeviceInstallStatusReportRequestBuilder:
         """
         Provides operations to call the getDeviceInstallStatusReport method.
         """
         return get_device_install_status_report_request_builder.GetDeviceInstallStatusReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_device_management_intent_per_setting_contributing_profiles(self) -> get_device_management_intent_per_setting_contributing_profiles_request_builder.GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilder:
         """
         Provides operations to call the getDeviceManagementIntentPerSettingContributingProfiles method.
         """
         return get_device_management_intent_per_setting_contributing_profiles_request_builder.GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_device_management_intent_settings_report(self) -> get_device_management_intent_settings_report_request_builder.GetDeviceManagementIntentSettingsReportRequestBuilder:
         """
         Provides operations to call the getDeviceManagementIntentSettingsReport method.
         """
         return get_device_management_intent_settings_report_request_builder.GetDeviceManagementIntentSettingsReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_device_non_compliance_report(self) -> get_device_non_compliance_report_request_builder.GetDeviceNonComplianceReportRequestBuilder:
         """
         Provides operations to call the getDeviceNonComplianceReport method.
         """
         return get_device_non_compliance_report_request_builder.GetDeviceNonComplianceReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_encryption_report_for_devices(self) -> get_encryption_report_for_devices_request_builder.GetEncryptionReportForDevicesRequestBuilder:
         """
         Provides operations to call the getEncryptionReportForDevices method.
         """
         return get_encryption_report_for_devices_request_builder.GetEncryptionReportForDevicesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_enrollment_configuration_policies_by_device(self) -> get_enrollment_configuration_policies_by_device_request_builder.GetEnrollmentConfigurationPoliciesByDeviceRequestBuilder:
         """
         Provides operations to call the getEnrollmentConfigurationPoliciesByDevice method.
         """
         return get_enrollment_configuration_policies_by_device_request_builder.GetEnrollmentConfigurationPoliciesByDeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_failed_mobile_apps_report(self) -> get_failed_mobile_apps_report_request_builder.GetFailedMobileAppsReportRequestBuilder:
         """
         Provides operations to call the getFailedMobileAppsReport method.
         """
         return get_failed_mobile_apps_report_request_builder.GetFailedMobileAppsReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_failed_mobile_apps_summary_report(self) -> get_failed_mobile_apps_summary_report_request_builder.GetFailedMobileAppsSummaryReportRequestBuilder:
         """
         Provides operations to call the getFailedMobileAppsSummaryReport method.
         """
         return get_failed_mobile_apps_summary_report_request_builder.GetFailedMobileAppsSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_group_policy_settings_device_settings_report(self) -> get_group_policy_settings_device_settings_report_request_builder.GetGroupPolicySettingsDeviceSettingsReportRequestBuilder:
         """
         Provides operations to call the getGroupPolicySettingsDeviceSettingsReport method.
         """
         return get_group_policy_settings_device_settings_report_request_builder.GetGroupPolicySettingsDeviceSettingsReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_historical_report(self) -> get_historical_report_request_builder.GetHistoricalReportRequestBuilder:
         """
         Provides operations to call the getHistoricalReport method.
         """
         return get_historical_report_request_builder.GetHistoricalReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_malware_summary_report(self) -> get_malware_summary_report_request_builder.GetMalwareSummaryReportRequestBuilder:
         """
         Provides operations to call the getMalwareSummaryReport method.
         """
         return get_malware_summary_report_request_builder.GetMalwareSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_mobile_application_management_app_configuration_report(self) -> get_mobile_application_management_app_configuration_report_request_builder.GetMobileApplicationManagementAppConfigurationReportRequestBuilder:
         """
         Provides operations to call the getMobileApplicationManagementAppConfigurationReport method.
         """
         return get_mobile_application_management_app_configuration_report_request_builder.GetMobileApplicationManagementAppConfigurationReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_mobile_application_management_app_registration_summary_report(self) -> get_mobile_application_management_app_registration_summary_report_request_builder.GetMobileApplicationManagementAppRegistrationSummaryReportRequestBuilder:
         """
         Provides operations to call the getMobileApplicationManagementAppRegistrationSummaryReport method.
         """
         return get_mobile_application_management_app_registration_summary_report_request_builder.GetMobileApplicationManagementAppRegistrationSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_noncompliant_devices_and_settings_report(self) -> get_noncompliant_devices_and_settings_report_request_builder.GetNoncompliantDevicesAndSettingsReportRequestBuilder:
         """
         Provides operations to call the getNoncompliantDevicesAndSettingsReport method.
         """
         return get_noncompliant_devices_and_settings_report_request_builder.GetNoncompliantDevicesAndSettingsReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_policy_non_compliance_metadata(self) -> get_policy_non_compliance_metadata_request_builder.GetPolicyNonComplianceMetadataRequestBuilder:
         """
         Provides operations to call the getPolicyNonComplianceMetadata method.
         """
         return get_policy_non_compliance_metadata_request_builder.GetPolicyNonComplianceMetadataRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_policy_non_compliance_report(self) -> get_policy_non_compliance_report_request_builder.GetPolicyNonComplianceReportRequestBuilder:
         """
         Provides operations to call the getPolicyNonComplianceReport method.
         """
         return get_policy_non_compliance_report_request_builder.GetPolicyNonComplianceReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_policy_non_compliance_summary_report(self) -> get_policy_non_compliance_summary_report_request_builder.GetPolicyNonComplianceSummaryReportRequestBuilder:
         """
         Provides operations to call the getPolicyNonComplianceSummaryReport method.
         """
         return get_policy_non_compliance_summary_report_request_builder.GetPolicyNonComplianceSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_quiet_time_policy_users_report(self) -> get_quiet_time_policy_users_report_request_builder.GetQuietTimePolicyUsersReportRequestBuilder:
         """
         Provides operations to call the getQuietTimePolicyUsersReport method.
         """
         return get_quiet_time_policy_users_report_request_builder.GetQuietTimePolicyUsersReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_quiet_time_policy_user_summary_report(self) -> get_quiet_time_policy_user_summary_report_request_builder.GetQuietTimePolicyUserSummaryReportRequestBuilder:
         """
         Provides operations to call the getQuietTimePolicyUserSummaryReport method.
         """
         return get_quiet_time_policy_user_summary_report_request_builder.GetQuietTimePolicyUserSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_related_apps_status_report(self) -> get_related_apps_status_report_request_builder.GetRelatedAppsStatusReportRequestBuilder:
         """
         Provides operations to call the getRelatedAppsStatusReport method.
         """
         return get_related_apps_status_report_request_builder.GetRelatedAppsStatusReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_remote_assistance_sessions_report(self) -> get_remote_assistance_sessions_report_request_builder.GetRemoteAssistanceSessionsReportRequestBuilder:
         """
         Provides operations to call the getRemoteAssistanceSessionsReport method.
         """
         return get_remote_assistance_sessions_report_request_builder.GetRemoteAssistanceSessionsReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_report_filters(self) -> get_report_filters_request_builder.GetReportFiltersRequestBuilder:
         """
         Provides operations to call the getReportFilters method.
         """
         return get_report_filters_request_builder.GetReportFiltersRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_setting_non_compliance_report(self) -> get_setting_non_compliance_report_request_builder.GetSettingNonComplianceReportRequestBuilder:
         """
         Provides operations to call the getSettingNonComplianceReport method.
         """
         return get_setting_non_compliance_report_request_builder.GetSettingNonComplianceReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_unhealthy_defender_agents_report(self) -> get_unhealthy_defender_agents_report_request_builder.GetUnhealthyDefenderAgentsReportRequestBuilder:
         """
         Provides operations to call the getUnhealthyDefenderAgentsReport method.
         """
         return get_unhealthy_defender_agents_report_request_builder.GetUnhealthyDefenderAgentsReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_unhealthy_firewall_report(self) -> get_unhealthy_firewall_report_request_builder.GetUnhealthyFirewallReportRequestBuilder:
         """
         Provides operations to call the getUnhealthyFirewallReport method.
         """
         return get_unhealthy_firewall_report_request_builder.GetUnhealthyFirewallReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_unhealthy_firewall_summary_report(self) -> get_unhealthy_firewall_summary_report_request_builder.GetUnhealthyFirewallSummaryReportRequestBuilder:
         """
         Provides operations to call the getUnhealthyFirewallSummaryReport method.
         """
         return get_unhealthy_firewall_summary_report_request_builder.GetUnhealthyFirewallSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_user_install_status_report(self) -> get_user_install_status_report_request_builder.GetUserInstallStatusReportRequestBuilder:
         """
         Provides operations to call the getUserInstallStatusReport method.
         """
         return get_user_install_status_report_request_builder.GetUserInstallStatusReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_windows_quality_update_alerts_per_policy_per_device_report(self) -> get_windows_quality_update_alerts_per_policy_per_device_report_request_builder.GetWindowsQualityUpdateAlertsPerPolicyPerDeviceReportRequestBuilder:
         """
         Provides operations to call the getWindowsQualityUpdateAlertsPerPolicyPerDeviceReport method.
         """
         return get_windows_quality_update_alerts_per_policy_per_device_report_request_builder.GetWindowsQualityUpdateAlertsPerPolicyPerDeviceReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_windows_quality_update_alert_summary_report(self) -> get_windows_quality_update_alert_summary_report_request_builder.GetWindowsQualityUpdateAlertSummaryReportRequestBuilder:
         """
         Provides operations to call the getWindowsQualityUpdateAlertSummaryReport method.
         """
         return get_windows_quality_update_alert_summary_report_request_builder.GetWindowsQualityUpdateAlertSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_windows_update_alerts_per_policy_per_device_report(self) -> get_windows_update_alerts_per_policy_per_device_report_request_builder.GetWindowsUpdateAlertsPerPolicyPerDeviceReportRequestBuilder:
         """
         Provides operations to call the getWindowsUpdateAlertsPerPolicyPerDeviceReport method.
         """
         return get_windows_update_alerts_per_policy_per_device_report_request_builder.GetWindowsUpdateAlertsPerPolicyPerDeviceReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_windows_update_alert_summary_report(self) -> get_windows_update_alert_summary_report_request_builder.GetWindowsUpdateAlertSummaryReportRequestBuilder:
         """
         Provides operations to call the getWindowsUpdateAlertSummaryReport method.
         """
         return get_windows_update_alert_summary_report_request_builder.GetWindowsUpdateAlertSummaryReportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_zebra_fota_deployment_report(self) -> get_zebra_fota_deployment_report_request_builder.GetZebraFotaDeploymentReportRequestBuilder:
         """
         Provides operations to call the getZebraFotaDeploymentReport method.
@@ -515,7 +576,7 @@ class ReportsRequestBuilder():
         """
         Update the navigation property reports in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -586,7 +647,7 @@ class ReportsRequestBuilder():
         """
         Update the navigation property reports in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_reports.DeviceManagementReports]

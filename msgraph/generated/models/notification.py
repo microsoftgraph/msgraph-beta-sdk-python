@@ -11,7 +11,7 @@ target_policy_endpoints = lazy_import('msgraph.generated.models.target_policy_en
 
 class Notification(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     def __init__(self,) -> None:
         """

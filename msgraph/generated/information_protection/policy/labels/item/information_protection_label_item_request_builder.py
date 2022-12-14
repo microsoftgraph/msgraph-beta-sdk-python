@@ -73,7 +73,7 @@ class InformationProtectionLabelItemRequestBuilder():
         """
         Update the navigation property labels in informationProtection
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -131,7 +131,7 @@ class InformationProtectionLabelItemRequestBuilder():
         """
         Update the navigation property labels in informationProtection
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[information_protection_label.InformationProtectionLabel]

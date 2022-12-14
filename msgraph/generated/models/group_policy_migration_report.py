@@ -27,7 +27,7 @@ class GroupPolicyMigrationReport(entity.Entity):
         # The date and time at which the GroupPolicyMigrationReport was last modified.
         self._group_policy_last_modified_date_time: Optional[datetime] = None
         # The Group Policy Object GUID from GPO Xml content
-        self._group_policy_object_id: Optional[str] = None
+        self._group_policy_object_id: Optional[Guid] = None
         # A list of group policy settings to MDM/Intune mappings.
         self._group_policy_setting_mappings: Optional[List[group_policy_setting_mapping.GroupPolicySettingMapping]] = None
         # The date and time at which the GroupPolicyMigrationReport was last modified.
@@ -107,7 +107,7 @@ class GroupPolicyMigrationReport(entity.Entity):
             "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "group_policy_created_date_time": lambda n : setattr(self, 'group_policy_created_date_time', n.get_datetime_value()),
             "group_policy_last_modified_date_time": lambda n : setattr(self, 'group_policy_last_modified_date_time', n.get_datetime_value()),
-            "group_policy_object_id": lambda n : setattr(self, 'group_policy_object_id', n.get_str_value()),
+            "group_policy_object_id": lambda n : setattr(self, 'group_policy_object_id', n.get_object_value(Guid)),
             "group_policy_setting_mappings": lambda n : setattr(self, 'group_policy_setting_mappings', n.get_collection_of_object_values(group_policy_setting_mapping.GroupPolicySettingMapping)),
             "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "migration_readiness": lambda n : setattr(self, 'migration_readiness', n.get_enum_value(group_policy_migration_readiness.GroupPolicyMigrationReadiness)),
@@ -158,15 +158,15 @@ class GroupPolicyMigrationReport(entity.Entity):
         self._group_policy_last_modified_date_time = value
     
     @property
-    def group_policy_object_id(self,) -> Optional[str]:
+    def group_policy_object_id(self,) -> Optional[Guid]:
         """
         Gets the groupPolicyObjectId property value. The Group Policy Object GUID from GPO Xml content
-        Returns: Optional[str]
+        Returns: Optional[Guid]
         """
         return self._group_policy_object_id
     
     @group_policy_object_id.setter
-    def group_policy_object_id(self,value: Optional[str] = None) -> None:
+    def group_policy_object_id(self,value: Optional[Guid] = None) -> None:
         """
         Sets the groupPolicyObjectId property value. The Group Policy Object GUID from GPO Xml content
         Args:
@@ -272,7 +272,7 @@ class GroupPolicyMigrationReport(entity.Entity):
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("groupPolicyCreatedDateTime", self.group_policy_created_date_time)
         writer.write_datetime_value("groupPolicyLastModifiedDateTime", self.group_policy_last_modified_date_time)
-        writer.write_str_value("groupPolicyObjectId", self.group_policy_object_id)
+        writer.write_object_value("groupPolicyObjectId", self.group_policy_object_id)
         writer.write_collection_of_object_values("groupPolicySettingMappings", self.group_policy_setting_mappings)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_enum_value("migrationReadiness", self.migration_readiness)

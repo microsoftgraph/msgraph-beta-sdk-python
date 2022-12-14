@@ -18,6 +18,7 @@ class AppLogCollectionRequestItemRequestBuilder():
     """
     Provides operations to manage the appLogCollectionRequests property of the microsoft.graph.mobileAppTroubleshootingEvent entity.
     """
+    @property
     def create_download_url(self) -> create_download_url_request_builder.CreateDownloadUrlRequestBuilder:
         """
         Provides operations to call the createDownloadUrl method.
@@ -80,7 +81,7 @@ class AppLogCollectionRequestItemRequestBuilder():
         """
         Update the navigation property appLogCollectionRequests in me
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -138,7 +139,7 @@ class AppLogCollectionRequestItemRequestBuilder():
         """
         Update the navigation property appLogCollectionRequests in me
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[app_log_collection_request.AppLogCollectionRequest]

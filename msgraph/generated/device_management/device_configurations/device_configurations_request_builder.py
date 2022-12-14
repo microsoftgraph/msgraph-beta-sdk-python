@@ -22,18 +22,21 @@ class DeviceConfigurationsRequestBuilder():
     """
     Provides operations to manage the deviceConfigurations property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_targeted_users_and_devices(self) -> get_targeted_users_and_devices_request_builder.GetTargetedUsersAndDevicesRequestBuilder:
         """
         Provides operations to call the getTargetedUsersAndDevices method.
         """
         return get_targeted_users_and_devices_request_builder.GetTargetedUsersAndDevicesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def has_payload_links(self) -> has_payload_links_request_builder.HasPayloadLinksRequestBuilder:
         """
         Provides operations to call the hasPayloadLinks method.
@@ -80,7 +83,7 @@ class DeviceConfigurationsRequestBuilder():
         """
         Create new navigation property to deviceConfigurations for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -127,7 +130,7 @@ class DeviceConfigurationsRequestBuilder():
         """
         Create new navigation property to deviceConfigurations for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_configuration.DeviceConfiguration]

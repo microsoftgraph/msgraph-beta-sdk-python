@@ -23,18 +23,21 @@ class DelegatedAdminRelationshipItemRequestBuilder():
     """
     Provides operations to manage the delegatedAdminRelationships property of the microsoft.graph.tenantRelationship entity.
     """
+    @property
     def access_assignments(self) -> access_assignments_request_builder.AccessAssignmentsRequestBuilder:
         """
         Provides operations to manage the accessAssignments property of the microsoft.graph.delegatedAdminRelationship entity.
         """
         return access_assignments_request_builder.AccessAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def operations(self) -> operations_request_builder.OperationsRequestBuilder:
         """
         Provides operations to manage the operations property of the microsoft.graph.delegatedAdminRelationship entity.
         """
         return operations_request_builder.OperationsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def requests(self) -> requests_request_builder.RequestsRequestBuilder:
         """
         Provides operations to manage the requests property of the microsoft.graph.delegatedAdminRelationship entity.
@@ -110,7 +113,7 @@ class DelegatedAdminRelationshipItemRequestBuilder():
         """
         Update the navigation property delegatedAdminRelationships in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -181,7 +184,7 @@ class DelegatedAdminRelationshipItemRequestBuilder():
         """
         Update the navigation property delegatedAdminRelationships in tenantRelationships
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[delegated_admin_relationship.DelegatedAdminRelationship]

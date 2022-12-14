@@ -20,12 +20,14 @@ class ResourceAccessProfilesRequestBuilder():
     """
     Provides operations to manage the resourceAccessProfiles property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def query_by_platform_type(self) -> query_by_platform_type_request_builder.QueryByPlatformTypeRequestBuilder:
         """
         Provides operations to call the queryByPlatformType method.
@@ -72,7 +74,7 @@ class ResourceAccessProfilesRequestBuilder():
         """
         Create new navigation property to resourceAccessProfiles for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +114,7 @@ class ResourceAccessProfilesRequestBuilder():
         """
         Create new navigation property to resourceAccessProfiles for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_resource_access_profile_base.DeviceManagementResourceAccessProfileBase]

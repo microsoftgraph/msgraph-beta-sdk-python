@@ -16,6 +16,8 @@ class CloudPcOrganizationSettings(entity.Entity):
         super().__init__()
         # Specifies whether new Cloud PCs will be automatically enrolled in Microsoft Endpoint Manager(MEM). The default value is false.
         self._enable_m_e_m_auto_enroll: Optional[bool] = None
+        # The enableSingleSignOn property
+        self._enable_single_sign_on: Optional[bool] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
         # The version of the operating system (OS) to provision on Cloud PCs. The possible values are: windows10, windows11, unknownFutureValue.
@@ -54,6 +56,23 @@ class CloudPcOrganizationSettings(entity.Entity):
         """
         self._enable_m_e_m_auto_enroll = value
     
+    @property
+    def enable_single_sign_on(self,) -> Optional[bool]:
+        """
+        Gets the enableSingleSignOn property value. The enableSingleSignOn property
+        Returns: Optional[bool]
+        """
+        return self._enable_single_sign_on
+    
+    @enable_single_sign_on.setter
+    def enable_single_sign_on(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the enableSingleSignOn property value. The enableSingleSignOn property
+        Args:
+            value: Value to set for the enableSingleSignOn property.
+        """
+        self._enable_single_sign_on = value
+    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -61,6 +80,7 @@ class CloudPcOrganizationSettings(entity.Entity):
         """
         fields = {
             "enable_m_e_m_auto_enroll": lambda n : setattr(self, 'enable_m_e_m_auto_enroll', n.get_bool_value()),
+            "enable_single_sign_on": lambda n : setattr(self, 'enable_single_sign_on', n.get_bool_value()),
             "os_version": lambda n : setattr(self, 'os_version', n.get_enum_value(cloud_pc_operating_system.CloudPcOperatingSystem)),
             "user_account_type": lambda n : setattr(self, 'user_account_type', n.get_enum_value(cloud_pc_user_account_type.CloudPcUserAccountType)),
             "windows_settings": lambda n : setattr(self, 'windows_settings', n.get_object_value(cloud_pc_windows_settings.CloudPcWindowsSettings)),
@@ -96,6 +116,7 @@ class CloudPcOrganizationSettings(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_bool_value("enableMEMAutoEnroll", self.enable_m_e_m_auto_enroll)
+        writer.write_bool_value("enableSingleSignOn", self.enable_single_sign_on)
         writer.write_enum_value("osVersion", self.os_version)
         writer.write_enum_value("userAccountType", self.user_account_type)
         writer.write_object_value("windowsSettings", self.windows_settings)

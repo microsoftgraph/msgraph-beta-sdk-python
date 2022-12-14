@@ -14,6 +14,9 @@ template_parameter = lazy_import('msgraph.generated.models.managed_tenants.templ
 workload_action = lazy_import('msgraph.generated.models.managed_tenants.workload_action')
 
 class ManagementTemplate(entity.Entity):
+    """
+    Provides operations to manage the collection of activityStatistics entities.
+    """
     @property
     def category(self,) -> Optional[management_category.ManagementCategory]:
         """

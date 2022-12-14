@@ -20,12 +20,14 @@ class ImportedAppleDeviceIdentitiesRequestBuilder():
     """
     Provides operations to manage the importedAppleDeviceIdentities property of the microsoft.graph.depOnboardingSetting entity.
     """
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def import_apple_device_identity_list(self) -> import_apple_device_identity_list_request_builder.ImportAppleDeviceIdentityListRequestBuilder:
         """
         Provides operations to call the importAppleDeviceIdentityList method.
@@ -72,7 +74,7 @@ class ImportedAppleDeviceIdentitiesRequestBuilder():
         """
         Create new navigation property to importedAppleDeviceIdentities for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -112,7 +114,7 @@ class ImportedAppleDeviceIdentitiesRequestBuilder():
         """
         Create new navigation property to importedAppleDeviceIdentities for deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[imported_apple_device_identity.ImportedAppleDeviceIdentity]

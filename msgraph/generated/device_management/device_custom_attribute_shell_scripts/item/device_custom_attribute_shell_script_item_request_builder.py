@@ -27,36 +27,42 @@ class DeviceCustomAttributeShellScriptItemRequestBuilder():
     """
     Provides operations to manage the deviceCustomAttributeShellScripts property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def assign(self) -> assign_request_builder.AssignRequestBuilder:
         """
         Provides operations to call the assign method.
         """
         return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.deviceCustomAttributeShellScript entity.
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def device_run_states(self) -> device_run_states_request_builder.DeviceRunStatesRequestBuilder:
         """
         Provides operations to manage the deviceRunStates property of the microsoft.graph.deviceCustomAttributeShellScript entity.
         """
         return device_run_states_request_builder.DeviceRunStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def group_assignments(self) -> group_assignments_request_builder.GroupAssignmentsRequestBuilder:
         """
         Provides operations to manage the groupAssignments property of the microsoft.graph.deviceCustomAttributeShellScript entity.
         """
         return group_assignments_request_builder.GroupAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def run_summary(self) -> run_summary_request_builder.RunSummaryRequestBuilder:
         """
         Provides operations to manage the runSummary property of the microsoft.graph.deviceCustomAttributeShellScript entity.
         """
         return run_summary_request_builder.RunSummaryRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def user_run_states(self) -> user_run_states_request_builder.UserRunStatesRequestBuilder:
         """
         Provides operations to manage the userRunStates property of the microsoft.graph.deviceCustomAttributeShellScript entity.
@@ -132,7 +138,7 @@ class DeviceCustomAttributeShellScriptItemRequestBuilder():
         """
         Update the navigation property deviceCustomAttributeShellScripts in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -216,7 +222,7 @@ class DeviceCustomAttributeShellScriptItemRequestBuilder():
         """
         Update the navigation property deviceCustomAttributeShellScripts in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_custom_attribute_shell_script.DeviceCustomAttributeShellScript]

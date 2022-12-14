@@ -21,18 +21,21 @@ class ReviewSetItemRequestBuilder():
     """
     Provides operations to manage the reviewSets property of the microsoft.graph.ediscovery.case entity.
     """
+    @property
     def add_to_review_set(self) -> add_to_review_set_request_builder.AddToReviewSetRequestBuilder:
         """
         Provides operations to call the addToReviewSet method.
         """
         return add_to_review_set_request_builder.AddToReviewSetRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def export(self) -> export_request_builder.ExportRequestBuilder:
         """
         Provides operations to call the export method.
         """
         return export_request_builder.ExportRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def queries(self) -> queries_request_builder.QueriesRequestBuilder:
         """
         Provides operations to manage the queries property of the microsoft.graph.ediscovery.reviewSet entity.
@@ -95,7 +98,7 @@ class ReviewSetItemRequestBuilder():
         """
         Update the navigation property reviewSets in compliance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -153,7 +156,7 @@ class ReviewSetItemRequestBuilder():
         """
         Update the navigation property reviewSets in compliance
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[review_set.ReviewSet]

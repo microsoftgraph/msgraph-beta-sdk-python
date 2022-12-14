@@ -19,12 +19,14 @@ class CertificateConnectorDetailsItemRequestBuilder():
     """
     Provides operations to manage the certificateConnectorDetails property of the microsoft.graph.deviceManagement entity.
     """
+    @property
     def get_health_metrics(self) -> get_health_metrics_request_builder.GetHealthMetricsRequestBuilder:
         """
         Provides operations to call the getHealthMetrics method.
         """
         return get_health_metrics_request_builder.GetHealthMetricsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def get_health_metric_time_series(self) -> get_health_metric_time_series_request_builder.GetHealthMetricTimeSeriesRequestBuilder:
         """
         Provides operations to call the getHealthMetricTimeSeries method.
@@ -87,7 +89,7 @@ class CertificateConnectorDetailsItemRequestBuilder():
         """
         Update the navigation property certificateConnectorDetails in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -145,7 +147,7 @@ class CertificateConnectorDetailsItemRequestBuilder():
         """
         Update the navigation property certificateConnectorDetails in deviceManagement
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[certificate_connector_details.CertificateConnectorDetails]

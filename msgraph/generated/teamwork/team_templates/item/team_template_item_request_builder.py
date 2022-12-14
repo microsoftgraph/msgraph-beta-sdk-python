@@ -19,6 +19,7 @@ class TeamTemplateItemRequestBuilder():
     """
     Provides operations to manage the teamTemplates property of the microsoft.graph.teamwork entity.
     """
+    @property
     def definitions(self) -> definitions_request_builder.DefinitionsRequestBuilder:
         """
         Provides operations to manage the definitions property of the microsoft.graph.teamTemplate entity.
@@ -81,7 +82,7 @@ class TeamTemplateItemRequestBuilder():
         """
         Update the navigation property teamTemplates in teamwork
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -152,7 +153,7 @@ class TeamTemplateItemRequestBuilder():
         """
         Update the navigation property teamTemplates in teamwork
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[team_template.TeamTemplate]

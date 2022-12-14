@@ -22,24 +22,28 @@ class PlannerRequestBuilder():
     """
     Provides operations to manage the planner property of the microsoft.graph.businessScenario entity.
     """
+    @property
     def get_plan(self) -> get_plan_request_builder.GetPlanRequestBuilder:
         """
         Provides operations to call the getPlan method.
         """
         return get_plan_request_builder.GetPlanRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def plan_configuration(self) -> plan_configuration_request_builder.PlanConfigurationRequestBuilder:
         """
         Provides operations to manage the planConfiguration property of the microsoft.graph.businessScenarioPlanner entity.
         """
         return plan_configuration_request_builder.PlanConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def task_configuration(self) -> task_configuration_request_builder.TaskConfigurationRequestBuilder:
         """
         Provides operations to manage the taskConfiguration property of the microsoft.graph.businessScenarioPlanner entity.
         """
         return task_configuration_request_builder.TaskConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
     def tasks(self) -> tasks_request_builder.TasksRequestBuilder:
         """
         Provides operations to manage the tasks property of the microsoft.graph.businessScenarioPlanner entity.
@@ -102,7 +106,7 @@ class PlannerRequestBuilder():
         """
         Update the navigation property planner in solutions
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
         """
@@ -160,7 +164,7 @@ class PlannerRequestBuilder():
         """
         Update the navigation property planner in solutions
         Args:
-            body: 
+            body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[business_scenario_planner.BusinessScenarioPlanner]
