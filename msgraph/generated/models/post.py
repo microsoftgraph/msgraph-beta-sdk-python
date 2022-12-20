@@ -16,7 +16,7 @@ single_value_legacy_extended_property = lazy_import('msgraph.generated.models.si
 
 class Post(outlook_item.OutlookItem):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def attachments(self,) -> Optional[List[attachment.Attachment]]:

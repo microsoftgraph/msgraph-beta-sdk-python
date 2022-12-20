@@ -8,9 +8,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
 
 class AuthenticationEventListener(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def authentication_events_flow_id(self,) -> Optional[str]:
         """
@@ -47,7 +44,7 @@ class AuthenticationEventListener(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new authenticationEventListener and sets the default values.
+        Instantiates a new AuthenticationEventListener and sets the default values.
         """
         super().__init__()
         # The authenticationEventsFlowId property

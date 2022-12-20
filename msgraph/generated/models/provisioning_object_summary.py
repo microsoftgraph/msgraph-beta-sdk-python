@@ -16,6 +16,9 @@ provisioning_system = lazy_import('msgraph.generated.models.provisioning_system'
 status_base = lazy_import('msgraph.generated.models.status_base')
 
 class ProvisioningObjectSummary(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def action(self,) -> Optional[str]:
         """
@@ -69,7 +72,7 @@ class ProvisioningObjectSummary(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new ProvisioningObjectSummary and sets the default values.
+        Instantiates a new provisioningObjectSummary and sets the default values.
         """
         super().__init__()
         # The action property

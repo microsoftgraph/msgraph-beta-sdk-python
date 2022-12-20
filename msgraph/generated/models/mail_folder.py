@@ -12,7 +12,7 @@ user_configuration = lazy_import('msgraph.generated.models.user_configuration')
 
 class MailFolder(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def child_folder_count(self,) -> Optional[int]:

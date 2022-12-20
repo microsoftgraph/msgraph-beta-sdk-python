@@ -11,7 +11,7 @@ class IpEvidence(alert_evidence.AlertEvidence):
         Instantiates a new IpEvidence and sets the default values.
         """
         super().__init__()
-        # The countryLetterCode property
+        # The two-letter country code according to ISO 3166 format, for example: US, UK, CA, etc..).
         self._country_letter_code: Optional[str] = None
         # The value of the IP Address, can be either in V4 address or V6 address format.
         self._ip_address: Optional[str] = None
@@ -21,7 +21,7 @@ class IpEvidence(alert_evidence.AlertEvidence):
     @property
     def country_letter_code(self,) -> Optional[str]:
         """
-        Gets the countryLetterCode property value. The countryLetterCode property
+        Gets the countryLetterCode property value. The two-letter country code according to ISO 3166 format, for example: US, UK, CA, etc..).
         Returns: Optional[str]
         """
         return self._country_letter_code
@@ -29,7 +29,7 @@ class IpEvidence(alert_evidence.AlertEvidence):
     @country_letter_code.setter
     def country_letter_code(self,value: Optional[str] = None) -> None:
         """
-        Sets the countryLetterCode property value. The countryLetterCode property
+        Sets the countryLetterCode property value. The two-letter country code according to ISO 3166 format, for example: US, UK, CA, etc..).
         Args:
             value: Value to set for the countryLetterCode property.
         """

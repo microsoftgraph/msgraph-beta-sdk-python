@@ -8,7 +8,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class ManagementTemplateCollectionTenantSummary(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def complete_steps_count(self,) -> Optional[int]:

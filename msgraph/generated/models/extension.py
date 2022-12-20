@@ -7,7 +7,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class Extension(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of administrativeUnit entities.
     """
     def __init__(self,) -> None:
         """

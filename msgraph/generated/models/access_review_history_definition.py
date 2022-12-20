@@ -14,7 +14,7 @@ user_identity = lazy_import('msgraph.generated.models.user_identity')
 
 class AccessReviewHistoryDefinition(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     def __init__(self,) -> None:
         """

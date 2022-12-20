@@ -10,7 +10,7 @@ wellknown_list_name = lazy_import('msgraph.generated.models.wellknown_list_name'
 
 class TodoTaskList(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     def __init__(self,) -> None:
         """

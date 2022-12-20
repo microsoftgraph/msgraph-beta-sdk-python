@@ -11,7 +11,7 @@ security_vendor_information = lazy_import('msgraph.generated.models.security_ven
 
 class DomainSecurityProfile(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def activity_group_names(self,) -> Optional[List[str]]:

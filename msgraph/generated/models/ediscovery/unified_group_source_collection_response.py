@@ -7,6 +7,9 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 unified_group_source = lazy_import('msgraph.generated.models.ediscovery.unified_group_source')
 
 class UnifiedGroupSourceCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
+    """
+    Provides operations to manage the unifiedGroupSources property of the microsoft.graph.ediscovery.custodian entity.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new UnifiedGroupSourceCollectionResponse and sets the default values.

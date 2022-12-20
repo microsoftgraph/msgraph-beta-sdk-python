@@ -9,7 +9,7 @@ connection_operation_status = lazy_import('msgraph.generated.models.external_con
 
 class ConnectionOperation(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     def __init__(self,) -> None:
         """

@@ -12,7 +12,7 @@ website = lazy_import('msgraph.generated.models.website')
 
 class Person(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def birthday(self,) -> Optional[str]:

@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 business_flow = lazy_import('msgraph.generated.models.business_flow')
 
 class BusinessFlowCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the businessFlows property of the microsoft.graph.approvalWorkflowProvider entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new BusinessFlowCollectionResponse and sets the default values.

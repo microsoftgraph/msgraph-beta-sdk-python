@@ -11,7 +11,7 @@ section_links = lazy_import('msgraph.generated.models.section_links')
 
 class OnenoteSection(onenote_entity_hierarchy_model.OnenoteEntityHierarchyModel):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     def __init__(self,) -> None:
         """

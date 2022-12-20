@@ -8,12 +8,9 @@ message_event = lazy_import('msgraph.generated.models.message_event')
 message_status = lazy_import('msgraph.generated.models.message_status')
 
 class MessageRecipient(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new messageRecipient and sets the default values.
+        Instantiates a new MessageRecipient and sets the default values.
         """
         super().__init__()
         # The deliveryStatus property

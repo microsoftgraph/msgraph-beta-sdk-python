@@ -14,7 +14,7 @@ incident_status = lazy_import('msgraph.generated.models.security.incident_status
 
 class Incident(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def alerts(self,) -> Optional[List[alert.Alert]]:
@@ -99,7 +99,7 @@ class Incident(entity.Entity):
         self._comments: Optional[List[alert_comment.AlertComment]] = None
         # Time when the incident was first created.
         self._created_date_time: Optional[datetime] = None
-        # The customTags property
+        # Array of custom tags associated with an incident.
         self._custom_tags: Optional[List[str]] = None
         # Specifies the determination of the incident. Possible values are: unknown, apt, malware, securityPersonnel, securityTesting, unwantedSoftware, other, multiStagedAttack, compromisedUser, phishing, maliciousUserActivity, clean, insufficientData, confirmedUserActivity, lineOfBusinessApplication, unknownFutureValue.
         self._determination: Optional[alert_determination.AlertDetermination] = None
@@ -152,7 +152,7 @@ class Incident(entity.Entity):
     @property
     def custom_tags(self,) -> Optional[List[str]]:
         """
-        Gets the customTags property value. The customTags property
+        Gets the customTags property value. Array of custom tags associated with an incident.
         Returns: Optional[List[str]]
         """
         return self._custom_tags
@@ -160,7 +160,7 @@ class Incident(entity.Entity):
     @custom_tags.setter
     def custom_tags(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the customTags property value. The customTags property
+        Sets the customTags property value. Array of custom tags associated with an incident.
         Args:
             value: Value to set for the customTags property.
         """

@@ -11,7 +11,7 @@ synchronization_status = lazy_import('msgraph.generated.models.synchronization_s
 
 class SynchronizationJob(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Casts the previous resource to application.
     """
     def __init__(self,) -> None:
         """

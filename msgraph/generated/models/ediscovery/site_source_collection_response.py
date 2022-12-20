@@ -7,6 +7,9 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 site_source = lazy_import('msgraph.generated.models.ediscovery.site_source')
 
 class SiteSourceCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
+    """
+    Provides operations to manage the siteSources property of the microsoft.graph.ediscovery.custodian entity.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new SiteSourceCollectionResponse and sets the default values.

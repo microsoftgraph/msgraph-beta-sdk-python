@@ -10,7 +10,7 @@ tenant_status_information = lazy_import('msgraph.generated.models.managed_tenant
 
 class Tenant(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     def __init__(self,) -> None:
         """

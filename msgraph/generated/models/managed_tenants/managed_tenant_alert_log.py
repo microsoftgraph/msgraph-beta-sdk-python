@@ -10,7 +10,7 @@ managed_tenant_alert = lazy_import('msgraph.generated.models.managed_tenants.man
 
 class ManagedTenantAlertLog(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def alert(self,) -> Optional[managed_tenant_alert.ManagedTenantAlert]:

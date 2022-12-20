@@ -10,7 +10,7 @@ security_vendor_information = lazy_import('msgraph.generated.models.security_ven
 
 class CloudAppSecurityProfile(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def azure_subscription_id(self,) -> Optional[str]:

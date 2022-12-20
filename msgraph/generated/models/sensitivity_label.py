@@ -12,7 +12,7 @@ sensitivity_label_target = lazy_import('msgraph.generated.models.sensitivity_lab
 
 class SensitivityLabel(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def applicable_to(self,) -> Optional[sensitivity_label_target.SensitivityLabelTarget]:

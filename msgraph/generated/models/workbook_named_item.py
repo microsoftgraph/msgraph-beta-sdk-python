@@ -9,7 +9,7 @@ workbook_worksheet = lazy_import('msgraph.generated.models.workbook_worksheet')
 
 class WorkbookNamedItem(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def comment(self,) -> Optional[str]:

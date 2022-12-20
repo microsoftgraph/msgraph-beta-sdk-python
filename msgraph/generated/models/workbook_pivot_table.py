@@ -8,7 +8,7 @@ workbook_worksheet = lazy_import('msgraph.generated.models.workbook_worksheet')
 
 class WorkbookPivotTable(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     def __init__(self,) -> None:
         """

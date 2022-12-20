@@ -8,7 +8,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class OAuth2PermissionGrant(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Casts the previous resource to servicePrincipal.
     """
     @property
     def client_id(self,) -> Optional[str]:

@@ -64,7 +64,7 @@ class ConnectorGroupsRequestBuilder():
     
     def create_post_request_information(self,body: Optional[connector_group.ConnectorGroup] = None, request_configuration: Optional[ConnectorGroupsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a connectorGroup object.
+        Create a new connectorGroup.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -104,7 +104,7 @@ class ConnectorGroupsRequestBuilder():
     
     async def post(self,body: Optional[connector_group.ConnectorGroup] = None, request_configuration: Optional[ConnectorGroupsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[connector_group.ConnectorGroup]:
         """
-        Create a connectorGroup object.
+        Create a new connectorGroup.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

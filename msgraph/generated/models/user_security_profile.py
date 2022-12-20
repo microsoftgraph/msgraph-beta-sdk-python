@@ -10,7 +10,7 @@ user_account = lazy_import('msgraph.generated.models.user_account')
 
 class UserSecurityProfile(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def accounts(self,) -> Optional[List[user_account.UserAccount]]:

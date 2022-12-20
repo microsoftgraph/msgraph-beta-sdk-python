@@ -8,7 +8,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class ConditionalAccessPolicyCoverage(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def conditional_access_policy_state(self,) -> Optional[str]:

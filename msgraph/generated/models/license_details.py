@@ -8,7 +8,7 @@ service_plan_info = lazy_import('msgraph.generated.models.service_plan_info')
 
 class LicenseDetails(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Casts the previous resource to servicePrincipal.
     """
     def __init__(self,) -> None:
         """

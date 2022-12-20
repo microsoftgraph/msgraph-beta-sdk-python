@@ -14,6 +14,9 @@ title_area = lazy_import('msgraph.generated.models.title_area')
 web_part = lazy_import('msgraph.generated.models.web_part')
 
 class SitePage(base_item.BaseItem):
+    """
+    Provides operations to manage the collection of accessReviewDecision entities.
+    """
     @property
     def canvas_layout(self,) -> Optional[canvas_layout.CanvasLayout]:
         """
@@ -33,7 +36,7 @@ class SitePage(base_item.BaseItem):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new SitePage and sets the default values.
+        Instantiates a new sitePage and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.sitePage"

@@ -12,7 +12,7 @@ rule_severity_type = lazy_import('msgraph.generated.models.device_management.rul
 
 class AlertRecord(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def alert_impact(self,) -> Optional[alert_impact.AlertImpact]:

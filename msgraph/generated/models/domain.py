@@ -11,6 +11,9 @@ internal_domain_federation = lazy_import('msgraph.generated.models.internal_doma
 shared_email_domain_invitation = lazy_import('msgraph.generated.models.shared_email_domain_invitation')
 
 class Domain(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def authentication_type(self,) -> Optional[str]:
         """
@@ -47,7 +50,7 @@ class Domain(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new Domain and sets the default values.
+        Instantiates a new domain and sets the default values.
         """
         super().__init__()
         # Indicates the configured authentication type for the domain. The value is either Managed or Federated. Managed indicates a cloud managed domain where Azure AD performs user authentication. Federated indicates authentication is federated with an identity provider such as the tenant's on-premises Active Directory via Active Directory Federation Services. This property is read-only and is not nullable.

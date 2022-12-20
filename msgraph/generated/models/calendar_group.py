@@ -8,7 +8,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class CalendarGroup(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def calendars(self,) -> Optional[List[calendar.Calendar]]:

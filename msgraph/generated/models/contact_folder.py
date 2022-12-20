@@ -10,7 +10,7 @@ single_value_legacy_extended_property = lazy_import('msgraph.generated.models.si
 
 class ContactFolder(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def child_folders(self,) -> Optional[List[ContactFolder]]:

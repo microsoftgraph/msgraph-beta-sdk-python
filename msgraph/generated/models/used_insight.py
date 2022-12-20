@@ -10,7 +10,7 @@ usage_details = lazy_import('msgraph.generated.models.usage_details')
 
 class UsedInsight(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     def __init__(self,) -> None:
         """

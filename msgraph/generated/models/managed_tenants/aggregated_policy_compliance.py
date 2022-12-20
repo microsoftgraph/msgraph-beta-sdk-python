@@ -8,7 +8,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class AggregatedPolicyCompliance(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def compliance_policy_id(self,) -> Optional[str]:
