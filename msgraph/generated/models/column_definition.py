@@ -25,7 +25,7 @@ thumbnail_column = lazy_import('msgraph.generated.models.thumbnail_column')
 
 class ColumnDefinition(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def boolean(self,) -> Optional[boolean_column.BooleanColumn]:

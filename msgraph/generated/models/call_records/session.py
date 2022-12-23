@@ -12,7 +12,7 @@ segment = lazy_import('msgraph.generated.models.call_records.segment')
 
 class Session(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def callee(self,) -> Optional[endpoint.Endpoint]:

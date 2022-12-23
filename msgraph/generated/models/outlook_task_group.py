@@ -8,7 +8,7 @@ outlook_task_folder = lazy_import('msgraph.generated.models.outlook_task_folder'
 
 class OutlookTaskGroup(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def change_key(self,) -> Optional[str]:

@@ -9,7 +9,7 @@ workload_action = lazy_import('msgraph.generated.models.managed_tenants.workload
 
 class ManagementAction(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def category(self,) -> Optional[management_category.ManagementCategory]:

@@ -7,6 +7,9 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 resource_specific_permission_grant = lazy_import('msgraph.generated.models.resource_specific_permission_grant')
 
 class ResourceSpecificPermissionGrantCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
+    """
+    Provides operations to manage the permissionGrants property of the microsoft.graph.chat entity.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new ResourceSpecificPermissionGrantCollectionResponse and sets the default values.

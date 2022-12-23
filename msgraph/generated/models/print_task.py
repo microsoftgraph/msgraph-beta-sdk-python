@@ -10,7 +10,7 @@ print_task_trigger = lazy_import('msgraph.generated.models.print_task_trigger')
 
 class PrintTask(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     def __init__(self,) -> None:
         """

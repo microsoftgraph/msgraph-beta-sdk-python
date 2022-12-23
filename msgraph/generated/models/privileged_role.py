@@ -9,6 +9,9 @@ privileged_role_settings = lazy_import('msgraph.generated.models.privileged_role
 privileged_role_summary = lazy_import('msgraph.generated.models.privileged_role_summary')
 
 class PrivilegedRole(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def assignments(self,) -> Optional[List[privileged_role_assignment.PrivilegedRoleAssignment]]:
         """

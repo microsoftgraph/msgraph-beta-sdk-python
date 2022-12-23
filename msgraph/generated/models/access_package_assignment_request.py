@@ -14,7 +14,7 @@ request_schedule = lazy_import('msgraph.generated.models.request_schedule')
 
 class AccessPackageAssignmentRequest(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def access_package(self,) -> Optional[access_package.AccessPackage]:

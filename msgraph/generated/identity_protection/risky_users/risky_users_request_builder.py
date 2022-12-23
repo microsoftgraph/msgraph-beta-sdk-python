@@ -62,7 +62,7 @@ class RiskyUsersRequestBuilder():
     
     def create_get_request_information(self,request_configuration: Optional[RiskyUsersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of a **riskyUser** object.
+        Retrieve the properties and relationships of a collection of **riskyUser** objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -101,7 +101,7 @@ class RiskyUsersRequestBuilder():
     
     async def get(self,request_configuration: Optional[RiskyUsersRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[risky_user_collection_response.RiskyUserCollectionResponse]:
         """
-        Retrieve the properties and relationships of a **riskyUser** object.
+        Retrieve the properties and relationships of a collection of **riskyUser** objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
@@ -143,7 +143,7 @@ class RiskyUsersRequestBuilder():
     @dataclass
     class RiskyUsersRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of a **riskyUser** object.
+        Retrieve the properties and relationships of a collection of **riskyUser** objects.
         """
         # Include count of items
         count: Optional[bool] = None

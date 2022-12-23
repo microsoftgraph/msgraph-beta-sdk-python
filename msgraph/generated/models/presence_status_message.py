@@ -32,13 +32,13 @@ class PresenceStatusMessage(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The expiryDateTime property
+        # Time in which the status message expires.If not provided, the status message does not expire.expiryDateTime.dateTime should not include time zone.expiryDateTime is not available when requesting presence of another user.
         self._expiry_date_time: Optional[date_time_time_zone.DateTimeTimeZone] = None
-        # The message property
+        # Status message item. The only supported format currently is message.contentType = 'text'.
         self._message: Optional[item_body.ItemBody] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The publishedDateTime property
+        # Time in which the status message was published.Read-only.publishedDateTime is not available when requesting presence of another user.
         self._published_date_time: Optional[datetime] = None
     
     @staticmethod
@@ -56,7 +56,7 @@ class PresenceStatusMessage(AdditionalDataHolder, Parsable):
     @property
     def expiry_date_time(self,) -> Optional[date_time_time_zone.DateTimeTimeZone]:
         """
-        Gets the expiryDateTime property value. The expiryDateTime property
+        Gets the expiryDateTime property value. Time in which the status message expires.If not provided, the status message does not expire.expiryDateTime.dateTime should not include time zone.expiryDateTime is not available when requesting presence of another user.
         Returns: Optional[date_time_time_zone.DateTimeTimeZone]
         """
         return self._expiry_date_time
@@ -64,7 +64,7 @@ class PresenceStatusMessage(AdditionalDataHolder, Parsable):
     @expiry_date_time.setter
     def expiry_date_time(self,value: Optional[date_time_time_zone.DateTimeTimeZone] = None) -> None:
         """
-        Sets the expiryDateTime property value. The expiryDateTime property
+        Sets the expiryDateTime property value. Time in which the status message expires.If not provided, the status message does not expire.expiryDateTime.dateTime should not include time zone.expiryDateTime is not available when requesting presence of another user.
         Args:
             value: Value to set for the expiryDateTime property.
         """
@@ -86,7 +86,7 @@ class PresenceStatusMessage(AdditionalDataHolder, Parsable):
     @property
     def message(self,) -> Optional[item_body.ItemBody]:
         """
-        Gets the message property value. The message property
+        Gets the message property value. Status message item. The only supported format currently is message.contentType = 'text'.
         Returns: Optional[item_body.ItemBody]
         """
         return self._message
@@ -94,7 +94,7 @@ class PresenceStatusMessage(AdditionalDataHolder, Parsable):
     @message.setter
     def message(self,value: Optional[item_body.ItemBody] = None) -> None:
         """
-        Sets the message property value. The message property
+        Sets the message property value. Status message item. The only supported format currently is message.contentType = 'text'.
         Args:
             value: Value to set for the message property.
         """
@@ -120,7 +120,7 @@ class PresenceStatusMessage(AdditionalDataHolder, Parsable):
     @property
     def published_date_time(self,) -> Optional[datetime]:
         """
-        Gets the publishedDateTime property value. The publishedDateTime property
+        Gets the publishedDateTime property value. Time in which the status message was published.Read-only.publishedDateTime is not available when requesting presence of another user.
         Returns: Optional[datetime]
         """
         return self._published_date_time
@@ -128,7 +128,7 @@ class PresenceStatusMessage(AdditionalDataHolder, Parsable):
     @published_date_time.setter
     def published_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the publishedDateTime property value. The publishedDateTime property
+        Sets the publishedDateTime property value. Time in which the status message was published.Read-only.publishedDateTime is not available when requesting presence of another user.
         Args:
             value: Value to set for the publishedDateTime property.
         """

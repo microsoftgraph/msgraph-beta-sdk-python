@@ -11,7 +11,7 @@ management_template_step_version = lazy_import('msgraph.generated.models.managed
 
 class ManagementTemplateStepDeployment(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     def __init__(self,) -> None:
         """

@@ -7,12 +7,9 @@ entity = lazy_import('msgraph.generated.models.entity')
 learning_content = lazy_import('msgraph.generated.models.learning_content')
 
 class LearningProvider(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new learningProvider and sets the default values.
+        Instantiates a new LearningProvider and sets the default values.
         """
         super().__init__()
         # The display name that appears in Viva Learning. Required.

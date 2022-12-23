@@ -55,7 +55,7 @@ class Presence(entity.Entity):
         self.odata_type: Optional[str] = None
         # The out of office settings for a user.
         self._out_of_office_settings: Optional[out_of_office_settings.OutOfOfficeSettings] = None
-        # The statusMessage property
+        # The presence status message of a user.
         self._status_message: Optional[presence_status_message.PresenceStatusMessage] = None
     
     @staticmethod
@@ -119,7 +119,7 @@ class Presence(entity.Entity):
     @property
     def status_message(self,) -> Optional[presence_status_message.PresenceStatusMessage]:
         """
-        Gets the statusMessage property value. The statusMessage property
+        Gets the statusMessage property value. The presence status message of a user.
         Returns: Optional[presence_status_message.PresenceStatusMessage]
         """
         return self._status_message
@@ -127,7 +127,7 @@ class Presence(entity.Entity):
     @status_message.setter
     def status_message(self,value: Optional[presence_status_message.PresenceStatusMessage] = None) -> None:
         """
-        Sets the statusMessage property value. The statusMessage property
+        Sets the statusMessage property value. The presence status message of a user.
         Args:
             value: Value to set for the statusMessage property.
         """

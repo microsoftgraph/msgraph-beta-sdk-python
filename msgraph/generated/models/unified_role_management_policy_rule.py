@@ -8,7 +8,7 @@ unified_role_management_policy_rule_target = lazy_import('msgraph.generated.mode
 
 class UnifiedRoleManagementPolicyRule(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     def __init__(self,) -> None:
         """

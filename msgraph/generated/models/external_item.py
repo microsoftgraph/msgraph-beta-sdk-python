@@ -10,7 +10,7 @@ properties = lazy_import('msgraph.generated.models.properties')
 
 class ExternalItem(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def acl(self,) -> Optional[List[acl.Acl]]:

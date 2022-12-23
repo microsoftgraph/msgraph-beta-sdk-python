@@ -7,9 +7,12 @@ cloud_pc_service_plan_type = lazy_import('msgraph.generated.models.cloud_pc_serv
 entity = lazy_import('msgraph.generated.models.entity')
 
 class CloudPcServicePlan(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new CloudPcServicePlan and sets the default values.
+        Instantiates a new cloudPcServicePlan and sets the default values.
         """
         super().__init__()
         # The name for the service plan. Read-only.

@@ -7,6 +7,9 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 mobile_app = lazy_import('msgraph.generated.models.mobile_app')
 
 class MobileAppCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
+    """
+    Provides operations to manage the mobileApps property of the microsoft.graph.deviceAppManagement entity.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new MobileAppCollectionResponse and sets the default values.

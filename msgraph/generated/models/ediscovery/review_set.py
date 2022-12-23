@@ -9,6 +9,9 @@ identity_set = lazy_import('msgraph.generated.models.identity_set')
 review_set_query = lazy_import('msgraph.generated.models.ediscovery.review_set_query')
 
 class ReviewSet(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new reviewSet and sets the default values.

@@ -7,6 +7,9 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 custodian = lazy_import('msgraph.generated.models.ediscovery.custodian')
 
 class CustodianCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
+    """
+    Provides operations to manage the custodians property of the microsoft.graph.ediscovery.case entity.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new CustodianCollectionResponse and sets the default values.

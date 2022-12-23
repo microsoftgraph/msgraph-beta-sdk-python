@@ -26,7 +26,7 @@ class Ediscoveryroot(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new Ediscoveryroot and sets the default values.
+        Instantiates a new ediscoveryroot and sets the default values.
         """
         super().__init__()
         # The cases property

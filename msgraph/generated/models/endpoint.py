@@ -7,7 +7,7 @@ directory_object = lazy_import('msgraph.generated.models.directory_object')
 
 class Endpoint(directory_object.DirectoryObject):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def capability(self,) -> Optional[str]:

@@ -10,7 +10,7 @@ recipient = lazy_import('msgraph.generated.models.recipient')
 
 class ConversationThread(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def cc_recipients(self,) -> Optional[List[recipient.Recipient]]:

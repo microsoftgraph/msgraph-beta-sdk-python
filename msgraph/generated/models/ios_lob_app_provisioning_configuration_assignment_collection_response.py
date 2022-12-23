@@ -7,6 +7,9 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 ios_lob_app_provisioning_configuration_assignment = lazy_import('msgraph.generated.models.ios_lob_app_provisioning_configuration_assignment')
 
 class IosLobAppProvisioningConfigurationAssignmentCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
+    """
+    Provides operations to manage the assignments property of the microsoft.graph.iosLobAppProvisioningConfiguration entity.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new IosLobAppProvisioningConfigurationAssignmentCollectionResponse and sets the default values.

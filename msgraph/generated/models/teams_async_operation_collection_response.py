@@ -7,6 +7,9 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 teams_async_operation = lazy_import('msgraph.generated.models.teams_async_operation')
 
 class TeamsAsyncOperationCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
+    """
+    Provides operations to manage the operations property of the microsoft.graph.chat entity.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new TeamsAsyncOperationCollectionResponse and sets the default values.

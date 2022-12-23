@@ -7,7 +7,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class FederatedIdentityCredential(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Casts the previous resource to application.
     """
     @property
     def audiences(self,) -> Optional[List[str]]:

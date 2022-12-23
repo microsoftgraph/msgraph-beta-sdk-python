@@ -8,7 +8,7 @@ usage_right_state = lazy_import('msgraph.generated.models.usage_right_state')
 
 class UsageRight(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Casts the previous resource to device.
     """
     @property
     def catalog_id(self,) -> Optional[str]:

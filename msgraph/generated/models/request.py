@@ -9,7 +9,7 @@ identity_set = lazy_import('msgraph.generated.models.identity_set')
 
 class Request(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def approval_id(self,) -> Optional[str]:

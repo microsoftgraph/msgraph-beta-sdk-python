@@ -7,6 +7,9 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 data_policy_operation = lazy_import('msgraph.generated.models.data_policy_operation')
 
 class DataPolicyOperationCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
+    """
+    Provides operations to manage the collection of dataPolicyOperation entities.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new DataPolicyOperationCollectionResponse and sets the default values.

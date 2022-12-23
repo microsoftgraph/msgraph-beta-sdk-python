@@ -11,7 +11,7 @@ rule_threshold = lazy_import('msgraph.generated.models.device_management.rule_th
 
 class AlertRule(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def alert_rule_template(self,) -> Optional[alert_rule_template.AlertRuleTemplate]:

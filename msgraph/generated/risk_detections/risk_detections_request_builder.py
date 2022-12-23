@@ -38,7 +38,7 @@ class RiskDetectionsRequestBuilder():
     
     def create_get_request_information(self,request_configuration: Optional[RiskDetectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties of a **riskDetection** object.
+        Retrieve the properties of a collection of **riskDetection** objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -77,7 +77,7 @@ class RiskDetectionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[RiskDetectionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[risk_detection_collection_response.RiskDetectionCollectionResponse]:
         """
-        Retrieve the properties of a **riskDetection** object.
+        Retrieve the properties of a collection of **riskDetection** objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
@@ -119,7 +119,7 @@ class RiskDetectionsRequestBuilder():
     @dataclass
     class RiskDetectionsRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties of a **riskDetection** object.
+        Retrieve the properties of a collection of **riskDetection** objects.
         """
         # Expand related entities
         expand: Optional[List[str]] = None
