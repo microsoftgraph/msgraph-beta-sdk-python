@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class AllowedDataLocation(entity.Entity):
-    """
-    Provides operations to manage the collection of allowedDataLocation entities.
-    """
     @property
     def app_id(self,) -> Optional[str]:
         """
@@ -28,7 +25,7 @@ class AllowedDataLocation(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new allowedDataLocation and sets the default values.
+        Instantiates a new AllowedDataLocation and sets the default values.
         """
         super().__init__()
         # The appId property

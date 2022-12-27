@@ -13,7 +13,7 @@ usage_right = lazy_import('msgraph.generated.models.usage_right')
 
 class Device(directory_object.DirectoryObject):
     """
-    Casts the previous resource to device.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def account_enabled(self,) -> Optional[bool]:

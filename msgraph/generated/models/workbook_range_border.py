@@ -7,7 +7,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class WorkbookRangeBorder(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def color(self,) -> Optional[str]:

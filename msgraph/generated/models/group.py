@@ -31,7 +31,7 @@ team = lazy_import('msgraph.generated.models.team')
 
 class Group(directory_object.DirectoryObject):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def accepted_senders(self,) -> Optional[List[directory_object.DirectoryObject]]:

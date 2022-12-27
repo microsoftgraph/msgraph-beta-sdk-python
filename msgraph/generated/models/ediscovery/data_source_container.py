@@ -11,7 +11,7 @@ data_source_hold_status = lazy_import('msgraph.generated.models.ediscovery.data_
 
 class DataSourceContainer(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     def __init__(self,) -> None:
         """

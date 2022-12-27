@@ -10,7 +10,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class AccessPackageResourceRoleScope(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def access_package_resource_role(self,) -> Optional[access_package_resource_role.AccessPackageResourceRole]:

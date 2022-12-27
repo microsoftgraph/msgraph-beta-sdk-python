@@ -9,7 +9,7 @@ identity_set = lazy_import('msgraph.generated.models.identity_set')
 
 class ChangeTrackedEntity(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     def __init__(self,) -> None:
         """

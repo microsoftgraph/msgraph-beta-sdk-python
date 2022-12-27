@@ -9,7 +9,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class Conversation(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     def __init__(self,) -> None:
         """

@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 noncustodial_data_source = lazy_import('msgraph.generated.models.ediscovery.noncustodial_data_source')
 
 class NoncustodialDataSourceCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the noncustodialDataSources property of the microsoft.graph.ediscovery.case entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new NoncustodialDataSourceCollectionResponse and sets the default values.

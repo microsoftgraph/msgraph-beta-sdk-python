@@ -14,7 +14,7 @@ simulation_status = lazy_import('msgraph.generated.models.simulation_status')
 
 class Simulation(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def attack_technique(self,) -> Optional[simulation_attack_technique.SimulationAttackTechnique]:

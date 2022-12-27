@@ -11,7 +11,7 @@ rule_threshold = lazy_import('msgraph.generated.models.device_management.rule_th
 
 class AlertRule(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def alert_rule_template(self,) -> Optional[alert_rule_template.AlertRuleTemplate]:
@@ -43,15 +43,15 @@ class AlertRule(entity.Entity):
         self._display_name: Optional[str] = None
         # The status of the rule that indicates whether the rule is enabled or disabled. If true, the rule is enabled; otherwise, the rule is disabled.
         self._enabled: Optional[bool] = None
-        # Indicates whether the rule is a system rule. If true, the rule is a system rule; otherwise, the rule is a custom defined rule and can be edited. System rules are built-in and only
+        # Indicates whether the rule is a system rule. If true, the rule is a system rule; otherwise, the rule is a custom defined rule and can be edited. System rules are built-in and only a few properties can be edited.
         self._is_system_rule: Optional[bool] = None
-        # The notificationChannels property
+        # The notification channels of the rule selected by the user.
         self._notification_channels: Optional[List[notification_channel.NotificationChannel]] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The severity property
+        # The severity of the rule. The possible values are: unknown, informational, warning, critical, unknownFutureValue.
         self._severity: Optional[rule_severity_type.RuleSeverityType] = None
-        # The threshold property
+        # The conditions to send alerts. For example, send alert when provisioning has failed for greater than or equal to 6 Cloud PCs.
         self._threshold: Optional[rule_threshold.RuleThreshold] = None
     
     @staticmethod
@@ -139,7 +139,7 @@ class AlertRule(entity.Entity):
     @property
     def is_system_rule(self,) -> Optional[bool]:
         """
-        Gets the isSystemRule property value. Indicates whether the rule is a system rule. If true, the rule is a system rule; otherwise, the rule is a custom defined rule and can be edited. System rules are built-in and only
+        Gets the isSystemRule property value. Indicates whether the rule is a system rule. If true, the rule is a system rule; otherwise, the rule is a custom defined rule and can be edited. System rules are built-in and only a few properties can be edited.
         Returns: Optional[bool]
         """
         return self._is_system_rule
@@ -147,7 +147,7 @@ class AlertRule(entity.Entity):
     @is_system_rule.setter
     def is_system_rule(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isSystemRule property value. Indicates whether the rule is a system rule. If true, the rule is a system rule; otherwise, the rule is a custom defined rule and can be edited. System rules are built-in and only
+        Sets the isSystemRule property value. Indicates whether the rule is a system rule. If true, the rule is a system rule; otherwise, the rule is a custom defined rule and can be edited. System rules are built-in and only a few properties can be edited.
         Args:
             value: Value to set for the isSystemRule property.
         """
@@ -156,7 +156,7 @@ class AlertRule(entity.Entity):
     @property
     def notification_channels(self,) -> Optional[List[notification_channel.NotificationChannel]]:
         """
-        Gets the notificationChannels property value. The notificationChannels property
+        Gets the notificationChannels property value. The notification channels of the rule selected by the user.
         Returns: Optional[List[notification_channel.NotificationChannel]]
         """
         return self._notification_channels
@@ -164,7 +164,7 @@ class AlertRule(entity.Entity):
     @notification_channels.setter
     def notification_channels(self,value: Optional[List[notification_channel.NotificationChannel]] = None) -> None:
         """
-        Sets the notificationChannels property value. The notificationChannels property
+        Sets the notificationChannels property value. The notification channels of the rule selected by the user.
         Args:
             value: Value to set for the notificationChannels property.
         """
@@ -191,7 +191,7 @@ class AlertRule(entity.Entity):
     @property
     def severity(self,) -> Optional[rule_severity_type.RuleSeverityType]:
         """
-        Gets the severity property value. The severity property
+        Gets the severity property value. The severity of the rule. The possible values are: unknown, informational, warning, critical, unknownFutureValue.
         Returns: Optional[rule_severity_type.RuleSeverityType]
         """
         return self._severity
@@ -199,7 +199,7 @@ class AlertRule(entity.Entity):
     @severity.setter
     def severity(self,value: Optional[rule_severity_type.RuleSeverityType] = None) -> None:
         """
-        Sets the severity property value. The severity property
+        Sets the severity property value. The severity of the rule. The possible values are: unknown, informational, warning, critical, unknownFutureValue.
         Args:
             value: Value to set for the severity property.
         """
@@ -208,7 +208,7 @@ class AlertRule(entity.Entity):
     @property
     def threshold(self,) -> Optional[rule_threshold.RuleThreshold]:
         """
-        Gets the threshold property value. The threshold property
+        Gets the threshold property value. The conditions to send alerts. For example, send alert when provisioning has failed for greater than or equal to 6 Cloud PCs.
         Returns: Optional[rule_threshold.RuleThreshold]
         """
         return self._threshold
@@ -216,7 +216,7 @@ class AlertRule(entity.Entity):
     @threshold.setter
     def threshold(self,value: Optional[rule_threshold.RuleThreshold] = None) -> None:
         """
-        Sets the threshold property value. The threshold property
+        Sets the threshold property value. The conditions to send alerts. For example, send alert when provisioning has failed for greater than or equal to 6 Cloud PCs.
         Args:
             value: Value to set for the threshold property.
         """

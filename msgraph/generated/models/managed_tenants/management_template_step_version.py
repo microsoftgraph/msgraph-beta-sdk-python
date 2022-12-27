@@ -10,7 +10,7 @@ management_template_step_deployment = lazy_import('msgraph.generated.models.mana
 
 class ManagementTemplateStepVersion(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def accepted_for(self,) -> Optional[management_template_step.ManagementTemplateStep]:

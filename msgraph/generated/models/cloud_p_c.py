@@ -19,7 +19,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class CloudPC(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def aad_device_id(self,) -> Optional[str]:

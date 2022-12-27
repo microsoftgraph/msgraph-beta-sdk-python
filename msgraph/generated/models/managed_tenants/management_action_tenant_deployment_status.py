@@ -8,7 +8,7 @@ management_action_deployment_status = lazy_import('msgraph.generated.models.mana
 
 class ManagementActionTenantDeploymentStatus(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     def __init__(self,) -> None:
         """

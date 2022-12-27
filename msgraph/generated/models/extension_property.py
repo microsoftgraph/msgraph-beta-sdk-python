@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 directory_object = lazy_import('msgraph.generated.models.directory_object')
 
 class ExtensionProperty(directory_object.DirectoryObject):
-    """
-    Casts the previous resource to application.
-    """
     @property
     def app_display_name(self,) -> Optional[str]:
         """
@@ -28,7 +25,7 @@ class ExtensionProperty(directory_object.DirectoryObject):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new extensionProperty and sets the default values.
+        Instantiates a new ExtensionProperty and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.extensionProperty"

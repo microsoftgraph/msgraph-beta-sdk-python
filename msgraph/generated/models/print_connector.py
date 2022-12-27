@@ -10,7 +10,7 @@ printer_location = lazy_import('msgraph.generated.models.printer_location')
 
 class PrintConnector(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def app_version(self,) -> Optional[str]:

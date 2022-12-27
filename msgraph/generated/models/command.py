@@ -9,7 +9,7 @@ payload_response = lazy_import('msgraph.generated.models.payload_response')
 
 class Command(entity.Entity):
     """
-    Casts the previous resource to device.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def app_service_name(self,) -> Optional[str]:

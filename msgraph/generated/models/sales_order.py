@@ -13,7 +13,7 @@ sales_order_line = lazy_import('msgraph.generated.models.sales_order_line')
 
 class SalesOrder(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def billing_postal_address(self,) -> Optional[postal_address_type.PostalAddressType]:

@@ -9,7 +9,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class ManagedAllDeviceCertificateState(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def certificate_expiration_date_time(self,) -> Optional[datetime]:

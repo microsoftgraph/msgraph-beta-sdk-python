@@ -14,7 +14,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class DelegatedAdminRelationship(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def access_assignments(self,) -> Optional[List[delegated_admin_access_assignment.DelegatedAdminAccessAssignment]]:

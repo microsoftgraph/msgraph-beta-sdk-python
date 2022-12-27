@@ -9,7 +9,7 @@ governance_policy_template = lazy_import('msgraph.generated.models.governance_po
 
 class ApprovalWorkflowProvider(entity.Entity):
     """
-    Provides operations to manage the collection of approvalWorkflowProvider entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def business_flows(self,) -> Optional[List[business_flow.BusinessFlow]]:

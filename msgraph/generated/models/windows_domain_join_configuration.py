@@ -59,7 +59,7 @@ class WindowsDomainJoinConfiguration(device_configuration.DeviceConfiguration):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new WindowsDomainJoinConfiguration and sets the default values.
+        Instantiates a new windowsDomainJoinConfiguration and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.windowsDomainJoinConfiguration"

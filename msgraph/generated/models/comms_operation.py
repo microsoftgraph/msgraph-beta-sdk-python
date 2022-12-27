@@ -9,7 +9,7 @@ result_info = lazy_import('msgraph.generated.models.result_info')
 
 class CommsOperation(entity.Entity):
     """
-    Provides operations to manage the commsApplication singleton.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def client_context(self,) -> Optional[str]:

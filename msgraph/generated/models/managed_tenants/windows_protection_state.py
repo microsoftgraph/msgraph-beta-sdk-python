@@ -8,7 +8,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class WindowsProtectionState(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def anti_malware_version(self,) -> Optional[str]:

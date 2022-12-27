@@ -8,7 +8,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class PrintUsage(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def black_and_white_page_count(self,) -> Optional[int]:

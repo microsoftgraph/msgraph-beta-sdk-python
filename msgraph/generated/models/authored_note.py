@@ -9,9 +9,6 @@ identity = lazy_import('msgraph.generated.models.identity')
 item_body = lazy_import('msgraph.generated.models.item_body')
 
 class AuthoredNote(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def author(self,) -> Optional[identity.Identity]:
         """
@@ -31,7 +28,7 @@ class AuthoredNote(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new authoredNote and sets the default values.
+        Instantiates a new AuthoredNote and sets the default values.
         """
         super().__init__()
         # Identity information about the note's author.

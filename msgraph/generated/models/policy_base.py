@@ -7,7 +7,7 @@ directory_object = lazy_import('msgraph.generated.models.directory_object')
 
 class PolicyBase(directory_object.DirectoryObject):
     """
-    Casts the previous resource to application.
+    Provides operations to manage the collection of accessReview entities.
     """
     def __init__(self,) -> None:
         """

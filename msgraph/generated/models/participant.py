@@ -10,7 +10,7 @@ recording_info = lazy_import('msgraph.generated.models.recording_info')
 
 class Participant(entity.Entity):
     """
-    Provides operations to manage the commsApplication singleton.
+    Provides operations to manage the collection of accessReview entities.
     """
     def __init__(self,) -> None:
         """

@@ -8,7 +8,7 @@ service_plan_info = lazy_import('msgraph.generated.models.service_plan_info')
 
 class LicenseDetails(entity.Entity):
     """
-    Casts the previous resource to servicePrincipal.
+    Provides operations to manage the collection of accessReview entities.
     """
     def __init__(self,) -> None:
         """

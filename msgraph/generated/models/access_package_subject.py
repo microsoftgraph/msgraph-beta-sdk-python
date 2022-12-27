@@ -8,9 +8,6 @@ connected_organization = lazy_import('msgraph.generated.models.connected_organiz
 entity = lazy_import('msgraph.generated.models.entity')
 
 class AccessPackageSubject(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def alt_sec_id(self,) -> Optional[str]:
         """

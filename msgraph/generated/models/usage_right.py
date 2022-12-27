@@ -8,7 +8,7 @@ usage_right_state = lazy_import('msgraph.generated.models.usage_right_state')
 
 class UsageRight(entity.Entity):
     """
-    Casts the previous resource to device.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def catalog_id(self,) -> Optional[str]:
