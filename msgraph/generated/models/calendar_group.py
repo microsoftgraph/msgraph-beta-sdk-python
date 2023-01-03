@@ -7,9 +7,6 @@ calendar = lazy_import('msgraph.generated.models.calendar')
 entity = lazy_import('msgraph.generated.models.entity')
 
 class CalendarGroup(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReviewDecision entities.
-    """
     @property
     def calendars(self,) -> Optional[List[calendar.Calendar]]:
         """
@@ -63,7 +60,7 @@ class CalendarGroup(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new calendarGroup and sets the default values.
+        Instantiates a new CalendarGroup and sets the default values.
         """
         super().__init__()
         # The calendars in the calendar group. Navigation property. Read-only. Nullable.

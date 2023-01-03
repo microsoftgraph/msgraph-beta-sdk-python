@@ -27,7 +27,7 @@ class UserAnalytics(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new userAnalytics and sets the default values.
+        Instantiates a new UserAnalytics and sets the default values.
         """
         super().__init__()
         # The collection of work activities that a user spent time on during and outside of working hours. Read-only. Nullable.

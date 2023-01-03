@@ -13,7 +13,7 @@ retention_event_type = lazy_import('msgraph.generated.models.security.retention_
 
 class RetentionEvent(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     def __init__(self,) -> None:
         """

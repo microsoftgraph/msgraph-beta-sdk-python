@@ -15,7 +15,7 @@ planner_task = lazy_import('msgraph.generated.models.planner_task')
 
 class PlannerPlan(planner_delta.PlannerDelta):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def buckets(self,) -> Optional[List[planner_bucket.PlannerBucket]]:
@@ -41,7 +41,7 @@ class PlannerPlan(planner_delta.PlannerDelta):
         super().__init__()
         # Collection of buckets in the plan. Read-only. Nullable.
         self._buckets: Optional[List[planner_bucket.PlannerBucket]] = None
-        # Identifies the container of the plan. After it is set, this property can’t be updated. Required.
+        # Identifies the container of the plan. Specify only the url, the containerId and type, or all properties. After it is set, this property can’t be updated. Required.
         self._container: Optional[planner_plan_container.PlannerPlanContainer] = None
         # Read-only. Additional user experiences in which this plan is used, represented as plannerPlanContext entries.
         self._contexts: Optional[planner_plan_context_collection.PlannerPlanContextCollection] = None
@@ -65,7 +65,7 @@ class PlannerPlan(planner_delta.PlannerDelta):
     @property
     def container(self,) -> Optional[planner_plan_container.PlannerPlanContainer]:
         """
-        Gets the container property value. Identifies the container of the plan. After it is set, this property can’t be updated. Required.
+        Gets the container property value. Identifies the container of the plan. Specify only the url, the containerId and type, or all properties. After it is set, this property can’t be updated. Required.
         Returns: Optional[planner_plan_container.PlannerPlanContainer]
         """
         return self._container
@@ -73,7 +73,7 @@ class PlannerPlan(planner_delta.PlannerDelta):
     @container.setter
     def container(self,value: Optional[planner_plan_container.PlannerPlanContainer] = None) -> None:
         """
-        Sets the container property value. Identifies the container of the plan. After it is set, this property can’t be updated. Required.
+        Sets the container property value. Identifies the container of the plan. Specify only the url, the containerId and type, or all properties. After it is set, this property can’t be updated. Required.
         Args:
             value: Value to set for the container property.
         """

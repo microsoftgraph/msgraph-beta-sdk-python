@@ -18,9 +18,6 @@ cloud_pc_user_account_type = lazy_import('msgraph.generated.models.cloud_pc_user
 entity = lazy_import('msgraph.generated.models.entity')
 
 class CloudPC(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReviewDecision entities.
-    """
     @property
     def aad_device_id(self,) -> Optional[str]:
         """
@@ -57,7 +54,7 @@ class CloudPC(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new cloudPC and sets the default values.
+        Instantiates a new CloudPC and sets the default values.
         """
         super().__init__()
         # The Azure Active Directory (Azure AD) device ID of the Cloud PC.

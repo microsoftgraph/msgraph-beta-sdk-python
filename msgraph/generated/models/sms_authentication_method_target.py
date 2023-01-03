@@ -11,7 +11,7 @@ class SmsAuthenticationMethodTarget(authentication_method_target.AuthenticationM
         Instantiates a new SmsAuthenticationMethodTarget and sets the default values.
         """
         super().__init__()
-        # Determines if the users or groups can use this authentication method to sign in to Azure AD. The value is always true.
+        # Determines if users can use this authentication method to sign in to Azure AD. true if users can use this method for primary authentication, otherwise false.
         self._is_usable_for_sign_in: Optional[bool] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
@@ -43,7 +43,7 @@ class SmsAuthenticationMethodTarget(authentication_method_target.AuthenticationM
     @property
     def is_usable_for_sign_in(self,) -> Optional[bool]:
         """
-        Gets the isUsableForSignIn property value. Determines if the users or groups can use this authentication method to sign in to Azure AD. The value is always true.
+        Gets the isUsableForSignIn property value. Determines if users can use this authentication method to sign in to Azure AD. true if users can use this method for primary authentication, otherwise false.
         Returns: Optional[bool]
         """
         return self._is_usable_for_sign_in
@@ -51,7 +51,7 @@ class SmsAuthenticationMethodTarget(authentication_method_target.AuthenticationM
     @is_usable_for_sign_in.setter
     def is_usable_for_sign_in(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isUsableForSignIn property value. Determines if the users or groups can use this authentication method to sign in to Azure AD. The value is always true.
+        Sets the isUsableForSignIn property value. Determines if users can use this authentication method to sign in to Azure AD. true if users can use this method for primary authentication, otherwise false.
         Args:
             value: Value to set for the isUsableForSignIn property.
         """

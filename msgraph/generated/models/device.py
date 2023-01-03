@@ -12,9 +12,6 @@ on_premises_extension_attributes = lazy_import('msgraph.generated.models.on_prem
 usage_right = lazy_import('msgraph.generated.models.usage_right')
 
 class Device(directory_object.DirectoryObject):
-    """
-    Casts the previous resource to device.
-    """
     @property
     def account_enabled(self,) -> Optional[bool]:
         """
@@ -102,7 +99,7 @@ class Device(directory_object.DirectoryObject):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new device and sets the default values.
+        Instantiates a new Device and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.device"

@@ -9,6 +9,9 @@ data_source_container_status = lazy_import('msgraph.generated.models.security.da
 data_source_hold_status = lazy_import('msgraph.generated.models.security.data_source_hold_status')
 
 class DataSourceContainer(entity.Entity):
+    """
+    Provides operations to manage the collection of activityStatistics entities.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new dataSourceContainer and sets the default values.

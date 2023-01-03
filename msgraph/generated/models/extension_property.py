@@ -7,7 +7,7 @@ directory_object = lazy_import('msgraph.generated.models.directory_object')
 
 class ExtensionProperty(directory_object.DirectoryObject):
     """
-    Casts the previous resource to application.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def app_display_name(self,) -> Optional[str]:

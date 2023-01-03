@@ -9,7 +9,7 @@ planner_task = lazy_import('msgraph.generated.models.planner_task')
 
 class PlannerBucket(planner_delta.PlannerDelta):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     def __init__(self,) -> None:
         """

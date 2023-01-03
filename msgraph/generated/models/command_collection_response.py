@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 command = lazy_import('msgraph.generated.models.command')
 
 class CommandCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the collection of command entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new CommandCollectionResponse and sets the default values.

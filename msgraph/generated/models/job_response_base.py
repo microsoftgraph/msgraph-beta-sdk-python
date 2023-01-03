@@ -8,12 +8,9 @@ classification_error = lazy_import('msgraph.generated.models.classification_erro
 entity = lazy_import('msgraph.generated.models.entity')
 
 class JobResponseBase(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new jobResponseBase and sets the default values.
+        Instantiates a new JobResponseBase and sets the default values.
         """
         super().__init__()
         # The creationDateTime property

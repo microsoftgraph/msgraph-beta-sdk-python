@@ -9,7 +9,7 @@ on_premises_directory_synchronization_feature = lazy_import('msgraph.generated.m
 
 class OnPremisesDirectorySynchronization(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def configuration(self,) -> Optional[on_premises_directory_synchronization_configuration.OnPremisesDirectorySynchronizationConfiguration]:

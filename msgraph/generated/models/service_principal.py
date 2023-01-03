@@ -29,9 +29,6 @@ token_lifetime_policy = lazy_import('msgraph.generated.models.token_lifetime_pol
 verified_publisher = lazy_import('msgraph.generated.models.verified_publisher')
 
 class ServicePrincipal(directory_object.DirectoryObject):
-    """
-    Casts the previous resource to servicePrincipal.
-    """
     @property
     def account_enabled(self,) -> Optional[bool]:
         """
@@ -272,7 +269,7 @@ class ServicePrincipal(directory_object.DirectoryObject):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new servicePrincipal and sets the default values.
+        Instantiates a new ServicePrincipal and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.servicePrincipal"

@@ -9,7 +9,7 @@ class EducationTeamsAppResource(education_resource.EducationResource):
     @property
     def app_icon_web_url(self,) -> Optional[str]:
         """
-        Gets the appIconWebUrl property value. URL that points to the app's icon.
+        Gets the appIconWebUrl property value. URL that points to the icon of the app.
         Returns: Optional[str]
         """
         return self._app_icon_web_url
@@ -17,7 +17,7 @@ class EducationTeamsAppResource(education_resource.EducationResource):
     @app_icon_web_url.setter
     def app_icon_web_url(self,value: Optional[str] = None) -> None:
         """
-        Sets the appIconWebUrl property value. URL that points to the app's icon.
+        Sets the appIconWebUrl property value. URL that points to the icon of the app.
         Args:
             value: Value to set for the appIconWebUrl property.
         """
@@ -26,7 +26,7 @@ class EducationTeamsAppResource(education_resource.EducationResource):
     @property
     def app_id(self,) -> Optional[str]:
         """
-        Gets the appId property value. Teams App ID of the application.
+        Gets the appId property value. Teams app ID of the application.
         Returns: Optional[str]
         """
         return self._app_id
@@ -34,7 +34,7 @@ class EducationTeamsAppResource(education_resource.EducationResource):
     @app_id.setter
     def app_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the appId property value. Teams App ID of the application.
+        Sets the appId property value. Teams app ID of the application.
         Args:
             value: Value to set for the appId property.
         """
@@ -46,9 +46,9 @@ class EducationTeamsAppResource(education_resource.EducationResource):
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.educationTeamsAppResource"
-        # URL that points to the app's icon.
+        # URL that points to the icon of the app.
         self._app_icon_web_url: Optional[str] = None
-        # Teams App ID of the application.
+        # Teams app ID of the application.
         self._app_id: Optional[str] = None
         # URL for the app resource that will be opened by Teams.
         self._teams_embedded_content_url: Optional[str] = None

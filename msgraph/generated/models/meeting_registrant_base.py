@@ -7,7 +7,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class MeetingRegistrantBase(entity.Entity):
     """
-    Provides operations to manage the commsApplication singleton.
+    Provides operations to manage the collection of accessReview entities.
     """
     def __init__(self,) -> None:
         """

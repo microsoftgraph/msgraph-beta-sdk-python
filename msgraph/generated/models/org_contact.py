@@ -10,9 +10,6 @@ phone = lazy_import('msgraph.generated.models.phone')
 physical_office_address = lazy_import('msgraph.generated.models.physical_office_address')
 
 class OrgContact(directory_object.DirectoryObject):
-    """
-    Casts the previous resource to orgContact.
-    """
     @property
     def addresses(self,) -> Optional[List[physical_office_address.PhysicalOfficeAddress]]:
         """
@@ -49,7 +46,7 @@ class OrgContact(directory_object.DirectoryObject):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new orgContact and sets the default values.
+        Instantiates a new OrgContact and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.orgContact"

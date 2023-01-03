@@ -7,9 +7,6 @@ device_management_configuration_setting_instance = lazy_import('msgraph.generate
 device_management_configuration_setting_value = lazy_import('msgraph.generated.models.device_management_configuration_setting_value')
 
 class DeviceManagementConfigurationGroupSettingValue(device_management_configuration_setting_value.DeviceManagementConfigurationSettingValue):
-    """
-    Value of the GroupSetting
-    """
     @property
     def children(self,) -> Optional[List[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance]]:
         """
@@ -29,7 +26,7 @@ class DeviceManagementConfigurationGroupSettingValue(device_management_configura
     
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceManagementConfigurationGroupSettingValue and sets the default values.
+        Instantiates a new DeviceManagementConfigurationGroupSettingValue and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.deviceManagementConfigurationGroupSettingValue"

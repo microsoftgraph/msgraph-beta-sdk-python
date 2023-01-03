@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 directory_setting_template = lazy_import('msgraph.generated.models.directory_setting_template')
 
 class DirectorySettingTemplateCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the collection of directorySettingTemplate entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new DirectorySettingTemplateCollectionResponse and sets the default values.

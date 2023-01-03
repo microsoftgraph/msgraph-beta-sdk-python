@@ -11,9 +11,6 @@ case_action = lazy_import('msgraph.generated.models.security.case_action')
 case_operation_status = lazy_import('msgraph.generated.models.security.case_operation_status')
 
 class CaseOperation(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def action(self,) -> Optional[case_action.CaseAction]:
         """

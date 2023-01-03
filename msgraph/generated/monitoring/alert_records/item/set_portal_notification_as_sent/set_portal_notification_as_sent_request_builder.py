@@ -36,7 +36,7 @@ class SetPortalNotificationAsSentRequestBuilder():
     
     def create_post_request_information(self,request_configuration: Optional[SetPortalNotificationAsSentRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Set a single portal notification status to published by modifying the **isPortalNotificationSent** property to `true` for the user specified in the request.
+        Set the status of the specified notification on the Microsoft EndPoint Manager admin center as sent, by modifying the **isPortalNotificationSent** property to `true`.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -52,7 +52,7 @@ class SetPortalNotificationAsSentRequestBuilder():
     
     async def post(self,request_configuration: Optional[SetPortalNotificationAsSentRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
-        Set a single portal notification status to published by modifying the **isPortalNotificationSent** property to `true` for the user specified in the request.
+        Set the status of the specified notification on the Microsoft EndPoint Manager admin center as sent, by modifying the **isPortalNotificationSent** property to `true`.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service

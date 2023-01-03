@@ -12,7 +12,7 @@ printer_status = lazy_import('msgraph.generated.models.printer_status')
 
 class PrinterBase(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def capabilities(self,) -> Optional[printer_capabilities.PrinterCapabilities]:

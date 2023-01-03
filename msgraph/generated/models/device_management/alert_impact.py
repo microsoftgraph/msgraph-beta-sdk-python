@@ -51,7 +51,7 @@ class AlertImpact(AdditionalDataHolder, Parsable):
         self._aggregation_type: Optional[aggregation_type.AggregationType] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The number value of the impact.
+        # The number value of the impact. For the aggregation types of count and affectedCloudPcCount, the value indicates the number of affected instances. For example, 6 affectedCloudPcCount means that 6 Cloud PCs are affected. For the aggregation types of percentage and affectedCloudPcPercentage, the value indicates the percent of affected instances. For example, 12 affectedCloudPcPercentage means that 12% of Cloud PCs are affected.
         self._value: Optional[int] = None
     
     @staticmethod
@@ -111,7 +111,7 @@ class AlertImpact(AdditionalDataHolder, Parsable):
     @property
     def value(self,) -> Optional[int]:
         """
-        Gets the value property value. The number value of the impact.
+        Gets the value property value. The number value of the impact. For the aggregation types of count and affectedCloudPcCount, the value indicates the number of affected instances. For example, 6 affectedCloudPcCount means that 6 Cloud PCs are affected. For the aggregation types of percentage and affectedCloudPcPercentage, the value indicates the percent of affected instances. For example, 12 affectedCloudPcPercentage means that 12% of Cloud PCs are affected.
         Returns: Optional[int]
         """
         return self._value
@@ -119,7 +119,7 @@ class AlertImpact(AdditionalDataHolder, Parsable):
     @value.setter
     def value(self,value: Optional[int] = None) -> None:
         """
-        Sets the value property value. The number value of the impact.
+        Sets the value property value. The number value of the impact. For the aggregation types of count and affectedCloudPcCount, the value indicates the number of affected instances. For example, 6 affectedCloudPcCount means that 6 Cloud PCs are affected. For the aggregation types of percentage and affectedCloudPcPercentage, the value indicates the percent of affected instances. For example, 12 affectedCloudPcPercentage means that 12% of Cloud PCs are affected.
         Args:
             value: Value to set for the value property.
         """
