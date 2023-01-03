@@ -15,7 +15,7 @@ web_part = lazy_import('msgraph.generated.models.web_part')
 
 class SitePage(base_item.BaseItem):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the admin singleton.
     """
     @property
     def canvas_layout(self,) -> Optional[canvas_layout.CanvasLayout]:

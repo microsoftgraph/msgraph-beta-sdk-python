@@ -193,12 +193,12 @@ class GovernanceResourceItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, governance_resource.GovernanceResource, response_handler, error_mapping)
     
-    def role_assignment_requests_by_id(self,id: str) -> governance_role_assignment_request_item_request_builder.GovernanceRoleAssignmentRequestItemRequestBuilder:
+    def role_assignment_requests_by_id(self,id: str) -> Optional[governance_role_assignment_request_item_request_builder.GovernanceRoleAssignmentRequestItemRequestBuilder]:
         """
         Provides operations to manage the roleAssignmentRequests property of the microsoft.graph.governanceResource entity.
         Args:
             id: Unique identifier of the item
-        Returns: governance_role_assignment_request_item_request_builder.GovernanceRoleAssignmentRequestItemRequestBuilder
+        Returns: Optional[governance_role_assignment_request_item_request_builder.GovernanceRoleAssignmentRequestItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -206,12 +206,12 @@ class GovernanceResourceItemRequestBuilder():
         url_tpl_params["governanceRoleAssignmentRequest%2Did"] = id
         return governance_role_assignment_request_item_request_builder.GovernanceRoleAssignmentRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def role_assignments_by_id(self,id: str) -> governance_role_assignment_item_request_builder.GovernanceRoleAssignmentItemRequestBuilder:
+    def role_assignments_by_id(self,id: str) -> Optional[governance_role_assignment_item_request_builder.GovernanceRoleAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the roleAssignments property of the microsoft.graph.governanceResource entity.
         Args:
             id: Unique identifier of the item
-        Returns: governance_role_assignment_item_request_builder.GovernanceRoleAssignmentItemRequestBuilder
+        Returns: Optional[governance_role_assignment_item_request_builder.GovernanceRoleAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -219,12 +219,12 @@ class GovernanceResourceItemRequestBuilder():
         url_tpl_params["governanceRoleAssignment%2Did"] = id
         return governance_role_assignment_item_request_builder.GovernanceRoleAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def role_definitions_by_id(self,id: str) -> governance_role_definition_item_request_builder.GovernanceRoleDefinitionItemRequestBuilder:
+    def role_definitions_by_id(self,id: str) -> Optional[governance_role_definition_item_request_builder.GovernanceRoleDefinitionItemRequestBuilder]:
         """
         Provides operations to manage the roleDefinitions property of the microsoft.graph.governanceResource entity.
         Args:
             id: Unique identifier of the item
-        Returns: governance_role_definition_item_request_builder.GovernanceRoleDefinitionItemRequestBuilder
+        Returns: Optional[governance_role_definition_item_request_builder.GovernanceRoleDefinitionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -232,12 +232,12 @@ class GovernanceResourceItemRequestBuilder():
         url_tpl_params["governanceRoleDefinition%2Did"] = id
         return governance_role_definition_item_request_builder.GovernanceRoleDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def role_settings_by_id(self,id: str) -> governance_role_setting_item_request_builder.GovernanceRoleSettingItemRequestBuilder:
+    def role_settings_by_id(self,id: str) -> Optional[governance_role_setting_item_request_builder.GovernanceRoleSettingItemRequestBuilder]:
         """
         Provides operations to manage the roleSettings property of the microsoft.graph.governanceResource entity.
         Args:
             id: Unique identifier of the item
-        Returns: governance_role_setting_item_request_builder.GovernanceRoleSettingItemRequestBuilder
+        Returns: Optional[governance_role_setting_item_request_builder.GovernanceRoleSettingItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

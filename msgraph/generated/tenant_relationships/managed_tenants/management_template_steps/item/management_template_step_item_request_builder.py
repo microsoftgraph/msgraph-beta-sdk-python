@@ -174,12 +174,12 @@ class ManagementTemplateStepItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, management_template_step.ManagementTemplateStep, response_handler, error_mapping)
     
-    def versions_by_id(self,id: str) -> management_template_step_version_item_request_builder.ManagementTemplateStepVersionItemRequestBuilder:
+    def versions_by_id(self,id: str) -> Optional[management_template_step_version_item_request_builder.ManagementTemplateStepVersionItemRequestBuilder]:
         """
         Provides operations to manage the versions property of the microsoft.graph.managedTenants.managementTemplateStep entity.
         Args:
             id: Unique identifier of the item
-        Returns: management_template_step_version_item_request_builder.ManagementTemplateStepVersionItemRequestBuilder
+        Returns: Optional[management_template_step_version_item_request_builder.ManagementTemplateStepVersionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

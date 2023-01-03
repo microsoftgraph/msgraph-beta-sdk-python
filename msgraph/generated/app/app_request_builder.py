@@ -35,12 +35,12 @@ class AppRequestBuilder():
         """
         return online_meetings_request_builder.OnlineMeetingsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def calls_by_id(self,id: str) -> call_item_request_builder.CallItemRequestBuilder:
+    def calls_by_id(self,id: str) -> Optional[call_item_request_builder.CallItemRequestBuilder]:
         """
         Provides operations to manage the calls property of the microsoft.graph.commsApplication entity.
         Args:
             id: Unique identifier of the item
-        Returns: call_item_request_builder.CallItemRequestBuilder
+        Returns: Optional[call_item_request_builder.CallItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -124,12 +124,12 @@ class AppRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, comms_application.CommsApplication, response_handler, error_mapping)
     
-    def online_meetings_by_id(self,id: str) -> online_meeting_item_request_builder.OnlineMeetingItemRequestBuilder:
+    def online_meetings_by_id(self,id: str) -> Optional[online_meeting_item_request_builder.OnlineMeetingItemRequestBuilder]:
         """
         Provides operations to manage the onlineMeetings property of the microsoft.graph.commsApplication entity.
         Args:
             id: Unique identifier of the item
-        Returns: online_meeting_item_request_builder.OnlineMeetingItemRequestBuilder
+        Returns: Optional[online_meeting_item_request_builder.OnlineMeetingItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

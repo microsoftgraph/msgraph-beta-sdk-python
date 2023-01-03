@@ -14,9 +14,6 @@ access_review_stage = lazy_import('msgraph.generated.models.access_review_stage'
 entity = lazy_import('msgraph.generated.models.entity')
 
 class AccessReviewInstance(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReviewDecision entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new accessReviewInstance and sets the default values.

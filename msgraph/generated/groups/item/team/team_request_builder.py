@@ -186,12 +186,12 @@ class TeamRequestBuilder():
         """
         return unarchive_request_builder.UnarchiveRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def all_channels_by_id(self,id: str) -> channel_item_request_builder.ChannelItemRequestBuilder:
+    def all_channels_by_id(self,id: str) -> Optional[channel_item_request_builder.ChannelItemRequestBuilder]:
         """
         Provides operations to manage the allChannels property of the microsoft.graph.team entity.
         Args:
             id: Unique identifier of the item
-        Returns: channel_item_request_builder.ChannelItemRequestBuilder
+        Returns: Optional[channel_item_request_builder.ChannelItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -199,12 +199,12 @@ class TeamRequestBuilder():
         url_tpl_params["channel%2Did"] = id
         return channel_item_request_builder.ChannelItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def channels_by_id(self,id: str) -> channel_item_request_builder.ChannelItemRequestBuilder:
+    def channels_by_id(self,id: str) -> Optional[channel_item_request_builder.ChannelItemRequestBuilder]:
         """
         Provides operations to manage the channels property of the microsoft.graph.team entity.
         Args:
             id: Unique identifier of the item
-        Returns: channel_item_request_builder.ChannelItemRequestBuilder
+        Returns: Optional[channel_item_request_builder.ChannelItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -322,12 +322,12 @@ class TeamRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, team.Team, response_handler, error_mapping)
     
-    def incoming_channels_by_id(self,id: str) -> channel_item_request_builder.ChannelItemRequestBuilder:
+    def incoming_channels_by_id(self,id: str) -> Optional[channel_item_request_builder.ChannelItemRequestBuilder]:
         """
         Provides operations to manage the incomingChannels property of the microsoft.graph.team entity.
         Args:
             id: Unique identifier of the item
-        Returns: channel_item_request_builder.ChannelItemRequestBuilder
+        Returns: Optional[channel_item_request_builder.ChannelItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -335,12 +335,12 @@ class TeamRequestBuilder():
         url_tpl_params["channel%2Did"] = id
         return channel_item_request_builder.ChannelItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def installed_apps_by_id(self,id: str) -> teams_app_installation_item_request_builder.TeamsAppInstallationItemRequestBuilder:
+    def installed_apps_by_id(self,id: str) -> Optional[teams_app_installation_item_request_builder.TeamsAppInstallationItemRequestBuilder]:
         """
         Provides operations to manage the installedApps property of the microsoft.graph.team entity.
         Args:
             id: Unique identifier of the item
-        Returns: teams_app_installation_item_request_builder.TeamsAppInstallationItemRequestBuilder
+        Returns: Optional[teams_app_installation_item_request_builder.TeamsAppInstallationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -348,12 +348,12 @@ class TeamRequestBuilder():
         url_tpl_params["teamsAppInstallation%2Did"] = id
         return teams_app_installation_item_request_builder.TeamsAppInstallationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def members_by_id(self,id: str) -> conversation_member_item_request_builder.ConversationMemberItemRequestBuilder:
+    def members_by_id(self,id: str) -> Optional[conversation_member_item_request_builder.ConversationMemberItemRequestBuilder]:
         """
         Provides operations to manage the members property of the microsoft.graph.team entity.
         Args:
             id: Unique identifier of the item
-        Returns: conversation_member_item_request_builder.ConversationMemberItemRequestBuilder
+        Returns: Optional[conversation_member_item_request_builder.ConversationMemberItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -361,12 +361,12 @@ class TeamRequestBuilder():
         url_tpl_params["conversationMember%2Did"] = id
         return conversation_member_item_request_builder.ConversationMemberItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def operations_by_id(self,id: str) -> teams_async_operation_item_request_builder.TeamsAsyncOperationItemRequestBuilder:
+    def operations_by_id(self,id: str) -> Optional[teams_async_operation_item_request_builder.TeamsAsyncOperationItemRequestBuilder]:
         """
         Provides operations to manage the operations property of the microsoft.graph.team entity.
         Args:
             id: Unique identifier of the item
-        Returns: teams_async_operation_item_request_builder.TeamsAsyncOperationItemRequestBuilder
+        Returns: Optional[teams_async_operation_item_request_builder.TeamsAsyncOperationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -374,12 +374,12 @@ class TeamRequestBuilder():
         url_tpl_params["teamsAsyncOperation%2Did"] = id
         return teams_async_operation_item_request_builder.TeamsAsyncOperationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def owners_by_id(self,id: str) -> user_item_request_builder.UserItemRequestBuilder:
+    def owners_by_id(self,id: str) -> Optional[user_item_request_builder.UserItemRequestBuilder]:
         """
         Provides operations to manage the owners property of the microsoft.graph.team entity.
         Args:
             id: Unique identifier of the item
-        Returns: user_item_request_builder.UserItemRequestBuilder
+        Returns: Optional[user_item_request_builder.UserItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -409,12 +409,12 @@ class TeamRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, team.Team, response_handler, error_mapping)
     
-    def permission_grants_by_id(self,id: str) -> resource_specific_permission_grant_item_request_builder.ResourceSpecificPermissionGrantItemRequestBuilder:
+    def permission_grants_by_id(self,id: str) -> Optional[resource_specific_permission_grant_item_request_builder.ResourceSpecificPermissionGrantItemRequestBuilder]:
         """
         Provides operations to manage the permissionGrants property of the microsoft.graph.team entity.
         Args:
             id: Unique identifier of the item
-        Returns: resource_specific_permission_grant_item_request_builder.ResourceSpecificPermissionGrantItemRequestBuilder
+        Returns: Optional[resource_specific_permission_grant_item_request_builder.ResourceSpecificPermissionGrantItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -422,12 +422,12 @@ class TeamRequestBuilder():
         url_tpl_params["resourceSpecificPermissionGrant%2Did"] = id
         return resource_specific_permission_grant_item_request_builder.ResourceSpecificPermissionGrantItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def tags_by_id(self,id: str) -> teamwork_tag_item_request_builder.TeamworkTagItemRequestBuilder:
+    def tags_by_id(self,id: str) -> Optional[teamwork_tag_item_request_builder.TeamworkTagItemRequestBuilder]:
         """
         Provides operations to manage the tags property of the microsoft.graph.team entity.
         Args:
             id: Unique identifier of the item
-        Returns: teamwork_tag_item_request_builder.TeamworkTagItemRequestBuilder
+        Returns: Optional[teamwork_tag_item_request_builder.TeamworkTagItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

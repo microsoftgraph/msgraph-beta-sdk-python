@@ -60,12 +60,12 @@ class ManagedTenantAlertItemRequestBuilder():
         """
         return email_notifications_request_builder.EmailNotificationsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def alert_logs_by_id(self,id: str) -> managed_tenant_alert_log_item_request_builder.ManagedTenantAlertLogItemRequestBuilder:
+    def alert_logs_by_id(self,id: str) -> Optional[managed_tenant_alert_log_item_request_builder.ManagedTenantAlertLogItemRequestBuilder]:
         """
         Provides operations to manage the alertLogs property of the microsoft.graph.managedTenants.managedTenantAlert entity.
         Args:
             id: Unique identifier of the item
-        Returns: managed_tenant_alert_log_item_request_builder.ManagedTenantAlertLogItemRequestBuilder
+        Returns: Optional[managed_tenant_alert_log_item_request_builder.ManagedTenantAlertLogItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -73,12 +73,12 @@ class ManagedTenantAlertItemRequestBuilder():
         url_tpl_params["managedTenantAlertLog%2Did"] = id
         return managed_tenant_alert_log_item_request_builder.ManagedTenantAlertLogItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def api_notifications_by_id(self,id: str) -> managed_tenant_api_notification_item_request_builder.ManagedTenantApiNotificationItemRequestBuilder:
+    def api_notifications_by_id(self,id: str) -> Optional[managed_tenant_api_notification_item_request_builder.ManagedTenantApiNotificationItemRequestBuilder]:
         """
         Provides operations to manage the apiNotifications property of the microsoft.graph.managedTenants.managedTenantAlert entity.
         Args:
             id: Unique identifier of the item
-        Returns: managed_tenant_api_notification_item_request_builder.ManagedTenantApiNotificationItemRequestBuilder
+        Returns: Optional[managed_tenant_api_notification_item_request_builder.ManagedTenantApiNotificationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -177,12 +177,12 @@ class ManagedTenantAlertItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def email_notifications_by_id(self,id: str) -> managed_tenant_email_notification_item_request_builder.ManagedTenantEmailNotificationItemRequestBuilder:
+    def email_notifications_by_id(self,id: str) -> Optional[managed_tenant_email_notification_item_request_builder.ManagedTenantEmailNotificationItemRequestBuilder]:
         """
         Provides operations to manage the emailNotifications property of the microsoft.graph.managedTenants.managedTenantAlert entity.
         Args:
             id: Unique identifier of the item
-        Returns: managed_tenant_email_notification_item_request_builder.ManagedTenantEmailNotificationItemRequestBuilder
+        Returns: Optional[managed_tenant_email_notification_item_request_builder.ManagedTenantEmailNotificationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

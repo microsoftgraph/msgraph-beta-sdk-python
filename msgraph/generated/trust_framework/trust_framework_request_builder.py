@@ -111,12 +111,12 @@ class TrustFrameworkRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, trust_framework.TrustFramework, response_handler, error_mapping)
     
-    def key_sets_by_id(self,id: str) -> trust_framework_key_set_item_request_builder.TrustFrameworkKeySetItemRequestBuilder:
+    def key_sets_by_id(self,id: str) -> Optional[trust_framework_key_set_item_request_builder.TrustFrameworkKeySetItemRequestBuilder]:
         """
         Provides operations to manage the keySets property of the microsoft.graph.trustFramework entity.
         Args:
             id: Unique identifier of the item
-        Returns: trust_framework_key_set_item_request_builder.TrustFrameworkKeySetItemRequestBuilder
+        Returns: Optional[trust_framework_key_set_item_request_builder.TrustFrameworkKeySetItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -146,12 +146,12 @@ class TrustFrameworkRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, trust_framework.TrustFramework, response_handler, error_mapping)
     
-    def policies_by_id(self,id: str) -> trust_framework_policy_item_request_builder.TrustFrameworkPolicyItemRequestBuilder:
+    def policies_by_id(self,id: str) -> Optional[trust_framework_policy_item_request_builder.TrustFrameworkPolicyItemRequestBuilder]:
         """
         Provides operations to manage the policies property of the microsoft.graph.trustFramework entity.
         Args:
             id: Unique identifier of the item
-        Returns: trust_framework_policy_item_request_builder.TrustFrameworkPolicyItemRequestBuilder
+        Returns: Optional[trust_framework_policy_item_request_builder.TrustFrameworkPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -126,12 +126,12 @@ class ServicePrincipalCreationPolicyItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def excludes_by_id(self,id: str) -> service_principal_creation_condition_set_item_request_builder.ServicePrincipalCreationConditionSetItemRequestBuilder:
+    def excludes_by_id(self,id: str) -> Optional[service_principal_creation_condition_set_item_request_builder.ServicePrincipalCreationConditionSetItemRequestBuilder]:
         """
         Provides operations to manage the excludes property of the microsoft.graph.servicePrincipalCreationPolicy entity.
         Args:
             id: Unique identifier of the item
-        Returns: service_principal_creation_condition_set_item_request_builder.ServicePrincipalCreationConditionSetItemRequestBuilder
+        Returns: Optional[service_principal_creation_condition_set_item_request_builder.ServicePrincipalCreationConditionSetItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -158,12 +158,12 @@ class ServicePrincipalCreationPolicyItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, service_principal_creation_policy.ServicePrincipalCreationPolicy, response_handler, error_mapping)
     
-    def includes_by_id(self,id: str) -> service_principal_creation_condition_set_item_request_builder.ServicePrincipalCreationConditionSetItemRequestBuilder:
+    def includes_by_id(self,id: str) -> Optional[service_principal_creation_condition_set_item_request_builder.ServicePrincipalCreationConditionSetItemRequestBuilder]:
         """
         Provides operations to manage the includes property of the microsoft.graph.servicePrincipalCreationPolicy entity.
         Args:
             id: Unique identifier of the item
-        Returns: service_principal_creation_condition_set_item_request_builder.ServicePrincipalCreationConditionSetItemRequestBuilder
+        Returns: Optional[service_principal_creation_condition_set_item_request_builder.ServicePrincipalCreationConditionSetItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

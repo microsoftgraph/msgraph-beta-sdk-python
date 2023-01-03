@@ -150,12 +150,12 @@ class VirtualEndpointRequestBuilder():
         """
         return user_settings_request_builder.UserSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def audit_events_by_id(self,id: str) -> cloud_pc_audit_event_item_request_builder.CloudPcAuditEventItemRequestBuilder:
+    def audit_events_by_id(self,id: str) -> Optional[cloud_pc_audit_event_item_request_builder.CloudPcAuditEventItemRequestBuilder]:
         """
         Provides operations to manage the auditEvents property of the microsoft.graph.virtualEndpoint entity.
         Args:
             id: Unique identifier of the item
-        Returns: cloud_pc_audit_event_item_request_builder.CloudPcAuditEventItemRequestBuilder
+        Returns: Optional[cloud_pc_audit_event_item_request_builder.CloudPcAuditEventItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -163,12 +163,12 @@ class VirtualEndpointRequestBuilder():
         url_tpl_params["cloudPcAuditEvent%2Did"] = id
         return cloud_pc_audit_event_item_request_builder.CloudPcAuditEventItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def cloud_p_cs_by_id(self,id: str) -> cloud_p_c_item_request_builder.CloudPCItemRequestBuilder:
+    def cloud_p_cs_by_id(self,id: str) -> Optional[cloud_p_c_item_request_builder.CloudPCItemRequestBuilder]:
         """
         Provides operations to manage the cloudPCs property of the microsoft.graph.virtualEndpoint entity.
         Args:
             id: Unique identifier of the item
-        Returns: cloud_p_c_item_request_builder.CloudPCItemRequestBuilder
+        Returns: Optional[cloud_p_c_item_request_builder.CloudPCItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -267,12 +267,12 @@ class VirtualEndpointRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def device_images_by_id(self,id: str) -> cloud_pc_device_image_item_request_builder.CloudPcDeviceImageItemRequestBuilder:
+    def device_images_by_id(self,id: str) -> Optional[cloud_pc_device_image_item_request_builder.CloudPcDeviceImageItemRequestBuilder]:
         """
         Provides operations to manage the deviceImages property of the microsoft.graph.virtualEndpoint entity.
         Args:
             id: Unique identifier of the item
-        Returns: cloud_pc_device_image_item_request_builder.CloudPcDeviceImageItemRequestBuilder
+        Returns: Optional[cloud_pc_device_image_item_request_builder.CloudPcDeviceImageItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -280,12 +280,12 @@ class VirtualEndpointRequestBuilder():
         url_tpl_params["cloudPcDeviceImage%2Did"] = id
         return cloud_pc_device_image_item_request_builder.CloudPcDeviceImageItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def external_partner_settings_by_id(self,id: str) -> cloud_pc_external_partner_setting_item_request_builder.CloudPcExternalPartnerSettingItemRequestBuilder:
+    def external_partner_settings_by_id(self,id: str) -> Optional[cloud_pc_external_partner_setting_item_request_builder.CloudPcExternalPartnerSettingItemRequestBuilder]:
         """
         Provides operations to manage the externalPartnerSettings property of the microsoft.graph.virtualEndpoint entity.
         Args:
             id: Unique identifier of the item
-        Returns: cloud_pc_external_partner_setting_item_request_builder.CloudPcExternalPartnerSettingItemRequestBuilder
+        Returns: Optional[cloud_pc_external_partner_setting_item_request_builder.CloudPcExternalPartnerSettingItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -293,12 +293,12 @@ class VirtualEndpointRequestBuilder():
         url_tpl_params["cloudPcExternalPartnerSetting%2Did"] = id
         return cloud_pc_external_partner_setting_item_request_builder.CloudPcExternalPartnerSettingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def gallery_images_by_id(self,id: str) -> cloud_pc_gallery_image_item_request_builder.CloudPcGalleryImageItemRequestBuilder:
+    def gallery_images_by_id(self,id: str) -> Optional[cloud_pc_gallery_image_item_request_builder.CloudPcGalleryImageItemRequestBuilder]:
         """
         Provides operations to manage the galleryImages property of the microsoft.graph.virtualEndpoint entity.
         Args:
             id: Unique identifier of the item
-        Returns: cloud_pc_gallery_image_item_request_builder.CloudPcGalleryImageItemRequestBuilder
+        Returns: Optional[cloud_pc_gallery_image_item_request_builder.CloudPcGalleryImageItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -332,12 +332,12 @@ class VirtualEndpointRequestBuilder():
         """
         return get_effective_permissions_request_builder.GetEffectivePermissionsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def on_premises_connections_by_id(self,id: str) -> cloud_pc_on_premises_connection_item_request_builder.CloudPcOnPremisesConnectionItemRequestBuilder:
+    def on_premises_connections_by_id(self,id: str) -> Optional[cloud_pc_on_premises_connection_item_request_builder.CloudPcOnPremisesConnectionItemRequestBuilder]:
         """
         Provides operations to manage the onPremisesConnections property of the microsoft.graph.virtualEndpoint entity.
         Args:
             id: Unique identifier of the item
-        Returns: cloud_pc_on_premises_connection_item_request_builder.CloudPcOnPremisesConnectionItemRequestBuilder
+        Returns: Optional[cloud_pc_on_premises_connection_item_request_builder.CloudPcOnPremisesConnectionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -367,12 +367,12 @@ class VirtualEndpointRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, virtual_endpoint.VirtualEndpoint, response_handler, error_mapping)
     
-    def provisioning_policies_by_id(self,id: str) -> cloud_pc_provisioning_policy_item_request_builder.CloudPcProvisioningPolicyItemRequestBuilder:
+    def provisioning_policies_by_id(self,id: str) -> Optional[cloud_pc_provisioning_policy_item_request_builder.CloudPcProvisioningPolicyItemRequestBuilder]:
         """
         Provides operations to manage the provisioningPolicies property of the microsoft.graph.virtualEndpoint entity.
         Args:
             id: Unique identifier of the item
-        Returns: cloud_pc_provisioning_policy_item_request_builder.CloudPcProvisioningPolicyItemRequestBuilder
+        Returns: Optional[cloud_pc_provisioning_policy_item_request_builder.CloudPcProvisioningPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -380,12 +380,12 @@ class VirtualEndpointRequestBuilder():
         url_tpl_params["cloudPcProvisioningPolicy%2Did"] = id
         return cloud_pc_provisioning_policy_item_request_builder.CloudPcProvisioningPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def service_plans_by_id(self,id: str) -> cloud_pc_service_plan_item_request_builder.CloudPcServicePlanItemRequestBuilder:
+    def service_plans_by_id(self,id: str) -> Optional[cloud_pc_service_plan_item_request_builder.CloudPcServicePlanItemRequestBuilder]:
         """
         Provides operations to manage the servicePlans property of the microsoft.graph.virtualEndpoint entity.
         Args:
             id: Unique identifier of the item
-        Returns: cloud_pc_service_plan_item_request_builder.CloudPcServicePlanItemRequestBuilder
+        Returns: Optional[cloud_pc_service_plan_item_request_builder.CloudPcServicePlanItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -393,12 +393,12 @@ class VirtualEndpointRequestBuilder():
         url_tpl_params["cloudPcServicePlan%2Did"] = id
         return cloud_pc_service_plan_item_request_builder.CloudPcServicePlanItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def shared_use_service_plans_by_id(self,id: str) -> cloud_pc_shared_use_service_plan_item_request_builder.CloudPcSharedUseServicePlanItemRequestBuilder:
+    def shared_use_service_plans_by_id(self,id: str) -> Optional[cloud_pc_shared_use_service_plan_item_request_builder.CloudPcSharedUseServicePlanItemRequestBuilder]:
         """
         Provides operations to manage the sharedUseServicePlans property of the microsoft.graph.virtualEndpoint entity.
         Args:
             id: Unique identifier of the item
-        Returns: cloud_pc_shared_use_service_plan_item_request_builder.CloudPcSharedUseServicePlanItemRequestBuilder
+        Returns: Optional[cloud_pc_shared_use_service_plan_item_request_builder.CloudPcSharedUseServicePlanItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -406,12 +406,12 @@ class VirtualEndpointRequestBuilder():
         url_tpl_params["cloudPcSharedUseServicePlan%2Did"] = id
         return cloud_pc_shared_use_service_plan_item_request_builder.CloudPcSharedUseServicePlanItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def snapshots_by_id(self,id: str) -> cloud_pc_snapshot_item_request_builder.CloudPcSnapshotItemRequestBuilder:
+    def snapshots_by_id(self,id: str) -> Optional[cloud_pc_snapshot_item_request_builder.CloudPcSnapshotItemRequestBuilder]:
         """
         Provides operations to manage the snapshots property of the microsoft.graph.virtualEndpoint entity.
         Args:
             id: Unique identifier of the item
-        Returns: cloud_pc_snapshot_item_request_builder.CloudPcSnapshotItemRequestBuilder
+        Returns: Optional[cloud_pc_snapshot_item_request_builder.CloudPcSnapshotItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -419,12 +419,12 @@ class VirtualEndpointRequestBuilder():
         url_tpl_params["cloudPcSnapshot%2Did"] = id
         return cloud_pc_snapshot_item_request_builder.CloudPcSnapshotItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def supported_regions_by_id(self,id: str) -> cloud_pc_supported_region_item_request_builder.CloudPcSupportedRegionItemRequestBuilder:
+    def supported_regions_by_id(self,id: str) -> Optional[cloud_pc_supported_region_item_request_builder.CloudPcSupportedRegionItemRequestBuilder]:
         """
         Provides operations to manage the supportedRegions property of the microsoft.graph.virtualEndpoint entity.
         Args:
             id: Unique identifier of the item
-        Returns: cloud_pc_supported_region_item_request_builder.CloudPcSupportedRegionItemRequestBuilder
+        Returns: Optional[cloud_pc_supported_region_item_request_builder.CloudPcSupportedRegionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -432,12 +432,12 @@ class VirtualEndpointRequestBuilder():
         url_tpl_params["cloudPcSupportedRegion%2Did"] = id
         return cloud_pc_supported_region_item_request_builder.CloudPcSupportedRegionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def user_settings_by_id(self,id: str) -> cloud_pc_user_setting_item_request_builder.CloudPcUserSettingItemRequestBuilder:
+    def user_settings_by_id(self,id: str) -> Optional[cloud_pc_user_setting_item_request_builder.CloudPcUserSettingItemRequestBuilder]:
         """
         Provides operations to manage the userSettings property of the microsoft.graph.virtualEndpoint entity.
         Args:
             id: Unique identifier of the item
-        Returns: cloud_pc_user_setting_item_request_builder.CloudPcUserSettingItemRequestBuilder
+        Returns: Optional[cloud_pc_user_setting_item_request_builder.CloudPcUserSettingItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

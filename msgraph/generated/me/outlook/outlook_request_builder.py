@@ -111,12 +111,12 @@ class OutlookRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, outlook_user.OutlookUser, response_handler, error_mapping)
     
-    def master_categories_by_id(self,id: str) -> outlook_category_item_request_builder.OutlookCategoryItemRequestBuilder:
+    def master_categories_by_id(self,id: str) -> Optional[outlook_category_item_request_builder.OutlookCategoryItemRequestBuilder]:
         """
         Provides operations to manage the masterCategories property of the microsoft.graph.outlookUser entity.
         Args:
             id: Unique identifier of the item
-        Returns: outlook_category_item_request_builder.OutlookCategoryItemRequestBuilder
+        Returns: Optional[outlook_category_item_request_builder.OutlookCategoryItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -149,12 +149,12 @@ class OutlookRequestBuilder():
             raise Exception("time_zone_standard cannot be undefined")
         return supported_time_zones_with_time_zone_standard_request_builder.SupportedTimeZonesWithTimeZoneStandardRequestBuilder(self.request_adapter, self.path_parameters, TimeZoneStandard)
     
-    def task_folders_by_id(self,id: str) -> outlook_task_folder_item_request_builder.OutlookTaskFolderItemRequestBuilder:
+    def task_folders_by_id(self,id: str) -> Optional[outlook_task_folder_item_request_builder.OutlookTaskFolderItemRequestBuilder]:
         """
         Provides operations to manage the taskFolders property of the microsoft.graph.outlookUser entity.
         Args:
             id: Unique identifier of the item
-        Returns: outlook_task_folder_item_request_builder.OutlookTaskFolderItemRequestBuilder
+        Returns: Optional[outlook_task_folder_item_request_builder.OutlookTaskFolderItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -162,12 +162,12 @@ class OutlookRequestBuilder():
         url_tpl_params["outlookTaskFolder%2Did"] = id
         return outlook_task_folder_item_request_builder.OutlookTaskFolderItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def task_groups_by_id(self,id: str) -> outlook_task_group_item_request_builder.OutlookTaskGroupItemRequestBuilder:
+    def task_groups_by_id(self,id: str) -> Optional[outlook_task_group_item_request_builder.OutlookTaskGroupItemRequestBuilder]:
         """
         Provides operations to manage the taskGroups property of the microsoft.graph.outlookUser entity.
         Args:
             id: Unique identifier of the item
-        Returns: outlook_task_group_item_request_builder.OutlookTaskGroupItemRequestBuilder
+        Returns: Optional[outlook_task_group_item_request_builder.OutlookTaskGroupItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -175,12 +175,12 @@ class OutlookRequestBuilder():
         url_tpl_params["outlookTaskGroup%2Did"] = id
         return outlook_task_group_item_request_builder.OutlookTaskGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def tasks_by_id(self,id: str) -> outlook_task_item_request_builder.OutlookTaskItemRequestBuilder:
+    def tasks_by_id(self,id: str) -> Optional[outlook_task_item_request_builder.OutlookTaskItemRequestBuilder]:
         """
         Provides operations to manage the tasks property of the microsoft.graph.outlookUser entity.
         Args:
             id: Unique identifier of the item
-        Returns: outlook_task_item_request_builder.OutlookTaskItemRequestBuilder
+        Returns: Optional[outlook_task_item_request_builder.OutlookTaskItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -117,12 +117,12 @@ class DeviceManagementScriptUserStateItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def device_run_states_by_id(self,id: str) -> device_management_script_device_state_item_request_builder.DeviceManagementScriptDeviceStateItemRequestBuilder:
+    def device_run_states_by_id(self,id: str) -> Optional[device_management_script_device_state_item_request_builder.DeviceManagementScriptDeviceStateItemRequestBuilder]:
         """
         Provides operations to manage the deviceRunStates property of the microsoft.graph.deviceManagementScriptUserState entity.
         Args:
             id: Unique identifier of the item
-        Returns: device_management_script_device_state_item_request_builder.DeviceManagementScriptDeviceStateItemRequestBuilder
+        Returns: Optional[device_management_script_device_state_item_request_builder.DeviceManagementScriptDeviceStateItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

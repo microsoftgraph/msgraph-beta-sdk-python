@@ -7,9 +7,12 @@ from typing import Any, Callable, Dict, List, Optional, Union
 authentication_method = lazy_import('msgraph.generated.models.authentication_method')
 
 class TemporaryAccessPassAuthenticationMethod(authentication_method.AuthenticationMethod):
+    """
+    Provides operations to manage the collection of activityStatistics entities.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new TemporaryAccessPassAuthenticationMethod and sets the default values.
+        Instantiates a new temporaryAccessPassAuthenticationMethod and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.temporaryAccessPassAuthenticationMethod"

@@ -177,12 +177,12 @@ class WorkflowItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def execution_scope_by_id(self,id: str) -> user_item_request_builder.UserItemRequestBuilder:
+    def execution_scope_by_id(self,id: str) -> Optional[user_item_request_builder.UserItemRequestBuilder]:
         """
         Provides operations to manage the executionScope property of the microsoft.graph.identityGovernance.workflow entity.
         Args:
             id: Unique identifier of the item
-        Returns: user_item_request_builder.UserItemRequestBuilder
+        Returns: Optional[user_item_request_builder.UserItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -231,12 +231,12 @@ class WorkflowItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, workflow.Workflow, response_handler, error_mapping)
     
-    def runs_by_id(self,id: str) -> run_item_request_builder.RunItemRequestBuilder:
+    def runs_by_id(self,id: str) -> Optional[run_item_request_builder.RunItemRequestBuilder]:
         """
         Provides operations to manage the runs property of the microsoft.graph.identityGovernance.workflow entity.
         Args:
             id: Unique identifier of the item
-        Returns: run_item_request_builder.RunItemRequestBuilder
+        Returns: Optional[run_item_request_builder.RunItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -244,12 +244,12 @@ class WorkflowItemRequestBuilder():
         url_tpl_params["run%2Did"] = id
         return run_item_request_builder.RunItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def task_reports_by_id(self,id: str) -> task_report_item_request_builder.TaskReportItemRequestBuilder:
+    def task_reports_by_id(self,id: str) -> Optional[task_report_item_request_builder.TaskReportItemRequestBuilder]:
         """
         Provides operations to manage the taskReports property of the microsoft.graph.identityGovernance.workflow entity.
         Args:
             id: Unique identifier of the item
-        Returns: task_report_item_request_builder.TaskReportItemRequestBuilder
+        Returns: Optional[task_report_item_request_builder.TaskReportItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -257,12 +257,12 @@ class WorkflowItemRequestBuilder():
         url_tpl_params["taskReport%2Did"] = id
         return task_report_item_request_builder.TaskReportItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def user_processing_results_by_id(self,id: str) -> user_processing_result_item_request_builder.UserProcessingResultItemRequestBuilder:
+    def user_processing_results_by_id(self,id: str) -> Optional[user_processing_result_item_request_builder.UserProcessingResultItemRequestBuilder]:
         """
         Provides operations to manage the userProcessingResults property of the microsoft.graph.identityGovernance.workflow entity.
         Args:
             id: Unique identifier of the item
-        Returns: user_processing_result_item_request_builder.UserProcessingResultItemRequestBuilder
+        Returns: Optional[user_processing_result_item_request_builder.UserProcessingResultItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -270,12 +270,12 @@ class WorkflowItemRequestBuilder():
         url_tpl_params["userProcessingResult%2Did"] = id
         return user_processing_result_item_request_builder.UserProcessingResultItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def versions_by_id(self,id: str) -> workflow_version_version_number_item_request_builder.WorkflowVersionVersionNumberItemRequestBuilder:
+    def versions_by_id(self,id: str) -> Optional[workflow_version_version_number_item_request_builder.WorkflowVersionVersionNumberItemRequestBuilder]:
         """
         Provides operations to manage the versions property of the microsoft.graph.identityGovernance.workflow entity.
         Args:
             id: Unique identifier of the item
-        Returns: workflow_version_version_number_item_request_builder.WorkflowVersionVersionNumberItemRequestBuilder
+        Returns: Optional[workflow_version_version_number_item_request_builder.WorkflowVersionVersionNumberItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

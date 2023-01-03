@@ -44,12 +44,12 @@ class TermsAndConditionsItemRequestBuilder():
         """
         return group_assignments_request_builder.GroupAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def acceptance_statuses_by_id(self,id: str) -> terms_and_conditions_acceptance_status_item_request_builder.TermsAndConditionsAcceptanceStatusItemRequestBuilder:
+    def acceptance_statuses_by_id(self,id: str) -> Optional[terms_and_conditions_acceptance_status_item_request_builder.TermsAndConditionsAcceptanceStatusItemRequestBuilder]:
         """
         Provides operations to manage the acceptanceStatuses property of the microsoft.graph.termsAndConditions entity.
         Args:
             id: Unique identifier of the item
-        Returns: terms_and_conditions_acceptance_status_item_request_builder.TermsAndConditionsAcceptanceStatusItemRequestBuilder
+        Returns: Optional[terms_and_conditions_acceptance_status_item_request_builder.TermsAndConditionsAcceptanceStatusItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -57,12 +57,12 @@ class TermsAndConditionsItemRequestBuilder():
         url_tpl_params["termsAndConditionsAcceptanceStatus%2Did"] = id
         return terms_and_conditions_acceptance_status_item_request_builder.TermsAndConditionsAcceptanceStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def assignments_by_id(self,id: str) -> terms_and_conditions_assignment_item_request_builder.TermsAndConditionsAssignmentItemRequestBuilder:
+    def assignments_by_id(self,id: str) -> Optional[terms_and_conditions_assignment_item_request_builder.TermsAndConditionsAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the assignments property of the microsoft.graph.termsAndConditions entity.
         Args:
             id: Unique identifier of the item
-        Returns: terms_and_conditions_assignment_item_request_builder.TermsAndConditionsAssignmentItemRequestBuilder
+        Returns: Optional[terms_and_conditions_assignment_item_request_builder.TermsAndConditionsAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -180,12 +180,12 @@ class TermsAndConditionsItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, terms_and_conditions.TermsAndConditions, response_handler, error_mapping)
     
-    def group_assignments_by_id(self,id: str) -> terms_and_conditions_group_assignment_item_request_builder.TermsAndConditionsGroupAssignmentItemRequestBuilder:
+    def group_assignments_by_id(self,id: str) -> Optional[terms_and_conditions_group_assignment_item_request_builder.TermsAndConditionsGroupAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the groupAssignments property of the microsoft.graph.termsAndConditions entity.
         Args:
             id: Unique identifier of the item
-        Returns: terms_and_conditions_group_assignment_item_request_builder.TermsAndConditionsGroupAssignmentItemRequestBuilder
+        Returns: Optional[terms_and_conditions_group_assignment_item_request_builder.TermsAndConditionsGroupAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -25,7 +25,7 @@ user = lazy_import('msgraph.generated.models.user')
 
 class EducationUser(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the admin singleton.
     """
     @property
     def account_enabled(self,) -> Optional[bool]:

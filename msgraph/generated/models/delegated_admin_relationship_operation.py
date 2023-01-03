@@ -10,7 +10,7 @@ long_running_operation_status = lazy_import('msgraph.generated.models.long_runni
 
 class DelegatedAdminRelationshipOperation(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the admin singleton.
     """
     def __init__(self,) -> None:
         """

@@ -158,12 +158,12 @@ class WorkflowTemplateItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, workflow_template.WorkflowTemplate, response_handler, error_mapping)
     
-    def tasks_by_id(self,id: str) -> task_item_request_builder.TaskItemRequestBuilder:
+    def tasks_by_id(self,id: str) -> Optional[task_item_request_builder.TaskItemRequestBuilder]:
         """
         Provides operations to manage the tasks property of the microsoft.graph.identityGovernance.workflowTemplate entity.
         Args:
             id: Unique identifier of the item
-        Returns: task_item_request_builder.TaskItemRequestBuilder
+        Returns: Optional[task_item_request_builder.TaskItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -166,12 +166,12 @@ class InformationProtectionRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, information_protection.InformationProtection, response_handler, error_mapping)
     
-    def sensitivity_labels_by_id(self,id: str) -> sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder:
+    def sensitivity_labels_by_id(self,id: str) -> Optional[sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder]:
         """
         Provides operations to manage the sensitivityLabels property of the microsoft.graph.security.informationProtection entity.
         Args:
             id: Unique identifier of the item
-        Returns: sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder
+        Returns: Optional[sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

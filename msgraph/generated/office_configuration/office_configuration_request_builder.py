@@ -26,12 +26,12 @@ class OfficeConfigurationRequestBuilder():
         """
         return client_configurations_request_builder.ClientConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def client_configurations_by_id(self,id: str) -> office_client_configuration_item_request_builder.OfficeClientConfigurationItemRequestBuilder:
+    def client_configurations_by_id(self,id: str) -> Optional[office_client_configuration_item_request_builder.OfficeClientConfigurationItemRequestBuilder]:
         """
         Provides operations to manage the clientConfigurations property of the microsoft.graph.officeConfiguration entity.
         Args:
             id: Unique identifier of the item
-        Returns: office_client_configuration_item_request_builder.OfficeClientConfigurationItemRequestBuilder
+        Returns: Optional[office_client_configuration_item_request_builder.OfficeClientConfigurationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

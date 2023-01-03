@@ -26,12 +26,12 @@ class MobileAppTroubleshootingEventItemRequestBuilder():
         """
         return app_log_collection_requests_request_builder.AppLogCollectionRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def app_log_collection_requests_by_id(self,id: str) -> app_log_collection_request_item_request_builder.AppLogCollectionRequestItemRequestBuilder:
+    def app_log_collection_requests_by_id(self,id: str) -> Optional[app_log_collection_request_item_request_builder.AppLogCollectionRequestItemRequestBuilder]:
         """
         Provides operations to manage the appLogCollectionRequests property of the microsoft.graph.mobileAppTroubleshootingEvent entity.
         Args:
             id: Unique identifier of the item
-        Returns: app_log_collection_request_item_request_builder.AppLogCollectionRequestItemRequestBuilder
+        Returns: Optional[app_log_collection_request_item_request_builder.AppLogCollectionRequestItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

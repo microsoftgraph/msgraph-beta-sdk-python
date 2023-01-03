@@ -8,9 +8,12 @@ authentication_method_sign_in_state = lazy_import('msgraph.generated.models.auth
 authentication_phone_type = lazy_import('msgraph.generated.models.authentication_phone_type')
 
 class PhoneAuthenticationMethod(authentication_method.AuthenticationMethod):
+    """
+    Provides operations to manage the collection of activityStatistics entities.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new PhoneAuthenticationMethod and sets the default values.
+        Instantiates a new phoneAuthenticationMethod and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.phoneAuthenticationMethod"

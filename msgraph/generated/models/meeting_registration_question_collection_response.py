@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 meeting_registration_question = lazy_import('msgraph.generated.models.meeting_registration_question')
 
 class MeetingRegistrationQuestionCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the customQuestions property of the microsoft.graph.meetingRegistration entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new MeetingRegistrationQuestionCollectionResponse and sets the default values.

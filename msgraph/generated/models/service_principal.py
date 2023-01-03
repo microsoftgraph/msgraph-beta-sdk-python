@@ -30,7 +30,7 @@ verified_publisher = lazy_import('msgraph.generated.models.verified_publisher')
 
 class ServicePrincipal(directory_object.DirectoryObject):
     """
-    Casts the previous resource to servicePrincipal.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def account_enabled(self,) -> Optional[bool]:

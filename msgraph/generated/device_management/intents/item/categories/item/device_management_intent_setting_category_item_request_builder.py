@@ -158,12 +158,12 @@ class DeviceManagementIntentSettingCategoryItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, device_management_intent_setting_category.DeviceManagementIntentSettingCategory, response_handler, error_mapping)
     
-    def settings_by_id(self,id: str) -> device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder:
+    def settings_by_id(self,id: str) -> Optional[device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder]:
         """
         Provides operations to manage the settings property of the microsoft.graph.deviceManagementIntentSettingCategory entity.
         Args:
             id: Unique identifier of the item
-        Returns: device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder
+        Returns: Optional[device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

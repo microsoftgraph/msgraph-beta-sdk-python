@@ -7,12 +7,9 @@ entity = lazy_import('msgraph.generated.models.entity')
 extension_schema_property = lazy_import('msgraph.generated.models.extension_schema_property')
 
 class SchemaExtension(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new schemaExtension and sets the default values.
+        Instantiates a new SchemaExtension and sets the default values.
         """
         super().__init__()
         # Description for the schema extension. Supports $filter (eq).

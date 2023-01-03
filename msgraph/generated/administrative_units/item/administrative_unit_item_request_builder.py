@@ -175,12 +175,12 @@ class AdministrativeUnitItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def extensions_by_id(self,id: str) -> extension_item_request_builder.ExtensionItemRequestBuilder:
+    def extensions_by_id(self,id: str) -> Optional[extension_item_request_builder.ExtensionItemRequestBuilder]:
         """
         Provides operations to manage the extensions property of the microsoft.graph.administrativeUnit entity.
         Args:
             id: Unique identifier of the item
-        Returns: extension_item_request_builder.ExtensionItemRequestBuilder
+        Returns: Optional[extension_item_request_builder.ExtensionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -207,12 +207,12 @@ class AdministrativeUnitItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, administrative_unit.AdministrativeUnit, response_handler, error_mapping)
     
-    def members_by_id(self,id: str) -> directory_object_item_request_builder.DirectoryObjectItemRequestBuilder:
+    def members_by_id(self,id: str) -> Optional[directory_object_item_request_builder.DirectoryObjectItemRequestBuilder]:
         """
         Gets an item from the msgraph.generated.administrativeUnits.item.members.item collection
         Args:
             id: Unique identifier of the item
-        Returns: directory_object_item_request_builder.DirectoryObjectItemRequestBuilder
+        Returns: Optional[directory_object_item_request_builder.DirectoryObjectItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -242,12 +242,12 @@ class AdministrativeUnitItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, administrative_unit.AdministrativeUnit, response_handler, error_mapping)
     
-    def scoped_role_members_by_id(self,id: str) -> scoped_role_membership_item_request_builder.ScopedRoleMembershipItemRequestBuilder:
+    def scoped_role_members_by_id(self,id: str) -> Optional[scoped_role_membership_item_request_builder.ScopedRoleMembershipItemRequestBuilder]:
         """
         Provides operations to manage the scopedRoleMembers property of the microsoft.graph.administrativeUnit entity.
         Args:
             id: Unique identifier of the item
-        Returns: scoped_role_membership_item_request_builder.ScopedRoleMembershipItemRequestBuilder
+        Returns: Optional[scoped_role_membership_item_request_builder.ScopedRoleMembershipItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

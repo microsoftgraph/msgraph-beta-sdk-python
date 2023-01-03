@@ -77,12 +77,12 @@ class ListItemItemRequestBuilder():
         """
         return versions_request_builder.VersionsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def activities_by_id(self,id: str) -> item_activity_o_l_d_item_request_builder.ItemActivityOLDItemRequestBuilder:
+    def activities_by_id(self,id: str) -> Optional[item_activity_o_l_d_item_request_builder.ItemActivityOLDItemRequestBuilder]:
         """
         Provides operations to manage the activities property of the microsoft.graph.listItem entity.
         Args:
             id: Unique identifier of the item
-        Returns: item_activity_o_l_d_item_request_builder.ItemActivityOLDItemRequestBuilder
+        Returns: Optional[item_activity_o_l_d_item_request_builder.ItemActivityOLDItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -181,12 +181,12 @@ class ListItemItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def document_set_versions_by_id(self,id: str) -> document_set_version_item_request_builder.DocumentSetVersionItemRequestBuilder:
+    def document_set_versions_by_id(self,id: str) -> Optional[document_set_version_item_request_builder.DocumentSetVersionItemRequestBuilder]:
         """
         Provides operations to manage the documentSetVersions property of the microsoft.graph.listItem entity.
         Args:
             id: Unique identifier of the item
-        Returns: document_set_version_item_request_builder.DocumentSetVersionItemRequestBuilder
+        Returns: Optional[document_set_version_item_request_builder.DocumentSetVersionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -252,12 +252,12 @@ class ListItemItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, list_item.ListItem, response_handler, error_mapping)
     
-    def versions_by_id(self,id: str) -> list_item_version_item_request_builder.ListItemVersionItemRequestBuilder:
+    def versions_by_id(self,id: str) -> Optional[list_item_version_item_request_builder.ListItemVersionItemRequestBuilder]:
         """
         Provides operations to manage the versions property of the microsoft.graph.listItem entity.
         Args:
             id: Unique identifier of the item
-        Returns: list_item_version_item_request_builder.ListItemVersionItemRequestBuilder
+        Returns: Optional[list_item_version_item_request_builder.ListItemVersionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

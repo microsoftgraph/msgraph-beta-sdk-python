@@ -117,12 +117,12 @@ class WindowsProtectionStateRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def detected_malware_state_by_id(self,id: str) -> windows_device_malware_state_item_request_builder.WindowsDeviceMalwareStateItemRequestBuilder:
+    def detected_malware_state_by_id(self,id: str) -> Optional[windows_device_malware_state_item_request_builder.WindowsDeviceMalwareStateItemRequestBuilder]:
         """
         Provides operations to manage the detectedMalwareState property of the microsoft.graph.windowsProtectionState entity.
         Args:
             id: Unique identifier of the item
-        Returns: windows_device_malware_state_item_request_builder.WindowsDeviceMalwareStateItemRequestBuilder
+        Returns: Optional[windows_device_malware_state_item_request_builder.WindowsDeviceMalwareStateItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

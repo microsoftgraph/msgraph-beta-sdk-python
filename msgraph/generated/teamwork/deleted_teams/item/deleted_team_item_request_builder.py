@@ -26,12 +26,12 @@ class DeletedTeamItemRequestBuilder():
         """
         return channels_request_builder.ChannelsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def channels_by_id(self,id: str) -> channel_item_request_builder.ChannelItemRequestBuilder:
+    def channels_by_id(self,id: str) -> Optional[channel_item_request_builder.ChannelItemRequestBuilder]:
         """
         Provides operations to manage the channels property of the microsoft.graph.deletedTeam entity.
         Args:
             id: Unique identifier of the item
-        Returns: channel_item_request_builder.ChannelItemRequestBuilder
+        Returns: Optional[channel_item_request_builder.ChannelItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

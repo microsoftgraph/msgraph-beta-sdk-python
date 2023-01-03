@@ -43,12 +43,12 @@ class WindowsAutopilotDeploymentProfileItemRequestBuilder():
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def assigned_devices_by_id(self,id: str) -> windows_autopilot_device_identity_item_request_builder.WindowsAutopilotDeviceIdentityItemRequestBuilder:
+    def assigned_devices_by_id(self,id: str) -> Optional[windows_autopilot_device_identity_item_request_builder.WindowsAutopilotDeviceIdentityItemRequestBuilder]:
         """
         Provides operations to manage the assignedDevices property of the microsoft.graph.windowsAutopilotDeploymentProfile entity.
         Args:
             id: Unique identifier of the item
-        Returns: windows_autopilot_device_identity_item_request_builder.WindowsAutopilotDeviceIdentityItemRequestBuilder
+        Returns: Optional[windows_autopilot_device_identity_item_request_builder.WindowsAutopilotDeviceIdentityItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -56,12 +56,12 @@ class WindowsAutopilotDeploymentProfileItemRequestBuilder():
         url_tpl_params["windowsAutopilotDeviceIdentity%2Did"] = id
         return windows_autopilot_device_identity_item_request_builder.WindowsAutopilotDeviceIdentityItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def assignments_by_id(self,id: str) -> windows_autopilot_deployment_profile_assignment_item_request_builder.WindowsAutopilotDeploymentProfileAssignmentItemRequestBuilder:
+    def assignments_by_id(self,id: str) -> Optional[windows_autopilot_deployment_profile_assignment_item_request_builder.WindowsAutopilotDeploymentProfileAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the assignments property of the microsoft.graph.windowsAutopilotDeploymentProfile entity.
         Args:
             id: Unique identifier of the item
-        Returns: windows_autopilot_deployment_profile_assignment_item_request_builder.WindowsAutopilotDeploymentProfileAssignmentItemRequestBuilder
+        Returns: Optional[windows_autopilot_deployment_profile_assignment_item_request_builder.WindowsAutopilotDeploymentProfileAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

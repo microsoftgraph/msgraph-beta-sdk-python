@@ -43,12 +43,12 @@ class PolicySetItemRequestBuilder():
         """
         return update_request_builder.UpdateRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def assignments_by_id(self,id: str) -> policy_set_assignment_item_request_builder.PolicySetAssignmentItemRequestBuilder:
+    def assignments_by_id(self,id: str) -> Optional[policy_set_assignment_item_request_builder.PolicySetAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the assignments property of the microsoft.graph.policySet entity.
         Args:
             id: Unique identifier of the item
-        Returns: policy_set_assignment_item_request_builder.PolicySetAssignmentItemRequestBuilder
+        Returns: Optional[policy_set_assignment_item_request_builder.PolicySetAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -166,12 +166,12 @@ class PolicySetItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, policy_set.PolicySet, response_handler, error_mapping)
     
-    def items_by_id(self,id: str) -> policy_set_item_item_request_builder.PolicySetItemItemRequestBuilder:
+    def items_by_id(self,id: str) -> Optional[policy_set_item_item_request_builder.PolicySetItemItemRequestBuilder]:
         """
         Provides operations to manage the items property of the microsoft.graph.policySet entity.
         Args:
             id: Unique identifier of the item
-        Returns: policy_set_item_item_request_builder.PolicySetItemItemRequestBuilder
+        Returns: Optional[policy_set_item_item_request_builder.PolicySetItemItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

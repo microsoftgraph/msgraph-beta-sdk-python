@@ -11,7 +11,7 @@ windows_defender_application_control_supplemental_policy_deployment_summary = la
 
 class WindowsDefenderApplicationControlSupplementalPolicy(entity.Entity):
     """
-    Provides operations to manage the deviceAppManagement singleton.
+    Provides operations to manage the admin singleton.
     """
     @property
     def assignments(self,) -> Optional[List[windows_defender_application_control_supplemental_policy_assignment.WindowsDefenderApplicationControlSupplementalPolicyAssignment]]:

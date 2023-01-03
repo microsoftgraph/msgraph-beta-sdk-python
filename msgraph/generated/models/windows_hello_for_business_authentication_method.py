@@ -9,9 +9,12 @@ authentication_method_key_strength = lazy_import('msgraph.generated.models.authe
 device = lazy_import('msgraph.generated.models.device')
 
 class WindowsHelloForBusinessAuthenticationMethod(authentication_method.AuthenticationMethod):
+    """
+    Provides operations to manage the collection of activityStatistics entities.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new WindowsHelloForBusinessAuthenticationMethod and sets the default values.
+        Instantiates a new windowsHelloForBusinessAuthenticationMethod and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.windowsHelloForBusinessAuthenticationMethod"

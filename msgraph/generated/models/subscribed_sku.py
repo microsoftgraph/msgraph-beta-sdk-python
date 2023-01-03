@@ -8,9 +8,6 @@ license_units_detail = lazy_import('msgraph.generated.models.license_units_detai
 service_plan_info = lazy_import('msgraph.generated.models.service_plan_info')
 
 class SubscribedSku(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def applies_to(self,) -> Optional[str]:
         """
@@ -47,7 +44,7 @@ class SubscribedSku(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new subscribedSku and sets the default values.
+        Instantiates a new SubscribedSku and sets the default values.
         """
         super().__init__()
         # For example, 'User' or 'Company'.

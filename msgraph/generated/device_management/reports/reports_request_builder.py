@@ -507,12 +507,12 @@ class ReportsRequestBuilder():
         """
         return get_zebra_fota_deployment_report_request_builder.GetZebraFotaDeploymentReportRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def cached_report_configurations_by_id(self,id: str) -> device_management_cached_report_configuration_item_request_builder.DeviceManagementCachedReportConfigurationItemRequestBuilder:
+    def cached_report_configurations_by_id(self,id: str) -> Optional[device_management_cached_report_configuration_item_request_builder.DeviceManagementCachedReportConfigurationItemRequestBuilder]:
         """
         Provides operations to manage the cachedReportConfigurations property of the microsoft.graph.deviceManagementReports entity.
         Args:
             id: Unique identifier of the item
-        Returns: device_management_cached_report_configuration_item_request_builder.DeviceManagementCachedReportConfigurationItemRequestBuilder
+        Returns: Optional[device_management_cached_report_configuration_item_request_builder.DeviceManagementCachedReportConfigurationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -611,12 +611,12 @@ class ReportsRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def export_jobs_by_id(self,id: str) -> device_management_export_job_item_request_builder.DeviceManagementExportJobItemRequestBuilder:
+    def export_jobs_by_id(self,id: str) -> Optional[device_management_export_job_item_request_builder.DeviceManagementExportJobItemRequestBuilder]:
         """
         Provides operations to manage the exportJobs property of the microsoft.graph.deviceManagementReports entity.
         Args:
             id: Unique identifier of the item
-        Returns: device_management_export_job_item_request_builder.DeviceManagementExportJobItemRequestBuilder
+        Returns: Optional[device_management_export_job_item_request_builder.DeviceManagementExportJobItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

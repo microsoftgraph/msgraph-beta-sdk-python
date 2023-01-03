@@ -184,12 +184,12 @@ class TeamworkDeviceItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, teamwork_device.TeamworkDevice, response_handler, error_mapping)
     
-    def operations_by_id(self,id: str) -> teamwork_device_operation_item_request_builder.TeamworkDeviceOperationItemRequestBuilder:
+    def operations_by_id(self,id: str) -> Optional[teamwork_device_operation_item_request_builder.TeamworkDeviceOperationItemRequestBuilder]:
         """
         Provides operations to manage the operations property of the microsoft.graph.teamworkDevice entity.
         Args:
             id: Unique identifier of the item
-        Returns: teamwork_device_operation_item_request_builder.TeamworkDeviceOperationItemRequestBuilder
+        Returns: Optional[teamwork_device_operation_item_request_builder.TeamworkDeviceOperationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -136,12 +136,12 @@ class UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, user_experience_analytics_work_from_anywhere_metric.UserExperienceAnalyticsWorkFromAnywhereMetric, response_handler, error_mapping)
     
-    def metric_devices_by_id(self,id: str) -> user_experience_analytics_work_from_anywhere_device_item_request_builder.UserExperienceAnalyticsWorkFromAnywhereDeviceItemRequestBuilder:
+    def metric_devices_by_id(self,id: str) -> Optional[user_experience_analytics_work_from_anywhere_device_item_request_builder.UserExperienceAnalyticsWorkFromAnywhereDeviceItemRequestBuilder]:
         """
         Provides operations to manage the metricDevices property of the microsoft.graph.userExperienceAnalyticsWorkFromAnywhereMetric entity.
         Args:
             id: Unique identifier of the item
-        Returns: user_experience_analytics_work_from_anywhere_device_item_request_builder.UserExperienceAnalyticsWorkFromAnywhereDeviceItemRequestBuilder
+        Returns: Optional[user_experience_analytics_work_from_anywhere_device_item_request_builder.UserExperienceAnalyticsWorkFromAnywhereDeviceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -162,12 +162,12 @@ class AuthenticationMethodsRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, authentication_methods_root.AuthenticationMethodsRoot, response_handler, error_mapping)
     
-    def user_registration_details_by_id(self,id: str) -> user_registration_details_item_request_builder.UserRegistrationDetailsItemRequestBuilder:
+    def user_registration_details_by_id(self,id: str) -> Optional[user_registration_details_item_request_builder.UserRegistrationDetailsItemRequestBuilder]:
         """
         Provides operations to manage the userRegistrationDetails property of the microsoft.graph.authenticationMethodsRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: user_registration_details_item_request_builder.UserRegistrationDetailsItemRequestBuilder
+        Returns: Optional[user_registration_details_item_request_builder.UserRegistrationDetailsItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

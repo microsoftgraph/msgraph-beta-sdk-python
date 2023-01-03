@@ -26,12 +26,12 @@ class AccessPackageResourceEnvironmentItemRequestBuilder():
         """
         return access_package_resources_request_builder.AccessPackageResourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def access_package_resources_by_id(self,id: str) -> access_package_resource_item_request_builder.AccessPackageResourceItemRequestBuilder:
+    def access_package_resources_by_id(self,id: str) -> Optional[access_package_resource_item_request_builder.AccessPackageResourceItemRequestBuilder]:
         """
         Provides operations to manage the accessPackageResources property of the microsoft.graph.accessPackageResourceEnvironment entity.
         Args:
             id: Unique identifier of the item
-        Returns: access_package_resource_item_request_builder.AccessPackageResourceItemRequestBuilder
+        Returns: Optional[access_package_resource_item_request_builder.AccessPackageResourceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

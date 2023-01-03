@@ -9,7 +9,7 @@ identity_set = lazy_import('msgraph.generated.models.search.identity_set')
 
 class SearchAnswer(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the admin singleton.
     """
     def __init__(self,) -> None:
         """

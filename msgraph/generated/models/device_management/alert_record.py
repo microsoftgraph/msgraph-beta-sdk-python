@@ -12,12 +12,12 @@ rule_severity_type = lazy_import('msgraph.generated.models.device_management.rul
 
 class AlertRecord(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the admin singleton.
     """
     @property
     def alert_impact(self,) -> Optional[alert_impact.AlertImpact]:
         """
-        Gets the alertImpact property value. The impact of the alert event. Consists of a number followed by the aggregation type. For example, 6 Count and 12 AffectedCloudPcPercentage.
+        Gets the alertImpact property value. The impact of the alert event. Consists of a number followed by the aggregation type. For example, 6 affectedCloudPcCount means that 6 Cloud PCs are affected. 12 affectedCloudPcPercentage means 12% of Cloud PCs are affected.
         Returns: Optional[alert_impact.AlertImpact]
         """
         return self._alert_impact
@@ -25,7 +25,7 @@ class AlertRecord(entity.Entity):
     @alert_impact.setter
     def alert_impact(self,value: Optional[alert_impact.AlertImpact] = None) -> None:
         """
-        Sets the alertImpact property value. The impact of the alert event. Consists of a number followed by the aggregation type. For example, 6 Count and 12 AffectedCloudPcPercentage.
+        Sets the alertImpact property value. The impact of the alert event. Consists of a number followed by the aggregation type. For example, 6 affectedCloudPcCount means that 6 Cloud PCs are affected. 12 affectedCloudPcPercentage means 12% of Cloud PCs are affected.
         Args:
             value: Value to set for the alertImpact property.
         """
@@ -70,7 +70,7 @@ class AlertRecord(entity.Entity):
         Instantiates a new alertRecord and sets the default values.
         """
         super().__init__()
-        # The impact of the alert event. Consists of a number followed by the aggregation type. For example, 6 Count and 12 AffectedCloudPcPercentage.
+        # The impact of the alert event. Consists of a number followed by the aggregation type. For example, 6 affectedCloudPcCount means that 6 Cloud PCs are affected. 12 affectedCloudPcPercentage means 12% of Cloud PCs are affected.
         self._alert_impact: Optional[alert_impact.AlertImpact] = None
         # The corresponding ID of the alert rule.
         self._alert_rule_id: Optional[str] = None

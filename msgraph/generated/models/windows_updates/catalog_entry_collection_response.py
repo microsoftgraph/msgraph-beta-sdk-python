@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 catalog_entry = lazy_import('msgraph.generated.models.windows_updates.catalog_entry')
 
 class CatalogEntryCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the entries property of the microsoft.graph.windowsUpdates.catalog entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new CatalogEntryCollectionResponse and sets the default values.

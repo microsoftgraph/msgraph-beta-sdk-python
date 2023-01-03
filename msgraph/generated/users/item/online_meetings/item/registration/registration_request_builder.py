@@ -99,12 +99,12 @@ class RegistrationRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def custom_questions_by_id(self,id: str) -> meeting_registration_question_item_request_builder.MeetingRegistrationQuestionItemRequestBuilder:
+    def custom_questions_by_id(self,id: str) -> Optional[meeting_registration_question_item_request_builder.MeetingRegistrationQuestionItemRequestBuilder]:
         """
         Provides operations to manage the customQuestions property of the microsoft.graph.meetingRegistration entity.
         Args:
             id: Unique identifier of the item
-        Returns: meeting_registration_question_item_request_builder.MeetingRegistrationQuestionItemRequestBuilder
+        Returns: Optional[meeting_registration_question_item_request_builder.MeetingRegistrationQuestionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -9,7 +9,7 @@ connection_operation_status = lazy_import('msgraph.generated.models.external_con
 
 class ConnectionOperation(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the admin singleton.
     """
     def __init__(self,) -> None:
         """

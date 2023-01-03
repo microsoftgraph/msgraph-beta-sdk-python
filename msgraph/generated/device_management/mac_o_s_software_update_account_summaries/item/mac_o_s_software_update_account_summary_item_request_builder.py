@@ -26,12 +26,12 @@ class MacOSSoftwareUpdateAccountSummaryItemRequestBuilder():
         """
         return category_summaries_request_builder.CategorySummariesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def category_summaries_by_id(self,id: str) -> mac_o_s_software_update_category_summary_item_request_builder.MacOSSoftwareUpdateCategorySummaryItemRequestBuilder:
+    def category_summaries_by_id(self,id: str) -> Optional[mac_o_s_software_update_category_summary_item_request_builder.MacOSSoftwareUpdateCategorySummaryItemRequestBuilder]:
         """
         Provides operations to manage the categorySummaries property of the microsoft.graph.macOSSoftwareUpdateAccountSummary entity.
         Args:
             id: Unique identifier of the item
-        Returns: mac_o_s_software_update_category_summary_item_request_builder.MacOSSoftwareUpdateCategorySummaryItemRequestBuilder
+        Returns: Optional[mac_o_s_software_update_category_summary_item_request_builder.MacOSSoftwareUpdateCategorySummaryItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

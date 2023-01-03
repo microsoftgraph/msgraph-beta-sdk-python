@@ -11,7 +11,7 @@ governance_subject = lazy_import('msgraph.generated.models.governance_subject')
 
 class GovernanceRoleAssignment(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the admin singleton.
     """
     @property
     def assignment_state(self,) -> Optional[str]:

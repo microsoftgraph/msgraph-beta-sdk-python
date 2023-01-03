@@ -166,12 +166,12 @@ class DeviceManagementReusablePolicySettingItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, device_management_reusable_policy_setting.DeviceManagementReusablePolicySetting, response_handler, error_mapping)
     
-    def referencing_configuration_policies_by_id(self,id: str) -> device_management_configuration_policy_item_request_builder.DeviceManagementConfigurationPolicyItemRequestBuilder:
+    def referencing_configuration_policies_by_id(self,id: str) -> Optional[device_management_configuration_policy_item_request_builder.DeviceManagementConfigurationPolicyItemRequestBuilder]:
         """
         Provides operations to manage the referencingConfigurationPolicies property of the microsoft.graph.deviceManagementReusablePolicySetting entity.
         Args:
             id: Unique identifier of the item
-        Returns: device_management_configuration_policy_item_request_builder.DeviceManagementConfigurationPolicyItemRequestBuilder
+        Returns: Optional[device_management_configuration_policy_item_request_builder.DeviceManagementConfigurationPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

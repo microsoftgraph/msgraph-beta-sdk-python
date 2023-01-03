@@ -158,12 +158,12 @@ class InternetExplorerModeRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, internet_explorer_mode.InternetExplorerMode, response_handler, error_mapping)
     
-    def site_lists_by_id(self,id: str) -> browser_site_list_item_request_builder.BrowserSiteListItemRequestBuilder:
+    def site_lists_by_id(self,id: str) -> Optional[browser_site_list_item_request_builder.BrowserSiteListItemRequestBuilder]:
         """
         Provides operations to manage the siteLists property of the microsoft.graph.internetExplorerMode entity.
         Args:
             id: Unique identifier of the item
-        Returns: browser_site_list_item_request_builder.BrowserSiteListItemRequestBuilder
+        Returns: Optional[browser_site_list_item_request_builder.BrowserSiteListItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

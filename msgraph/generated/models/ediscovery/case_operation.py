@@ -12,7 +12,7 @@ case_operation_status = lazy_import('msgraph.generated.models.ediscovery.case_op
 
 class CaseOperation(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def action(self,) -> Optional[case_action.CaseAction]:

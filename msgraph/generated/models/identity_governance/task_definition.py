@@ -9,7 +9,7 @@ parameter = lazy_import('msgraph.generated.models.identity_governance.parameter'
 
 class TaskDefinition(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the admin singleton.
     """
     @property
     def category(self,) -> Optional[lifecycle_task_category.LifecycleTaskCategory]:

@@ -76,12 +76,12 @@ class SourceCollectionItemRequestBuilder():
         """
         return purge_data_request_builder.PurgeDataRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def additional_sources_by_id(self,id: str) -> data_source_item_request_builder.DataSourceItemRequestBuilder:
+    def additional_sources_by_id(self,id: str) -> Optional[data_source_item_request_builder.DataSourceItemRequestBuilder]:
         """
         Provides operations to manage the additionalSources property of the microsoft.graph.ediscovery.sourceCollection entity.
         Args:
             id: Unique identifier of the item
-        Returns: data_source_item_request_builder.DataSourceItemRequestBuilder
+        Returns: Optional[data_source_item_request_builder.DataSourceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -162,12 +162,12 @@ class SourceCollectionItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def custodian_sources_by_id(self,id: str) -> data_source_item_request_builder.DataSourceItemRequestBuilder:
+    def custodian_sources_by_id(self,id: str) -> Optional[data_source_item_request_builder.DataSourceItemRequestBuilder]:
         """
         Provides operations to manage the custodianSources property of the microsoft.graph.ediscovery.sourceCollection entity.
         Args:
             id: Unique identifier of the item
-        Returns: data_source_item_request_builder.DataSourceItemRequestBuilder
+        Returns: Optional[data_source_item_request_builder.DataSourceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -212,12 +212,12 @@ class SourceCollectionItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, source_collection.SourceCollection, response_handler, error_mapping)
     
-    def noncustodial_sources_by_id(self,id: str) -> noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder:
+    def noncustodial_sources_by_id(self,id: str) -> Optional[noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder]:
         """
         Provides operations to manage the noncustodialSources property of the microsoft.graph.ediscovery.sourceCollection entity.
         Args:
             id: Unique identifier of the item
-        Returns: noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder
+        Returns: Optional[noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

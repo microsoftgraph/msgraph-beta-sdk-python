@@ -7,9 +7,6 @@ activity_statistics = lazy_import('msgraph.generated.models.activity_statistics'
 base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
 
 class ActivityStatisticsCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new ActivityStatisticsCollectionResponse and sets the default values.

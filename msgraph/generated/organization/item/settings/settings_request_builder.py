@@ -190,12 +190,12 @@ class SettingsRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, organization_settings.OrganizationSettings, response_handler, error_mapping)
     
-    def profile_card_properties_by_id(self,id: str) -> profile_card_property_item_request_builder.ProfileCardPropertyItemRequestBuilder:
+    def profile_card_properties_by_id(self,id: str) -> Optional[profile_card_property_item_request_builder.ProfileCardPropertyItemRequestBuilder]:
         """
         Provides operations to manage the profileCardProperties property of the microsoft.graph.organizationSettings entity.
         Args:
             id: Unique identifier of the item
-        Returns: profile_card_property_item_request_builder.ProfileCardPropertyItemRequestBuilder
+        Returns: Optional[profile_card_property_item_request_builder.ProfileCardPropertyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

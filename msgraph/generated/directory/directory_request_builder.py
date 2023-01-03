@@ -125,12 +125,12 @@ class DirectoryRequestBuilder():
         """
         return shared_email_domains_request_builder.SharedEmailDomainsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def administrative_units_by_id(self,id: str) -> administrative_unit_item_request_builder.AdministrativeUnitItemRequestBuilder:
+    def administrative_units_by_id(self,id: str) -> Optional[administrative_unit_item_request_builder.AdministrativeUnitItemRequestBuilder]:
         """
         Provides operations to manage the administrativeUnits property of the microsoft.graph.directory entity.
         Args:
             id: Unique identifier of the item
-        Returns: administrative_unit_item_request_builder.AdministrativeUnitItemRequestBuilder
+        Returns: Optional[administrative_unit_item_request_builder.AdministrativeUnitItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -138,12 +138,12 @@ class DirectoryRequestBuilder():
         url_tpl_params["administrativeUnit%2Did"] = id
         return administrative_unit_item_request_builder.AdministrativeUnitItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def attribute_sets_by_id(self,id: str) -> attribute_set_item_request_builder.AttributeSetItemRequestBuilder:
+    def attribute_sets_by_id(self,id: str) -> Optional[attribute_set_item_request_builder.AttributeSetItemRequestBuilder]:
         """
         Provides operations to manage the attributeSets property of the microsoft.graph.directory entity.
         Args:
             id: Unique identifier of the item
-        Returns: attribute_set_item_request_builder.AttributeSetItemRequestBuilder
+        Returns: Optional[attribute_set_item_request_builder.AttributeSetItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -208,12 +208,12 @@ class DirectoryRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def custom_security_attribute_definitions_by_id(self,id: str) -> custom_security_attribute_definition_item_request_builder.CustomSecurityAttributeDefinitionItemRequestBuilder:
+    def custom_security_attribute_definitions_by_id(self,id: str) -> Optional[custom_security_attribute_definition_item_request_builder.CustomSecurityAttributeDefinitionItemRequestBuilder]:
         """
         Provides operations to manage the customSecurityAttributeDefinitions property of the microsoft.graph.directory entity.
         Args:
             id: Unique identifier of the item
-        Returns: custom_security_attribute_definition_item_request_builder.CustomSecurityAttributeDefinitionItemRequestBuilder
+        Returns: Optional[custom_security_attribute_definition_item_request_builder.CustomSecurityAttributeDefinitionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -221,12 +221,12 @@ class DirectoryRequestBuilder():
         url_tpl_params["customSecurityAttributeDefinition%2Did"] = id
         return custom_security_attribute_definition_item_request_builder.CustomSecurityAttributeDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def deleted_items_by_id(self,id: str) -> directory_object_item_request_builder.DirectoryObjectItemRequestBuilder:
+    def deleted_items_by_id(self,id: str) -> Optional[directory_object_item_request_builder.DirectoryObjectItemRequestBuilder]:
         """
         Provides operations to manage the deletedItems property of the microsoft.graph.directory entity.
         Args:
             id: Unique identifier of the item
-        Returns: directory_object_item_request_builder.DirectoryObjectItemRequestBuilder
+        Returns: Optional[directory_object_item_request_builder.DirectoryObjectItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -234,12 +234,12 @@ class DirectoryRequestBuilder():
         url_tpl_params["directoryObject%2Did"] = id
         return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def feature_rollout_policies_by_id(self,id: str) -> feature_rollout_policy_item_request_builder.FeatureRolloutPolicyItemRequestBuilder:
+    def feature_rollout_policies_by_id(self,id: str) -> Optional[feature_rollout_policy_item_request_builder.FeatureRolloutPolicyItemRequestBuilder]:
         """
         Provides operations to manage the featureRolloutPolicies property of the microsoft.graph.directory entity.
         Args:
             id: Unique identifier of the item
-        Returns: feature_rollout_policy_item_request_builder.FeatureRolloutPolicyItemRequestBuilder
+        Returns: Optional[feature_rollout_policy_item_request_builder.FeatureRolloutPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -247,12 +247,12 @@ class DirectoryRequestBuilder():
         url_tpl_params["featureRolloutPolicy%2Did"] = id
         return feature_rollout_policy_item_request_builder.FeatureRolloutPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def federation_configurations_by_id(self,id: str) -> identity_provider_base_item_request_builder.IdentityProviderBaseItemRequestBuilder:
+    def federation_configurations_by_id(self,id: str) -> Optional[identity_provider_base_item_request_builder.IdentityProviderBaseItemRequestBuilder]:
         """
         Provides operations to manage the federationConfigurations property of the microsoft.graph.directory entity.
         Args:
             id: Unique identifier of the item
-        Returns: identity_provider_base_item_request_builder.IdentityProviderBaseItemRequestBuilder
+        Returns: Optional[identity_provider_base_item_request_builder.IdentityProviderBaseItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -279,12 +279,12 @@ class DirectoryRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, directory.Directory, response_handler, error_mapping)
     
-    def impacted_resources_by_id(self,id: str) -> recommendation_resource_item_request_builder.RecommendationResourceItemRequestBuilder:
+    def impacted_resources_by_id(self,id: str) -> Optional[recommendation_resource_item_request_builder.RecommendationResourceItemRequestBuilder]:
         """
         Provides operations to manage the impactedResources property of the microsoft.graph.directory entity.
         Args:
             id: Unique identifier of the item
-        Returns: recommendation_resource_item_request_builder.RecommendationResourceItemRequestBuilder
+        Returns: Optional[recommendation_resource_item_request_builder.RecommendationResourceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -292,12 +292,12 @@ class DirectoryRequestBuilder():
         url_tpl_params["recommendationResource%2Did"] = id
         return recommendation_resource_item_request_builder.RecommendationResourceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def inbound_shared_user_profiles_by_id(self,id: str) -> inbound_shared_user_profile_user_item_request_builder.InboundSharedUserProfileUserItemRequestBuilder:
+    def inbound_shared_user_profiles_by_id(self,id: str) -> Optional[inbound_shared_user_profile_user_item_request_builder.InboundSharedUserProfileUserItemRequestBuilder]:
         """
         Provides operations to manage the inboundSharedUserProfiles property of the microsoft.graph.directory entity.
         Args:
             id: Unique identifier of the item
-        Returns: inbound_shared_user_profile_user_item_request_builder.InboundSharedUserProfileUserItemRequestBuilder
+        Returns: Optional[inbound_shared_user_profile_user_item_request_builder.InboundSharedUserProfileUserItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -305,12 +305,12 @@ class DirectoryRequestBuilder():
         url_tpl_params["inboundSharedUserProfile%2DuserId"] = id
         return inbound_shared_user_profile_user_item_request_builder.InboundSharedUserProfileUserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def on_premises_synchronization_by_id(self,id: str) -> on_premises_directory_synchronization_item_request_builder.OnPremisesDirectorySynchronizationItemRequestBuilder:
+    def on_premises_synchronization_by_id(self,id: str) -> Optional[on_premises_directory_synchronization_item_request_builder.OnPremisesDirectorySynchronizationItemRequestBuilder]:
         """
         Provides operations to manage the onPremisesSynchronization property of the microsoft.graph.directory entity.
         Args:
             id: Unique identifier of the item
-        Returns: on_premises_directory_synchronization_item_request_builder.OnPremisesDirectorySynchronizationItemRequestBuilder
+        Returns: Optional[on_premises_directory_synchronization_item_request_builder.OnPremisesDirectorySynchronizationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -318,12 +318,12 @@ class DirectoryRequestBuilder():
         url_tpl_params["onPremisesDirectorySynchronization%2Did"] = id
         return on_premises_directory_synchronization_item_request_builder.OnPremisesDirectorySynchronizationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def outbound_shared_user_profiles_by_id(self,id: str) -> outbound_shared_user_profile_user_item_request_builder.OutboundSharedUserProfileUserItemRequestBuilder:
+    def outbound_shared_user_profiles_by_id(self,id: str) -> Optional[outbound_shared_user_profile_user_item_request_builder.OutboundSharedUserProfileUserItemRequestBuilder]:
         """
         Provides operations to manage the outboundSharedUserProfiles property of the microsoft.graph.directory entity.
         Args:
             id: Unique identifier of the item
-        Returns: outbound_shared_user_profile_user_item_request_builder.OutboundSharedUserProfileUserItemRequestBuilder
+        Returns: Optional[outbound_shared_user_profile_user_item_request_builder.OutboundSharedUserProfileUserItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -353,12 +353,12 @@ class DirectoryRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, directory.Directory, response_handler, error_mapping)
     
-    def recommendations_by_id(self,id: str) -> recommendation_item_request_builder.RecommendationItemRequestBuilder:
+    def recommendations_by_id(self,id: str) -> Optional[recommendation_item_request_builder.RecommendationItemRequestBuilder]:
         """
         Provides operations to manage the recommendations property of the microsoft.graph.directory entity.
         Args:
             id: Unique identifier of the item
-        Returns: recommendation_item_request_builder.RecommendationItemRequestBuilder
+        Returns: Optional[recommendation_item_request_builder.RecommendationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -366,12 +366,12 @@ class DirectoryRequestBuilder():
         url_tpl_params["recommendation%2Did"] = id
         return recommendation_item_request_builder.RecommendationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def shared_email_domains_by_id(self,id: str) -> shared_email_domain_item_request_builder.SharedEmailDomainItemRequestBuilder:
+    def shared_email_domains_by_id(self,id: str) -> Optional[shared_email_domain_item_request_builder.SharedEmailDomainItemRequestBuilder]:
         """
         Provides operations to manage the sharedEmailDomains property of the microsoft.graph.directory entity.
         Args:
             id: Unique identifier of the item
-        Returns: shared_email_domain_item_request_builder.SharedEmailDomainItemRequestBuilder
+        Returns: Optional[shared_email_domain_item_request_builder.SharedEmailDomainItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

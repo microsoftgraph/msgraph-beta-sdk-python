@@ -69,12 +69,12 @@ class DeviceManagementScriptItemRequestBuilder():
         """
         return user_run_states_request_builder.UserRunStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def assignments_by_id(self,id: str) -> device_management_script_assignment_item_request_builder.DeviceManagementScriptAssignmentItemRequestBuilder:
+    def assignments_by_id(self,id: str) -> Optional[device_management_script_assignment_item_request_builder.DeviceManagementScriptAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the assignments property of the microsoft.graph.deviceManagementScript entity.
         Args:
             id: Unique identifier of the item
-        Returns: device_management_script_assignment_item_request_builder.DeviceManagementScriptAssignmentItemRequestBuilder
+        Returns: Optional[device_management_script_assignment_item_request_builder.DeviceManagementScriptAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -173,12 +173,12 @@ class DeviceManagementScriptItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def device_run_states_by_id(self,id: str) -> device_management_script_device_state_item_request_builder.DeviceManagementScriptDeviceStateItemRequestBuilder:
+    def device_run_states_by_id(self,id: str) -> Optional[device_management_script_device_state_item_request_builder.DeviceManagementScriptDeviceStateItemRequestBuilder]:
         """
         Provides operations to manage the deviceRunStates property of the microsoft.graph.deviceManagementScript entity.
         Args:
             id: Unique identifier of the item
-        Returns: device_management_script_device_state_item_request_builder.DeviceManagementScriptDeviceStateItemRequestBuilder
+        Returns: Optional[device_management_script_device_state_item_request_builder.DeviceManagementScriptDeviceStateItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -205,12 +205,12 @@ class DeviceManagementScriptItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, device_management_script.DeviceManagementScript, response_handler, error_mapping)
     
-    def group_assignments_by_id(self,id: str) -> device_management_script_group_assignment_item_request_builder.DeviceManagementScriptGroupAssignmentItemRequestBuilder:
+    def group_assignments_by_id(self,id: str) -> Optional[device_management_script_group_assignment_item_request_builder.DeviceManagementScriptGroupAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the groupAssignments property of the microsoft.graph.deviceManagementScript entity.
         Args:
             id: Unique identifier of the item
-        Returns: device_management_script_group_assignment_item_request_builder.DeviceManagementScriptGroupAssignmentItemRequestBuilder
+        Returns: Optional[device_management_script_group_assignment_item_request_builder.DeviceManagementScriptGroupAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -240,12 +240,12 @@ class DeviceManagementScriptItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, device_management_script.DeviceManagementScript, response_handler, error_mapping)
     
-    def user_run_states_by_id(self,id: str) -> device_management_script_user_state_item_request_builder.DeviceManagementScriptUserStateItemRequestBuilder:
+    def user_run_states_by_id(self,id: str) -> Optional[device_management_script_user_state_item_request_builder.DeviceManagementScriptUserStateItemRequestBuilder]:
         """
         Provides operations to manage the userRunStates property of the microsoft.graph.deviceManagementScript entity.
         Args:
             id: Unique identifier of the item
-        Returns: device_management_script_user_state_item_request_builder.DeviceManagementScriptUserStateItemRequestBuilder
+        Returns: Optional[device_management_script_user_state_item_request_builder.DeviceManagementScriptUserStateItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

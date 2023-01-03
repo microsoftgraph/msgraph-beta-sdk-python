@@ -67,12 +67,12 @@ class AccessPackageAssignmentItemRequestBuilder():
         """
         return target_request_builder.TargetRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def access_package_assignment_requests_by_id(self,id: str) -> access_package_assignment_request_item_request_builder.AccessPackageAssignmentRequestItemRequestBuilder:
+    def access_package_assignment_requests_by_id(self,id: str) -> Optional[access_package_assignment_request_item_request_builder.AccessPackageAssignmentRequestItemRequestBuilder]:
         """
         Provides operations to manage the accessPackageAssignmentRequests property of the microsoft.graph.accessPackageAssignment entity.
         Args:
             id: Unique identifier of the item
-        Returns: access_package_assignment_request_item_request_builder.AccessPackageAssignmentRequestItemRequestBuilder
+        Returns: Optional[access_package_assignment_request_item_request_builder.AccessPackageAssignmentRequestItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -80,12 +80,12 @@ class AccessPackageAssignmentItemRequestBuilder():
         url_tpl_params["accessPackageAssignmentRequest%2Did"] = id
         return access_package_assignment_request_item_request_builder.AccessPackageAssignmentRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def access_package_assignment_resource_roles_by_id(self,id: str) -> access_package_assignment_resource_role_item_request_builder.AccessPackageAssignmentResourceRoleItemRequestBuilder:
+    def access_package_assignment_resource_roles_by_id(self,id: str) -> Optional[access_package_assignment_resource_role_item_request_builder.AccessPackageAssignmentResourceRoleItemRequestBuilder]:
         """
         Provides operations to manage the accessPackageAssignmentResourceRoles property of the microsoft.graph.accessPackageAssignment entity.
         Args:
             id: Unique identifier of the item
-        Returns: access_package_assignment_resource_role_item_request_builder.AccessPackageAssignmentResourceRoleItemRequestBuilder
+        Returns: Optional[access_package_assignment_resource_role_item_request_builder.AccessPackageAssignmentResourceRoleItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

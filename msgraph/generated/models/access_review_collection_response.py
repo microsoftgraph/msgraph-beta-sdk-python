@@ -7,6 +7,9 @@ access_review = lazy_import('msgraph.generated.models.access_review')
 base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
 
 class AccessReviewCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new AccessReviewCollectionResponse and sets the default values.

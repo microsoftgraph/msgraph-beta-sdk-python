@@ -59,12 +59,12 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
         """
         return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def assignments_by_id(self,id: str) -> device_management_configuration_policy_assignment_item_request_builder.DeviceManagementConfigurationPolicyAssignmentItemRequestBuilder:
+    def assignments_by_id(self,id: str) -> Optional[device_management_configuration_policy_assignment_item_request_builder.DeviceManagementConfigurationPolicyAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the assignments property of the microsoft.graph.deviceManagementConfigurationPolicy entity.
         Args:
             id: Unique identifier of the item
-        Returns: device_management_configuration_policy_assignment_item_request_builder.DeviceManagementConfigurationPolicyAssignmentItemRequestBuilder
+        Returns: Optional[device_management_configuration_policy_assignment_item_request_builder.DeviceManagementConfigurationPolicyAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -204,12 +204,12 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, device_management_configuration_policy.DeviceManagementConfigurationPolicy, response_handler, error_mapping)
     
-    def settings_by_id(self,id: str) -> device_management_configuration_setting_item_request_builder.DeviceManagementConfigurationSettingItemRequestBuilder:
+    def settings_by_id(self,id: str) -> Optional[device_management_configuration_setting_item_request_builder.DeviceManagementConfigurationSettingItemRequestBuilder]:
         """
         Provides operations to manage the settings property of the microsoft.graph.deviceManagementConfigurationPolicy entity.
         Args:
             id: Unique identifier of the item
-        Returns: device_management_configuration_setting_item_request_builder.DeviceManagementConfigurationSettingItemRequestBuilder
+        Returns: Optional[device_management_configuration_setting_item_request_builder.DeviceManagementConfigurationSettingItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -200,12 +200,12 @@ class ApplicationItemRequestBuilder():
         """
         return unset_verified_publisher_request_builder.UnsetVerifiedPublisherRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def app_management_policies_by_id(self,id: str) -> app_management_policy_item_request_builder.AppManagementPolicyItemRequestBuilder:
+    def app_management_policies_by_id(self,id: str) -> Optional[app_management_policy_item_request_builder.AppManagementPolicyItemRequestBuilder]:
         """
         Gets an item from the msgraph.generated.applications.item.appManagementPolicies.item collection
         Args:
             id: Unique identifier of the item
-        Returns: app_management_policy_item_request_builder.AppManagementPolicyItemRequestBuilder
+        Returns: Optional[app_management_policy_item_request_builder.AppManagementPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -304,12 +304,12 @@ class ApplicationItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def extension_properties_by_id(self,id: str) -> extension_property_item_request_builder.ExtensionPropertyItemRequestBuilder:
+    def extension_properties_by_id(self,id: str) -> Optional[extension_property_item_request_builder.ExtensionPropertyItemRequestBuilder]:
         """
         Provides operations to manage the extensionProperties property of the microsoft.graph.application entity.
         Args:
             id: Unique identifier of the item
-        Returns: extension_property_item_request_builder.ExtensionPropertyItemRequestBuilder
+        Returns: Optional[extension_property_item_request_builder.ExtensionPropertyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -317,12 +317,12 @@ class ApplicationItemRequestBuilder():
         url_tpl_params["extensionProperty%2Did"] = id
         return extension_property_item_request_builder.ExtensionPropertyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def federated_identity_credentials_by_id(self,id: str) -> federated_identity_credential_item_request_builder.FederatedIdentityCredentialItemRequestBuilder:
+    def federated_identity_credentials_by_id(self,id: str) -> Optional[federated_identity_credential_item_request_builder.FederatedIdentityCredentialItemRequestBuilder]:
         """
         Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.application entity.
         Args:
             id: Unique identifier of the item
-        Returns: federated_identity_credential_item_request_builder.FederatedIdentityCredentialItemRequestBuilder
+        Returns: Optional[federated_identity_credential_item_request_builder.FederatedIdentityCredentialItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -349,12 +349,12 @@ class ApplicationItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, application.Application, response_handler, error_mapping)
     
-    def home_realm_discovery_policies_by_id(self,id: str) -> home_realm_discovery_policy_item_request_builder.HomeRealmDiscoveryPolicyItemRequestBuilder:
+    def home_realm_discovery_policies_by_id(self,id: str) -> Optional[home_realm_discovery_policy_item_request_builder.HomeRealmDiscoveryPolicyItemRequestBuilder]:
         """
         Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.application entity.
         Args:
             id: Unique identifier of the item
-        Returns: home_realm_discovery_policy_item_request_builder.HomeRealmDiscoveryPolicyItemRequestBuilder
+        Returns: Optional[home_realm_discovery_policy_item_request_builder.HomeRealmDiscoveryPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -362,12 +362,12 @@ class ApplicationItemRequestBuilder():
         url_tpl_params["homeRealmDiscoveryPolicy%2Did"] = id
         return home_realm_discovery_policy_item_request_builder.HomeRealmDiscoveryPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def owners_by_id(self,id: str) -> directory_object_item_request_builder.DirectoryObjectItemRequestBuilder:
+    def owners_by_id(self,id: str) -> Optional[directory_object_item_request_builder.DirectoryObjectItemRequestBuilder]:
         """
         Gets an item from the msgraph.generated.applications.item.owners.item collection
         Args:
             id: Unique identifier of the item
-        Returns: directory_object_item_request_builder.DirectoryObjectItemRequestBuilder
+        Returns: Optional[directory_object_item_request_builder.DirectoryObjectItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -397,12 +397,12 @@ class ApplicationItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, application.Application, response_handler, error_mapping)
     
-    def token_issuance_policies_by_id(self,id: str) -> token_issuance_policy_item_request_builder.TokenIssuancePolicyItemRequestBuilder:
+    def token_issuance_policies_by_id(self,id: str) -> Optional[token_issuance_policy_item_request_builder.TokenIssuancePolicyItemRequestBuilder]:
         """
         Gets an item from the msgraph.generated.applications.item.tokenIssuancePolicies.item collection
         Args:
             id: Unique identifier of the item
-        Returns: token_issuance_policy_item_request_builder.TokenIssuancePolicyItemRequestBuilder
+        Returns: Optional[token_issuance_policy_item_request_builder.TokenIssuancePolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -410,12 +410,12 @@ class ApplicationItemRequestBuilder():
         url_tpl_params["tokenIssuancePolicy%2Did"] = id
         return token_issuance_policy_item_request_builder.TokenIssuancePolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def token_lifetime_policies_by_id(self,id: str) -> token_lifetime_policy_item_request_builder.TokenLifetimePolicyItemRequestBuilder:
+    def token_lifetime_policies_by_id(self,id: str) -> Optional[token_lifetime_policy_item_request_builder.TokenLifetimePolicyItemRequestBuilder]:
         """
         Gets an item from the msgraph.generated.applications.item.tokenLifetimePolicies.item collection
         Args:
             id: Unique identifier of the item
-        Returns: token_lifetime_policy_item_request_builder.TokenLifetimePolicyItemRequestBuilder
+        Returns: Optional[token_lifetime_policy_item_request_builder.TokenLifetimePolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

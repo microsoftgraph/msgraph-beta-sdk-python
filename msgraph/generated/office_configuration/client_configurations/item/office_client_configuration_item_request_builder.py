@@ -50,12 +50,12 @@ class OfficeClientConfigurationItemRequestBuilder():
         """
         return user_preference_payload_request_builder.UserPreferencePayloadRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def assignments_by_id(self,id: str) -> office_client_configuration_assignment_item_request_builder.OfficeClientConfigurationAssignmentItemRequestBuilder:
+    def assignments_by_id(self,id: str) -> Optional[office_client_configuration_assignment_item_request_builder.OfficeClientConfigurationAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the assignments property of the microsoft.graph.officeClientConfiguration entity.
         Args:
             id: Unique identifier of the item
-        Returns: office_client_configuration_assignment_item_request_builder.OfficeClientConfigurationAssignmentItemRequestBuilder
+        Returns: Optional[office_client_configuration_assignment_item_request_builder.OfficeClientConfigurationAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

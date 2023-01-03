@@ -11,7 +11,7 @@ user_identity = lazy_import('msgraph.generated.models.user_identity')
 
 class ProgramControl(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the admin singleton.
     """
     def __init__(self,) -> None:
         """

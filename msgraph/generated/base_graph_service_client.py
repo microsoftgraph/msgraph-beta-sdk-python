@@ -1020,12 +1020,12 @@ class BaseGraphServiceClient():
         """
         return workbooks_request_builder.WorkbooksRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def access_review_decisions_by_id(self,id: str) -> access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder:
+    def access_review_decisions_by_id(self,id: str) -> Optional[access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder]:
         """
         Provides operations to manage the collection of accessReviewDecision entities.
         Args:
             id: Unique identifier of the item
-        Returns: access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder
+        Returns: Optional[access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1033,12 +1033,12 @@ class BaseGraphServiceClient():
         url_tpl_params["accessReviewDecision%2Did"] = id
         return access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def access_reviews_by_id(self,id: str) -> access_review_item_request_builder.AccessReviewItemRequestBuilder:
+    def access_reviews_by_id(self,id: str) -> Optional[access_review_item_request_builder.AccessReviewItemRequestBuilder]:
         """
         Provides operations to manage the collection of accessReview entities.
         Args:
             id: Unique identifier of the item
-        Returns: access_review_item_request_builder.AccessReviewItemRequestBuilder
+        Returns: Optional[access_review_item_request_builder.AccessReviewItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1046,12 +1046,12 @@ class BaseGraphServiceClient():
         url_tpl_params["accessReview%2Did"] = id
         return access_review_item_request_builder.AccessReviewItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def activitystatistics_by_id(self,id: str) -> activity_statistics_item_request_builder.ActivityStatisticsItemRequestBuilder:
+    def activitystatistics_by_id(self,id: str) -> Optional[activity_statistics_item_request_builder.ActivityStatisticsItemRequestBuilder]:
         """
         Provides operations to manage the collection of activityStatistics entities.
         Args:
             id: Unique identifier of the item
-        Returns: activity_statistics_item_request_builder.ActivityStatisticsItemRequestBuilder
+        Returns: Optional[activity_statistics_item_request_builder.ActivityStatisticsItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1059,12 +1059,12 @@ class BaseGraphServiceClient():
         url_tpl_params["activityStatistics%2Did"] = id
         return activity_statistics_item_request_builder.ActivityStatisticsItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def administrative_units_by_id(self,id: str) -> administrative_unit_item_request_builder.AdministrativeUnitItemRequestBuilder:
+    def administrative_units_by_id(self,id: str) -> Optional[administrative_unit_item_request_builder.AdministrativeUnitItemRequestBuilder]:
         """
         Provides operations to manage the collection of administrativeUnit entities.
         Args:
             id: Unique identifier of the item
-        Returns: administrative_unit_item_request_builder.AdministrativeUnitItemRequestBuilder
+        Returns: Optional[administrative_unit_item_request_builder.AdministrativeUnitItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1072,12 +1072,12 @@ class BaseGraphServiceClient():
         url_tpl_params["administrativeUnit%2Did"] = id
         return administrative_unit_item_request_builder.AdministrativeUnitItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def agreement_acceptances_by_id(self,id: str) -> agreement_acceptance_item_request_builder.AgreementAcceptanceItemRequestBuilder:
+    def agreement_acceptances_by_id(self,id: str) -> Optional[agreement_acceptance_item_request_builder.AgreementAcceptanceItemRequestBuilder]:
         """
         Provides operations to manage the collection of agreementAcceptance entities.
         Args:
             id: Unique identifier of the item
-        Returns: agreement_acceptance_item_request_builder.AgreementAcceptanceItemRequestBuilder
+        Returns: Optional[agreement_acceptance_item_request_builder.AgreementAcceptanceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1085,12 +1085,12 @@ class BaseGraphServiceClient():
         url_tpl_params["agreementAcceptance%2Did"] = id
         return agreement_acceptance_item_request_builder.AgreementAcceptanceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def agreements_by_id(self,id: str) -> agreement_item_request_builder.AgreementItemRequestBuilder:
+    def agreements_by_id(self,id: str) -> Optional[agreement_item_request_builder.AgreementItemRequestBuilder]:
         """
         Provides operations to manage the collection of agreement entities.
         Args:
             id: Unique identifier of the item
-        Returns: agreement_item_request_builder.AgreementItemRequestBuilder
+        Returns: Optional[agreement_item_request_builder.AgreementItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1098,12 +1098,12 @@ class BaseGraphServiceClient():
         url_tpl_params["agreement%2Did"] = id
         return agreement_item_request_builder.AgreementItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def allowed_data_locations_by_id(self,id: str) -> allowed_data_location_item_request_builder.AllowedDataLocationItemRequestBuilder:
+    def allowed_data_locations_by_id(self,id: str) -> Optional[allowed_data_location_item_request_builder.AllowedDataLocationItemRequestBuilder]:
         """
         Provides operations to manage the collection of allowedDataLocation entities.
         Args:
             id: Unique identifier of the item
-        Returns: allowed_data_location_item_request_builder.AllowedDataLocationItemRequestBuilder
+        Returns: Optional[allowed_data_location_item_request_builder.AllowedDataLocationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1111,12 +1111,12 @@ class BaseGraphServiceClient():
         url_tpl_params["allowedDataLocation%2Did"] = id
         return allowed_data_location_item_request_builder.AllowedDataLocationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def applications_by_id(self,id: str) -> application_item_request_builder.ApplicationItemRequestBuilder:
+    def applications_by_id(self,id: str) -> Optional[application_item_request_builder.ApplicationItemRequestBuilder]:
         """
         Provides operations to manage the collection of application entities.
         Args:
             id: Unique identifier of the item
-        Returns: application_item_request_builder.ApplicationItemRequestBuilder
+        Returns: Optional[application_item_request_builder.ApplicationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1124,12 +1124,12 @@ class BaseGraphServiceClient():
         url_tpl_params["application%2Did"] = id
         return application_item_request_builder.ApplicationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def application_templates_by_id(self,id: str) -> application_template_item_request_builder.ApplicationTemplateItemRequestBuilder:
+    def application_templates_by_id(self,id: str) -> Optional[application_template_item_request_builder.ApplicationTemplateItemRequestBuilder]:
         """
         Provides operations to manage the collection of applicationTemplate entities.
         Args:
             id: Unique identifier of the item
-        Returns: application_template_item_request_builder.ApplicationTemplateItemRequestBuilder
+        Returns: Optional[application_template_item_request_builder.ApplicationTemplateItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1137,12 +1137,12 @@ class BaseGraphServiceClient():
         url_tpl_params["applicationTemplate%2Did"] = id
         return application_template_item_request_builder.ApplicationTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def app_role_assignments_by_id(self,id: str) -> app_role_assignment_item_request_builder.AppRoleAssignmentItemRequestBuilder:
+    def app_role_assignments_by_id(self,id: str) -> Optional[app_role_assignment_item_request_builder.AppRoleAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the collection of appRoleAssignment entities.
         Args:
             id: Unique identifier of the item
-        Returns: app_role_assignment_item_request_builder.AppRoleAssignmentItemRequestBuilder
+        Returns: Optional[app_role_assignment_item_request_builder.AppRoleAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1150,12 +1150,12 @@ class BaseGraphServiceClient():
         url_tpl_params["appRoleAssignment%2Did"] = id
         return app_role_assignment_item_request_builder.AppRoleAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def approval_workflow_providers_by_id(self,id: str) -> approval_workflow_provider_item_request_builder.ApprovalWorkflowProviderItemRequestBuilder:
+    def approval_workflow_providers_by_id(self,id: str) -> Optional[approval_workflow_provider_item_request_builder.ApprovalWorkflowProviderItemRequestBuilder]:
         """
         Provides operations to manage the collection of approvalWorkflowProvider entities.
         Args:
             id: Unique identifier of the item
-        Returns: approval_workflow_provider_item_request_builder.ApprovalWorkflowProviderItemRequestBuilder
+        Returns: Optional[approval_workflow_provider_item_request_builder.ApprovalWorkflowProviderItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1163,12 +1163,12 @@ class BaseGraphServiceClient():
         url_tpl_params["approvalWorkflowProvider%2Did"] = id
         return approval_workflow_provider_item_request_builder.ApprovalWorkflowProviderItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def authentication_method_configurations_by_id(self,id: str) -> authentication_method_configuration_item_request_builder.AuthenticationMethodConfigurationItemRequestBuilder:
+    def authentication_method_configurations_by_id(self,id: str) -> Optional[authentication_method_configuration_item_request_builder.AuthenticationMethodConfigurationItemRequestBuilder]:
         """
         Provides operations to manage the collection of authenticationMethodConfiguration entities.
         Args:
             id: Unique identifier of the item
-        Returns: authentication_method_configuration_item_request_builder.AuthenticationMethodConfigurationItemRequestBuilder
+        Returns: Optional[authentication_method_configuration_item_request_builder.AuthenticationMethodConfigurationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1176,12 +1176,12 @@ class BaseGraphServiceClient():
         url_tpl_params["authenticationMethodConfiguration%2Did"] = id
         return authentication_method_configuration_item_request_builder.AuthenticationMethodConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def booking_businesses_by_id(self,id: str) -> booking_business_item_request_builder.BookingBusinessItemRequestBuilder:
+    def booking_businesses_by_id(self,id: str) -> Optional[booking_business_item_request_builder.BookingBusinessItemRequestBuilder]:
         """
         Provides operations to manage the collection of bookingBusiness entities.
         Args:
             id: Unique identifier of the item
-        Returns: booking_business_item_request_builder.BookingBusinessItemRequestBuilder
+        Returns: Optional[booking_business_item_request_builder.BookingBusinessItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1189,12 +1189,12 @@ class BaseGraphServiceClient():
         url_tpl_params["bookingBusiness%2Did"] = id
         return booking_business_item_request_builder.BookingBusinessItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def booking_currencies_by_id(self,id: str) -> booking_currency_item_request_builder.BookingCurrencyItemRequestBuilder:
+    def booking_currencies_by_id(self,id: str) -> Optional[booking_currency_item_request_builder.BookingCurrencyItemRequestBuilder]:
         """
         Provides operations to manage the collection of bookingCurrency entities.
         Args:
             id: Unique identifier of the item
-        Returns: booking_currency_item_request_builder.BookingCurrencyItemRequestBuilder
+        Returns: Optional[booking_currency_item_request_builder.BookingCurrencyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1202,12 +1202,12 @@ class BaseGraphServiceClient():
         url_tpl_params["bookingCurrency%2Did"] = id
         return booking_currency_item_request_builder.BookingCurrencyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def business_flow_templates_by_id(self,id: str) -> business_flow_template_item_request_builder.BusinessFlowTemplateItemRequestBuilder:
+    def business_flow_templates_by_id(self,id: str) -> Optional[business_flow_template_item_request_builder.BusinessFlowTemplateItemRequestBuilder]:
         """
         Provides operations to manage the collection of businessFlowTemplate entities.
         Args:
             id: Unique identifier of the item
-        Returns: business_flow_template_item_request_builder.BusinessFlowTemplateItemRequestBuilder
+        Returns: Optional[business_flow_template_item_request_builder.BusinessFlowTemplateItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1215,12 +1215,12 @@ class BaseGraphServiceClient():
         url_tpl_params["businessFlowTemplate%2Did"] = id
         return business_flow_template_item_request_builder.BusinessFlowTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def certificate_based_auth_configuration_by_id(self,id: str) -> certificate_based_auth_configuration_item_request_builder.CertificateBasedAuthConfigurationItemRequestBuilder:
+    def certificate_based_auth_configuration_by_id(self,id: str) -> Optional[certificate_based_auth_configuration_item_request_builder.CertificateBasedAuthConfigurationItemRequestBuilder]:
         """
         Provides operations to manage the collection of certificateBasedAuthConfiguration entities.
         Args:
             id: Unique identifier of the item
-        Returns: certificate_based_auth_configuration_item_request_builder.CertificateBasedAuthConfigurationItemRequestBuilder
+        Returns: Optional[certificate_based_auth_configuration_item_request_builder.CertificateBasedAuthConfigurationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1228,12 +1228,12 @@ class BaseGraphServiceClient():
         url_tpl_params["certificateBasedAuthConfiguration%2Did"] = id
         return certificate_based_auth_configuration_item_request_builder.CertificateBasedAuthConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def chats_by_id(self,id: str) -> chat_item_request_builder.ChatItemRequestBuilder:
+    def chats_by_id(self,id: str) -> Optional[chat_item_request_builder.ChatItemRequestBuilder]:
         """
         Provides operations to manage the collection of chat entities.
         Args:
             id: Unique identifier of the item
-        Returns: chat_item_request_builder.ChatItemRequestBuilder
+        Returns: Optional[chat_item_request_builder.ChatItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1241,12 +1241,12 @@ class BaseGraphServiceClient():
         url_tpl_params["chat%2Did"] = id
         return chat_item_request_builder.ChatItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def commands_by_id(self,id: str) -> command_item_request_builder.CommandItemRequestBuilder:
+    def commands_by_id(self,id: str) -> Optional[command_item_request_builder.CommandItemRequestBuilder]:
         """
         Provides operations to manage the collection of command entities.
         Args:
             id: Unique identifier of the item
-        Returns: command_item_request_builder.CommandItemRequestBuilder
+        Returns: Optional[command_item_request_builder.CommandItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1254,12 +1254,12 @@ class BaseGraphServiceClient():
         url_tpl_params["command%2Did"] = id
         return command_item_request_builder.CommandItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def connections_by_id(self,id: str) -> external_connection_item_request_builder.ExternalConnectionItemRequestBuilder:
+    def connections_by_id(self,id: str) -> Optional[external_connection_item_request_builder.ExternalConnectionItemRequestBuilder]:
         """
         Provides operations to manage the collection of externalConnection entities.
         Args:
             id: Unique identifier of the item
-        Returns: external_connection_item_request_builder.ExternalConnectionItemRequestBuilder
+        Returns: Optional[external_connection_item_request_builder.ExternalConnectionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1289,12 +1289,12 @@ class BaseGraphServiceClient():
         if not request_adapter.base_url:
             request_adapter.base_url = "https://graph.microsoft.com/beta"
     
-    def contacts_by_id(self,id: str) -> org_contact_item_request_builder.OrgContactItemRequestBuilder:
+    def contacts_by_id(self,id: str) -> Optional[org_contact_item_request_builder.OrgContactItemRequestBuilder]:
         """
         Provides operations to manage the collection of orgContact entities.
         Args:
             id: Unique identifier of the item
-        Returns: org_contact_item_request_builder.OrgContactItemRequestBuilder
+        Returns: Optional[org_contact_item_request_builder.OrgContactItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1302,12 +1302,12 @@ class BaseGraphServiceClient():
         url_tpl_params["orgContact%2Did"] = id
         return org_contact_item_request_builder.OrgContactItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def contracts_by_id(self,id: str) -> contract_item_request_builder.ContractItemRequestBuilder:
+    def contracts_by_id(self,id: str) -> Optional[contract_item_request_builder.ContractItemRequestBuilder]:
         """
         Provides operations to manage the collection of contract entities.
         Args:
             id: Unique identifier of the item
-        Returns: contract_item_request_builder.ContractItemRequestBuilder
+        Returns: Optional[contract_item_request_builder.ContractItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1315,12 +1315,12 @@ class BaseGraphServiceClient():
         url_tpl_params["contract%2Did"] = id
         return contract_item_request_builder.ContractItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def data_policy_operations_by_id(self,id: str) -> data_policy_operation_item_request_builder.DataPolicyOperationItemRequestBuilder:
+    def data_policy_operations_by_id(self,id: str) -> Optional[data_policy_operation_item_request_builder.DataPolicyOperationItemRequestBuilder]:
         """
         Provides operations to manage the collection of dataPolicyOperation entities.
         Args:
             id: Unique identifier of the item
-        Returns: data_policy_operation_item_request_builder.DataPolicyOperationItemRequestBuilder
+        Returns: Optional[data_policy_operation_item_request_builder.DataPolicyOperationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1328,12 +1328,12 @@ class BaseGraphServiceClient():
         url_tpl_params["dataPolicyOperation%2Did"] = id
         return data_policy_operation_item_request_builder.DataPolicyOperationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def devices_by_id(self,id: str) -> device_item_request_builder.DeviceItemRequestBuilder:
+    def devices_by_id(self,id: str) -> Optional[device_item_request_builder.DeviceItemRequestBuilder]:
         """
         Provides operations to manage the collection of device entities.
         Args:
             id: Unique identifier of the item
-        Returns: device_item_request_builder.DeviceItemRequestBuilder
+        Returns: Optional[device_item_request_builder.DeviceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1341,12 +1341,12 @@ class BaseGraphServiceClient():
         url_tpl_params["device%2Did"] = id
         return device_item_request_builder.DeviceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def directory_objects_by_id(self,id: str) -> directory_object_item_request_builder.DirectoryObjectItemRequestBuilder:
+    def directory_objects_by_id(self,id: str) -> Optional[directory_object_item_request_builder.DirectoryObjectItemRequestBuilder]:
         """
         Provides operations to manage the collection of directoryObject entities.
         Args:
             id: Unique identifier of the item
-        Returns: directory_object_item_request_builder.DirectoryObjectItemRequestBuilder
+        Returns: Optional[directory_object_item_request_builder.DirectoryObjectItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1354,12 +1354,12 @@ class BaseGraphServiceClient():
         url_tpl_params["directoryObject%2Did"] = id
         return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def directory_roles_by_id(self,id: str) -> directory_role_item_request_builder.DirectoryRoleItemRequestBuilder:
+    def directory_roles_by_id(self,id: str) -> Optional[directory_role_item_request_builder.DirectoryRoleItemRequestBuilder]:
         """
         Provides operations to manage the collection of directoryRole entities.
         Args:
             id: Unique identifier of the item
-        Returns: directory_role_item_request_builder.DirectoryRoleItemRequestBuilder
+        Returns: Optional[directory_role_item_request_builder.DirectoryRoleItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1367,12 +1367,12 @@ class BaseGraphServiceClient():
         url_tpl_params["directoryRole%2Did"] = id
         return directory_role_item_request_builder.DirectoryRoleItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def directory_role_templates_by_id(self,id: str) -> directory_role_template_item_request_builder.DirectoryRoleTemplateItemRequestBuilder:
+    def directory_role_templates_by_id(self,id: str) -> Optional[directory_role_template_item_request_builder.DirectoryRoleTemplateItemRequestBuilder]:
         """
         Provides operations to manage the collection of directoryRoleTemplate entities.
         Args:
             id: Unique identifier of the item
-        Returns: directory_role_template_item_request_builder.DirectoryRoleTemplateItemRequestBuilder
+        Returns: Optional[directory_role_template_item_request_builder.DirectoryRoleTemplateItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1380,12 +1380,12 @@ class BaseGraphServiceClient():
         url_tpl_params["directoryRoleTemplate%2Did"] = id
         return directory_role_template_item_request_builder.DirectoryRoleTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def directory_setting_templates_by_id(self,id: str) -> directory_setting_template_item_request_builder.DirectorySettingTemplateItemRequestBuilder:
+    def directory_setting_templates_by_id(self,id: str) -> Optional[directory_setting_template_item_request_builder.DirectorySettingTemplateItemRequestBuilder]:
         """
         Provides operations to manage the collection of directorySettingTemplate entities.
         Args:
             id: Unique identifier of the item
-        Returns: directory_setting_template_item_request_builder.DirectorySettingTemplateItemRequestBuilder
+        Returns: Optional[directory_setting_template_item_request_builder.DirectorySettingTemplateItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1393,12 +1393,12 @@ class BaseGraphServiceClient():
         url_tpl_params["directorySettingTemplate%2Did"] = id
         return directory_setting_template_item_request_builder.DirectorySettingTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def domain_dns_records_by_id(self,id: str) -> domain_dns_record_item_request_builder.DomainDnsRecordItemRequestBuilder:
+    def domain_dns_records_by_id(self,id: str) -> Optional[domain_dns_record_item_request_builder.DomainDnsRecordItemRequestBuilder]:
         """
         Provides operations to manage the collection of domainDnsRecord entities.
         Args:
             id: Unique identifier of the item
-        Returns: domain_dns_record_item_request_builder.DomainDnsRecordItemRequestBuilder
+        Returns: Optional[domain_dns_record_item_request_builder.DomainDnsRecordItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1406,12 +1406,12 @@ class BaseGraphServiceClient():
         url_tpl_params["domainDnsRecord%2Did"] = id
         return domain_dns_record_item_request_builder.DomainDnsRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def domains_by_id(self,id: str) -> domain_item_request_builder.DomainItemRequestBuilder:
+    def domains_by_id(self,id: str) -> Optional[domain_item_request_builder.DomainItemRequestBuilder]:
         """
         Provides operations to manage the collection of domain entities.
         Args:
             id: Unique identifier of the item
-        Returns: domain_item_request_builder.DomainItemRequestBuilder
+        Returns: Optional[domain_item_request_builder.DomainItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1419,12 +1419,12 @@ class BaseGraphServiceClient():
         url_tpl_params["domain%2Did"] = id
         return domain_item_request_builder.DomainItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def drives_by_id(self,id: str) -> drive_item_request_builder.DriveItemRequestBuilder:
+    def drives_by_id(self,id: str) -> Optional[drive_item_request_builder.DriveItemRequestBuilder]:
         """
         Provides operations to manage the collection of drive entities.
         Args:
             id: Unique identifier of the item
-        Returns: drive_item_request_builder.DriveItemRequestBuilder
+        Returns: Optional[drive_item_request_builder.DriveItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1432,12 +1432,12 @@ class BaseGraphServiceClient():
         url_tpl_params["drive%2Did"] = id
         return drive_item_request_builder.DriveItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def filter_operators_by_id(self,id: str) -> filter_operator_schema_item_request_builder.FilterOperatorSchemaItemRequestBuilder:
+    def filter_operators_by_id(self,id: str) -> Optional[filter_operator_schema_item_request_builder.FilterOperatorSchemaItemRequestBuilder]:
         """
         Provides operations to manage the collection of filterOperatorSchema entities.
         Args:
             id: Unique identifier of the item
-        Returns: filter_operator_schema_item_request_builder.FilterOperatorSchemaItemRequestBuilder
+        Returns: Optional[filter_operator_schema_item_request_builder.FilterOperatorSchemaItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1445,12 +1445,12 @@ class BaseGraphServiceClient():
         url_tpl_params["filterOperatorSchema%2Did"] = id
         return filter_operator_schema_item_request_builder.FilterOperatorSchemaItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def functions_by_id(self,id: str) -> attribute_mapping_function_schema_item_request_builder.AttributeMappingFunctionSchemaItemRequestBuilder:
+    def functions_by_id(self,id: str) -> Optional[attribute_mapping_function_schema_item_request_builder.AttributeMappingFunctionSchemaItemRequestBuilder]:
         """
         Provides operations to manage the collection of attributeMappingFunctionSchema entities.
         Args:
             id: Unique identifier of the item
-        Returns: attribute_mapping_function_schema_item_request_builder.AttributeMappingFunctionSchemaItemRequestBuilder
+        Returns: Optional[attribute_mapping_function_schema_item_request_builder.AttributeMappingFunctionSchemaItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1458,12 +1458,12 @@ class BaseGraphServiceClient():
         url_tpl_params["attributeMappingFunctionSchema%2Did"] = id
         return attribute_mapping_function_schema_item_request_builder.AttributeMappingFunctionSchemaItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def governance_resources_by_id(self,id: str) -> governance_resource_item_request_builder.GovernanceResourceItemRequestBuilder:
+    def governance_resources_by_id(self,id: str) -> Optional[governance_resource_item_request_builder.GovernanceResourceItemRequestBuilder]:
         """
         Provides operations to manage the collection of governanceResource entities.
         Args:
             id: Unique identifier of the item
-        Returns: governance_resource_item_request_builder.GovernanceResourceItemRequestBuilder
+        Returns: Optional[governance_resource_item_request_builder.GovernanceResourceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1471,12 +1471,12 @@ class BaseGraphServiceClient():
         url_tpl_params["governanceResource%2Did"] = id
         return governance_resource_item_request_builder.GovernanceResourceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def governance_role_assignment_requests_by_id(self,id: str) -> governance_role_assignment_request_item_request_builder.GovernanceRoleAssignmentRequestItemRequestBuilder:
+    def governance_role_assignment_requests_by_id(self,id: str) -> Optional[governance_role_assignment_request_item_request_builder.GovernanceRoleAssignmentRequestItemRequestBuilder]:
         """
         Provides operations to manage the collection of governanceRoleAssignmentRequest entities.
         Args:
             id: Unique identifier of the item
-        Returns: governance_role_assignment_request_item_request_builder.GovernanceRoleAssignmentRequestItemRequestBuilder
+        Returns: Optional[governance_role_assignment_request_item_request_builder.GovernanceRoleAssignmentRequestItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1484,12 +1484,12 @@ class BaseGraphServiceClient():
         url_tpl_params["governanceRoleAssignmentRequest%2Did"] = id
         return governance_role_assignment_request_item_request_builder.GovernanceRoleAssignmentRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def governance_role_assignments_by_id(self,id: str) -> governance_role_assignment_item_request_builder.GovernanceRoleAssignmentItemRequestBuilder:
+    def governance_role_assignments_by_id(self,id: str) -> Optional[governance_role_assignment_item_request_builder.GovernanceRoleAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the collection of governanceRoleAssignment entities.
         Args:
             id: Unique identifier of the item
-        Returns: governance_role_assignment_item_request_builder.GovernanceRoleAssignmentItemRequestBuilder
+        Returns: Optional[governance_role_assignment_item_request_builder.GovernanceRoleAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1497,12 +1497,12 @@ class BaseGraphServiceClient():
         url_tpl_params["governanceRoleAssignment%2Did"] = id
         return governance_role_assignment_item_request_builder.GovernanceRoleAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def governance_role_definitions_by_id(self,id: str) -> governance_role_definition_item_request_builder.GovernanceRoleDefinitionItemRequestBuilder:
+    def governance_role_definitions_by_id(self,id: str) -> Optional[governance_role_definition_item_request_builder.GovernanceRoleDefinitionItemRequestBuilder]:
         """
         Provides operations to manage the collection of governanceRoleDefinition entities.
         Args:
             id: Unique identifier of the item
-        Returns: governance_role_definition_item_request_builder.GovernanceRoleDefinitionItemRequestBuilder
+        Returns: Optional[governance_role_definition_item_request_builder.GovernanceRoleDefinitionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1510,12 +1510,12 @@ class BaseGraphServiceClient():
         url_tpl_params["governanceRoleDefinition%2Did"] = id
         return governance_role_definition_item_request_builder.GovernanceRoleDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def governance_role_settings_by_id(self,id: str) -> governance_role_setting_item_request_builder.GovernanceRoleSettingItemRequestBuilder:
+    def governance_role_settings_by_id(self,id: str) -> Optional[governance_role_setting_item_request_builder.GovernanceRoleSettingItemRequestBuilder]:
         """
         Provides operations to manage the collection of governanceRoleSetting entities.
         Args:
             id: Unique identifier of the item
-        Returns: governance_role_setting_item_request_builder.GovernanceRoleSettingItemRequestBuilder
+        Returns: Optional[governance_role_setting_item_request_builder.GovernanceRoleSettingItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1523,12 +1523,12 @@ class BaseGraphServiceClient():
         url_tpl_params["governanceRoleSetting%2Did"] = id
         return governance_role_setting_item_request_builder.GovernanceRoleSettingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def governance_subjects_by_id(self,id: str) -> governance_subject_item_request_builder.GovernanceSubjectItemRequestBuilder:
+    def governance_subjects_by_id(self,id: str) -> Optional[governance_subject_item_request_builder.GovernanceSubjectItemRequestBuilder]:
         """
         Provides operations to manage the collection of governanceSubject entities.
         Args:
             id: Unique identifier of the item
-        Returns: governance_subject_item_request_builder.GovernanceSubjectItemRequestBuilder
+        Returns: Optional[governance_subject_item_request_builder.GovernanceSubjectItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1536,12 +1536,12 @@ class BaseGraphServiceClient():
         url_tpl_params["governanceSubject%2Did"] = id
         return governance_subject_item_request_builder.GovernanceSubjectItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def group_lifecycle_policies_by_id(self,id: str) -> group_lifecycle_policy_item_request_builder.GroupLifecyclePolicyItemRequestBuilder:
+    def group_lifecycle_policies_by_id(self,id: str) -> Optional[group_lifecycle_policy_item_request_builder.GroupLifecyclePolicyItemRequestBuilder]:
         """
         Provides operations to manage the collection of groupLifecyclePolicy entities.
         Args:
             id: Unique identifier of the item
-        Returns: group_lifecycle_policy_item_request_builder.GroupLifecyclePolicyItemRequestBuilder
+        Returns: Optional[group_lifecycle_policy_item_request_builder.GroupLifecyclePolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1549,12 +1549,12 @@ class BaseGraphServiceClient():
         url_tpl_params["groupLifecyclePolicy%2Did"] = id
         return group_lifecycle_policy_item_request_builder.GroupLifecyclePolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def groups_by_id(self,id: str) -> group_item_request_builder.GroupItemRequestBuilder:
+    def groups_by_id(self,id: str) -> Optional[group_item_request_builder.GroupItemRequestBuilder]:
         """
         Provides operations to manage the collection of group entities.
         Args:
             id: Unique identifier of the item
-        Returns: group_item_request_builder.GroupItemRequestBuilder
+        Returns: Optional[group_item_request_builder.GroupItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1562,12 +1562,12 @@ class BaseGraphServiceClient():
         url_tpl_params["group%2Did"] = id
         return group_item_request_builder.GroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def identity_providers_by_id(self,id: str) -> identity_provider_item_request_builder.IdentityProviderItemRequestBuilder:
+    def identity_providers_by_id(self,id: str) -> Optional[identity_provider_item_request_builder.IdentityProviderItemRequestBuilder]:
         """
         Provides operations to manage the collection of identityProvider entities.
         Args:
             id: Unique identifier of the item
-        Returns: identity_provider_item_request_builder.IdentityProviderItemRequestBuilder
+        Returns: Optional[identity_provider_item_request_builder.IdentityProviderItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1575,12 +1575,12 @@ class BaseGraphServiceClient():
         url_tpl_params["identityProvider%2Did"] = id
         return identity_provider_item_request_builder.IdentityProviderItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def invitations_by_id(self,id: str) -> invitation_item_request_builder.InvitationItemRequestBuilder:
+    def invitations_by_id(self,id: str) -> Optional[invitation_item_request_builder.InvitationItemRequestBuilder]:
         """
         Provides operations to manage the collection of invitation entities.
         Args:
             id: Unique identifier of the item
-        Returns: invitation_item_request_builder.InvitationItemRequestBuilder
+        Returns: Optional[invitation_item_request_builder.InvitationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1588,12 +1588,12 @@ class BaseGraphServiceClient():
         url_tpl_params["invitation%2Did"] = id
         return invitation_item_request_builder.InvitationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def message_events_by_id(self,id: str) -> message_event_item_request_builder.MessageEventItemRequestBuilder:
+    def message_events_by_id(self,id: str) -> Optional[message_event_item_request_builder.MessageEventItemRequestBuilder]:
         """
         Provides operations to manage the collection of messageEvent entities.
         Args:
             id: Unique identifier of the item
-        Returns: message_event_item_request_builder.MessageEventItemRequestBuilder
+        Returns: Optional[message_event_item_request_builder.MessageEventItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1601,12 +1601,12 @@ class BaseGraphServiceClient():
         url_tpl_params["messageEvent%2Did"] = id
         return message_event_item_request_builder.MessageEventItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def message_recipients_by_id(self,id: str) -> message_recipient_item_request_builder.MessageRecipientItemRequestBuilder:
+    def message_recipients_by_id(self,id: str) -> Optional[message_recipient_item_request_builder.MessageRecipientItemRequestBuilder]:
         """
         Provides operations to manage the collection of messageRecipient entities.
         Args:
             id: Unique identifier of the item
-        Returns: message_recipient_item_request_builder.MessageRecipientItemRequestBuilder
+        Returns: Optional[message_recipient_item_request_builder.MessageRecipientItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1614,12 +1614,12 @@ class BaseGraphServiceClient():
         url_tpl_params["messageRecipient%2Did"] = id
         return message_recipient_item_request_builder.MessageRecipientItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def message_traces_by_id(self,id: str) -> message_trace_item_request_builder.MessageTraceItemRequestBuilder:
+    def message_traces_by_id(self,id: str) -> Optional[message_trace_item_request_builder.MessageTraceItemRequestBuilder]:
         """
         Provides operations to manage the collection of messageTrace entities.
         Args:
             id: Unique identifier of the item
-        Returns: message_trace_item_request_builder.MessageTraceItemRequestBuilder
+        Returns: Optional[message_trace_item_request_builder.MessageTraceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1627,12 +1627,12 @@ class BaseGraphServiceClient():
         url_tpl_params["messageTrace%2Did"] = id
         return message_trace_item_request_builder.MessageTraceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def mobility_management_policies_by_id(self,id: str) -> mobility_management_policy_item_request_builder.MobilityManagementPolicyItemRequestBuilder:
+    def mobility_management_policies_by_id(self,id: str) -> Optional[mobility_management_policy_item_request_builder.MobilityManagementPolicyItemRequestBuilder]:
         """
         Provides operations to manage the collection of mobilityManagementPolicy entities.
         Args:
             id: Unique identifier of the item
-        Returns: mobility_management_policy_item_request_builder.MobilityManagementPolicyItemRequestBuilder
+        Returns: Optional[mobility_management_policy_item_request_builder.MobilityManagementPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1640,12 +1640,12 @@ class BaseGraphServiceClient():
         url_tpl_params["mobilityManagementPolicy%2Did"] = id
         return mobility_management_policy_item_request_builder.MobilityManagementPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def oauth2_permission_grants_by_id(self,id: str) -> o_auth2_permission_grant_item_request_builder.OAuth2PermissionGrantItemRequestBuilder:
+    def oauth2_permission_grants_by_id(self,id: str) -> Optional[o_auth2_permission_grant_item_request_builder.OAuth2PermissionGrantItemRequestBuilder]:
         """
         Provides operations to manage the collection of oAuth2PermissionGrant entities.
         Args:
             id: Unique identifier of the item
-        Returns: o_auth2_permission_grant_item_request_builder.OAuth2PermissionGrantItemRequestBuilder
+        Returns: Optional[o_auth2_permission_grant_item_request_builder.OAuth2PermissionGrantItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1653,12 +1653,12 @@ class BaseGraphServiceClient():
         url_tpl_params["oAuth2PermissionGrant%2Did"] = id
         return o_auth2_permission_grant_item_request_builder.OAuth2PermissionGrantItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def on_premises_publishing_profiles_by_id(self,id: str) -> on_premises_publishing_profile_item_request_builder.OnPremisesPublishingProfileItemRequestBuilder:
+    def on_premises_publishing_profiles_by_id(self,id: str) -> Optional[on_premises_publishing_profile_item_request_builder.OnPremisesPublishingProfileItemRequestBuilder]:
         """
         Provides operations to manage the collection of onPremisesPublishingProfile entities.
         Args:
             id: Unique identifier of the item
-        Returns: on_premises_publishing_profile_item_request_builder.OnPremisesPublishingProfileItemRequestBuilder
+        Returns: Optional[on_premises_publishing_profile_item_request_builder.OnPremisesPublishingProfileItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1666,12 +1666,12 @@ class BaseGraphServiceClient():
         url_tpl_params["onPremisesPublishingProfile%2Did"] = id
         return on_premises_publishing_profile_item_request_builder.OnPremisesPublishingProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def organization_by_id(self,id: str) -> organization_item_request_builder.OrganizationItemRequestBuilder:
+    def organization_by_id(self,id: str) -> Optional[organization_item_request_builder.OrganizationItemRequestBuilder]:
         """
         Provides operations to manage the collection of organization entities.
         Args:
             id: Unique identifier of the item
-        Returns: organization_item_request_builder.OrganizationItemRequestBuilder
+        Returns: Optional[organization_item_request_builder.OrganizationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1679,12 +1679,12 @@ class BaseGraphServiceClient():
         url_tpl_params["organization%2Did"] = id
         return organization_item_request_builder.OrganizationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def payload_response_by_id(self,id: str) -> payload_response_item_request_builder.PayloadResponseItemRequestBuilder:
+    def payload_response_by_id(self,id: str) -> Optional[payload_response_item_request_builder.PayloadResponseItemRequestBuilder]:
         """
         Provides operations to manage the collection of payloadResponse entities.
         Args:
             id: Unique identifier of the item
-        Returns: payload_response_item_request_builder.PayloadResponseItemRequestBuilder
+        Returns: Optional[payload_response_item_request_builder.PayloadResponseItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1692,12 +1692,12 @@ class BaseGraphServiceClient():
         url_tpl_params["payloadResponse%2Did"] = id
         return payload_response_item_request_builder.PayloadResponseItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def permission_grants_by_id(self,id: str) -> resource_specific_permission_grant_item_request_builder.ResourceSpecificPermissionGrantItemRequestBuilder:
+    def permission_grants_by_id(self,id: str) -> Optional[resource_specific_permission_grant_item_request_builder.ResourceSpecificPermissionGrantItemRequestBuilder]:
         """
         Provides operations to manage the collection of resourceSpecificPermissionGrant entities.
         Args:
             id: Unique identifier of the item
-        Returns: resource_specific_permission_grant_item_request_builder.ResourceSpecificPermissionGrantItemRequestBuilder
+        Returns: Optional[resource_specific_permission_grant_item_request_builder.ResourceSpecificPermissionGrantItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1705,12 +1705,12 @@ class BaseGraphServiceClient():
         url_tpl_params["resourceSpecificPermissionGrant%2Did"] = id
         return resource_specific_permission_grant_item_request_builder.ResourceSpecificPermissionGrantItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def places_by_id(self,id: str) -> place_item_request_builder.PlaceItemRequestBuilder:
+    def places_by_id(self,id: str) -> Optional[place_item_request_builder.PlaceItemRequestBuilder]:
         """
         Provides operations to manage the collection of place entities.
         Args:
             id: Unique identifier of the item
-        Returns: place_item_request_builder.PlaceItemRequestBuilder
+        Returns: Optional[place_item_request_builder.PlaceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1718,12 +1718,12 @@ class BaseGraphServiceClient():
         url_tpl_params["place%2Did"] = id
         return place_item_request_builder.PlaceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def privileged_access_by_id(self,id: str) -> privileged_access_item_request_builder.PrivilegedAccessItemRequestBuilder:
+    def privileged_access_by_id(self,id: str) -> Optional[privileged_access_item_request_builder.PrivilegedAccessItemRequestBuilder]:
         """
         Provides operations to manage the collection of privilegedAccess entities.
         Args:
             id: Unique identifier of the item
-        Returns: privileged_access_item_request_builder.PrivilegedAccessItemRequestBuilder
+        Returns: Optional[privileged_access_item_request_builder.PrivilegedAccessItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1731,12 +1731,12 @@ class BaseGraphServiceClient():
         url_tpl_params["privilegedAccess%2Did"] = id
         return privileged_access_item_request_builder.PrivilegedAccessItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def privileged_approval_by_id(self,id: str) -> privileged_approval_item_request_builder.PrivilegedApprovalItemRequestBuilder:
+    def privileged_approval_by_id(self,id: str) -> Optional[privileged_approval_item_request_builder.PrivilegedApprovalItemRequestBuilder]:
         """
         Provides operations to manage the collection of privilegedApproval entities.
         Args:
             id: Unique identifier of the item
-        Returns: privileged_approval_item_request_builder.PrivilegedApprovalItemRequestBuilder
+        Returns: Optional[privileged_approval_item_request_builder.PrivilegedApprovalItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1744,12 +1744,12 @@ class BaseGraphServiceClient():
         url_tpl_params["privilegedApproval%2Did"] = id
         return privileged_approval_item_request_builder.PrivilegedApprovalItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def privileged_operation_events_by_id(self,id: str) -> privileged_operation_event_item_request_builder.PrivilegedOperationEventItemRequestBuilder:
+    def privileged_operation_events_by_id(self,id: str) -> Optional[privileged_operation_event_item_request_builder.PrivilegedOperationEventItemRequestBuilder]:
         """
         Provides operations to manage the collection of privilegedOperationEvent entities.
         Args:
             id: Unique identifier of the item
-        Returns: privileged_operation_event_item_request_builder.PrivilegedOperationEventItemRequestBuilder
+        Returns: Optional[privileged_operation_event_item_request_builder.PrivilegedOperationEventItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1757,12 +1757,12 @@ class BaseGraphServiceClient():
         url_tpl_params["privilegedOperationEvent%2Did"] = id
         return privileged_operation_event_item_request_builder.PrivilegedOperationEventItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def privileged_role_assignment_requests_by_id(self,id: str) -> privileged_role_assignment_request_item_request_builder.PrivilegedRoleAssignmentRequestItemRequestBuilder:
+    def privileged_role_assignment_requests_by_id(self,id: str) -> Optional[privileged_role_assignment_request_item_request_builder.PrivilegedRoleAssignmentRequestItemRequestBuilder]:
         """
         Provides operations to manage the collection of privilegedRoleAssignmentRequest entities.
         Args:
             id: Unique identifier of the item
-        Returns: privileged_role_assignment_request_item_request_builder.PrivilegedRoleAssignmentRequestItemRequestBuilder
+        Returns: Optional[privileged_role_assignment_request_item_request_builder.PrivilegedRoleAssignmentRequestItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1770,12 +1770,12 @@ class BaseGraphServiceClient():
         url_tpl_params["privilegedRoleAssignmentRequest%2Did"] = id
         return privileged_role_assignment_request_item_request_builder.PrivilegedRoleAssignmentRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def privileged_role_assignments_by_id(self,id: str) -> privileged_role_assignment_item_request_builder.PrivilegedRoleAssignmentItemRequestBuilder:
+    def privileged_role_assignments_by_id(self,id: str) -> Optional[privileged_role_assignment_item_request_builder.PrivilegedRoleAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the collection of privilegedRoleAssignment entities.
         Args:
             id: Unique identifier of the item
-        Returns: privileged_role_assignment_item_request_builder.PrivilegedRoleAssignmentItemRequestBuilder
+        Returns: Optional[privileged_role_assignment_item_request_builder.PrivilegedRoleAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1783,12 +1783,12 @@ class BaseGraphServiceClient():
         url_tpl_params["privilegedRoleAssignment%2Did"] = id
         return privileged_role_assignment_item_request_builder.PrivilegedRoleAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def privileged_roles_by_id(self,id: str) -> privileged_role_item_request_builder.PrivilegedRoleItemRequestBuilder:
+    def privileged_roles_by_id(self,id: str) -> Optional[privileged_role_item_request_builder.PrivilegedRoleItemRequestBuilder]:
         """
         Provides operations to manage the collection of privilegedRole entities.
         Args:
             id: Unique identifier of the item
-        Returns: privileged_role_item_request_builder.PrivilegedRoleItemRequestBuilder
+        Returns: Optional[privileged_role_item_request_builder.PrivilegedRoleItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1796,12 +1796,12 @@ class BaseGraphServiceClient():
         url_tpl_params["privilegedRole%2Did"] = id
         return privileged_role_item_request_builder.PrivilegedRoleItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def privileged_signup_status_by_id(self,id: str) -> privileged_signup_status_item_request_builder.PrivilegedSignupStatusItemRequestBuilder:
+    def privileged_signup_status_by_id(self,id: str) -> Optional[privileged_signup_status_item_request_builder.PrivilegedSignupStatusItemRequestBuilder]:
         """
         Provides operations to manage the collection of privilegedSignupStatus entities.
         Args:
             id: Unique identifier of the item
-        Returns: privileged_signup_status_item_request_builder.PrivilegedSignupStatusItemRequestBuilder
+        Returns: Optional[privileged_signup_status_item_request_builder.PrivilegedSignupStatusItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1809,12 +1809,12 @@ class BaseGraphServiceClient():
         url_tpl_params["privilegedSignupStatus%2Did"] = id
         return privileged_signup_status_item_request_builder.PrivilegedSignupStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def program_controls_by_id(self,id: str) -> program_control_item_request_builder.ProgramControlItemRequestBuilder:
+    def program_controls_by_id(self,id: str) -> Optional[program_control_item_request_builder.ProgramControlItemRequestBuilder]:
         """
         Provides operations to manage the collection of programControl entities.
         Args:
             id: Unique identifier of the item
-        Returns: program_control_item_request_builder.ProgramControlItemRequestBuilder
+        Returns: Optional[program_control_item_request_builder.ProgramControlItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1822,12 +1822,12 @@ class BaseGraphServiceClient():
         url_tpl_params["programControl%2Did"] = id
         return program_control_item_request_builder.ProgramControlItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def program_control_types_by_id(self,id: str) -> program_control_type_item_request_builder.ProgramControlTypeItemRequestBuilder:
+    def program_control_types_by_id(self,id: str) -> Optional[program_control_type_item_request_builder.ProgramControlTypeItemRequestBuilder]:
         """
         Provides operations to manage the collection of programControlType entities.
         Args:
             id: Unique identifier of the item
-        Returns: program_control_type_item_request_builder.ProgramControlTypeItemRequestBuilder
+        Returns: Optional[program_control_type_item_request_builder.ProgramControlTypeItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1835,12 +1835,12 @@ class BaseGraphServiceClient():
         url_tpl_params["programControlType%2Did"] = id
         return program_control_type_item_request_builder.ProgramControlTypeItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def programs_by_id(self,id: str) -> program_item_request_builder.ProgramItemRequestBuilder:
+    def programs_by_id(self,id: str) -> Optional[program_item_request_builder.ProgramItemRequestBuilder]:
         """
         Provides operations to manage the collection of program entities.
         Args:
             id: Unique identifier of the item
-        Returns: program_item_request_builder.ProgramItemRequestBuilder
+        Returns: Optional[program_item_request_builder.ProgramItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1848,12 +1848,12 @@ class BaseGraphServiceClient():
         url_tpl_params["program%2Did"] = id
         return program_item_request_builder.ProgramItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def risk_detections_by_id(self,id: str) -> risk_detection_item_request_builder.RiskDetectionItemRequestBuilder:
+    def risk_detections_by_id(self,id: str) -> Optional[risk_detection_item_request_builder.RiskDetectionItemRequestBuilder]:
         """
         Provides operations to manage the collection of riskDetection entities.
         Args:
             id: Unique identifier of the item
-        Returns: risk_detection_item_request_builder.RiskDetectionItemRequestBuilder
+        Returns: Optional[risk_detection_item_request_builder.RiskDetectionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1861,12 +1861,12 @@ class BaseGraphServiceClient():
         url_tpl_params["riskDetection%2Did"] = id
         return risk_detection_item_request_builder.RiskDetectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def risky_users_by_id(self,id: str) -> risky_user_item_request_builder.RiskyUserItemRequestBuilder:
+    def risky_users_by_id(self,id: str) -> Optional[risky_user_item_request_builder.RiskyUserItemRequestBuilder]:
         """
         Provides operations to manage the collection of riskyUser entities.
         Args:
             id: Unique identifier of the item
-        Returns: risky_user_item_request_builder.RiskyUserItemRequestBuilder
+        Returns: Optional[risky_user_item_request_builder.RiskyUserItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1874,12 +1874,12 @@ class BaseGraphServiceClient():
         url_tpl_params["riskyUser%2Did"] = id
         return risky_user_item_request_builder.RiskyUserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def schema_extensions_by_id(self,id: str) -> schema_extension_item_request_builder.SchemaExtensionItemRequestBuilder:
+    def schema_extensions_by_id(self,id: str) -> Optional[schema_extension_item_request_builder.SchemaExtensionItemRequestBuilder]:
         """
         Provides operations to manage the collection of schemaExtension entities.
         Args:
             id: Unique identifier of the item
-        Returns: schema_extension_item_request_builder.SchemaExtensionItemRequestBuilder
+        Returns: Optional[schema_extension_item_request_builder.SchemaExtensionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1887,12 +1887,12 @@ class BaseGraphServiceClient():
         url_tpl_params["schemaExtension%2Did"] = id
         return schema_extension_item_request_builder.SchemaExtensionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def scoped_role_memberships_by_id(self,id: str) -> scoped_role_membership_item_request_builder.ScopedRoleMembershipItemRequestBuilder:
+    def scoped_role_memberships_by_id(self,id: str) -> Optional[scoped_role_membership_item_request_builder.ScopedRoleMembershipItemRequestBuilder]:
         """
         Provides operations to manage the collection of scopedRoleMembership entities.
         Args:
             id: Unique identifier of the item
-        Returns: scoped_role_membership_item_request_builder.ScopedRoleMembershipItemRequestBuilder
+        Returns: Optional[scoped_role_membership_item_request_builder.ScopedRoleMembershipItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1900,12 +1900,12 @@ class BaseGraphServiceClient():
         url_tpl_params["scopedRoleMembership%2Did"] = id
         return scoped_role_membership_item_request_builder.ScopedRoleMembershipItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def service_principals_by_id(self,id: str) -> service_principal_item_request_builder.ServicePrincipalItemRequestBuilder:
+    def service_principals_by_id(self,id: str) -> Optional[service_principal_item_request_builder.ServicePrincipalItemRequestBuilder]:
         """
         Provides operations to manage the collection of servicePrincipal entities.
         Args:
             id: Unique identifier of the item
-        Returns: service_principal_item_request_builder.ServicePrincipalItemRequestBuilder
+        Returns: Optional[service_principal_item_request_builder.ServicePrincipalItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1913,12 +1913,12 @@ class BaseGraphServiceClient():
         url_tpl_params["servicePrincipal%2Did"] = id
         return service_principal_item_request_builder.ServicePrincipalItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def settings_by_id(self,id: str) -> directory_setting_item_request_builder.DirectorySettingItemRequestBuilder:
+    def settings_by_id(self,id: str) -> Optional[directory_setting_item_request_builder.DirectorySettingItemRequestBuilder]:
         """
         Provides operations to manage the collection of directorySetting entities.
         Args:
             id: Unique identifier of the item
-        Returns: directory_setting_item_request_builder.DirectorySettingItemRequestBuilder
+        Returns: Optional[directory_setting_item_request_builder.DirectorySettingItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1926,12 +1926,12 @@ class BaseGraphServiceClient():
         url_tpl_params["directorySetting%2Did"] = id
         return directory_setting_item_request_builder.DirectorySettingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def shares_by_id(self,id: str) -> shared_drive_item_item_request_builder.SharedDriveItemItemRequestBuilder:
+    def shares_by_id(self,id: str) -> Optional[shared_drive_item_item_request_builder.SharedDriveItemItemRequestBuilder]:
         """
         Provides operations to manage the collection of sharedDriveItem entities.
         Args:
             id: Unique identifier of the item
-        Returns: shared_drive_item_item_request_builder.SharedDriveItemItemRequestBuilder
+        Returns: Optional[shared_drive_item_item_request_builder.SharedDriveItemItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1939,12 +1939,12 @@ class BaseGraphServiceClient():
         url_tpl_params["sharedDriveItem%2Did"] = id
         return shared_drive_item_item_request_builder.SharedDriveItemItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def sites_by_id(self,id: str) -> site_item_request_builder.SiteItemRequestBuilder:
+    def sites_by_id(self,id: str) -> Optional[site_item_request_builder.SiteItemRequestBuilder]:
         """
         Provides operations to manage the collection of site entities.
         Args:
             id: Unique identifier of the item
-        Returns: site_item_request_builder.SiteItemRequestBuilder
+        Returns: Optional[site_item_request_builder.SiteItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1952,12 +1952,12 @@ class BaseGraphServiceClient():
         url_tpl_params["site%2Did"] = id
         return site_item_request_builder.SiteItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def subscribed_skus_by_id(self,id: str) -> subscribed_sku_item_request_builder.SubscribedSkuItemRequestBuilder:
+    def subscribed_skus_by_id(self,id: str) -> Optional[subscribed_sku_item_request_builder.SubscribedSkuItemRequestBuilder]:
         """
         Provides operations to manage the collection of subscribedSku entities.
         Args:
             id: Unique identifier of the item
-        Returns: subscribed_sku_item_request_builder.SubscribedSkuItemRequestBuilder
+        Returns: Optional[subscribed_sku_item_request_builder.SubscribedSkuItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1965,12 +1965,12 @@ class BaseGraphServiceClient():
         url_tpl_params["subscribedSku%2Did"] = id
         return subscribed_sku_item_request_builder.SubscribedSkuItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def subscriptions_by_id(self,id: str) -> subscription_item_request_builder.SubscriptionItemRequestBuilder:
+    def subscriptions_by_id(self,id: str) -> Optional[subscription_item_request_builder.SubscriptionItemRequestBuilder]:
         """
         Provides operations to manage the collection of subscription entities.
         Args:
             id: Unique identifier of the item
-        Returns: subscription_item_request_builder.SubscriptionItemRequestBuilder
+        Returns: Optional[subscription_item_request_builder.SubscriptionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1978,12 +1978,12 @@ class BaseGraphServiceClient():
         url_tpl_params["subscription%2Did"] = id
         return subscription_item_request_builder.SubscriptionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def teams_by_id(self,id: str) -> team_item_request_builder.TeamItemRequestBuilder:
+    def teams_by_id(self,id: str) -> Optional[team_item_request_builder.TeamItemRequestBuilder]:
         """
         Provides operations to manage the collection of team entities.
         Args:
             id: Unique identifier of the item
-        Returns: team_item_request_builder.TeamItemRequestBuilder
+        Returns: Optional[team_item_request_builder.TeamItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1991,12 +1991,12 @@ class BaseGraphServiceClient():
         url_tpl_params["team%2Did"] = id
         return team_item_request_builder.TeamItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def teams_templates_by_id(self,id: str) -> teams_template_item_request_builder.TeamsTemplateItemRequestBuilder:
+    def teams_templates_by_id(self,id: str) -> Optional[teams_template_item_request_builder.TeamsTemplateItemRequestBuilder]:
         """
         Provides operations to manage the collection of teamsTemplate entities.
         Args:
             id: Unique identifier of the item
-        Returns: teams_template_item_request_builder.TeamsTemplateItemRequestBuilder
+        Returns: Optional[teams_template_item_request_builder.TeamsTemplateItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -2004,12 +2004,12 @@ class BaseGraphServiceClient():
         url_tpl_params["teamsTemplate%2Did"] = id
         return teams_template_item_request_builder.TeamsTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def team_template_definition_by_id(self,id: str) -> team_template_definition_item_request_builder.TeamTemplateDefinitionItemRequestBuilder:
+    def team_template_definition_by_id(self,id: str) -> Optional[team_template_definition_item_request_builder.TeamTemplateDefinitionItemRequestBuilder]:
         """
         Provides operations to manage the collection of teamTemplateDefinition entities.
         Args:
             id: Unique identifier of the item
-        Returns: team_template_definition_item_request_builder.TeamTemplateDefinitionItemRequestBuilder
+        Returns: Optional[team_template_definition_item_request_builder.TeamTemplateDefinitionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -2017,12 +2017,12 @@ class BaseGraphServiceClient():
         url_tpl_params["teamTemplateDefinition%2Did"] = id
         return team_template_definition_item_request_builder.TeamTemplateDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def users_by_id(self,id: str) -> user_item_request_builder.UserItemRequestBuilder:
+    def users_by_id(self,id: str) -> Optional[user_item_request_builder.UserItemRequestBuilder]:
         """
         Provides operations to manage the collection of user entities.
         Args:
             id: Unique identifier of the item
-        Returns: user_item_request_builder.UserItemRequestBuilder
+        Returns: Optional[user_item_request_builder.UserItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -2030,12 +2030,12 @@ class BaseGraphServiceClient():
         url_tpl_params["user%2Did"] = id
         return user_item_request_builder.UserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def workbooks_by_id(self,id: str) -> drive_item_item_request_builder.DriveItemItemRequestBuilder:
+    def workbooks_by_id(self,id: str) -> Optional[drive_item_item_request_builder.DriveItemItemRequestBuilder]:
         """
         Provides operations to manage the collection of driveItem entities.
         Args:
             id: Unique identifier of the item
-        Returns: drive_item_item_request_builder.DriveItemItemRequestBuilder
+        Returns: Optional[drive_item_item_request_builder.DriveItemItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

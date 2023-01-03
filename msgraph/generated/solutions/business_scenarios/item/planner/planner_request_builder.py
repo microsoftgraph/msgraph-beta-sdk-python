@@ -182,12 +182,12 @@ class PlannerRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, business_scenario_planner.BusinessScenarioPlanner, response_handler, error_mapping)
     
-    def tasks_by_id(self,id: str) -> business_scenario_task_item_request_builder.BusinessScenarioTaskItemRequestBuilder:
+    def tasks_by_id(self,id: str) -> Optional[business_scenario_task_item_request_builder.BusinessScenarioTaskItemRequestBuilder]:
         """
         Provides operations to manage the tasks property of the microsoft.graph.businessScenarioPlanner entity.
         Args:
             id: Unique identifier of the item
-        Returns: business_scenario_task_item_request_builder.BusinessScenarioTaskItemRequestBuilder
+        Returns: Optional[business_scenario_task_item_request_builder.BusinessScenarioTaskItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -34,12 +34,12 @@ class AccessPackageResourceRequestBuilder():
         """
         return access_package_resource_roles_request_builder.AccessPackageResourceRolesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def access_package_resource_roles_by_id(self,id: str) -> access_package_resource_role_item_request_builder.AccessPackageResourceRoleItemRequestBuilder:
+    def access_package_resource_roles_by_id(self,id: str) -> Optional[access_package_resource_role_item_request_builder.AccessPackageResourceRoleItemRequestBuilder]:
         """
         Provides operations to manage the accessPackageResourceRoles property of the microsoft.graph.accessPackageResource entity.
         Args:
             id: Unique identifier of the item
-        Returns: access_package_resource_role_item_request_builder.AccessPackageResourceRoleItemRequestBuilder
+        Returns: Optional[access_package_resource_role_item_request_builder.AccessPackageResourceRoleItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

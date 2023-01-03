@@ -83,12 +83,12 @@ class OnlineMeetingItemRequestBuilder():
         """
         return virtual_appointment_request_builder.VirtualAppointmentRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def attendance_reports_by_id(self,id: str) -> meeting_attendance_report_item_request_builder.MeetingAttendanceReportItemRequestBuilder:
+    def attendance_reports_by_id(self,id: str) -> Optional[meeting_attendance_report_item_request_builder.MeetingAttendanceReportItemRequestBuilder]:
         """
         Provides operations to manage the attendanceReports property of the microsoft.graph.onlineMeeting entity.
         Args:
             id: Unique identifier of the item
-        Returns: meeting_attendance_report_item_request_builder.MeetingAttendanceReportItemRequestBuilder
+        Returns: Optional[meeting_attendance_report_item_request_builder.MeetingAttendanceReportItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -228,12 +228,12 @@ class OnlineMeetingItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, online_meeting.OnlineMeeting, response_handler, error_mapping)
     
-    def transcripts_by_id(self,id: str) -> call_transcript_item_request_builder.CallTranscriptItemRequestBuilder:
+    def transcripts_by_id(self,id: str) -> Optional[call_transcript_item_request_builder.CallTranscriptItemRequestBuilder]:
         """
         Provides operations to manage the transcripts property of the microsoft.graph.onlineMeeting entity.
         Args:
             id: Unique identifier of the item
-        Returns: call_transcript_item_request_builder.CallTranscriptItemRequestBuilder
+        Returns: Optional[call_transcript_item_request_builder.CallTranscriptItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

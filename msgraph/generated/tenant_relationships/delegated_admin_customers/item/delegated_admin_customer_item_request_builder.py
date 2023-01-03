@@ -158,12 +158,12 @@ class DelegatedAdminCustomerItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, delegated_admin_customer.DelegatedAdminCustomer, response_handler, error_mapping)
     
-    def service_management_details_by_id(self,id: str) -> delegated_admin_service_management_detail_item_request_builder.DelegatedAdminServiceManagementDetailItemRequestBuilder:
+    def service_management_details_by_id(self,id: str) -> Optional[delegated_admin_service_management_detail_item_request_builder.DelegatedAdminServiceManagementDetailItemRequestBuilder]:
         """
         Provides operations to manage the serviceManagementDetails property of the microsoft.graph.delegatedAdminCustomer entity.
         Args:
             id: Unique identifier of the item
-        Returns: delegated_admin_service_management_detail_item_request_builder.DelegatedAdminServiceManagementDetailItemRequestBuilder
+        Returns: Optional[delegated_admin_service_management_detail_item_request_builder.DelegatedAdminServiceManagementDetailItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

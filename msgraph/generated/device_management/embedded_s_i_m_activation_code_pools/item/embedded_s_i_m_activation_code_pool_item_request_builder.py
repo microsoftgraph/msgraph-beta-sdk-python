@@ -43,12 +43,12 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder():
         """
         return device_states_request_builder.DeviceStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def assignments_by_id(self,id: str) -> embedded_s_i_m_activation_code_pool_assignment_item_request_builder.EmbeddedSIMActivationCodePoolAssignmentItemRequestBuilder:
+    def assignments_by_id(self,id: str) -> Optional[embedded_s_i_m_activation_code_pool_assignment_item_request_builder.EmbeddedSIMActivationCodePoolAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the assignments property of the microsoft.graph.embeddedSIMActivationCodePool entity.
         Args:
             id: Unique identifier of the item
-        Returns: embedded_s_i_m_activation_code_pool_assignment_item_request_builder.EmbeddedSIMActivationCodePoolAssignmentItemRequestBuilder
+        Returns: Optional[embedded_s_i_m_activation_code_pool_assignment_item_request_builder.EmbeddedSIMActivationCodePoolAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -147,12 +147,12 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def device_states_by_id(self,id: str) -> embedded_s_i_m_device_state_item_request_builder.EmbeddedSIMDeviceStateItemRequestBuilder:
+    def device_states_by_id(self,id: str) -> Optional[embedded_s_i_m_device_state_item_request_builder.EmbeddedSIMDeviceStateItemRequestBuilder]:
         """
         Provides operations to manage the deviceStates property of the microsoft.graph.embeddedSIMActivationCodePool entity.
         Args:
             id: Unique identifier of the item
-        Returns: embedded_s_i_m_device_state_item_request_builder.EmbeddedSIMDeviceStateItemRequestBuilder
+        Returns: Optional[embedded_s_i_m_device_state_item_request_builder.EmbeddedSIMDeviceStateItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

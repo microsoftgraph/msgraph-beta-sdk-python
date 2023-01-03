@@ -26,12 +26,12 @@ class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder():
         """
         return advanced_threat_protection_onboarding_device_setting_states_request_builder.AdvancedThreatProtectionOnboardingDeviceSettingStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def advanced_threat_protection_onboarding_device_setting_states_by_id(self,id: str) -> advanced_threat_protection_onboarding_device_setting_state_item_request_builder.AdvancedThreatProtectionOnboardingDeviceSettingStateItemRequestBuilder:
+    def advanced_threat_protection_onboarding_device_setting_states_by_id(self,id: str) -> Optional[advanced_threat_protection_onboarding_device_setting_state_item_request_builder.AdvancedThreatProtectionOnboardingDeviceSettingStateItemRequestBuilder]:
         """
         Provides operations to manage the advancedThreatProtectionOnboardingDeviceSettingStates property of the microsoft.graph.advancedThreatProtectionOnboardingStateSummary entity.
         Args:
             id: Unique identifier of the item
-        Returns: advanced_threat_protection_onboarding_device_setting_state_item_request_builder.AdvancedThreatProtectionOnboardingDeviceSettingStateItemRequestBuilder
+        Returns: Optional[advanced_threat_protection_onboarding_device_setting_state_item_request_builder.AdvancedThreatProtectionOnboardingDeviceSettingStateItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

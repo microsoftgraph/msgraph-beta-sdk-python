@@ -13,9 +13,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 location = lazy_import('msgraph.generated.models.location')
 
 class BookingAppointment(entity.Entity):
-    """
-    Represents a booked appointment of a service by a customer in a business.
-    """
     @property
     def additional_information(self,) -> Optional[str]:
         """
@@ -52,7 +49,7 @@ class BookingAppointment(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new bookingAppointment and sets the default values.
+        Instantiates a new BookingAppointment and sets the default values.
         """
         super().__init__()
         # Additional information that is sent to the customer when an appointment is confirmed.

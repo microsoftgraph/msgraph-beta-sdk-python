@@ -10,6 +10,9 @@ group_policy_definition_file = lazy_import('msgraph.generated.models.group_polic
 ingestion_source = lazy_import('msgraph.generated.models.ingestion_source')
 
 class GroupPolicyCategory(entity.Entity):
+    """
+    The category entity stores the category of a group policy definition
+    """
     @property
     def children(self,) -> Optional[List[GroupPolicyCategory]]:
         """

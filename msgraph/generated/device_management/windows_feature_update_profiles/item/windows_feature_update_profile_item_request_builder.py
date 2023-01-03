@@ -34,12 +34,12 @@ class WindowsFeatureUpdateProfileItemRequestBuilder():
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def assignments_by_id(self,id: str) -> windows_feature_update_profile_assignment_item_request_builder.WindowsFeatureUpdateProfileAssignmentItemRequestBuilder:
+    def assignments_by_id(self,id: str) -> Optional[windows_feature_update_profile_assignment_item_request_builder.WindowsFeatureUpdateProfileAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the assignments property of the microsoft.graph.windowsFeatureUpdateProfile entity.
         Args:
             id: Unique identifier of the item
-        Returns: windows_feature_update_profile_assignment_item_request_builder.WindowsFeatureUpdateProfileAssignmentItemRequestBuilder
+        Returns: Optional[windows_feature_update_profile_assignment_item_request_builder.WindowsFeatureUpdateProfileAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

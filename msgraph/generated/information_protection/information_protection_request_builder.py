@@ -157,12 +157,12 @@ class InformationProtectionRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def data_loss_prevention_policies_by_id(self,id: str) -> data_loss_prevention_policy_item_request_builder.DataLossPreventionPolicyItemRequestBuilder:
+    def data_loss_prevention_policies_by_id(self,id: str) -> Optional[data_loss_prevention_policy_item_request_builder.DataLossPreventionPolicyItemRequestBuilder]:
         """
         Provides operations to manage the dataLossPreventionPolicies property of the microsoft.graph.informationProtection entity.
         Args:
             id: Unique identifier of the item
-        Returns: data_loss_prevention_policy_item_request_builder.DataLossPreventionPolicyItemRequestBuilder
+        Returns: Optional[data_loss_prevention_policy_item_request_builder.DataLossPreventionPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -211,12 +211,12 @@ class InformationProtectionRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, information_protection.InformationProtection, response_handler, error_mapping)
     
-    def sensitivity_labels_by_id(self,id: str) -> sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder:
+    def sensitivity_labels_by_id(self,id: str) -> Optional[sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder]:
         """
         Provides operations to manage the sensitivityLabels property of the microsoft.graph.informationProtection entity.
         Args:
             id: Unique identifier of the item
-        Returns: sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder
+        Returns: Optional[sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -224,12 +224,12 @@ class InformationProtectionRequestBuilder():
         url_tpl_params["sensitivityLabel%2Did"] = id
         return sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def threat_assessment_requests_by_id(self,id: str) -> threat_assessment_request_item_request_builder.ThreatAssessmentRequestItemRequestBuilder:
+    def threat_assessment_requests_by_id(self,id: str) -> Optional[threat_assessment_request_item_request_builder.ThreatAssessmentRequestItemRequestBuilder]:
         """
         Provides operations to manage the threatAssessmentRequests property of the microsoft.graph.informationProtection entity.
         Args:
             id: Unique identifier of the item
-        Returns: threat_assessment_request_item_request_builder.ThreatAssessmentRequestItemRequestBuilder
+        Returns: Optional[threat_assessment_request_item_request_builder.ThreatAssessmentRequestItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

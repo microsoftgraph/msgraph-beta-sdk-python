@@ -158,12 +158,12 @@ class OutboundSharedUserProfileUserItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, outbound_shared_user_profile.OutboundSharedUserProfile, response_handler, error_mapping)
     
-    def tenants_by_id(self,id: str) -> tenant_reference_tenant_item_request_builder.TenantReferenceTenantItemRequestBuilder:
+    def tenants_by_id(self,id: str) -> Optional[tenant_reference_tenant_item_request_builder.TenantReferenceTenantItemRequestBuilder]:
         """
         Provides operations to manage the tenants property of the microsoft.graph.outboundSharedUserProfile entity.
         Args:
             id: Unique identifier of the item
-        Returns: tenant_reference_tenant_item_request_builder.TenantReferenceTenantItemRequestBuilder
+        Returns: Optional[tenant_reference_tenant_item_request_builder.TenantReferenceTenantItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -35,12 +35,12 @@ class MonitoringRequestBuilder():
         """
         return alert_rules_request_builder.AlertRulesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def alert_records_by_id(self,id: str) -> alert_record_item_request_builder.AlertRecordItemRequestBuilder:
+    def alert_records_by_id(self,id: str) -> Optional[alert_record_item_request_builder.AlertRecordItemRequestBuilder]:
         """
         Provides operations to manage the alertRecords property of the microsoft.graph.deviceManagement.monitoring entity.
         Args:
             id: Unique identifier of the item
-        Returns: alert_record_item_request_builder.AlertRecordItemRequestBuilder
+        Returns: Optional[alert_record_item_request_builder.AlertRecordItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -48,12 +48,12 @@ class MonitoringRequestBuilder():
         url_tpl_params["alertRecord%2Did"] = id
         return alert_record_item_request_builder.AlertRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def alert_rules_by_id(self,id: str) -> alert_rule_item_request_builder.AlertRuleItemRequestBuilder:
+    def alert_rules_by_id(self,id: str) -> Optional[alert_rule_item_request_builder.AlertRuleItemRequestBuilder]:
         """
         Provides operations to manage the alertRules property of the microsoft.graph.deviceManagement.monitoring entity.
         Args:
             id: Unique identifier of the item
-        Returns: alert_rule_item_request_builder.AlertRuleItemRequestBuilder
+        Returns: Optional[alert_rule_item_request_builder.AlertRuleItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

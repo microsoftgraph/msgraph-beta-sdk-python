@@ -14,7 +14,7 @@ shipment_method = lazy_import('msgraph.generated.models.shipment_method')
 
 class SalesInvoice(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the admin singleton.
     """
     @property
     def billing_postal_address(self,) -> Optional[postal_address_type.PostalAddressType]:

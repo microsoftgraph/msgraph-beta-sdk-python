@@ -88,12 +88,12 @@ class PrintRequestBuilder():
         """
         return task_definitions_request_builder.TaskDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def connectors_by_id(self,id: str) -> print_connector_item_request_builder.PrintConnectorItemRequestBuilder:
+    def connectors_by_id(self,id: str) -> Optional[print_connector_item_request_builder.PrintConnectorItemRequestBuilder]:
         """
         Provides operations to manage the connectors property of the microsoft.graph.print entity.
         Args:
             id: Unique identifier of the item
-        Returns: print_connector_item_request_builder.PrintConnectorItemRequestBuilder
+        Returns: Optional[print_connector_item_request_builder.PrintConnectorItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -177,12 +177,12 @@ class PrintRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, print.Print, response_handler, error_mapping)
     
-    def operations_by_id(self,id: str) -> print_operation_item_request_builder.PrintOperationItemRequestBuilder:
+    def operations_by_id(self,id: str) -> Optional[print_operation_item_request_builder.PrintOperationItemRequestBuilder]:
         """
         Provides operations to manage the operations property of the microsoft.graph.print entity.
         Args:
             id: Unique identifier of the item
-        Returns: print_operation_item_request_builder.PrintOperationItemRequestBuilder
+        Returns: Optional[print_operation_item_request_builder.PrintOperationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -212,12 +212,12 @@ class PrintRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, print.Print, response_handler, error_mapping)
     
-    def printers_by_id(self,id: str) -> printer_item_request_builder.PrinterItemRequestBuilder:
+    def printers_by_id(self,id: str) -> Optional[printer_item_request_builder.PrinterItemRequestBuilder]:
         """
         Provides operations to manage the printers property of the microsoft.graph.print entity.
         Args:
             id: Unique identifier of the item
-        Returns: printer_item_request_builder.PrinterItemRequestBuilder
+        Returns: Optional[printer_item_request_builder.PrinterItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -225,12 +225,12 @@ class PrintRequestBuilder():
         url_tpl_params["printer%2Did"] = id
         return printer_item_request_builder.PrinterItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def printer_shares_by_id(self,id: str) -> printer_share_item_request_builder.PrinterShareItemRequestBuilder:
+    def printer_shares_by_id(self,id: str) -> Optional[printer_share_item_request_builder.PrinterShareItemRequestBuilder]:
         """
         Provides operations to manage the printerShares property of the microsoft.graph.print entity.
         Args:
             id: Unique identifier of the item
-        Returns: printer_share_item_request_builder.PrinterShareItemRequestBuilder
+        Returns: Optional[printer_share_item_request_builder.PrinterShareItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -238,12 +238,12 @@ class PrintRequestBuilder():
         url_tpl_params["printerShare%2Did"] = id
         return printer_share_item_request_builder.PrinterShareItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def services_by_id(self,id: str) -> print_service_item_request_builder.PrintServiceItemRequestBuilder:
+    def services_by_id(self,id: str) -> Optional[print_service_item_request_builder.PrintServiceItemRequestBuilder]:
         """
         Provides operations to manage the services property of the microsoft.graph.print entity.
         Args:
             id: Unique identifier of the item
-        Returns: print_service_item_request_builder.PrintServiceItemRequestBuilder
+        Returns: Optional[print_service_item_request_builder.PrintServiceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -251,12 +251,12 @@ class PrintRequestBuilder():
         url_tpl_params["printService%2Did"] = id
         return print_service_item_request_builder.PrintServiceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def shares_by_id(self,id: str) -> printer_share_item_request_builder.PrinterShareItemRequestBuilder:
+    def shares_by_id(self,id: str) -> Optional[printer_share_item_request_builder.PrinterShareItemRequestBuilder]:
         """
         Provides operations to manage the shares property of the microsoft.graph.print entity.
         Args:
             id: Unique identifier of the item
-        Returns: printer_share_item_request_builder.PrinterShareItemRequestBuilder
+        Returns: Optional[printer_share_item_request_builder.PrinterShareItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -264,12 +264,12 @@ class PrintRequestBuilder():
         url_tpl_params["printerShare%2Did"] = id
         return printer_share_item_request_builder.PrinterShareItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def task_definitions_by_id(self,id: str) -> print_task_definition_item_request_builder.PrintTaskDefinitionItemRequestBuilder:
+    def task_definitions_by_id(self,id: str) -> Optional[print_task_definition_item_request_builder.PrintTaskDefinitionItemRequestBuilder]:
         """
         Provides operations to manage the taskDefinitions property of the microsoft.graph.print entity.
         Args:
             id: Unique identifier of the item
-        Returns: print_task_definition_item_request_builder.PrintTaskDefinitionItemRequestBuilder
+        Returns: Optional[print_task_definition_item_request_builder.PrintTaskDefinitionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

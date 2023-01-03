@@ -52,12 +52,12 @@ class OutlookTaskItemRequestBuilder():
         """
         return single_value_extended_properties_request_builder.SingleValueExtendedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def attachments_by_id(self,id: str) -> attachment_item_request_builder.AttachmentItemRequestBuilder:
+    def attachments_by_id(self,id: str) -> Optional[attachment_item_request_builder.AttachmentItemRequestBuilder]:
         """
         Provides operations to manage the attachments property of the microsoft.graph.outlookTask entity.
         Args:
             id: Unique identifier of the item
-        Returns: attachment_item_request_builder.AttachmentItemRequestBuilder
+        Returns: Optional[attachment_item_request_builder.AttachmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -175,12 +175,12 @@ class OutlookTaskItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, outlook_task.OutlookTask, response_handler, error_mapping)
     
-    def multi_value_extended_properties_by_id(self,id: str) -> multi_value_legacy_extended_property_item_request_builder.MultiValueLegacyExtendedPropertyItemRequestBuilder:
+    def multi_value_extended_properties_by_id(self,id: str) -> Optional[multi_value_legacy_extended_property_item_request_builder.MultiValueLegacyExtendedPropertyItemRequestBuilder]:
         """
         Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.outlookTask entity.
         Args:
             id: Unique identifier of the item
-        Returns: multi_value_legacy_extended_property_item_request_builder.MultiValueLegacyExtendedPropertyItemRequestBuilder
+        Returns: Optional[multi_value_legacy_extended_property_item_request_builder.MultiValueLegacyExtendedPropertyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -210,12 +210,12 @@ class OutlookTaskItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, outlook_task.OutlookTask, response_handler, error_mapping)
     
-    def single_value_extended_properties_by_id(self,id: str) -> single_value_legacy_extended_property_item_request_builder.SingleValueLegacyExtendedPropertyItemRequestBuilder:
+    def single_value_extended_properties_by_id(self,id: str) -> Optional[single_value_legacy_extended_property_item_request_builder.SingleValueLegacyExtendedPropertyItemRequestBuilder]:
         """
         Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.outlookTask entity.
         Args:
             id: Unique identifier of the item
-        Returns: single_value_legacy_extended_property_item_request_builder.SingleValueLegacyExtendedPropertyItemRequestBuilder
+        Returns: Optional[single_value_legacy_extended_property_item_request_builder.SingleValueLegacyExtendedPropertyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

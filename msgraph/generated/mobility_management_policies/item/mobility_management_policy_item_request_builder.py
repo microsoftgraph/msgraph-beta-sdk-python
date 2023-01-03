@@ -136,12 +136,12 @@ class MobilityManagementPolicyItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, mobility_management_policy.MobilityManagementPolicy, response_handler, error_mapping)
     
-    def included_groups_by_id(self,id: str) -> group_item_request_builder.GroupItemRequestBuilder:
+    def included_groups_by_id(self,id: str) -> Optional[group_item_request_builder.GroupItemRequestBuilder]:
         """
         Gets an item from the msgraph.generated.mobilityManagementPolicies.item.includedGroups.item collection
         Args:
             id: Unique identifier of the item
-        Returns: group_item_request_builder.GroupItemRequestBuilder
+        Returns: Optional[group_item_request_builder.GroupItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

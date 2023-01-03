@@ -8,7 +8,7 @@ planner_plan_configuration_bucket_localization = lazy_import('msgraph.generated.
 
 class PlannerPlanConfigurationLocalization(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the admin singleton.
     """
     @property
     def buckets(self,) -> Optional[List[planner_plan_configuration_bucket_localization.PlannerPlanConfigurationBucketLocalization]]:

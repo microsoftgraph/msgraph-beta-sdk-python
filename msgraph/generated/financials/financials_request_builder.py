@@ -26,12 +26,12 @@ class FinancialsRequestBuilder():
         """
         return companies_request_builder.CompaniesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def companies_by_id(self,id: str) -> company_item_request_builder.CompanyItemRequestBuilder:
+    def companies_by_id(self,id: str) -> Optional[company_item_request_builder.CompanyItemRequestBuilder]:
         """
         Provides operations to manage the companies property of the microsoft.graph.financials entity.
         Args:
             id: Unique identifier of the item
-        Returns: company_item_request_builder.CompanyItemRequestBuilder
+        Returns: Optional[company_item_request_builder.CompanyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

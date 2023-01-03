@@ -158,12 +158,12 @@ class SensitivityLabelItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, sensitivity_label.SensitivityLabel, response_handler, error_mapping)
     
-    def sublabels_by_id(self,id: str) -> SensitivityLabelItemRequestBuilder:
+    def sublabels_by_id(self,id: str) -> Optional[SensitivityLabelItemRequestBuilder]:
         """
         Provides operations to manage the sublabels property of the microsoft.graph.sensitivityLabel entity.
         Args:
             id: Unique identifier of the item
-        Returns: SensitivityLabelItemRequestBuilder
+        Returns: Optional[SensitivityLabelItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

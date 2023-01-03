@@ -44,12 +44,12 @@ class DelegatedAdminRelationshipItemRequestBuilder():
         """
         return requests_request_builder.RequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def access_assignments_by_id(self,id: str) -> delegated_admin_access_assignment_item_request_builder.DelegatedAdminAccessAssignmentItemRequestBuilder:
+    def access_assignments_by_id(self,id: str) -> Optional[delegated_admin_access_assignment_item_request_builder.DelegatedAdminAccessAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the accessAssignments property of the microsoft.graph.delegatedAdminRelationship entity.
         Args:
             id: Unique identifier of the item
-        Returns: delegated_admin_access_assignment_item_request_builder.DelegatedAdminAccessAssignmentItemRequestBuilder
+        Returns: Optional[delegated_admin_access_assignment_item_request_builder.DelegatedAdminAccessAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -167,12 +167,12 @@ class DelegatedAdminRelationshipItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, delegated_admin_relationship.DelegatedAdminRelationship, response_handler, error_mapping)
     
-    def operations_by_id(self,id: str) -> delegated_admin_relationship_operation_item_request_builder.DelegatedAdminRelationshipOperationItemRequestBuilder:
+    def operations_by_id(self,id: str) -> Optional[delegated_admin_relationship_operation_item_request_builder.DelegatedAdminRelationshipOperationItemRequestBuilder]:
         """
         Provides operations to manage the operations property of the microsoft.graph.delegatedAdminRelationship entity.
         Args:
             id: Unique identifier of the item
-        Returns: delegated_admin_relationship_operation_item_request_builder.DelegatedAdminRelationshipOperationItemRequestBuilder
+        Returns: Optional[delegated_admin_relationship_operation_item_request_builder.DelegatedAdminRelationshipOperationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -202,12 +202,12 @@ class DelegatedAdminRelationshipItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, delegated_admin_relationship.DelegatedAdminRelationship, response_handler, error_mapping)
     
-    def requests_by_id(self,id: str) -> delegated_admin_relationship_request_item_request_builder.DelegatedAdminRelationshipRequestItemRequestBuilder:
+    def requests_by_id(self,id: str) -> Optional[delegated_admin_relationship_request_item_request_builder.DelegatedAdminRelationshipRequestItemRequestBuilder]:
         """
         Provides operations to manage the requests property of the microsoft.graph.delegatedAdminRelationship entity.
         Args:
             id: Unique identifier of the item
-        Returns: delegated_admin_relationship_request_item_request_builder.DelegatedAdminRelationshipRequestItemRequestBuilder
+        Returns: Optional[delegated_admin_relationship_request_item_request_builder.DelegatedAdminRelationshipRequestItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

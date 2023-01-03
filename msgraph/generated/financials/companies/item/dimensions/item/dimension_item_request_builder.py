@@ -62,12 +62,12 @@ class DimensionItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def dimension_values_by_id(self,id: str) -> dimension_value_item_request_builder.DimensionValueItemRequestBuilder:
+    def dimension_values_by_id(self,id: str) -> Optional[dimension_value_item_request_builder.DimensionValueItemRequestBuilder]:
         """
         Provides operations to manage the dimensionValues property of the microsoft.graph.dimension entity.
         Args:
             id: Unique identifier of the item
-        Returns: dimension_value_item_request_builder.DimensionValueItemRequestBuilder
+        Returns: Optional[dimension_value_item_request_builder.DimensionValueItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

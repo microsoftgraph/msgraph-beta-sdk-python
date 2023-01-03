@@ -8,9 +8,12 @@ entity = lazy_import('msgraph.generated.models.entity')
 message_recipient = lazy_import('msgraph.generated.models.message_recipient')
 
 class MessageTrace(entity.Entity):
+    """
+    Provides operations to manage the collection of activityStatistics entities.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new MessageTrace and sets the default values.
+        Instantiates a new messageTrace and sets the default values.
         """
         super().__init__()
         # The destinationIPAddress property

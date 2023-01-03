@@ -13,7 +13,7 @@ governance_role_setting = lazy_import('msgraph.generated.models.governance_role_
 class GovernanceResource(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new governanceResource and sets the default values.
+        Instantiates a new GovernanceResource and sets the default values.
         """
         super().__init__()
         # The display name of the resource.
@@ -23,7 +23,7 @@ class GovernanceResource(entity.Entity):
         # The OdataType property
         self.odata_type: Optional[str] = None
         # Read-only. The parent resource. for pimforazurerbac scenario, it can represent the subscription the resource belongs to.
-        self._parent: Optional[GovernanceResource] = None
+        self._parent: Optional[governance_resource.GovernanceResource] = None
         # Represents the date time when the resource is registered in PIM.
         self._registered_date_time: Optional[datetime] = None
         # The externalId of the resource's root scope that is registered in PIM. The root scope can be the parent, grandparent, or higher ancestor resources.
@@ -95,7 +95,7 @@ class GovernanceResource(entity.Entity):
         fields = {
             "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "external_id": lambda n : setattr(self, 'external_id', n.get_str_value()),
-            "parent": lambda n : setattr(self, 'parent', n.get_object_value(GovernanceResource)),
+            "parent": lambda n : setattr(self, 'parent', n.get_object_value(governance_resource.GovernanceResource)),
             "registered_date_time": lambda n : setattr(self, 'registered_date_time', n.get_datetime_value()),
             "registered_root": lambda n : setattr(self, 'registered_root', n.get_str_value()),
             "role_assignment_requests": lambda n : setattr(self, 'role_assignment_requests', n.get_collection_of_object_values(governance_role_assignment_request.GovernanceRoleAssignmentRequest)),
@@ -110,15 +110,15 @@ class GovernanceResource(entity.Entity):
         return fields
     
     @property
-    def parent(self,) -> Optional[GovernanceResource]:
+    def parent(self,) -> Optional[governance_resource.GovernanceResource]:
         """
         Gets the parent property value. Read-only. The parent resource. for pimforazurerbac scenario, it can represent the subscription the resource belongs to.
-        Returns: Optional[GovernanceResource]
+        Returns: Optional[governance_resource.GovernanceResource]
         """
         return self._parent
     
     @parent.setter
-    def parent(self,value: Optional[GovernanceResource] = None) -> None:
+    def parent(self,value: Optional[governance_resource.GovernanceResource] = None) -> None:
         """
         Sets the parent property value. Read-only. The parent resource. for pimforazurerbac scenario, it can represent the subscription the resource belongs to.
         Args:

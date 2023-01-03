@@ -158,12 +158,12 @@ class TriggerTypesRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, trigger_types_root.TriggerTypesRoot, response_handler, error_mapping)
     
-    def retention_event_types_by_id(self,id: str) -> retention_event_type_item_request_builder.RetentionEventTypeItemRequestBuilder:
+    def retention_event_types_by_id(self,id: str) -> Optional[retention_event_type_item_request_builder.RetentionEventTypeItemRequestBuilder]:
         """
         Provides operations to manage the retentionEventTypes property of the microsoft.graph.security.triggerTypesRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: retention_event_type_item_request_builder.RetentionEventTypeItemRequestBuilder
+        Returns: Optional[retention_event_type_item_request_builder.RetentionEventTypeItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

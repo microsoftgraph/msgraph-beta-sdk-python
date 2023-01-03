@@ -8,7 +8,7 @@ trust_framework_key = lazy_import('msgraph.generated.models.trust_framework_key'
 
 class TrustFrameworkKeySet(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     def __init__(self,) -> None:
         """

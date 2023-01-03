@@ -188,12 +188,12 @@ class ProfileRequestBuilder():
         """
         return websites_request_builder.WebsitesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def account_by_id(self,id: str) -> user_account_information_item_request_builder.UserAccountInformationItemRequestBuilder:
+    def account_by_id(self,id: str) -> Optional[user_account_information_item_request_builder.UserAccountInformationItemRequestBuilder]:
         """
         Provides operations to manage the account property of the microsoft.graph.profile entity.
         Args:
             id: Unique identifier of the item
-        Returns: user_account_information_item_request_builder.UserAccountInformationItemRequestBuilder
+        Returns: Optional[user_account_information_item_request_builder.UserAccountInformationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -201,12 +201,12 @@ class ProfileRequestBuilder():
         url_tpl_params["userAccountInformation%2Did"] = id
         return user_account_information_item_request_builder.UserAccountInformationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def addresses_by_id(self,id: str) -> item_address_item_request_builder.ItemAddressItemRequestBuilder:
+    def addresses_by_id(self,id: str) -> Optional[item_address_item_request_builder.ItemAddressItemRequestBuilder]:
         """
         Provides operations to manage the addresses property of the microsoft.graph.profile entity.
         Args:
             id: Unique identifier of the item
-        Returns: item_address_item_request_builder.ItemAddressItemRequestBuilder
+        Returns: Optional[item_address_item_request_builder.ItemAddressItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -214,12 +214,12 @@ class ProfileRequestBuilder():
         url_tpl_params["itemAddress%2Did"] = id
         return item_address_item_request_builder.ItemAddressItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def anniversaries_by_id(self,id: str) -> person_annual_event_item_request_builder.PersonAnnualEventItemRequestBuilder:
+    def anniversaries_by_id(self,id: str) -> Optional[person_annual_event_item_request_builder.PersonAnnualEventItemRequestBuilder]:
         """
         Provides operations to manage the anniversaries property of the microsoft.graph.profile entity.
         Args:
             id: Unique identifier of the item
-        Returns: person_annual_event_item_request_builder.PersonAnnualEventItemRequestBuilder
+        Returns: Optional[person_annual_event_item_request_builder.PersonAnnualEventItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -227,12 +227,12 @@ class ProfileRequestBuilder():
         url_tpl_params["personAnnualEvent%2Did"] = id
         return person_annual_event_item_request_builder.PersonAnnualEventItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def awards_by_id(self,id: str) -> person_award_item_request_builder.PersonAwardItemRequestBuilder:
+    def awards_by_id(self,id: str) -> Optional[person_award_item_request_builder.PersonAwardItemRequestBuilder]:
         """
         Provides operations to manage the awards property of the microsoft.graph.profile entity.
         Args:
             id: Unique identifier of the item
-        Returns: person_award_item_request_builder.PersonAwardItemRequestBuilder
+        Returns: Optional[person_award_item_request_builder.PersonAwardItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -240,12 +240,12 @@ class ProfileRequestBuilder():
         url_tpl_params["personAward%2Did"] = id
         return person_award_item_request_builder.PersonAwardItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def certifications_by_id(self,id: str) -> person_certification_item_request_builder.PersonCertificationItemRequestBuilder:
+    def certifications_by_id(self,id: str) -> Optional[person_certification_item_request_builder.PersonCertificationItemRequestBuilder]:
         """
         Provides operations to manage the certifications property of the microsoft.graph.profile entity.
         Args:
             id: Unique identifier of the item
-        Returns: person_certification_item_request_builder.PersonCertificationItemRequestBuilder
+        Returns: Optional[person_certification_item_request_builder.PersonCertificationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -344,12 +344,12 @@ class ProfileRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def educational_activities_by_id(self,id: str) -> educational_activity_item_request_builder.EducationalActivityItemRequestBuilder:
+    def educational_activities_by_id(self,id: str) -> Optional[educational_activity_item_request_builder.EducationalActivityItemRequestBuilder]:
         """
         Provides operations to manage the educationalActivities property of the microsoft.graph.profile entity.
         Args:
             id: Unique identifier of the item
-        Returns: educational_activity_item_request_builder.EducationalActivityItemRequestBuilder
+        Returns: Optional[educational_activity_item_request_builder.EducationalActivityItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -357,12 +357,12 @@ class ProfileRequestBuilder():
         url_tpl_params["educationalActivity%2Did"] = id
         return educational_activity_item_request_builder.EducationalActivityItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def emails_by_id(self,id: str) -> item_email_item_request_builder.ItemEmailItemRequestBuilder:
+    def emails_by_id(self,id: str) -> Optional[item_email_item_request_builder.ItemEmailItemRequestBuilder]:
         """
         Provides operations to manage the emails property of the microsoft.graph.profile entity.
         Args:
             id: Unique identifier of the item
-        Returns: item_email_item_request_builder.ItemEmailItemRequestBuilder
+        Returns: Optional[item_email_item_request_builder.ItemEmailItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -389,12 +389,12 @@ class ProfileRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, profile.Profile, response_handler, error_mapping)
     
-    def interests_by_id(self,id: str) -> person_interest_item_request_builder.PersonInterestItemRequestBuilder:
+    def interests_by_id(self,id: str) -> Optional[person_interest_item_request_builder.PersonInterestItemRequestBuilder]:
         """
         Provides operations to manage the interests property of the microsoft.graph.profile entity.
         Args:
             id: Unique identifier of the item
-        Returns: person_interest_item_request_builder.PersonInterestItemRequestBuilder
+        Returns: Optional[person_interest_item_request_builder.PersonInterestItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -402,12 +402,12 @@ class ProfileRequestBuilder():
         url_tpl_params["personInterest%2Did"] = id
         return person_interest_item_request_builder.PersonInterestItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def languages_by_id(self,id: str) -> language_proficiency_item_request_builder.LanguageProficiencyItemRequestBuilder:
+    def languages_by_id(self,id: str) -> Optional[language_proficiency_item_request_builder.LanguageProficiencyItemRequestBuilder]:
         """
         Provides operations to manage the languages property of the microsoft.graph.profile entity.
         Args:
             id: Unique identifier of the item
-        Returns: language_proficiency_item_request_builder.LanguageProficiencyItemRequestBuilder
+        Returns: Optional[language_proficiency_item_request_builder.LanguageProficiencyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -415,12 +415,12 @@ class ProfileRequestBuilder():
         url_tpl_params["languageProficiency%2Did"] = id
         return language_proficiency_item_request_builder.LanguageProficiencyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def names_by_id(self,id: str) -> person_name_item_request_builder.PersonNameItemRequestBuilder:
+    def names_by_id(self,id: str) -> Optional[person_name_item_request_builder.PersonNameItemRequestBuilder]:
         """
         Provides operations to manage the names property of the microsoft.graph.profile entity.
         Args:
             id: Unique identifier of the item
-        Returns: person_name_item_request_builder.PersonNameItemRequestBuilder
+        Returns: Optional[person_name_item_request_builder.PersonNameItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -428,12 +428,12 @@ class ProfileRequestBuilder():
         url_tpl_params["personName%2Did"] = id
         return person_name_item_request_builder.PersonNameItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def notes_by_id(self,id: str) -> person_annotation_item_request_builder.PersonAnnotationItemRequestBuilder:
+    def notes_by_id(self,id: str) -> Optional[person_annotation_item_request_builder.PersonAnnotationItemRequestBuilder]:
         """
         Provides operations to manage the notes property of the microsoft.graph.profile entity.
         Args:
             id: Unique identifier of the item
-        Returns: person_annotation_item_request_builder.PersonAnnotationItemRequestBuilder
+        Returns: Optional[person_annotation_item_request_builder.PersonAnnotationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -463,12 +463,12 @@ class ProfileRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, profile.Profile, response_handler, error_mapping)
     
-    def patents_by_id(self,id: str) -> item_patent_item_request_builder.ItemPatentItemRequestBuilder:
+    def patents_by_id(self,id: str) -> Optional[item_patent_item_request_builder.ItemPatentItemRequestBuilder]:
         """
         Provides operations to manage the patents property of the microsoft.graph.profile entity.
         Args:
             id: Unique identifier of the item
-        Returns: item_patent_item_request_builder.ItemPatentItemRequestBuilder
+        Returns: Optional[item_patent_item_request_builder.ItemPatentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -476,12 +476,12 @@ class ProfileRequestBuilder():
         url_tpl_params["itemPatent%2Did"] = id
         return item_patent_item_request_builder.ItemPatentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def phones_by_id(self,id: str) -> item_phone_item_request_builder.ItemPhoneItemRequestBuilder:
+    def phones_by_id(self,id: str) -> Optional[item_phone_item_request_builder.ItemPhoneItemRequestBuilder]:
         """
         Provides operations to manage the phones property of the microsoft.graph.profile entity.
         Args:
             id: Unique identifier of the item
-        Returns: item_phone_item_request_builder.ItemPhoneItemRequestBuilder
+        Returns: Optional[item_phone_item_request_builder.ItemPhoneItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -489,12 +489,12 @@ class ProfileRequestBuilder():
         url_tpl_params["itemPhone%2Did"] = id
         return item_phone_item_request_builder.ItemPhoneItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def positions_by_id(self,id: str) -> work_position_item_request_builder.WorkPositionItemRequestBuilder:
+    def positions_by_id(self,id: str) -> Optional[work_position_item_request_builder.WorkPositionItemRequestBuilder]:
         """
         Provides operations to manage the positions property of the microsoft.graph.profile entity.
         Args:
             id: Unique identifier of the item
-        Returns: work_position_item_request_builder.WorkPositionItemRequestBuilder
+        Returns: Optional[work_position_item_request_builder.WorkPositionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -502,12 +502,12 @@ class ProfileRequestBuilder():
         url_tpl_params["workPosition%2Did"] = id
         return work_position_item_request_builder.WorkPositionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def projects_by_id(self,id: str) -> project_participation_item_request_builder.ProjectParticipationItemRequestBuilder:
+    def projects_by_id(self,id: str) -> Optional[project_participation_item_request_builder.ProjectParticipationItemRequestBuilder]:
         """
         Provides operations to manage the projects property of the microsoft.graph.profile entity.
         Args:
             id: Unique identifier of the item
-        Returns: project_participation_item_request_builder.ProjectParticipationItemRequestBuilder
+        Returns: Optional[project_participation_item_request_builder.ProjectParticipationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -515,12 +515,12 @@ class ProfileRequestBuilder():
         url_tpl_params["projectParticipation%2Did"] = id
         return project_participation_item_request_builder.ProjectParticipationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def publications_by_id(self,id: str) -> item_publication_item_request_builder.ItemPublicationItemRequestBuilder:
+    def publications_by_id(self,id: str) -> Optional[item_publication_item_request_builder.ItemPublicationItemRequestBuilder]:
         """
         Provides operations to manage the publications property of the microsoft.graph.profile entity.
         Args:
             id: Unique identifier of the item
-        Returns: item_publication_item_request_builder.ItemPublicationItemRequestBuilder
+        Returns: Optional[item_publication_item_request_builder.ItemPublicationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -528,12 +528,12 @@ class ProfileRequestBuilder():
         url_tpl_params["itemPublication%2Did"] = id
         return item_publication_item_request_builder.ItemPublicationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def skills_by_id(self,id: str) -> skill_proficiency_item_request_builder.SkillProficiencyItemRequestBuilder:
+    def skills_by_id(self,id: str) -> Optional[skill_proficiency_item_request_builder.SkillProficiencyItemRequestBuilder]:
         """
         Provides operations to manage the skills property of the microsoft.graph.profile entity.
         Args:
             id: Unique identifier of the item
-        Returns: skill_proficiency_item_request_builder.SkillProficiencyItemRequestBuilder
+        Returns: Optional[skill_proficiency_item_request_builder.SkillProficiencyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -541,12 +541,12 @@ class ProfileRequestBuilder():
         url_tpl_params["skillProficiency%2Did"] = id
         return skill_proficiency_item_request_builder.SkillProficiencyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def web_accounts_by_id(self,id: str) -> web_account_item_request_builder.WebAccountItemRequestBuilder:
+    def web_accounts_by_id(self,id: str) -> Optional[web_account_item_request_builder.WebAccountItemRequestBuilder]:
         """
         Provides operations to manage the webAccounts property of the microsoft.graph.profile entity.
         Args:
             id: Unique identifier of the item
-        Returns: web_account_item_request_builder.WebAccountItemRequestBuilder
+        Returns: Optional[web_account_item_request_builder.WebAccountItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -554,12 +554,12 @@ class ProfileRequestBuilder():
         url_tpl_params["webAccount%2Did"] = id
         return web_account_item_request_builder.WebAccountItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def websites_by_id(self,id: str) -> person_website_item_request_builder.PersonWebsiteItemRequestBuilder:
+    def websites_by_id(self,id: str) -> Optional[person_website_item_request_builder.PersonWebsiteItemRequestBuilder]:
         """
         Provides operations to manage the websites property of the microsoft.graph.profile entity.
         Args:
             id: Unique identifier of the item
-        Returns: person_website_item_request_builder.PersonWebsiteItemRequestBuilder
+        Returns: Optional[person_website_item_request_builder.PersonWebsiteItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

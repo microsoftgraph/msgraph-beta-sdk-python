@@ -62,12 +62,12 @@ class AccessPackageCatalogItemRequestBuilder():
         """
         return custom_access_package_workflow_extensions_request_builder.CustomAccessPackageWorkflowExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def access_package_resource_roles_by_id(self,id: str) -> access_package_resource_role_item_request_builder.AccessPackageResourceRoleItemRequestBuilder:
+    def access_package_resource_roles_by_id(self,id: str) -> Optional[access_package_resource_role_item_request_builder.AccessPackageResourceRoleItemRequestBuilder]:
         """
         Provides operations to manage the accessPackageResourceRoles property of the microsoft.graph.accessPackageCatalog entity.
         Args:
             id: Unique identifier of the item
-        Returns: access_package_resource_role_item_request_builder.AccessPackageResourceRoleItemRequestBuilder
+        Returns: Optional[access_package_resource_role_item_request_builder.AccessPackageResourceRoleItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -75,12 +75,12 @@ class AccessPackageCatalogItemRequestBuilder():
         url_tpl_params["accessPackageResourceRole%2Did"] = id
         return access_package_resource_role_item_request_builder.AccessPackageResourceRoleItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def access_package_resources_by_id(self,id: str) -> access_package_resource_item_request_builder.AccessPackageResourceItemRequestBuilder:
+    def access_package_resources_by_id(self,id: str) -> Optional[access_package_resource_item_request_builder.AccessPackageResourceItemRequestBuilder]:
         """
         Provides operations to manage the accessPackageResources property of the microsoft.graph.accessPackageCatalog entity.
         Args:
             id: Unique identifier of the item
-        Returns: access_package_resource_item_request_builder.AccessPackageResourceItemRequestBuilder
+        Returns: Optional[access_package_resource_item_request_builder.AccessPackageResourceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -88,12 +88,12 @@ class AccessPackageCatalogItemRequestBuilder():
         url_tpl_params["accessPackageResource%2Did"] = id
         return access_package_resource_item_request_builder.AccessPackageResourceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def access_package_resource_scopes_by_id(self,id: str) -> access_package_resource_scope_item_request_builder.AccessPackageResourceScopeItemRequestBuilder:
+    def access_package_resource_scopes_by_id(self,id: str) -> Optional[access_package_resource_scope_item_request_builder.AccessPackageResourceScopeItemRequestBuilder]:
         """
         Provides operations to manage the accessPackageResourceScopes property of the microsoft.graph.accessPackageCatalog entity.
         Args:
             id: Unique identifier of the item
-        Returns: access_package_resource_scope_item_request_builder.AccessPackageResourceScopeItemRequestBuilder
+        Returns: Optional[access_package_resource_scope_item_request_builder.AccessPackageResourceScopeItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -101,12 +101,12 @@ class AccessPackageCatalogItemRequestBuilder():
         url_tpl_params["accessPackageResourceScope%2Did"] = id
         return access_package_resource_scope_item_request_builder.AccessPackageResourceScopeItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def access_packages_by_id(self,id: str) -> access_package_item_request_builder.AccessPackageItemRequestBuilder:
+    def access_packages_by_id(self,id: str) -> Optional[access_package_item_request_builder.AccessPackageItemRequestBuilder]:
         """
         Provides operations to manage the accessPackages property of the microsoft.graph.accessPackageCatalog entity.
         Args:
             id: Unique identifier of the item
-        Returns: access_package_item_request_builder.AccessPackageItemRequestBuilder
+        Returns: Optional[access_package_item_request_builder.AccessPackageItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -187,12 +187,12 @@ class AccessPackageCatalogItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def custom_access_package_workflow_extensions_by_id(self,id: str) -> custom_access_package_workflow_extension_item_request_builder.CustomAccessPackageWorkflowExtensionItemRequestBuilder:
+    def custom_access_package_workflow_extensions_by_id(self,id: str) -> Optional[custom_access_package_workflow_extension_item_request_builder.CustomAccessPackageWorkflowExtensionItemRequestBuilder]:
         """
         Provides operations to manage the customAccessPackageWorkflowExtensions property of the microsoft.graph.accessPackageCatalog entity.
         Args:
             id: Unique identifier of the item
-        Returns: custom_access_package_workflow_extension_item_request_builder.CustomAccessPackageWorkflowExtensionItemRequestBuilder
+        Returns: Optional[custom_access_package_workflow_extension_item_request_builder.CustomAccessPackageWorkflowExtensionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

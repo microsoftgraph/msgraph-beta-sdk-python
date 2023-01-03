@@ -168,12 +168,12 @@ class RecommendationItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, recommendation.Recommendation, response_handler, error_mapping)
     
-    def impacted_resources_by_id(self,id: str) -> recommendation_resource_item_request_builder.RecommendationResourceItemRequestBuilder:
+    def impacted_resources_by_id(self,id: str) -> Optional[recommendation_resource_item_request_builder.RecommendationResourceItemRequestBuilder]:
         """
         Provides operations to manage the impactedResources property of the microsoft.graph.recommendation entity.
         Args:
             id: Unique identifier of the item
-        Returns: recommendation_resource_item_request_builder.RecommendationResourceItemRequestBuilder
+        Returns: Optional[recommendation_resource_item_request_builder.RecommendationResourceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

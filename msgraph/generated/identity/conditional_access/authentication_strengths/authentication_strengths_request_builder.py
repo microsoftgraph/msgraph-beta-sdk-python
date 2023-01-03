@@ -35,12 +35,12 @@ class AuthenticationStrengthsRequestBuilder():
         """
         return policies_request_builder.PoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def authentication_method_modes_by_id(self,id: str) -> authentication_method_mode_detail_item_request_builder.AuthenticationMethodModeDetailItemRequestBuilder:
+    def authentication_method_modes_by_id(self,id: str) -> Optional[authentication_method_mode_detail_item_request_builder.AuthenticationMethodModeDetailItemRequestBuilder]:
         """
         Provides operations to manage the authenticationMethodModes property of the microsoft.graph.authenticationStrengthRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: authentication_method_mode_detail_item_request_builder.AuthenticationMethodModeDetailItemRequestBuilder
+        Returns: Optional[authentication_method_mode_detail_item_request_builder.AuthenticationMethodModeDetailItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -180,12 +180,12 @@ class AuthenticationStrengthsRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, authentication_strength_root.AuthenticationStrengthRoot, response_handler, error_mapping)
     
-    def policies_by_id(self,id: str) -> authentication_strength_policy_item_request_builder.AuthenticationStrengthPolicyItemRequestBuilder:
+    def policies_by_id(self,id: str) -> Optional[authentication_strength_policy_item_request_builder.AuthenticationStrengthPolicyItemRequestBuilder]:
         """
         Provides operations to manage the policies property of the microsoft.graph.authenticationStrengthRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: authentication_strength_policy_item_request_builder.AuthenticationStrengthPolicyItemRequestBuilder
+        Returns: Optional[authentication_strength_policy_item_request_builder.AuthenticationStrengthPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

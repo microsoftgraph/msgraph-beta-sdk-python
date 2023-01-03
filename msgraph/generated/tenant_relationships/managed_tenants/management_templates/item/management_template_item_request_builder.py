@@ -145,12 +145,12 @@ class ManagementTemplateItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, management_template.ManagementTemplate, response_handler, error_mapping)
     
-    def management_template_collections_by_id(self,id: str) -> management_template_collection_item_request_builder.ManagementTemplateCollectionItemRequestBuilder:
+    def management_template_collections_by_id(self,id: str) -> Optional[management_template_collection_item_request_builder.ManagementTemplateCollectionItemRequestBuilder]:
         """
         Provides operations to manage the managementTemplateCollections property of the microsoft.graph.managedTenants.managementTemplate entity.
         Args:
             id: Unique identifier of the item
-        Returns: management_template_collection_item_request_builder.ManagementTemplateCollectionItemRequestBuilder
+        Returns: Optional[management_template_collection_item_request_builder.ManagementTemplateCollectionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -158,12 +158,12 @@ class ManagementTemplateItemRequestBuilder():
         url_tpl_params["managementTemplateCollection%2Did"] = id
         return management_template_collection_item_request_builder.ManagementTemplateCollectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def management_template_steps_by_id(self,id: str) -> management_template_step_item_request_builder.ManagementTemplateStepItemRequestBuilder:
+    def management_template_steps_by_id(self,id: str) -> Optional[management_template_step_item_request_builder.ManagementTemplateStepItemRequestBuilder]:
         """
         Provides operations to manage the managementTemplateSteps property of the microsoft.graph.managedTenants.managementTemplate entity.
         Args:
             id: Unique identifier of the item
-        Returns: management_template_step_item_request_builder.ManagementTemplateStepItemRequestBuilder
+        Returns: Optional[management_template_step_item_request_builder.ManagementTemplateStepItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

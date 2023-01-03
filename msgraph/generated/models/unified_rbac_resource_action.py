@@ -8,7 +8,7 @@ unified_rbac_resource_scope = lazy_import('msgraph.generated.models.unified_rbac
 
 class UnifiedRbacResourceAction(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the admin singleton.
     """
     @property
     def action_verb(self,) -> Optional[str]:

@@ -34,12 +34,12 @@ class CloudPcProvisioningPolicyItemRequestBuilder():
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def assignments_by_id(self,id: str) -> cloud_pc_provisioning_policy_assignment_item_request_builder.CloudPcProvisioningPolicyAssignmentItemRequestBuilder:
+    def assignments_by_id(self,id: str) -> Optional[cloud_pc_provisioning_policy_assignment_item_request_builder.CloudPcProvisioningPolicyAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the assignments property of the microsoft.graph.cloudPcProvisioningPolicy entity.
         Args:
             id: Unique identifier of the item
-        Returns: cloud_pc_provisioning_policy_assignment_item_request_builder.CloudPcProvisioningPolicyAssignmentItemRequestBuilder
+        Returns: Optional[cloud_pc_provisioning_policy_assignment_item_request_builder.CloudPcProvisioningPolicyAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

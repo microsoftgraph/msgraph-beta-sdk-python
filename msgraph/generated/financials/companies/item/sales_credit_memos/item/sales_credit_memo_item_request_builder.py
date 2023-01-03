@@ -148,12 +148,12 @@ class SalesCreditMemoItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, sales_credit_memo.SalesCreditMemo, response_handler, error_mapping)
     
-    def sales_credit_memo_lines_by_id(self,id: str) -> sales_credit_memo_line_item_request_builder.SalesCreditMemoLineItemRequestBuilder:
+    def sales_credit_memo_lines_by_id(self,id: str) -> Optional[sales_credit_memo_line_item_request_builder.SalesCreditMemoLineItemRequestBuilder]:
         """
         Provides operations to manage the salesCreditMemoLines property of the microsoft.graph.salesCreditMemo entity.
         Args:
             id: Unique identifier of the item
-        Returns: sales_credit_memo_line_item_request_builder.SalesCreditMemoLineItemRequestBuilder
+        Returns: Optional[sales_credit_memo_line_item_request_builder.SalesCreditMemoLineItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

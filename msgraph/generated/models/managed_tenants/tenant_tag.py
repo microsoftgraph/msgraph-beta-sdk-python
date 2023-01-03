@@ -9,7 +9,7 @@ tenant_info = lazy_import('msgraph.generated.models.managed_tenants.tenant_info'
 
 class TenantTag(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the admin singleton.
     """
     def __init__(self,) -> None:
         """

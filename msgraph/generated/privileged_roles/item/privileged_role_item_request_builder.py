@@ -58,12 +58,12 @@ class PrivilegedRoleItemRequestBuilder():
         """
         return summary_request_builder.SummaryRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def assignments_by_id(self,id: str) -> privileged_role_assignment_item_request_builder.PrivilegedRoleAssignmentItemRequestBuilder:
+    def assignments_by_id(self,id: str) -> Optional[privileged_role_assignment_item_request_builder.PrivilegedRoleAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the assignments property of the microsoft.graph.privilegedRole entity.
         Args:
             id: Unique identifier of the item
-        Returns: privileged_role_assignment_item_request_builder.PrivilegedRoleAssignmentItemRequestBuilder
+        Returns: Optional[privileged_role_assignment_item_request_builder.PrivilegedRoleAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

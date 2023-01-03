@@ -136,12 +136,12 @@ class PlanConfigurationRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, planner_plan_configuration.PlannerPlanConfiguration, response_handler, error_mapping)
     
-    def localizations_by_id(self,id: str) -> planner_plan_configuration_localization_item_request_builder.PlannerPlanConfigurationLocalizationItemRequestBuilder:
+    def localizations_by_id(self,id: str) -> Optional[planner_plan_configuration_localization_item_request_builder.PlannerPlanConfigurationLocalizationItemRequestBuilder]:
         """
         Provides operations to manage the localizations property of the microsoft.graph.plannerPlanConfiguration entity.
         Args:
             id: Unique identifier of the item
-        Returns: planner_plan_configuration_localization_item_request_builder.PlannerPlanConfigurationLocalizationItemRequestBuilder
+        Returns: Optional[planner_plan_configuration_localization_item_request_builder.PlannerPlanConfigurationLocalizationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

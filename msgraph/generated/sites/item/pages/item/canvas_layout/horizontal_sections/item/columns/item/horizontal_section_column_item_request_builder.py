@@ -158,12 +158,12 @@ class HorizontalSectionColumnItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, horizontal_section_column.HorizontalSectionColumn, response_handler, error_mapping)
     
-    def webparts_by_id(self,id: str) -> web_part_item_request_builder.WebPartItemRequestBuilder:
+    def webparts_by_id(self,id: str) -> Optional[web_part_item_request_builder.WebPartItemRequestBuilder]:
         """
         Provides operations to manage the webparts property of the microsoft.graph.horizontalSectionColumn entity.
         Args:
             id: Unique identifier of the item
-        Returns: web_part_item_request_builder.WebPartItemRequestBuilder
+        Returns: Optional[web_part_item_request_builder.WebPartItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -107,12 +107,12 @@ class CustomerPaymentJournalItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def customer_payments_by_id(self,id: str) -> customer_payment_item_request_builder.CustomerPaymentItemRequestBuilder:
+    def customer_payments_by_id(self,id: str) -> Optional[customer_payment_item_request_builder.CustomerPaymentItemRequestBuilder]:
         """
         Provides operations to manage the customerPayments property of the microsoft.graph.customerPaymentJournal entity.
         Args:
             id: Unique identifier of the item
-        Returns: customer_payment_item_request_builder.CustomerPaymentItemRequestBuilder
+        Returns: Optional[customer_payment_item_request_builder.CustomerPaymentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

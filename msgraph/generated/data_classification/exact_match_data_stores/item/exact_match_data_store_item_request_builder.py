@@ -166,12 +166,12 @@ class ExactMatchDataStoreItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, exact_match_data_store.ExactMatchDataStore, response_handler, error_mapping)
     
-    def sessions_by_id(self,id: str) -> exact_match_session_item_request_builder.ExactMatchSessionItemRequestBuilder:
+    def sessions_by_id(self,id: str) -> Optional[exact_match_session_item_request_builder.ExactMatchSessionItemRequestBuilder]:
         """
         Provides operations to manage the sessions property of the microsoft.graph.exactMatchDataStore entity.
         Args:
             id: Unique identifier of the item
-        Returns: exact_match_session_item_request_builder.ExactMatchSessionItemRequestBuilder
+        Returns: Optional[exact_match_session_item_request_builder.ExactMatchSessionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

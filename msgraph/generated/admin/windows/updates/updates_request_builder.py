@@ -143,12 +143,12 @@ class UpdatesRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def deployments_by_id(self,id: str) -> deployment_item_request_builder.DeploymentItemRequestBuilder:
+    def deployments_by_id(self,id: str) -> Optional[deployment_item_request_builder.DeploymentItemRequestBuilder]:
         """
         Provides operations to manage the deployments property of the microsoft.graph.windowsUpdates.updates entity.
         Args:
             id: Unique identifier of the item
-        Returns: deployment_item_request_builder.DeploymentItemRequestBuilder
+        Returns: Optional[deployment_item_request_builder.DeploymentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -197,12 +197,12 @@ class UpdatesRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, updates.Updates, response_handler, error_mapping)
     
-    def resource_connections_by_id(self,id: str) -> resource_connection_item_request_builder.ResourceConnectionItemRequestBuilder:
+    def resource_connections_by_id(self,id: str) -> Optional[resource_connection_item_request_builder.ResourceConnectionItemRequestBuilder]:
         """
         Provides operations to manage the resourceConnections property of the microsoft.graph.windowsUpdates.updates entity.
         Args:
             id: Unique identifier of the item
-        Returns: resource_connection_item_request_builder.ResourceConnectionItemRequestBuilder
+        Returns: Optional[resource_connection_item_request_builder.ResourceConnectionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -210,12 +210,12 @@ class UpdatesRequestBuilder():
         url_tpl_params["resourceConnection%2Did"] = id
         return resource_connection_item_request_builder.ResourceConnectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def updatable_assets_by_id(self,id: str) -> updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder:
+    def updatable_assets_by_id(self,id: str) -> Optional[updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder]:
         """
         Provides operations to manage the updatableAssets property of the microsoft.graph.windowsUpdates.updates entity.
         Args:
             id: Unique identifier of the item
-        Returns: updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder
+        Returns: Optional[updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

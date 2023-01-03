@@ -166,12 +166,12 @@ class UnifiedRbacResourceNamespaceItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, unified_rbac_resource_namespace.UnifiedRbacResourceNamespace, response_handler, error_mapping)
     
-    def resource_actions_by_id(self,id: str) -> unified_rbac_resource_action_item_request_builder.UnifiedRbacResourceActionItemRequestBuilder:
+    def resource_actions_by_id(self,id: str) -> Optional[unified_rbac_resource_action_item_request_builder.UnifiedRbacResourceActionItemRequestBuilder]:
         """
         Provides operations to manage the resourceActions property of the microsoft.graph.unifiedRbacResourceNamespace entity.
         Args:
             id: Unique identifier of the item
-        Returns: unified_rbac_resource_action_item_request_builder.UnifiedRbacResourceActionItemRequestBuilder
+        Returns: Optional[unified_rbac_resource_action_item_request_builder.UnifiedRbacResourceActionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

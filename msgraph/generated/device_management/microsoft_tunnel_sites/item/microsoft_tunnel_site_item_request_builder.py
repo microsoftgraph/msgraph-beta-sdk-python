@@ -152,12 +152,12 @@ class MicrosoftTunnelSiteItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, microsoft_tunnel_site.MicrosoftTunnelSite, response_handler, error_mapping)
     
-    def microsoft_tunnel_servers_by_id(self,id: str) -> microsoft_tunnel_server_item_request_builder.MicrosoftTunnelServerItemRequestBuilder:
+    def microsoft_tunnel_servers_by_id(self,id: str) -> Optional[microsoft_tunnel_server_item_request_builder.MicrosoftTunnelServerItemRequestBuilder]:
         """
         Provides operations to manage the microsoftTunnelServers property of the microsoft.graph.microsoftTunnelSite entity.
         Args:
             id: Unique identifier of the item
-        Returns: microsoft_tunnel_server_item_request_builder.MicrosoftTunnelServerItemRequestBuilder
+        Returns: Optional[microsoft_tunnel_server_item_request_builder.MicrosoftTunnelServerItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

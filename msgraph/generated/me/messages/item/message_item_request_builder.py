@@ -150,12 +150,12 @@ class MessageItemRequestBuilder():
         """
         return unsubscribe_request_builder.UnsubscribeRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def attachments_by_id(self,id: str) -> attachment_item_request_builder.AttachmentItemRequestBuilder:
+    def attachments_by_id(self,id: str) -> Optional[attachment_item_request_builder.AttachmentItemRequestBuilder]:
         """
         Provides operations to manage the attachments property of the microsoft.graph.message entity.
         Args:
             id: Unique identifier of the item
-        Returns: attachment_item_request_builder.AttachmentItemRequestBuilder
+        Returns: Optional[attachment_item_request_builder.AttachmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -254,12 +254,12 @@ class MessageItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def extensions_by_id(self,id: str) -> extension_item_request_builder.ExtensionItemRequestBuilder:
+    def extensions_by_id(self,id: str) -> Optional[extension_item_request_builder.ExtensionItemRequestBuilder]:
         """
         Provides operations to manage the extensions property of the microsoft.graph.message entity.
         Args:
             id: Unique identifier of the item
-        Returns: extension_item_request_builder.ExtensionItemRequestBuilder
+        Returns: Optional[extension_item_request_builder.ExtensionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -286,12 +286,12 @@ class MessageItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, message.Message, response_handler, error_mapping)
     
-    def mentions_by_id(self,id: str) -> mention_item_request_builder.MentionItemRequestBuilder:
+    def mentions_by_id(self,id: str) -> Optional[mention_item_request_builder.MentionItemRequestBuilder]:
         """
         Provides operations to manage the mentions property of the microsoft.graph.message entity.
         Args:
             id: Unique identifier of the item
-        Returns: mention_item_request_builder.MentionItemRequestBuilder
+        Returns: Optional[mention_item_request_builder.MentionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -299,12 +299,12 @@ class MessageItemRequestBuilder():
         url_tpl_params["mention%2Did"] = id
         return mention_item_request_builder.MentionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def multi_value_extended_properties_by_id(self,id: str) -> multi_value_legacy_extended_property_item_request_builder.MultiValueLegacyExtendedPropertyItemRequestBuilder:
+    def multi_value_extended_properties_by_id(self,id: str) -> Optional[multi_value_legacy_extended_property_item_request_builder.MultiValueLegacyExtendedPropertyItemRequestBuilder]:
         """
         Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.message entity.
         Args:
             id: Unique identifier of the item
-        Returns: multi_value_legacy_extended_property_item_request_builder.MultiValueLegacyExtendedPropertyItemRequestBuilder
+        Returns: Optional[multi_value_legacy_extended_property_item_request_builder.MultiValueLegacyExtendedPropertyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -334,12 +334,12 @@ class MessageItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, message.Message, response_handler, error_mapping)
     
-    def single_value_extended_properties_by_id(self,id: str) -> single_value_legacy_extended_property_item_request_builder.SingleValueLegacyExtendedPropertyItemRequestBuilder:
+    def single_value_extended_properties_by_id(self,id: str) -> Optional[single_value_legacy_extended_property_item_request_builder.SingleValueLegacyExtendedPropertyItemRequestBuilder]:
         """
         Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.message entity.
         Args:
             id: Unique identifier of the item
-        Returns: single_value_legacy_extended_property_item_request_builder.SingleValueLegacyExtendedPropertyItemRequestBuilder
+        Returns: Optional[single_value_legacy_extended_property_item_request_builder.SingleValueLegacyExtendedPropertyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

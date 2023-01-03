@@ -13,6 +13,9 @@ postal_address_type = lazy_import('msgraph.generated.models.postal_address_type'
 shipment_method = lazy_import('msgraph.generated.models.shipment_method')
 
 class Customer(entity.Entity):
+    """
+    Provides operations to manage the collection of activityStatistics entities.
+    """
     @property
     def address(self,) -> Optional[postal_address_type.PostalAddressType]:
         """

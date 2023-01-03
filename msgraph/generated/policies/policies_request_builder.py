@@ -249,12 +249,12 @@ class PoliciesRequestBuilder():
         """
         return token_lifetime_policies_request_builder.TokenLifetimePoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def activity_based_timeout_policies_by_id(self,id: str) -> activity_based_timeout_policy_item_request_builder.ActivityBasedTimeoutPolicyItemRequestBuilder:
+    def activity_based_timeout_policies_by_id(self,id: str) -> Optional[activity_based_timeout_policy_item_request_builder.ActivityBasedTimeoutPolicyItemRequestBuilder]:
         """
         Provides operations to manage the activityBasedTimeoutPolicies property of the microsoft.graph.policyRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: activity_based_timeout_policy_item_request_builder.ActivityBasedTimeoutPolicyItemRequestBuilder
+        Returns: Optional[activity_based_timeout_policy_item_request_builder.ActivityBasedTimeoutPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -262,12 +262,12 @@ class PoliciesRequestBuilder():
         url_tpl_params["activityBasedTimeoutPolicy%2Did"] = id
         return activity_based_timeout_policy_item_request_builder.ActivityBasedTimeoutPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def app_management_policies_by_id(self,id: str) -> app_management_policy_item_request_builder.AppManagementPolicyItemRequestBuilder:
+    def app_management_policies_by_id(self,id: str) -> Optional[app_management_policy_item_request_builder.AppManagementPolicyItemRequestBuilder]:
         """
         Provides operations to manage the appManagementPolicies property of the microsoft.graph.policyRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: app_management_policy_item_request_builder.AppManagementPolicyItemRequestBuilder
+        Returns: Optional[app_management_policy_item_request_builder.AppManagementPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -275,12 +275,12 @@ class PoliciesRequestBuilder():
         url_tpl_params["appManagementPolicy%2Did"] = id
         return app_management_policy_item_request_builder.AppManagementPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def authentication_strength_policies_by_id(self,id: str) -> authentication_strength_policy_item_request_builder.AuthenticationStrengthPolicyItemRequestBuilder:
+    def authentication_strength_policies_by_id(self,id: str) -> Optional[authentication_strength_policy_item_request_builder.AuthenticationStrengthPolicyItemRequestBuilder]:
         """
         Provides operations to manage the authenticationStrengthPolicies property of the microsoft.graph.policyRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: authentication_strength_policy_item_request_builder.AuthenticationStrengthPolicyItemRequestBuilder
+        Returns: Optional[authentication_strength_policy_item_request_builder.AuthenticationStrengthPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -288,12 +288,12 @@ class PoliciesRequestBuilder():
         url_tpl_params["authenticationStrengthPolicy%2Did"] = id
         return authentication_strength_policy_item_request_builder.AuthenticationStrengthPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def authorization_policy_by_id(self,id: str) -> authorization_policy_item_request_builder.AuthorizationPolicyItemRequestBuilder:
+    def authorization_policy_by_id(self,id: str) -> Optional[authorization_policy_item_request_builder.AuthorizationPolicyItemRequestBuilder]:
         """
         Provides operations to manage the authorizationPolicy property of the microsoft.graph.policyRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: authorization_policy_item_request_builder.AuthorizationPolicyItemRequestBuilder
+        Returns: Optional[authorization_policy_item_request_builder.AuthorizationPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -301,12 +301,12 @@ class PoliciesRequestBuilder():
         url_tpl_params["authorizationPolicy%2Did"] = id
         return authorization_policy_item_request_builder.AuthorizationPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def claims_mapping_policies_by_id(self,id: str) -> claims_mapping_policy_item_request_builder.ClaimsMappingPolicyItemRequestBuilder:
+    def claims_mapping_policies_by_id(self,id: str) -> Optional[claims_mapping_policy_item_request_builder.ClaimsMappingPolicyItemRequestBuilder]:
         """
         Provides operations to manage the claimsMappingPolicies property of the microsoft.graph.policyRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: claims_mapping_policy_item_request_builder.ClaimsMappingPolicyItemRequestBuilder
+        Returns: Optional[claims_mapping_policy_item_request_builder.ClaimsMappingPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -314,12 +314,12 @@ class PoliciesRequestBuilder():
         url_tpl_params["claimsMappingPolicy%2Did"] = id
         return claims_mapping_policy_item_request_builder.ClaimsMappingPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def conditional_access_policies_by_id(self,id: str) -> conditional_access_policy_item_request_builder.ConditionalAccessPolicyItemRequestBuilder:
+    def conditional_access_policies_by_id(self,id: str) -> Optional[conditional_access_policy_item_request_builder.ConditionalAccessPolicyItemRequestBuilder]:
         """
         Provides operations to manage the conditionalAccessPolicies property of the microsoft.graph.policyRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: conditional_access_policy_item_request_builder.ConditionalAccessPolicyItemRequestBuilder
+        Returns: Optional[conditional_access_policy_item_request_builder.ConditionalAccessPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -384,12 +384,12 @@ class PoliciesRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def feature_rollout_policies_by_id(self,id: str) -> feature_rollout_policy_item_request_builder.FeatureRolloutPolicyItemRequestBuilder:
+    def feature_rollout_policies_by_id(self,id: str) -> Optional[feature_rollout_policy_item_request_builder.FeatureRolloutPolicyItemRequestBuilder]:
         """
         Provides operations to manage the featureRolloutPolicies property of the microsoft.graph.policyRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: feature_rollout_policy_item_request_builder.FeatureRolloutPolicyItemRequestBuilder
+        Returns: Optional[feature_rollout_policy_item_request_builder.FeatureRolloutPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -416,12 +416,12 @@ class PoliciesRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, policy_root.PolicyRoot, response_handler, error_mapping)
     
-    def home_realm_discovery_policies_by_id(self,id: str) -> home_realm_discovery_policy_item_request_builder.HomeRealmDiscoveryPolicyItemRequestBuilder:
+    def home_realm_discovery_policies_by_id(self,id: str) -> Optional[home_realm_discovery_policy_item_request_builder.HomeRealmDiscoveryPolicyItemRequestBuilder]:
         """
         Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.policyRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: home_realm_discovery_policy_item_request_builder.HomeRealmDiscoveryPolicyItemRequestBuilder
+        Returns: Optional[home_realm_discovery_policy_item_request_builder.HomeRealmDiscoveryPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -429,12 +429,12 @@ class PoliciesRequestBuilder():
         url_tpl_params["homeRealmDiscoveryPolicy%2Did"] = id
         return home_realm_discovery_policy_item_request_builder.HomeRealmDiscoveryPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def mobile_app_management_policies_by_id(self,id: str) -> mobility_management_policy_item_request_builder.MobilityManagementPolicyItemRequestBuilder:
+    def mobile_app_management_policies_by_id(self,id: str) -> Optional[mobility_management_policy_item_request_builder.MobilityManagementPolicyItemRequestBuilder]:
         """
         Provides operations to manage the mobileAppManagementPolicies property of the microsoft.graph.policyRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: mobility_management_policy_item_request_builder.MobilityManagementPolicyItemRequestBuilder
+        Returns: Optional[mobility_management_policy_item_request_builder.MobilityManagementPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -442,12 +442,12 @@ class PoliciesRequestBuilder():
         url_tpl_params["mobilityManagementPolicy%2Did"] = id
         return mobility_management_policy_item_request_builder.MobilityManagementPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def mobile_device_management_policies_by_id(self,id: str) -> mobility_management_policy_item_request_builder.MobilityManagementPolicyItemRequestBuilder:
+    def mobile_device_management_policies_by_id(self,id: str) -> Optional[mobility_management_policy_item_request_builder.MobilityManagementPolicyItemRequestBuilder]:
         """
         Provides operations to manage the mobileDeviceManagementPolicies property of the microsoft.graph.policyRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: mobility_management_policy_item_request_builder.MobilityManagementPolicyItemRequestBuilder
+        Returns: Optional[mobility_management_policy_item_request_builder.MobilityManagementPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -477,12 +477,12 @@ class PoliciesRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, policy_root.PolicyRoot, response_handler, error_mapping)
     
-    def permission_grant_policies_by_id(self,id: str) -> permission_grant_policy_item_request_builder.PermissionGrantPolicyItemRequestBuilder:
+    def permission_grant_policies_by_id(self,id: str) -> Optional[permission_grant_policy_item_request_builder.PermissionGrantPolicyItemRequestBuilder]:
         """
         Provides operations to manage the permissionGrantPolicies property of the microsoft.graph.policyRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: permission_grant_policy_item_request_builder.PermissionGrantPolicyItemRequestBuilder
+        Returns: Optional[permission_grant_policy_item_request_builder.PermissionGrantPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -490,12 +490,12 @@ class PoliciesRequestBuilder():
         url_tpl_params["permissionGrantPolicy%2Did"] = id
         return permission_grant_policy_item_request_builder.PermissionGrantPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def role_management_policies_by_id(self,id: str) -> unified_role_management_policy_item_request_builder.UnifiedRoleManagementPolicyItemRequestBuilder:
+    def role_management_policies_by_id(self,id: str) -> Optional[unified_role_management_policy_item_request_builder.UnifiedRoleManagementPolicyItemRequestBuilder]:
         """
         Provides operations to manage the roleManagementPolicies property of the microsoft.graph.policyRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: unified_role_management_policy_item_request_builder.UnifiedRoleManagementPolicyItemRequestBuilder
+        Returns: Optional[unified_role_management_policy_item_request_builder.UnifiedRoleManagementPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -503,12 +503,12 @@ class PoliciesRequestBuilder():
         url_tpl_params["unifiedRoleManagementPolicy%2Did"] = id
         return unified_role_management_policy_item_request_builder.UnifiedRoleManagementPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def role_management_policy_assignments_by_id(self,id: str) -> unified_role_management_policy_assignment_item_request_builder.UnifiedRoleManagementPolicyAssignmentItemRequestBuilder:
+    def role_management_policy_assignments_by_id(self,id: str) -> Optional[unified_role_management_policy_assignment_item_request_builder.UnifiedRoleManagementPolicyAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the roleManagementPolicyAssignments property of the microsoft.graph.policyRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: unified_role_management_policy_assignment_item_request_builder.UnifiedRoleManagementPolicyAssignmentItemRequestBuilder
+        Returns: Optional[unified_role_management_policy_assignment_item_request_builder.UnifiedRoleManagementPolicyAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -516,12 +516,12 @@ class PoliciesRequestBuilder():
         url_tpl_params["unifiedRoleManagementPolicyAssignment%2Did"] = id
         return unified_role_management_policy_assignment_item_request_builder.UnifiedRoleManagementPolicyAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def service_principal_creation_policies_by_id(self,id: str) -> service_principal_creation_policy_item_request_builder.ServicePrincipalCreationPolicyItemRequestBuilder:
+    def service_principal_creation_policies_by_id(self,id: str) -> Optional[service_principal_creation_policy_item_request_builder.ServicePrincipalCreationPolicyItemRequestBuilder]:
         """
         Provides operations to manage the servicePrincipalCreationPolicies property of the microsoft.graph.policyRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: service_principal_creation_policy_item_request_builder.ServicePrincipalCreationPolicyItemRequestBuilder
+        Returns: Optional[service_principal_creation_policy_item_request_builder.ServicePrincipalCreationPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -529,12 +529,12 @@ class PoliciesRequestBuilder():
         url_tpl_params["servicePrincipalCreationPolicy%2Did"] = id
         return service_principal_creation_policy_item_request_builder.ServicePrincipalCreationPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def token_issuance_policies_by_id(self,id: str) -> token_issuance_policy_item_request_builder.TokenIssuancePolicyItemRequestBuilder:
+    def token_issuance_policies_by_id(self,id: str) -> Optional[token_issuance_policy_item_request_builder.TokenIssuancePolicyItemRequestBuilder]:
         """
         Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.policyRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: token_issuance_policy_item_request_builder.TokenIssuancePolicyItemRequestBuilder
+        Returns: Optional[token_issuance_policy_item_request_builder.TokenIssuancePolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -542,12 +542,12 @@ class PoliciesRequestBuilder():
         url_tpl_params["tokenIssuancePolicy%2Did"] = id
         return token_issuance_policy_item_request_builder.TokenIssuancePolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def token_lifetime_policies_by_id(self,id: str) -> token_lifetime_policy_item_request_builder.TokenLifetimePolicyItemRequestBuilder:
+    def token_lifetime_policies_by_id(self,id: str) -> Optional[token_lifetime_policy_item_request_builder.TokenLifetimePolicyItemRequestBuilder]:
         """
         Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.policyRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: token_lifetime_policy_item_request_builder.TokenLifetimePolicyItemRequestBuilder
+        Returns: Optional[token_lifetime_policy_item_request_builder.TokenLifetimePolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

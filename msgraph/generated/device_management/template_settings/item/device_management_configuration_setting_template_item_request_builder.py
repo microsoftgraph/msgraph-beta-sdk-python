@@ -158,12 +158,12 @@ class DeviceManagementConfigurationSettingTemplateItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, device_management_configuration_setting_template.DeviceManagementConfigurationSettingTemplate, response_handler, error_mapping)
     
-    def setting_definitions_by_id(self,id: str) -> device_management_configuration_setting_definition_item_request_builder.DeviceManagementConfigurationSettingDefinitionItemRequestBuilder:
+    def setting_definitions_by_id(self,id: str) -> Optional[device_management_configuration_setting_definition_item_request_builder.DeviceManagementConfigurationSettingDefinitionItemRequestBuilder]:
         """
         Provides operations to manage the settingDefinitions property of the microsoft.graph.deviceManagementConfigurationSettingTemplate entity.
         Args:
             id: Unique identifier of the item
-        Returns: device_management_configuration_setting_definition_item_request_builder.DeviceManagementConfigurationSettingDefinitionItemRequestBuilder
+        Returns: Optional[device_management_configuration_setting_definition_item_request_builder.DeviceManagementConfigurationSettingDefinitionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

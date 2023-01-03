@@ -12,7 +12,7 @@ risky_user_history_item = lazy_import('msgraph.generated.models.risky_user_histo
 
 class RiskyUser(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     def __init__(self,) -> None:
         """

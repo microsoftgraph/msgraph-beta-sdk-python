@@ -10,7 +10,7 @@ recommendation_status = lazy_import('msgraph.generated.models.recommendation_sta
 
 class RecommendationResource(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the admin singleton.
     """
     @property
     def added_date_time(self,) -> Optional[datetime]:

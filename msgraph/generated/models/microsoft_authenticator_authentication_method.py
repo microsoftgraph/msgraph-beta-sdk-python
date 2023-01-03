@@ -8,9 +8,12 @@ authentication_method = lazy_import('msgraph.generated.models.authentication_met
 device = lazy_import('msgraph.generated.models.device')
 
 class MicrosoftAuthenticatorAuthenticationMethod(authentication_method.AuthenticationMethod):
+    """
+    Provides operations to manage the collection of activityStatistics entities.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new MicrosoftAuthenticatorAuthenticationMethod and sets the default values.
+        Instantiates a new microsoftAuthenticatorAuthenticationMethod and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.microsoftAuthenticatorAuthenticationMethod"

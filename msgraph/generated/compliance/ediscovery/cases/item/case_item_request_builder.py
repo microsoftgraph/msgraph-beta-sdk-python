@@ -177,12 +177,12 @@ class CaseItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def custodians_by_id(self,id: str) -> custodian_item_request_builder.CustodianItemRequestBuilder:
+    def custodians_by_id(self,id: str) -> Optional[custodian_item_request_builder.CustodianItemRequestBuilder]:
         """
         Provides operations to manage the custodians property of the microsoft.graph.ediscovery.case entity.
         Args:
             id: Unique identifier of the item
-        Returns: custodian_item_request_builder.CustodianItemRequestBuilder
+        Returns: Optional[custodian_item_request_builder.CustodianItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -227,12 +227,12 @@ class CaseItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, case.Case, response_handler, error_mapping)
     
-    def legal_holds_by_id(self,id: str) -> legal_hold_item_request_builder.LegalHoldItemRequestBuilder:
+    def legal_holds_by_id(self,id: str) -> Optional[legal_hold_item_request_builder.LegalHoldItemRequestBuilder]:
         """
         Provides operations to manage the legalHolds property of the microsoft.graph.ediscovery.case entity.
         Args:
             id: Unique identifier of the item
-        Returns: legal_hold_item_request_builder.LegalHoldItemRequestBuilder
+        Returns: Optional[legal_hold_item_request_builder.LegalHoldItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -240,12 +240,12 @@ class CaseItemRequestBuilder():
         url_tpl_params["legalHold%2Did"] = id
         return legal_hold_item_request_builder.LegalHoldItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def noncustodial_data_sources_by_id(self,id: str) -> noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder:
+    def noncustodial_data_sources_by_id(self,id: str) -> Optional[noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder]:
         """
         Provides operations to manage the noncustodialDataSources property of the microsoft.graph.ediscovery.case entity.
         Args:
             id: Unique identifier of the item
-        Returns: noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder
+        Returns: Optional[noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -253,12 +253,12 @@ class CaseItemRequestBuilder():
         url_tpl_params["noncustodialDataSource%2Did"] = id
         return noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def operations_by_id(self,id: str) -> case_operation_item_request_builder.CaseOperationItemRequestBuilder:
+    def operations_by_id(self,id: str) -> Optional[case_operation_item_request_builder.CaseOperationItemRequestBuilder]:
         """
         Provides operations to manage the operations property of the microsoft.graph.ediscovery.case entity.
         Args:
             id: Unique identifier of the item
-        Returns: case_operation_item_request_builder.CaseOperationItemRequestBuilder
+        Returns: Optional[case_operation_item_request_builder.CaseOperationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -288,12 +288,12 @@ class CaseItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, case.Case, response_handler, error_mapping)
     
-    def review_sets_by_id(self,id: str) -> review_set_item_request_builder.ReviewSetItemRequestBuilder:
+    def review_sets_by_id(self,id: str) -> Optional[review_set_item_request_builder.ReviewSetItemRequestBuilder]:
         """
         Provides operations to manage the reviewSets property of the microsoft.graph.ediscovery.case entity.
         Args:
             id: Unique identifier of the item
-        Returns: review_set_item_request_builder.ReviewSetItemRequestBuilder
+        Returns: Optional[review_set_item_request_builder.ReviewSetItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -301,12 +301,12 @@ class CaseItemRequestBuilder():
         url_tpl_params["reviewSet%2Did"] = id
         return review_set_item_request_builder.ReviewSetItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def source_collections_by_id(self,id: str) -> source_collection_item_request_builder.SourceCollectionItemRequestBuilder:
+    def source_collections_by_id(self,id: str) -> Optional[source_collection_item_request_builder.SourceCollectionItemRequestBuilder]:
         """
         Provides operations to manage the sourceCollections property of the microsoft.graph.ediscovery.case entity.
         Args:
             id: Unique identifier of the item
-        Returns: source_collection_item_request_builder.SourceCollectionItemRequestBuilder
+        Returns: Optional[source_collection_item_request_builder.SourceCollectionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -314,12 +314,12 @@ class CaseItemRequestBuilder():
         url_tpl_params["sourceCollection%2Did"] = id
         return source_collection_item_request_builder.SourceCollectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def tags_by_id(self,id: str) -> tag_item_request_builder.TagItemRequestBuilder:
+    def tags_by_id(self,id: str) -> Optional[tag_item_request_builder.TagItemRequestBuilder]:
         """
         Provides operations to manage the tags property of the microsoft.graph.ediscovery.case entity.
         Args:
             id: Unique identifier of the item
-        Returns: tag_item_request_builder.TagItemRequestBuilder
+        Returns: Optional[tag_item_request_builder.TagItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

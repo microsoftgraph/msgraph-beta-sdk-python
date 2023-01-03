@@ -167,12 +167,12 @@ class RunItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, run.Run, response_handler, error_mapping)
     
-    def task_processing_results_by_id(self,id: str) -> task_processing_result_item_request_builder.TaskProcessingResultItemRequestBuilder:
+    def task_processing_results_by_id(self,id: str) -> Optional[task_processing_result_item_request_builder.TaskProcessingResultItemRequestBuilder]:
         """
         Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.run entity.
         Args:
             id: Unique identifier of the item
-        Returns: task_processing_result_item_request_builder.TaskProcessingResultItemRequestBuilder
+        Returns: Optional[task_processing_result_item_request_builder.TaskProcessingResultItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -180,12 +180,12 @@ class RunItemRequestBuilder():
         url_tpl_params["taskProcessingResult%2Did"] = id
         return task_processing_result_item_request_builder.TaskProcessingResultItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def user_processing_results_by_id(self,id: str) -> user_processing_result_item_request_builder.UserProcessingResultItemRequestBuilder:
+    def user_processing_results_by_id(self,id: str) -> Optional[user_processing_result_item_request_builder.UserProcessingResultItemRequestBuilder]:
         """
         Provides operations to manage the userProcessingResults property of the microsoft.graph.identityGovernance.run entity.
         Args:
             id: Unique identifier of the item
-        Returns: user_processing_result_item_request_builder.UserProcessingResultItemRequestBuilder
+        Returns: Optional[user_processing_result_item_request_builder.UserProcessingResultItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

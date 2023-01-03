@@ -125,12 +125,12 @@ class RetentionLabelItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def disposition_review_stages_by_id(self,id: str) -> disposition_review_stage_item_request_builder.DispositionReviewStageItemRequestBuilder:
+    def disposition_review_stages_by_id(self,id: str) -> Optional[disposition_review_stage_item_request_builder.DispositionReviewStageItemRequestBuilder]:
         """
         Provides operations to manage the dispositionReviewStages property of the microsoft.graph.security.retentionLabel entity.
         Args:
             id: Unique identifier of the item
-        Returns: disposition_review_stage_item_request_builder.DispositionReviewStageItemRequestBuilder
+        Returns: Optional[disposition_review_stage_item_request_builder.DispositionReviewStageItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

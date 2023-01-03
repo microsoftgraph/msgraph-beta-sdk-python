@@ -145,12 +145,12 @@ class GroupPolicyMigrationReportItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, group_policy_migration_report.GroupPolicyMigrationReport, response_handler, error_mapping)
     
-    def group_policy_setting_mappings_by_id(self,id: str) -> group_policy_setting_mapping_item_request_builder.GroupPolicySettingMappingItemRequestBuilder:
+    def group_policy_setting_mappings_by_id(self,id: str) -> Optional[group_policy_setting_mapping_item_request_builder.GroupPolicySettingMappingItemRequestBuilder]:
         """
         Provides operations to manage the groupPolicySettingMappings property of the microsoft.graph.groupPolicyMigrationReport entity.
         Args:
             id: Unique identifier of the item
-        Returns: group_policy_setting_mapping_item_request_builder.GroupPolicySettingMappingItemRequestBuilder
+        Returns: Optional[group_policy_setting_mapping_item_request_builder.GroupPolicySettingMappingItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -180,12 +180,12 @@ class GroupPolicyMigrationReportItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, group_policy_migration_report.GroupPolicyMigrationReport, response_handler, error_mapping)
     
-    def unsupported_group_policy_extensions_by_id(self,id: str) -> unsupported_group_policy_extension_item_request_builder.UnsupportedGroupPolicyExtensionItemRequestBuilder:
+    def unsupported_group_policy_extensions_by_id(self,id: str) -> Optional[unsupported_group_policy_extension_item_request_builder.UnsupportedGroupPolicyExtensionItemRequestBuilder]:
         """
         Provides operations to manage the unsupportedGroupPolicyExtensions property of the microsoft.graph.groupPolicyMigrationReport entity.
         Args:
             id: Unique identifier of the item
-        Returns: unsupported_group_policy_extension_item_request_builder.UnsupportedGroupPolicyExtensionItemRequestBuilder
+        Returns: Optional[unsupported_group_policy_extension_item_request_builder.UnsupportedGroupPolicyExtensionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

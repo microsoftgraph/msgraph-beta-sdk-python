@@ -26,12 +26,12 @@ class AnalyticsRequestBuilder():
         """
         return activity_statistics_request_builder.ActivityStatisticsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def activity_statistics_by_id(self,id: str) -> activity_statistics_item_request_builder.ActivityStatisticsItemRequestBuilder:
+    def activity_statistics_by_id(self,id: str) -> Optional[activity_statistics_item_request_builder.ActivityStatisticsItemRequestBuilder]:
         """
         Provides operations to manage the activityStatistics property of the microsoft.graph.userAnalytics entity.
         Args:
             id: Unique identifier of the item
-        Returns: activity_statistics_item_request_builder.ActivityStatisticsItemRequestBuilder
+        Returns: Optional[activity_statistics_item_request_builder.ActivityStatisticsItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

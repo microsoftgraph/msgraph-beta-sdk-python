@@ -17,9 +17,6 @@ schema = lazy_import('msgraph.generated.models.external_connectors.schema')
 search_settings = lazy_import('msgraph.generated.models.external_connectors.search_settings')
 
 class ExternalConnection(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def activity_settings(self,) -> Optional[activity_settings.ActivitySettings]:
         """
@@ -90,7 +87,7 @@ class ExternalConnection(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new externalConnection and sets the default values.
+        Instantiates a new ExternalConnection and sets the default values.
         """
         super().__init__()
         # Collects configurable settings related to activities involving connector content.

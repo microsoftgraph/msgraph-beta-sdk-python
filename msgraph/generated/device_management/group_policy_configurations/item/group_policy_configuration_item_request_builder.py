@@ -51,12 +51,12 @@ class GroupPolicyConfigurationItemRequestBuilder():
         """
         return update_definition_values_request_builder.UpdateDefinitionValuesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def assignments_by_id(self,id: str) -> group_policy_configuration_assignment_item_request_builder.GroupPolicyConfigurationAssignmentItemRequestBuilder:
+    def assignments_by_id(self,id: str) -> Optional[group_policy_configuration_assignment_item_request_builder.GroupPolicyConfigurationAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the assignments property of the microsoft.graph.groupPolicyConfiguration entity.
         Args:
             id: Unique identifier of the item
-        Returns: group_policy_configuration_assignment_item_request_builder.GroupPolicyConfigurationAssignmentItemRequestBuilder
+        Returns: Optional[group_policy_configuration_assignment_item_request_builder.GroupPolicyConfigurationAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -137,12 +137,12 @@ class GroupPolicyConfigurationItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def definition_values_by_id(self,id: str) -> group_policy_definition_value_item_request_builder.GroupPolicyDefinitionValueItemRequestBuilder:
+    def definition_values_by_id(self,id: str) -> Optional[group_policy_definition_value_item_request_builder.GroupPolicyDefinitionValueItemRequestBuilder]:
         """
         Provides operations to manage the definitionValues property of the microsoft.graph.groupPolicyConfiguration entity.
         Args:
             id: Unique identifier of the item
-        Returns: group_policy_definition_value_item_request_builder.GroupPolicyDefinitionValueItemRequestBuilder
+        Returns: Optional[group_policy_definition_value_item_request_builder.GroupPolicyDefinitionValueItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

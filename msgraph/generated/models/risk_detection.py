@@ -16,7 +16,7 @@ token_issuer_type = lazy_import('msgraph.generated.models.token_issuer_type')
 
 class RiskDetection(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def activity(self,) -> Optional[activity_type.ActivityType]:

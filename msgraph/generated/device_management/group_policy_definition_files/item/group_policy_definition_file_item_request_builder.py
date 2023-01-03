@@ -99,12 +99,12 @@ class GroupPolicyDefinitionFileItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def definitions_by_id(self,id: str) -> group_policy_definition_item_request_builder.GroupPolicyDefinitionItemRequestBuilder:
+    def definitions_by_id(self,id: str) -> Optional[group_policy_definition_item_request_builder.GroupPolicyDefinitionItemRequestBuilder]:
         """
         Provides operations to manage the definitions property of the microsoft.graph.groupPolicyDefinitionFile entity.
         Args:
             id: Unique identifier of the item
-        Returns: group_policy_definition_item_request_builder.GroupPolicyDefinitionItemRequestBuilder
+        Returns: Optional[group_policy_definition_item_request_builder.GroupPolicyDefinitionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

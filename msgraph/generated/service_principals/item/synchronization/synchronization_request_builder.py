@@ -154,12 +154,12 @@ class SynchronizationRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, synchronization.Synchronization, response_handler, error_mapping)
     
-    def jobs_by_id(self,id: str) -> synchronization_job_item_request_builder.SynchronizationJobItemRequestBuilder:
+    def jobs_by_id(self,id: str) -> Optional[synchronization_job_item_request_builder.SynchronizationJobItemRequestBuilder]:
         """
         Provides operations to manage the jobs property of the microsoft.graph.synchronization entity.
         Args:
             id: Unique identifier of the item
-        Returns: synchronization_job_item_request_builder.SynchronizationJobItemRequestBuilder
+        Returns: Optional[synchronization_job_item_request_builder.SynchronizationJobItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -196,12 +196,12 @@ class SynchronizationRequestBuilder():
         """
         return ping_request_builder.PingRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def templates_by_id(self,id: str) -> synchronization_template_item_request_builder.SynchronizationTemplateItemRequestBuilder:
+    def templates_by_id(self,id: str) -> Optional[synchronization_template_item_request_builder.SynchronizationTemplateItemRequestBuilder]:
         """
         Provides operations to manage the templates property of the microsoft.graph.synchronization entity.
         Args:
             id: Unique identifier of the item
-        Returns: synchronization_template_item_request_builder.SynchronizationTemplateItemRequestBuilder
+        Returns: Optional[synchronization_template_item_request_builder.SynchronizationTemplateItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
