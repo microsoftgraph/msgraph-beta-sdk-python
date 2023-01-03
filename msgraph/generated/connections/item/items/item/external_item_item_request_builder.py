@@ -34,12 +34,12 @@ class ExternalItemItemRequestBuilder():
         """
         return add_activities_request_builder.AddActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def activities_by_id(self,id: str) -> external_activity_item_request_builder.ExternalActivityItemRequestBuilder:
+    def activities_by_id(self,id: str) -> Optional[external_activity_item_request_builder.ExternalActivityItemRequestBuilder]:
         """
         Provides operations to manage the activities property of the microsoft.graph.externalConnectors.externalItem entity.
         Args:
             id: Unique identifier of the item
-        Returns: external_activity_item_request_builder.ExternalActivityItemRequestBuilder
+        Returns: Optional[external_activity_item_request_builder.ExternalActivityItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

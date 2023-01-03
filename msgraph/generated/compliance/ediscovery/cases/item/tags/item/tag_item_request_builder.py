@@ -34,12 +34,12 @@ class TagItemRequestBuilder():
         """
         return parent_request_builder.ParentRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def child_tags_by_id(self,id: str) -> TagItemRequestBuilder:
+    def child_tags_by_id(self,id: str) -> Optional[TagItemRequestBuilder]:
         """
         Provides operations to manage the childTags property of the microsoft.graph.ediscovery.tag entity.
         Args:
             id: Unique identifier of the item
-        Returns: TagItemRequestBuilder
+        Returns: Optional[TagItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

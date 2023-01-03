@@ -176,12 +176,12 @@ class CloudPCRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, rbac_application_multiple.RbacApplicationMultiple, response_handler, error_mapping)
     
-    def resource_namespaces_by_id(self,id: str) -> unified_rbac_resource_namespace_item_request_builder.UnifiedRbacResourceNamespaceItemRequestBuilder:
+    def resource_namespaces_by_id(self,id: str) -> Optional[unified_rbac_resource_namespace_item_request_builder.UnifiedRbacResourceNamespaceItemRequestBuilder]:
         """
         Provides operations to manage the resourceNamespaces property of the microsoft.graph.rbacApplicationMultiple entity.
         Args:
             id: Unique identifier of the item
-        Returns: unified_rbac_resource_namespace_item_request_builder.UnifiedRbacResourceNamespaceItemRequestBuilder
+        Returns: Optional[unified_rbac_resource_namespace_item_request_builder.UnifiedRbacResourceNamespaceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -189,12 +189,12 @@ class CloudPCRequestBuilder():
         url_tpl_params["unifiedRbacResourceNamespace%2Did"] = id
         return unified_rbac_resource_namespace_item_request_builder.UnifiedRbacResourceNamespaceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def role_assignments_by_id(self,id: str) -> unified_role_assignment_multiple_item_request_builder.UnifiedRoleAssignmentMultipleItemRequestBuilder:
+    def role_assignments_by_id(self,id: str) -> Optional[unified_role_assignment_multiple_item_request_builder.UnifiedRoleAssignmentMultipleItemRequestBuilder]:
         """
         Provides operations to manage the roleAssignments property of the microsoft.graph.rbacApplicationMultiple entity.
         Args:
             id: Unique identifier of the item
-        Returns: unified_role_assignment_multiple_item_request_builder.UnifiedRoleAssignmentMultipleItemRequestBuilder
+        Returns: Optional[unified_role_assignment_multiple_item_request_builder.UnifiedRoleAssignmentMultipleItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -202,12 +202,12 @@ class CloudPCRequestBuilder():
         url_tpl_params["unifiedRoleAssignmentMultiple%2Did"] = id
         return unified_role_assignment_multiple_item_request_builder.UnifiedRoleAssignmentMultipleItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def role_definitions_by_id(self,id: str) -> unified_role_definition_item_request_builder.UnifiedRoleDefinitionItemRequestBuilder:
+    def role_definitions_by_id(self,id: str) -> Optional[unified_role_definition_item_request_builder.UnifiedRoleDefinitionItemRequestBuilder]:
         """
         Provides operations to manage the roleDefinitions property of the microsoft.graph.rbacApplicationMultiple entity.
         Args:
             id: Unique identifier of the item
-        Returns: unified_role_definition_item_request_builder.UnifiedRoleDefinitionItemRequestBuilder
+        Returns: Optional[unified_role_definition_item_request_builder.UnifiedRoleDefinitionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

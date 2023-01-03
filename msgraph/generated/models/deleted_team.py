@@ -7,6 +7,9 @@ channel = lazy_import('msgraph.generated.models.channel')
 entity = lazy_import('msgraph.generated.models.entity')
 
 class DeletedTeam(entity.Entity):
+    """
+    Provides operations to manage the collection of activityStatistics entities.
+    """
     @property
     def channels(self,) -> Optional[List[channel.Channel]]:
         """
@@ -26,7 +29,7 @@ class DeletedTeam(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new DeletedTeam and sets the default values.
+        Instantiates a new deletedTeam and sets the default values.
         """
         super().__init__()
         # The channels those are either shared with this deleted team or created in this deleted team.

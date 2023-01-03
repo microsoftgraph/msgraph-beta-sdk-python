@@ -166,12 +166,12 @@ class UserProcessingResultItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, user_processing_result.UserProcessingResult, response_handler, error_mapping)
     
-    def task_processing_results_by_id(self,id: str) -> task_processing_result_item_request_builder.TaskProcessingResultItemRequestBuilder:
+    def task_processing_results_by_id(self,id: str) -> Optional[task_processing_result_item_request_builder.TaskProcessingResultItemRequestBuilder]:
         """
         Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.userProcessingResult entity.
         Args:
             id: Unique identifier of the item
-        Returns: task_processing_result_item_request_builder.TaskProcessingResultItemRequestBuilder
+        Returns: Optional[task_processing_result_item_request_builder.TaskProcessingResultItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

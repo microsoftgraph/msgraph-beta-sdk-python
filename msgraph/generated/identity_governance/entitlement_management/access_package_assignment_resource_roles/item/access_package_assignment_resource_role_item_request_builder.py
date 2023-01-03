@@ -50,12 +50,12 @@ class AccessPackageAssignmentResourceRoleItemRequestBuilder():
         """
         return access_package_subject_request_builder.AccessPackageSubjectRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def access_package_assignments_by_id(self,id: str) -> access_package_assignment_item_request_builder.AccessPackageAssignmentItemRequestBuilder:
+    def access_package_assignments_by_id(self,id: str) -> Optional[access_package_assignment_item_request_builder.AccessPackageAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the accessPackageAssignments property of the microsoft.graph.accessPackageAssignmentResourceRole entity.
         Args:
             id: Unique identifier of the item
-        Returns: access_package_assignment_item_request_builder.AccessPackageAssignmentItemRequestBuilder
+        Returns: Optional[access_package_assignment_item_request_builder.AccessPackageAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -9,7 +9,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class ActivityStatistics(entity.Entity):
     """
-    Provides operations to manage the collection of activityStatistics entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def activity(self,) -> Optional[analytics_activity_type.AnalyticsActivityType]:

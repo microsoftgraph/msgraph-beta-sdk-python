@@ -136,12 +136,12 @@ class ManagementTemplateCollectionItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, management_template_collection.ManagementTemplateCollection, response_handler, error_mapping)
     
-    def management_templates_by_id(self,id: str) -> management_template_item_request_builder.ManagementTemplateItemRequestBuilder:
+    def management_templates_by_id(self,id: str) -> Optional[management_template_item_request_builder.ManagementTemplateItemRequestBuilder]:
         """
         Provides operations to manage the managementTemplates property of the microsoft.graph.managedTenants.managementTemplateCollection entity.
         Args:
             id: Unique identifier of the item
-        Returns: management_template_item_request_builder.ManagementTemplateItemRequestBuilder
+        Returns: Optional[management_template_item_request_builder.ManagementTemplateItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

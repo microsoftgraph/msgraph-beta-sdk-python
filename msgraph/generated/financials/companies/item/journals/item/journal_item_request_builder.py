@@ -152,12 +152,12 @@ class JournalItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, journal.Journal, response_handler, error_mapping)
     
-    def journal_lines_by_id(self,id: str) -> journal_line_item_request_builder.JournalLineItemRequestBuilder:
+    def journal_lines_by_id(self,id: str) -> Optional[journal_line_item_request_builder.JournalLineItemRequestBuilder]:
         """
         Provides operations to manage the journalLines property of the microsoft.graph.journal entity.
         Args:
             id: Unique identifier of the item
-        Returns: journal_line_item_request_builder.JournalLineItemRequestBuilder
+        Returns: Optional[journal_line_item_request_builder.JournalLineItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -136,12 +136,12 @@ class PolicyRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, information_protection_policy.InformationProtectionPolicy, response_handler, error_mapping)
     
-    def labels_by_id(self,id: str) -> information_protection_label_item_request_builder.InformationProtectionLabelItemRequestBuilder:
+    def labels_by_id(self,id: str) -> Optional[information_protection_label_item_request_builder.InformationProtectionLabelItemRequestBuilder]:
         """
         Provides operations to manage the labels property of the microsoft.graph.informationProtectionPolicy entity.
         Args:
             id: Unique identifier of the item
-        Returns: information_protection_label_item_request_builder.InformationProtectionLabelItemRequestBuilder
+        Returns: Optional[information_protection_label_item_request_builder.InformationProtectionLabelItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

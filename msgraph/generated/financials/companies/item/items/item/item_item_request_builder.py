@@ -166,12 +166,12 @@ class ItemItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, item.Item, response_handler, error_mapping)
     
-    def picture_by_id(self,id: str) -> picture_item_request_builder.PictureItemRequestBuilder:
+    def picture_by_id(self,id: str) -> Optional[picture_item_request_builder.PictureItemRequestBuilder]:
         """
         Provides operations to manage the picture property of the microsoft.graph.item entity.
         Args:
             id: Unique identifier of the item
-        Returns: picture_item_request_builder.PictureItemRequestBuilder
+        Returns: Optional[picture_item_request_builder.PictureItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -196,12 +196,12 @@ class SalesInvoiceItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, sales_invoice.SalesInvoice, response_handler, error_mapping)
     
-    def sales_invoice_lines_by_id(self,id: str) -> sales_invoice_line_item_request_builder.SalesInvoiceLineItemRequestBuilder:
+    def sales_invoice_lines_by_id(self,id: str) -> Optional[sales_invoice_line_item_request_builder.SalesInvoiceLineItemRequestBuilder]:
         """
         Provides operations to manage the salesInvoiceLines property of the microsoft.graph.salesInvoice entity.
         Args:
             id: Unique identifier of the item
-        Returns: sales_invoice_line_item_request_builder.SalesInvoiceLineItemRequestBuilder
+        Returns: Optional[sales_invoice_line_item_request_builder.SalesInvoiceLineItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

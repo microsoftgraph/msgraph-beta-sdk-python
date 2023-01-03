@@ -35,12 +35,12 @@ class OnPremisesAgentGroupItemRequestBuilder():
         """
         return published_resources_request_builder.PublishedResourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def agents_by_id(self,id: str) -> on_premises_agent_item_request_builder.OnPremisesAgentItemRequestBuilder:
+    def agents_by_id(self,id: str) -> Optional[on_premises_agent_item_request_builder.OnPremisesAgentItemRequestBuilder]:
         """
         Provides operations to manage the agents property of the microsoft.graph.onPremisesAgentGroup entity.
         Args:
             id: Unique identifier of the item
-        Returns: on_premises_agent_item_request_builder.OnPremisesAgentItemRequestBuilder
+        Returns: Optional[on_premises_agent_item_request_builder.OnPremisesAgentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -180,12 +180,12 @@ class OnPremisesAgentGroupItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, on_premises_agent_group.OnPremisesAgentGroup, response_handler, error_mapping)
     
-    def published_resources_by_id(self,id: str) -> published_resource_item_request_builder.PublishedResourceItemRequestBuilder:
+    def published_resources_by_id(self,id: str) -> Optional[published_resource_item_request_builder.PublishedResourceItemRequestBuilder]:
         """
         Provides operations to manage the publishedResources property of the microsoft.graph.onPremisesAgentGroup entity.
         Args:
             id: Unique identifier of the item
-        Returns: published_resource_item_request_builder.PublishedResourceItemRequestBuilder
+        Returns: Optional[published_resource_item_request_builder.PublishedResourceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

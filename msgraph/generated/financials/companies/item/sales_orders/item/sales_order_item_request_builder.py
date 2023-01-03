@@ -148,12 +148,12 @@ class SalesOrderItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, sales_order.SalesOrder, response_handler, error_mapping)
     
-    def sales_order_lines_by_id(self,id: str) -> sales_order_line_item_request_builder.SalesOrderLineItemRequestBuilder:
+    def sales_order_lines_by_id(self,id: str) -> Optional[sales_order_line_item_request_builder.SalesOrderLineItemRequestBuilder]:
         """
         Provides operations to manage the salesOrderLines property of the microsoft.graph.salesOrder entity.
         Args:
             id: Unique identifier of the item
-        Returns: sales_order_line_item_request_builder.SalesOrderLineItemRequestBuilder
+        Returns: Optional[sales_order_line_item_request_builder.SalesOrderLineItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

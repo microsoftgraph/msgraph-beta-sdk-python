@@ -207,12 +207,12 @@ class AuthenticationRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def email_methods_by_id(self,id: str) -> email_authentication_method_item_request_builder.EmailAuthenticationMethodItemRequestBuilder:
+    def email_methods_by_id(self,id: str) -> Optional[email_authentication_method_item_request_builder.EmailAuthenticationMethodItemRequestBuilder]:
         """
         Provides operations to manage the emailMethods property of the microsoft.graph.authentication entity.
         Args:
             id: Unique identifier of the item
-        Returns: email_authentication_method_item_request_builder.EmailAuthenticationMethodItemRequestBuilder
+        Returns: Optional[email_authentication_method_item_request_builder.EmailAuthenticationMethodItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -220,12 +220,12 @@ class AuthenticationRequestBuilder():
         url_tpl_params["emailAuthenticationMethod%2Did"] = id
         return email_authentication_method_item_request_builder.EmailAuthenticationMethodItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def fido2_methods_by_id(self,id: str) -> fido2_authentication_method_item_request_builder.Fido2AuthenticationMethodItemRequestBuilder:
+    def fido2_methods_by_id(self,id: str) -> Optional[fido2_authentication_method_item_request_builder.Fido2AuthenticationMethodItemRequestBuilder]:
         """
         Provides operations to manage the fido2Methods property of the microsoft.graph.authentication entity.
         Args:
             id: Unique identifier of the item
-        Returns: fido2_authentication_method_item_request_builder.Fido2AuthenticationMethodItemRequestBuilder
+        Returns: Optional[fido2_authentication_method_item_request_builder.Fido2AuthenticationMethodItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -252,12 +252,12 @@ class AuthenticationRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, authentication.Authentication, response_handler, error_mapping)
     
-    def methods_by_id(self,id: str) -> authentication_method_item_request_builder.AuthenticationMethodItemRequestBuilder:
+    def methods_by_id(self,id: str) -> Optional[authentication_method_item_request_builder.AuthenticationMethodItemRequestBuilder]:
         """
         Provides operations to manage the methods property of the microsoft.graph.authentication entity.
         Args:
             id: Unique identifier of the item
-        Returns: authentication_method_item_request_builder.AuthenticationMethodItemRequestBuilder
+        Returns: Optional[authentication_method_item_request_builder.AuthenticationMethodItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -265,12 +265,12 @@ class AuthenticationRequestBuilder():
         url_tpl_params["authenticationMethod%2Did"] = id
         return authentication_method_item_request_builder.AuthenticationMethodItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def microsoft_authenticator_methods_by_id(self,id: str) -> microsoft_authenticator_authentication_method_item_request_builder.MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder:
+    def microsoft_authenticator_methods_by_id(self,id: str) -> Optional[microsoft_authenticator_authentication_method_item_request_builder.MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder]:
         """
         Provides operations to manage the microsoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
         Args:
             id: Unique identifier of the item
-        Returns: microsoft_authenticator_authentication_method_item_request_builder.MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder
+        Returns: Optional[microsoft_authenticator_authentication_method_item_request_builder.MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -278,12 +278,12 @@ class AuthenticationRequestBuilder():
         url_tpl_params["microsoftAuthenticatorAuthenticationMethod%2Did"] = id
         return microsoft_authenticator_authentication_method_item_request_builder.MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def operations_by_id(self,id: str) -> long_running_operation_item_request_builder.LongRunningOperationItemRequestBuilder:
+    def operations_by_id(self,id: str) -> Optional[long_running_operation_item_request_builder.LongRunningOperationItemRequestBuilder]:
         """
         Provides operations to manage the operations property of the microsoft.graph.authentication entity.
         Args:
             id: Unique identifier of the item
-        Returns: long_running_operation_item_request_builder.LongRunningOperationItemRequestBuilder
+        Returns: Optional[long_running_operation_item_request_builder.LongRunningOperationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -291,12 +291,12 @@ class AuthenticationRequestBuilder():
         url_tpl_params["longRunningOperation%2Did"] = id
         return long_running_operation_item_request_builder.LongRunningOperationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def passwordless_microsoft_authenticator_methods_by_id(self,id: str) -> passwordless_microsoft_authenticator_authentication_method_item_request_builder.PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder:
+    def passwordless_microsoft_authenticator_methods_by_id(self,id: str) -> Optional[passwordless_microsoft_authenticator_authentication_method_item_request_builder.PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder]:
         """
         Provides operations to manage the passwordlessMicrosoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
         Args:
             id: Unique identifier of the item
-        Returns: passwordless_microsoft_authenticator_authentication_method_item_request_builder.PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder
+        Returns: Optional[passwordless_microsoft_authenticator_authentication_method_item_request_builder.PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -304,12 +304,12 @@ class AuthenticationRequestBuilder():
         url_tpl_params["passwordlessMicrosoftAuthenticatorAuthenticationMethod%2Did"] = id
         return passwordless_microsoft_authenticator_authentication_method_item_request_builder.PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def password_methods_by_id(self,id: str) -> password_authentication_method_item_request_builder.PasswordAuthenticationMethodItemRequestBuilder:
+    def password_methods_by_id(self,id: str) -> Optional[password_authentication_method_item_request_builder.PasswordAuthenticationMethodItemRequestBuilder]:
         """
         Provides operations to manage the passwordMethods property of the microsoft.graph.authentication entity.
         Args:
             id: Unique identifier of the item
-        Returns: password_authentication_method_item_request_builder.PasswordAuthenticationMethodItemRequestBuilder
+        Returns: Optional[password_authentication_method_item_request_builder.PasswordAuthenticationMethodItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -339,12 +339,12 @@ class AuthenticationRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, authentication.Authentication, response_handler, error_mapping)
     
-    def phone_methods_by_id(self,id: str) -> phone_authentication_method_item_request_builder.PhoneAuthenticationMethodItemRequestBuilder:
+    def phone_methods_by_id(self,id: str) -> Optional[phone_authentication_method_item_request_builder.PhoneAuthenticationMethodItemRequestBuilder]:
         """
         Provides operations to manage the phoneMethods property of the microsoft.graph.authentication entity.
         Args:
             id: Unique identifier of the item
-        Returns: phone_authentication_method_item_request_builder.PhoneAuthenticationMethodItemRequestBuilder
+        Returns: Optional[phone_authentication_method_item_request_builder.PhoneAuthenticationMethodItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -352,12 +352,12 @@ class AuthenticationRequestBuilder():
         url_tpl_params["phoneAuthenticationMethod%2Did"] = id
         return phone_authentication_method_item_request_builder.PhoneAuthenticationMethodItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def software_oath_methods_by_id(self,id: str) -> software_oath_authentication_method_item_request_builder.SoftwareOathAuthenticationMethodItemRequestBuilder:
+    def software_oath_methods_by_id(self,id: str) -> Optional[software_oath_authentication_method_item_request_builder.SoftwareOathAuthenticationMethodItemRequestBuilder]:
         """
         Provides operations to manage the softwareOathMethods property of the microsoft.graph.authentication entity.
         Args:
             id: Unique identifier of the item
-        Returns: software_oath_authentication_method_item_request_builder.SoftwareOathAuthenticationMethodItemRequestBuilder
+        Returns: Optional[software_oath_authentication_method_item_request_builder.SoftwareOathAuthenticationMethodItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -365,12 +365,12 @@ class AuthenticationRequestBuilder():
         url_tpl_params["softwareOathAuthenticationMethod%2Did"] = id
         return software_oath_authentication_method_item_request_builder.SoftwareOathAuthenticationMethodItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def temporary_access_pass_methods_by_id(self,id: str) -> temporary_access_pass_authentication_method_item_request_builder.TemporaryAccessPassAuthenticationMethodItemRequestBuilder:
+    def temporary_access_pass_methods_by_id(self,id: str) -> Optional[temporary_access_pass_authentication_method_item_request_builder.TemporaryAccessPassAuthenticationMethodItemRequestBuilder]:
         """
         Provides operations to manage the temporaryAccessPassMethods property of the microsoft.graph.authentication entity.
         Args:
             id: Unique identifier of the item
-        Returns: temporary_access_pass_authentication_method_item_request_builder.TemporaryAccessPassAuthenticationMethodItemRequestBuilder
+        Returns: Optional[temporary_access_pass_authentication_method_item_request_builder.TemporaryAccessPassAuthenticationMethodItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -378,12 +378,12 @@ class AuthenticationRequestBuilder():
         url_tpl_params["temporaryAccessPassAuthenticationMethod%2Did"] = id
         return temporary_access_pass_authentication_method_item_request_builder.TemporaryAccessPassAuthenticationMethodItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def windows_hello_for_business_methods_by_id(self,id: str) -> windows_hello_for_business_authentication_method_item_request_builder.WindowsHelloForBusinessAuthenticationMethodItemRequestBuilder:
+    def windows_hello_for_business_methods_by_id(self,id: str) -> Optional[windows_hello_for_business_authentication_method_item_request_builder.WindowsHelloForBusinessAuthenticationMethodItemRequestBuilder]:
         """
         Provides operations to manage the windowsHelloForBusinessMethods property of the microsoft.graph.authentication entity.
         Args:
             id: Unique identifier of the item
-        Returns: windows_hello_for_business_authentication_method_item_request_builder.WindowsHelloForBusinessAuthenticationMethodItemRequestBuilder
+        Returns: Optional[windows_hello_for_business_authentication_method_item_request_builder.WindowsHelloForBusinessAuthenticationMethodItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

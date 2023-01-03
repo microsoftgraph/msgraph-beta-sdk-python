@@ -166,12 +166,12 @@ class GroupPolicyDefinitionValueItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, group_policy_definition_value.GroupPolicyDefinitionValue, response_handler, error_mapping)
     
-    def presentation_values_by_id(self,id: str) -> group_policy_presentation_value_item_request_builder.GroupPolicyPresentationValueItemRequestBuilder:
+    def presentation_values_by_id(self,id: str) -> Optional[group_policy_presentation_value_item_request_builder.GroupPolicyPresentationValueItemRequestBuilder]:
         """
         Provides operations to manage the presentationValues property of the microsoft.graph.groupPolicyDefinitionValue entity.
         Args:
             id: Unique identifier of the item
-        Returns: group_policy_presentation_value_item_request_builder.GroupPolicyPresentationValueItemRequestBuilder
+        Returns: Optional[group_policy_presentation_value_item_request_builder.GroupPolicyPresentationValueItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

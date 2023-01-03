@@ -44,12 +44,12 @@ class DeviceManagementTemplateItemRequestBuilder():
         """
         return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def categories_by_id(self,id: str) -> device_management_template_setting_category_item_request_builder.DeviceManagementTemplateSettingCategoryItemRequestBuilder:
+    def categories_by_id(self,id: str) -> Optional[device_management_template_setting_category_item_request_builder.DeviceManagementTemplateSettingCategoryItemRequestBuilder]:
         """
         Provides operations to manage the categories property of the microsoft.graph.deviceManagementTemplate entity.
         Args:
             id: Unique identifier of the item
-        Returns: device_management_template_setting_category_item_request_builder.DeviceManagementTemplateSettingCategoryItemRequestBuilder
+        Returns: Optional[device_management_template_setting_category_item_request_builder.DeviceManagementTemplateSettingCategoryItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -200,12 +200,12 @@ class DeviceManagementTemplateItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, device_management_template.DeviceManagementTemplate, response_handler, error_mapping)
     
-    def settings_by_id(self,id: str) -> device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder:
+    def settings_by_id(self,id: str) -> Optional[device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder]:
         """
         Provides operations to manage the settings property of the microsoft.graph.deviceManagementTemplate entity.
         Args:
             id: Unique identifier of the item
-        Returns: device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder
+        Returns: Optional[device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -8,7 +8,7 @@ permission_classification_type = lazy_import('msgraph.generated.models.permissio
 
 class DelegatedPermissionClassification(entity.Entity):
     """
-    Casts the previous resource to servicePrincipal.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def classification(self,) -> Optional[permission_classification_type.PermissionClassificationType]:

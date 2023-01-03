@@ -182,12 +182,12 @@ class SitePageItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, site_page.SitePage, response_handler, error_mapping)
     
-    def web_parts_by_id(self,id: str) -> web_part_item_request_builder.WebPartItemRequestBuilder:
+    def web_parts_by_id(self,id: str) -> Optional[web_part_item_request_builder.WebPartItemRequestBuilder]:
         """
         Provides operations to manage the webParts property of the microsoft.graph.sitePage entity.
         Args:
             id: Unique identifier of the item
-        Returns: web_part_item_request_builder.WebPartItemRequestBuilder
+        Returns: Optional[web_part_item_request_builder.WebPartItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

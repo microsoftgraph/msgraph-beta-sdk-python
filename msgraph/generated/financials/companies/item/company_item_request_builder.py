@@ -332,12 +332,12 @@ class CompanyItemRequestBuilder():
         """
         return vendors_request_builder.VendorsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def accounts_by_id(self,id: str) -> account_item_request_builder.AccountItemRequestBuilder:
+    def accounts_by_id(self,id: str) -> Optional[account_item_request_builder.AccountItemRequestBuilder]:
         """
         Provides operations to manage the accounts property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: account_item_request_builder.AccountItemRequestBuilder
+        Returns: Optional[account_item_request_builder.AccountItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -345,12 +345,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["account%2Did"] = id
         return account_item_request_builder.AccountItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def aged_accounts_payable_by_id(self,id: str) -> aged_accounts_payable_item_request_builder.AgedAccountsPayableItemRequestBuilder:
+    def aged_accounts_payable_by_id(self,id: str) -> Optional[aged_accounts_payable_item_request_builder.AgedAccountsPayableItemRequestBuilder]:
         """
         Provides operations to manage the agedAccountsPayable property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: aged_accounts_payable_item_request_builder.AgedAccountsPayableItemRequestBuilder
+        Returns: Optional[aged_accounts_payable_item_request_builder.AgedAccountsPayableItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -358,12 +358,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["agedAccountsPayable%2Did"] = id
         return aged_accounts_payable_item_request_builder.AgedAccountsPayableItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def aged_accounts_receivable_by_id(self,id: str) -> aged_accounts_receivable_item_request_builder.AgedAccountsReceivableItemRequestBuilder:
+    def aged_accounts_receivable_by_id(self,id: str) -> Optional[aged_accounts_receivable_item_request_builder.AgedAccountsReceivableItemRequestBuilder]:
         """
         Provides operations to manage the agedAccountsReceivable property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: aged_accounts_receivable_item_request_builder.AgedAccountsReceivableItemRequestBuilder
+        Returns: Optional[aged_accounts_receivable_item_request_builder.AgedAccountsReceivableItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -371,12 +371,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["agedAccountsReceivable%2Did"] = id
         return aged_accounts_receivable_item_request_builder.AgedAccountsReceivableItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def company_information_by_id(self,id: str) -> company_information_item_request_builder.CompanyInformationItemRequestBuilder:
+    def company_information_by_id(self,id: str) -> Optional[company_information_item_request_builder.CompanyInformationItemRequestBuilder]:
         """
         Provides operations to manage the companyInformation property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: company_information_item_request_builder.CompanyInformationItemRequestBuilder
+        Returns: Optional[company_information_item_request_builder.CompanyInformationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -402,12 +402,12 @@ class CompanyItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def countries_regions_by_id(self,id: str) -> country_region_item_request_builder.CountryRegionItemRequestBuilder:
+    def countries_regions_by_id(self,id: str) -> Optional[country_region_item_request_builder.CountryRegionItemRequestBuilder]:
         """
         Provides operations to manage the countriesRegions property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: country_region_item_request_builder.CountryRegionItemRequestBuilder
+        Returns: Optional[country_region_item_request_builder.CountryRegionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -433,12 +433,12 @@ class CompanyItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def currencies_by_id(self,id: str) -> currency_item_request_builder.CurrencyItemRequestBuilder:
+    def currencies_by_id(self,id: str) -> Optional[currency_item_request_builder.CurrencyItemRequestBuilder]:
         """
         Provides operations to manage the currencies property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: currency_item_request_builder.CurrencyItemRequestBuilder
+        Returns: Optional[currency_item_request_builder.CurrencyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -446,12 +446,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["currency%2Did"] = id
         return currency_item_request_builder.CurrencyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def customer_payment_journals_by_id(self,id: str) -> customer_payment_journal_item_request_builder.CustomerPaymentJournalItemRequestBuilder:
+    def customer_payment_journals_by_id(self,id: str) -> Optional[customer_payment_journal_item_request_builder.CustomerPaymentJournalItemRequestBuilder]:
         """
         Provides operations to manage the customerPaymentJournals property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: customer_payment_journal_item_request_builder.CustomerPaymentJournalItemRequestBuilder
+        Returns: Optional[customer_payment_journal_item_request_builder.CustomerPaymentJournalItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -459,12 +459,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["customerPaymentJournal%2Did"] = id
         return customer_payment_journal_item_request_builder.CustomerPaymentJournalItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def customer_payments_by_id(self,id: str) -> customer_payment_item_request_builder.CustomerPaymentItemRequestBuilder:
+    def customer_payments_by_id(self,id: str) -> Optional[customer_payment_item_request_builder.CustomerPaymentItemRequestBuilder]:
         """
         Provides operations to manage the customerPayments property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: customer_payment_item_request_builder.CustomerPaymentItemRequestBuilder
+        Returns: Optional[customer_payment_item_request_builder.CustomerPaymentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -472,12 +472,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["customerPayment%2Did"] = id
         return customer_payment_item_request_builder.CustomerPaymentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def customers_by_id(self,id: str) -> customer_item_request_builder.CustomerItemRequestBuilder:
+    def customers_by_id(self,id: str) -> Optional[customer_item_request_builder.CustomerItemRequestBuilder]:
         """
         Provides operations to manage the customers property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: customer_item_request_builder.CustomerItemRequestBuilder
+        Returns: Optional[customer_item_request_builder.CustomerItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -485,12 +485,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["customer%2Did"] = id
         return customer_item_request_builder.CustomerItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def dimensions_by_id(self,id: str) -> dimension_item_request_builder.DimensionItemRequestBuilder:
+    def dimensions_by_id(self,id: str) -> Optional[dimension_item_request_builder.DimensionItemRequestBuilder]:
         """
         Provides operations to manage the dimensions property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: dimension_item_request_builder.DimensionItemRequestBuilder
+        Returns: Optional[dimension_item_request_builder.DimensionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -498,12 +498,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["dimension%2Did"] = id
         return dimension_item_request_builder.DimensionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def dimension_values_by_id(self,id: str) -> dimension_value_item_request_builder.DimensionValueItemRequestBuilder:
+    def dimension_values_by_id(self,id: str) -> Optional[dimension_value_item_request_builder.DimensionValueItemRequestBuilder]:
         """
         Provides operations to manage the dimensionValues property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: dimension_value_item_request_builder.DimensionValueItemRequestBuilder
+        Returns: Optional[dimension_value_item_request_builder.DimensionValueItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -511,12 +511,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["dimensionValue%2Did"] = id
         return dimension_value_item_request_builder.DimensionValueItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def employees_by_id(self,id: str) -> employee_item_request_builder.EmployeeItemRequestBuilder:
+    def employees_by_id(self,id: str) -> Optional[employee_item_request_builder.EmployeeItemRequestBuilder]:
         """
         Provides operations to manage the employees property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: employee_item_request_builder.EmployeeItemRequestBuilder
+        Returns: Optional[employee_item_request_builder.EmployeeItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -524,12 +524,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["employee%2Did"] = id
         return employee_item_request_builder.EmployeeItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def general_ledger_entries_by_id(self,id: str) -> general_ledger_entry_item_request_builder.GeneralLedgerEntryItemRequestBuilder:
+    def general_ledger_entries_by_id(self,id: str) -> Optional[general_ledger_entry_item_request_builder.GeneralLedgerEntryItemRequestBuilder]:
         """
         Provides operations to manage the generalLedgerEntries property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: general_ledger_entry_item_request_builder.GeneralLedgerEntryItemRequestBuilder
+        Returns: Optional[general_ledger_entry_item_request_builder.GeneralLedgerEntryItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -556,12 +556,12 @@ class CompanyItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, company.Company, response_handler, error_mapping)
     
-    def item_categories_by_id(self,id: str) -> item_category_item_request_builder.ItemCategoryItemRequestBuilder:
+    def item_categories_by_id(self,id: str) -> Optional[item_category_item_request_builder.ItemCategoryItemRequestBuilder]:
         """
         Provides operations to manage the itemCategories property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: item_category_item_request_builder.ItemCategoryItemRequestBuilder
+        Returns: Optional[item_category_item_request_builder.ItemCategoryItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -569,12 +569,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["itemCategory%2Did"] = id
         return item_category_item_request_builder.ItemCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def items_by_id(self,id: str) -> item_item_request_builder.ItemItemRequestBuilder:
+    def items_by_id(self,id: str) -> Optional[item_item_request_builder.ItemItemRequestBuilder]:
         """
         Provides operations to manage the items property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: item_item_request_builder.ItemItemRequestBuilder
+        Returns: Optional[item_item_request_builder.ItemItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -582,12 +582,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["item%2Did"] = id
         return item_item_request_builder.ItemItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def journal_lines_by_id(self,id: str) -> journal_line_item_request_builder.JournalLineItemRequestBuilder:
+    def journal_lines_by_id(self,id: str) -> Optional[journal_line_item_request_builder.JournalLineItemRequestBuilder]:
         """
         Provides operations to manage the journalLines property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: journal_line_item_request_builder.JournalLineItemRequestBuilder
+        Returns: Optional[journal_line_item_request_builder.JournalLineItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -595,12 +595,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["journalLine%2Did"] = id
         return journal_line_item_request_builder.JournalLineItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def journals_by_id(self,id: str) -> journal_item_request_builder.JournalItemRequestBuilder:
+    def journals_by_id(self,id: str) -> Optional[journal_item_request_builder.JournalItemRequestBuilder]:
         """
         Provides operations to manage the journals property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: journal_item_request_builder.JournalItemRequestBuilder
+        Returns: Optional[journal_item_request_builder.JournalItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -608,12 +608,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["journal%2Did"] = id
         return journal_item_request_builder.JournalItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def payment_methods_by_id(self,id: str) -> payment_method_item_request_builder.PaymentMethodItemRequestBuilder:
+    def payment_methods_by_id(self,id: str) -> Optional[payment_method_item_request_builder.PaymentMethodItemRequestBuilder]:
         """
         Provides operations to manage the paymentMethods property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: payment_method_item_request_builder.PaymentMethodItemRequestBuilder
+        Returns: Optional[payment_method_item_request_builder.PaymentMethodItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -621,12 +621,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["paymentMethod%2Did"] = id
         return payment_method_item_request_builder.PaymentMethodItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def payment_terms_by_id(self,id: str) -> payment_term_item_request_builder.PaymentTermItemRequestBuilder:
+    def payment_terms_by_id(self,id: str) -> Optional[payment_term_item_request_builder.PaymentTermItemRequestBuilder]:
         """
         Provides operations to manage the paymentTerms property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: payment_term_item_request_builder.PaymentTermItemRequestBuilder
+        Returns: Optional[payment_term_item_request_builder.PaymentTermItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -634,12 +634,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["paymentTerm%2Did"] = id
         return payment_term_item_request_builder.PaymentTermItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def picture_by_id(self,id: str) -> picture_item_request_builder.PictureItemRequestBuilder:
+    def picture_by_id(self,id: str) -> Optional[picture_item_request_builder.PictureItemRequestBuilder]:
         """
         Provides operations to manage the picture property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: picture_item_request_builder.PictureItemRequestBuilder
+        Returns: Optional[picture_item_request_builder.PictureItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -647,12 +647,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["picture%2Did"] = id
         return picture_item_request_builder.PictureItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def purchase_invoice_lines_by_id(self,id: str) -> purchase_invoice_line_item_request_builder.PurchaseInvoiceLineItemRequestBuilder:
+    def purchase_invoice_lines_by_id(self,id: str) -> Optional[purchase_invoice_line_item_request_builder.PurchaseInvoiceLineItemRequestBuilder]:
         """
         Provides operations to manage the purchaseInvoiceLines property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: purchase_invoice_line_item_request_builder.PurchaseInvoiceLineItemRequestBuilder
+        Returns: Optional[purchase_invoice_line_item_request_builder.PurchaseInvoiceLineItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -660,12 +660,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["purchaseInvoiceLine%2Did"] = id
         return purchase_invoice_line_item_request_builder.PurchaseInvoiceLineItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def purchase_invoices_by_id(self,id: str) -> purchase_invoice_item_request_builder.PurchaseInvoiceItemRequestBuilder:
+    def purchase_invoices_by_id(self,id: str) -> Optional[purchase_invoice_item_request_builder.PurchaseInvoiceItemRequestBuilder]:
         """
         Provides operations to manage the purchaseInvoices property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: purchase_invoice_item_request_builder.PurchaseInvoiceItemRequestBuilder
+        Returns: Optional[purchase_invoice_item_request_builder.PurchaseInvoiceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -673,12 +673,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["purchaseInvoice%2Did"] = id
         return purchase_invoice_item_request_builder.PurchaseInvoiceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def sales_credit_memo_lines_by_id(self,id: str) -> sales_credit_memo_line_item_request_builder.SalesCreditMemoLineItemRequestBuilder:
+    def sales_credit_memo_lines_by_id(self,id: str) -> Optional[sales_credit_memo_line_item_request_builder.SalesCreditMemoLineItemRequestBuilder]:
         """
         Provides operations to manage the salesCreditMemoLines property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: sales_credit_memo_line_item_request_builder.SalesCreditMemoLineItemRequestBuilder
+        Returns: Optional[sales_credit_memo_line_item_request_builder.SalesCreditMemoLineItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -686,12 +686,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["salesCreditMemoLine%2Did"] = id
         return sales_credit_memo_line_item_request_builder.SalesCreditMemoLineItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def sales_credit_memos_by_id(self,id: str) -> sales_credit_memo_item_request_builder.SalesCreditMemoItemRequestBuilder:
+    def sales_credit_memos_by_id(self,id: str) -> Optional[sales_credit_memo_item_request_builder.SalesCreditMemoItemRequestBuilder]:
         """
         Provides operations to manage the salesCreditMemos property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: sales_credit_memo_item_request_builder.SalesCreditMemoItemRequestBuilder
+        Returns: Optional[sales_credit_memo_item_request_builder.SalesCreditMemoItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -699,12 +699,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["salesCreditMemo%2Did"] = id
         return sales_credit_memo_item_request_builder.SalesCreditMemoItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def sales_invoice_lines_by_id(self,id: str) -> sales_invoice_line_item_request_builder.SalesInvoiceLineItemRequestBuilder:
+    def sales_invoice_lines_by_id(self,id: str) -> Optional[sales_invoice_line_item_request_builder.SalesInvoiceLineItemRequestBuilder]:
         """
         Provides operations to manage the salesInvoiceLines property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: sales_invoice_line_item_request_builder.SalesInvoiceLineItemRequestBuilder
+        Returns: Optional[sales_invoice_line_item_request_builder.SalesInvoiceLineItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -712,12 +712,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["salesInvoiceLine%2Did"] = id
         return sales_invoice_line_item_request_builder.SalesInvoiceLineItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def sales_invoices_by_id(self,id: str) -> sales_invoice_item_request_builder.SalesInvoiceItemRequestBuilder:
+    def sales_invoices_by_id(self,id: str) -> Optional[sales_invoice_item_request_builder.SalesInvoiceItemRequestBuilder]:
         """
         Provides operations to manage the salesInvoices property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: sales_invoice_item_request_builder.SalesInvoiceItemRequestBuilder
+        Returns: Optional[sales_invoice_item_request_builder.SalesInvoiceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -725,12 +725,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["salesInvoice%2Did"] = id
         return sales_invoice_item_request_builder.SalesInvoiceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def sales_order_lines_by_id(self,id: str) -> sales_order_line_item_request_builder.SalesOrderLineItemRequestBuilder:
+    def sales_order_lines_by_id(self,id: str) -> Optional[sales_order_line_item_request_builder.SalesOrderLineItemRequestBuilder]:
         """
         Provides operations to manage the salesOrderLines property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: sales_order_line_item_request_builder.SalesOrderLineItemRequestBuilder
+        Returns: Optional[sales_order_line_item_request_builder.SalesOrderLineItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -738,12 +738,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["salesOrderLine%2Did"] = id
         return sales_order_line_item_request_builder.SalesOrderLineItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def sales_orders_by_id(self,id: str) -> sales_order_item_request_builder.SalesOrderItemRequestBuilder:
+    def sales_orders_by_id(self,id: str) -> Optional[sales_order_item_request_builder.SalesOrderItemRequestBuilder]:
         """
         Provides operations to manage the salesOrders property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: sales_order_item_request_builder.SalesOrderItemRequestBuilder
+        Returns: Optional[sales_order_item_request_builder.SalesOrderItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -751,12 +751,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["salesOrder%2Did"] = id
         return sales_order_item_request_builder.SalesOrderItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def sales_quote_lines_by_id(self,id: str) -> sales_quote_line_item_request_builder.SalesQuoteLineItemRequestBuilder:
+    def sales_quote_lines_by_id(self,id: str) -> Optional[sales_quote_line_item_request_builder.SalesQuoteLineItemRequestBuilder]:
         """
         Provides operations to manage the salesQuoteLines property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: sales_quote_line_item_request_builder.SalesQuoteLineItemRequestBuilder
+        Returns: Optional[sales_quote_line_item_request_builder.SalesQuoteLineItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -764,12 +764,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["salesQuoteLine%2Did"] = id
         return sales_quote_line_item_request_builder.SalesQuoteLineItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def sales_quotes_by_id(self,id: str) -> sales_quote_item_request_builder.SalesQuoteItemRequestBuilder:
+    def sales_quotes_by_id(self,id: str) -> Optional[sales_quote_item_request_builder.SalesQuoteItemRequestBuilder]:
         """
         Provides operations to manage the salesQuotes property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: sales_quote_item_request_builder.SalesQuoteItemRequestBuilder
+        Returns: Optional[sales_quote_item_request_builder.SalesQuoteItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -777,12 +777,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["salesQuote%2Did"] = id
         return sales_quote_item_request_builder.SalesQuoteItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def shipment_methods_by_id(self,id: str) -> shipment_method_item_request_builder.ShipmentMethodItemRequestBuilder:
+    def shipment_methods_by_id(self,id: str) -> Optional[shipment_method_item_request_builder.ShipmentMethodItemRequestBuilder]:
         """
         Provides operations to manage the shipmentMethods property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: shipment_method_item_request_builder.ShipmentMethodItemRequestBuilder
+        Returns: Optional[shipment_method_item_request_builder.ShipmentMethodItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -790,12 +790,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["shipmentMethod%2Did"] = id
         return shipment_method_item_request_builder.ShipmentMethodItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def tax_areas_by_id(self,id: str) -> tax_area_item_request_builder.TaxAreaItemRequestBuilder:
+    def tax_areas_by_id(self,id: str) -> Optional[tax_area_item_request_builder.TaxAreaItemRequestBuilder]:
         """
         Provides operations to manage the taxAreas property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: tax_area_item_request_builder.TaxAreaItemRequestBuilder
+        Returns: Optional[tax_area_item_request_builder.TaxAreaItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -803,12 +803,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["taxArea%2Did"] = id
         return tax_area_item_request_builder.TaxAreaItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def tax_groups_by_id(self,id: str) -> tax_group_item_request_builder.TaxGroupItemRequestBuilder:
+    def tax_groups_by_id(self,id: str) -> Optional[tax_group_item_request_builder.TaxGroupItemRequestBuilder]:
         """
         Provides operations to manage the taxGroups property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: tax_group_item_request_builder.TaxGroupItemRequestBuilder
+        Returns: Optional[tax_group_item_request_builder.TaxGroupItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -816,12 +816,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["taxGroup%2Did"] = id
         return tax_group_item_request_builder.TaxGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def units_of_measure_by_id(self,id: str) -> unit_of_measure_item_request_builder.UnitOfMeasureItemRequestBuilder:
+    def units_of_measure_by_id(self,id: str) -> Optional[unit_of_measure_item_request_builder.UnitOfMeasureItemRequestBuilder]:
         """
         Provides operations to manage the unitsOfMeasure property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: unit_of_measure_item_request_builder.UnitOfMeasureItemRequestBuilder
+        Returns: Optional[unit_of_measure_item_request_builder.UnitOfMeasureItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -829,12 +829,12 @@ class CompanyItemRequestBuilder():
         url_tpl_params["unitOfMeasure%2Did"] = id
         return unit_of_measure_item_request_builder.UnitOfMeasureItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def vendors_by_id(self,id: str) -> vendor_item_request_builder.VendorItemRequestBuilder:
+    def vendors_by_id(self,id: str) -> Optional[vendor_item_request_builder.VendorItemRequestBuilder]:
         """
         Provides operations to manage the vendors property of the microsoft.graph.company entity.
         Args:
             id: Unique identifier of the item
-        Returns: vendor_item_request_builder.VendorItemRequestBuilder
+        Returns: Optional[vendor_item_request_builder.VendorItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

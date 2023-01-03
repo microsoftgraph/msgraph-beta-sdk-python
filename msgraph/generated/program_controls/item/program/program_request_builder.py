@@ -44,12 +44,12 @@ class ProgramRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def controls_by_id(self,id: str) -> program_control_item_request_builder.ProgramControlItemRequestBuilder:
+    def controls_by_id(self,id: str) -> Optional[program_control_item_request_builder.ProgramControlItemRequestBuilder]:
         """
         Provides operations to manage the controls property of the microsoft.graph.program entity.
         Args:
             id: Unique identifier of the item
-        Returns: program_control_item_request_builder.ProgramControlItemRequestBuilder
+        Returns: Optional[program_control_item_request_builder.ProgramControlItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

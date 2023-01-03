@@ -158,12 +158,12 @@ class AccessReviewItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def decisions_by_id(self,id: str) -> access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder:
+    def decisions_by_id(self,id: str) -> Optional[access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder]:
         """
         Provides operations to manage the decisions property of the microsoft.graph.accessReview entity.
         Args:
             id: Unique identifier of the item
-        Returns: access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder
+        Returns: Optional[access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -208,12 +208,12 @@ class AccessReviewItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, access_review.AccessReview, response_handler, error_mapping)
     
-    def instances_by_id(self,id: str) -> AccessReviewItemRequestBuilder:
+    def instances_by_id(self,id: str) -> Optional[AccessReviewItemRequestBuilder]:
         """
         Provides operations to manage the instances property of the microsoft.graph.accessReview entity.
         Args:
             id: Unique identifier of the item
-        Returns: AccessReviewItemRequestBuilder
+        Returns: Optional[AccessReviewItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -221,12 +221,12 @@ class AccessReviewItemRequestBuilder():
         url_tpl_params["accessReview%2Did1"] = id
         return AccessReviewItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def my_decisions_by_id(self,id: str) -> access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder:
+    def my_decisions_by_id(self,id: str) -> Optional[access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder]:
         """
         Provides operations to manage the myDecisions property of the microsoft.graph.accessReview entity.
         Args:
             id: Unique identifier of the item
-        Returns: access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder
+        Returns: Optional[access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -256,12 +256,12 @@ class AccessReviewItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, access_review.AccessReview, response_handler, error_mapping)
     
-    def reviewers_by_id(self,id: str) -> access_review_reviewer_item_request_builder.AccessReviewReviewerItemRequestBuilder:
+    def reviewers_by_id(self,id: str) -> Optional[access_review_reviewer_item_request_builder.AccessReviewReviewerItemRequestBuilder]:
         """
         Provides operations to manage the reviewers property of the microsoft.graph.accessReview entity.
         Args:
             id: Unique identifier of the item
-        Returns: access_review_reviewer_item_request_builder.AccessReviewReviewerItemRequestBuilder
+        Returns: Optional[access_review_reviewer_item_request_builder.AccessReviewReviewerItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -11,7 +11,7 @@ synchronization_status = lazy_import('msgraph.generated.models.synchronization_s
 
 class SynchronizationJob(entity.Entity):
     """
-    Casts the previous resource to application.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     def __init__(self,) -> None:
         """

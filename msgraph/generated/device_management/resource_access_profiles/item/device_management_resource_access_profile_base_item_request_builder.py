@@ -34,12 +34,12 @@ class DeviceManagementResourceAccessProfileBaseItemRequestBuilder():
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def assignments_by_id(self,id: str) -> device_management_resource_access_profile_assignment_item_request_builder.DeviceManagementResourceAccessProfileAssignmentItemRequestBuilder:
+    def assignments_by_id(self,id: str) -> Optional[device_management_resource_access_profile_assignment_item_request_builder.DeviceManagementResourceAccessProfileAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the assignments property of the microsoft.graph.deviceManagementResourceAccessProfileBase entity.
         Args:
             id: Unique identifier of the item
-        Returns: device_management_resource_access_profile_assignment_item_request_builder.DeviceManagementResourceAccessProfileAssignmentItemRequestBuilder
+        Returns: Optional[device_management_resource_access_profile_assignment_item_request_builder.DeviceManagementResourceAccessProfileAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

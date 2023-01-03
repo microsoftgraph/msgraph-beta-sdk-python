@@ -158,12 +158,12 @@ class DeviceManagementTemplateSettingCategoryItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, device_management_template_setting_category.DeviceManagementTemplateSettingCategory, response_handler, error_mapping)
     
-    def recommended_settings_by_id(self,id: str) -> device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder:
+    def recommended_settings_by_id(self,id: str) -> Optional[device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder]:
         """
         Provides operations to manage the recommendedSettings property of the microsoft.graph.deviceManagementTemplateSettingCategory entity.
         Args:
             id: Unique identifier of the item
-        Returns: device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder
+        Returns: Optional[device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

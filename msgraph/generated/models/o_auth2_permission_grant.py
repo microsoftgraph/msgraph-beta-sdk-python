@@ -8,7 +8,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class OAuth2PermissionGrant(entity.Entity):
     """
-    Casts the previous resource to servicePrincipal.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def client_id(self,) -> Optional[str]:

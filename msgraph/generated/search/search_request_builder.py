@@ -52,12 +52,12 @@ class SearchRequestBuilder():
         """
         return query_request_builder.QueryRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def acronyms_by_id(self,id: str) -> acronym_item_request_builder.AcronymItemRequestBuilder:
+    def acronyms_by_id(self,id: str) -> Optional[acronym_item_request_builder.AcronymItemRequestBuilder]:
         """
         Provides operations to manage the acronyms property of the microsoft.graph.searchEntity entity.
         Args:
             id: Unique identifier of the item
-        Returns: acronym_item_request_builder.AcronymItemRequestBuilder
+        Returns: Optional[acronym_item_request_builder.AcronymItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -65,12 +65,12 @@ class SearchRequestBuilder():
         url_tpl_params["acronym%2Did"] = id
         return acronym_item_request_builder.AcronymItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def bookmarks_by_id(self,id: str) -> bookmark_item_request_builder.BookmarkItemRequestBuilder:
+    def bookmarks_by_id(self,id: str) -> Optional[bookmark_item_request_builder.BookmarkItemRequestBuilder]:
         """
         Provides operations to manage the bookmarks property of the microsoft.graph.searchEntity entity.
         Args:
             id: Unique identifier of the item
-        Returns: bookmark_item_request_builder.BookmarkItemRequestBuilder
+        Returns: Optional[bookmark_item_request_builder.BookmarkItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -176,12 +176,12 @@ class SearchRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, search_entity.SearchEntity, response_handler, error_mapping)
     
-    def qnas_by_id(self,id: str) -> qna_item_request_builder.QnaItemRequestBuilder:
+    def qnas_by_id(self,id: str) -> Optional[qna_item_request_builder.QnaItemRequestBuilder]:
         """
         Provides operations to manage the qnas property of the microsoft.graph.searchEntity entity.
         Args:
             id: Unique identifier of the item
-        Returns: qna_item_request_builder.QnaItemRequestBuilder
+        Returns: Optional[qna_item_request_builder.QnaItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -263,12 +263,12 @@ class ReportsRequestBuilder():
         """
         return user_credential_usage_details_request_builder.UserCredentialUsageDetailsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def application_sign_in_detailed_summary_by_id(self,id: str) -> application_sign_in_detailed_summary_item_request_builder.ApplicationSignInDetailedSummaryItemRequestBuilder:
+    def application_sign_in_detailed_summary_by_id(self,id: str) -> Optional[application_sign_in_detailed_summary_item_request_builder.ApplicationSignInDetailedSummaryItemRequestBuilder]:
         """
         Provides operations to manage the applicationSignInDetailedSummary property of the microsoft.graph.reportRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: application_sign_in_detailed_summary_item_request_builder.ApplicationSignInDetailedSummaryItemRequestBuilder
+        Returns: Optional[application_sign_in_detailed_summary_item_request_builder.ApplicationSignInDetailedSummaryItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -333,12 +333,12 @@ class ReportsRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def credential_user_registration_details_by_id(self,id: str) -> credential_user_registration_details_item_request_builder.CredentialUserRegistrationDetailsItemRequestBuilder:
+    def credential_user_registration_details_by_id(self,id: str) -> Optional[credential_user_registration_details_item_request_builder.CredentialUserRegistrationDetailsItemRequestBuilder]:
         """
         Provides operations to manage the credentialUserRegistrationDetails property of the microsoft.graph.reportRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: credential_user_registration_details_item_request_builder.CredentialUserRegistrationDetailsItemRequestBuilder
+        Returns: Optional[credential_user_registration_details_item_request_builder.CredentialUserRegistrationDetailsItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -346,12 +346,12 @@ class ReportsRequestBuilder():
         url_tpl_params["credentialUserRegistrationDetails%2Did"] = id
         return credential_user_registration_details_item_request_builder.CredentialUserRegistrationDetailsItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def daily_print_usage_by_id(self,id: str) -> print_usage_item_request_builder.PrintUsageItemRequestBuilder:
+    def daily_print_usage_by_id(self,id: str) -> Optional[print_usage_item_request_builder.PrintUsageItemRequestBuilder]:
         """
         Provides operations to manage the dailyPrintUsage property of the microsoft.graph.reportRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: print_usage_item_request_builder.PrintUsageItemRequestBuilder
+        Returns: Optional[print_usage_item_request_builder.PrintUsageItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -359,12 +359,12 @@ class ReportsRequestBuilder():
         url_tpl_params["printUsage%2Did"] = id
         return print_usage_item_request_builder.PrintUsageItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def daily_print_usage_by_printer_by_id(self,id: str) -> print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder:
+    def daily_print_usage_by_printer_by_id(self,id: str) -> Optional[print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder]:
         """
         Provides operations to manage the dailyPrintUsageByPrinter property of the microsoft.graph.reportRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder
+        Returns: Optional[print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -372,12 +372,12 @@ class ReportsRequestBuilder():
         url_tpl_params["printUsageByPrinter%2Did"] = id
         return print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def daily_print_usage_by_user_by_id(self,id: str) -> print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder:
+    def daily_print_usage_by_user_by_id(self,id: str) -> Optional[print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder]:
         """
         Provides operations to manage the dailyPrintUsageByUser property of the microsoft.graph.reportRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder
+        Returns: Optional[print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -385,12 +385,12 @@ class ReportsRequestBuilder():
         url_tpl_params["printUsageByUser%2Did"] = id
         return print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def daily_print_usage_summaries_by_printer_by_id(self,id: str) -> print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder:
+    def daily_print_usage_summaries_by_printer_by_id(self,id: str) -> Optional[print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder]:
         """
         Provides operations to manage the dailyPrintUsageSummariesByPrinter property of the microsoft.graph.reportRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder
+        Returns: Optional[print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -398,12 +398,12 @@ class ReportsRequestBuilder():
         url_tpl_params["printUsageByPrinter%2Did"] = id
         return print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def daily_print_usage_summaries_by_user_by_id(self,id: str) -> print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder:
+    def daily_print_usage_summaries_by_user_by_id(self,id: str) -> Optional[print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder]:
         """
         Provides operations to manage the dailyPrintUsageSummariesByUser property of the microsoft.graph.reportRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder
+        Returns: Optional[print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1758,12 +1758,12 @@ class ReportsRequestBuilder():
             raise Exception("period cannot be undefined")
         return managed_device_enrollment_top_failures_with_period_request_builder.ManagedDeviceEnrollmentTopFailuresWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
     
-    def monthly_print_usage_by_printer_by_id(self,id: str) -> print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder:
+    def monthly_print_usage_by_printer_by_id(self,id: str) -> Optional[print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder]:
         """
         Provides operations to manage the monthlyPrintUsageByPrinter property of the microsoft.graph.reportRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder
+        Returns: Optional[print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1771,12 +1771,12 @@ class ReportsRequestBuilder():
         url_tpl_params["printUsageByPrinter%2Did"] = id
         return print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def monthly_print_usage_by_user_by_id(self,id: str) -> print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder:
+    def monthly_print_usage_by_user_by_id(self,id: str) -> Optional[print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder]:
         """
         Provides operations to manage the monthlyPrintUsageByUser property of the microsoft.graph.reportRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder
+        Returns: Optional[print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1784,12 +1784,12 @@ class ReportsRequestBuilder():
         url_tpl_params["printUsageByUser%2Did"] = id
         return print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def monthly_print_usage_summaries_by_printer_by_id(self,id: str) -> print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder:
+    def monthly_print_usage_summaries_by_printer_by_id(self,id: str) -> Optional[print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder]:
         """
         Provides operations to manage the monthlyPrintUsageSummariesByPrinter property of the microsoft.graph.reportRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder
+        Returns: Optional[print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1797,12 +1797,12 @@ class ReportsRequestBuilder():
         url_tpl_params["printUsageByPrinter%2Did"] = id
         return print_usage_by_printer_item_request_builder.PrintUsageByPrinterItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def monthly_print_usage_summaries_by_user_by_id(self,id: str) -> print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder:
+    def monthly_print_usage_summaries_by_user_by_id(self,id: str) -> Optional[print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder]:
         """
         Provides operations to manage the monthlyPrintUsageSummariesByUser property of the microsoft.graph.reportRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder
+        Returns: Optional[print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -1832,12 +1832,12 @@ class ReportsRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, report_root.ReportRoot, response_handler, error_mapping)
     
-    def user_credential_usage_details_by_id(self,id: str) -> user_credential_usage_details_item_request_builder.UserCredentialUsageDetailsItemRequestBuilder:
+    def user_credential_usage_details_by_id(self,id: str) -> Optional[user_credential_usage_details_item_request_builder.UserCredentialUsageDetailsItemRequestBuilder]:
         """
         Provides operations to manage the userCredentialUsageDetails property of the microsoft.graph.reportRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: user_credential_usage_details_item_request_builder.UserCredentialUsageDetailsItemRequestBuilder
+        Returns: Optional[user_credential_usage_details_item_request_builder.UserCredentialUsageDetailsItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -158,12 +158,12 @@ class DeviceAndAppManagementRoleAssignmentItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment, response_handler, error_mapping)
     
-    def role_scope_tags_by_id(self,id: str) -> role_scope_tag_item_request_builder.RoleScopeTagItemRequestBuilder:
+    def role_scope_tags_by_id(self,id: str) -> Optional[role_scope_tag_item_request_builder.RoleScopeTagItemRequestBuilder]:
         """
         Provides operations to manage the roleScopeTags property of the microsoft.graph.deviceAndAppManagementRoleAssignment entity.
         Args:
             id: Unique identifier of the item
-        Returns: role_scope_tag_item_request_builder.RoleScopeTagItemRequestBuilder
+        Returns: Optional[role_scope_tag_item_request_builder.RoleScopeTagItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

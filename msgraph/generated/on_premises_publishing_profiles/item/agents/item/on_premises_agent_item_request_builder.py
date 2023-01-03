@@ -26,12 +26,12 @@ class OnPremisesAgentItemRequestBuilder():
         """
         return agent_groups_request_builder.AgentGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def agent_groups_by_id(self,id: str) -> on_premises_agent_group_item_request_builder.OnPremisesAgentGroupItemRequestBuilder:
+    def agent_groups_by_id(self,id: str) -> Optional[on_premises_agent_group_item_request_builder.OnPremisesAgentGroupItemRequestBuilder]:
         """
         Gets an item from the msgraph.generated.onPremisesPublishingProfiles.item.agents.item.agentGroups.item collection
         Args:
             id: Unique identifier of the item
-        Returns: on_premises_agent_group_item_request_builder.OnPremisesAgentGroupItemRequestBuilder
+        Returns: Optional[on_premises_agent_group_item_request_builder.OnPremisesAgentGroupItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

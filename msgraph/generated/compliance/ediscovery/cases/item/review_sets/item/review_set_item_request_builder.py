@@ -174,12 +174,12 @@ class ReviewSetItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, review_set.ReviewSet, response_handler, error_mapping)
     
-    def queries_by_id(self,id: str) -> review_set_query_item_request_builder.ReviewSetQueryItemRequestBuilder:
+    def queries_by_id(self,id: str) -> Optional[review_set_query_item_request_builder.ReviewSetQueryItemRequestBuilder]:
         """
         Provides operations to manage the queries property of the microsoft.graph.ediscovery.reviewSet entity.
         Args:
             id: Unique identifier of the item
-        Returns: review_set_query_item_request_builder.ReviewSetQueryItemRequestBuilder
+        Returns: Optional[review_set_query_item_request_builder.ReviewSetQueryItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

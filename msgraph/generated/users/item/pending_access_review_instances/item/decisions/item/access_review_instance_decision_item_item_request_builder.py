@@ -144,12 +144,12 @@ class AccessReviewInstanceDecisionItemItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, access_review_instance_decision_item.AccessReviewInstanceDecisionItem, response_handler, error_mapping)
     
-    def insights_by_id(self,id: str) -> governance_insight_item_request_builder.GovernanceInsightItemRequestBuilder:
+    def insights_by_id(self,id: str) -> Optional[governance_insight_item_request_builder.GovernanceInsightItemRequestBuilder]:
         """
         Provides operations to manage the insights property of the microsoft.graph.accessReviewInstanceDecisionItem entity.
         Args:
             id: Unique identifier of the item
-        Returns: governance_insight_item_request_builder.GovernanceInsightItemRequestBuilder
+        Returns: Optional[governance_insight_item_request_builder.GovernanceInsightItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

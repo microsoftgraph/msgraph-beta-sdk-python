@@ -158,12 +158,12 @@ class OutlookTaskGroupItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, outlook_task_group.OutlookTaskGroup, response_handler, error_mapping)
     
-    def task_folders_by_id(self,id: str) -> outlook_task_folder_item_request_builder.OutlookTaskFolderItemRequestBuilder:
+    def task_folders_by_id(self,id: str) -> Optional[outlook_task_folder_item_request_builder.OutlookTaskFolderItemRequestBuilder]:
         """
         Provides operations to manage the taskFolders property of the microsoft.graph.outlookTaskGroup entity.
         Args:
             id: Unique identifier of the item
-        Returns: outlook_task_folder_item_request_builder.OutlookTaskFolderItemRequestBuilder
+        Returns: Optional[outlook_task_folder_item_request_builder.OutlookTaskFolderItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

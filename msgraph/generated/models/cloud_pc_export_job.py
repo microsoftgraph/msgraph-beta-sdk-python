@@ -9,9 +9,12 @@ cloud_pc_report_name = lazy_import('msgraph.generated.models.cloud_pc_report_nam
 entity = lazy_import('msgraph.generated.models.entity')
 
 class CloudPcExportJob(entity.Entity):
+    """
+    Provides operations to manage the collection of activityStatistics entities.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new CloudPcExportJob and sets the default values.
+        Instantiates a new cloudPcExportJob and sets the default values.
         """
         super().__init__()
         # The date time when the export job expires.

@@ -15,6 +15,9 @@ managed_tenant_api_notification = lazy_import('msgraph.generated.models.managed_
 managed_tenant_email_notification = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_email_notification')
 
 class ManagedTenantAlert(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def alert_data(self,) -> Optional[alert_data.AlertData]:
         """

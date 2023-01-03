@@ -114,12 +114,12 @@ class DataClassificationRequestBuilder():
         """
         return sensitivity_labels_request_builder.SensitivityLabelsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def classify_file_jobs_by_id(self,id: str) -> job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder:
+    def classify_file_jobs_by_id(self,id: str) -> Optional[job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder]:
         """
         Provides operations to manage the classifyFileJobs property of the microsoft.graph.dataClassificationService entity.
         Args:
             id: Unique identifier of the item
-        Returns: job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder
+        Returns: Optional[job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -127,12 +127,12 @@ class DataClassificationRequestBuilder():
         url_tpl_params["jobResponseBase%2Did"] = id
         return job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def classify_text_jobs_by_id(self,id: str) -> job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder:
+    def classify_text_jobs_by_id(self,id: str) -> Optional[job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder]:
         """
         Provides operations to manage the classifyTextJobs property of the microsoft.graph.dataClassificationService entity.
         Args:
             id: Unique identifier of the item
-        Returns: job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder
+        Returns: Optional[job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -197,12 +197,12 @@ class DataClassificationRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def evaluate_dlp_policies_jobs_by_id(self,id: str) -> job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder:
+    def evaluate_dlp_policies_jobs_by_id(self,id: str) -> Optional[job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder]:
         """
         Provides operations to manage the evaluateDlpPoliciesJobs property of the microsoft.graph.dataClassificationService entity.
         Args:
             id: Unique identifier of the item
-        Returns: job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder
+        Returns: Optional[job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -210,12 +210,12 @@ class DataClassificationRequestBuilder():
         url_tpl_params["jobResponseBase%2Did"] = id
         return job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def evaluate_label_jobs_by_id(self,id: str) -> job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder:
+    def evaluate_label_jobs_by_id(self,id: str) -> Optional[job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder]:
         """
         Provides operations to manage the evaluateLabelJobs property of the microsoft.graph.dataClassificationService entity.
         Args:
             id: Unique identifier of the item
-        Returns: job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder
+        Returns: Optional[job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -223,12 +223,12 @@ class DataClassificationRequestBuilder():
         url_tpl_params["jobResponseBase%2Did"] = id
         return job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def exact_match_data_stores_by_id(self,id: str) -> exact_match_data_store_item_request_builder.ExactMatchDataStoreItemRequestBuilder:
+    def exact_match_data_stores_by_id(self,id: str) -> Optional[exact_match_data_store_item_request_builder.ExactMatchDataStoreItemRequestBuilder]:
         """
         Provides operations to manage the exactMatchDataStores property of the microsoft.graph.dataClassificationService entity.
         Args:
             id: Unique identifier of the item
-        Returns: exact_match_data_store_item_request_builder.ExactMatchDataStoreItemRequestBuilder
+        Returns: Optional[exact_match_data_store_item_request_builder.ExactMatchDataStoreItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -236,12 +236,12 @@ class DataClassificationRequestBuilder():
         url_tpl_params["exactMatchDataStore%2Did"] = id
         return exact_match_data_store_item_request_builder.ExactMatchDataStoreItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def exact_match_upload_agents_by_id(self,id: str) -> exact_match_upload_agent_item_request_builder.ExactMatchUploadAgentItemRequestBuilder:
+    def exact_match_upload_agents_by_id(self,id: str) -> Optional[exact_match_upload_agent_item_request_builder.ExactMatchUploadAgentItemRequestBuilder]:
         """
         Provides operations to manage the exactMatchUploadAgents property of the microsoft.graph.dataClassificationService entity.
         Args:
             id: Unique identifier of the item
-        Returns: exact_match_upload_agent_item_request_builder.ExactMatchUploadAgentItemRequestBuilder
+        Returns: Optional[exact_match_upload_agent_item_request_builder.ExactMatchUploadAgentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -268,12 +268,12 @@ class DataClassificationRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, data_classification_service.DataClassificationService, response_handler, error_mapping)
     
-    def jobs_by_id(self,id: str) -> job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder:
+    def jobs_by_id(self,id: str) -> Optional[job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder]:
         """
         Provides operations to manage the jobs property of the microsoft.graph.dataClassificationService entity.
         Args:
             id: Unique identifier of the item
-        Returns: job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder
+        Returns: Optional[job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -303,12 +303,12 @@ class DataClassificationRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, data_classification_service.DataClassificationService, response_handler, error_mapping)
     
-    def sensitive_types_by_id(self,id: str) -> sensitive_type_item_request_builder.SensitiveTypeItemRequestBuilder:
+    def sensitive_types_by_id(self,id: str) -> Optional[sensitive_type_item_request_builder.SensitiveTypeItemRequestBuilder]:
         """
         Provides operations to manage the sensitiveTypes property of the microsoft.graph.dataClassificationService entity.
         Args:
             id: Unique identifier of the item
-        Returns: sensitive_type_item_request_builder.SensitiveTypeItemRequestBuilder
+        Returns: Optional[sensitive_type_item_request_builder.SensitiveTypeItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -316,12 +316,12 @@ class DataClassificationRequestBuilder():
         url_tpl_params["sensitiveType%2Did"] = id
         return sensitive_type_item_request_builder.SensitiveTypeItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def sensitivity_labels_by_id(self,id: str) -> sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder:
+    def sensitivity_labels_by_id(self,id: str) -> Optional[sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder]:
         """
         Provides operations to manage the sensitivityLabels property of the microsoft.graph.dataClassificationService entity.
         Args:
             id: Unique identifier of the item
-        Returns: sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder
+        Returns: Optional[sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

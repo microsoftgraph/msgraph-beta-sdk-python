@@ -172,12 +172,12 @@ class SalesQuoteItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, sales_quote.SalesQuote, response_handler, error_mapping)
     
-    def sales_quote_lines_by_id(self,id: str) -> sales_quote_line_item_request_builder.SalesQuoteLineItemRequestBuilder:
+    def sales_quote_lines_by_id(self,id: str) -> Optional[sales_quote_line_item_request_builder.SalesQuoteLineItemRequestBuilder]:
         """
         Provides operations to manage the salesQuoteLines property of the microsoft.graph.salesQuote entity.
         Args:
             id: Unique identifier of the item
-        Returns: sales_quote_line_item_request_builder.SalesQuoteLineItemRequestBuilder
+        Returns: Optional[sales_quote_line_item_request_builder.SalesQuoteLineItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

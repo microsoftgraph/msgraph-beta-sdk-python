@@ -136,12 +136,12 @@ class UserExperienceAnalyticsCategoryItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, user_experience_analytics_category.UserExperienceAnalyticsCategory, response_handler, error_mapping)
     
-    def metric_values_by_id(self,id: str) -> user_experience_analytics_metric_item_request_builder.UserExperienceAnalyticsMetricItemRequestBuilder:
+    def metric_values_by_id(self,id: str) -> Optional[user_experience_analytics_metric_item_request_builder.UserExperienceAnalyticsMetricItemRequestBuilder]:
         """
         Provides operations to manage the metricValues property of the microsoft.graph.userExperienceAnalyticsCategory entity.
         Args:
             id: Unique identifier of the item
-        Returns: user_experience_analytics_metric_item_request_builder.UserExperienceAnalyticsMetricItemRequestBuilder
+        Returns: Optional[user_experience_analytics_metric_item_request_builder.UserExperienceAnalyticsMetricItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

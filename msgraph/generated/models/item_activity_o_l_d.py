@@ -12,7 +12,7 @@ list_item = lazy_import('msgraph.generated.models.list_item')
 
 class ItemActivityOLD(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def action(self,) -> Optional[item_action_set.ItemActionSet]:

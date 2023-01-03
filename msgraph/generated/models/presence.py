@@ -8,6 +8,9 @@ out_of_office_settings = lazy_import('msgraph.generated.models.out_of_office_set
 presence_status_message = lazy_import('msgraph.generated.models.presence_status_message')
 
 class Presence(entity.Entity):
+    """
+    Provides operations to manage the collection of activityStatistics entities.
+    """
     @property
     def activity(self,) -> Optional[str]:
         """

@@ -26,12 +26,12 @@ class HorizontalSectionItemRequestBuilder():
         """
         return columns_request_builder.ColumnsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def columns_by_id(self,id: str) -> horizontal_section_column_item_request_builder.HorizontalSectionColumnItemRequestBuilder:
+    def columns_by_id(self,id: str) -> Optional[horizontal_section_column_item_request_builder.HorizontalSectionColumnItemRequestBuilder]:
         """
         Provides operations to manage the columns property of the microsoft.graph.horizontalSection entity.
         Args:
             id: Unique identifier of the item
-        Returns: horizontal_section_column_item_request_builder.HorizontalSectionColumnItemRequestBuilder
+        Returns: Optional[horizontal_section_column_item_request_builder.HorizontalSectionColumnItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 tag = lazy_import('msgraph.generated.models.ediscovery.tag')
 
 class TagCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the tags property of the microsoft.graph.ediscovery.case entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new TagCollectionResponse and sets the default values.

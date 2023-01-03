@@ -158,12 +158,12 @@ class LabelsRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, labels_root.LabelsRoot, response_handler, error_mapping)
     
-    def retention_labels_by_id(self,id: str) -> retention_label_item_request_builder.RetentionLabelItemRequestBuilder:
+    def retention_labels_by_id(self,id: str) -> Optional[retention_label_item_request_builder.RetentionLabelItemRequestBuilder]:
         """
         Provides operations to manage the retentionLabels property of the microsoft.graph.security.labelsRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: retention_label_item_request_builder.RetentionLabelItemRequestBuilder
+        Returns: Optional[retention_label_item_request_builder.RetentionLabelItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -99,12 +99,12 @@ class AuthorizationPolicyItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def default_user_role_overrides_by_id(self,id: str) -> default_user_role_override_item_request_builder.DefaultUserRoleOverrideItemRequestBuilder:
+    def default_user_role_overrides_by_id(self,id: str) -> Optional[default_user_role_override_item_request_builder.DefaultUserRoleOverrideItemRequestBuilder]:
         """
         Provides operations to manage the defaultUserRoleOverrides property of the microsoft.graph.authorizationPolicy entity.
         Args:
             id: Unique identifier of the item
-        Returns: default_user_role_override_item_request_builder.DefaultUserRoleOverrideItemRequestBuilder
+        Returns: Optional[default_user_role_override_item_request_builder.DefaultUserRoleOverrideItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

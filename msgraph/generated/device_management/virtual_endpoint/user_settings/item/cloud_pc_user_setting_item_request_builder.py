@@ -34,12 +34,12 @@ class CloudPcUserSettingItemRequestBuilder():
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def assignments_by_id(self,id: str) -> cloud_pc_user_setting_assignment_item_request_builder.CloudPcUserSettingAssignmentItemRequestBuilder:
+    def assignments_by_id(self,id: str) -> Optional[cloud_pc_user_setting_assignment_item_request_builder.CloudPcUserSettingAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the assignments property of the microsoft.graph.cloudPcUserSetting entity.
         Args:
             id: Unique identifier of the item
-        Returns: cloud_pc_user_setting_assignment_item_request_builder.CloudPcUserSettingAssignmentItemRequestBuilder
+        Returns: Optional[cloud_pc_user_setting_assignment_item_request_builder.CloudPcUserSettingAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

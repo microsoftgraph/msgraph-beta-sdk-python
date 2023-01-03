@@ -158,12 +158,12 @@ class ApprovalItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, approval.Approval, response_handler, error_mapping)
     
-    def steps_by_id(self,id: str) -> approval_step_item_request_builder.ApprovalStepItemRequestBuilder:
+    def steps_by_id(self,id: str) -> Optional[approval_step_item_request_builder.ApprovalStepItemRequestBuilder]:
         """
         Provides operations to manage the steps property of the microsoft.graph.approval entity.
         Args:
             id: Unique identifier of the item
-        Returns: approval_step_item_request_builder.ApprovalStepItemRequestBuilder
+        Returns: Optional[approval_step_item_request_builder.ApprovalStepItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

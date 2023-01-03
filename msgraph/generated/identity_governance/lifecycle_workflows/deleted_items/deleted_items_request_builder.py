@@ -158,12 +158,12 @@ class DeletedItemsRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, deleted_item_container.DeletedItemContainer, response_handler, error_mapping)
     
-    def workflows_by_id(self,id: str) -> workflow_item_request_builder.WorkflowItemRequestBuilder:
+    def workflows_by_id(self,id: str) -> Optional[workflow_item_request_builder.WorkflowItemRequestBuilder]:
         """
         Provides operations to manage the workflows property of the microsoft.graph.deletedItemContainer entity.
         Args:
             id: Unique identifier of the item
-        Returns: workflow_item_request_builder.WorkflowItemRequestBuilder
+        Returns: Optional[workflow_item_request_builder.WorkflowItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

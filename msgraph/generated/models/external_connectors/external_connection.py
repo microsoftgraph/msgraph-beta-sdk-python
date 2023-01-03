@@ -18,7 +18,7 @@ search_settings = lazy_import('msgraph.generated.models.external_connectors.sear
 
 class ExternalConnection(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def activity_settings(self,) -> Optional[activity_settings.ActivitySettings]:

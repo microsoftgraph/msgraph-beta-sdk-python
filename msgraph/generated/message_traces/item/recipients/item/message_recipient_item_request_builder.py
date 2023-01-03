@@ -117,12 +117,12 @@ class MessageRecipientItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def events_by_id(self,id: str) -> message_event_item_request_builder.MessageEventItemRequestBuilder:
+    def events_by_id(self,id: str) -> Optional[message_event_item_request_builder.MessageEventItemRequestBuilder]:
         """
         Provides operations to manage the events property of the microsoft.graph.messageRecipient entity.
         Args:
             id: Unique identifier of the item
-        Returns: message_event_item_request_builder.MessageEventItemRequestBuilder
+        Returns: Optional[message_event_item_request_builder.MessageEventItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

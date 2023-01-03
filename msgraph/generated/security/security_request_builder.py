@@ -216,12 +216,12 @@ class SecurityRequestBuilder():
         """
         return user_security_profiles_request_builder.UserSecurityProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def alerts_by_id(self,id: str) -> alert_item_request_builder.AlertItemRequestBuilder:
+    def alerts_by_id(self,id: str) -> Optional[alert_item_request_builder.AlertItemRequestBuilder]:
         """
         Provides operations to manage the alerts property of the microsoft.graph.security entity.
         Args:
             id: Unique identifier of the item
-        Returns: alert_item_request_builder.AlertItemRequestBuilder
+        Returns: Optional[alert_item_request_builder.AlertItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -229,12 +229,12 @@ class SecurityRequestBuilder():
         url_tpl_params["alert%2Did"] = id
         return alert_item_request_builder.AlertItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def alerts_v2_by_id(self,id: str) -> alert_item_request_builder.AlertItemRequestBuilder:
+    def alerts_v2_by_id(self,id: str) -> Optional[alert_item_request_builder.AlertItemRequestBuilder]:
         """
         Provides operations to manage the alerts_v2 property of the microsoft.graph.security entity.
         Args:
             id: Unique identifier of the item
-        Returns: alert_item_request_builder.AlertItemRequestBuilder
+        Returns: Optional[alert_item_request_builder.AlertItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -242,12 +242,12 @@ class SecurityRequestBuilder():
         url_tpl_params["alert%2Did"] = id
         return alert_item_request_builder.AlertItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def cloud_app_security_profiles_by_id(self,id: str) -> cloud_app_security_profile_item_request_builder.CloudAppSecurityProfileItemRequestBuilder:
+    def cloud_app_security_profiles_by_id(self,id: str) -> Optional[cloud_app_security_profile_item_request_builder.CloudAppSecurityProfileItemRequestBuilder]:
         """
         Provides operations to manage the cloudAppSecurityProfiles property of the microsoft.graph.security entity.
         Args:
             id: Unique identifier of the item
-        Returns: cloud_app_security_profile_item_request_builder.CloudAppSecurityProfileItemRequestBuilder
+        Returns: Optional[cloud_app_security_profile_item_request_builder.CloudAppSecurityProfileItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -312,12 +312,12 @@ class SecurityRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def domain_security_profiles_by_id(self,id: str) -> domain_security_profile_item_request_builder.DomainSecurityProfileItemRequestBuilder:
+    def domain_security_profiles_by_id(self,id: str) -> Optional[domain_security_profile_item_request_builder.DomainSecurityProfileItemRequestBuilder]:
         """
         Provides operations to manage the domainSecurityProfiles property of the microsoft.graph.security entity.
         Args:
             id: Unique identifier of the item
-        Returns: domain_security_profile_item_request_builder.DomainSecurityProfileItemRequestBuilder
+        Returns: Optional[domain_security_profile_item_request_builder.DomainSecurityProfileItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -325,12 +325,12 @@ class SecurityRequestBuilder():
         url_tpl_params["domainSecurityProfile%2Did"] = id
         return domain_security_profile_item_request_builder.DomainSecurityProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def file_security_profiles_by_id(self,id: str) -> file_security_profile_item_request_builder.FileSecurityProfileItemRequestBuilder:
+    def file_security_profiles_by_id(self,id: str) -> Optional[file_security_profile_item_request_builder.FileSecurityProfileItemRequestBuilder]:
         """
         Provides operations to manage the fileSecurityProfiles property of the microsoft.graph.security entity.
         Args:
             id: Unique identifier of the item
-        Returns: file_security_profile_item_request_builder.FileSecurityProfileItemRequestBuilder
+        Returns: Optional[file_security_profile_item_request_builder.FileSecurityProfileItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -357,12 +357,12 @@ class SecurityRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, security.Security, response_handler, error_mapping)
     
-    def host_security_profiles_by_id(self,id: str) -> host_security_profile_item_request_builder.HostSecurityProfileItemRequestBuilder:
+    def host_security_profiles_by_id(self,id: str) -> Optional[host_security_profile_item_request_builder.HostSecurityProfileItemRequestBuilder]:
         """
         Provides operations to manage the hostSecurityProfiles property of the microsoft.graph.security entity.
         Args:
             id: Unique identifier of the item
-        Returns: host_security_profile_item_request_builder.HostSecurityProfileItemRequestBuilder
+        Returns: Optional[host_security_profile_item_request_builder.HostSecurityProfileItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -370,12 +370,12 @@ class SecurityRequestBuilder():
         url_tpl_params["hostSecurityProfile%2Did"] = id
         return host_security_profile_item_request_builder.HostSecurityProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def incidents_by_id(self,id: str) -> incident_item_request_builder.IncidentItemRequestBuilder:
+    def incidents_by_id(self,id: str) -> Optional[incident_item_request_builder.IncidentItemRequestBuilder]:
         """
         Provides operations to manage the incidents property of the microsoft.graph.security entity.
         Args:
             id: Unique identifier of the item
-        Returns: incident_item_request_builder.IncidentItemRequestBuilder
+        Returns: Optional[incident_item_request_builder.IncidentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -383,12 +383,12 @@ class SecurityRequestBuilder():
         url_tpl_params["incident%2Did"] = id
         return incident_item_request_builder.IncidentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def ip_security_profiles_by_id(self,id: str) -> ip_security_profile_item_request_builder.IpSecurityProfileItemRequestBuilder:
+    def ip_security_profiles_by_id(self,id: str) -> Optional[ip_security_profile_item_request_builder.IpSecurityProfileItemRequestBuilder]:
         """
         Provides operations to manage the ipSecurityProfiles property of the microsoft.graph.security entity.
         Args:
             id: Unique identifier of the item
-        Returns: ip_security_profile_item_request_builder.IpSecurityProfileItemRequestBuilder
+        Returns: Optional[ip_security_profile_item_request_builder.IpSecurityProfileItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -418,12 +418,12 @@ class SecurityRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, security.Security, response_handler, error_mapping)
     
-    def provider_tenant_settings_by_id(self,id: str) -> provider_tenant_setting_item_request_builder.ProviderTenantSettingItemRequestBuilder:
+    def provider_tenant_settings_by_id(self,id: str) -> Optional[provider_tenant_setting_item_request_builder.ProviderTenantSettingItemRequestBuilder]:
         """
         Provides operations to manage the providerTenantSettings property of the microsoft.graph.security entity.
         Args:
             id: Unique identifier of the item
-        Returns: provider_tenant_setting_item_request_builder.ProviderTenantSettingItemRequestBuilder
+        Returns: Optional[provider_tenant_setting_item_request_builder.ProviderTenantSettingItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -431,12 +431,12 @@ class SecurityRequestBuilder():
         url_tpl_params["providerTenantSetting%2Did"] = id
         return provider_tenant_setting_item_request_builder.ProviderTenantSettingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def secure_score_control_profiles_by_id(self,id: str) -> secure_score_control_profile_item_request_builder.SecureScoreControlProfileItemRequestBuilder:
+    def secure_score_control_profiles_by_id(self,id: str) -> Optional[secure_score_control_profile_item_request_builder.SecureScoreControlProfileItemRequestBuilder]:
         """
         Provides operations to manage the secureScoreControlProfiles property of the microsoft.graph.security entity.
         Args:
             id: Unique identifier of the item
-        Returns: secure_score_control_profile_item_request_builder.SecureScoreControlProfileItemRequestBuilder
+        Returns: Optional[secure_score_control_profile_item_request_builder.SecureScoreControlProfileItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -444,12 +444,12 @@ class SecurityRequestBuilder():
         url_tpl_params["secureScoreControlProfile%2Did"] = id
         return secure_score_control_profile_item_request_builder.SecureScoreControlProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def secure_scores_by_id(self,id: str) -> secure_score_item_request_builder.SecureScoreItemRequestBuilder:
+    def secure_scores_by_id(self,id: str) -> Optional[secure_score_item_request_builder.SecureScoreItemRequestBuilder]:
         """
         Provides operations to manage the secureScores property of the microsoft.graph.security entity.
         Args:
             id: Unique identifier of the item
-        Returns: secure_score_item_request_builder.SecureScoreItemRequestBuilder
+        Returns: Optional[secure_score_item_request_builder.SecureScoreItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -457,12 +457,12 @@ class SecurityRequestBuilder():
         url_tpl_params["secureScore%2Did"] = id
         return secure_score_item_request_builder.SecureScoreItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def security_actions_by_id(self,id: str) -> security_action_item_request_builder.SecurityActionItemRequestBuilder:
+    def security_actions_by_id(self,id: str) -> Optional[security_action_item_request_builder.SecurityActionItemRequestBuilder]:
         """
         Provides operations to manage the securityActions property of the microsoft.graph.security entity.
         Args:
             id: Unique identifier of the item
-        Returns: security_action_item_request_builder.SecurityActionItemRequestBuilder
+        Returns: Optional[security_action_item_request_builder.SecurityActionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -470,12 +470,12 @@ class SecurityRequestBuilder():
         url_tpl_params["securityAction%2Did"] = id
         return security_action_item_request_builder.SecurityActionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def subject_rights_requests_by_id(self,id: str) -> subject_rights_request_item_request_builder.SubjectRightsRequestItemRequestBuilder:
+    def subject_rights_requests_by_id(self,id: str) -> Optional[subject_rights_request_item_request_builder.SubjectRightsRequestItemRequestBuilder]:
         """
         Provides operations to manage the subjectRightsRequests property of the microsoft.graph.security entity.
         Args:
             id: Unique identifier of the item
-        Returns: subject_rights_request_item_request_builder.SubjectRightsRequestItemRequestBuilder
+        Returns: Optional[subject_rights_request_item_request_builder.SubjectRightsRequestItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -483,12 +483,12 @@ class SecurityRequestBuilder():
         url_tpl_params["subjectRightsRequest%2Did"] = id
         return subject_rights_request_item_request_builder.SubjectRightsRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def ti_indicators_by_id(self,id: str) -> ti_indicator_item_request_builder.TiIndicatorItemRequestBuilder:
+    def ti_indicators_by_id(self,id: str) -> Optional[ti_indicator_item_request_builder.TiIndicatorItemRequestBuilder]:
         """
         Provides operations to manage the tiIndicators property of the microsoft.graph.security entity.
         Args:
             id: Unique identifier of the item
-        Returns: ti_indicator_item_request_builder.TiIndicatorItemRequestBuilder
+        Returns: Optional[ti_indicator_item_request_builder.TiIndicatorItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -496,12 +496,12 @@ class SecurityRequestBuilder():
         url_tpl_params["tiIndicator%2Did"] = id
         return ti_indicator_item_request_builder.TiIndicatorItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def user_security_profiles_by_id(self,id: str) -> user_security_profile_item_request_builder.UserSecurityProfileItemRequestBuilder:
+    def user_security_profiles_by_id(self,id: str) -> Optional[user_security_profile_item_request_builder.UserSecurityProfileItemRequestBuilder]:
         """
         Provides operations to manage the userSecurityProfiles property of the microsoft.graph.security entity.
         Args:
             id: Unique identifier of the item
-        Returns: user_security_profile_item_request_builder.UserSecurityProfileItemRequestBuilder
+        Returns: Optional[user_security_profile_item_request_builder.UserSecurityProfileItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

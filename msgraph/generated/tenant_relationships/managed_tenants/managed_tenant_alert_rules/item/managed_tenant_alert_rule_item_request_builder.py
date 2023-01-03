@@ -34,12 +34,12 @@ class ManagedTenantAlertRuleItemRequestBuilder():
         """
         return rule_definition_request_builder.RuleDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def alerts_by_id(self,id: str) -> managed_tenant_alert_item_request_builder.ManagedTenantAlertItemRequestBuilder:
+    def alerts_by_id(self,id: str) -> Optional[managed_tenant_alert_item_request_builder.ManagedTenantAlertItemRequestBuilder]:
         """
         Provides operations to manage the alerts property of the microsoft.graph.managedTenants.managedTenantAlertRule entity.
         Args:
             id: Unique identifier of the item
-        Returns: managed_tenant_alert_item_request_builder.ManagedTenantAlertItemRequestBuilder
+        Returns: Optional[managed_tenant_alert_item_request_builder.ManagedTenantAlertItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

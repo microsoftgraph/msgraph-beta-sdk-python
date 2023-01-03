@@ -117,12 +117,12 @@ class CatalogRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def entries_by_id(self,id: str) -> catalog_entry_item_request_builder.CatalogEntryItemRequestBuilder:
+    def entries_by_id(self,id: str) -> Optional[catalog_entry_item_request_builder.CatalogEntryItemRequestBuilder]:
         """
         Provides operations to manage the entries property of the microsoft.graph.windowsUpdates.catalog entity.
         Args:
             id: Unique identifier of the item
-        Returns: catalog_entry_item_request_builder.CatalogEntryItemRequestBuilder
+        Returns: Optional[catalog_entry_item_request_builder.CatalogEntryItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -35,12 +35,12 @@ class ConnectorGroupItemRequestBuilder():
         """
         return members_request_builder.MembersRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def applications_by_id(self,id: str) -> application_item_request_builder.ApplicationItemRequestBuilder:
+    def applications_by_id(self,id: str) -> Optional[application_item_request_builder.ApplicationItemRequestBuilder]:
         """
         Provides operations to manage the applications property of the microsoft.graph.connectorGroup entity.
         Args:
             id: Unique identifier of the item
-        Returns: application_item_request_builder.ApplicationItemRequestBuilder
+        Returns: Optional[application_item_request_builder.ApplicationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -158,12 +158,12 @@ class ConnectorGroupItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, connector_group.ConnectorGroup, response_handler, error_mapping)
     
-    def members_by_id(self,id: str) -> connector_item_request_builder.ConnectorItemRequestBuilder:
+    def members_by_id(self,id: str) -> Optional[connector_item_request_builder.ConnectorItemRequestBuilder]:
         """
         Gets an item from the msgraph.generated.onPremisesPublishingProfiles.item.connectorGroups.item.members.item collection
         Args:
             id: Unique identifier of the item
-        Returns: connector_item_request_builder.ConnectorItemRequestBuilder
+        Returns: Optional[connector_item_request_builder.ConnectorItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

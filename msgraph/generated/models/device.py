@@ -12,9 +12,6 @@ on_premises_extension_attributes = lazy_import('msgraph.generated.models.on_prem
 usage_right = lazy_import('msgraph.generated.models.usage_right')
 
 class Device(directory_object.DirectoryObject):
-    """
-    Casts the previous resource to device.
-    """
     @property
     def account_enabled(self,) -> Optional[bool]:
         """

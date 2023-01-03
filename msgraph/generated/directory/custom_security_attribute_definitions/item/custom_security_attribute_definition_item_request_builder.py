@@ -26,12 +26,12 @@ class CustomSecurityAttributeDefinitionItemRequestBuilder():
         """
         return allowed_values_request_builder.AllowedValuesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def allowed_values_by_id(self,id: str) -> allowed_value_item_request_builder.AllowedValueItemRequestBuilder:
+    def allowed_values_by_id(self,id: str) -> Optional[allowed_value_item_request_builder.AllowedValueItemRequestBuilder]:
         """
         Provides operations to manage the allowedValues property of the microsoft.graph.customSecurityAttributeDefinition entity.
         Args:
             id: Unique identifier of the item
-        Returns: allowed_value_item_request_builder.AllowedValueItemRequestBuilder
+        Returns: Optional[allowed_value_item_request_builder.AllowedValueItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

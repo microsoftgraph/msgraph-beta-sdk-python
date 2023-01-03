@@ -7,9 +7,6 @@ allowed_data_location = lazy_import('msgraph.generated.models.allowed_data_locat
 base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
 
 class AllowedDataLocationCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the collection of allowedDataLocation entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new AllowedDataLocationCollectionResponse and sets the default values.

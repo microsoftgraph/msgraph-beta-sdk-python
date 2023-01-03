@@ -182,12 +182,12 @@ class EdiscoveryFileItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, ediscovery_file.EdiscoveryFile, response_handler, error_mapping)
     
-    def tags_by_id(self,id: str) -> ediscovery_review_tag_item_request_builder.EdiscoveryReviewTagItemRequestBuilder:
+    def tags_by_id(self,id: str) -> Optional[ediscovery_review_tag_item_request_builder.EdiscoveryReviewTagItemRequestBuilder]:
         """
         Provides operations to manage the tags property of the microsoft.graph.security.ediscoveryFile entity.
         Args:
             id: Unique identifier of the item
-        Returns: ediscovery_review_tag_item_request_builder.EdiscoveryReviewTagItemRequestBuilder
+        Returns: Optional[ediscovery_review_tag_item_request_builder.EdiscoveryReviewTagItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

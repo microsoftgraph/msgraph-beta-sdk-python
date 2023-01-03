@@ -11,9 +11,12 @@ governance_role_definition = lazy_import('msgraph.generated.models.governance_ro
 governance_role_setting = lazy_import('msgraph.generated.models.governance_role_setting')
 
 class PrivilegedAccess(entity.Entity):
+    """
+    Provides operations to manage the collection of activityStatistics entities.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new PrivilegedAccess and sets the default values.
+        Instantiates a new privilegedAccess and sets the default values.
         """
         super().__init__()
         # The display name of the provider managed by PIM.

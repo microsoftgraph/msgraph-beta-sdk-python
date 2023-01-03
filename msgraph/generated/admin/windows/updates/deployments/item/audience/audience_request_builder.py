@@ -142,12 +142,12 @@ class AudienceRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def exclusions_by_id(self,id: str) -> updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder:
+    def exclusions_by_id(self,id: str) -> Optional[updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder]:
         """
         Provides operations to manage the exclusions property of the microsoft.graph.windowsUpdates.deploymentAudience entity.
         Args:
             id: Unique identifier of the item
-        Returns: updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder
+        Returns: Optional[updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -174,12 +174,12 @@ class AudienceRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, deployment_audience.DeploymentAudience, response_handler, error_mapping)
     
-    def members_by_id(self,id: str) -> updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder:
+    def members_by_id(self,id: str) -> Optional[updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder]:
         """
         Provides operations to manage the members property of the microsoft.graph.windowsUpdates.deploymentAudience entity.
         Args:
             id: Unique identifier of the item
-        Returns: updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder
+        Returns: Optional[updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

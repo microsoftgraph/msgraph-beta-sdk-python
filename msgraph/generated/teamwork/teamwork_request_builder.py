@@ -126,12 +126,12 @@ class TeamworkRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def deleted_teams_by_id(self,id: str) -> deleted_team_item_request_builder.DeletedTeamItemRequestBuilder:
+    def deleted_teams_by_id(self,id: str) -> Optional[deleted_team_item_request_builder.DeletedTeamItemRequestBuilder]:
         """
         Provides operations to manage the deletedTeams property of the microsoft.graph.teamwork entity.
         Args:
             id: Unique identifier of the item
-        Returns: deleted_team_item_request_builder.DeletedTeamItemRequestBuilder
+        Returns: Optional[deleted_team_item_request_builder.DeletedTeamItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -139,12 +139,12 @@ class TeamworkRequestBuilder():
         url_tpl_params["deletedTeam%2Did"] = id
         return deleted_team_item_request_builder.DeletedTeamItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def devices_by_id(self,id: str) -> teamwork_device_item_request_builder.TeamworkDeviceItemRequestBuilder:
+    def devices_by_id(self,id: str) -> Optional[teamwork_device_item_request_builder.TeamworkDeviceItemRequestBuilder]:
         """
         Provides operations to manage the devices property of the microsoft.graph.teamwork entity.
         Args:
             id: Unique identifier of the item
-        Returns: teamwork_device_item_request_builder.TeamworkDeviceItemRequestBuilder
+        Returns: Optional[teamwork_device_item_request_builder.TeamworkDeviceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -193,12 +193,12 @@ class TeamworkRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, teamwork.Teamwork, response_handler, error_mapping)
     
-    def team_templates_by_id(self,id: str) -> team_template_item_request_builder.TeamTemplateItemRequestBuilder:
+    def team_templates_by_id(self,id: str) -> Optional[team_template_item_request_builder.TeamTemplateItemRequestBuilder]:
         """
         Provides operations to manage the teamTemplates property of the microsoft.graph.teamwork entity.
         Args:
             id: Unique identifier of the item
-        Returns: team_template_item_request_builder.TeamTemplateItemRequestBuilder
+        Returns: Optional[team_template_item_request_builder.TeamTemplateItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -206,12 +206,12 @@ class TeamworkRequestBuilder():
         url_tpl_params["teamTemplate%2Did"] = id
         return team_template_item_request_builder.TeamTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def workforce_integrations_by_id(self,id: str) -> workforce_integration_item_request_builder.WorkforceIntegrationItemRequestBuilder:
+    def workforce_integrations_by_id(self,id: str) -> Optional[workforce_integration_item_request_builder.WorkforceIntegrationItemRequestBuilder]:
         """
         Provides operations to manage the workforceIntegrations property of the microsoft.graph.teamwork entity.
         Args:
             id: Unique identifier of the item
-        Returns: workforce_integration_item_request_builder.WorkforceIntegrationItemRequestBuilder
+        Returns: Optional[workforce_integration_item_request_builder.WorkforceIntegrationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

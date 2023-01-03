@@ -11,12 +11,9 @@ risk_state = lazy_import('msgraph.generated.models.risk_state')
 risky_user_history_item = lazy_import('msgraph.generated.models.risky_user_history_item')
 
 class RiskyUser(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new riskyUser and sets the default values.
+        Instantiates a new RiskyUser and sets the default values.
         """
         super().__init__()
         # The history property

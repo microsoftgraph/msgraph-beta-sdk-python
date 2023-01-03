@@ -34,12 +34,12 @@ class IntuneBrandingProfileItemRequestBuilder():
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def assignments_by_id(self,id: str) -> intune_branding_profile_assignment_item_request_builder.IntuneBrandingProfileAssignmentItemRequestBuilder:
+    def assignments_by_id(self,id: str) -> Optional[intune_branding_profile_assignment_item_request_builder.IntuneBrandingProfileAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the assignments property of the microsoft.graph.intuneBrandingProfile entity.
         Args:
             id: Unique identifier of the item
-        Returns: intune_branding_profile_assignment_item_request_builder.IntuneBrandingProfileAssignmentItemRequestBuilder
+        Returns: Optional[intune_branding_profile_assignment_item_request_builder.IntuneBrandingProfileAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

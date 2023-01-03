@@ -183,12 +183,12 @@ class DepOnboardingSettingItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def enrollment_profiles_by_id(self,id: str) -> enrollment_profile_item_request_builder.EnrollmentProfileItemRequestBuilder:
+    def enrollment_profiles_by_id(self,id: str) -> Optional[enrollment_profile_item_request_builder.EnrollmentProfileItemRequestBuilder]:
         """
         Provides operations to manage the enrollmentProfiles property of the microsoft.graph.depOnboardingSetting entity.
         Args:
             id: Unique identifier of the item
-        Returns: enrollment_profile_item_request_builder.EnrollmentProfileItemRequestBuilder
+        Returns: Optional[enrollment_profile_item_request_builder.EnrollmentProfileItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -222,12 +222,12 @@ class DepOnboardingSettingItemRequestBuilder():
         """
         return get_encryption_public_key_request_builder.GetEncryptionPublicKeyRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def imported_apple_device_identities_by_id(self,id: str) -> imported_apple_device_identity_item_request_builder.ImportedAppleDeviceIdentityItemRequestBuilder:
+    def imported_apple_device_identities_by_id(self,id: str) -> Optional[imported_apple_device_identity_item_request_builder.ImportedAppleDeviceIdentityItemRequestBuilder]:
         """
         Provides operations to manage the importedAppleDeviceIdentities property of the microsoft.graph.depOnboardingSetting entity.
         Args:
             id: Unique identifier of the item
-        Returns: imported_apple_device_identity_item_request_builder.ImportedAppleDeviceIdentityItemRequestBuilder
+        Returns: Optional[imported_apple_device_identity_item_request_builder.ImportedAppleDeviceIdentityItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

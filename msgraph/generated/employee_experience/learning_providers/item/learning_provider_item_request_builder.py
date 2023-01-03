@@ -136,12 +136,12 @@ class LearningProviderItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, learning_provider.LearningProvider, response_handler, error_mapping)
     
-    def learning_contents_by_id(self,id: str) -> learning_content_item_request_builder.LearningContentItemRequestBuilder:
+    def learning_contents_by_id(self,id: str) -> Optional[learning_content_item_request_builder.LearningContentItemRequestBuilder]:
         """
         Provides operations to manage the learningContents property of the microsoft.graph.learningProvider entity.
         Args:
             id: Unique identifier of the item
-        Returns: learning_content_item_request_builder.LearningContentItemRequestBuilder
+        Returns: Optional[learning_content_item_request_builder.LearningContentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

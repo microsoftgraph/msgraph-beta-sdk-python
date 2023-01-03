@@ -158,12 +158,12 @@ class MacOSSoftwareUpdateCategorySummaryItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary, response_handler, error_mapping)
     
-    def update_state_summaries_by_id(self,id: str) -> mac_o_s_software_update_state_summary_item_request_builder.MacOSSoftwareUpdateStateSummaryItemRequestBuilder:
+    def update_state_summaries_by_id(self,id: str) -> Optional[mac_o_s_software_update_state_summary_item_request_builder.MacOSSoftwareUpdateStateSummaryItemRequestBuilder]:
         """
         Provides operations to manage the updateStateSummaries property of the microsoft.graph.macOSSoftwareUpdateCategorySummary entity.
         Args:
             id: Unique identifier of the item
-        Returns: mac_o_s_software_update_state_summary_item_request_builder.MacOSSoftwareUpdateStateSummaryItemRequestBuilder
+        Returns: Optional[mac_o_s_software_update_state_summary_item_request_builder.MacOSSoftwareUpdateStateSummaryItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -34,12 +34,12 @@ class RoleScopeTagItemRequestBuilder():
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def assignments_by_id(self,id: str) -> role_scope_tag_auto_assignment_item_request_builder.RoleScopeTagAutoAssignmentItemRequestBuilder:
+    def assignments_by_id(self,id: str) -> Optional[role_scope_tag_auto_assignment_item_request_builder.RoleScopeTagAutoAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the assignments property of the microsoft.graph.roleScopeTag entity.
         Args:
             id: Unique identifier of the item
-        Returns: role_scope_tag_auto_assignment_item_request_builder.RoleScopeTagAutoAssignmentItemRequestBuilder
+        Returns: Optional[role_scope_tag_auto_assignment_item_request_builder.RoleScopeTagAutoAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -8,9 +8,12 @@ entity = lazy_import('msgraph.generated.models.entity')
 message_event_type = lazy_import('msgraph.generated.models.message_event_type')
 
 class MessageEvent(entity.Entity):
+    """
+    Provides operations to manage the collection of activityStatistics entities.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new MessageEvent and sets the default values.
+        Instantiates a new messageEvent and sets the default values.
         """
         super().__init__()
         # The dateTime property

@@ -12,7 +12,7 @@ shared_email_domain_invitation = lazy_import('msgraph.generated.models.shared_em
 
 class Domain(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def authentication_type(self,) -> Optional[str]:

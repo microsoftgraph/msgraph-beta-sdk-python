@@ -177,12 +177,12 @@ class ChatMessageItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, chat_message.ChatMessage, response_handler, error_mapping)
     
-    def hosted_contents_by_id(self,id: str) -> chat_message_hosted_content_item_request_builder.ChatMessageHostedContentItemRequestBuilder:
+    def hosted_contents_by_id(self,id: str) -> Optional[chat_message_hosted_content_item_request_builder.ChatMessageHostedContentItemRequestBuilder]:
         """
         Provides operations to manage the hostedContents property of the microsoft.graph.chatMessage entity.
         Args:
             id: Unique identifier of the item
-        Returns: chat_message_hosted_content_item_request_builder.ChatMessageHostedContentItemRequestBuilder
+        Returns: Optional[chat_message_hosted_content_item_request_builder.ChatMessageHostedContentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -212,12 +212,12 @@ class ChatMessageItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, chat_message.ChatMessage, response_handler, error_mapping)
     
-    def replies_by_id(self,id: str) -> ChatMessageItemRequestBuilder:
+    def replies_by_id(self,id: str) -> Optional[ChatMessageItemRequestBuilder]:
         """
         Provides operations to manage the replies property of the microsoft.graph.chatMessage entity.
         Args:
             id: Unique identifier of the item
-        Returns: ChatMessageItemRequestBuilder
+        Returns: Optional[ChatMessageItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

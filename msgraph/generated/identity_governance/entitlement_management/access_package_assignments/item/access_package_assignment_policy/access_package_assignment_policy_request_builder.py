@@ -115,12 +115,12 @@ class AccessPackageAssignmentPolicyRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def custom_extension_handlers_by_id(self,id: str) -> custom_extension_handler_item_request_builder.CustomExtensionHandlerItemRequestBuilder:
+    def custom_extension_handlers_by_id(self,id: str) -> Optional[custom_extension_handler_item_request_builder.CustomExtensionHandlerItemRequestBuilder]:
         """
         Provides operations to manage the customExtensionHandlers property of the microsoft.graph.accessPackageAssignmentPolicy entity.
         Args:
             id: Unique identifier of the item
-        Returns: custom_extension_handler_item_request_builder.CustomExtensionHandlerItemRequestBuilder
+        Returns: Optional[custom_extension_handler_item_request_builder.CustomExtensionHandlerItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

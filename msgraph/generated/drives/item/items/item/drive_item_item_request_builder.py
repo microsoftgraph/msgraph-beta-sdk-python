@@ -203,12 +203,12 @@ class DriveItemItemRequestBuilder():
         """
         return versions_request_builder.VersionsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def activities_by_id(self,id: str) -> item_activity_o_l_d_item_request_builder.ItemActivityOLDItemRequestBuilder:
+    def activities_by_id(self,id: str) -> Optional[item_activity_o_l_d_item_request_builder.ItemActivityOLDItemRequestBuilder]:
         """
         Provides operations to manage the activities property of the microsoft.graph.driveItem entity.
         Args:
             id: Unique identifier of the item
-        Returns: item_activity_o_l_d_item_request_builder.ItemActivityOLDItemRequestBuilder
+        Returns: Optional[item_activity_o_l_d_item_request_builder.ItemActivityOLDItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -216,12 +216,12 @@ class DriveItemItemRequestBuilder():
         url_tpl_params["itemActivityOLD%2Did"] = id
         return item_activity_o_l_d_item_request_builder.ItemActivityOLDItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def children_by_id(self,id: str) -> DriveItemItemRequestBuilder:
+    def children_by_id(self,id: str) -> Optional[DriveItemItemRequestBuilder]:
         """
         Provides operations to manage the children property of the microsoft.graph.driveItem entity.
         Args:
             id: Unique identifier of the item
-        Returns: DriveItemItemRequestBuilder
+        Returns: Optional[DriveItemItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -396,12 +396,12 @@ class DriveItemItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, drive_item.DriveItem, response_handler, error_mapping)
     
-    def permissions_by_id(self,id: str) -> permission_item_request_builder.PermissionItemRequestBuilder:
+    def permissions_by_id(self,id: str) -> Optional[permission_item_request_builder.PermissionItemRequestBuilder]:
         """
         Provides operations to manage the permissions property of the microsoft.graph.driveItem entity.
         Args:
             id: Unique identifier of the item
-        Returns: permission_item_request_builder.PermissionItemRequestBuilder
+        Returns: Optional[permission_item_request_builder.PermissionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -420,12 +420,12 @@ class DriveItemItemRequestBuilder():
             raise Exception("q cannot be undefined")
         return search_with_q_request_builder.SearchWithQRequestBuilder(self.request_adapter, self.path_parameters, q)
     
-    def subscriptions_by_id(self,id: str) -> subscription_item_request_builder.SubscriptionItemRequestBuilder:
+    def subscriptions_by_id(self,id: str) -> Optional[subscription_item_request_builder.SubscriptionItemRequestBuilder]:
         """
         Provides operations to manage the subscriptions property of the microsoft.graph.driveItem entity.
         Args:
             id: Unique identifier of the item
-        Returns: subscription_item_request_builder.SubscriptionItemRequestBuilder
+        Returns: Optional[subscription_item_request_builder.SubscriptionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -433,12 +433,12 @@ class DriveItemItemRequestBuilder():
         url_tpl_params["subscription%2Did"] = id
         return subscription_item_request_builder.SubscriptionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def thumbnails_by_id(self,id: str) -> thumbnail_set_item_request_builder.ThumbnailSetItemRequestBuilder:
+    def thumbnails_by_id(self,id: str) -> Optional[thumbnail_set_item_request_builder.ThumbnailSetItemRequestBuilder]:
         """
         Provides operations to manage the thumbnails property of the microsoft.graph.driveItem entity.
         Args:
             id: Unique identifier of the item
-        Returns: thumbnail_set_item_request_builder.ThumbnailSetItemRequestBuilder
+        Returns: Optional[thumbnail_set_item_request_builder.ThumbnailSetItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -446,12 +446,12 @@ class DriveItemItemRequestBuilder():
         url_tpl_params["thumbnailSet%2Did"] = id
         return thumbnail_set_item_request_builder.ThumbnailSetItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def versions_by_id(self,id: str) -> drive_item_version_item_request_builder.DriveItemVersionItemRequestBuilder:
+    def versions_by_id(self,id: str) -> Optional[drive_item_version_item_request_builder.DriveItemVersionItemRequestBuilder]:
         """
         Provides operations to manage the versions property of the microsoft.graph.driveItem entity.
         Args:
             id: Unique identifier of the item
-        Returns: drive_item_version_item_request_builder.DriveItemVersionItemRequestBuilder
+        Returns: Optional[drive_item_version_item_request_builder.DriveItemVersionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

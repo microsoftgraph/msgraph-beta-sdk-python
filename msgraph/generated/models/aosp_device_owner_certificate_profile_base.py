@@ -11,6 +11,9 @@ subject_alternative_name_type = lazy_import('msgraph.generated.models.subject_al
 subject_name_format = lazy_import('msgraph.generated.models.subject_name_format')
 
 class AospDeviceOwnerCertificateProfileBase(device_configuration.DeviceConfiguration):
+    """
+    AOSP Device Owner certificate profile base.
+    """
     @property
     def certificate_validity_period_scale(self,) -> Optional[certificate_validity_period_scale.CertificateValidityPeriodScale]:
         """
@@ -47,7 +50,7 @@ class AospDeviceOwnerCertificateProfileBase(device_configuration.DeviceConfigura
     
     def __init__(self,) -> None:
         """
-        Instantiates a new AospDeviceOwnerCertificateProfileBase and sets the default values.
+        Instantiates a new aospDeviceOwnerCertificateProfileBase and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.aospDeviceOwnerCertificateProfileBase"

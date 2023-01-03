@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 directory_object = lazy_import('msgraph.generated.models.directory_object')
 
 class DirectoryObjectCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the members property of the microsoft.graph.administrativeUnit entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new DirectoryObjectCollectionResponse and sets the default values.

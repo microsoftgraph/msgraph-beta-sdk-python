@@ -44,12 +44,12 @@ class ApprovalWorkflowProviderItemRequestBuilder():
         """
         return policy_templates_request_builder.PolicyTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def business_flows_by_id(self,id: str) -> business_flow_item_request_builder.BusinessFlowItemRequestBuilder:
+    def business_flows_by_id(self,id: str) -> Optional[business_flow_item_request_builder.BusinessFlowItemRequestBuilder]:
         """
         Provides operations to manage the businessFlows property of the microsoft.graph.approvalWorkflowProvider entity.
         Args:
             id: Unique identifier of the item
-        Returns: business_flow_item_request_builder.BusinessFlowItemRequestBuilder
+        Returns: Optional[business_flow_item_request_builder.BusinessFlowItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -57,12 +57,12 @@ class ApprovalWorkflowProviderItemRequestBuilder():
         url_tpl_params["businessFlow%2Did"] = id
         return business_flow_item_request_builder.BusinessFlowItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def business_flows_with_requests_awaiting_my_decision_by_id(self,id: str) -> business_flow_item_request_builder.BusinessFlowItemRequestBuilder:
+    def business_flows_with_requests_awaiting_my_decision_by_id(self,id: str) -> Optional[business_flow_item_request_builder.BusinessFlowItemRequestBuilder]:
         """
         Provides operations to manage the businessFlowsWithRequestsAwaitingMyDecision property of the microsoft.graph.approvalWorkflowProvider entity.
         Args:
             id: Unique identifier of the item
-        Returns: business_flow_item_request_builder.BusinessFlowItemRequestBuilder
+        Returns: Optional[business_flow_item_request_builder.BusinessFlowItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -202,12 +202,12 @@ class ApprovalWorkflowProviderItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, approval_workflow_provider.ApprovalWorkflowProvider, response_handler, error_mapping)
     
-    def policy_templates_by_id(self,id: str) -> governance_policy_template_item_request_builder.GovernancePolicyTemplateItemRequestBuilder:
+    def policy_templates_by_id(self,id: str) -> Optional[governance_policy_template_item_request_builder.GovernancePolicyTemplateItemRequestBuilder]:
         """
         Provides operations to manage the policyTemplates property of the microsoft.graph.approvalWorkflowProvider entity.
         Args:
             id: Unique identifier of the item
-        Returns: governance_policy_template_item_request_builder.GovernancePolicyTemplateItemRequestBuilder
+        Returns: Optional[governance_policy_template_item_request_builder.GovernancePolicyTemplateItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

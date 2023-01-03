@@ -8,7 +8,7 @@ tenant_contact_information = lazy_import('msgraph.generated.models.managed_tenan
 
 class TenantCustomizedInformation(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     def __init__(self,) -> None:
         """

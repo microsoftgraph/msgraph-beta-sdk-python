@@ -10,7 +10,7 @@ single_value_legacy_extended_property = lazy_import('msgraph.generated.models.si
 
 class OutlookTaskFolder(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def change_key(self,) -> Optional[str]:

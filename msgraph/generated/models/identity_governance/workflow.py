@@ -12,9 +12,12 @@ workflow_base = lazy_import('msgraph.generated.models.identity_governance.workfl
 workflow_version = lazy_import('msgraph.generated.models.identity_governance.workflow_version')
 
 class Workflow(workflow_base.WorkflowBase):
+    """
+    Provides operations to manage the collection of accessReviewDecision entities.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new Workflow and sets the default values.
+        Instantiates a new workflow and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.identityGovernance.workflow"

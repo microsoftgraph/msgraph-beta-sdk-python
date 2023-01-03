@@ -148,12 +148,12 @@ class PurchaseInvoiceItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, purchase_invoice.PurchaseInvoice, response_handler, error_mapping)
     
-    def purchase_invoice_lines_by_id(self,id: str) -> purchase_invoice_line_item_request_builder.PurchaseInvoiceLineItemRequestBuilder:
+    def purchase_invoice_lines_by_id(self,id: str) -> Optional[purchase_invoice_line_item_request_builder.PurchaseInvoiceLineItemRequestBuilder]:
         """
         Provides operations to manage the purchaseInvoiceLines property of the microsoft.graph.purchaseInvoice entity.
         Args:
             id: Unique identifier of the item
-        Returns: purchase_invoice_line_item_request_builder.PurchaseInvoiceLineItemRequestBuilder
+        Returns: Optional[purchase_invoice_line_item_request_builder.PurchaseInvoiceLineItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -12,9 +12,6 @@ windows_autopilot_device_type = lazy_import('msgraph.generated.models.windows_au
 windows_enrollment_status_screen_settings = lazy_import('msgraph.generated.models.windows_enrollment_status_screen_settings')
 
 class WindowsAutopilotDeploymentProfile(entity.Entity):
-    """
-    Windows Autopilot Deployment Profile
-    """
     @property
     def assigned_devices(self,) -> Optional[List[windows_autopilot_device_identity.WindowsAutopilotDeviceIdentity]]:
         """

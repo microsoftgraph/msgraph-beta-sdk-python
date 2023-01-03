@@ -144,12 +144,12 @@ class ThreatSubmissionRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def email_threats_by_id(self,id: str) -> email_threat_submission_item_request_builder.EmailThreatSubmissionItemRequestBuilder:
+    def email_threats_by_id(self,id: str) -> Optional[email_threat_submission_item_request_builder.EmailThreatSubmissionItemRequestBuilder]:
         """
         Provides operations to manage the emailThreats property of the microsoft.graph.security.threatSubmissionRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: email_threat_submission_item_request_builder.EmailThreatSubmissionItemRequestBuilder
+        Returns: Optional[email_threat_submission_item_request_builder.EmailThreatSubmissionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -157,12 +157,12 @@ class ThreatSubmissionRequestBuilder():
         url_tpl_params["emailThreatSubmission%2Did"] = id
         return email_threat_submission_item_request_builder.EmailThreatSubmissionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def email_threat_submission_policies_by_id(self,id: str) -> email_threat_submission_policy_item_request_builder.EmailThreatSubmissionPolicyItemRequestBuilder:
+    def email_threat_submission_policies_by_id(self,id: str) -> Optional[email_threat_submission_policy_item_request_builder.EmailThreatSubmissionPolicyItemRequestBuilder]:
         """
         Provides operations to manage the emailThreatSubmissionPolicies property of the microsoft.graph.security.threatSubmissionRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: email_threat_submission_policy_item_request_builder.EmailThreatSubmissionPolicyItemRequestBuilder
+        Returns: Optional[email_threat_submission_policy_item_request_builder.EmailThreatSubmissionPolicyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -170,12 +170,12 @@ class ThreatSubmissionRequestBuilder():
         url_tpl_params["emailThreatSubmissionPolicy%2Did"] = id
         return email_threat_submission_policy_item_request_builder.EmailThreatSubmissionPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def file_threats_by_id(self,id: str) -> file_threat_submission_item_request_builder.FileThreatSubmissionItemRequestBuilder:
+    def file_threats_by_id(self,id: str) -> Optional[file_threat_submission_item_request_builder.FileThreatSubmissionItemRequestBuilder]:
         """
         Provides operations to manage the fileThreats property of the microsoft.graph.security.threatSubmissionRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: file_threat_submission_item_request_builder.FileThreatSubmissionItemRequestBuilder
+        Returns: Optional[file_threat_submission_item_request_builder.FileThreatSubmissionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -224,12 +224,12 @@ class ThreatSubmissionRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, threat_submission_root.ThreatSubmissionRoot, response_handler, error_mapping)
     
-    def url_threats_by_id(self,id: str) -> url_threat_submission_item_request_builder.UrlThreatSubmissionItemRequestBuilder:
+    def url_threats_by_id(self,id: str) -> Optional[url_threat_submission_item_request_builder.UrlThreatSubmissionItemRequestBuilder]:
         """
         Provides operations to manage the urlThreats property of the microsoft.graph.security.threatSubmissionRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: url_threat_submission_item_request_builder.UrlThreatSubmissionItemRequestBuilder
+        Returns: Optional[url_threat_submission_item_request_builder.UrlThreatSubmissionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

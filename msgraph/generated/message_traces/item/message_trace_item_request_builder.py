@@ -158,12 +158,12 @@ class MessageTraceItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, message_trace.MessageTrace, response_handler, error_mapping)
     
-    def recipients_by_id(self,id: str) -> message_recipient_item_request_builder.MessageRecipientItemRequestBuilder:
+    def recipients_by_id(self,id: str) -> Optional[message_recipient_item_request_builder.MessageRecipientItemRequestBuilder]:
         """
         Provides operations to manage the recipients property of the microsoft.graph.messageTrace entity.
         Args:
             id: Unique identifier of the item
-        Returns: message_recipient_item_request_builder.MessageRecipientItemRequestBuilder
+        Returns: Optional[message_recipient_item_request_builder.MessageRecipientItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

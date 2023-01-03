@@ -35,12 +35,12 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
         """
         return update_allowed_combinations_request_builder.UpdateAllowedCombinationsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def combination_configurations_by_id(self,id: str) -> authentication_combination_configuration_item_request_builder.AuthenticationCombinationConfigurationItemRequestBuilder:
+    def combination_configurations_by_id(self,id: str) -> Optional[authentication_combination_configuration_item_request_builder.AuthenticationCombinationConfigurationItemRequestBuilder]:
         """
         Provides operations to manage the combinationConfigurations property of the microsoft.graph.authenticationStrengthPolicy entity.
         Args:
             id: Unique identifier of the item
-        Returns: authentication_combination_configuration_item_request_builder.AuthenticationCombinationConfigurationItemRequestBuilder
+        Returns: Optional[authentication_combination_configuration_item_request_builder.AuthenticationCombinationConfigurationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

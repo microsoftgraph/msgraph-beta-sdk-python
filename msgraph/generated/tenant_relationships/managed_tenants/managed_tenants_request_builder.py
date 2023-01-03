@@ -323,12 +323,12 @@ class ManagedTenantsRequestBuilder():
         """
         return windows_protection_states_request_builder.WindowsProtectionStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def aggregated_policy_compliances_by_id(self,id: str) -> aggregated_policy_compliance_item_request_builder.AggregatedPolicyComplianceItemRequestBuilder:
+    def aggregated_policy_compliances_by_id(self,id: str) -> Optional[aggregated_policy_compliance_item_request_builder.AggregatedPolicyComplianceItemRequestBuilder]:
         """
         Provides operations to manage the aggregatedPolicyCompliances property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: aggregated_policy_compliance_item_request_builder.AggregatedPolicyComplianceItemRequestBuilder
+        Returns: Optional[aggregated_policy_compliance_item_request_builder.AggregatedPolicyComplianceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -336,12 +336,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["aggregatedPolicyCompliance%2Did"] = id
         return aggregated_policy_compliance_item_request_builder.AggregatedPolicyComplianceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def audit_events_by_id(self,id: str) -> audit_event_item_request_builder.AuditEventItemRequestBuilder:
+    def audit_events_by_id(self,id: str) -> Optional[audit_event_item_request_builder.AuditEventItemRequestBuilder]:
         """
         Provides operations to manage the auditEvents property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: audit_event_item_request_builder.AuditEventItemRequestBuilder
+        Returns: Optional[audit_event_item_request_builder.AuditEventItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -349,12 +349,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["auditEvent%2Did"] = id
         return audit_event_item_request_builder.AuditEventItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def cloud_pc_connections_by_id(self,id: str) -> cloud_pc_connection_item_request_builder.CloudPcConnectionItemRequestBuilder:
+    def cloud_pc_connections_by_id(self,id: str) -> Optional[cloud_pc_connection_item_request_builder.CloudPcConnectionItemRequestBuilder]:
         """
         Provides operations to manage the cloudPcConnections property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: cloud_pc_connection_item_request_builder.CloudPcConnectionItemRequestBuilder
+        Returns: Optional[cloud_pc_connection_item_request_builder.CloudPcConnectionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -362,12 +362,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["cloudPcConnection%2Did"] = id
         return cloud_pc_connection_item_request_builder.CloudPcConnectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def cloud_pc_devices_by_id(self,id: str) -> cloud_pc_device_item_request_builder.CloudPcDeviceItemRequestBuilder:
+    def cloud_pc_devices_by_id(self,id: str) -> Optional[cloud_pc_device_item_request_builder.CloudPcDeviceItemRequestBuilder]:
         """
         Provides operations to manage the cloudPcDevices property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: cloud_pc_device_item_request_builder.CloudPcDeviceItemRequestBuilder
+        Returns: Optional[cloud_pc_device_item_request_builder.CloudPcDeviceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -375,12 +375,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["cloudPcDevice%2Did"] = id
         return cloud_pc_device_item_request_builder.CloudPcDeviceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def cloud_pcs_overview_by_id(self,id: str) -> cloud_pc_overview_tenant_item_request_builder.CloudPcOverviewTenantItemRequestBuilder:
+    def cloud_pcs_overview_by_id(self,id: str) -> Optional[cloud_pc_overview_tenant_item_request_builder.CloudPcOverviewTenantItemRequestBuilder]:
         """
         Provides operations to manage the cloudPcsOverview property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: cloud_pc_overview_tenant_item_request_builder.CloudPcOverviewTenantItemRequestBuilder
+        Returns: Optional[cloud_pc_overview_tenant_item_request_builder.CloudPcOverviewTenantItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -388,12 +388,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["cloudPcOverview%2DtenantId"] = id
         return cloud_pc_overview_tenant_item_request_builder.CloudPcOverviewTenantItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def conditional_access_policy_coverages_by_id(self,id: str) -> conditional_access_policy_coverage_item_request_builder.ConditionalAccessPolicyCoverageItemRequestBuilder:
+    def conditional_access_policy_coverages_by_id(self,id: str) -> Optional[conditional_access_policy_coverage_item_request_builder.ConditionalAccessPolicyCoverageItemRequestBuilder]:
         """
         Provides operations to manage the conditionalAccessPolicyCoverages property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: conditional_access_policy_coverage_item_request_builder.ConditionalAccessPolicyCoverageItemRequestBuilder
+        Returns: Optional[conditional_access_policy_coverage_item_request_builder.ConditionalAccessPolicyCoverageItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -474,12 +474,12 @@ class ManagedTenantsRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def credential_user_registrations_summaries_by_id(self,id: str) -> credential_user_registrations_summary_item_request_builder.CredentialUserRegistrationsSummaryItemRequestBuilder:
+    def credential_user_registrations_summaries_by_id(self,id: str) -> Optional[credential_user_registrations_summary_item_request_builder.CredentialUserRegistrationsSummaryItemRequestBuilder]:
         """
         Provides operations to manage the credentialUserRegistrationsSummaries property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: credential_user_registrations_summary_item_request_builder.CredentialUserRegistrationsSummaryItemRequestBuilder
+        Returns: Optional[credential_user_registrations_summary_item_request_builder.CredentialUserRegistrationsSummaryItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -505,12 +505,12 @@ class ManagedTenantsRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def device_compliance_policy_setting_state_summaries_by_id(self,id: str) -> device_compliance_policy_setting_state_summary_item_request_builder.DeviceCompliancePolicySettingStateSummaryItemRequestBuilder:
+    def device_compliance_policy_setting_state_summaries_by_id(self,id: str) -> Optional[device_compliance_policy_setting_state_summary_item_request_builder.DeviceCompliancePolicySettingStateSummaryItemRequestBuilder]:
         """
         Provides operations to manage the deviceCompliancePolicySettingStateSummaries property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: device_compliance_policy_setting_state_summary_item_request_builder.DeviceCompliancePolicySettingStateSummaryItemRequestBuilder
+        Returns: Optional[device_compliance_policy_setting_state_summary_item_request_builder.DeviceCompliancePolicySettingStateSummaryItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -537,12 +537,12 @@ class ManagedTenantsRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, managed_tenant.ManagedTenant, response_handler, error_mapping)
     
-    def managed_device_compliances_by_id(self,id: str) -> managed_device_compliance_item_request_builder.ManagedDeviceComplianceItemRequestBuilder:
+    def managed_device_compliances_by_id(self,id: str) -> Optional[managed_device_compliance_item_request_builder.ManagedDeviceComplianceItemRequestBuilder]:
         """
         Provides operations to manage the managedDeviceCompliances property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: managed_device_compliance_item_request_builder.ManagedDeviceComplianceItemRequestBuilder
+        Returns: Optional[managed_device_compliance_item_request_builder.ManagedDeviceComplianceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -550,12 +550,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["managedDeviceCompliance%2Did"] = id
         return managed_device_compliance_item_request_builder.ManagedDeviceComplianceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def managed_device_compliance_trends_by_id(self,id: str) -> managed_device_compliance_trend_item_request_builder.ManagedDeviceComplianceTrendItemRequestBuilder:
+    def managed_device_compliance_trends_by_id(self,id: str) -> Optional[managed_device_compliance_trend_item_request_builder.ManagedDeviceComplianceTrendItemRequestBuilder]:
         """
         Provides operations to manage the managedDeviceComplianceTrends property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: managed_device_compliance_trend_item_request_builder.ManagedDeviceComplianceTrendItemRequestBuilder
+        Returns: Optional[managed_device_compliance_trend_item_request_builder.ManagedDeviceComplianceTrendItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -563,12 +563,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["managedDeviceComplianceTrend%2Did"] = id
         return managed_device_compliance_trend_item_request_builder.ManagedDeviceComplianceTrendItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def managed_tenant_alert_logs_by_id(self,id: str) -> managed_tenant_alert_log_item_request_builder.ManagedTenantAlertLogItemRequestBuilder:
+    def managed_tenant_alert_logs_by_id(self,id: str) -> Optional[managed_tenant_alert_log_item_request_builder.ManagedTenantAlertLogItemRequestBuilder]:
         """
         Provides operations to manage the managedTenantAlertLogs property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: managed_tenant_alert_log_item_request_builder.ManagedTenantAlertLogItemRequestBuilder
+        Returns: Optional[managed_tenant_alert_log_item_request_builder.ManagedTenantAlertLogItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -576,12 +576,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["managedTenantAlertLog%2Did"] = id
         return managed_tenant_alert_log_item_request_builder.ManagedTenantAlertLogItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def managed_tenant_alert_rule_definitions_by_id(self,id: str) -> managed_tenant_alert_rule_definition_item_request_builder.ManagedTenantAlertRuleDefinitionItemRequestBuilder:
+    def managed_tenant_alert_rule_definitions_by_id(self,id: str) -> Optional[managed_tenant_alert_rule_definition_item_request_builder.ManagedTenantAlertRuleDefinitionItemRequestBuilder]:
         """
         Provides operations to manage the managedTenantAlertRuleDefinitions property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: managed_tenant_alert_rule_definition_item_request_builder.ManagedTenantAlertRuleDefinitionItemRequestBuilder
+        Returns: Optional[managed_tenant_alert_rule_definition_item_request_builder.ManagedTenantAlertRuleDefinitionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -589,12 +589,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["managedTenantAlertRuleDefinition%2Did"] = id
         return managed_tenant_alert_rule_definition_item_request_builder.ManagedTenantAlertRuleDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def managed_tenant_alert_rules_by_id(self,id: str) -> managed_tenant_alert_rule_item_request_builder.ManagedTenantAlertRuleItemRequestBuilder:
+    def managed_tenant_alert_rules_by_id(self,id: str) -> Optional[managed_tenant_alert_rule_item_request_builder.ManagedTenantAlertRuleItemRequestBuilder]:
         """
         Provides operations to manage the managedTenantAlertRules property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: managed_tenant_alert_rule_item_request_builder.ManagedTenantAlertRuleItemRequestBuilder
+        Returns: Optional[managed_tenant_alert_rule_item_request_builder.ManagedTenantAlertRuleItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -602,12 +602,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["managedTenantAlertRule%2Did"] = id
         return managed_tenant_alert_rule_item_request_builder.ManagedTenantAlertRuleItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def managed_tenant_alerts_by_id(self,id: str) -> managed_tenant_alert_item_request_builder.ManagedTenantAlertItemRequestBuilder:
+    def managed_tenant_alerts_by_id(self,id: str) -> Optional[managed_tenant_alert_item_request_builder.ManagedTenantAlertItemRequestBuilder]:
         """
         Provides operations to manage the managedTenantAlerts property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: managed_tenant_alert_item_request_builder.ManagedTenantAlertItemRequestBuilder
+        Returns: Optional[managed_tenant_alert_item_request_builder.ManagedTenantAlertItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -615,12 +615,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["managedTenantAlert%2Did"] = id
         return managed_tenant_alert_item_request_builder.ManagedTenantAlertItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def managed_tenant_api_notifications_by_id(self,id: str) -> managed_tenant_api_notification_item_request_builder.ManagedTenantApiNotificationItemRequestBuilder:
+    def managed_tenant_api_notifications_by_id(self,id: str) -> Optional[managed_tenant_api_notification_item_request_builder.ManagedTenantApiNotificationItemRequestBuilder]:
         """
         Provides operations to manage the managedTenantApiNotifications property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: managed_tenant_api_notification_item_request_builder.ManagedTenantApiNotificationItemRequestBuilder
+        Returns: Optional[managed_tenant_api_notification_item_request_builder.ManagedTenantApiNotificationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -628,12 +628,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["managedTenantApiNotification%2Did"] = id
         return managed_tenant_api_notification_item_request_builder.ManagedTenantApiNotificationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def managed_tenant_email_notifications_by_id(self,id: str) -> managed_tenant_email_notification_item_request_builder.ManagedTenantEmailNotificationItemRequestBuilder:
+    def managed_tenant_email_notifications_by_id(self,id: str) -> Optional[managed_tenant_email_notification_item_request_builder.ManagedTenantEmailNotificationItemRequestBuilder]:
         """
         Provides operations to manage the managedTenantEmailNotifications property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: managed_tenant_email_notification_item_request_builder.ManagedTenantEmailNotificationItemRequestBuilder
+        Returns: Optional[managed_tenant_email_notification_item_request_builder.ManagedTenantEmailNotificationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -641,12 +641,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["managedTenantEmailNotification%2Did"] = id
         return managed_tenant_email_notification_item_request_builder.ManagedTenantEmailNotificationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def managed_tenant_ticketing_endpoints_by_id(self,id: str) -> managed_tenant_ticketing_endpoint_item_request_builder.ManagedTenantTicketingEndpointItemRequestBuilder:
+    def managed_tenant_ticketing_endpoints_by_id(self,id: str) -> Optional[managed_tenant_ticketing_endpoint_item_request_builder.ManagedTenantTicketingEndpointItemRequestBuilder]:
         """
         Provides operations to manage the managedTenantTicketingEndpoints property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: managed_tenant_ticketing_endpoint_item_request_builder.ManagedTenantTicketingEndpointItemRequestBuilder
+        Returns: Optional[managed_tenant_ticketing_endpoint_item_request_builder.ManagedTenantTicketingEndpointItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -654,12 +654,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["managedTenantTicketingEndpoint%2Did"] = id
         return managed_tenant_ticketing_endpoint_item_request_builder.ManagedTenantTicketingEndpointItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def management_actions_by_id(self,id: str) -> management_action_item_request_builder.ManagementActionItemRequestBuilder:
+    def management_actions_by_id(self,id: str) -> Optional[management_action_item_request_builder.ManagementActionItemRequestBuilder]:
         """
         Provides operations to manage the managementActions property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: management_action_item_request_builder.ManagementActionItemRequestBuilder
+        Returns: Optional[management_action_item_request_builder.ManagementActionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -667,12 +667,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["managementAction%2Did"] = id
         return management_action_item_request_builder.ManagementActionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def management_action_tenant_deployment_statuses_by_id(self,id: str) -> management_action_tenant_deployment_status_item_request_builder.ManagementActionTenantDeploymentStatusItemRequestBuilder:
+    def management_action_tenant_deployment_statuses_by_id(self,id: str) -> Optional[management_action_tenant_deployment_status_item_request_builder.ManagementActionTenantDeploymentStatusItemRequestBuilder]:
         """
         Provides operations to manage the managementActionTenantDeploymentStatuses property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: management_action_tenant_deployment_status_item_request_builder.ManagementActionTenantDeploymentStatusItemRequestBuilder
+        Returns: Optional[management_action_tenant_deployment_status_item_request_builder.ManagementActionTenantDeploymentStatusItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -680,12 +680,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["managementActionTenantDeploymentStatus%2Did"] = id
         return management_action_tenant_deployment_status_item_request_builder.ManagementActionTenantDeploymentStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def management_intents_by_id(self,id: str) -> management_intent_item_request_builder.ManagementIntentItemRequestBuilder:
+    def management_intents_by_id(self,id: str) -> Optional[management_intent_item_request_builder.ManagementIntentItemRequestBuilder]:
         """
         Provides operations to manage the managementIntents property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: management_intent_item_request_builder.ManagementIntentItemRequestBuilder
+        Returns: Optional[management_intent_item_request_builder.ManagementIntentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -693,12 +693,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["managementIntent%2Did"] = id
         return management_intent_item_request_builder.ManagementIntentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def management_template_collections_by_id(self,id: str) -> management_template_collection_item_request_builder.ManagementTemplateCollectionItemRequestBuilder:
+    def management_template_collections_by_id(self,id: str) -> Optional[management_template_collection_item_request_builder.ManagementTemplateCollectionItemRequestBuilder]:
         """
         Provides operations to manage the managementTemplateCollections property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: management_template_collection_item_request_builder.ManagementTemplateCollectionItemRequestBuilder
+        Returns: Optional[management_template_collection_item_request_builder.ManagementTemplateCollectionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -706,12 +706,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["managementTemplateCollection%2Did"] = id
         return management_template_collection_item_request_builder.ManagementTemplateCollectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def management_template_collection_tenant_summaries_by_id(self,id: str) -> management_template_collection_tenant_summary_item_request_builder.ManagementTemplateCollectionTenantSummaryItemRequestBuilder:
+    def management_template_collection_tenant_summaries_by_id(self,id: str) -> Optional[management_template_collection_tenant_summary_item_request_builder.ManagementTemplateCollectionTenantSummaryItemRequestBuilder]:
         """
         Provides operations to manage the managementTemplateCollectionTenantSummaries property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: management_template_collection_tenant_summary_item_request_builder.ManagementTemplateCollectionTenantSummaryItemRequestBuilder
+        Returns: Optional[management_template_collection_tenant_summary_item_request_builder.ManagementTemplateCollectionTenantSummaryItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -719,12 +719,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["managementTemplateCollectionTenantSummary%2Did"] = id
         return management_template_collection_tenant_summary_item_request_builder.ManagementTemplateCollectionTenantSummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def management_templates_by_id(self,id: str) -> management_template_item_request_builder.ManagementTemplateItemRequestBuilder:
+    def management_templates_by_id(self,id: str) -> Optional[management_template_item_request_builder.ManagementTemplateItemRequestBuilder]:
         """
         Provides operations to manage the managementTemplates property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: management_template_item_request_builder.ManagementTemplateItemRequestBuilder
+        Returns: Optional[management_template_item_request_builder.ManagementTemplateItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -732,12 +732,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["managementTemplate%2Did"] = id
         return management_template_item_request_builder.ManagementTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def management_template_steps_by_id(self,id: str) -> management_template_step_item_request_builder.ManagementTemplateStepItemRequestBuilder:
+    def management_template_steps_by_id(self,id: str) -> Optional[management_template_step_item_request_builder.ManagementTemplateStepItemRequestBuilder]:
         """
         Provides operations to manage the managementTemplateSteps property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: management_template_step_item_request_builder.ManagementTemplateStepItemRequestBuilder
+        Returns: Optional[management_template_step_item_request_builder.ManagementTemplateStepItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -745,12 +745,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["managementTemplateStep%2Did"] = id
         return management_template_step_item_request_builder.ManagementTemplateStepItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def management_template_step_tenant_summaries_by_id(self,id: str) -> management_template_step_tenant_summary_item_request_builder.ManagementTemplateStepTenantSummaryItemRequestBuilder:
+    def management_template_step_tenant_summaries_by_id(self,id: str) -> Optional[management_template_step_tenant_summary_item_request_builder.ManagementTemplateStepTenantSummaryItemRequestBuilder]:
         """
         Provides operations to manage the managementTemplateStepTenantSummaries property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: management_template_step_tenant_summary_item_request_builder.ManagementTemplateStepTenantSummaryItemRequestBuilder
+        Returns: Optional[management_template_step_tenant_summary_item_request_builder.ManagementTemplateStepTenantSummaryItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -758,12 +758,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["managementTemplateStepTenantSummary%2Did"] = id
         return management_template_step_tenant_summary_item_request_builder.ManagementTemplateStepTenantSummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def management_template_step_versions_by_id(self,id: str) -> management_template_step_version_item_request_builder.ManagementTemplateStepVersionItemRequestBuilder:
+    def management_template_step_versions_by_id(self,id: str) -> Optional[management_template_step_version_item_request_builder.ManagementTemplateStepVersionItemRequestBuilder]:
         """
         Provides operations to manage the managementTemplateStepVersions property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: management_template_step_version_item_request_builder.ManagementTemplateStepVersionItemRequestBuilder
+        Returns: Optional[management_template_step_version_item_request_builder.ManagementTemplateStepVersionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -771,12 +771,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["managementTemplateStepVersion%2Did"] = id
         return management_template_step_version_item_request_builder.ManagementTemplateStepVersionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def my_roles_by_id(self,id: str) -> my_role_tenant_item_request_builder.MyRoleTenantItemRequestBuilder:
+    def my_roles_by_id(self,id: str) -> Optional[my_role_tenant_item_request_builder.MyRoleTenantItemRequestBuilder]:
         """
         Provides operations to manage the myRoles property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: my_role_tenant_item_request_builder.MyRoleTenantItemRequestBuilder
+        Returns: Optional[my_role_tenant_item_request_builder.MyRoleTenantItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -806,12 +806,12 @@ class ManagedTenantsRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, managed_tenant.ManagedTenant, response_handler, error_mapping)
     
-    def tenant_groups_by_id(self,id: str) -> tenant_group_item_request_builder.TenantGroupItemRequestBuilder:
+    def tenant_groups_by_id(self,id: str) -> Optional[tenant_group_item_request_builder.TenantGroupItemRequestBuilder]:
         """
         Provides operations to manage the tenantGroups property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: tenant_group_item_request_builder.TenantGroupItemRequestBuilder
+        Returns: Optional[tenant_group_item_request_builder.TenantGroupItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -819,12 +819,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["tenantGroup%2Did"] = id
         return tenant_group_item_request_builder.TenantGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def tenants_by_id(self,id: str) -> tenant_item_request_builder.TenantItemRequestBuilder:
+    def tenants_by_id(self,id: str) -> Optional[tenant_item_request_builder.TenantItemRequestBuilder]:
         """
         Provides operations to manage the tenants property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: tenant_item_request_builder.TenantItemRequestBuilder
+        Returns: Optional[tenant_item_request_builder.TenantItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -832,12 +832,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["tenant%2Did"] = id
         return tenant_item_request_builder.TenantItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def tenants_customized_information_by_id(self,id: str) -> tenant_customized_information_item_request_builder.TenantCustomizedInformationItemRequestBuilder:
+    def tenants_customized_information_by_id(self,id: str) -> Optional[tenant_customized_information_item_request_builder.TenantCustomizedInformationItemRequestBuilder]:
         """
         Provides operations to manage the tenantsCustomizedInformation property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: tenant_customized_information_item_request_builder.TenantCustomizedInformationItemRequestBuilder
+        Returns: Optional[tenant_customized_information_item_request_builder.TenantCustomizedInformationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -845,12 +845,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["tenantCustomizedInformation%2Did"] = id
         return tenant_customized_information_item_request_builder.TenantCustomizedInformationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def tenants_detailed_information_by_id(self,id: str) -> tenant_detailed_information_item_request_builder.TenantDetailedInformationItemRequestBuilder:
+    def tenants_detailed_information_by_id(self,id: str) -> Optional[tenant_detailed_information_item_request_builder.TenantDetailedInformationItemRequestBuilder]:
         """
         Provides operations to manage the tenantsDetailedInformation property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: tenant_detailed_information_item_request_builder.TenantDetailedInformationItemRequestBuilder
+        Returns: Optional[tenant_detailed_information_item_request_builder.TenantDetailedInformationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -858,12 +858,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["tenantDetailedInformation%2Did"] = id
         return tenant_detailed_information_item_request_builder.TenantDetailedInformationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def tenant_tags_by_id(self,id: str) -> tenant_tag_item_request_builder.TenantTagItemRequestBuilder:
+    def tenant_tags_by_id(self,id: str) -> Optional[tenant_tag_item_request_builder.TenantTagItemRequestBuilder]:
         """
         Provides operations to manage the tenantTags property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: tenant_tag_item_request_builder.TenantTagItemRequestBuilder
+        Returns: Optional[tenant_tag_item_request_builder.TenantTagItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -871,12 +871,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["tenantTag%2Did"] = id
         return tenant_tag_item_request_builder.TenantTagItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def windows_device_malware_states_by_id(self,id: str) -> windows_device_malware_state_item_request_builder.WindowsDeviceMalwareStateItemRequestBuilder:
+    def windows_device_malware_states_by_id(self,id: str) -> Optional[windows_device_malware_state_item_request_builder.WindowsDeviceMalwareStateItemRequestBuilder]:
         """
         Provides operations to manage the windowsDeviceMalwareStates property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: windows_device_malware_state_item_request_builder.WindowsDeviceMalwareStateItemRequestBuilder
+        Returns: Optional[windows_device_malware_state_item_request_builder.WindowsDeviceMalwareStateItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -884,12 +884,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["windowsDeviceMalwareState%2Did"] = id
         return windows_device_malware_state_item_request_builder.WindowsDeviceMalwareStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def windows_protection_states_by_id(self,id: str) -> windows_protection_state_item_request_builder.WindowsProtectionStateItemRequestBuilder:
+    def windows_protection_states_by_id(self,id: str) -> Optional[windows_protection_state_item_request_builder.WindowsProtectionStateItemRequestBuilder]:
         """
         Provides operations to manage the windowsProtectionStates property of the microsoft.graph.managedTenants.managedTenant entity.
         Args:
             id: Unique identifier of the item
-        Returns: windows_protection_state_item_request_builder.WindowsProtectionStateItemRequestBuilder
+        Returns: Optional[windows_protection_state_item_request_builder.WindowsProtectionStateItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

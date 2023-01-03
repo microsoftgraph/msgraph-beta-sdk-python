@@ -33,7 +33,7 @@ windows_application = lazy_import('msgraph.generated.models.windows_application'
 
 class Application(directory_object.DirectoryObject):
     """
-    Casts the previous resource to application.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def api(self,) -> Optional[api_application.ApiApplication]:

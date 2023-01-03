@@ -10,6 +10,9 @@ connector_group_type = lazy_import('msgraph.generated.models.connector_group_typ
 entity = lazy_import('msgraph.generated.models.entity')
 
 class ConnectorGroup(entity.Entity):
+    """
+    Provides operations to manage the collection of activityStatistics entities.
+    """
     @property
     def applications(self,) -> Optional[List[application.Application]]:
         """

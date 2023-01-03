@@ -9,9 +9,12 @@ identity = lazy_import('msgraph.generated.models.identity')
 unified_role_management_policy_rule = lazy_import('msgraph.generated.models.unified_role_management_policy_rule')
 
 class UnifiedRoleManagementPolicy(entity.Entity):
+    """
+    Provides operations to manage the collection of activityStatistics entities.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new UnifiedRoleManagementPolicy and sets the default values.
+        Instantiates a new unifiedRoleManagementPolicy and sets the default values.
         """
         super().__init__()
         # Description for the policy.

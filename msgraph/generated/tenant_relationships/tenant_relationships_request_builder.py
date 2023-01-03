@@ -102,12 +102,12 @@ class TenantRelationshipsRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def delegated_admin_customers_by_id(self,id: str) -> delegated_admin_customer_item_request_builder.DelegatedAdminCustomerItemRequestBuilder:
+    def delegated_admin_customers_by_id(self,id: str) -> Optional[delegated_admin_customer_item_request_builder.DelegatedAdminCustomerItemRequestBuilder]:
         """
         Provides operations to manage the delegatedAdminCustomers property of the microsoft.graph.tenantRelationship entity.
         Args:
             id: Unique identifier of the item
-        Returns: delegated_admin_customer_item_request_builder.DelegatedAdminCustomerItemRequestBuilder
+        Returns: Optional[delegated_admin_customer_item_request_builder.DelegatedAdminCustomerItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -115,12 +115,12 @@ class TenantRelationshipsRequestBuilder():
         url_tpl_params["delegatedAdminCustomer%2Did"] = id
         return delegated_admin_customer_item_request_builder.DelegatedAdminCustomerItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def delegated_admin_relationships_by_id(self,id: str) -> delegated_admin_relationship_item_request_builder.DelegatedAdminRelationshipItemRequestBuilder:
+    def delegated_admin_relationships_by_id(self,id: str) -> Optional[delegated_admin_relationship_item_request_builder.DelegatedAdminRelationshipItemRequestBuilder]:
         """
         Provides operations to manage the delegatedAdminRelationships property of the microsoft.graph.tenantRelationship entity.
         Args:
             id: Unique identifier of the item
-        Returns: delegated_admin_relationship_item_request_builder.DelegatedAdminRelationshipItemRequestBuilder
+        Returns: Optional[delegated_admin_relationship_item_request_builder.DelegatedAdminRelationshipItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

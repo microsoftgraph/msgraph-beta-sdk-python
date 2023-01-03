@@ -136,12 +136,12 @@ class ConnectorItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, connector.Connector, response_handler, error_mapping)
     
-    def member_of_by_id(self,id: str) -> connector_group_item_request_builder.ConnectorGroupItemRequestBuilder:
+    def member_of_by_id(self,id: str) -> Optional[connector_group_item_request_builder.ConnectorGroupItemRequestBuilder]:
         """
         Gets an item from the msgraph.generated.onPremisesPublishingProfiles.item.connectors.item.memberOf.item collection
         Args:
             id: Unique identifier of the item
-        Returns: connector_group_item_request_builder.ConnectorGroupItemRequestBuilder
+        Returns: Optional[connector_group_item_request_builder.ConnectorGroupItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

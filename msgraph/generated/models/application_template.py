@@ -9,7 +9,7 @@ supported_claim_configuration = lazy_import('msgraph.generated.models.supported_
 
 class ApplicationTemplate(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def categories(self,) -> Optional[List[str]]:

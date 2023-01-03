@@ -43,12 +43,12 @@ class AccessPackageResourceItemRequestBuilder():
         """
         return access_package_resource_scopes_request_builder.AccessPackageResourceScopesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def access_package_resource_roles_by_id(self,id: str) -> access_package_resource_role_item_request_builder.AccessPackageResourceRoleItemRequestBuilder:
+    def access_package_resource_roles_by_id(self,id: str) -> Optional[access_package_resource_role_item_request_builder.AccessPackageResourceRoleItemRequestBuilder]:
         """
         Provides operations to manage the accessPackageResourceRoles property of the microsoft.graph.accessPackageResource entity.
         Args:
             id: Unique identifier of the item
-        Returns: access_package_resource_role_item_request_builder.AccessPackageResourceRoleItemRequestBuilder
+        Returns: Optional[access_package_resource_role_item_request_builder.AccessPackageResourceRoleItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -56,12 +56,12 @@ class AccessPackageResourceItemRequestBuilder():
         url_tpl_params["accessPackageResourceRole%2Did"] = id
         return access_package_resource_role_item_request_builder.AccessPackageResourceRoleItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def access_package_resource_scopes_by_id(self,id: str) -> access_package_resource_scope_item_request_builder.AccessPackageResourceScopeItemRequestBuilder:
+    def access_package_resource_scopes_by_id(self,id: str) -> Optional[access_package_resource_scope_item_request_builder.AccessPackageResourceScopeItemRequestBuilder]:
         """
         Provides operations to manage the accessPackageResourceScopes property of the microsoft.graph.accessPackageResource entity.
         Args:
             id: Unique identifier of the item
-        Returns: access_package_resource_scope_item_request_builder.AccessPackageResourceScopeItemRequestBuilder
+        Returns: Optional[access_package_resource_scope_item_request_builder.AccessPackageResourceScopeItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -144,12 +144,12 @@ class CanvasLayoutRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, canvas_layout.CanvasLayout, response_handler, error_mapping)
     
-    def horizontal_sections_by_id(self,id: str) -> horizontal_section_item_request_builder.HorizontalSectionItemRequestBuilder:
+    def horizontal_sections_by_id(self,id: str) -> Optional[horizontal_section_item_request_builder.HorizontalSectionItemRequestBuilder]:
         """
         Provides operations to manage the horizontalSections property of the microsoft.graph.canvasLayout entity.
         Args:
             id: Unique identifier of the item
-        Returns: horizontal_section_item_request_builder.HorizontalSectionItemRequestBuilder
+        Returns: Optional[horizontal_section_item_request_builder.HorizontalSectionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

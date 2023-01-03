@@ -13,6 +13,9 @@ notification_target = lazy_import('msgraph.generated.models.managed_tenants.noti
 tenant_info = lazy_import('msgraph.generated.models.managed_tenants.tenant_info')
 
 class ManagedTenantAlertRule(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def alert_display_name(self,) -> Optional[str]:
         """

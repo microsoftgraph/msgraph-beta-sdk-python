@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 case_export_operation = lazy_import('msgraph.generated.models.ediscovery.case_export_operation')
 
 class CaseExportOperationCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Casts the previous resource to caseExportOperation.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new CaseExportOperationCollectionResponse and sets the default values.

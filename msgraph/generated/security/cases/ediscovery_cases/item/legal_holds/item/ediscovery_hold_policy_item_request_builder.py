@@ -167,12 +167,12 @@ class EdiscoveryHoldPolicyItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, ediscovery_hold_policy.EdiscoveryHoldPolicy, response_handler, error_mapping)
     
-    def site_sources_by_id(self,id: str) -> site_source_item_request_builder.SiteSourceItemRequestBuilder:
+    def site_sources_by_id(self,id: str) -> Optional[site_source_item_request_builder.SiteSourceItemRequestBuilder]:
         """
         Provides operations to manage the siteSources property of the microsoft.graph.security.ediscoveryHoldPolicy entity.
         Args:
             id: Unique identifier of the item
-        Returns: site_source_item_request_builder.SiteSourceItemRequestBuilder
+        Returns: Optional[site_source_item_request_builder.SiteSourceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -180,12 +180,12 @@ class EdiscoveryHoldPolicyItemRequestBuilder():
         url_tpl_params["siteSource%2Did"] = id
         return site_source_item_request_builder.SiteSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def user_sources_by_id(self,id: str) -> user_source_item_request_builder.UserSourceItemRequestBuilder:
+    def user_sources_by_id(self,id: str) -> Optional[user_source_item_request_builder.UserSourceItemRequestBuilder]:
         """
         Provides operations to manage the userSources property of the microsoft.graph.security.ediscoveryHoldPolicy entity.
         Args:
             id: Unique identifier of the item
-        Returns: user_source_item_request_builder.UserSourceItemRequestBuilder
+        Returns: Optional[user_source_item_request_builder.UserSourceItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

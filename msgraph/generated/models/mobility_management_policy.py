@@ -8,6 +8,9 @@ group = lazy_import('msgraph.generated.models.group')
 policy_scope = lazy_import('msgraph.generated.models.policy_scope')
 
 class MobilityManagementPolicy(entity.Entity):
+    """
+    Provides operations to manage the collection of activityStatistics entities.
+    """
     @property
     def applies_to(self,) -> Optional[policy_scope.PolicyScope]:
         """
@@ -44,7 +47,7 @@ class MobilityManagementPolicy(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new MobilityManagementPolicy and sets the default values.
+        Instantiates a new mobilityManagementPolicy and sets the default values.
         """
         super().__init__()
         # Indicates the user scope of the mobility management policy. Possible values are: none, all, selected.

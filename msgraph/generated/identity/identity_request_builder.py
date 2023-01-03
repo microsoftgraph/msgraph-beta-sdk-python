@@ -105,12 +105,12 @@ class IdentityRequestBuilder():
         """
         return user_flows_request_builder.UserFlowsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def api_connectors_by_id(self,id: str) -> identity_api_connector_item_request_builder.IdentityApiConnectorItemRequestBuilder:
+    def api_connectors_by_id(self,id: str) -> Optional[identity_api_connector_item_request_builder.IdentityApiConnectorItemRequestBuilder]:
         """
         Provides operations to manage the apiConnectors property of the microsoft.graph.identityContainer entity.
         Args:
             id: Unique identifier of the item
-        Returns: identity_api_connector_item_request_builder.IdentityApiConnectorItemRequestBuilder
+        Returns: Optional[identity_api_connector_item_request_builder.IdentityApiConnectorItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -118,12 +118,12 @@ class IdentityRequestBuilder():
         url_tpl_params["identityApiConnector%2Did"] = id
         return identity_api_connector_item_request_builder.IdentityApiConnectorItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def authentication_event_listeners_by_id(self,id: str) -> authentication_event_listener_item_request_builder.AuthenticationEventListenerItemRequestBuilder:
+    def authentication_event_listeners_by_id(self,id: str) -> Optional[authentication_event_listener_item_request_builder.AuthenticationEventListenerItemRequestBuilder]:
         """
         Provides operations to manage the authenticationEventListeners property of the microsoft.graph.identityContainer entity.
         Args:
             id: Unique identifier of the item
-        Returns: authentication_event_listener_item_request_builder.AuthenticationEventListenerItemRequestBuilder
+        Returns: Optional[authentication_event_listener_item_request_builder.AuthenticationEventListenerItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -131,12 +131,12 @@ class IdentityRequestBuilder():
         url_tpl_params["authenticationEventListener%2Did"] = id
         return authentication_event_listener_item_request_builder.AuthenticationEventListenerItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def b2c_user_flows_by_id(self,id: str) -> b2c_identity_user_flow_item_request_builder.B2cIdentityUserFlowItemRequestBuilder:
+    def b2c_user_flows_by_id(self,id: str) -> Optional[b2c_identity_user_flow_item_request_builder.B2cIdentityUserFlowItemRequestBuilder]:
         """
         Provides operations to manage the b2cUserFlows property of the microsoft.graph.identityContainer entity.
         Args:
             id: Unique identifier of the item
-        Returns: b2c_identity_user_flow_item_request_builder.B2cIdentityUserFlowItemRequestBuilder
+        Returns: Optional[b2c_identity_user_flow_item_request_builder.B2cIdentityUserFlowItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -144,12 +144,12 @@ class IdentityRequestBuilder():
         url_tpl_params["b2cIdentityUserFlow%2Did"] = id
         return b2c_identity_user_flow_item_request_builder.B2cIdentityUserFlowItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def b2x_user_flows_by_id(self,id: str) -> b2x_identity_user_flow_item_request_builder.B2xIdentityUserFlowItemRequestBuilder:
+    def b2x_user_flows_by_id(self,id: str) -> Optional[b2x_identity_user_flow_item_request_builder.B2xIdentityUserFlowItemRequestBuilder]:
         """
         Provides operations to manage the b2xUserFlows property of the microsoft.graph.identityContainer entity.
         Args:
             id: Unique identifier of the item
-        Returns: b2x_identity_user_flow_item_request_builder.B2xIdentityUserFlowItemRequestBuilder
+        Returns: Optional[b2x_identity_user_flow_item_request_builder.B2xIdentityUserFlowItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -214,12 +214,12 @@ class IdentityRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def custom_authentication_extensions_by_id(self,id: str) -> custom_authentication_extension_item_request_builder.CustomAuthenticationExtensionItemRequestBuilder:
+    def custom_authentication_extensions_by_id(self,id: str) -> Optional[custom_authentication_extension_item_request_builder.CustomAuthenticationExtensionItemRequestBuilder]:
         """
         Provides operations to manage the customAuthenticationExtensions property of the microsoft.graph.identityContainer entity.
         Args:
             id: Unique identifier of the item
-        Returns: custom_authentication_extension_item_request_builder.CustomAuthenticationExtensionItemRequestBuilder
+        Returns: Optional[custom_authentication_extension_item_request_builder.CustomAuthenticationExtensionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -246,12 +246,12 @@ class IdentityRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, identity_container.IdentityContainer, response_handler, error_mapping)
     
-    def identity_providers_by_id(self,id: str) -> identity_provider_base_item_request_builder.IdentityProviderBaseItemRequestBuilder:
+    def identity_providers_by_id(self,id: str) -> Optional[identity_provider_base_item_request_builder.IdentityProviderBaseItemRequestBuilder]:
         """
         Provides operations to manage the identityProviders property of the microsoft.graph.identityContainer entity.
         Args:
             id: Unique identifier of the item
-        Returns: identity_provider_base_item_request_builder.IdentityProviderBaseItemRequestBuilder
+        Returns: Optional[identity_provider_base_item_request_builder.IdentityProviderBaseItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -281,12 +281,12 @@ class IdentityRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, identity_container.IdentityContainer, response_handler, error_mapping)
     
-    def user_flow_attributes_by_id(self,id: str) -> identity_user_flow_attribute_item_request_builder.IdentityUserFlowAttributeItemRequestBuilder:
+    def user_flow_attributes_by_id(self,id: str) -> Optional[identity_user_flow_attribute_item_request_builder.IdentityUserFlowAttributeItemRequestBuilder]:
         """
         Provides operations to manage the userFlowAttributes property of the microsoft.graph.identityContainer entity.
         Args:
             id: Unique identifier of the item
-        Returns: identity_user_flow_attribute_item_request_builder.IdentityUserFlowAttributeItemRequestBuilder
+        Returns: Optional[identity_user_flow_attribute_item_request_builder.IdentityUserFlowAttributeItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -294,12 +294,12 @@ class IdentityRequestBuilder():
         url_tpl_params["identityUserFlowAttribute%2Did"] = id
         return identity_user_flow_attribute_item_request_builder.IdentityUserFlowAttributeItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def user_flows_by_id(self,id: str) -> identity_user_flow_item_request_builder.IdentityUserFlowItemRequestBuilder:
+    def user_flows_by_id(self,id: str) -> Optional[identity_user_flow_item_request_builder.IdentityUserFlowItemRequestBuilder]:
         """
         Provides operations to manage the userFlows property of the microsoft.graph.identityContainer entity.
         Args:
             id: Unique identifier of the item
-        Returns: identity_user_flow_item_request_builder.IdentityUserFlowItemRequestBuilder
+        Returns: Optional[identity_user_flow_item_request_builder.IdentityUserFlowItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -22,7 +22,7 @@ virtual_appointment = lazy_import('msgraph.generated.models.virtual_appointment'
 
 class OnlineMeeting(entity.Entity):
     """
-    Provides operations to manage the commsApplication singleton.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def allow_attendee_to_enable_camera(self,) -> Optional[bool]:

@@ -158,12 +158,12 @@ class DeviceManagementComplianceScheduledActionForRuleItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, device_management_compliance_scheduled_action_for_rule.DeviceManagementComplianceScheduledActionForRule, response_handler, error_mapping)
     
-    def scheduled_action_configurations_by_id(self,id: str) -> device_management_compliance_action_item_item_request_builder.DeviceManagementComplianceActionItemItemRequestBuilder:
+    def scheduled_action_configurations_by_id(self,id: str) -> Optional[device_management_compliance_action_item_item_request_builder.DeviceManagementComplianceActionItemItemRequestBuilder]:
         """
         Provides operations to manage the scheduledActionConfigurations property of the microsoft.graph.deviceManagementComplianceScheduledActionForRule entity.
         Args:
             id: Unique identifier of the item
-        Returns: device_management_compliance_action_item_item_request_builder.DeviceManagementComplianceActionItemItemRequestBuilder
+        Returns: Optional[device_management_compliance_action_item_item_request_builder.DeviceManagementComplianceActionItemItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

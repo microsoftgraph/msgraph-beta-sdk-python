@@ -34,12 +34,12 @@ class AppleUserInitiatedEnrollmentProfileItemRequestBuilder():
         """
         return set_priority_request_builder.SetPriorityRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def assignments_by_id(self,id: str) -> apple_enrollment_profile_assignment_item_request_builder.AppleEnrollmentProfileAssignmentItemRequestBuilder:
+    def assignments_by_id(self,id: str) -> Optional[apple_enrollment_profile_assignment_item_request_builder.AppleEnrollmentProfileAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the assignments property of the microsoft.graph.appleUserInitiatedEnrollmentProfile entity.
         Args:
             id: Unique identifier of the item
-        Returns: apple_enrollment_profile_assignment_item_request_builder.AppleEnrollmentProfileAssignmentItemRequestBuilder
+        Returns: Optional[apple_enrollment_profile_assignment_item_request_builder.AppleEnrollmentProfileAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

@@ -145,12 +145,12 @@ class PlannerRosterItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, planner_roster.PlannerRoster, response_handler, error_mapping)
     
-    def members_by_id(self,id: str) -> planner_roster_member_item_request_builder.PlannerRosterMemberItemRequestBuilder:
+    def members_by_id(self,id: str) -> Optional[planner_roster_member_item_request_builder.PlannerRosterMemberItemRequestBuilder]:
         """
         Provides operations to manage the members property of the microsoft.graph.plannerRoster entity.
         Args:
             id: Unique identifier of the item
-        Returns: planner_roster_member_item_request_builder.PlannerRosterMemberItemRequestBuilder
+        Returns: Optional[planner_roster_member_item_request_builder.PlannerRosterMemberItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -180,12 +180,12 @@ class PlannerRosterItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, planner_roster.PlannerRoster, response_handler, error_mapping)
     
-    def plans_by_id(self,id: str) -> planner_plan_item_request_builder.PlannerPlanItemRequestBuilder:
+    def plans_by_id(self,id: str) -> Optional[planner_plan_item_request_builder.PlannerPlanItemRequestBuilder]:
         """
         Provides operations to manage the plans property of the microsoft.graph.plannerRoster entity.
         Args:
             id: Unique identifier of the item
-        Returns: planner_plan_item_request_builder.PlannerPlanItemRequestBuilder
+        Returns: Optional[planner_plan_item_request_builder.PlannerPlanItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

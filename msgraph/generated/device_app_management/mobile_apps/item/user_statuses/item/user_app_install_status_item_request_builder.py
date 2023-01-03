@@ -125,12 +125,12 @@ class UserAppInstallStatusItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def device_statuses_by_id(self,id: str) -> mobile_app_install_status_item_request_builder.MobileAppInstallStatusItemRequestBuilder:
+    def device_statuses_by_id(self,id: str) -> Optional[mobile_app_install_status_item_request_builder.MobileAppInstallStatusItemRequestBuilder]:
         """
         Provides operations to manage the deviceStatuses property of the microsoft.graph.userAppInstallStatus entity.
         Args:
             id: Unique identifier of the item
-        Returns: mobile_app_install_status_item_request_builder.MobileAppInstallStatusItemRequestBuilder
+        Returns: Optional[mobile_app_install_status_item_request_builder.MobileAppInstallStatusItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

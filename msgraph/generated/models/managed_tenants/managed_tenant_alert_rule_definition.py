@@ -9,6 +9,9 @@ alert_rule_definition_template = lazy_import('msgraph.generated.models.managed_t
 managed_tenant_alert_rule = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_alert_rule')
 
 class ManagedTenantAlertRuleDefinition(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     @property
     def alert_rules(self,) -> Optional[List[managed_tenant_alert_rule.ManagedTenantAlertRule]]:
         """

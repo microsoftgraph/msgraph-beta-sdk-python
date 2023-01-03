@@ -9,9 +9,12 @@ entity = lazy_import('msgraph.generated.models.entity')
 identity_set = lazy_import('msgraph.generated.models.identity_set')
 
 class BusinessScenario(entity.Entity):
+    """
+    Provides operations to manage the collection of activityStatistics entities.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new BusinessScenario and sets the default values.
+        Instantiates a new businessScenario and sets the default values.
         """
         super().__init__()
         # The createdBy property

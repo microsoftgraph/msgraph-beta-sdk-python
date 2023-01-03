@@ -26,12 +26,12 @@ class SolutionsRequestBuilder():
         """
         return business_scenarios_request_builder.BusinessScenariosRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def business_scenarios_by_id(self,id: str) -> business_scenario_item_request_builder.BusinessScenarioItemRequestBuilder:
+    def business_scenarios_by_id(self,id: str) -> Optional[business_scenario_item_request_builder.BusinessScenarioItemRequestBuilder]:
         """
         Provides operations to manage the businessScenarios property of the microsoft.graph.solutionsRoot entity.
         Args:
             id: Unique identifier of the item
-        Returns: business_scenario_item_request_builder.BusinessScenarioItemRequestBuilder
+        Returns: Optional[business_scenario_item_request_builder.BusinessScenarioItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

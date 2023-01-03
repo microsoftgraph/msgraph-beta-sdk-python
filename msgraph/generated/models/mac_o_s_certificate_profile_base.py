@@ -9,6 +9,9 @@ device_configuration = lazy_import('msgraph.generated.models.device_configuratio
 subject_alternative_name_type = lazy_import('msgraph.generated.models.subject_alternative_name_type')
 
 class MacOSCertificateProfileBase(device_configuration.DeviceConfiguration):
+    """
+    Mac OS certificate profile.
+    """
     @property
     def certificate_validity_period_scale(self,) -> Optional[certificate_validity_period_scale.CertificateValidityPeriodScale]:
         """

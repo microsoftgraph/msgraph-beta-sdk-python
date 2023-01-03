@@ -99,12 +99,12 @@ class TeamTemplateItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
-    def definitions_by_id(self,id: str) -> team_template_definition_item_request_builder.TeamTemplateDefinitionItemRequestBuilder:
+    def definitions_by_id(self,id: str) -> Optional[team_template_definition_item_request_builder.TeamTemplateDefinitionItemRequestBuilder]:
         """
         Provides operations to manage the definitions property of the microsoft.graph.teamTemplate entity.
         Args:
             id: Unique identifier of the item
-        Returns: team_template_definition_item_request_builder.TeamTemplateDefinitionItemRequestBuilder
+        Returns: Optional[team_template_definition_item_request_builder.TeamTemplateDefinitionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

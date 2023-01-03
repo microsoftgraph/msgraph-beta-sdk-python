@@ -9,7 +9,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class MeetingAttendanceReport(entity.Entity):
     """
-    Provides operations to manage the commsApplication singleton.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def attendance_records(self,) -> Optional[List[attendance_record.AttendanceRecord]]:

@@ -34,12 +34,12 @@ class WindowsQualityUpdateProfileItemRequestBuilder():
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def assignments_by_id(self,id: str) -> windows_quality_update_profile_assignment_item_request_builder.WindowsQualityUpdateProfileAssignmentItemRequestBuilder:
+    def assignments_by_id(self,id: str) -> Optional[windows_quality_update_profile_assignment_item_request_builder.WindowsQualityUpdateProfileAssignmentItemRequestBuilder]:
         """
         Provides operations to manage the assignments property of the microsoft.graph.windowsQualityUpdateProfile entity.
         Args:
             id: Unique identifier of the item
-        Returns: windows_quality_update_profile_assignment_item_request_builder.WindowsQualityUpdateProfileAssignmentItemRequestBuilder
+        Returns: Optional[windows_quality_update_profile_assignment_item_request_builder.WindowsQualityUpdateProfileAssignmentItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

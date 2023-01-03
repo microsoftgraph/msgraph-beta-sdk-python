@@ -102,12 +102,12 @@ class EmployeeExperienceRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, employee_experience.EmployeeExperience, response_handler, error_mapping)
     
-    def learning_providers_by_id(self,id: str) -> learning_provider_item_request_builder.LearningProviderItemRequestBuilder:
+    def learning_providers_by_id(self,id: str) -> Optional[learning_provider_item_request_builder.LearningProviderItemRequestBuilder]:
         """
         Provides operations to manage the learningProviders property of the microsoft.graph.employeeExperience entity.
         Args:
             id: Unique identifier of the item
-        Returns: learning_provider_item_request_builder.LearningProviderItemRequestBuilder
+        Returns: Optional[learning_provider_item_request_builder.LearningProviderItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

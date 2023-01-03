@@ -158,12 +158,12 @@ class DeviceManagementAutopilotEventItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, device_management_autopilot_event.DeviceManagementAutopilotEvent, response_handler, error_mapping)
     
-    def policy_status_details_by_id(self,id: str) -> device_management_autopilot_policy_status_detail_item_request_builder.DeviceManagementAutopilotPolicyStatusDetailItemRequestBuilder:
+    def policy_status_details_by_id(self,id: str) -> Optional[device_management_autopilot_policy_status_detail_item_request_builder.DeviceManagementAutopilotPolicyStatusDetailItemRequestBuilder]:
         """
         Provides operations to manage the policyStatusDetails property of the microsoft.graph.deviceManagementAutopilotEvent entity.
         Args:
             id: Unique identifier of the item
-        Returns: device_management_autopilot_policy_status_detail_item_request_builder.DeviceManagementAutopilotPolicyStatusDetailItemRequestBuilder
+        Returns: Optional[device_management_autopilot_policy_status_detail_item_request_builder.DeviceManagementAutopilotPolicyStatusDetailItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

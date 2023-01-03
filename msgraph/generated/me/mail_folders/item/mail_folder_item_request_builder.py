@@ -87,12 +87,12 @@ class MailFolderItemRequestBuilder():
         """
         return user_configurations_request_builder.UserConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def child_folders_by_id(self,id: str) -> MailFolderItemRequestBuilder:
+    def child_folders_by_id(self,id: str) -> Optional[MailFolderItemRequestBuilder]:
         """
         Provides operations to manage the childFolders property of the microsoft.graph.mailFolder entity.
         Args:
             id: Unique identifier of the item
-        Returns: MailFolderItemRequestBuilder
+        Returns: Optional[MailFolderItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -210,12 +210,12 @@ class MailFolderItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, mail_folder.MailFolder, response_handler, error_mapping)
     
-    def message_rules_by_id(self,id: str) -> message_rule_item_request_builder.MessageRuleItemRequestBuilder:
+    def message_rules_by_id(self,id: str) -> Optional[message_rule_item_request_builder.MessageRuleItemRequestBuilder]:
         """
         Provides operations to manage the messageRules property of the microsoft.graph.mailFolder entity.
         Args:
             id: Unique identifier of the item
-        Returns: message_rule_item_request_builder.MessageRuleItemRequestBuilder
+        Returns: Optional[message_rule_item_request_builder.MessageRuleItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -223,12 +223,12 @@ class MailFolderItemRequestBuilder():
         url_tpl_params["messageRule%2Did"] = id
         return message_rule_item_request_builder.MessageRuleItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def messages_by_id(self,id: str) -> message_item_request_builder.MessageItemRequestBuilder:
+    def messages_by_id(self,id: str) -> Optional[message_item_request_builder.MessageItemRequestBuilder]:
         """
         Provides operations to manage the messages property of the microsoft.graph.mailFolder entity.
         Args:
             id: Unique identifier of the item
-        Returns: message_item_request_builder.MessageItemRequestBuilder
+        Returns: Optional[message_item_request_builder.MessageItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -236,12 +236,12 @@ class MailFolderItemRequestBuilder():
         url_tpl_params["message%2Did"] = id
         return message_item_request_builder.MessageItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def multi_value_extended_properties_by_id(self,id: str) -> multi_value_legacy_extended_property_item_request_builder.MultiValueLegacyExtendedPropertyItemRequestBuilder:
+    def multi_value_extended_properties_by_id(self,id: str) -> Optional[multi_value_legacy_extended_property_item_request_builder.MultiValueLegacyExtendedPropertyItemRequestBuilder]:
         """
         Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.mailFolder entity.
         Args:
             id: Unique identifier of the item
-        Returns: multi_value_legacy_extended_property_item_request_builder.MultiValueLegacyExtendedPropertyItemRequestBuilder
+        Returns: Optional[multi_value_legacy_extended_property_item_request_builder.MultiValueLegacyExtendedPropertyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -271,12 +271,12 @@ class MailFolderItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, mail_folder.MailFolder, response_handler, error_mapping)
     
-    def single_value_extended_properties_by_id(self,id: str) -> single_value_legacy_extended_property_item_request_builder.SingleValueLegacyExtendedPropertyItemRequestBuilder:
+    def single_value_extended_properties_by_id(self,id: str) -> Optional[single_value_legacy_extended_property_item_request_builder.SingleValueLegacyExtendedPropertyItemRequestBuilder]:
         """
         Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.mailFolder entity.
         Args:
             id: Unique identifier of the item
-        Returns: single_value_legacy_extended_property_item_request_builder.SingleValueLegacyExtendedPropertyItemRequestBuilder
+        Returns: Optional[single_value_legacy_extended_property_item_request_builder.SingleValueLegacyExtendedPropertyItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -284,12 +284,12 @@ class MailFolderItemRequestBuilder():
         url_tpl_params["singleValueLegacyExtendedProperty%2Did"] = id
         return single_value_legacy_extended_property_item_request_builder.SingleValueLegacyExtendedPropertyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def user_configurations_by_id(self,id: str) -> user_configuration_item_request_builder.UserConfigurationItemRequestBuilder:
+    def user_configurations_by_id(self,id: str) -> Optional[user_configuration_item_request_builder.UserConfigurationItemRequestBuilder]:
         """
         Provides operations to manage the userConfigurations property of the microsoft.graph.mailFolder entity.
         Args:
             id: Unique identifier of the item
-        Returns: user_configuration_item_request_builder.UserConfigurationItemRequestBuilder
+        Returns: Optional[user_configuration_item_request_builder.UserConfigurationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

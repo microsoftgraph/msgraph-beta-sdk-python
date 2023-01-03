@@ -53,12 +53,12 @@ class PlannerRequestBuilder():
         """
         return tasks_request_builder.TasksRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def buckets_by_id(self,id: str) -> planner_bucket_item_request_builder.PlannerBucketItemRequestBuilder:
+    def buckets_by_id(self,id: str) -> Optional[planner_bucket_item_request_builder.PlannerBucketItemRequestBuilder]:
         """
         Provides operations to manage the buckets property of the microsoft.graph.planner entity.
         Args:
             id: Unique identifier of the item
-        Returns: planner_bucket_item_request_builder.PlannerBucketItemRequestBuilder
+        Returns: Optional[planner_bucket_item_request_builder.PlannerBucketItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -164,12 +164,12 @@ class PlannerRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, planner.Planner, response_handler, error_mapping)
     
-    def plans_by_id(self,id: str) -> planner_plan_item_request_builder.PlannerPlanItemRequestBuilder:
+    def plans_by_id(self,id: str) -> Optional[planner_plan_item_request_builder.PlannerPlanItemRequestBuilder]:
         """
         Provides operations to manage the plans property of the microsoft.graph.planner entity.
         Args:
             id: Unique identifier of the item
-        Returns: planner_plan_item_request_builder.PlannerPlanItemRequestBuilder
+        Returns: Optional[planner_plan_item_request_builder.PlannerPlanItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -177,12 +177,12 @@ class PlannerRequestBuilder():
         url_tpl_params["plannerPlan%2Did"] = id
         return planner_plan_item_request_builder.PlannerPlanItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def rosters_by_id(self,id: str) -> planner_roster_item_request_builder.PlannerRosterItemRequestBuilder:
+    def rosters_by_id(self,id: str) -> Optional[planner_roster_item_request_builder.PlannerRosterItemRequestBuilder]:
         """
         Provides operations to manage the rosters property of the microsoft.graph.planner entity.
         Args:
             id: Unique identifier of the item
-        Returns: planner_roster_item_request_builder.PlannerRosterItemRequestBuilder
+        Returns: Optional[planner_roster_item_request_builder.PlannerRosterItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")
@@ -190,12 +190,12 @@ class PlannerRequestBuilder():
         url_tpl_params["plannerRoster%2Did"] = id
         return planner_roster_item_request_builder.PlannerRosterItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def tasks_by_id(self,id: str) -> planner_task_item_request_builder.PlannerTaskItemRequestBuilder:
+    def tasks_by_id(self,id: str) -> Optional[planner_task_item_request_builder.PlannerTaskItemRequestBuilder]:
         """
         Provides operations to manage the tasks property of the microsoft.graph.planner entity.
         Args:
             id: Unique identifier of the item
-        Returns: planner_task_item_request_builder.PlannerTaskItemRequestBuilder
+        Returns: Optional[planner_task_item_request_builder.PlannerTaskItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

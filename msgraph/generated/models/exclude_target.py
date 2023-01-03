@@ -30,7 +30,7 @@ class ExcludeTarget(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The object identifier of an Azure AD user or group.
+        # The object identifier of an Azure AD group.
         self._id: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
@@ -64,7 +64,7 @@ class ExcludeTarget(AdditionalDataHolder, Parsable):
     @property
     def id(self,) -> Optional[str]:
         """
-        Gets the id property value. The object identifier of an Azure AD user or group.
+        Gets the id property value. The object identifier of an Azure AD group.
         Returns: Optional[str]
         """
         return self._id
@@ -72,7 +72,7 @@ class ExcludeTarget(AdditionalDataHolder, Parsable):
     @id.setter
     def id(self,value: Optional[str] = None) -> None:
         """
-        Sets the id property value. The object identifier of an Azure AD user or group.
+        Sets the id property value. The object identifier of an Azure AD group.
         Args:
             value: Value to set for the id property.
         """

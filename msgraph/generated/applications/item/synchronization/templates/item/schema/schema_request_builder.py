@@ -127,12 +127,12 @@ class SchemaRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    def directories_by_id(self,id: str) -> directory_definition_item_request_builder.DirectoryDefinitionItemRequestBuilder:
+    def directories_by_id(self,id: str) -> Optional[directory_definition_item_request_builder.DirectoryDefinitionItemRequestBuilder]:
         """
         Provides operations to manage the directories property of the microsoft.graph.synchronizationSchema entity.
         Args:
             id: Unique identifier of the item
-        Returns: directory_definition_item_request_builder.DirectoryDefinitionItemRequestBuilder
+        Returns: Optional[directory_definition_item_request_builder.DirectoryDefinitionItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

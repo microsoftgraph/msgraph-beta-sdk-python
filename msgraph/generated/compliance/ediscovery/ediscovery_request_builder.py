@@ -26,12 +26,12 @@ class EdiscoveryRequestBuilder():
         """
         return cases_request_builder.CasesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def cases_by_id(self,id: str) -> case_item_request_builder.CaseItemRequestBuilder:
+    def cases_by_id(self,id: str) -> Optional[case_item_request_builder.CaseItemRequestBuilder]:
         """
         Provides operations to manage the cases property of the microsoft.graph.ediscovery.ediscoveryroot entity.
         Args:
             id: Unique identifier of the item
-        Returns: case_item_request_builder.CaseItemRequestBuilder
+        Returns: Optional[case_item_request_builder.CaseItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

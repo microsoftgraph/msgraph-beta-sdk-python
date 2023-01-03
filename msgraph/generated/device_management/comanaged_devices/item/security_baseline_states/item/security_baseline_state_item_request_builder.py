@@ -158,12 +158,12 @@ class SecurityBaselineStateItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, security_baseline_state.SecurityBaselineState, response_handler, error_mapping)
     
-    def setting_states_by_id(self,id: str) -> security_baseline_setting_state_item_request_builder.SecurityBaselineSettingStateItemRequestBuilder:
+    def setting_states_by_id(self,id: str) -> Optional[security_baseline_setting_state_item_request_builder.SecurityBaselineSettingStateItemRequestBuilder]:
         """
         Provides operations to manage the settingStates property of the microsoft.graph.securityBaselineState entity.
         Args:
             id: Unique identifier of the item
-        Returns: security_baseline_setting_state_item_request_builder.SecurityBaselineSettingStateItemRequestBuilder
+        Returns: Optional[security_baseline_setting_state_item_request_builder.SecurityBaselineSettingStateItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

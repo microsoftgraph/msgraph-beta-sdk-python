@@ -34,9 +34,6 @@ windows_managed_app_protection = lazy_import('msgraph.generated.models.windows_m
 windows_management_app = lazy_import('msgraph.generated.models.windows_management_app')
 
 class DeviceAppManagement(entity.Entity):
-    """
-    Singleton entity that acts as a container for all device app management functionality.
-    """
     @property
     def android_managed_app_protections(self,) -> Optional[List[android_managed_app_protection.AndroidManagedAppProtection]]:
         """
@@ -56,7 +53,7 @@ class DeviceAppManagement(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceAppManagement and sets the default values.
+        Instantiates a new DeviceAppManagement and sets the default values.
         """
         super().__init__()
         # Android managed app policies.

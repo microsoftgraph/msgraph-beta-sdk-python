@@ -7,7 +7,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class AllowedDataLocation(entity.Entity):
     """
-    Provides operations to manage the collection of allowedDataLocation entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def app_id(self,) -> Optional[str]:

@@ -7,6 +7,9 @@ attribute_mapping_parameter_schema = lazy_import('msgraph.generated.models.attri
 entity = lazy_import('msgraph.generated.models.entity')
 
 class AttributeMappingFunctionSchema(entity.Entity):
+    """
+    Provides operations to manage the collection of accessReview entities.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new attributeMappingFunctionSchema and sets the default values.

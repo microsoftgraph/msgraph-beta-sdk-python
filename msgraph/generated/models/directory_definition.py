@@ -10,7 +10,7 @@ object_definition = lazy_import('msgraph.generated.models.object_definition')
 
 class DirectoryDefinition(entity.Entity):
     """
-    Casts the previous resource to application.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     def __init__(self,) -> None:
         """

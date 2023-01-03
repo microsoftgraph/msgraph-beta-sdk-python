@@ -10,7 +10,7 @@ task_processing_result = lazy_import('msgraph.generated.models.identity_governan
 
 class Task(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of accessReviewDecision entities.
     """
     @property
     def arguments(self,) -> Optional[List[key_value_pair.KeyValuePair]]:

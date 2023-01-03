@@ -11,6 +11,9 @@ governance_role_definition = lazy_import('msgraph.generated.models.governance_ro
 governance_role_setting = lazy_import('msgraph.generated.models.governance_role_setting')
 
 class GovernanceResource(entity.Entity):
+    """
+    Provides operations to manage the collection of activityStatistics entities.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new governanceResource and sets the default values.

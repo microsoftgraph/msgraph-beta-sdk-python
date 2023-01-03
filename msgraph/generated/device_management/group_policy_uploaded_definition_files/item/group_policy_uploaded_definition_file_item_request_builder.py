@@ -176,12 +176,12 @@ class GroupPolicyUploadedDefinitionFileItemRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, group_policy_uploaded_definition_file.GroupPolicyUploadedDefinitionFile, response_handler, error_mapping)
     
-    def group_policy_operations_by_id(self,id: str) -> group_policy_operation_item_request_builder.GroupPolicyOperationItemRequestBuilder:
+    def group_policy_operations_by_id(self,id: str) -> Optional[group_policy_operation_item_request_builder.GroupPolicyOperationItemRequestBuilder]:
         """
         Provides operations to manage the groupPolicyOperations property of the microsoft.graph.groupPolicyUploadedDefinitionFile entity.
         Args:
             id: Unique identifier of the item
-        Returns: group_policy_operation_item_request_builder.GroupPolicyOperationItemRequestBuilder
+        Returns: Optional[group_policy_operation_item_request_builder.GroupPolicyOperationItemRequestBuilder]
         """
         if id is None:
             raise Exception("id cannot be undefined")

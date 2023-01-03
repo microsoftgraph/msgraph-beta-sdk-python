@@ -8,6 +8,9 @@ entity = lazy_import('msgraph.generated.models.entity')
 identity_set = lazy_import('msgraph.generated.models.identity_set')
 
 class RetentionEventType(entity.Entity):
+    """
+    Provides operations to manage the collection of activityStatistics entities.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new retentionEventType and sets the default values.
