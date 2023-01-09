@@ -7,7 +7,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class TeamworkHostedContent(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     def __init__(self,) -> None:
         """

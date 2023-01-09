@@ -9,7 +9,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class Connector(entity.Entity):
     """
-    Casts the previous resource to application.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     def __init__(self,) -> None:
         """

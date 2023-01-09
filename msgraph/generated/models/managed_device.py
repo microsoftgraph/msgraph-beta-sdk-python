@@ -42,9 +42,6 @@ user = lazy_import('msgraph.generated.models.user')
 windows_protection_state = lazy_import('msgraph.generated.models.windows_protection_state')
 
 class ManagedDevice(entity.Entity):
-    """
-    Devices that are managed or pre-enrolled through Intune
-    """
     @property
     def aad_registered(self,) -> Optional[bool]:
         """
@@ -336,7 +333,7 @@ class ManagedDevice(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new managedDevice and sets the default values.
+        Instantiates a new ManagedDevice and sets the default values.
         """
         super().__init__()
         # Whether the device is Azure Active Directory registered. This property is read-only.

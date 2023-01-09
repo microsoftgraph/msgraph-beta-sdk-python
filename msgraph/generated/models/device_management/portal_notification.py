@@ -129,7 +129,7 @@ class PortalNotification(AdditionalDataHolder, Parsable):
         self._alert_rule_template: Optional[alert_rule_template.AlertRuleTemplate] = None
         # The unique identifier for the portal notification.
         self._id: Optional[str] = None
-        # If true, the portal notification has already been sent for the user; otherwise, the portal notification hasn't been sent yet.
+        # true if the portal notification has already been sent to the user; false otherwise.
         self._is_portal_notification_sent: Optional[bool] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
@@ -186,7 +186,7 @@ class PortalNotification(AdditionalDataHolder, Parsable):
     @property
     def is_portal_notification_sent(self,) -> Optional[bool]:
         """
-        Gets the isPortalNotificationSent property value. If true, the portal notification has already been sent for the user; otherwise, the portal notification hasn't been sent yet.
+        Gets the isPortalNotificationSent property value. true if the portal notification has already been sent to the user; false otherwise.
         Returns: Optional[bool]
         """
         return self._is_portal_notification_sent
@@ -194,7 +194,7 @@ class PortalNotification(AdditionalDataHolder, Parsable):
     @is_portal_notification_sent.setter
     def is_portal_notification_sent(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isPortalNotificationSent property value. If true, the portal notification has already been sent for the user; otherwise, the portal notification hasn't been sent yet.
+        Sets the isPortalNotificationSent property value. true if the portal notification has already been sent to the user; false otherwise.
         Args:
             value: Value to set for the isPortalNotificationSent property.
         """

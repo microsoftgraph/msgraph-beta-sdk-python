@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 mobile_app_provisioning_config_group_assignment = lazy_import('msgraph.generated.models.mobile_app_provisioning_config_group_assignment')
 
 class MobileAppProvisioningConfigGroupAssignmentCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the groupAssignments property of the microsoft.graph.iosLobAppProvisioningConfiguration entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new MobileAppProvisioningConfigGroupAssignmentCollectionResponse and sets the default values.

@@ -10,7 +10,7 @@ item = lazy_import('msgraph.generated.models.item')
 
 class SalesOrderLine(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def account(self,) -> Optional[account.Account]:

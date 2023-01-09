@@ -32,9 +32,6 @@ web_application = lazy_import('msgraph.generated.models.web_application')
 windows_application = lazy_import('msgraph.generated.models.windows_application')
 
 class Application(directory_object.DirectoryObject):
-    """
-    Casts the previous resource to application.
-    """
     @property
     def api(self,) -> Optional[api_application.ApiApplication]:
         """
@@ -139,7 +136,7 @@ class Application(directory_object.DirectoryObject):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new application and sets the default values.
+        Instantiates a new Application and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.application"

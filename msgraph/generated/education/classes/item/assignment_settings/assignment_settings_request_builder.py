@@ -53,7 +53,7 @@ class AssignmentSettingsRequestBuilder():
     
     def create_get_request_information(self,request_configuration: Optional[AssignmentSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Read the properties and relationships of an educationAssignmentSettings object.
+        Read the properties and relationships of an educationAssignmentSettings object. Only teachers can perform this operation.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -110,7 +110,7 @@ class AssignmentSettingsRequestBuilder():
     
     async def get(self,request_configuration: Optional[AssignmentSettingsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[education_assignment_settings.EducationAssignmentSettings]:
         """
-        Read the properties and relationships of an educationAssignmentSettings object.
+        Read the properties and relationships of an educationAssignmentSettings object. Only teachers can perform this operation.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
@@ -164,7 +164,7 @@ class AssignmentSettingsRequestBuilder():
     @dataclass
     class AssignmentSettingsRequestBuilderGetQueryParameters():
         """
-        Read the properties and relationships of an educationAssignmentSettings object.
+        Read the properties and relationships of an educationAssignmentSettings object. Only teachers can perform this operation.
         """
         # Expand related entities
         expand: Optional[List[str]] = None

@@ -8,7 +8,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class ManagedDeviceCompliance(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def compliance_status(self,) -> Optional[str]:

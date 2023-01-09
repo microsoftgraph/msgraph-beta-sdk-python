@@ -43,7 +43,7 @@ class AuthenticationMethodsPolicy(entity.Entity):
         self.odata_type: Optional[str] = None
         # The version of the policy in use.
         self._policy_version: Optional[str] = None
-        # The reconfirmationInDays property
+        # Days before the user will be asked to reconfirm their method.
         self._reconfirmation_in_days: Optional[int] = None
         # Enforce registration at sign-in time. This property can be used to remind users to set up targeted authentication methods.
         self._registration_enforcement: Optional[registration_enforcement.RegistrationEnforcement] = None
@@ -149,7 +149,7 @@ class AuthenticationMethodsPolicy(entity.Entity):
     @property
     def reconfirmation_in_days(self,) -> Optional[int]:
         """
-        Gets the reconfirmationInDays property value. The reconfirmationInDays property
+        Gets the reconfirmationInDays property value. Days before the user will be asked to reconfirm their method.
         Returns: Optional[int]
         """
         return self._reconfirmation_in_days
@@ -157,7 +157,7 @@ class AuthenticationMethodsPolicy(entity.Entity):
     @reconfirmation_in_days.setter
     def reconfirmation_in_days(self,value: Optional[int] = None) -> None:
         """
-        Sets the reconfirmationInDays property value. The reconfirmationInDays property
+        Sets the reconfirmationInDays property value. Days before the user will be asked to reconfirm their method.
         Args:
             value: Value to set for the reconfirmationInDays property.
         """

@@ -13,7 +13,7 @@ class SmsAuthenticationMethodConfiguration(authentication_method_configuration.A
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.smsAuthenticationMethodConfiguration"
-        # A collection of users or groups who are enabled to use the authentication method.
+        # A collection of groups that are enabled to use the authentication method.
         self._include_targets: Optional[List[sms_authentication_method_target.SmsAuthenticationMethodTarget]] = None
     
     @staticmethod
@@ -43,7 +43,7 @@ class SmsAuthenticationMethodConfiguration(authentication_method_configuration.A
     @property
     def include_targets(self,) -> Optional[List[sms_authentication_method_target.SmsAuthenticationMethodTarget]]:
         """
-        Gets the includeTargets property value. A collection of users or groups who are enabled to use the authentication method.
+        Gets the includeTargets property value. A collection of groups that are enabled to use the authentication method.
         Returns: Optional[List[sms_authentication_method_target.SmsAuthenticationMethodTarget]]
         """
         return self._include_targets
@@ -51,7 +51,7 @@ class SmsAuthenticationMethodConfiguration(authentication_method_configuration.A
     @include_targets.setter
     def include_targets(self,value: Optional[List[sms_authentication_method_target.SmsAuthenticationMethodTarget]] = None) -> None:
         """
-        Sets the includeTargets property value. A collection of users or groups who are enabled to use the authentication method.
+        Sets the includeTargets property value. A collection of groups that are enabled to use the authentication method.
         Args:
             value: Value to set for the includeTargets property.
         """

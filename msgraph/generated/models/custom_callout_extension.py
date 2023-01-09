@@ -10,7 +10,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class CustomCalloutExtension(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def authentication_configuration(self,) -> Optional[custom_extension_authentication_configuration.CustomExtensionAuthenticationConfiguration]:

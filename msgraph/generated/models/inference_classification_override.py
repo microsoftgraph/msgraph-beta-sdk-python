@@ -9,7 +9,7 @@ inference_classification_type = lazy_import('msgraph.generated.models.inference_
 
 class InferenceClassificationOverride(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of accessReview entities.
     """
     @property
     def classify_as(self,) -> Optional[inference_classification_type.InferenceClassificationType]:

@@ -9,7 +9,7 @@ synchronization_schema = lazy_import('msgraph.generated.models.synchronization_s
 
 class SynchronizationTemplate(entity.Entity):
     """
-    Casts the previous resource to application.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def application_id(self,) -> Optional[Guid]:

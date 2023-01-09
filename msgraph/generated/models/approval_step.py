@@ -9,7 +9,7 @@ identity = lazy_import('msgraph.generated.models.identity')
 
 class ApprovalStep(entity.Entity):
     """
-    Provides operations to manage the collection of accessReviewDecision entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def assigned_to_me(self,) -> Optional[bool]:

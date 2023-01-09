@@ -8,7 +8,7 @@ permission_type = lazy_import('msgraph.generated.models.permission_type')
 
 class PermissionGrantConditionSet(entity.Entity):
     """
-    Casts the previous resource to application.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def certified_client_applications_only(self,) -> Optional[bool]:

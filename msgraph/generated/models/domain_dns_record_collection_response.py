@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 domain_dns_record = lazy_import('msgraph.generated.models.domain_dns_record')
 
 class DomainDnsRecordCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the collection of domainDnsRecord entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new DomainDnsRecordCollectionResponse and sets the default values.

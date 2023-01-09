@@ -12,7 +12,7 @@ vendor = lazy_import('msgraph.generated.models.vendor')
 
 class PurchaseInvoice(entity.Entity):
     """
-    Provides operations to manage the collection of accessReview entities.
+    Provides operations to manage the collection of activityStatistics entities.
     """
     @property
     def buy_from_address(self,) -> Optional[postal_address_type.PostalAddressType]:
