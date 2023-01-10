@@ -43,40 +43,6 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder()
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def create_delete_request_information(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
-        """
-        Delete navigation property passwordlessMicrosoftAuthenticatorMethods for users
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: RequestInformation
-        """
-        request_info = RequestInformation()
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.DELETE
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
-        return request_info
-    
-    def create_get_request_information(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
-        """
-        Represents the Microsoft Authenticator Passwordless Phone Sign-in methods registered to a user for authentication.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: RequestInformation
-        """
-        request_info = RequestInformation()
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
-        return request_info
-    
     async def delete(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property passwordlessMicrosoftAuthenticatorMethods for users
@@ -84,7 +50,7 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder()
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
-        request_info = self.create_delete_request_information(
+        request_info = self.to_delete_request_information(
             request_configuration
         )
         error_mapping: Dict[str, ParsableFactory] = {
@@ -103,7 +69,7 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder()
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[passwordless_microsoft_authenticator_authentication_method.PasswordlessMicrosoftAuthenticatorAuthenticationMethod]
         """
-        request_info = self.create_get_request_information(
+        request_info = self.to_get_request_information(
             request_configuration
         )
         error_mapping: Dict[str, ParsableFactory] = {
@@ -113,6 +79,40 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder()
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, passwordless_microsoft_authenticator_authentication_method.PasswordlessMicrosoftAuthenticatorAuthenticationMethod, response_handler, error_mapping)
+    
+    def to_delete_request_information(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+        """
+        Delete navigation property passwordlessMicrosoftAuthenticatorMethods for users
+        Args:
+            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: RequestInformation
+        """
+        request_info = RequestInformation()
+        request_info.url_template = self.url_template
+        request_info.path_parameters = self.path_parameters
+        request_info.http_method = Method.DELETE
+        if request_configuration:
+            request_info.add_request_headers(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
+        return request_info
+    
+    def to_get_request_information(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+        """
+        Represents the Microsoft Authenticator Passwordless Phone Sign-in methods registered to a user for authentication.
+        Args:
+            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: RequestInformation
+        """
+        request_info = RequestInformation()
+        request_info.url_template = self.url_template
+        request_info.path_parameters = self.path_parameters
+        request_info.http_method = Method.GET
+        request_info.headers["Accept"] = "application/json"
+        if request_configuration:
+            request_info.add_request_headers(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
+        return request_info
     
     @dataclass
     class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration():

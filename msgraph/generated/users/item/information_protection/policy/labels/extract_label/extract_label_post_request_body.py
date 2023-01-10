@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 content_info = lazy_import('msgraph.generated.models.content_info')
 
 class ExtractLabelPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the extractLabel method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

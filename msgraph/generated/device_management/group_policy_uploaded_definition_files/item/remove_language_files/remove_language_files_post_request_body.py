@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 group_policy_uploaded_language_file = lazy_import('msgraph.generated.models.group_policy_uploaded_language_file')
 
 class RemoveLanguageFilesPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the removeLanguageFiles method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

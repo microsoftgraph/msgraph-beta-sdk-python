@@ -7,9 +7,6 @@ content_info = lazy_import('msgraph.generated.models.security.content_info')
 labeling_options = lazy_import('msgraph.generated.models.security.labeling_options')
 
 class EvaluateApplicationPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the evaluateApplication method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

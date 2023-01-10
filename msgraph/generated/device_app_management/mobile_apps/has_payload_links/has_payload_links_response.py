@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 has_payload_link_result_item = lazy_import('msgraph.generated.models.has_payload_link_result_item')
 
 class HasPayloadLinksResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the hasPayloadLinks method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new hasPayloadLinksResponse and sets the default values.

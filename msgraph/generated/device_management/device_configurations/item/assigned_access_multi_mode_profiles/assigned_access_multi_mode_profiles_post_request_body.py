@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 windows_assigned_access_profile = lazy_import('msgraph.generated.models.windows_assigned_access_profile')
 
 class AssignedAccessMultiModeProfilesPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the assignedAccessMultiModeProfiles method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

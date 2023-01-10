@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 windows_feature_update_profile_assignment = lazy_import('msgraph.generated.models.windows_feature_update_profile_assignment')
 
 class AssignPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the assign method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

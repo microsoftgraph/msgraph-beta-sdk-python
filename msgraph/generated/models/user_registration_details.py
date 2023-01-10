@@ -8,9 +8,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 sign_in_user_type = lazy_import('msgraph.generated.models.sign_in_user_type')
 
 class UserRegistrationDetails(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new userRegistrationDetails and sets the default values.

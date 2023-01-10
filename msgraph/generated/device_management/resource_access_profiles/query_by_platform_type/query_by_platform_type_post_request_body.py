@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 policy_platform_type = lazy_import('msgraph.generated.models.policy_platform_type')
 
 class QueryByPlatformTypePostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the queryByPlatformType method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

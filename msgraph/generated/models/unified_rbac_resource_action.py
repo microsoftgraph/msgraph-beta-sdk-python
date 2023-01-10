@@ -7,9 +7,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 unified_rbac_resource_scope = lazy_import('msgraph.generated.models.unified_rbac_resource_scope')
 
 class UnifiedRbacResourceAction(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def action_verb(self,) -> Optional[str]:
         """

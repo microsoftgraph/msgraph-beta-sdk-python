@@ -16,9 +16,6 @@ planner_task_creation = lazy_import('msgraph.generated.models.planner_task_creat
 planner_task_details = lazy_import('msgraph.generated.models.planner_task_details')
 
 class PlannerTask(planner_delta.PlannerDelta):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def active_checklist_item_count(self,) -> Optional[int]:
         """

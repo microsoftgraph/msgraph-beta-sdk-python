@@ -9,9 +9,6 @@ tenant_contract = lazy_import('msgraph.generated.models.managed_tenants.tenant_c
 tenant_status_information = lazy_import('msgraph.generated.models.managed_tenants.tenant_status_information')
 
 class Tenant(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new tenant and sets the default values.

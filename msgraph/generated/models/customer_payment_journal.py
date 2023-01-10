@@ -9,9 +9,6 @@ customer_payment = lazy_import('msgraph.generated.models.customer_payment')
 entity = lazy_import('msgraph.generated.models.entity')
 
 class CustomerPaymentJournal(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def account(self,) -> Optional[account.Account]:
         """

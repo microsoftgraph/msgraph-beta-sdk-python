@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 mobile_app_relationship = lazy_import('msgraph.generated.models.mobile_app_relationship')
 
 class UpdateRelationshipsPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the updateRelationships method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

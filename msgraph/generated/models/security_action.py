@@ -12,9 +12,6 @@ security_action_state = lazy_import('msgraph.generated.models.security_action_st
 security_vendor_information = lazy_import('msgraph.generated.models.security_vendor_information')
 
 class SecurityAction(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def action_reason(self,) -> Optional[str]:
         """

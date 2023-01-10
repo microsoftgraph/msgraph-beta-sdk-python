@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 cloud_pc_source_device_image = lazy_import('msgraph.generated.models.cloud_pc_source_device_image')
 
 class GetSourceImagesResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getSourceImages method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getSourceImagesResponse and sets the default values.

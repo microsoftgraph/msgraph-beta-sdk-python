@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 retire_scheduled_managed_device = lazy_import('msgraph.generated.models.retire_scheduled_managed_device')
 
 class GetDevicesScheduledToRetireResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getDevicesScheduledToRetire method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getDevicesScheduledToRetireResponse and sets the default values.

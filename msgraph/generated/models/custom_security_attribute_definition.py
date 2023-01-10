@@ -7,9 +7,6 @@ allowed_value = lazy_import('msgraph.generated.models.allowed_value')
 entity = lazy_import('msgraph.generated.models.entity')
 
 class CustomSecurityAttributeDefinition(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def allowed_values(self,) -> Optional[List[allowed_value.AllowedValue]]:
         """

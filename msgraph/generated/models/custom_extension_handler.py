@@ -8,9 +8,6 @@ custom_access_package_workflow_extension = lazy_import('msgraph.generated.models
 entity = lazy_import('msgraph.generated.models.entity')
 
 class CustomExtensionHandler(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new customExtensionHandler and sets the default values.

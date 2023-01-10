@@ -8,9 +8,6 @@ management_action_info = lazy_import('msgraph.generated.models.managed_tenants.m
 management_intent_info = lazy_import('msgraph.generated.models.managed_tenants.management_intent_info')
 
 class TenantGroup(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def all_tenants_included(self,) -> Optional[bool]:
         """

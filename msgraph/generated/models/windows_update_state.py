@@ -8,9 +8,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 windows_update_status = lazy_import('msgraph.generated.models.windows_update_status')
 
 class WindowsUpdateState(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new windowsUpdateState and sets the default values.

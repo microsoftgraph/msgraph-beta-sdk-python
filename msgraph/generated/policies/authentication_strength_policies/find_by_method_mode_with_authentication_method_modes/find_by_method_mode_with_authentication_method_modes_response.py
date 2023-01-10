@@ -7,9 +7,6 @@ authentication_strength_policy = lazy_import('msgraph.generated.models.authentic
 base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
 
 class FindByMethodModeWithAuthenticationMethodModesResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the findByMethodMode method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new findByMethodModeWithAuthenticationMethodModesResponse and sets the default values.

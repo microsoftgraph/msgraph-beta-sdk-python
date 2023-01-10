@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 synchronization_job_application_parameters = lazy_import('msgraph.generated.models.synchronization_job_application_parameters')
 
 class ProvisionOnDemandPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the provisionOnDemand method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

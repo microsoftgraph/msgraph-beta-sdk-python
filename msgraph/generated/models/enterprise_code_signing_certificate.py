@@ -8,9 +8,6 @@ certificate_status = lazy_import('msgraph.generated.models.certificate_status')
 entity = lazy_import('msgraph.generated.models.entity')
 
 class EnterpriseCodeSigningCertificate(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new enterpriseCodeSigningCertificate and sets the default values.

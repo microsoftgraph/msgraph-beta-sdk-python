@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 credential = lazy_import('msgraph.generated.models.credential')
 
 class UpdatePasswordSingleSignOnCredentialsPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the updatePasswordSingleSignOnCredentials method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

@@ -10,9 +10,6 @@ source_type = lazy_import('msgraph.generated.models.security.source_type')
 string_value_dictionary = lazy_import('msgraph.generated.models.security.string_value_dictionary')
 
 class File(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new file and sets the default values.

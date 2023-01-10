@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 key_long_value_pair = lazy_import('msgraph.generated.models.key_long_value_pair')
 
 class GetHealthMetricsResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getHealthMetrics method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getHealthMetricsResponse and sets the default values.

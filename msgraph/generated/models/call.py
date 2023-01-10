@@ -27,9 +27,6 @@ routing_policy = lazy_import('msgraph.generated.models.routing_policy')
 tone_info = lazy_import('msgraph.generated.models.tone_info')
 
 class Call(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def active_modalities(self,) -> Optional[List[modality.Modality]]:
         """

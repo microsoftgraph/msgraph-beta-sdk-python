@@ -54,7 +54,7 @@ class CloudPC(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new CloudPC and sets the default values.
+        Instantiates a new cloudPC and sets the default values.
         """
         super().__init__()
         # The Azure Active Directory (Azure AD) device ID of the Cloud PC.

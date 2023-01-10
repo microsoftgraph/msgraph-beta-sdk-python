@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 credential_user_registration_count = lazy_import('msgraph.generated.models.credential_user_registration_count')
 
 class GetCredentialUserRegistrationCountResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getCredentialUserRegistrationCount method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getCredentialUserRegistrationCountResponse and sets the default values.

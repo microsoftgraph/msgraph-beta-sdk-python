@@ -8,9 +8,6 @@ planner_delta = lazy_import('msgraph.generated.models.planner_delta')
 planner_task = lazy_import('msgraph.generated.models.planner_task')
 
 class PlannerBucket(planner_delta.PlannerDelta):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new plannerBucket and sets the default values.

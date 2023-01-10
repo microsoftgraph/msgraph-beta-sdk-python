@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 workflow = lazy_import('msgraph.generated.models.identity_governance.workflow')
 
 class CreateNewVersionPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the createNewVersion method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

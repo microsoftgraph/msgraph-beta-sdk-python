@@ -7,9 +7,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 planner_plan_configuration_bucket_localization = lazy_import('msgraph.generated.models.planner_plan_configuration_bucket_localization')
 
 class PlannerPlanConfigurationLocalization(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def buckets(self,) -> Optional[List[planner_plan_configuration_bucket_localization.PlannerPlanConfigurationBucketLocalization]]:
         """

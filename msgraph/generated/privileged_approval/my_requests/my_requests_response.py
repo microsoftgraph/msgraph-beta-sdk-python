@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 privileged_approval = lazy_import('msgraph.generated.models.privileged_approval')
 
 class MyRequestsResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the myRequests method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new myRequestsResponse and sets the default values.

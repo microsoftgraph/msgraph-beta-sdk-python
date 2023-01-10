@@ -30,9 +30,6 @@ site = lazy_import('msgraph.generated.models.site')
 team = lazy_import('msgraph.generated.models.team')
 
 class Group(directory_object.DirectoryObject):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def accepted_senders(self,) -> Optional[List[directory_object.DirectoryObject]]:
         """

@@ -11,9 +11,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 identity_set = lazy_import('msgraph.generated.models.identity_set')
 
 class BrowserSharedCookie(entity.Entity):
-    """
-    Provides operations to manage the admin singleton.
-    """
     @property
     def comment(self,) -> Optional[str]:
         """

@@ -9,9 +9,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 long_running_operation_status = lazy_import('msgraph.generated.models.long_running_operation_status')
 
 class DelegatedAdminRelationshipOperation(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new delegatedAdminRelationshipOperation and sets the default values.

@@ -11,9 +11,6 @@ task_processing_result = lazy_import('msgraph.generated.models.identity_governan
 workflow_execution_type = lazy_import('msgraph.generated.models.identity_governance.workflow_execution_type')
 
 class UserProcessingResult(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def completed_date_time(self,) -> Optional[datetime]:
         """

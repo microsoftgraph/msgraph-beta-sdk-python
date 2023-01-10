@@ -10,9 +10,6 @@ ip_reference_data = lazy_import('msgraph.generated.models.ip_reference_data')
 security_vendor_information = lazy_import('msgraph.generated.models.security_vendor_information')
 
 class IpSecurityProfile(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def activity_group_names(self,) -> Optional[List[str]]:
         """

@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 device_configuration_targeted_user_and_device = lazy_import('msgraph.generated.models.device_configuration_targeted_user_and_device')
 
 class GetTargetedUsersAndDevicesResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getTargetedUsersAndDevices method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getTargetedUsersAndDevicesResponse and sets the default values.

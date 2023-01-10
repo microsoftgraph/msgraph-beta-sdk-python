@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 information_protection_action = lazy_import('msgraph.generated.models.information_protection_action')
 
 class EvaluateApplicationResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the evaluateApplication method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new evaluateApplicationResponse and sets the default values.

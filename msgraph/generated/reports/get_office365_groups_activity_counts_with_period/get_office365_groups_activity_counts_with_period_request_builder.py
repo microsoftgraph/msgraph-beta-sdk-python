@@ -37,7 +37,26 @@ class GetOffice365GroupsActivityCountsWithPeriodRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def create_get_request_information(self,request_configuration: Optional[GetOffice365GroupsActivityCountsWithPeriodRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+    async def get(self,request_configuration: Optional[GetOffice365GroupsActivityCountsWithPeriodRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[get_office365_groups_activity_counts_with_period_response.GetOffice365GroupsActivityCountsWithPeriodResponse]:
+        """
+        Invoke function getOffice365GroupsActivityCounts
+        Args:
+            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
+        Returns: Optional[get_office365_groups_activity_counts_with_period_response.GetOffice365GroupsActivityCountsWithPeriodResponse]
+        """
+        request_info = self.to_get_request_information(
+            request_configuration
+        )
+        error_mapping: Dict[str, ParsableFactory] = {
+            "4XX": o_data_error.ODataError,
+            "5XX": o_data_error.ODataError,
+        }
+        if not self.request_adapter:
+            raise Exception("Http core is null") 
+        return await self.request_adapter.send_async(request_info, get_office365_groups_activity_counts_with_period_response.GetOffice365GroupsActivityCountsWithPeriodResponse, response_handler, error_mapping)
+    
+    def to_get_request_information(self,request_configuration: Optional[GetOffice365GroupsActivityCountsWithPeriodRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Invoke function getOffice365GroupsActivityCounts
         Args:
@@ -54,25 +73,6 @@ class GetOffice365GroupsActivityCountsWithPeriodRequestBuilder():
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
             request_info.add_request_options(request_configuration.options)
         return request_info
-    
-    async def get(self,request_configuration: Optional[GetOffice365GroupsActivityCountsWithPeriodRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[get_office365_groups_activity_counts_with_period_response.GetOffice365GroupsActivityCountsWithPeriodResponse]:
-        """
-        Invoke function getOffice365GroupsActivityCounts
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
-        Returns: Optional[get_office365_groups_activity_counts_with_period_response.GetOffice365GroupsActivityCountsWithPeriodResponse]
-        """
-        request_info = self.create_get_request_information(
-            request_configuration
-        )
-        error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
-        }
-        if not self.request_adapter:
-            raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, get_office365_groups_activity_counts_with_period_response.GetOffice365GroupsActivityCountsWithPeriodResponse, response_handler, error_mapping)
     
     @dataclass
     class GetOffice365GroupsActivityCountsWithPeriodRequestBuilderGetQueryParameters():

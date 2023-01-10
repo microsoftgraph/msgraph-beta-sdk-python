@@ -333,7 +333,7 @@ class ManagedDevice(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new ManagedDevice and sets the default values.
+        Instantiates a new managedDevice and sets the default values.
         """
         super().__init__()
         # Whether the device is Azure Active Directory registered. This property is read-only.

@@ -45,7 +45,7 @@ class OfficeClientConfiguration(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new OfficeClientConfiguration and sets the default values.
+        Instantiates a new officeClientConfiguration and sets the default values.
         """
         super().__init__()
         # The list of group assignments for the policy.

@@ -13,9 +13,6 @@ sales_quote_line = lazy_import('msgraph.generated.models.sales_quote_line')
 shipment_method = lazy_import('msgraph.generated.models.shipment_method')
 
 class SalesQuote(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def accepted_date(self,) -> Optional[Date]:
         """

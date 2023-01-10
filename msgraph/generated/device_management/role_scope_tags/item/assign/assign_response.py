@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 role_scope_tag_auto_assignment = lazy_import('msgraph.generated.models.role_scope_tag_auto_assignment')
 
 class AssignResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the assign method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new assignResponse and sets the default values.

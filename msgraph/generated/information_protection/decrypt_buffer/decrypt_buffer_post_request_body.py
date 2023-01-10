@@ -4,9 +4,6 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 class DecryptBufferPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the decryptBuffer method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

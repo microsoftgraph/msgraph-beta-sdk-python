@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 tenant_setup_info = lazy_import('msgraph.generated.models.tenant_setup_info')
 
 class CompleteSetupPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the completeSetup method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

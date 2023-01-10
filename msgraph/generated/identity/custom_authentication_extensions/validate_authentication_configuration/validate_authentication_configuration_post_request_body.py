@@ -7,9 +7,6 @@ custom_extension_authentication_configuration = lazy_import('msgraph.generated.m
 custom_extension_endpoint_configuration = lazy_import('msgraph.generated.models.custom_extension_endpoint_configuration')
 
 class ValidateAuthenticationConfigurationPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the validateAuthenticationConfiguration method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

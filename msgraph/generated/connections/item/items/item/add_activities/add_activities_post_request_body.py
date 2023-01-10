@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 external_activity = lazy_import('msgraph.generated.models.external_connectors.external_activity')
 
 class AddActivitiesPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the addActivities method.
-    """
     @property
     def activities(self,) -> Optional[List[external_activity.ExternalActivity]]:
         """

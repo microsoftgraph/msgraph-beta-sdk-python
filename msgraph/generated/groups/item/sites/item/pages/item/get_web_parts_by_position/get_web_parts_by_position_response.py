@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 web_part = lazy_import('msgraph.generated.models.web_part')
 
 class GetWebPartsByPositionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getWebPartsByPosition method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getWebPartsByPositionResponse and sets the default values.

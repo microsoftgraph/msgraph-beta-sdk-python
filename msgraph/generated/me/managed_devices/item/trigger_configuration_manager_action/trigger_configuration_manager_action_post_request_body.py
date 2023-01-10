@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 configuration_manager_action = lazy_import('msgraph.generated.models.configuration_manager_action')
 
 class TriggerConfigurationManagerActionPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the triggerConfigurationManagerAction method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

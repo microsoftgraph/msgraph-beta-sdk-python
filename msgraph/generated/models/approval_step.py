@@ -8,9 +8,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 identity = lazy_import('msgraph.generated.models.identity')
 
 class ApprovalStep(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def assigned_to_me(self,) -> Optional[bool]:
         """

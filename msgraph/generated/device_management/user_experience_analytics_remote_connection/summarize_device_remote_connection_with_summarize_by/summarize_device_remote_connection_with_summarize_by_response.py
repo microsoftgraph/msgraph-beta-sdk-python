@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 user_experience_analytics_remote_connection = lazy_import('msgraph.generated.models.user_experience_analytics_remote_connection')
 
 class SummarizeDeviceRemoteConnectionWithSummarizeByResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the summarizeDeviceRemoteConnection method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new summarizeDeviceRemoteConnectionWithSummarizeByResponse and sets the default values.

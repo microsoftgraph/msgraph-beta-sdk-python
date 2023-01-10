@@ -15,9 +15,6 @@ retention_event_type = lazy_import('msgraph.generated.models.security.retention_
 retention_trigger = lazy_import('msgraph.generated.models.security.retention_trigger')
 
 class RetentionLabel(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def action_after_retention_period(self,) -> Optional[action_after_retention_period.ActionAfterRetentionPeriod]:
         """

@@ -7,9 +7,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 setting_value = lazy_import('msgraph.generated.models.setting_value')
 
 class DirectorySetting(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new directorySetting and sets the default values.

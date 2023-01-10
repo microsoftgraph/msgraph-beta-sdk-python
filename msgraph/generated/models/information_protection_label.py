@@ -7,9 +7,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 parent_label_details = lazy_import('msgraph.generated.models.parent_label_details')
 
 class InformationProtectionLabel(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def color(self,) -> Optional[str]:
         """

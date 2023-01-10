@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 device_app_management_task_status = lazy_import('msgraph.generated.models.device_app_management_task_status')
 
 class UpdateStatusPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the updateStatus method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

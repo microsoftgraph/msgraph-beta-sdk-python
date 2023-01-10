@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 policy_set = lazy_import('msgraph.generated.models.policy_set')
 
 class GetPolicySetsResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getPolicySets method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getPolicySetsResponse and sets the default values.

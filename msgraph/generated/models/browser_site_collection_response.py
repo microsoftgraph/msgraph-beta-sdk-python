@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 browser_site = lazy_import('msgraph.generated.models.browser_site')
 
 class BrowserSiteCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the sites property of the microsoft.graph.browserSiteList entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new BrowserSiteCollectionResponse and sets the default values.

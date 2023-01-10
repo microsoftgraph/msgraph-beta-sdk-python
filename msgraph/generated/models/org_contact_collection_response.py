@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 org_contact = lazy_import('msgraph.generated.models.org_contact')
 
 class OrgContactCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Casts the previous resource to orgContact.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new OrgContactCollectionResponse and sets the default values.

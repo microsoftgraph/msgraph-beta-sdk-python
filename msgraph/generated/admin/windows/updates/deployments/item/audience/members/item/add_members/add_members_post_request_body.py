@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 updatable_asset = lazy_import('msgraph.generated.models.windows_updates.updatable_asset')
 
 class AddMembersPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the addMembers method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

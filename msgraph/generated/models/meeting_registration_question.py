@@ -7,9 +7,6 @@ answer_input_type = lazy_import('msgraph.generated.models.answer_input_type')
 entity = lazy_import('msgraph.generated.models.entity')
 
 class MeetingRegistrationQuestion(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def answer_input_type(self,) -> Optional[answer_input_type.AnswerInputType]:
         """

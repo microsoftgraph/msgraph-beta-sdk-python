@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 device_management_intent = lazy_import('msgraph.generated.models.device_management_intent')
 
 class ImportOffice365DeviceConfigurationPoliciesResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the importOffice365DeviceConfigurationPolicies method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new importOffice365DeviceConfigurationPoliciesResponse and sets the default values.

@@ -8,9 +8,6 @@ email_address = lazy_import('msgraph.generated.models.email_address')
 entity = lazy_import('msgraph.generated.models.entity')
 
 class Mention(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def application(self,) -> Optional[str]:
         """

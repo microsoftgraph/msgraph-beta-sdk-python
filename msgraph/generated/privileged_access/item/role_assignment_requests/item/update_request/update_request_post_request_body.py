@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 governance_schedule = lazy_import('msgraph.generated.models.governance_schedule')
 
 class UpdateRequestPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the updateRequest method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

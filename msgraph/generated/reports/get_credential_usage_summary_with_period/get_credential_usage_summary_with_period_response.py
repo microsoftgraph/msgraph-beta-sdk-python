@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 credential_usage_summary = lazy_import('msgraph.generated.models.credential_usage_summary')
 
 class GetCredentialUsageSummaryWithPeriodResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getCredentialUsageSummary method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getCredentialUsageSummaryWithPeriodResponse and sets the default values.

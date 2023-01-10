@@ -7,9 +7,6 @@ cloud_pc_operating_system = lazy_import('msgraph.generated.models.cloud_pc_opera
 cloud_pc_user_account_type = lazy_import('msgraph.generated.models.cloud_pc_user_account_type')
 
 class ReprovisionPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the reprovision method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

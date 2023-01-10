@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 device_compliance_policy_script = lazy_import('msgraph.generated.models.device_compliance_policy_script')
 
 class ValidateComplianceScriptPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the validateComplianceScript method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

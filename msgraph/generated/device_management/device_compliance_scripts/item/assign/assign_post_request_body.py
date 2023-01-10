@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 device_health_script_assignment = lazy_import('msgraph.generated.models.device_health_script_assignment')
 
 class AssignPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the assign method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

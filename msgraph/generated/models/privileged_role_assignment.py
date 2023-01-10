@@ -8,9 +8,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 privileged_role = lazy_import('msgraph.generated.models.privileged_role')
 
 class PrivilegedRoleAssignment(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new privilegedRoleAssignment and sets the default values.

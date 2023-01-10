@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 administrator_configured_device_compliance_state = lazy_import('msgraph.generated.models.administrator_configured_device_compliance_state')
 
 class OverrideComplianceStatePostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the overrideComplianceState method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

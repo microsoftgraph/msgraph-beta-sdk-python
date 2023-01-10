@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 device_enrollment_configuration = lazy_import('msgraph.generated.models.device_enrollment_configuration')
 
 class GetEffectiveDeviceEnrollmentConfigurationsResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getEffectiveDeviceEnrollmentConfigurations method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getEffectiveDeviceEnrollmentConfigurationsResponse and sets the default values.

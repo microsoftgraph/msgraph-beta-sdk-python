@@ -7,9 +7,6 @@ policy_set_assignment = lazy_import('msgraph.generated.models.policy_set_assignm
 policy_set_item = lazy_import('msgraph.generated.models.policy_set_item')
 
 class UpdatePostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the update method.
-    """
     @property
     def added_policy_set_items(self,) -> Optional[List[policy_set_item.PolicySetItem]]:
         """

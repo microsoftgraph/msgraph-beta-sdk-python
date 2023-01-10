@@ -9,9 +9,6 @@ identity_set = lazy_import('msgraph.generated.models.identity_set')
 policy_status = lazy_import('msgraph.generated.models.security.policy_status')
 
 class PolicyBase(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new policyBase and sets the default values.

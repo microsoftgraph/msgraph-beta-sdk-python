@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 cloud_pc_subscription = lazy_import('msgraph.generated.models.cloud_pc_subscription')
 
 class GetSubscriptionsResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getSubscriptions method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getSubscriptionsResponse and sets the default values.

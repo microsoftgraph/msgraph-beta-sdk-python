@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 embedded_s_i_m_activation_code_pool_assignment = lazy_import('msgraph.generated.models.embedded_s_i_m_activation_code_pool_assignment')
 
 class AssignPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the assign method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

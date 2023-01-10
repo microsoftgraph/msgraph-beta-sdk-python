@@ -9,9 +9,6 @@ access_package_subject = lazy_import('msgraph.generated.models.access_package_su
 entity = lazy_import('msgraph.generated.models.entity')
 
 class AccessPackageResourceRequest(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def access_package_resource(self,) -> Optional[access_package_resource.AccessPackageResource]:
         """

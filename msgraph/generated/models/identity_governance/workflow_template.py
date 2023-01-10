@@ -9,9 +9,6 @@ task = lazy_import('msgraph.generated.models.identity_governance.task')
 workflow_execution_conditions = lazy_import('msgraph.generated.models.identity_governance.workflow_execution_conditions')
 
 class WorkflowTemplate(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def category(self,) -> Optional[lifecycle_workflow_category.LifecycleWorkflowCategory]:
         """

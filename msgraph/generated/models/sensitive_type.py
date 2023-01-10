@@ -9,9 +9,6 @@ sensitive_type_scope = lazy_import('msgraph.generated.models.sensitive_type_scop
 sensitive_type_source = lazy_import('msgraph.generated.models.sensitive_type_source')
 
 class SensitiveType(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def classification_method(self,) -> Optional[classification_method.ClassificationMethod]:
         """

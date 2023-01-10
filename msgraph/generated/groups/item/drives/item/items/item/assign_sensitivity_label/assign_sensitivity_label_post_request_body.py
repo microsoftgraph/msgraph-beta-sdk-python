@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 sensitivity_label_assignment_method = lazy_import('msgraph.generated.models.sensitivity_label_assignment_method')
 
 class AssignSensitivityLabelPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the assignSensitivityLabel method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

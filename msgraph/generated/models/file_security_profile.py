@@ -11,9 +11,6 @@ security_vendor_information = lazy_import('msgraph.generated.models.security_ven
 vulnerability_state = lazy_import('msgraph.generated.models.vulnerability_state')
 
 class FileSecurityProfile(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def activity_group_names(self,) -> Optional[List[str]]:
         """

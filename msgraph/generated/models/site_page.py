@@ -14,9 +14,6 @@ title_area = lazy_import('msgraph.generated.models.title_area')
 web_part = lazy_import('msgraph.generated.models.web_part')
 
 class SitePage(base_item.BaseItem):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def canvas_layout(self,) -> Optional[canvas_layout.CanvasLayout]:
         """

@@ -415,24 +415,6 @@ class CompanyItemRequestBuilder():
         url_tpl_params["countryRegion%2Did"] = id
         return country_region_item_request_builder.CountryRegionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def create_get_request_information(self,request_configuration: Optional[CompanyItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
-        """
-        Get companies from financials
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: RequestInformation
-        """
-        request_info = RequestInformation()
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
-        return request_info
-    
     def currencies_by_id(self,id: str) -> currency_item_request_builder.CurrencyItemRequestBuilder:
         """
         Provides operations to manage the currencies property of the microsoft.graph.company entity.
@@ -545,7 +527,7 @@ class CompanyItemRequestBuilder():
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[company.Company]
         """
-        request_info = self.create_get_request_information(
+        request_info = self.to_get_request_information(
             request_configuration
         )
         error_mapping: Dict[str, ParsableFactory] = {
@@ -815,6 +797,24 @@ class CompanyItemRequestBuilder():
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["taxGroup%2Did"] = id
         return tax_group_item_request_builder.TaxGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    def to_get_request_information(self,request_configuration: Optional[CompanyItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+        """
+        Get companies from financials
+        Args:
+            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: RequestInformation
+        """
+        request_info = RequestInformation()
+        request_info.url_template = self.url_template
+        request_info.path_parameters = self.path_parameters
+        request_info.http_method = Method.GET
+        request_info.headers["Accept"] = "application/json"
+        if request_configuration:
+            request_info.add_request_headers(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
+        return request_info
     
     def units_of_measure_by_id(self,id: str) -> unit_of_measure_item_request_builder.UnitOfMeasureItemRequestBuilder:
         """

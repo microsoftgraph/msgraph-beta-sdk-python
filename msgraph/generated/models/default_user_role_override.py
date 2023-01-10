@@ -7,9 +7,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 unified_role_permission = lazy_import('msgraph.generated.models.unified_role_permission')
 
 class DefaultUserRoleOverride(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new defaultUserRoleOverride and sets the default values.

@@ -8,9 +8,6 @@ planner_plan = lazy_import('msgraph.generated.models.planner_plan')
 planner_roster_member = lazy_import('msgraph.generated.models.planner_roster_member')
 
 class PlannerRoster(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new plannerRoster and sets the default values.

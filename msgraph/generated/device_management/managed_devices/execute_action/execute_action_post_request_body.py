@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 managed_device_remote_action = lazy_import('msgraph.generated.models.managed_device_remote_action')
 
 class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the executeAction method.
-    """
     @property
     def action_name(self,) -> Optional[managed_device_remote_action.ManagedDeviceRemoteAction]:
         """

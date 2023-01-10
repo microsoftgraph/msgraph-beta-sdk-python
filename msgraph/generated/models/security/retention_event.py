@@ -12,9 +12,6 @@ retention_event_status = lazy_import('msgraph.generated.models.security.retentio
 retention_event_type = lazy_import('msgraph.generated.models.security.retention_event_type')
 
 class RetentionEvent(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new retentionEvent and sets the default values.

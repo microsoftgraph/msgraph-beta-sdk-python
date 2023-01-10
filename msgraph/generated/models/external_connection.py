@@ -12,9 +12,6 @@ external_item = lazy_import('msgraph.generated.models.external_item')
 schema = lazy_import('msgraph.generated.models.schema')
 
 class ExternalConnection(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def configuration(self,) -> Optional[configuration.Configuration]:
         """

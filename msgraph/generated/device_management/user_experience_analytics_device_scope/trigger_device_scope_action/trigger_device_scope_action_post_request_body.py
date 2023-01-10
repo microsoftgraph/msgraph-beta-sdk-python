@@ -4,9 +4,6 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 class TriggerDeviceScopeActionPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the triggerDeviceScopeAction method.
-    """
     @property
     def action_name(self,) -> Optional[str]:
         """

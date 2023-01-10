@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 custom_task_extension_callback_data = lazy_import('msgraph.generated.models.identity_governance.custom_task_extension_callback_data')
 
 class ResumePostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the resume method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

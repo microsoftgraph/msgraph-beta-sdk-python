@@ -7,9 +7,6 @@ administrative_unit = lazy_import('msgraph.generated.models.administrative_unit'
 base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
 
 class AdministrativeUnitCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the collection of administrativeUnit entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new AdministrativeUnitCollectionResponse and sets the default values.

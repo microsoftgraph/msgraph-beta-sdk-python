@@ -7,9 +7,6 @@ updatable_asset = lazy_import('msgraph.generated.models.windows_updates.updatabl
 update_category = lazy_import('msgraph.generated.models.windows_updates.update_category')
 
 class UnenrollAssetsPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the unenrollAssets method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

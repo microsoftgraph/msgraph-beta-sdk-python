@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 cloud_pc_user_setting_assignment = lazy_import('msgraph.generated.models.cloud_pc_user_setting_assignment')
 
 class AssignPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the assign method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

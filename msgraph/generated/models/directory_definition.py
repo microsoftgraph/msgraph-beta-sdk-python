@@ -9,9 +9,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 object_definition = lazy_import('msgraph.generated.models.object_definition')
 
 class DirectoryDefinition(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new directoryDefinition and sets the default values.

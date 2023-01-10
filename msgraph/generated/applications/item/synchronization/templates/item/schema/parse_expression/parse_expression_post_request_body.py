@@ -7,9 +7,6 @@ attribute_definition = lazy_import('msgraph.generated.models.attribute_definitio
 expression_input_object = lazy_import('msgraph.generated.models.expression_input_object')
 
 class ParseExpressionPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the parseExpression method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

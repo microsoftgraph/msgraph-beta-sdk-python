@@ -10,9 +10,6 @@ priority = lazy_import('msgraph.generated.models.priority')
 target_policy_endpoints = lazy_import('msgraph.generated.models.target_policy_endpoints')
 
 class Notification(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new notification and sets the default values.

@@ -7,9 +7,6 @@ content_info = lazy_import('msgraph.generated.models.content_info')
 downgrade_justification = lazy_import('msgraph.generated.models.downgrade_justification')
 
 class EvaluateRemovalPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the evaluateRemoval method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

@@ -9,9 +9,6 @@ identity_set = lazy_import('msgraph.generated.models.identity_set')
 child_selectability = lazy_import('msgraph.generated.models.ediscovery.child_selectability')
 
 class Tag(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def child_selectability(self,) -> Optional[child_selectability.ChildSelectability]:
         """

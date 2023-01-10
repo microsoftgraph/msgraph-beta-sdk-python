@@ -8,9 +8,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 governance_policy = lazy_import('msgraph.generated.models.governance_policy')
 
 class GovernancePolicyTemplate(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new governancePolicyTemplate and sets the default values.

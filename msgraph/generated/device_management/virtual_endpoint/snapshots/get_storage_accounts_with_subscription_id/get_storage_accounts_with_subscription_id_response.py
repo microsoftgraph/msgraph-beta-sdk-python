@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 cloud_pc_forensic_storage_account = lazy_import('msgraph.generated.models.cloud_pc_forensic_storage_account')
 
 class GetStorageAccountsWithSubscriptionIdResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getStorageAccounts method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getStorageAccountsWithSubscriptionIdResponse and sets the default values.

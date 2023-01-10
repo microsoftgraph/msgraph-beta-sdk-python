@@ -15,9 +15,6 @@ subject_alternative_name_type = lazy_import('msgraph.generated.models.subject_al
 subject_name_format = lazy_import('msgraph.generated.models.subject_name_format')
 
 class ManagedDeviceCertificateState(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def certificate_enhanced_key_usage(self,) -> Optional[str]:
         """
