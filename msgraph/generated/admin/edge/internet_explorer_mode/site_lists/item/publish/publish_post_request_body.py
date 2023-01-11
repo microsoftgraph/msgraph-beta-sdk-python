@@ -7,9 +7,6 @@ browser_shared_cookie = lazy_import('msgraph.generated.models.browser_shared_coo
 browser_site = lazy_import('msgraph.generated.models.browser_site')
 
 class PublishPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the publish method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

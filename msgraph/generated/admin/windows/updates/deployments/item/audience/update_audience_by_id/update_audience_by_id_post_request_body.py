@@ -4,9 +4,6 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 class UpdateAudienceByIdPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the updateAudienceById method.
-    """
     @property
     def add_exclusions(self,) -> Optional[List[str]]:
         """

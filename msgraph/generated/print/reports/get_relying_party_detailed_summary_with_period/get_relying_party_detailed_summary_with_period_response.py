@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 relying_party_detailed_summary = lazy_import('msgraph.generated.models.relying_party_detailed_summary')
 
 class GetRelyingPartyDetailedSummaryWithPeriodResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getRelyingPartyDetailedSummary method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getRelyingPartyDetailedSummaryWithPeriodResponse and sets the default values.

@@ -10,9 +10,6 @@ reputation_category = lazy_import('msgraph.generated.models.reputation_category'
 security_vendor_information = lazy_import('msgraph.generated.models.security_vendor_information')
 
 class DomainSecurityProfile(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def activity_group_names(self,) -> Optional[List[str]]:
         """

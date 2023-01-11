@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 presence_status_message = lazy_import('msgraph.generated.models.presence_status_message')
 
 class SetStatusMessagePostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the setStatusMessage method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

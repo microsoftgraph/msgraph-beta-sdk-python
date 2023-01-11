@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 external_activity_result = lazy_import('msgraph.generated.models.external_connectors.external_activity_result')
 
 class AddActivitiesResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the addActivities method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new addActivitiesResponse and sets the default values.

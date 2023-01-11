@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 user_experience_analytics_device_performance = lazy_import('msgraph.generated.models.user_experience_analytics_device_performance')
 
 class SummarizeDevicePerformanceDevicesWithSummarizeByResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the summarizeDevicePerformanceDevices method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new summarizeDevicePerformanceDevicesWithSummarizeByResponse and sets the default values.

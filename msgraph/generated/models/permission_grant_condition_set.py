@@ -7,9 +7,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 permission_type = lazy_import('msgraph.generated.models.permission_type')
 
 class PermissionGrantConditionSet(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def certified_client_applications_only(self,) -> Optional[bool]:
         """

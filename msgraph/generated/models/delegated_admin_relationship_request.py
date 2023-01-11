@@ -9,9 +9,6 @@ delegated_admin_relationship_request_status = lazy_import('msgraph.generated.mod
 entity = lazy_import('msgraph.generated.models.entity')
 
 class DelegatedAdminRelationshipRequest(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def action(self,) -> Optional[delegated_admin_relationship_request_action.DelegatedAdminRelationshipRequestAction]:
         """

@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 content_classification = lazy_import('msgraph.generated.models.content_classification')
 
 class ClassifyExactMatchesPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the classifyExactMatches method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

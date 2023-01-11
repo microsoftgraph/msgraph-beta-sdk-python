@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 result_info = lazy_import('msgraph.generated.models.result_info')
 
 class DeleteTiIndicatorsResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the deleteTiIndicators method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new deleteTiIndicatorsResponse and sets the default values.

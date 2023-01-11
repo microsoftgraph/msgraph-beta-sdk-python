@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 updatable_asset = lazy_import('msgraph.generated.models.windows_updates.updatable_asset')
 
 class UpdateAudiencePostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the updateAudience method.
-    """
     @property
     def add_exclusions(self,) -> Optional[List[updatable_asset.UpdatableAsset]]:
         """

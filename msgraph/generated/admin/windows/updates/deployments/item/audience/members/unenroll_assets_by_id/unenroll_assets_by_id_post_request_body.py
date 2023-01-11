@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 update_category = lazy_import('msgraph.generated.models.windows_updates.update_category')
 
 class UnenrollAssetsByIdPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the unenrollAssetsById method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

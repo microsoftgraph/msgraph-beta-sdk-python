@@ -7,9 +7,6 @@ application_sign_in_summary = lazy_import('msgraph.generated.models.application_
 base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
 
 class GetAzureADApplicationSignInSummaryWithPeriodResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getAzureADApplicationSignInSummary method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getAzureADApplicationSignInSummaryWithPeriodResponse and sets the default values.

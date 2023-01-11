@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 device_management_setting_instance = lazy_import('msgraph.generated.models.device_management_setting_instance')
 
 class CreateInstancePostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the createInstance method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

@@ -10,9 +10,6 @@ windows_defender_application_control_supplemental_policy_deployment_status = laz
 windows_defender_application_control_supplemental_policy_deployment_summary = lazy_import('msgraph.generated.models.windows_defender_application_control_supplemental_policy_deployment_summary')
 
 class WindowsDefenderApplicationControlSupplementalPolicy(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def assignments(self,) -> Optional[List[windows_defender_application_control_supplemental_policy_assignment.WindowsDefenderApplicationControlSupplementalPolicyAssignment]]:
         """

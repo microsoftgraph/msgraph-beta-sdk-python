@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 updatable_asset = lazy_import('msgraph.generated.models.windows_updates.updatable_asset')
 
 class UpdatableAssetCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the exclusions property of the microsoft.graph.windowsUpdates.deploymentAudience entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new UpdatableAssetCollectionResponse and sets the default values.

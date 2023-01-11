@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 mobile_app_relationship_state = lazy_import('msgraph.generated.models.mobile_app_relationship_state')
 
 class GetRelatedAppStatesWithUserPrincipalNameWithDeviceIdResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getRelatedAppStates method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getRelatedAppStatesWithUserPrincipalNameWithDeviceIdResponse and sets the default values.

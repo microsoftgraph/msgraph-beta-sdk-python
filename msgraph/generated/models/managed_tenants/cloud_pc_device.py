@@ -7,9 +7,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class CloudPcDevice(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def cloud_pc_status(self,) -> Optional[str]:
         """

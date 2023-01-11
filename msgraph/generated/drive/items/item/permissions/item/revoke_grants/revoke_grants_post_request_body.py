@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 drive_recipient = lazy_import('msgraph.generated.models.drive_recipient')
 
 class RevokeGrantsPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the revokeGrants method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

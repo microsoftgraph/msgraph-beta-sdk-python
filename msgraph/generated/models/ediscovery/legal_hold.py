@@ -12,9 +12,6 @@ unified_group_source = lazy_import('msgraph.generated.models.ediscovery.unified_
 user_source = lazy_import('msgraph.generated.models.ediscovery.user_source')
 
 class LegalHold(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new legalHold and sets the default values.

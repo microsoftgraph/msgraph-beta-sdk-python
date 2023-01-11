@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 browser_shared_cookie = lazy_import('msgraph.generated.models.browser_shared_cookie')
 
 class BrowserSharedCookieCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the sharedCookies property of the microsoft.graph.browserSiteList entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new BrowserSharedCookieCollectionResponse and sets the default values.

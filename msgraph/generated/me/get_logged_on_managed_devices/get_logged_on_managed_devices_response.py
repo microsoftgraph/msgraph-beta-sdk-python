@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 managed_device = lazy_import('msgraph.generated.models.managed_device')
 
 class GetLoggedOnManagedDevicesResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getLoggedOnManagedDevices method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getLoggedOnManagedDevicesResponse and sets the default values.

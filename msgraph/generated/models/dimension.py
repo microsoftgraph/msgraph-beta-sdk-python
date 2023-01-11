@@ -8,9 +8,6 @@ dimension_value = lazy_import('msgraph.generated.models.dimension_value')
 entity = lazy_import('msgraph.generated.models.entity')
 
 class Dimension(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def code(self,) -> Optional[str]:
         """

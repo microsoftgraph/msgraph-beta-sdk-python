@@ -7,9 +7,6 @@ ios_lob_app_provisioning_configuration_assignment = lazy_import('msgraph.generat
 mobile_app_provisioning_config_group_assignment = lazy_import('msgraph.generated.models.mobile_app_provisioning_config_group_assignment')
 
 class AssignPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the assign method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

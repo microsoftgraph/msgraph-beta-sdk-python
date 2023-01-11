@@ -11,9 +11,6 @@ risk_state = lazy_import('msgraph.generated.models.risk_state')
 risky_service_principal_history_item = lazy_import('msgraph.generated.models.risky_service_principal_history_item')
 
 class RiskyServicePrincipal(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def account_enabled(self,) -> Optional[bool]:
         """

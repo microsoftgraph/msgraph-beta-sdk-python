@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 office365_groups_activity_storage = lazy_import('msgraph.generated.models.office365_groups_activity_storage')
 
 class GetOffice365GroupsActivityStorageWithPeriodResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getOffice365GroupsActivityStorage method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getOffice365GroupsActivityStorageWithPeriodResponse and sets the default values.

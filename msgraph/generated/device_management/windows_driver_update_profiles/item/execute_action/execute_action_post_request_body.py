@@ -7,9 +7,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 driver_approval_action = lazy_import('msgraph.generated.models.driver_approval_action')
 
 class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the executeAction method.
-    """
     @property
     def action_name(self,) -> Optional[driver_approval_action.DriverApprovalAction]:
         """

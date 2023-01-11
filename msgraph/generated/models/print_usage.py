@@ -7,9 +7,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class PrintUsage(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def black_and_white_page_count(self,) -> Optional[int]:
         """

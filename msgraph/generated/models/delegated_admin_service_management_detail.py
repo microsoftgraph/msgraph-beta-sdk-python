@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class DelegatedAdminServiceManagementDetail(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new delegatedAdminServiceManagementDetail and sets the default values.

@@ -14,9 +14,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 requestor_settings = lazy_import('msgraph.generated.models.requestor_settings')
 
 class AccessPackageAssignmentPolicy(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def access_package(self,) -> Optional[access_package.AccessPackage]:
         """

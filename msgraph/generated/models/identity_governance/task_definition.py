@@ -8,9 +8,6 @@ lifecycle_task_category = lazy_import('msgraph.generated.models.identity_governa
 parameter = lazy_import('msgraph.generated.models.identity_governance.parameter')
 
 class TaskDefinition(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def category(self,) -> Optional[lifecycle_task_category.LifecycleTaskCategory]:
         """

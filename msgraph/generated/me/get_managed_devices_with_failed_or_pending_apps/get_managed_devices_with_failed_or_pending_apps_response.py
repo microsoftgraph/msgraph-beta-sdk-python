@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 managed_device_summarized_app_state = lazy_import('msgraph.generated.models.managed_device_summarized_app_state')
 
 class GetManagedDevicesWithFailedOrPendingAppsResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getManagedDevicesWithFailedOrPendingApps method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getManagedDevicesWithFailedOrPendingAppsResponse and sets the default values.

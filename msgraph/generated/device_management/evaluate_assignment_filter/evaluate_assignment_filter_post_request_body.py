@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 assignment_filter_evaluate_request = lazy_import('msgraph.generated.models.assignment_filter_evaluate_request')
 
 class EvaluateAssignmentFilterPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the evaluateAssignmentFilter method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

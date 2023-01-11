@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 imported_device_identity = lazy_import('msgraph.generated.models.imported_device_identity')
 
 class SearchExistingIdentitiesResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the searchExistingIdentities method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new searchExistingIdentitiesResponse and sets the default values.

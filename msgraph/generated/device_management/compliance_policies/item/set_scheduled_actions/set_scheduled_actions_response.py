@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 device_management_compliance_scheduled_action_for_rule = lazy_import('msgraph.generated.models.device_management_compliance_scheduled_action_for_rule')
 
 class SetScheduledActionsResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the setScheduledActions method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new setScheduledActionsResponse and sets the default values.

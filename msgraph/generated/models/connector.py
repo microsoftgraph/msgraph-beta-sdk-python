@@ -8,9 +8,6 @@ connector_status = lazy_import('msgraph.generated.models.connector_status')
 entity = lazy_import('msgraph.generated.models.entity')
 
 class Connector(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new connector and sets the default values.

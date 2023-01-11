@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 cloud_pc_review_status = lazy_import('msgraph.generated.models.cloud_pc_review_status')
 
 class SetCloudPcReviewStatusPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the setCloudPcReviewStatus method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

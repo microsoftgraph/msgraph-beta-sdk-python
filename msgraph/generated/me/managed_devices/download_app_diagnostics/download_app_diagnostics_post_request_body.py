@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 powerlift_download_request = lazy_import('msgraph.generated.models.powerlift_download_request')
 
 class DownloadAppDiagnosticsPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the downloadAppDiagnostics method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

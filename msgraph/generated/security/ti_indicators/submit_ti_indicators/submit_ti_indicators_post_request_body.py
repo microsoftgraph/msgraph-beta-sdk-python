@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 ti_indicator = lazy_import('msgraph.generated.models.ti_indicator')
 
 class SubmitTiIndicatorsPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the submitTiIndicators method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

@@ -8,9 +8,6 @@ customer = lazy_import('msgraph.generated.models.customer')
 entity = lazy_import('msgraph.generated.models.entity')
 
 class CustomerPayment(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def amount(self,) -> Optional[float]:
         """

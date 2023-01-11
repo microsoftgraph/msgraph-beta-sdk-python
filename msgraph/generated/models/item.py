@@ -9,9 +9,6 @@ item_category = lazy_import('msgraph.generated.models.item_category')
 picture = lazy_import('msgraph.generated.models.picture')
 
 class Item(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def base_unit_of_measure_id(self,) -> Optional[Guid]:
         """

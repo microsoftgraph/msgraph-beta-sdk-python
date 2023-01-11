@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 role_scope_tag = lazy_import('msgraph.generated.models.role_scope_tag')
 
 class GetRoleScopeTagsByIdsWithIdsResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getRoleScopeTagsByIds method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getRoleScopeTagsByIdsWithIdsResponse and sets the default values.

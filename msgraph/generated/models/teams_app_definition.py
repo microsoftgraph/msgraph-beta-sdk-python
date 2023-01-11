@@ -12,9 +12,6 @@ teams_app_publishing_state = lazy_import('msgraph.generated.models.teams_app_pub
 teamwork_bot = lazy_import('msgraph.generated.models.teamwork_bot')
 
 class TeamsAppDefinition(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def allowed_installation_scopes(self,) -> Optional[teams_app_installation_scopes.TeamsAppInstallationScopes]:
         """

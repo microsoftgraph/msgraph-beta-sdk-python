@@ -7,9 +7,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 drive_recipient = lazy_import('msgraph.generated.models.drive_recipient')
 
 class CreateLinkPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the createLink method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

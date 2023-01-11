@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 windows_privacy_data_access_control_item = lazy_import('msgraph.generated.models.windows_privacy_data_access_control_item')
 
 class WindowsPrivacyAccessControlsPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the windowsPrivacyAccessControls method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

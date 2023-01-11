@@ -11,9 +11,6 @@ inference_data = lazy_import('msgraph.generated.models.inference_data')
 person_data_sources = lazy_import('msgraph.generated.models.person_data_sources')
 
 class ItemFacet(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def allowed_audiences(self,) -> Optional[allowed_audiences.AllowedAudiences]:
         """

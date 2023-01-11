@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
 
 class GetScopesForUserWithUseridResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getScopesForUser method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getScopesForUserWithUseridResponse and sets the default values.

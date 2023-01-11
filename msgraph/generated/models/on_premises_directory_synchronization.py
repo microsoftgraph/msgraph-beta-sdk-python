@@ -8,9 +8,6 @@ on_premises_directory_synchronization_configuration = lazy_import('msgraph.gener
 on_premises_directory_synchronization_feature = lazy_import('msgraph.generated.models.on_premises_directory_synchronization_feature')
 
 class OnPremisesDirectorySynchronization(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def configuration(self,) -> Optional[on_premises_directory_synchronization_configuration.OnPremisesDirectorySynchronizationConfiguration]:
         """

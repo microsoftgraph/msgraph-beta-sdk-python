@@ -14,9 +14,6 @@ threat_category = lazy_import('msgraph.generated.models.threat_category')
 threat_expected_assessment = lazy_import('msgraph.generated.models.threat_expected_assessment')
 
 class ThreatAssessmentRequest(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def category(self,) -> Optional[threat_category.ThreatCategory]:
         """

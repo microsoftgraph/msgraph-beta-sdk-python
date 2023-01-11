@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 group_policy_object_file = lazy_import('msgraph.generated.models.group_policy_object_file')
 
 class CreateMigrationReportPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the createMigrationReport method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

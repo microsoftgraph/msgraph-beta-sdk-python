@@ -9,9 +9,6 @@ security_vendor_information = lazy_import('msgraph.generated.models.security_ven
 user_account = lazy_import('msgraph.generated.models.user_account')
 
 class UserSecurityProfile(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def accounts(self,) -> Optional[List[user_account.UserAccount]]:
         """

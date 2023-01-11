@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 business_scenario_task_target_base = lazy_import('msgraph.generated.models.business_scenario_task_target_base')
 
 class GetPlanPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the getPlan method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 item_body = lazy_import('msgraph.generated.models.item_body')
 
 class ClockInPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the clockIn method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

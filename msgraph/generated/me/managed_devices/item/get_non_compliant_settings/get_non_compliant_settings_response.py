@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 device_compliance_policy_setting_state = lazy_import('msgraph.generated.models.device_compliance_policy_setting_state')
 
 class GetNonCompliantSettingsResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getNonCompliantSettings method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getNonCompliantSettingsResponse and sets the default values.

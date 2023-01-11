@@ -7,9 +7,6 @@ assignment_filter_supported_property = lazy_import('msgraph.generated.models.ass
 base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
 
 class GetPlatformSupportedPropertiesWithPlatformResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getPlatformSupportedProperties method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getPlatformSupportedPropertiesWithPlatformResponse and sets the default values.

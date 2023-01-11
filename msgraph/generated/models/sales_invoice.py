@@ -13,9 +13,6 @@ sales_invoice_line = lazy_import('msgraph.generated.models.sales_invoice_line')
 shipment_method = lazy_import('msgraph.generated.models.shipment_method')
 
 class SalesInvoice(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def billing_postal_address(self,) -> Optional[postal_address_type.PostalAddressType]:
         """

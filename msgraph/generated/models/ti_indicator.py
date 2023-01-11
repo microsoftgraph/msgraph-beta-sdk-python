@@ -11,9 +11,6 @@ ti_action = lazy_import('msgraph.generated.models.ti_action')
 tlp_level = lazy_import('msgraph.generated.models.tlp_level')
 
 class TiIndicator(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def action(self,) -> Optional[ti_action.TiAction]:
         """

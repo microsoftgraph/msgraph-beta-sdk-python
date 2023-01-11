@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 synchronization_job_restart_criteria = lazy_import('msgraph.generated.models.synchronization_job_restart_criteria')
 
 class RestartPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the restart method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

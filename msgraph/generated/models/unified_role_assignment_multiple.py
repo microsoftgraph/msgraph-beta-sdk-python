@@ -9,9 +9,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 unified_role_definition = lazy_import('msgraph.generated.models.unified_role_definition')
 
 class UnifiedRoleAssignmentMultiple(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def app_scope_ids(self,) -> Optional[List[str]]:
         """

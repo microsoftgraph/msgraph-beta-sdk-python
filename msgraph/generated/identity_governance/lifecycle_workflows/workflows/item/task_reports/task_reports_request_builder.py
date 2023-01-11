@@ -46,45 +46,6 @@ class TaskReportsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def create_get_request_information(self,request_configuration: Optional[TaskReportsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
-        """
-        Get a list of the taskReport objects and their properties.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: RequestInformation
-        """
-        request_info = RequestInformation()
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
-        return request_info
-    
-    def create_post_request_information(self,body: Optional[task_report.TaskReport] = None, request_configuration: Optional[TaskReportsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
-        """
-        Create new navigation property to taskReports for identityGovernance
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: RequestInformation
-        """
-        if body is None:
-            raise Exception("body cannot be undefined")
-        request_info = RequestInformation()
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
-        request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
-        return request_info
-    
     async def get(self,request_configuration: Optional[TaskReportsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[task_report_collection_response.TaskReportCollectionResponse]:
         """
         Get a list of the taskReport objects and their properties.
@@ -93,7 +54,7 @@ class TaskReportsRequestBuilder():
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[task_report_collection_response.TaskReportCollectionResponse]
         """
-        request_info = self.create_get_request_information(
+        request_info = self.to_get_request_information(
             request_configuration
         )
         error_mapping: Dict[str, ParsableFactory] = {
@@ -115,7 +76,7 @@ class TaskReportsRequestBuilder():
         """
         if body is None:
             raise Exception("body cannot be undefined")
-        request_info = self.create_post_request_information(
+        request_info = self.to_post_request_information(
             body, request_configuration
         )
         error_mapping: Dict[str, ParsableFactory] = {
@@ -139,6 +100,45 @@ class TaskReportsRequestBuilder():
         if start_date_time is None:
             raise Exception("start_date_time cannot be undefined")
         return summary_with_start_date_time_with_end_date_time_request_builder.SummaryWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, endDateTime, startDateTime)
+    
+    def to_get_request_information(self,request_configuration: Optional[TaskReportsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+        """
+        Get a list of the taskReport objects and their properties.
+        Args:
+            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: RequestInformation
+        """
+        request_info = RequestInformation()
+        request_info.url_template = self.url_template
+        request_info.path_parameters = self.path_parameters
+        request_info.http_method = Method.GET
+        request_info.headers["Accept"] = "application/json"
+        if request_configuration:
+            request_info.add_request_headers(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
+        return request_info
+    
+    def to_post_request_information(self,body: Optional[task_report.TaskReport] = None, request_configuration: Optional[TaskReportsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+        """
+        Create new navigation property to taskReports for identityGovernance
+        Args:
+            body: The request body
+            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: RequestInformation
+        """
+        if body is None:
+            raise Exception("body cannot be undefined")
+        request_info = RequestInformation()
+        request_info.url_template = self.url_template
+        request_info.path_parameters = self.path_parameters
+        request_info.http_method = Method.POST
+        request_info.headers["Accept"] = "application/json"
+        if request_configuration:
+            request_info.add_request_headers(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
+        request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
+        return request_info
     
     @dataclass
     class TaskReportsRequestBuilderGetQueryParameters():

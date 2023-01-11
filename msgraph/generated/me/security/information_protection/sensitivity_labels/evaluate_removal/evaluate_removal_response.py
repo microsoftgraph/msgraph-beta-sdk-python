@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 information_protection_action = lazy_import('msgraph.generated.models.security.information_protection_action')
 
 class EvaluateRemovalResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the evaluateRemoval method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new evaluateRemovalResponse and sets the default values.

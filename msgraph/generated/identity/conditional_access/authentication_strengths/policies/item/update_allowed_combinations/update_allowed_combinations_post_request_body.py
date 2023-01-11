@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 authentication_method_modes = lazy_import('msgraph.generated.models.authentication_method_modes')
 
 class UpdateAllowedCombinationsPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the updateAllowedCombinations method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

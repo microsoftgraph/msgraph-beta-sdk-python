@@ -7,9 +7,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 management_template_detailed_info = lazy_import('msgraph.generated.models.managed_tenants.management_template_detailed_info')
 
 class ManagementIntent(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new managementIntent and sets the default values.

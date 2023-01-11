@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 teamwork_software_type = lazy_import('msgraph.generated.models.teamwork_software_type')
 
 class UpdateSoftwarePostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the updateSoftware method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

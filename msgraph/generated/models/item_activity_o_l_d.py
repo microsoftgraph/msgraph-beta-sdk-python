@@ -11,9 +11,6 @@ item_activity_time_set = lazy_import('msgraph.generated.models.item_activity_tim
 list_item = lazy_import('msgraph.generated.models.list_item')
 
 class ItemActivityOLD(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def action(self,) -> Optional[item_action_set.ItemActionSet]:
         """

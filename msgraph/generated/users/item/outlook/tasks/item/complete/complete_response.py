@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 outlook_task = lazy_import('msgraph.generated.models.outlook_task')
 
 class CompleteResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the complete method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new completeResponse and sets the default values.

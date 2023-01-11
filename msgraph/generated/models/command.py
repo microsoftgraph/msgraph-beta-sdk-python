@@ -8,9 +8,6 @@ payload_request = lazy_import('msgraph.generated.models.payload_request')
 payload_response = lazy_import('msgraph.generated.models.payload_response')
 
 class Command(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def app_service_name(self,) -> Optional[str]:
         """

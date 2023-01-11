@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 deployment = lazy_import('msgraph.generated.models.windows_updates.deployment')
 
 class DeploymentCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the deployments property of the microsoft.graph.windowsUpdates.updates entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new DeploymentCollectionResponse and sets the default values.

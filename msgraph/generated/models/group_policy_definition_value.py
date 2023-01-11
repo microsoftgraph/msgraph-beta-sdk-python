@@ -10,9 +10,6 @@ group_policy_definition = lazy_import('msgraph.generated.models.group_policy_def
 group_policy_presentation_value = lazy_import('msgraph.generated.models.group_policy_presentation_value')
 
 class GroupPolicyDefinitionValue(entity.Entity):
-    """
-    The definition value entity stores the value for a single group policy definition.
-    """
     @property
     def configuration_type(self,) -> Optional[group_policy_configuration_type.GroupPolicyConfigurationType]:
         """

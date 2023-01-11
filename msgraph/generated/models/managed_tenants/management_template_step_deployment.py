@@ -10,9 +10,6 @@ management_template_deployment_status = lazy_import('msgraph.generated.models.ma
 management_template_step_version = lazy_import('msgraph.generated.models.managed_tenants.management_template_step_version')
 
 class ManagementTemplateStepDeployment(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new managementTemplateStepDeployment and sets the default values.

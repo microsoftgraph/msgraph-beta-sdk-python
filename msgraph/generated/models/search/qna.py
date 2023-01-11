@@ -60,7 +60,7 @@ class Qna(search_answer.SearchAnswer):
         self._is_suggested: Optional[bool] = None
         # Keywords that trigger this qna to appear in search results.
         self._keywords: Optional[answer_keyword.AnswerKeyword] = None
-        # A list of language names that are geographically specific and that this QnA can be viewed in. Each language tag value follows the pattern {language}-{region}. As an example, en-us is English as used in the United States. See supported language tags for the list of possible values.
+        # A list of language names that are geographically specific and that this QnA can be viewed in. Each language tag value follows the pattern {language}-{region}. As an example, en-us is English as used in the United States. For the list of possible values, see supported language tags.
         self._language_tags: Optional[List[str]] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
@@ -157,7 +157,7 @@ class Qna(search_answer.SearchAnswer):
     @property
     def language_tags(self,) -> Optional[List[str]]:
         """
-        Gets the languageTags property value. A list of language names that are geographically specific and that this QnA can be viewed in. Each language tag value follows the pattern {language}-{region}. As an example, en-us is English as used in the United States. See supported language tags for the list of possible values.
+        Gets the languageTags property value. A list of language names that are geographically specific and that this QnA can be viewed in. Each language tag value follows the pattern {language}-{region}. As an example, en-us is English as used in the United States. For the list of possible values, see supported language tags.
         Returns: Optional[List[str]]
         """
         return self._language_tags
@@ -165,7 +165,7 @@ class Qna(search_answer.SearchAnswer):
     @language_tags.setter
     def language_tags(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the languageTags property value. A list of language names that are geographically specific and that this QnA can be viewed in. Each language tag value follows the pattern {language}-{region}. As an example, en-us is English as used in the United States. See supported language tags for the list of possible values.
+        Sets the languageTags property value. A list of language names that are geographically specific and that this QnA can be viewed in. Each language tag value follows the pattern {language}-{region}. As an example, en-us is English as used in the United States. For the list of possible values, see supported language tags.
         Args:
             value: Value to set for the languageTags property.
         """

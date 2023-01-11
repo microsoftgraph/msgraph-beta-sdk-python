@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 email_address = lazy_import('msgraph.generated.models.email_address')
 
 class FindRoomsResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the findRooms method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new findRoomsResponse and sets the default values.

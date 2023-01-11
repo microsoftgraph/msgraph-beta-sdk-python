@@ -7,9 +7,6 @@ delegated_admin_service_management_detail = lazy_import('msgraph.generated.model
 entity = lazy_import('msgraph.generated.models.entity')
 
 class DelegatedAdminCustomer(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new delegatedAdminCustomer and sets the default values.

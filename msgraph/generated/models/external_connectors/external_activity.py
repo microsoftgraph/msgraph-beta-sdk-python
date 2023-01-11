@@ -9,9 +9,6 @@ external_activity_type = lazy_import('msgraph.generated.models.external_connecto
 identity = lazy_import('msgraph.generated.models.external_connectors.identity')
 
 class ExternalActivity(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new externalActivity and sets the default values.

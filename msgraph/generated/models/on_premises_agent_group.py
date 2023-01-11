@@ -9,9 +9,6 @@ on_premises_publishing_type = lazy_import('msgraph.generated.models.on_premises_
 published_resource = lazy_import('msgraph.generated.models.published_resource')
 
 class OnPremisesAgentGroup(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def agents(self,) -> Optional[List[on_premises_agent.OnPremisesAgent]]:
         """

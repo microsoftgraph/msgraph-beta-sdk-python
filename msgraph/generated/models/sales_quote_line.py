@@ -8,9 +8,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 item = lazy_import('msgraph.generated.models.item')
 
 class SalesQuoteLine(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def account(self,) -> Optional[account.Account]:
         """

@@ -12,9 +12,6 @@ print_task = lazy_import('msgraph.generated.models.print_task')
 user_identity = lazy_import('msgraph.generated.models.user_identity')
 
 class PrintJob(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def acknowledged_date_time(self,) -> Optional[datetime]:
         """

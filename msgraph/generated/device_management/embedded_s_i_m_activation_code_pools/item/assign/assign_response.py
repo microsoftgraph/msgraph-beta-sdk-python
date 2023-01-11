@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 embedded_s_i_m_activation_code_pool_assignment = lazy_import('msgraph.generated.models.embedded_s_i_m_activation_code_pool_assignment')
 
 class AssignResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the assign method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new assignResponse and sets the default values.

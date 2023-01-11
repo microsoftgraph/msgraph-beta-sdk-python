@@ -17,9 +17,6 @@ teamwork_hardware_detail = lazy_import('msgraph.generated.models.teamwork_hardwa
 teamwork_user_identity = lazy_import('msgraph.generated.models.teamwork_user_identity')
 
 class TeamworkDevice(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def activity(self,) -> Optional[teamwork_device_activity.TeamworkDeviceActivity]:
         """

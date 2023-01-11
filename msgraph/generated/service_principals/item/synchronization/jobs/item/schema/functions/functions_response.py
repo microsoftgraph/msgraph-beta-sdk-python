@@ -7,9 +7,6 @@ attribute_mapping_function_schema = lazy_import('msgraph.generated.models.attrib
 base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
 
 class FunctionsResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the functions method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new functionsResponse and sets the default values.

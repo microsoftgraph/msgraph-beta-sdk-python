@@ -7,9 +7,6 @@ current_label = lazy_import('msgraph.generated.models.current_label')
 discovered_sensitive_type = lazy_import('msgraph.generated.models.discovered_sensitive_type')
 
 class EvaluatePostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the evaluate method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

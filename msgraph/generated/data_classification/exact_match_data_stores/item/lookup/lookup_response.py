@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
 
 class LookupResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the lookup method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new lookupResponse and sets the default values.

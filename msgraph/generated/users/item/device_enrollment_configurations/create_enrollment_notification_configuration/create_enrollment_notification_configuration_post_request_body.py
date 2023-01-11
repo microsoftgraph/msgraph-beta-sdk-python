@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 device_enrollment_configuration = lazy_import('msgraph.generated.models.device_enrollment_configuration')
 
 class CreateEnrollmentNotificationConfigurationPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the createEnrollmentNotificationConfiguration method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

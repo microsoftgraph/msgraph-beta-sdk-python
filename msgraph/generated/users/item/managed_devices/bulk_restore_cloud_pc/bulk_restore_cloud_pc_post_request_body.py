@@ -7,9 +7,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 restore_time_range = lazy_import('msgraph.generated.models.restore_time_range')
 
 class BulkRestoreCloudPcPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the bulkRestoreCloudPc method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

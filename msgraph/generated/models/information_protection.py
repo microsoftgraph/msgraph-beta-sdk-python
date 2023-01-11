@@ -31,7 +31,7 @@ class InformationProtection(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new InformationProtection and sets the default values.
+        Instantiates a new informationProtection and sets the default values.
         """
         super().__init__()
         # The bitlocker property

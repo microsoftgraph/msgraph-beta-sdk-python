@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 synchronization_secret_key_string_value_pair = lazy_import('msgraph.generated.models.synchronization_secret_key_string_value_pair')
 
 class ValidateCredentialsPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the validateCredentials method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

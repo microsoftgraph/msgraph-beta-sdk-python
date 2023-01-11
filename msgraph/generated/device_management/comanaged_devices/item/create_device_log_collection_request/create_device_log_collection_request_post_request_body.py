@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 device_log_collection_request = lazy_import('msgraph.generated.models.device_log_collection_request')
 
 class CreateDeviceLogCollectionRequestPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the createDeviceLogCollectionRequest method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

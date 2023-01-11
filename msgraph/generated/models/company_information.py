@@ -8,9 +8,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 postal_address_type = lazy_import('msgraph.generated.models.postal_address_type')
 
 class CompanyInformation(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def address(self,) -> Optional[postal_address_type.PostalAddressType]:
         """

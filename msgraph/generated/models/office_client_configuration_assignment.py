@@ -7,9 +7,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 office_configuration_assignment_target = lazy_import('msgraph.generated.models.office_configuration_assignment_target')
 
 class OfficeClientConfigurationAssignment(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new officeClientConfigurationAssignment and sets the default values.

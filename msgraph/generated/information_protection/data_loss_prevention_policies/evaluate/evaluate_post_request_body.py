@@ -7,9 +7,6 @@ dlp_evaluation_input = lazy_import('msgraph.generated.models.dlp_evaluation_inpu
 dlp_notification = lazy_import('msgraph.generated.models.dlp_notification')
 
 class EvaluatePostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the evaluate method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

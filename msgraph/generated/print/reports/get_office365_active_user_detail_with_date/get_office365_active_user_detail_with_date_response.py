@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 office365_active_user_detail = lazy_import('msgraph.generated.models.office365_active_user_detail')
 
 class GetOffice365ActiveUserDetailWithDateResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getOffice365ActiveUserDetail method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getOffice365ActiveUserDetailWithDateResponse and sets the default values.

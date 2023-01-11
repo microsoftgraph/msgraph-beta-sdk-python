@@ -8,9 +8,6 @@ account = lazy_import('msgraph.generated.models.account')
 entity = lazy_import('msgraph.generated.models.entity')
 
 class JournalLine(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def account(self,) -> Optional[account.Account]:
         """

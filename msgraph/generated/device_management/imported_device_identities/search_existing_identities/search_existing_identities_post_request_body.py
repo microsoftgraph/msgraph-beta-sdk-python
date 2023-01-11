@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 imported_device_identity = lazy_import('msgraph.generated.models.imported_device_identity')
 
 class SearchExistingIdentitiesPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the searchExistingIdentities method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 role_success_statistics = lazy_import('msgraph.generated.models.role_success_statistics')
 
 class CompleteSetupResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the completeSetup method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new completeSetupResponse and sets the default values.

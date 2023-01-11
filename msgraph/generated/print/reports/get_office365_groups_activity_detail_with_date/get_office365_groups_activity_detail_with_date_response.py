@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 office365_groups_activity_detail = lazy_import('msgraph.generated.models.office365_groups_activity_detail')
 
 class GetOffice365GroupsActivityDetailWithDateResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getOffice365GroupsActivityDetail method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getOffice365GroupsActivityDetailWithDateResponse and sets the default values.

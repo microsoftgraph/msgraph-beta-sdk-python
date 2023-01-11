@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 scheduled_retire_state = lazy_import('msgraph.generated.models.scheduled_retire_state')
 
 class SetScheduledRetireStatePostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the setScheduledRetireState method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

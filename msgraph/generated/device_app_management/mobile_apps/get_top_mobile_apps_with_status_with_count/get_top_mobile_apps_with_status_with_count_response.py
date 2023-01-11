@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 mobile_app = lazy_import('msgraph.generated.models.mobile_app')
 
 class GetTopMobileAppsWithStatusWithCountResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getTopMobileApps method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getTopMobileAppsWithStatusWithCountResponse and sets the default values.

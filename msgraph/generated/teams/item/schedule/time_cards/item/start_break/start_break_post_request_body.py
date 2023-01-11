@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 item_body = lazy_import('msgraph.generated.models.item_body')
 
 class StartBreakPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the startBreak method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

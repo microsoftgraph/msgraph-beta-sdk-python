@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 alert = lazy_import('msgraph.generated.models.alert')
 
 class UpdateAlertsPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the updateAlerts method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

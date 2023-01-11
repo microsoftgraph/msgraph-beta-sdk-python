@@ -18,9 +18,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 identity_set = lazy_import('msgraph.generated.models.identity_set')
 
 class EducationAssignment(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def added_student_action(self,) -> Optional[education_added_student_action.EducationAddedStudentAction]:
         """

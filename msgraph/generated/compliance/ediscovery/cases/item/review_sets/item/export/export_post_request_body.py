@@ -7,9 +7,6 @@ export_file_structure = lazy_import('msgraph.generated.models.ediscovery.export_
 export_options = lazy_import('msgraph.generated.models.ediscovery.export_options')
 
 class ExportPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the export method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

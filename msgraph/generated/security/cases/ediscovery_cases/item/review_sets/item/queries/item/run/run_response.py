@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 ediscovery_file = lazy_import('msgraph.generated.models.security.ediscovery_file')
 
 class RunResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the run method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new runResponse and sets the default values.

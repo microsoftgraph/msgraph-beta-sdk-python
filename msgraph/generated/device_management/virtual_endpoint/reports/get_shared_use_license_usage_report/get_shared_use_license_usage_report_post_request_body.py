@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 cloud_pc_report_name = lazy_import('msgraph.generated.models.cloud_pc_report_name')
 
 class GetSharedUseLicenseUsageReportPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the getSharedUseLicenseUsageReport method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

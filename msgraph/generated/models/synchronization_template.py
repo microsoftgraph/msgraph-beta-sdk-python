@@ -8,9 +8,6 @@ metadata_entry = lazy_import('msgraph.generated.models.metadata_entry')
 synchronization_schema = lazy_import('msgraph.generated.models.synchronization_schema')
 
 class SynchronizationTemplate(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def application_id(self,) -> Optional[Guid]:
         """

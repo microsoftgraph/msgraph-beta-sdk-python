@@ -8,9 +8,6 @@ classification_error = lazy_import('msgraph.generated.models.classification_erro
 entity = lazy_import('msgraph.generated.models.entity')
 
 class ExactMatchJobBase(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def completion_date_time(self,) -> Optional[datetime]:
         """

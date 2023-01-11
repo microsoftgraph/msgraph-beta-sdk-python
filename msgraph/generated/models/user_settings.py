@@ -12,7 +12,7 @@ user_insights_settings = lazy_import('msgraph.generated.models.user_insights_set
 class UserSettings(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new UserSettings and sets the default values.
+        Instantiates a new userSettings and sets the default values.
         """
         super().__init__()
         # The user's settings for the visibility of merge suggestion for the duplicate contacts in the user's contact list.

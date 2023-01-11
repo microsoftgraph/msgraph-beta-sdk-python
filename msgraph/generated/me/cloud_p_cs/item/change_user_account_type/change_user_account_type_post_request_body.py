@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 cloud_pc_user_account_type = lazy_import('msgraph.generated.models.cloud_pc_user_account_type')
 
 class ChangeUserAccountTypePostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the changeUserAccountType method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

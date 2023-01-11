@@ -9,9 +9,6 @@ horizontal_section_layout_type = lazy_import('msgraph.generated.models.horizonta
 section_emphasis_type = lazy_import('msgraph.generated.models.section_emphasis_type')
 
 class HorizontalSection(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def columns(self,) -> Optional[List[horizontal_section_column.HorizontalSectionColumn]]:
         """

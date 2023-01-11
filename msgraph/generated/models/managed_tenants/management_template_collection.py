@@ -8,9 +8,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 management_template = lazy_import('msgraph.generated.models.managed_tenants.management_template')
 
 class ManagementTemplateCollection(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new managementTemplateCollection and sets the default values.

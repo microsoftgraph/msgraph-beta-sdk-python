@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 call_transcript = lazy_import('msgraph.generated.models.call_transcript')
 
 class CallTranscriptCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to manage the transcripts property of the microsoft.graph.onlineMeeting entity.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new CallTranscriptCollectionResponse and sets the default values.

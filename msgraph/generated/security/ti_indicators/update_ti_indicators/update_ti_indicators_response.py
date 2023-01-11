@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 ti_indicator = lazy_import('msgraph.generated.models.ti_indicator')
 
 class UpdateTiIndicatorsResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the updateTiIndicators method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new updateTiIndicatorsResponse and sets the default values.

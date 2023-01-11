@@ -7,9 +7,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class ManagementTemplateStepTenantSummary(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def assigned_tenants_count(self,) -> Optional[int]:
         """

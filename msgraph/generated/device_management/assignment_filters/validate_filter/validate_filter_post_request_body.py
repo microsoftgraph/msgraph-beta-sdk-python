@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 device_and_app_management_assignment_filter = lazy_import('msgraph.generated.models.device_and_app_management_assignment_filter')
 
 class ValidateFilterPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the validateFilter method.
-    """
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """

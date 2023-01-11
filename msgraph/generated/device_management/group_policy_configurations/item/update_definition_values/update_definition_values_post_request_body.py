@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 group_policy_definition_value = lazy_import('msgraph.generated.models.group_policy_definition_value')
 
 class UpdateDefinitionValuesPostRequestBody(AdditionalDataHolder, Parsable):
-    """
-    Provides operations to call the updateDefinitionValues method.
-    """
     @property
     def added(self,) -> Optional[List[group_policy_definition_value.GroupPolicyDefinitionValue]]:
         """

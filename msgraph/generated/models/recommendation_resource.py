@@ -9,9 +9,6 @@ key_value = lazy_import('msgraph.generated.models.key_value')
 recommendation_status = lazy_import('msgraph.generated.models.recommendation_status')
 
 class RecommendationResource(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def added_date_time(self,) -> Optional[datetime]:
         """

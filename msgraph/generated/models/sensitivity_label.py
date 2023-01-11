@@ -11,9 +11,6 @@ label_policy = lazy_import('msgraph.generated.models.label_policy')
 sensitivity_label_target = lazy_import('msgraph.generated.models.sensitivity_label_target')
 
 class SensitivityLabel(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def applicable_to(self,) -> Optional[sensitivity_label_target.SensitivityLabelTarget]:
         """

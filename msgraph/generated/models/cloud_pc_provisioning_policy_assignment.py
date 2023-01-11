@@ -7,9 +7,6 @@ cloud_pc_management_assignment_target = lazy_import('msgraph.generated.models.cl
 entity = lazy_import('msgraph.generated.models.entity')
 
 class CloudPcProvisioningPolicyAssignment(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new cloudPcProvisioningPolicyAssignment and sets the default values.

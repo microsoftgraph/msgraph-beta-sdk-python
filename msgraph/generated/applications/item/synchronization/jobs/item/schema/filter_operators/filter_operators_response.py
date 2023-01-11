@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 filter_operator_schema = lazy_import('msgraph.generated.models.filter_operator_schema')
 
 class FilterOperatorsResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the filterOperators method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new filterOperatorsResponse and sets the default values.

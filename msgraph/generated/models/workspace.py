@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 place = lazy_import('msgraph.generated.models.place')
 
 class Workspace(place.Place):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def building(self,) -> Optional[str]:
         """

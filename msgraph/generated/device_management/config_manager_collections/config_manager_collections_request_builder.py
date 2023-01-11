@@ -45,45 +45,6 @@ class ConfigManagerCollectionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def create_get_request_information(self,request_configuration: Optional[ConfigManagerCollectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
-        """
-        A list of ConfigManagerCollection
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: RequestInformation
-        """
-        request_info = RequestInformation()
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
-        return request_info
-    
-    def create_post_request_information(self,body: Optional[config_manager_collection.ConfigManagerCollection] = None, request_configuration: Optional[ConfigManagerCollectionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
-        """
-        Create new navigation property to configManagerCollections for deviceManagement
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: RequestInformation
-        """
-        if body is None:
-            raise Exception("body cannot be undefined")
-        request_info = RequestInformation()
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
-        request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
-        return request_info
-    
     async def get(self,request_configuration: Optional[ConfigManagerCollectionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[config_manager_collection_collection_response.ConfigManagerCollectionCollectionResponse]:
         """
         A list of ConfigManagerCollection
@@ -92,7 +53,7 @@ class ConfigManagerCollectionsRequestBuilder():
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[config_manager_collection_collection_response.ConfigManagerCollectionCollectionResponse]
         """
-        request_info = self.create_get_request_information(
+        request_info = self.to_get_request_information(
             request_configuration
         )
         error_mapping: Dict[str, ParsableFactory] = {
@@ -125,7 +86,7 @@ class ConfigManagerCollectionsRequestBuilder():
         """
         if body is None:
             raise Exception("body cannot be undefined")
-        request_info = self.create_post_request_information(
+        request_info = self.to_post_request_information(
             body, request_configuration
         )
         error_mapping: Dict[str, ParsableFactory] = {
@@ -135,6 +96,45 @@ class ConfigManagerCollectionsRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, config_manager_collection.ConfigManagerCollection, response_handler, error_mapping)
+    
+    def to_get_request_information(self,request_configuration: Optional[ConfigManagerCollectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+        """
+        A list of ConfigManagerCollection
+        Args:
+            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: RequestInformation
+        """
+        request_info = RequestInformation()
+        request_info.url_template = self.url_template
+        request_info.path_parameters = self.path_parameters
+        request_info.http_method = Method.GET
+        request_info.headers["Accept"] = "application/json"
+        if request_configuration:
+            request_info.add_request_headers(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
+        return request_info
+    
+    def to_post_request_information(self,body: Optional[config_manager_collection.ConfigManagerCollection] = None, request_configuration: Optional[ConfigManagerCollectionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+        """
+        Create new navigation property to configManagerCollections for deviceManagement
+        Args:
+            body: The request body
+            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: RequestInformation
+        """
+        if body is None:
+            raise Exception("body cannot be undefined")
+        request_info = RequestInformation()
+        request_info.url_template = self.url_template
+        request_info.path_parameters = self.path_parameters
+        request_info.http_method = Method.POST
+        request_info.headers["Accept"] = "application/json"
+        if request_configuration:
+            request_info.add_request_headers(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
+        request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
+        return request_info
     
     @dataclass
     class ConfigManagerCollectionsRequestBuilderGetQueryParameters():

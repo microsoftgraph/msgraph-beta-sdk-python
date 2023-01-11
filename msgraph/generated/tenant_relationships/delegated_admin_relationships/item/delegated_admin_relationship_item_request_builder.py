@@ -75,61 +75,6 @@ class DelegatedAdminRelationshipItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def create_delete_request_information(self,request_configuration: Optional[DelegatedAdminRelationshipItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
-        """
-        Delete navigation property delegatedAdminRelationships for tenantRelationships
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: RequestInformation
-        """
-        request_info = RequestInformation()
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.DELETE
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
-        return request_info
-    
-    def create_get_request_information(self,request_configuration: Optional[DelegatedAdminRelationshipItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
-        """
-        The details of the delegated administrative privileges that a Microsoft partner has in a customer tenant.
-        Args:
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: RequestInformation
-        """
-        request_info = RequestInformation()
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
-            request_info.add_request_options(request_configuration.options)
-        return request_info
-    
-    def create_patch_request_information(self,body: Optional[delegated_admin_relationship.DelegatedAdminRelationship] = None, request_configuration: Optional[DelegatedAdminRelationshipItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
-        """
-        Update the navigation property delegatedAdminRelationships in tenantRelationships
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: RequestInformation
-        """
-        if body is None:
-            raise Exception("body cannot be undefined")
-        request_info = RequestInformation()
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
-        request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
-        return request_info
-    
     async def delete(self,request_configuration: Optional[DelegatedAdminRelationshipItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property delegatedAdminRelationships for tenantRelationships
@@ -137,7 +82,7 @@ class DelegatedAdminRelationshipItemRequestBuilder():
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
-        request_info = self.create_delete_request_information(
+        request_info = self.to_delete_request_information(
             request_configuration
         )
         error_mapping: Dict[str, ParsableFactory] = {
@@ -156,7 +101,7 @@ class DelegatedAdminRelationshipItemRequestBuilder():
             responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[delegated_admin_relationship.DelegatedAdminRelationship]
         """
-        request_info = self.create_get_request_information(
+        request_info = self.to_get_request_information(
             request_configuration
         )
         error_mapping: Dict[str, ParsableFactory] = {
@@ -191,7 +136,7 @@ class DelegatedAdminRelationshipItemRequestBuilder():
         """
         if body is None:
             raise Exception("body cannot be undefined")
-        request_info = self.create_patch_request_information(
+        request_info = self.to_patch_request_information(
             body, request_configuration
         )
         error_mapping: Dict[str, ParsableFactory] = {
@@ -214,6 +159,61 @@ class DelegatedAdminRelationshipItemRequestBuilder():
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["delegatedAdminRelationshipRequest%2Did"] = id
         return delegated_admin_relationship_request_item_request_builder.DelegatedAdminRelationshipRequestItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    def to_delete_request_information(self,request_configuration: Optional[DelegatedAdminRelationshipItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
+        """
+        Delete navigation property delegatedAdminRelationships for tenantRelationships
+        Args:
+            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: RequestInformation
+        """
+        request_info = RequestInformation()
+        request_info.url_template = self.url_template
+        request_info.path_parameters = self.path_parameters
+        request_info.http_method = Method.DELETE
+        if request_configuration:
+            request_info.add_request_headers(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
+        return request_info
+    
+    def to_get_request_information(self,request_configuration: Optional[DelegatedAdminRelationshipItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
+        """
+        The details of the delegated administrative privileges that a Microsoft partner has in a customer tenant.
+        Args:
+            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: RequestInformation
+        """
+        request_info = RequestInformation()
+        request_info.url_template = self.url_template
+        request_info.path_parameters = self.path_parameters
+        request_info.http_method = Method.GET
+        request_info.headers["Accept"] = "application/json"
+        if request_configuration:
+            request_info.add_request_headers(request_configuration.headers)
+            request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
+            request_info.add_request_options(request_configuration.options)
+        return request_info
+    
+    def to_patch_request_information(self,body: Optional[delegated_admin_relationship.DelegatedAdminRelationship] = None, request_configuration: Optional[DelegatedAdminRelationshipItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+        """
+        Update the navigation property delegatedAdminRelationships in tenantRelationships
+        Args:
+            body: The request body
+            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: RequestInformation
+        """
+        if body is None:
+            raise Exception("body cannot be undefined")
+        request_info = RequestInformation()
+        request_info.url_template = self.url_template
+        request_info.path_parameters = self.path_parameters
+        request_info.http_method = Method.PATCH
+        request_info.headers["Accept"] = "application/json"
+        if request_configuration:
+            request_info.add_request_headers(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
+        request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
+        return request_info
     
     @dataclass
     class DelegatedAdminRelationshipItemRequestBuilderDeleteRequestConfiguration():

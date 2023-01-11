@@ -8,9 +8,6 @@ analytics_activity_type = lazy_import('msgraph.generated.models.analytics_activi
 entity = lazy_import('msgraph.generated.models.entity')
 
 class ActivityStatistics(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     @property
     def activity(self,) -> Optional[analytics_activity_type.AnalyticsActivityType]:
         """

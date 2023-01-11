@@ -7,9 +7,12 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class WindowsInformationProtectionDeviceRegistration(entity.Entity):
+    """
+    Represents device registration records for Bring-Your-Own-Device(BYOD) Windows devices.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new WindowsInformationProtectionDeviceRegistration and sets the default values.
+        Instantiates a new windowsInformationProtectionDeviceRegistration and sets the default values.
         """
         super().__init__()
         # Device Mac address.

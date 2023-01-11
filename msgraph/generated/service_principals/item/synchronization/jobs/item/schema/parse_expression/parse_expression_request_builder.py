@@ -36,7 +36,29 @@ class ParseExpressionRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def create_post_request_information(self,body: Optional[parse_expression_post_request_body.ParseExpressionPostRequestBody] = None, request_configuration: Optional[ParseExpressionRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    async def post(self,body: Optional[parse_expression_post_request_body.ParseExpressionPostRequestBody] = None, request_configuration: Optional[ParseExpressionRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[parse_expression_response.ParseExpressionResponse]:
+        """
+        Parse a given string expression into an attributeMappingSource object. For more information about expressions, see Writing Expressions for Attribute Mappings in Azure Active Directory.
+        Args:
+            body: The request body
+            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
+        Returns: Optional[parse_expression_response.ParseExpressionResponse]
+        """
+        if body is None:
+            raise Exception("body cannot be undefined")
+        request_info = self.to_post_request_information(
+            body, request_configuration
+        )
+        error_mapping: Dict[str, ParsableFactory] = {
+            "4XX": o_data_error.ODataError,
+            "5XX": o_data_error.ODataError,
+        }
+        if not self.request_adapter:
+            raise Exception("Http core is null") 
+        return await self.request_adapter.send_async(request_info, parse_expression_response.ParseExpressionResponse, response_handler, error_mapping)
+    
+    def to_post_request_information(self,body: Optional[parse_expression_post_request_body.ParseExpressionPostRequestBody] = None, request_configuration: Optional[ParseExpressionRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Parse a given string expression into an attributeMappingSource object. For more information about expressions, see Writing Expressions for Attribute Mappings in Azure Active Directory.
         Args:
@@ -56,28 +78,6 @@ class ParseExpressionRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
-    
-    async def post(self,body: Optional[parse_expression_post_request_body.ParseExpressionPostRequestBody] = None, request_configuration: Optional[ParseExpressionRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[parse_expression_response.ParseExpressionResponse]:
-        """
-        Parse a given string expression into an attributeMappingSource object. For more information about expressions, see Writing Expressions for Attribute Mappings in Azure Active Directory.
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
-        Returns: Optional[parse_expression_response.ParseExpressionResponse]
-        """
-        if body is None:
-            raise Exception("body cannot be undefined")
-        request_info = self.create_post_request_information(
-            body, request_configuration
-        )
-        error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
-        }
-        if not self.request_adapter:
-            raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, parse_expression_response.ParseExpressionResponse, response_handler, error_mapping)
     
     @dataclass
     class ParseExpressionRequestBuilderPostRequestConfiguration():

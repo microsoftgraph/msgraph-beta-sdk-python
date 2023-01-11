@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 imported_device_identity_result = lazy_import('msgraph.generated.models.imported_device_identity_result')
 
 class ImportDeviceIdentityListResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the importDeviceIdentityList method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new importDeviceIdentityListResponse and sets the default values.

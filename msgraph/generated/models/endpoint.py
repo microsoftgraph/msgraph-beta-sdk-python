@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 directory_object = lazy_import('msgraph.generated.models.directory_object')
 
 class Endpoint(directory_object.DirectoryObject):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def capability(self,) -> Optional[str]:
         """

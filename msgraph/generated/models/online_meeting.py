@@ -21,9 +21,6 @@ online_meeting_role = lazy_import('msgraph.generated.models.online_meeting_role'
 virtual_appointment = lazy_import('msgraph.generated.models.virtual_appointment')
 
 class OnlineMeeting(entity.Entity):
-    """
-    Provides operations to manage the collection of accessReview entities.
-    """
     @property
     def allow_attendee_to_enable_camera(self,) -> Optional[bool]:
         """
@@ -269,7 +266,7 @@ class OnlineMeeting(entity.Entity):
         self._is_entry_exit_announced: Optional[bool] = None
         # The join information in the language and locale variant specified in 'Accept-Language' request HTTP header. Read-only.
         self._join_information: Optional[item_body.ItemBody] = None
-        # Specifies the joinMeetingId, the meeting passcode, and the requirement for the passcode.
+        # Specifies the joinMeetingId, the meeting passcode, and the requirement for the passcode. Once an onlineMeeting is created, the joinMeetingIdSettings cannot be modified. To make any changes to this property, the meeting needs to be canceled and a new one needs to be created.
         self._join_meeting_id_settings: Optional[join_meeting_id_settings.JoinMeetingIdSettings] = None
         # The joinUrl property
         self._join_url: Optional[str] = None
@@ -460,7 +457,7 @@ class OnlineMeeting(entity.Entity):
     @property
     def join_meeting_id_settings(self,) -> Optional[join_meeting_id_settings.JoinMeetingIdSettings]:
         """
-        Gets the joinMeetingIdSettings property value. Specifies the joinMeetingId, the meeting passcode, and the requirement for the passcode.
+        Gets the joinMeetingIdSettings property value. Specifies the joinMeetingId, the meeting passcode, and the requirement for the passcode. Once an onlineMeeting is created, the joinMeetingIdSettings cannot be modified. To make any changes to this property, the meeting needs to be canceled and a new one needs to be created.
         Returns: Optional[join_meeting_id_settings.JoinMeetingIdSettings]
         """
         return self._join_meeting_id_settings
@@ -468,7 +465,7 @@ class OnlineMeeting(entity.Entity):
     @join_meeting_id_settings.setter
     def join_meeting_id_settings(self,value: Optional[join_meeting_id_settings.JoinMeetingIdSettings] = None) -> None:
         """
-        Sets the joinMeetingIdSettings property value. Specifies the joinMeetingId, the meeting passcode, and the requirement for the passcode.
+        Sets the joinMeetingIdSettings property value. Specifies the joinMeetingId, the meeting passcode, and the requirement for the passcode. Once an onlineMeeting is created, the joinMeetingIdSettings cannot be modified. To make any changes to this property, the meeting needs to be canceled and a new one needs to be created.
         Args:
             value: Value to set for the joinMeetingIdSettings property.
         """

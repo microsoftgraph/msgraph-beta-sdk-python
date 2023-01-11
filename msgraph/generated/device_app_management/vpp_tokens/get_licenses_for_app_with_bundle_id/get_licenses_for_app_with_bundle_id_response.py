@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 vpp_token_license_summary = lazy_import('msgraph.generated.models.vpp_token_license_summary')
 
 class GetLicensesForAppWithBundleIdResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the getLicensesForApp method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new getLicensesForAppWithBundleIdResponse and sets the default values.

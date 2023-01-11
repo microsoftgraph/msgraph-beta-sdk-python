@@ -7,9 +7,6 @@ alert = lazy_import('msgraph.generated.models.alert')
 base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
 
 class UpdateAlertsResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the updateAlerts method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new updateAlertsResponse and sets the default values.

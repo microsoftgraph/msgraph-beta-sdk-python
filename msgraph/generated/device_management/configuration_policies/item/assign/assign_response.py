@@ -7,9 +7,6 @@ base_collection_pagination_count_response = lazy_import('msgraph.generated.model
 device_management_configuration_policy_assignment = lazy_import('msgraph.generated.models.device_management_configuration_policy_assignment')
 
 class AssignResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
-    """
-    Provides operations to call the assign method.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new assignResponse and sets the default values.

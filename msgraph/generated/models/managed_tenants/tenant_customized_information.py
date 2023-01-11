@@ -7,9 +7,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 tenant_contact_information = lazy_import('msgraph.generated.models.managed_tenants.tenant_contact_information')
 
 class TenantCustomizedInformation(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new tenantCustomizedInformation and sets the default values.

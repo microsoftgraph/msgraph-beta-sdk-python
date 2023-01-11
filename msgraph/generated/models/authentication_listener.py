@@ -7,9 +7,6 @@ authentication_source_filter = lazy_import('msgraph.generated.models.authenticat
 entity = lazy_import('msgraph.generated.models.entity')
 
 class AuthenticationListener(entity.Entity):
-    """
-    Provides operations to manage the collection of activityStatistics entities.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new authenticationListener and sets the default values.
