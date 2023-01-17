@@ -135,6 +135,7 @@ user_experience_analytics_device_scores = lazy_import('msgraph.generated.models.
 user_experience_analytics_device_startup_history = lazy_import('msgraph.generated.models.user_experience_analytics_device_startup_history')
 user_experience_analytics_device_startup_process = lazy_import('msgraph.generated.models.user_experience_analytics_device_startup_process')
 user_experience_analytics_device_startup_process_performance = lazy_import('msgraph.generated.models.user_experience_analytics_device_startup_process_performance')
+user_experience_analytics_device_timeline_events = lazy_import('msgraph.generated.models.user_experience_analytics_device_timeline_events')
 user_experience_analytics_device_without_cloud_identity = lazy_import('msgraph.generated.models.user_experience_analytics_device_without_cloud_identity')
 user_experience_analytics_impacting_process = lazy_import('msgraph.generated.models.user_experience_analytics_impacting_process')
 user_experience_analytics_metric_history = lazy_import('msgraph.generated.models.user_experience_analytics_metric_history')
@@ -995,6 +996,8 @@ class DeviceManagement(entity.Entity):
         self._user_experience_analytics_device_startup_process_performance: Optional[List[user_experience_analytics_device_startup_process_performance.UserExperienceAnalyticsDeviceStartupProcessPerformance]] = None
         # User experience analytics devices without cloud identity.
         self._user_experience_analytics_devices_without_cloud_identity: Optional[List[user_experience_analytics_device_without_cloud_identity.UserExperienceAnalyticsDeviceWithoutCloudIdentity]] = None
+        # The user experience analytics device events entity contains NRT device timeline events details.
+        self._user_experience_analytics_device_timeline_events: Optional[List[user_experience_analytics_device_timeline_events.UserExperienceAnalyticsDeviceTimelineEvents]] = None
         # User experience analytics impacting process
         self._user_experience_analytics_impacting_process: Optional[List[user_experience_analytics_impacting_process.UserExperienceAnalyticsImpactingProcess]] = None
         # User experience analytics metric history
@@ -1710,6 +1713,7 @@ class DeviceManagement(entity.Entity):
             "user_experience_analytics_device_startup_processes": lambda n : setattr(self, 'user_experience_analytics_device_startup_processes', n.get_collection_of_object_values(user_experience_analytics_device_startup_process.UserExperienceAnalyticsDeviceStartupProcess)),
             "user_experience_analytics_device_startup_process_performance": lambda n : setattr(self, 'user_experience_analytics_device_startup_process_performance', n.get_collection_of_object_values(user_experience_analytics_device_startup_process_performance.UserExperienceAnalyticsDeviceStartupProcessPerformance)),
             "user_experience_analytics_devices_without_cloud_identity": lambda n : setattr(self, 'user_experience_analytics_devices_without_cloud_identity', n.get_collection_of_object_values(user_experience_analytics_device_without_cloud_identity.UserExperienceAnalyticsDeviceWithoutCloudIdentity)),
+            "user_experience_analytics_device_timeline_events": lambda n : setattr(self, 'user_experience_analytics_device_timeline_events', n.get_collection_of_object_values(user_experience_analytics_device_timeline_events.UserExperienceAnalyticsDeviceTimelineEvents)),
             "user_experience_analytics_impacting_process": lambda n : setattr(self, 'user_experience_analytics_impacting_process', n.get_collection_of_object_values(user_experience_analytics_impacting_process.UserExperienceAnalyticsImpactingProcess)),
             "user_experience_analytics_metric_history": lambda n : setattr(self, 'user_experience_analytics_metric_history', n.get_collection_of_object_values(user_experience_analytics_metric_history.UserExperienceAnalyticsMetricHistory)),
             "user_experience_analytics_model_scores": lambda n : setattr(self, 'user_experience_analytics_model_scores', n.get_collection_of_object_values(user_experience_analytics_model_scores.UserExperienceAnalyticsModelScores)),
@@ -2626,6 +2630,7 @@ class DeviceManagement(entity.Entity):
         writer.write_collection_of_object_values("userExperienceAnalyticsDeviceStartupProcesses", self.user_experience_analytics_device_startup_processes)
         writer.write_collection_of_object_values("userExperienceAnalyticsDeviceStartupProcessPerformance", self.user_experience_analytics_device_startup_process_performance)
         writer.write_collection_of_object_values("userExperienceAnalyticsDevicesWithoutCloudIdentity", self.user_experience_analytics_devices_without_cloud_identity)
+        writer.write_collection_of_object_values("userExperienceAnalyticsDeviceTimelineEvents", self.user_experience_analytics_device_timeline_events)
         writer.write_collection_of_object_values("userExperienceAnalyticsImpactingProcess", self.user_experience_analytics_impacting_process)
         writer.write_collection_of_object_values("userExperienceAnalyticsMetricHistory", self.user_experience_analytics_metric_history)
         writer.write_collection_of_object_values("userExperienceAnalyticsModelScores", self.user_experience_analytics_model_scores)
@@ -3402,6 +3407,23 @@ class DeviceManagement(entity.Entity):
             value: Value to set for the userExperienceAnalyticsDevicesWithoutCloudIdentity property.
         """
         self._user_experience_analytics_devices_without_cloud_identity = value
+    
+    @property
+    def user_experience_analytics_device_timeline_events(self,) -> Optional[List[user_experience_analytics_device_timeline_events.UserExperienceAnalyticsDeviceTimelineEvents]]:
+        """
+        Gets the userExperienceAnalyticsDeviceTimelineEvents property value. The user experience analytics device events entity contains NRT device timeline events details.
+        Returns: Optional[List[user_experience_analytics_device_timeline_events.UserExperienceAnalyticsDeviceTimelineEvents]]
+        """
+        return self._user_experience_analytics_device_timeline_events
+    
+    @user_experience_analytics_device_timeline_events.setter
+    def user_experience_analytics_device_timeline_events(self,value: Optional[List[user_experience_analytics_device_timeline_events.UserExperienceAnalyticsDeviceTimelineEvents]] = None) -> None:
+        """
+        Sets the userExperienceAnalyticsDeviceTimelineEvents property value. The user experience analytics device events entity contains NRT device timeline events details.
+        Args:
+            value: Value to set for the userExperienceAnalyticsDeviceTimelineEvents property.
+        """
+        self._user_experience_analytics_device_timeline_events = value
     
     @property
     def user_experience_analytics_impacting_process(self,) -> Optional[List[user_experience_analytics_impacting_process.UserExperienceAnalyticsImpactingProcess]]:

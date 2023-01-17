@@ -28,17 +28,17 @@ class BusinessScenarioProperties(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The externalBucketId property
+        # The identifier for the bucketDefinition configured in the plannerPlanConfiguration for the scenario. The task will be placed in the corresponding plannerBucket in the target plan. Required.
         self._external_bucket_id: Optional[str] = None
-        # The externalContextId property
+        # The identifier for the context of the task. Context is an application controlled value, and tasks can be queried by their externalContextId. Optional.
         self._external_context_id: Optional[str] = None
-        # The externalObjectId property
+        # Application-specific identifier for the task. Every task for the same scenario must have a unique identifier specified for this property. Required.
         self._external_object_id: Optional[str] = None
-        # The externalObjectVersion property
+        # Application-specific version of the task. Optional.
         self._external_object_version: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The webUrl property
+        # The URL to the application-specific experience for this task. Optional.
         self._web_url: Optional[str] = None
     
     @staticmethod
@@ -56,7 +56,7 @@ class BusinessScenarioProperties(AdditionalDataHolder, Parsable):
     @property
     def external_bucket_id(self,) -> Optional[str]:
         """
-        Gets the externalBucketId property value. The externalBucketId property
+        Gets the externalBucketId property value. The identifier for the bucketDefinition configured in the plannerPlanConfiguration for the scenario. The task will be placed in the corresponding plannerBucket in the target plan. Required.
         Returns: Optional[str]
         """
         return self._external_bucket_id
@@ -64,7 +64,7 @@ class BusinessScenarioProperties(AdditionalDataHolder, Parsable):
     @external_bucket_id.setter
     def external_bucket_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the externalBucketId property value. The externalBucketId property
+        Sets the externalBucketId property value. The identifier for the bucketDefinition configured in the plannerPlanConfiguration for the scenario. The task will be placed in the corresponding plannerBucket in the target plan. Required.
         Args:
             value: Value to set for the externalBucketId property.
         """
@@ -73,7 +73,7 @@ class BusinessScenarioProperties(AdditionalDataHolder, Parsable):
     @property
     def external_context_id(self,) -> Optional[str]:
         """
-        Gets the externalContextId property value. The externalContextId property
+        Gets the externalContextId property value. The identifier for the context of the task. Context is an application controlled value, and tasks can be queried by their externalContextId. Optional.
         Returns: Optional[str]
         """
         return self._external_context_id
@@ -81,7 +81,7 @@ class BusinessScenarioProperties(AdditionalDataHolder, Parsable):
     @external_context_id.setter
     def external_context_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the externalContextId property value. The externalContextId property
+        Sets the externalContextId property value. The identifier for the context of the task. Context is an application controlled value, and tasks can be queried by their externalContextId. Optional.
         Args:
             value: Value to set for the externalContextId property.
         """
@@ -90,7 +90,7 @@ class BusinessScenarioProperties(AdditionalDataHolder, Parsable):
     @property
     def external_object_id(self,) -> Optional[str]:
         """
-        Gets the externalObjectId property value. The externalObjectId property
+        Gets the externalObjectId property value. Application-specific identifier for the task. Every task for the same scenario must have a unique identifier specified for this property. Required.
         Returns: Optional[str]
         """
         return self._external_object_id
@@ -98,7 +98,7 @@ class BusinessScenarioProperties(AdditionalDataHolder, Parsable):
     @external_object_id.setter
     def external_object_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the externalObjectId property value. The externalObjectId property
+        Sets the externalObjectId property value. Application-specific identifier for the task. Every task for the same scenario must have a unique identifier specified for this property. Required.
         Args:
             value: Value to set for the externalObjectId property.
         """
@@ -107,7 +107,7 @@ class BusinessScenarioProperties(AdditionalDataHolder, Parsable):
     @property
     def external_object_version(self,) -> Optional[str]:
         """
-        Gets the externalObjectVersion property value. The externalObjectVersion property
+        Gets the externalObjectVersion property value. Application-specific version of the task. Optional.
         Returns: Optional[str]
         """
         return self._external_object_version
@@ -115,7 +115,7 @@ class BusinessScenarioProperties(AdditionalDataHolder, Parsable):
     @external_object_version.setter
     def external_object_version(self,value: Optional[str] = None) -> None:
         """
-        Sets the externalObjectVersion property value. The externalObjectVersion property
+        Sets the externalObjectVersion property value. Application-specific version of the task. Optional.
         Args:
             value: Value to set for the externalObjectVersion property.
         """
@@ -172,7 +172,7 @@ class BusinessScenarioProperties(AdditionalDataHolder, Parsable):
     @property
     def web_url(self,) -> Optional[str]:
         """
-        Gets the webUrl property value. The webUrl property
+        Gets the webUrl property value. The URL to the application-specific experience for this task. Optional.
         Returns: Optional[str]
         """
         return self._web_url
@@ -180,7 +180,7 @@ class BusinessScenarioProperties(AdditionalDataHolder, Parsable):
     @web_url.setter
     def web_url(self,value: Optional[str] = None) -> None:
         """
-        Sets the webUrl property value. The webUrl property
+        Sets the webUrl property value. The URL to the application-specific experience for this task. Optional.
         Args:
             value: Value to set for the webUrl property.
         """

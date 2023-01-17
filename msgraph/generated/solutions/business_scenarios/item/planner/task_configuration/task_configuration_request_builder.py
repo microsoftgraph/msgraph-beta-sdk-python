@@ -55,7 +55,7 @@ class TaskConfigurationRequestBuilder():
     
     async def get(self,request_configuration: Optional[TaskConfigurationRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[planner_task_configuration.PlannerTaskConfiguration]:
         """
-        Get taskConfiguration from solutions
+        Read the properties and relationships of a plannerTaskConfiguration object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
@@ -74,7 +74,7 @@ class TaskConfigurationRequestBuilder():
     
     async def patch(self,body: Optional[planner_task_configuration.PlannerTaskConfiguration] = None, request_configuration: Optional[TaskConfigurationRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[planner_task_configuration.PlannerTaskConfiguration]:
         """
-        Update the navigation property taskConfiguration in solutions
+        Update the properties of a plannerTaskConfiguration object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -112,7 +112,7 @@ class TaskConfigurationRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TaskConfigurationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get taskConfiguration from solutions
+        Read the properties and relationships of a plannerTaskConfiguration object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -130,7 +130,7 @@ class TaskConfigurationRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[planner_task_configuration.PlannerTaskConfiguration] = None, request_configuration: Optional[TaskConfigurationRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property taskConfiguration in solutions
+        Update the properties of a plannerTaskConfiguration object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -164,7 +164,7 @@ class TaskConfigurationRequestBuilder():
     @dataclass
     class TaskConfigurationRequestBuilderGetQueryParameters():
         """
-        Get taskConfiguration from solutions
+        Read the properties and relationships of a plannerTaskConfiguration object.
         """
         # Expand related entities
         expand: Optional[List[str]] = None

@@ -4,8 +4,10 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
+account_target_content = lazy_import('msgraph.generated.models.account_target_content')
 email_identity = lazy_import('msgraph.generated.models.email_identity')
 entity = lazy_import('msgraph.generated.models.entity')
+payload = lazy_import('msgraph.generated.models.payload')
 payload_delivery_platform = lazy_import('msgraph.generated.models.payload_delivery_platform')
 simulation_attack_technique = lazy_import('msgraph.generated.models.simulation_attack_technique')
 simulation_attack_type = lazy_import('msgraph.generated.models.simulation_attack_type')
@@ -102,6 +104,12 @@ class Simulation(entity.Entity):
         self._description: Optional[str] = None
         # Display name of the attack simulation and training campaign. Supports $filter and $orderby.
         self._display_name: Optional[str] = None
+        # The durationInDays property
+        self._duration_in_days: Optional[int] = None
+        # The excludedAccountTarget property
+        self._excluded_account_target: Optional[account_target_content.AccountTargetContent] = None
+        # The includedAccountTarget property
+        self._included_account_target: Optional[account_target_content.AccountTargetContent] = None
         # Flag that represents if the attack simulation and training campaign was created from a simulation automation flow. Supports $filter and $orderby.
         self._is_automated: Optional[bool] = None
         # Identity of the user who most recently modified the attack simulation and training campaign.
@@ -112,6 +120,8 @@ class Simulation(entity.Entity):
         self._launch_date_time: Optional[datetime] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
+        # The payload property
+        self._payload: Optional[payload.Payload] = None
         # Method of delivery of the phishing payload used in the attack simulation and training campaign. Possible values are: unknown, sms, email, teams, unknownFutureValue.
         self._payload_delivery_platform: Optional[payload_delivery_platform.PayloadDeliveryPlatform] = None
         # Report of the attack simulation and training campaign.
@@ -199,6 +209,40 @@ class Simulation(entity.Entity):
         """
         self._display_name = value
     
+    @property
+    def duration_in_days(self,) -> Optional[int]:
+        """
+        Gets the durationInDays property value. The durationInDays property
+        Returns: Optional[int]
+        """
+        return self._duration_in_days
+    
+    @duration_in_days.setter
+    def duration_in_days(self,value: Optional[int] = None) -> None:
+        """
+        Sets the durationInDays property value. The durationInDays property
+        Args:
+            value: Value to set for the durationInDays property.
+        """
+        self._duration_in_days = value
+    
+    @property
+    def excluded_account_target(self,) -> Optional[account_target_content.AccountTargetContent]:
+        """
+        Gets the excludedAccountTarget property value. The excludedAccountTarget property
+        Returns: Optional[account_target_content.AccountTargetContent]
+        """
+        return self._excluded_account_target
+    
+    @excluded_account_target.setter
+    def excluded_account_target(self,value: Optional[account_target_content.AccountTargetContent] = None) -> None:
+        """
+        Sets the excludedAccountTarget property value. The excludedAccountTarget property
+        Args:
+            value: Value to set for the excludedAccountTarget property.
+        """
+        self._excluded_account_target = value
+    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -213,10 +257,14 @@ class Simulation(entity.Entity):
             "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "duration_in_days": lambda n : setattr(self, 'duration_in_days', n.get_int_value()),
+            "excluded_account_target": lambda n : setattr(self, 'excluded_account_target', n.get_object_value(account_target_content.AccountTargetContent)),
+            "included_account_target": lambda n : setattr(self, 'included_account_target', n.get_object_value(account_target_content.AccountTargetContent)),
             "is_automated": lambda n : setattr(self, 'is_automated', n.get_bool_value()),
             "last_modified_by": lambda n : setattr(self, 'last_modified_by', n.get_object_value(email_identity.EmailIdentity)),
             "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "launch_date_time": lambda n : setattr(self, 'launch_date_time', n.get_datetime_value()),
+            "payload": lambda n : setattr(self, 'payload', n.get_object_value(payload.Payload)),
             "payload_delivery_platform": lambda n : setattr(self, 'payload_delivery_platform', n.get_enum_value(payload_delivery_platform.PayloadDeliveryPlatform)),
             "report": lambda n : setattr(self, 'report', n.get_object_value(simulation_report.SimulationReport)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(simulation_status.SimulationStatus)),
@@ -224,6 +272,23 @@ class Simulation(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
+    
+    @property
+    def included_account_target(self,) -> Optional[account_target_content.AccountTargetContent]:
+        """
+        Gets the includedAccountTarget property value. The includedAccountTarget property
+        Returns: Optional[account_target_content.AccountTargetContent]
+        """
+        return self._included_account_target
+    
+    @included_account_target.setter
+    def included_account_target(self,value: Optional[account_target_content.AccountTargetContent] = None) -> None:
+        """
+        Sets the includedAccountTarget property value. The includedAccountTarget property
+        Args:
+            value: Value to set for the includedAccountTarget property.
+        """
+        self._included_account_target = value
     
     @property
     def is_automated(self,) -> Optional[bool]:
@@ -294,6 +359,23 @@ class Simulation(entity.Entity):
         self._launch_date_time = value
     
     @property
+    def payload(self,) -> Optional[payload.Payload]:
+        """
+        Gets the payload property value. The payload property
+        Returns: Optional[payload.Payload]
+        """
+        return self._payload
+    
+    @payload.setter
+    def payload(self,value: Optional[payload.Payload] = None) -> None:
+        """
+        Sets the payload property value. The payload property
+        Args:
+            value: Value to set for the payload property.
+        """
+        self._payload = value
+    
+    @property
     def payload_delivery_platform(self,) -> Optional[payload_delivery_platform.PayloadDeliveryPlatform]:
         """
         Gets the payloadDeliveryPlatform property value. Method of delivery of the phishing payload used in the attack simulation and training campaign. Possible values are: unknown, sms, email, teams, unknownFutureValue.
@@ -344,10 +426,14 @@ class Simulation(entity.Entity):
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
+        writer.write_int_value("durationInDays", self.duration_in_days)
+        writer.write_object_value("excludedAccountTarget", self.excluded_account_target)
+        writer.write_object_value("includedAccountTarget", self.included_account_target)
         writer.write_bool_value("isAutomated", self.is_automated)
         writer.write_object_value("lastModifiedBy", self.last_modified_by)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_datetime_value("launchDateTime", self.launch_date_time)
+        writer.write_object_value("payload", self.payload)
         writer.write_enum_value("payloadDeliveryPlatform", self.payload_delivery_platform)
         writer.write_object_value("report", self.report)
         writer.write_enum_value("status", self.status)

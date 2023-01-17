@@ -101,7 +101,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         self._shared_i_pad_maximum_user_count: Optional[int] = None
         # Indicates if siri setup pane is disabled
         self._siri_disabled: Optional[bool] = None
-        # Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
+        # Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/en-us/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
         self._supervised_mode_enabled: Optional[bool] = None
         # Support department information
         self._support_department: Optional[str] = None
@@ -453,7 +453,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
     @property
     def supervised_mode_enabled(self,) -> Optional[bool]:
         """
-        Gets the supervisedModeEnabled property value. Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
+        Gets the supervisedModeEnabled property value. Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/en-us/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
         Returns: Optional[bool]
         """
         return self._supervised_mode_enabled
@@ -461,7 +461,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
     @supervised_mode_enabled.setter
     def supervised_mode_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the supervisedModeEnabled property value. Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
+        Sets the supervisedModeEnabled property value. Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/en-us/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
         Args:
             value: Value to set for the supervisedModeEnabled property.
         """

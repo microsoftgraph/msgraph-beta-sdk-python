@@ -55,7 +55,7 @@ class BusinessScenarioTaskItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[BusinessScenarioTaskItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[business_scenario_task.BusinessScenarioTask]:
         """
-        Get tasks from solutions
+        The Planner tasks for the scenario.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
@@ -112,7 +112,7 @@ class BusinessScenarioTaskItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[BusinessScenarioTaskItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get tasks from solutions
+        The Planner tasks for the scenario.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -164,7 +164,7 @@ class BusinessScenarioTaskItemRequestBuilder():
     @dataclass
     class BusinessScenarioTaskItemRequestBuilderGetQueryParameters():
         """
-        Get tasks from solutions
+        The Planner tasks for the scenario.
         """
         # Expand related entities
         expand: Optional[List[str]] = None

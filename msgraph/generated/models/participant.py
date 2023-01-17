@@ -5,6 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 entity = lazy_import('msgraph.generated.models.entity')
 media_stream = lazy_import('msgraph.generated.models.media_stream')
+online_meeting_restricted = lazy_import('msgraph.generated.models.online_meeting_restricted')
 participant_info = lazy_import('msgraph.generated.models.participant_info')
 recording_info = lazy_import('msgraph.generated.models.recording_info')
 
@@ -30,6 +31,8 @@ class Participant(entity.Entity):
         self.odata_type: Optional[str] = None
         # Information on whether the participant has recording capability.
         self._recording_info: Optional[recording_info.RecordingInfo] = None
+        # The restrictedExperience property
+        self._restricted_experience: Optional[online_meeting_restricted.OnlineMeetingRestricted] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Participant:
@@ -56,6 +59,7 @@ class Participant(entity.Entity):
             "media_streams": lambda n : setattr(self, 'media_streams', n.get_collection_of_object_values(media_stream.MediaStream)),
             "metadata": lambda n : setattr(self, 'metadata', n.get_str_value()),
             "recording_info": lambda n : setattr(self, 'recording_info', n.get_object_value(recording_info.RecordingInfo)),
+            "restricted_experience": lambda n : setattr(self, 'restricted_experience', n.get_object_value(online_meeting_restricted.OnlineMeetingRestricted)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -180,6 +184,23 @@ class Participant(entity.Entity):
         """
         self._recording_info = value
     
+    @property
+    def restricted_experience(self,) -> Optional[online_meeting_restricted.OnlineMeetingRestricted]:
+        """
+        Gets the restrictedExperience property value. The restrictedExperience property
+        Returns: Optional[online_meeting_restricted.OnlineMeetingRestricted]
+        """
+        return self._restricted_experience
+    
+    @restricted_experience.setter
+    def restricted_experience(self,value: Optional[online_meeting_restricted.OnlineMeetingRestricted] = None) -> None:
+        """
+        Sets the restrictedExperience property value. The restrictedExperience property
+        Args:
+            value: Value to set for the restrictedExperience property.
+        """
+        self._restricted_experience = value
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -196,5 +217,6 @@ class Participant(entity.Entity):
         writer.write_collection_of_object_values("mediaStreams", self.media_streams)
         writer.write_str_value("metadata", self.metadata)
         writer.write_object_value("recordingInfo", self.recording_info)
+        writer.write_object_value("restrictedExperience", self.restricted_experience)
     
 

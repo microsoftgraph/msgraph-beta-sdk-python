@@ -10,7 +10,7 @@ class PlannerPlanConfigurationLocalization(entity.Entity):
     @property
     def buckets(self,) -> Optional[List[planner_plan_configuration_bucket_localization.PlannerPlanConfigurationBucketLocalization]]:
         """
-        Gets the buckets property value. The buckets property
+        Gets the buckets property value. Localized names for configured buckets in the plan configuration.
         Returns: Optional[List[planner_plan_configuration_bucket_localization.PlannerPlanConfigurationBucketLocalization]]
         """
         return self._buckets
@@ -18,7 +18,7 @@ class PlannerPlanConfigurationLocalization(entity.Entity):
     @buckets.setter
     def buckets(self,value: Optional[List[planner_plan_configuration_bucket_localization.PlannerPlanConfigurationBucketLocalization]] = None) -> None:
         """
-        Sets the buckets property value. The buckets property
+        Sets the buckets property value. Localized names for configured buckets in the plan configuration.
         Args:
             value: Value to set for the buckets property.
         """
@@ -29,13 +29,13 @@ class PlannerPlanConfigurationLocalization(entity.Entity):
         Instantiates a new plannerPlanConfigurationLocalization and sets the default values.
         """
         super().__init__()
-        # The buckets property
+        # Localized names for configured buckets in the plan configuration.
         self._buckets: Optional[List[planner_plan_configuration_bucket_localization.PlannerPlanConfigurationBucketLocalization]] = None
-        # The languageTag property
+        # The language code associated with the localized names in this object.
         self._language_tag: Optional[str] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The planTitle property
+        # Localized title of the plan.
         self._plan_title: Optional[str] = None
     
     @staticmethod
@@ -67,7 +67,7 @@ class PlannerPlanConfigurationLocalization(entity.Entity):
     @property
     def language_tag(self,) -> Optional[str]:
         """
-        Gets the languageTag property value. The languageTag property
+        Gets the languageTag property value. The language code associated with the localized names in this object.
         Returns: Optional[str]
         """
         return self._language_tag
@@ -75,7 +75,7 @@ class PlannerPlanConfigurationLocalization(entity.Entity):
     @language_tag.setter
     def language_tag(self,value: Optional[str] = None) -> None:
         """
-        Sets the languageTag property value. The languageTag property
+        Sets the languageTag property value. The language code associated with the localized names in this object.
         Args:
             value: Value to set for the languageTag property.
         """
@@ -84,7 +84,7 @@ class PlannerPlanConfigurationLocalization(entity.Entity):
     @property
     def plan_title(self,) -> Optional[str]:
         """
-        Gets the planTitle property value. The planTitle property
+        Gets the planTitle property value. Localized title of the plan.
         Returns: Optional[str]
         """
         return self._plan_title
@@ -92,7 +92,7 @@ class PlannerPlanConfigurationLocalization(entity.Entity):
     @plan_title.setter
     def plan_title(self,value: Optional[str] = None) -> None:
         """
-        Sets the planTitle property value. The planTitle property
+        Sets the planTitle property value. Localized title of the plan.
         Args:
             value: Value to set for the planTitle property.
         """

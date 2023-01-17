@@ -13,7 +13,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.user_processing_results.count.count_request_builder')
 summary_with_start_date_time_with_end_date_time_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.user_processing_results.summary_with_start_date_time_with_end_date_time.summary_with_start_date_time_with_end_date_time_request_builder')
-user_processing_result = lazy_import('msgraph.generated.models.identity_governance.user_processing_result')
 user_processing_result_collection_response = lazy_import('msgraph.generated.models.identity_governance.user_processing_result_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -65,28 +64,6 @@ class UserProcessingResultsRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, user_processing_result_collection_response.UserProcessingResultCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[user_processing_result.UserProcessingResult] = None, request_configuration: Optional[UserProcessingResultsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_processing_result.UserProcessingResult]:
-        """
-        Create new navigation property to userProcessingResults for identityGovernance
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
-        Returns: Optional[user_processing_result.UserProcessingResult]
-        """
-        if body is None:
-            raise Exception("body cannot be undefined")
-        request_info = self.to_post_request_information(
-            body, request_configuration
-        )
-        error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
-        }
-        if not self.request_adapter:
-            raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_processing_result.UserProcessingResult, response_handler, error_mapping)
-    
     def summary_with_start_date_time_with_end_date_time(self,end_date_time: Optional[datetime] = None, start_date_time: Optional[datetime] = None) -> summary_with_start_date_time_with_end_date_time_request_builder.SummaryWithStartDateTimeWithEndDateTimeRequestBuilder:
         """
         Provides operations to call the summary method.
@@ -117,27 +94,6 @@ class UserProcessingResultsRequestBuilder():
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
             request_info.add_request_options(request_configuration.options)
-        return request_info
-    
-    def to_post_request_information(self,body: Optional[user_processing_result.UserProcessingResult] = None, request_configuration: Optional[UserProcessingResultsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
-        """
-        Create new navigation property to userProcessingResults for identityGovernance
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: RequestInformation
-        """
-        if body is None:
-            raise Exception("body cannot be undefined")
-        request_info = RequestInformation()
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
-        request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
     @dataclass
@@ -210,18 +166,6 @@ class UserProcessingResultsRequestBuilder():
 
         # Request query parameters
         query_parameters: Optional[UserProcessingResultsRequestBuilder.UserProcessingResultsRequestBuilderGetQueryParameters] = None
-
-    
-    @dataclass
-    class UserProcessingResultsRequestBuilderPostRequestConfiguration():
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request headers
-        headers: Optional[Dict[str, str]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
 
     
 

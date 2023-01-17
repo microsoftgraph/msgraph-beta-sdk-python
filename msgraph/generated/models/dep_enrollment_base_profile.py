@@ -75,6 +75,8 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         self._diagnostics_disabled: Optional[bool] = None
         # Indicates if displaytone setup screen is disabled
         self._display_tone_setup_disabled: Optional[bool] = None
+        # enabledSkipKeys contains all the enabled skip keys as strings
+        self._enabled_skip_keys: Optional[List[str]] = None
         # Indicates if this is the default profile
         self._is_default: Optional[bool] = None
         # Indicates if the profile is mandatory
@@ -91,7 +93,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         self._screen_time_screen_disabled: Optional[bool] = None
         # Indicates if siri setup pane is disabled
         self._siri_disabled: Optional[bool] = None
-        # Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
+        # Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/en-us/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
         self._supervised_mode_enabled: Optional[bool] = None
         # Support department information
         self._support_department: Optional[str] = None
@@ -165,6 +167,23 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         """
         self._display_tone_setup_disabled = value
     
+    @property
+    def enabled_skip_keys(self,) -> Optional[List[str]]:
+        """
+        Gets the enabledSkipKeys property value. enabledSkipKeys contains all the enabled skip keys as strings
+        Returns: Optional[List[str]]
+        """
+        return self._enabled_skip_keys
+    
+    @enabled_skip_keys.setter
+    def enabled_skip_keys(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the enabledSkipKeys property value. enabledSkipKeys contains all the enabled skip keys as strings
+        Args:
+            value: Value to set for the enabledSkipKeys property.
+        """
+        self._enabled_skip_keys = value
+    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -177,6 +196,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
             "device_name_template": lambda n : setattr(self, 'device_name_template', n.get_str_value()),
             "diagnostics_disabled": lambda n : setattr(self, 'diagnostics_disabled', n.get_bool_value()),
             "display_tone_setup_disabled": lambda n : setattr(self, 'display_tone_setup_disabled', n.get_bool_value()),
+            "enabled_skip_keys": lambda n : setattr(self, 'enabled_skip_keys', n.get_collection_of_primitive_values(str)),
             "is_default": lambda n : setattr(self, 'is_default', n.get_bool_value()),
             "is_mandatory": lambda n : setattr(self, 'is_mandatory', n.get_bool_value()),
             "location_disabled": lambda n : setattr(self, 'location_disabled', n.get_bool_value()),
@@ -329,6 +349,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         writer.write_str_value("deviceNameTemplate", self.device_name_template)
         writer.write_bool_value("diagnosticsDisabled", self.diagnostics_disabled)
         writer.write_bool_value("displayToneSetupDisabled", self.display_tone_setup_disabled)
+        writer.write_collection_of_primitive_values("enabledSkipKeys", self.enabled_skip_keys)
         writer.write_bool_value("isDefault", self.is_default)
         writer.write_bool_value("isMandatory", self.is_mandatory)
         writer.write_bool_value("locationDisabled", self.location_disabled)
@@ -363,7 +384,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
     @property
     def supervised_mode_enabled(self,) -> Optional[bool]:
         """
-        Gets the supervisedModeEnabled property value. Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
+        Gets the supervisedModeEnabled property value. Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/en-us/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
         Returns: Optional[bool]
         """
         return self._supervised_mode_enabled
@@ -371,7 +392,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
     @supervised_mode_enabled.setter
     def supervised_mode_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the supervisedModeEnabled property value. Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
+        Sets the supervisedModeEnabled property value. Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/en-us/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
         Args:
             value: Value to set for the supervisedModeEnabled property.
         """

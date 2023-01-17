@@ -31,13 +31,13 @@ class PlannerTaskRoleBasedRule(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The defaultRule property
+        # Default rule that applies when a property or action-specific rule is not provided. Possible values are: Allow, Block
         self._default_rule: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The propertyRule property
+        # Rules for specific properties and actions.
         self._property_rule: Optional[planner_task_property_rule.PlannerTaskPropertyRule] = None
-        # The role property
+        # The role these rules apply to.
         self._role: Optional[planner_task_configuration_role_base.PlannerTaskConfigurationRoleBase] = None
     
     @staticmethod
@@ -55,7 +55,7 @@ class PlannerTaskRoleBasedRule(AdditionalDataHolder, Parsable):
     @property
     def default_rule(self,) -> Optional[str]:
         """
-        Gets the defaultRule property value. The defaultRule property
+        Gets the defaultRule property value. Default rule that applies when a property or action-specific rule is not provided. Possible values are: Allow, Block
         Returns: Optional[str]
         """
         return self._default_rule
@@ -63,7 +63,7 @@ class PlannerTaskRoleBasedRule(AdditionalDataHolder, Parsable):
     @default_rule.setter
     def default_rule(self,value: Optional[str] = None) -> None:
         """
-        Sets the defaultRule property value. The defaultRule property
+        Sets the defaultRule property value. Default rule that applies when a property or action-specific rule is not provided. Possible values are: Allow, Block
         Args:
             value: Value to set for the defaultRule property.
         """
@@ -102,7 +102,7 @@ class PlannerTaskRoleBasedRule(AdditionalDataHolder, Parsable):
     @property
     def property_rule(self,) -> Optional[planner_task_property_rule.PlannerTaskPropertyRule]:
         """
-        Gets the propertyRule property value. The propertyRule property
+        Gets the propertyRule property value. Rules for specific properties and actions.
         Returns: Optional[planner_task_property_rule.PlannerTaskPropertyRule]
         """
         return self._property_rule
@@ -110,7 +110,7 @@ class PlannerTaskRoleBasedRule(AdditionalDataHolder, Parsable):
     @property_rule.setter
     def property_rule(self,value: Optional[planner_task_property_rule.PlannerTaskPropertyRule] = None) -> None:
         """
-        Sets the propertyRule property value. The propertyRule property
+        Sets the propertyRule property value. Rules for specific properties and actions.
         Args:
             value: Value to set for the propertyRule property.
         """
@@ -119,7 +119,7 @@ class PlannerTaskRoleBasedRule(AdditionalDataHolder, Parsable):
     @property
     def role(self,) -> Optional[planner_task_configuration_role_base.PlannerTaskConfigurationRoleBase]:
         """
-        Gets the role property value. The role property
+        Gets the role property value. The role these rules apply to.
         Returns: Optional[planner_task_configuration_role_base.PlannerTaskConfigurationRoleBase]
         """
         return self._role
@@ -127,7 +127,7 @@ class PlannerTaskRoleBasedRule(AdditionalDataHolder, Parsable):
     @role.setter
     def role(self,value: Optional[planner_task_configuration_role_base.PlannerTaskConfigurationRoleBase] = None) -> None:
         """
-        Sets the role property value. The role property
+        Sets the role property value. The role these rules apply to.
         Args:
             value: Value to set for the role property.
         """

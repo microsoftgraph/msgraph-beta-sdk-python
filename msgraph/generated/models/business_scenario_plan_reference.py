@@ -13,7 +13,7 @@ class BusinessScenarioPlanReference(entity.Entity):
         super().__init__()
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The title property
+        # The title property of the plannerPlan.
         self._title: Optional[str] = None
     
     @staticmethod
@@ -54,7 +54,7 @@ class BusinessScenarioPlanReference(entity.Entity):
     @property
     def title(self,) -> Optional[str]:
         """
-        Gets the title property value. The title property
+        Gets the title property value. The title property of the plannerPlan.
         Returns: Optional[str]
         """
         return self._title
@@ -62,7 +62,7 @@ class BusinessScenarioPlanReference(entity.Entity):
     @title.setter
     def title(self,value: Optional[str] = None) -> None:
         """
-        Sets the title property value. The title property
+        Sets the title property value. The title property of the plannerPlan.
         Args:
             value: Value to set for the title property.
         """

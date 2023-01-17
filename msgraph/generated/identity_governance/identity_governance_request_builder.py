@@ -14,6 +14,7 @@ access_reviews_request_builder = lazy_import('msgraph.generated.identity_governa
 app_consent_request_builder = lazy_import('msgraph.generated.identity_governance.app_consent.app_consent_request_builder')
 entitlement_management_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.entitlement_management_request_builder')
 lifecycle_workflows_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.lifecycle_workflows_request_builder')
+privileged_access_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.privileged_access_request_builder')
 terms_of_use_request_builder = lazy_import('msgraph.generated.identity_governance.terms_of_use.terms_of_use_request_builder')
 identity_governance = lazy_import('msgraph.generated.models.identity_governance')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -49,6 +50,13 @@ class IdentityGovernanceRequestBuilder():
         Provides operations to manage the lifecycleWorkflows property of the microsoft.graph.identityGovernance entity.
         """
         return lifecycle_workflows_request_builder.LifecycleWorkflowsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def privileged_access(self) -> privileged_access_request_builder.PrivilegedAccessRequestBuilder:
+        """
+        Provides operations to manage the privilegedAccess property of the microsoft.graph.identityGovernance entity.
+        """
+        return privileged_access_request_builder.PrivilegedAccessRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def terms_of_use(self) -> terms_of_use_request_builder.TermsOfUseRequestBuilder:

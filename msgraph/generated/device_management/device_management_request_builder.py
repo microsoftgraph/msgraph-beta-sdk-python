@@ -268,6 +268,8 @@ user_experience_analytics_device_startup_process_performance_request_builder = l
 user_experience_analytics_device_startup_process_performance_item_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_device_startup_process_performance.item.user_experience_analytics_device_startup_process_performance_item_request_builder')
 user_experience_analytics_devices_without_cloud_identity_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_devices_without_cloud_identity.user_experience_analytics_devices_without_cloud_identity_request_builder')
 user_experience_analytics_device_without_cloud_identity_item_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_devices_without_cloud_identity.item.user_experience_analytics_device_without_cloud_identity_item_request_builder')
+user_experience_analytics_device_timeline_events_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_device_timeline_events.user_experience_analytics_device_timeline_events_request_builder')
+user_experience_analytics_device_timeline_events_item_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_device_timeline_events.item.user_experience_analytics_device_timeline_events_item_request_builder')
 user_experience_analytics_impacting_process_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_impacting_process.user_experience_analytics_impacting_process_request_builder')
 user_experience_analytics_impacting_process_item_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_impacting_process.item.user_experience_analytics_impacting_process_item_request_builder')
 user_experience_analytics_metric_history_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_metric_history.user_experience_analytics_metric_history_request_builder')
@@ -1283,6 +1285,13 @@ class DeviceManagementRequestBuilder():
         Provides operations to manage the userExperienceAnalyticsDevicesWithoutCloudIdentity property of the microsoft.graph.deviceManagement entity.
         """
         return user_experience_analytics_devices_without_cloud_identity_request_builder.UserExperienceAnalyticsDevicesWithoutCloudIdentityRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user_experience_analytics_device_timeline_events(self) -> user_experience_analytics_device_timeline_events_request_builder.UserExperienceAnalyticsDeviceTimelineEventsRequestBuilder:
+        """
+        Provides operations to manage the userExperienceAnalyticsDeviceTimelineEvents property of the microsoft.graph.deviceManagement entity.
+        """
+        return user_experience_analytics_device_timeline_events_request_builder.UserExperienceAnalyticsDeviceTimelineEventsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def user_experience_analytics_impacting_process(self) -> user_experience_analytics_impacting_process_request_builder.UserExperienceAnalyticsImpactingProcessRequestBuilder:
@@ -3102,6 +3111,19 @@ class DeviceManagementRequestBuilder():
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["userExperienceAnalyticsDeviceWithoutCloudIdentity%2Did"] = id
         return user_experience_analytics_device_without_cloud_identity_item_request_builder.UserExperienceAnalyticsDeviceWithoutCloudIdentityItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    def user_experience_analytics_device_timeline_events_by_id(self,id: str) -> user_experience_analytics_device_timeline_events_item_request_builder.UserExperienceAnalyticsDeviceTimelineEventsItemRequestBuilder:
+        """
+        Provides operations to manage the userExperienceAnalyticsDeviceTimelineEvents property of the microsoft.graph.deviceManagement entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: user_experience_analytics_device_timeline_events_item_request_builder.UserExperienceAnalyticsDeviceTimelineEventsItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["userExperienceAnalyticsDeviceTimelineEvents%2Did"] = id
+        return user_experience_analytics_device_timeline_events_item_request_builder.UserExperienceAnalyticsDeviceTimelineEventsItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def user_experience_analytics_impacting_process_by_id(self,id: str) -> user_experience_analytics_impacting_process_item_request_builder.UserExperienceAnalyticsImpactingProcessItemRequestBuilder:
         """

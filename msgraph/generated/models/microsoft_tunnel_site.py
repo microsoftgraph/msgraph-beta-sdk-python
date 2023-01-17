@@ -21,8 +21,6 @@ class MicrosoftTunnelSite(entity.Entity):
         self._description: Optional[str] = None
         # The display name for the site. This property is required when a site is created.
         self._display_name: Optional[str] = None
-        # When set to true, certificate pinning will be enforced on connections between the Microsoft Tunnel server and Microsoft Tunnel clients. When set to false, certificate pinning will be disabled.
-        self._enable_certificate_pinning: Optional[bool] = None
         # The site's Internal Network Access Probe URL
         self._internal_network_probe_url: Optional[str] = None
         # The MicrosoftTunnelConfiguration that has been applied to this MicrosoftTunnelSite
@@ -92,23 +90,6 @@ class MicrosoftTunnelSite(entity.Entity):
         """
         self._display_name = value
     
-    @property
-    def enable_certificate_pinning(self,) -> Optional[bool]:
-        """
-        Gets the enableCertificatePinning property value. When set to true, certificate pinning will be enforced on connections between the Microsoft Tunnel server and Microsoft Tunnel clients. When set to false, certificate pinning will be disabled.
-        Returns: Optional[bool]
-        """
-        return self._enable_certificate_pinning
-    
-    @enable_certificate_pinning.setter
-    def enable_certificate_pinning(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the enableCertificatePinning property value. When set to true, certificate pinning will be enforced on connections between the Microsoft Tunnel server and Microsoft Tunnel clients. When set to false, certificate pinning will be disabled.
-        Args:
-            value: Value to set for the enableCertificatePinning property.
-        """
-        self._enable_certificate_pinning = value
-    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -117,7 +98,6 @@ class MicrosoftTunnelSite(entity.Entity):
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "enable_certificate_pinning": lambda n : setattr(self, 'enable_certificate_pinning', n.get_bool_value()),
             "internal_network_probe_url": lambda n : setattr(self, 'internal_network_probe_url', n.get_str_value()),
             "microsoft_tunnel_configuration": lambda n : setattr(self, 'microsoft_tunnel_configuration', n.get_object_value(microsoft_tunnel_configuration.MicrosoftTunnelConfiguration)),
             "microsoft_tunnel_servers": lambda n : setattr(self, 'microsoft_tunnel_servers', n.get_collection_of_object_values(microsoft_tunnel_server.MicrosoftTunnelServer)),
@@ -229,7 +209,6 @@ class MicrosoftTunnelSite(entity.Entity):
         super().serialize(writer)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
-        writer.write_bool_value("enableCertificatePinning", self.enable_certificate_pinning)
         writer.write_str_value("internalNetworkProbeUrl", self.internal_network_probe_url)
         writer.write_object_value("microsoftTunnelConfiguration", self.microsoft_tunnel_configuration)
         writer.write_collection_of_object_values("microsoftTunnelServers", self.microsoft_tunnel_servers)

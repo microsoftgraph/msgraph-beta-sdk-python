@@ -144,7 +144,7 @@ class ManagedTenant(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new managedTenant and sets the default values.
+        Instantiates a new ManagedTenant and sets the default values.
         """
         super().__init__()
         # Aggregate view of device compliance policies across managed tenants.

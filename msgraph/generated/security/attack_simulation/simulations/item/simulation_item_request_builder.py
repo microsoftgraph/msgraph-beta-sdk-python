@@ -12,11 +12,19 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 simulation = lazy_import('msgraph.generated.models.simulation')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+payload_request_builder = lazy_import('msgraph.generated.security.attack_simulation.simulations.item.payload.payload_request_builder')
 
 class SimulationItemRequestBuilder():
     """
     Provides operations to manage the simulations property of the microsoft.graph.attackSimulationRoot entity.
     """
+    @property
+    def payload(self) -> payload_request_builder.PayloadRequestBuilder:
+        """
+        Provides operations to manage the payload property of the microsoft.graph.simulation entity.
+        """
+        return payload_request_builder.PayloadRequestBuilder(self.request_adapter, self.path_parameters)
+    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new SimulationItemRequestBuilder and sets the default values.

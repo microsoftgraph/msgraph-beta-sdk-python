@@ -28,7 +28,7 @@ class PlannerPlanConfigurationBucketDefinition(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The externalBucketId property
+        # Application-specified identifier of the bucket.
         self._external_bucket_id: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
@@ -48,7 +48,7 @@ class PlannerPlanConfigurationBucketDefinition(AdditionalDataHolder, Parsable):
     @property
     def external_bucket_id(self,) -> Optional[str]:
         """
-        Gets the externalBucketId property value. The externalBucketId property
+        Gets the externalBucketId property value. Application-specified identifier of the bucket.
         Returns: Optional[str]
         """
         return self._external_bucket_id
@@ -56,7 +56,7 @@ class PlannerPlanConfigurationBucketDefinition(AdditionalDataHolder, Parsable):
     @external_bucket_id.setter
     def external_bucket_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the externalBucketId property value. The externalBucketId property
+        Sets the externalBucketId property value. Application-specified identifier of the bucket.
         Args:
             value: Value to set for the externalBucketId property.
         """

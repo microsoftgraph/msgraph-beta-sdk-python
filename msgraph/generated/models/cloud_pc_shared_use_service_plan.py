@@ -8,7 +8,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 class CloudPcSharedUseServicePlan(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new CloudPcSharedUseServicePlan and sets the default values.
+        Instantiates a new cloudPcSharedUseServicePlan and sets the default values.
         """
         super().__init__()
         # The displayName property

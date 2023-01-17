@@ -5,7 +5,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 authentication_conditions = lazy_import('msgraph.generated.models.authentication_conditions')
 entity = lazy_import('msgraph.generated.models.entity')
-key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
 
 class AuthenticationEventListener(entity.Entity):
     @property
@@ -55,8 +54,6 @@ class AuthenticationEventListener(entity.Entity):
         self.odata_type: Optional[str] = None
         # The priority property
         self._priority: Optional[int] = None
-        # The tags property
-        self._tags: Optional[List[key_value_pair.KeyValuePair]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AuthenticationEventListener:
@@ -79,7 +76,6 @@ class AuthenticationEventListener(entity.Entity):
             "authentication_events_flow_id": lambda n : setattr(self, 'authentication_events_flow_id', n.get_str_value()),
             "conditions": lambda n : setattr(self, 'conditions', n.get_object_value(authentication_conditions.AuthenticationConditions)),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
-            "tags": lambda n : setattr(self, 'tags', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -114,23 +110,5 @@ class AuthenticationEventListener(entity.Entity):
         writer.write_str_value("authenticationEventsFlowId", self.authentication_events_flow_id)
         writer.write_object_value("conditions", self.conditions)
         writer.write_int_value("priority", self.priority)
-        writer.write_collection_of_object_values("tags", self.tags)
-    
-    @property
-    def tags(self,) -> Optional[List[key_value_pair.KeyValuePair]]:
-        """
-        Gets the tags property value. The tags property
-        Returns: Optional[List[key_value_pair.KeyValuePair]]
-        """
-        return self._tags
-    
-    @tags.setter
-    def tags(self,value: Optional[List[key_value_pair.KeyValuePair]] = None) -> None:
-        """
-        Sets the tags property value. The tags property
-        Args:
-            value: Value to set for the tags property.
-        """
-        self._tags = value
     
 

@@ -130,7 +130,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         self._temporary_session_timeout_in_seconds: Optional[int] = None
         # Indicates if Weclome screen is disabled
         self._update_complete_screen_disabled: Optional[bool] = None
-        # Indicates that this apple device is designated to support 'shared device mode' scenarios. This is distinct from the 'shared iPad' scenario. See https://learn.microsoft.com/mem/intune/enrollment/device-enrollment-shared-ios
+        # Indicates that this apple device is designated to support 'shared device mode' scenarios. This is distinct from the 'shared iPad' scenario. See https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment-shared-ios
         self._userless_shared_aad_mode_enabled: Optional[bool] = None
         # Indicates timeout of temporary session
         self._user_session_timeout_in_seconds: Optional[int] = None
@@ -575,7 +575,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
     @property
     def userless_shared_aad_mode_enabled(self,) -> Optional[bool]:
         """
-        Gets the userlessSharedAadModeEnabled property value. Indicates that this apple device is designated to support 'shared device mode' scenarios. This is distinct from the 'shared iPad' scenario. See https://learn.microsoft.com/mem/intune/enrollment/device-enrollment-shared-ios
+        Gets the userlessSharedAadModeEnabled property value. Indicates that this apple device is designated to support 'shared device mode' scenarios. This is distinct from the 'shared iPad' scenario. See https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment-shared-ios
         Returns: Optional[bool]
         """
         return self._userless_shared_aad_mode_enabled
@@ -583,7 +583,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
     @userless_shared_aad_mode_enabled.setter
     def userless_shared_aad_mode_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the userlessSharedAadModeEnabled property value. Indicates that this apple device is designated to support 'shared device mode' scenarios. This is distinct from the 'shared iPad' scenario. See https://learn.microsoft.com/mem/intune/enrollment/device-enrollment-shared-ios
+        Sets the userlessSharedAadModeEnabled property value. Indicates that this apple device is designated to support 'shared device mode' scenarios. This is distinct from the 'shared iPad' scenario. See https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment-shared-ios
         Args:
             value: Value to set for the userlessSharedAadModeEnabled property.
         """

@@ -62,7 +62,7 @@ class ManagedDevice(entity.Entity):
     @property
     def activation_lock_bypass_code(self,) -> Optional[str]:
         """
-        Gets the activationLockBypassCode property value. Code that allows the Activation Lock on a device to be bypassed. This property is read-only.
+        Gets the activationLockBypassCode property value. The code that allows the Activation Lock on managed device to be bypassed. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity in LIST call. Individual GET call with select query options is needed to retrieve actual values. Supports: $select. $Search is not supported. Read-only. This property is read-only.
         Returns: Optional[str]
         """
         return self._activation_lock_bypass_code
@@ -70,7 +70,7 @@ class ManagedDevice(entity.Entity):
     @activation_lock_bypass_code.setter
     def activation_lock_bypass_code(self,value: Optional[str] = None) -> None:
         """
-        Sets the activationLockBypassCode property value. Code that allows the Activation Lock on a device to be bypassed. This property is read-only.
+        Sets the activationLockBypassCode property value. The code that allows the Activation Lock on managed device to be bypassed. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity in LIST call. Individual GET call with select query options is needed to retrieve actual values. Supports: $select. $Search is not supported. Read-only. This property is read-only.
         Args:
             value: Value to set for the activationLockBypassCode property.
         """
@@ -338,7 +338,7 @@ class ManagedDevice(entity.Entity):
         super().__init__()
         # Whether the device is Azure Active Directory registered. This property is read-only.
         self._aad_registered: Optional[bool] = None
-        # Code that allows the Activation Lock on a device to be bypassed. This property is read-only.
+        # The code that allows the Activation Lock on managed device to be bypassed. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity in LIST call. Individual GET call with select query options is needed to retrieve actual values. Supports: $select. $Search is not supported. Read-only. This property is read-only.
         self._activation_lock_bypass_code: Optional[str] = None
         # Android security patch level. This property is read-only.
         self._android_security_patch_level: Optional[str] = None
@@ -406,7 +406,7 @@ class ManagedDevice(entity.Entity):
         self._enrolled_date_time: Optional[datetime] = None
         # Name of the enrollment profile assigned to the device. Default value is empty string, indicating no enrollment profile was assgined. This property is read-only.
         self._enrollment_profile_name: Optional[str] = None
-        # Ethernet MAC. This property is read-only.
+        # Ethernet MAC. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity. Individual get call with select query options is needed to retrieve actual values. Example: deviceManagement/managedDevices({managedDeviceId})?$select=ethernetMacAddress Supports: $select. $Search is not supported. Read-only. This property is read-only.
         self._ethernet_mac_address: Optional[str] = None
         # Device Exchange Access State.
         self._exchange_access_state: Optional[device_management_exchange_access_state.DeviceManagementExchangeAccessState] = None
@@ -492,7 +492,7 @@ class ManagedDevice(entity.Entity):
         self._serial_number: Optional[str] = None
         # Device sku family
         self._sku_family: Optional[str] = None
-        # Device sku number, see also: https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-getproductinfo. Valid values 0 to 2147483647. This property is read-only.
+        # Device sku number, see also: https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-getproductinfo. Valid values 0 to 2147483647. This property is read-only.
         self._sku_number: Optional[int] = None
         # Specification version. This property is read-only.
         self._specification_version: Optional[str] = None
@@ -842,7 +842,7 @@ class ManagedDevice(entity.Entity):
     @property
     def ethernet_mac_address(self,) -> Optional[str]:
         """
-        Gets the ethernetMacAddress property value. Ethernet MAC. This property is read-only.
+        Gets the ethernetMacAddress property value. Ethernet MAC. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity. Individual get call with select query options is needed to retrieve actual values. Example: deviceManagement/managedDevices({managedDeviceId})?$select=ethernetMacAddress Supports: $select. $Search is not supported. Read-only. This property is read-only.
         Returns: Optional[str]
         """
         return self._ethernet_mac_address
@@ -850,7 +850,7 @@ class ManagedDevice(entity.Entity):
     @ethernet_mac_address.setter
     def ethernet_mac_address(self,value: Optional[str] = None) -> None:
         """
-        Sets the ethernetMacAddress property value. Ethernet MAC. This property is read-only.
+        Sets the ethernetMacAddress property value. Ethernet MAC. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity. Individual get call with select query options is needed to retrieve actual values. Example: deviceManagement/managedDevices({managedDeviceId})?$select=ethernetMacAddress Supports: $select. $Search is not supported. Read-only. This property is read-only.
         Args:
             value: Value to set for the ethernetMacAddress property.
         """
@@ -1703,7 +1703,7 @@ class ManagedDevice(entity.Entity):
     @property
     def sku_number(self,) -> Optional[int]:
         """
-        Gets the skuNumber property value. Device sku number, see also: https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-getproductinfo. Valid values 0 to 2147483647. This property is read-only.
+        Gets the skuNumber property value. Device sku number, see also: https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-getproductinfo. Valid values 0 to 2147483647. This property is read-only.
         Returns: Optional[int]
         """
         return self._sku_number
@@ -1711,7 +1711,7 @@ class ManagedDevice(entity.Entity):
     @sku_number.setter
     def sku_number(self,value: Optional[int] = None) -> None:
         """
-        Sets the skuNumber property value. Device sku number, see also: https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-getproductinfo. Valid values 0 to 2147483647. This property is read-only.
+        Sets the skuNumber property value. Device sku number, see also: https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-getproductinfo. Valid values 0 to 2147483647. This property is read-only.
         Args:
             value: Value to set for the skuNumber property.
         """

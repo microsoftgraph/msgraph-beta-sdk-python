@@ -44,7 +44,7 @@ class SecurityConfigurationTask(device_app_management_task.DeviceAppManagementTa
         self._insights: Optional[str] = None
         # The intended settings and their values.
         self._intended_settings: Optional[List[key_value_pair.KeyValuePair]] = None
-        # The number of vulnerable devices.
+        # The number of vulnerable devices. Valid values 0 to 65536
         self._managed_device_count: Optional[int] = None
         # The vulnerable managed devices.
         self._managed_devices: Optional[List[vulnerable_managed_device.VulnerableManagedDevice]] = None
@@ -150,7 +150,7 @@ class SecurityConfigurationTask(device_app_management_task.DeviceAppManagementTa
     @property
     def managed_device_count(self,) -> Optional[int]:
         """
-        Gets the managedDeviceCount property value. The number of vulnerable devices.
+        Gets the managedDeviceCount property value. The number of vulnerable devices. Valid values 0 to 65536
         Returns: Optional[int]
         """
         return self._managed_device_count
@@ -158,7 +158,7 @@ class SecurityConfigurationTask(device_app_management_task.DeviceAppManagementTa
     @managed_device_count.setter
     def managed_device_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the managedDeviceCount property value. The number of vulnerable devices.
+        Sets the managedDeviceCount property value. The number of vulnerable devices. Valid values 0 to 65536
         Args:
             value: Value to set for the managedDeviceCount property.
         """

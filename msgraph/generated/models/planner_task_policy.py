@@ -32,7 +32,7 @@ class PlannerTaskPolicy(AdditionalDataHolder, Parsable):
 
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The rules property
+        # The rules that should be enforced on the tasks when they are being changed outside of the scenario, based on the role of the caller.
         self._rules: Optional[List[planner_task_role_based_rule.PlannerTaskRoleBasedRule]] = None
     
     @staticmethod
@@ -78,7 +78,7 @@ class PlannerTaskPolicy(AdditionalDataHolder, Parsable):
     @property
     def rules(self,) -> Optional[List[planner_task_role_based_rule.PlannerTaskRoleBasedRule]]:
         """
-        Gets the rules property value. The rules property
+        Gets the rules property value. The rules that should be enforced on the tasks when they are being changed outside of the scenario, based on the role of the caller.
         Returns: Optional[List[planner_task_role_based_rule.PlannerTaskRoleBasedRule]]
         """
         return self._rules
@@ -86,7 +86,7 @@ class PlannerTaskPolicy(AdditionalDataHolder, Parsable):
     @rules.setter
     def rules(self,value: Optional[List[planner_task_role_based_rule.PlannerTaskRoleBasedRule]] = None) -> None:
         """
-        Sets the rules property value. The rules property
+        Sets the rules property value. The rules that should be enforced on the tasks when they are being changed outside of the scenario, based on the role of the caller.
         Args:
             value: Value to set for the rules property.
         """

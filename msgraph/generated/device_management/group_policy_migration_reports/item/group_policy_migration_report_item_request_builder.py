@@ -14,6 +14,7 @@ group_policy_setting_mappings_request_builder = lazy_import('msgraph.generated.d
 group_policy_setting_mapping_item_request_builder = lazy_import('msgraph.generated.device_management.group_policy_migration_reports.item.group_policy_setting_mappings.item.group_policy_setting_mapping_item_request_builder')
 unsupported_group_policy_extensions_request_builder = lazy_import('msgraph.generated.device_management.group_policy_migration_reports.item.unsupported_group_policy_extensions.unsupported_group_policy_extensions_request_builder')
 unsupported_group_policy_extension_item_request_builder = lazy_import('msgraph.generated.device_management.group_policy_migration_reports.item.unsupported_group_policy_extensions.item.unsupported_group_policy_extension_item_request_builder')
+update_scope_tags_request_builder = lazy_import('msgraph.generated.device_management.group_policy_migration_reports.item.update_scope_tags.update_scope_tags_request_builder')
 group_policy_migration_report = lazy_import('msgraph.generated.models.group_policy_migration_report')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -34,6 +35,13 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         Provides operations to manage the unsupportedGroupPolicyExtensions property of the microsoft.graph.groupPolicyMigrationReport entity.
         """
         return unsupported_group_policy_extensions_request_builder.UnsupportedGroupPolicyExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def update_scope_tags(self) -> update_scope_tags_request_builder.UpdateScopeTagsRequestBuilder:
+        """
+        Provides operations to call the updateScopeTags method.
+        """
+        return update_scope_tags_request_builder.UpdateScopeTagsRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """

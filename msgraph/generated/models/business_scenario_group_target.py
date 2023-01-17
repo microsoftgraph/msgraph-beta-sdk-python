@@ -12,7 +12,7 @@ class BusinessScenarioGroupTarget(business_scenario_task_target_base.BusinessSce
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.businessScenarioGroupTarget"
-        # The groupId property
+        # The unique identifier for the group.
         self._group_id: Optional[str] = None
     
     @staticmethod
@@ -42,7 +42,7 @@ class BusinessScenarioGroupTarget(business_scenario_task_target_base.BusinessSce
     @property
     def group_id(self,) -> Optional[str]:
         """
-        Gets the groupId property value. The groupId property
+        Gets the groupId property value. The unique identifier for the group.
         Returns: Optional[str]
         """
         return self._group_id
@@ -50,7 +50,7 @@ class BusinessScenarioGroupTarget(business_scenario_task_target_base.BusinessSce
     @group_id.setter
     def group_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the groupId property value. The groupId property
+        Sets the groupId property value. The unique identifier for the group.
         Args:
             value: Value to set for the groupId property.
         """

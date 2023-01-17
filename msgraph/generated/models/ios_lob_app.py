@@ -74,8 +74,6 @@ class IosLobApp(mobile_lob_app.MobileLobApp):
         self._bundle_id: Optional[str] = None
         # The expiration time.
         self._expiration_date_time: Optional[datetime] = None
-        # The identity version. This property is being deprecated in 2211(November 2022)
-        self._identity_version: Optional[str] = None
         # The value for the minimum applicable operating system.
         self._minimum_supported_operating_system: Optional[ios_minimum_operating_system.IosMinimumOperatingSystem] = None
         # The version number of iOS Line of Business (LoB) app.
@@ -120,30 +118,12 @@ class IosLobApp(mobile_lob_app.MobileLobApp):
             "build_number": lambda n : setattr(self, 'build_number', n.get_str_value()),
             "bundle_id": lambda n : setattr(self, 'bundle_id', n.get_str_value()),
             "expiration_date_time": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
-            "identity_version": lambda n : setattr(self, 'identity_version', n.get_str_value()),
             "minimum_supported_operating_system": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(ios_minimum_operating_system.IosMinimumOperatingSystem)),
             "version_number": lambda n : setattr(self, 'version_number', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def identity_version(self,) -> Optional[str]:
-        """
-        Gets the identityVersion property value. The identity version. This property is being deprecated in 2211(November 2022)
-        Returns: Optional[str]
-        """
-        return self._identity_version
-    
-    @identity_version.setter
-    def identity_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the identityVersion property value. The identity version. This property is being deprecated in 2211(November 2022)
-        Args:
-            value: Value to set for the identityVersion property.
-        """
-        self._identity_version = value
     
     @property
     def minimum_supported_operating_system(self,) -> Optional[ios_minimum_operating_system.IosMinimumOperatingSystem]:
@@ -175,7 +155,6 @@ class IosLobApp(mobile_lob_app.MobileLobApp):
         writer.write_str_value("buildNumber", self.build_number)
         writer.write_str_value("bundleId", self.bundle_id)
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)
-        writer.write_str_value("identityVersion", self.identity_version)
         writer.write_object_value("minimumSupportedOperatingSystem", self.minimum_supported_operating_system)
         writer.write_str_value("versionNumber", self.version_number)
     

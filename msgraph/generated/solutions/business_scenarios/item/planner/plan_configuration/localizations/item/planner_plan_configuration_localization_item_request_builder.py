@@ -55,7 +55,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[PlannerPlanConfigurationLocalizationItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[planner_plan_configuration_localization.PlannerPlanConfigurationLocalization]:
         """
-        Get localizations from solutions
+        Localized names for the plan configuration.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
@@ -112,7 +112,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PlannerPlanConfigurationLocalizationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get localizations from solutions
+        Localized names for the plan configuration.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -164,7 +164,7 @@ class PlannerPlanConfigurationLocalizationItemRequestBuilder():
     @dataclass
     class PlannerPlanConfigurationLocalizationItemRequestBuilderGetQueryParameters():
         """
-        Get localizations from solutions
+        Localized names for the plan configuration.
         """
         # Expand related entities
         expand: Optional[List[str]] = None

@@ -22,7 +22,6 @@ microsoft_store_for_business_portal_selection_options = lazy_import('msgraph.gen
 mobile_app = lazy_import('msgraph.generated.models.mobile_app')
 mobile_app_category = lazy_import('msgraph.generated.models.mobile_app_category')
 policy_set = lazy_import('msgraph.generated.models.policy_set')
-side_loading_key = lazy_import('msgraph.generated.models.side_loading_key')
 symantec_code_signing_certificate = lazy_import('msgraph.generated.models.symantec_code_signing_certificate')
 targeted_managed_app_configuration = lazy_import('msgraph.generated.models.targeted_managed_app_configuration')
 vpp_token = lazy_import('msgraph.generated.models.vpp_token')
@@ -100,8 +99,6 @@ class DeviceAppManagement(entity.Entity):
         self.odata_type: Optional[str] = None
         # The PolicySet of Policies and Applications
         self._policy_sets: Optional[List[policy_set.PolicySet]] = None
-        # Side Loading Keys that are required for the Windows 8 and 8.1 Apps installation.
-        self._side_loading_keys: Optional[List[side_loading_key.SideLoadingKey]] = None
         # The WinPhone Symantec Code Signing Certificate.
         self._symantec_code_signing_certificate: Optional[symantec_code_signing_certificate.SymantecCodeSigningCertificate] = None
         # Targeted managed app configurations.
@@ -211,7 +208,6 @@ class DeviceAppManagement(entity.Entity):
             "mobile_app_configurations": lambda n : setattr(self, 'mobile_app_configurations', n.get_collection_of_object_values(managed_device_mobile_app_configuration.ManagedDeviceMobileAppConfiguration)),
             "mobile_apps": lambda n : setattr(self, 'mobile_apps', n.get_collection_of_object_values(mobile_app.MobileApp)),
             "policy_sets": lambda n : setattr(self, 'policy_sets', n.get_collection_of_object_values(policy_set.PolicySet)),
-            "side_loading_keys": lambda n : setattr(self, 'side_loading_keys', n.get_collection_of_object_values(side_loading_key.SideLoadingKey)),
             "symantec_code_signing_certificate": lambda n : setattr(self, 'symantec_code_signing_certificate', n.get_object_value(symantec_code_signing_certificate.SymantecCodeSigningCertificate)),
             "targeted_managed_app_configurations": lambda n : setattr(self, 'targeted_managed_app_configurations', n.get_collection_of_object_values(targeted_managed_app_configuration.TargetedManagedAppConfiguration)),
             "vpp_tokens": lambda n : setattr(self, 'vpp_tokens', n.get_collection_of_object_values(vpp_token.VppToken)),
@@ -545,7 +541,6 @@ class DeviceAppManagement(entity.Entity):
         writer.write_collection_of_object_values("mobileAppConfigurations", self.mobile_app_configurations)
         writer.write_collection_of_object_values("mobileApps", self.mobile_apps)
         writer.write_collection_of_object_values("policySets", self.policy_sets)
-        writer.write_collection_of_object_values("sideLoadingKeys", self.side_loading_keys)
         writer.write_object_value("symantecCodeSigningCertificate", self.symantec_code_signing_certificate)
         writer.write_collection_of_object_values("targetedManagedAppConfigurations", self.targeted_managed_app_configurations)
         writer.write_collection_of_object_values("vppTokens", self.vpp_tokens)
@@ -555,23 +550,6 @@ class DeviceAppManagement(entity.Entity):
         writer.write_collection_of_object_values("windowsInformationProtectionWipeActions", self.windows_information_protection_wipe_actions)
         writer.write_collection_of_object_values("windowsManagedAppProtections", self.windows_managed_app_protections)
         writer.write_object_value("windowsManagementApp", self.windows_management_app)
-    
-    @property
-    def side_loading_keys(self,) -> Optional[List[side_loading_key.SideLoadingKey]]:
-        """
-        Gets the sideLoadingKeys property value. Side Loading Keys that are required for the Windows 8 and 8.1 Apps installation.
-        Returns: Optional[List[side_loading_key.SideLoadingKey]]
-        """
-        return self._side_loading_keys
-    
-    @side_loading_keys.setter
-    def side_loading_keys(self,value: Optional[List[side_loading_key.SideLoadingKey]] = None) -> None:
-        """
-        Sets the sideLoadingKeys property value. Side Loading Keys that are required for the Windows 8 and 8.1 Apps installation.
-        Args:
-            value: Value to set for the sideLoadingKeys property.
-        """
-        self._side_loading_keys = value
     
     @property
     def symantec_code_signing_certificate(self,) -> Optional[symantec_code_signing_certificate.SymantecCodeSigningCertificate]:

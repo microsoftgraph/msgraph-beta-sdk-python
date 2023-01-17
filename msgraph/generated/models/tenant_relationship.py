@@ -1,19 +1,37 @@
 from __future__ import annotations
-from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
+from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 delegated_admin_customer = lazy_import('msgraph.generated.models.delegated_admin_customer')
 delegated_admin_relationship = lazy_import('msgraph.generated.models.delegated_admin_relationship')
-entity = lazy_import('msgraph.generated.models.entity')
 managed_tenant = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant')
 
-class TenantRelationship(entity.Entity):
+class TenantRelationship(AdditionalDataHolder, Parsable):
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
+    
     def __init__(self,) -> None:
         """
         Instantiates a new TenantRelationship and sets the default values.
         """
-        super().__init__()
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
         # The customer who has a delegated admin relationship with a Microsoft partner.
         self._delegated_admin_customers: Optional[List[delegated_admin_customer.DelegatedAdminCustomer]] = None
         # The details of the delegated administrative privileges that a Microsoft partner has in a customer tenant.
@@ -21,7 +39,7 @@ class TenantRelationship(entity.Entity):
         # The operations available to interact with the multi-tenant management platform.
         self._managed_tenants: Optional[managed_tenant.ManagedTenant] = None
         # The OdataType property
-        self.odata_type: Optional[str] = None
+        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TenantRelationship:
@@ -78,9 +96,8 @@ class TenantRelationship(entity.Entity):
             "delegated_admin_customers": lambda n : setattr(self, 'delegated_admin_customers', n.get_collection_of_object_values(delegated_admin_customer.DelegatedAdminCustomer)),
             "delegated_admin_relationships": lambda n : setattr(self, 'delegated_admin_relationships', n.get_collection_of_object_values(delegated_admin_relationship.DelegatedAdminRelationship)),
             "managed_tenants": lambda n : setattr(self, 'managed_tenants', n.get_object_value(managed_tenant.ManagedTenant)),
+            "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
-        super_fields = super().get_field_deserializers()
-        fields.update(super_fields)
         return fields
     
     @property
@@ -100,6 +117,23 @@ class TenantRelationship(entity.Entity):
         """
         self._managed_tenants = value
     
+    @property
+    def odata_type(self,) -> Optional[str]:
+        """
+        Gets the @odata.type property value. The OdataType property
+        Returns: Optional[str]
+        """
+        return self._odata_type
+    
+    @odata_type.setter
+    def odata_type(self,value: Optional[str] = None) -> None:
+        """
+        Sets the @odata.type property value. The OdataType property
+        Args:
+            value: Value to set for the OdataType property.
+        """
+        self._odata_type = value
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -108,9 +142,10 @@ class TenantRelationship(entity.Entity):
         """
         if writer is None:
             raise Exception("writer cannot be undefined")
-        super().serialize(writer)
         writer.write_collection_of_object_values("delegatedAdminCustomers", self.delegated_admin_customers)
         writer.write_collection_of_object_values("delegatedAdminRelationships", self.delegated_admin_relationships)
         writer.write_object_value("managedTenants", self.managed_tenants)
+        writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_additional_data_value(self.additional_data)
     
 

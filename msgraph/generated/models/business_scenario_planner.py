@@ -16,11 +16,11 @@ class BusinessScenarioPlanner(entity.Entity):
         super().__init__()
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The planConfiguration property
+        # The configuration of Planner plans that will be created for the scenario.
         self._plan_configuration: Optional[planner_plan_configuration.PlannerPlanConfiguration] = None
-        # The taskConfiguration property
+        # The configuration of Planner tasks that will be created for the scenario.
         self._task_configuration: Optional[planner_task_configuration.PlannerTaskConfiguration] = None
-        # The tasks property
+        # The Planner tasks for the scenario.
         self._tasks: Optional[List[business_scenario_task.BusinessScenarioTask]] = None
     
     @staticmethod
@@ -52,7 +52,7 @@ class BusinessScenarioPlanner(entity.Entity):
     @property
     def plan_configuration(self,) -> Optional[planner_plan_configuration.PlannerPlanConfiguration]:
         """
-        Gets the planConfiguration property value. The planConfiguration property
+        Gets the planConfiguration property value. The configuration of Planner plans that will be created for the scenario.
         Returns: Optional[planner_plan_configuration.PlannerPlanConfiguration]
         """
         return self._plan_configuration
@@ -60,7 +60,7 @@ class BusinessScenarioPlanner(entity.Entity):
     @plan_configuration.setter
     def plan_configuration(self,value: Optional[planner_plan_configuration.PlannerPlanConfiguration] = None) -> None:
         """
-        Sets the planConfiguration property value. The planConfiguration property
+        Sets the planConfiguration property value. The configuration of Planner plans that will be created for the scenario.
         Args:
             value: Value to set for the planConfiguration property.
         """
@@ -82,7 +82,7 @@ class BusinessScenarioPlanner(entity.Entity):
     @property
     def task_configuration(self,) -> Optional[planner_task_configuration.PlannerTaskConfiguration]:
         """
-        Gets the taskConfiguration property value. The taskConfiguration property
+        Gets the taskConfiguration property value. The configuration of Planner tasks that will be created for the scenario.
         Returns: Optional[planner_task_configuration.PlannerTaskConfiguration]
         """
         return self._task_configuration
@@ -90,7 +90,7 @@ class BusinessScenarioPlanner(entity.Entity):
     @task_configuration.setter
     def task_configuration(self,value: Optional[planner_task_configuration.PlannerTaskConfiguration] = None) -> None:
         """
-        Sets the taskConfiguration property value. The taskConfiguration property
+        Sets the taskConfiguration property value. The configuration of Planner tasks that will be created for the scenario.
         Args:
             value: Value to set for the taskConfiguration property.
         """
@@ -99,7 +99,7 @@ class BusinessScenarioPlanner(entity.Entity):
     @property
     def tasks(self,) -> Optional[List[business_scenario_task.BusinessScenarioTask]]:
         """
-        Gets the tasks property value. The tasks property
+        Gets the tasks property value. The Planner tasks for the scenario.
         Returns: Optional[List[business_scenario_task.BusinessScenarioTask]]
         """
         return self._tasks
@@ -107,7 +107,7 @@ class BusinessScenarioPlanner(entity.Entity):
     @tasks.setter
     def tasks(self,value: Optional[List[business_scenario_task.BusinessScenarioTask]] = None) -> None:
         """
-        Sets the tasks property value. The tasks property
+        Sets the tasks property value. The Planner tasks for the scenario.
         Args:
             value: Value to set for the tasks property.
         """

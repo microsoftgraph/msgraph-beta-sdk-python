@@ -4,6 +4,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 booking_person = lazy_import('msgraph.generated.models.booking_person')
+booking_staff_membership_status = lazy_import('msgraph.generated.models.booking_staff_membership_status')
 booking_staff_role = lazy_import('msgraph.generated.models.booking_staff_role')
 booking_work_hours = lazy_import('msgraph.generated.models.booking_work_hours')
 
@@ -53,6 +54,8 @@ class BookingStaffMember(booking_person.BookingPerson):
         self._color_index: Optional[int] = None
         # True indicates that a staff member will be notified via email when a booking assigned to them is created or changed.
         self._is_email_notification_enabled: Optional[bool] = None
+        # The membershipStatus property
+        self._membership_status: Optional[booking_staff_membership_status.BookingStaffMembershipStatus] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
         # The role property
@@ -85,6 +88,7 @@ class BookingStaffMember(booking_person.BookingPerson):
             "availability_is_affected_by_personal_calendar": lambda n : setattr(self, 'availability_is_affected_by_personal_calendar', n.get_bool_value()),
             "color_index": lambda n : setattr(self, 'color_index', n.get_int_value()),
             "is_email_notification_enabled": lambda n : setattr(self, 'is_email_notification_enabled', n.get_bool_value()),
+            "membership_status": lambda n : setattr(self, 'membership_status', n.get_enum_value(booking_staff_membership_status.BookingStaffMembershipStatus)),
             "role": lambda n : setattr(self, 'role', n.get_enum_value(booking_staff_role.BookingStaffRole)),
             "time_zone": lambda n : setattr(self, 'time_zone', n.get_str_value()),
             "use_business_hours": lambda n : setattr(self, 'use_business_hours', n.get_bool_value()),
@@ -110,6 +114,23 @@ class BookingStaffMember(booking_person.BookingPerson):
             value: Value to set for the isEmailNotificationEnabled property.
         """
         self._is_email_notification_enabled = value
+    
+    @property
+    def membership_status(self,) -> Optional[booking_staff_membership_status.BookingStaffMembershipStatus]:
+        """
+        Gets the membershipStatus property value. The membershipStatus property
+        Returns: Optional[booking_staff_membership_status.BookingStaffMembershipStatus]
+        """
+        return self._membership_status
+    
+    @membership_status.setter
+    def membership_status(self,value: Optional[booking_staff_membership_status.BookingStaffMembershipStatus] = None) -> None:
+        """
+        Sets the membershipStatus property value. The membershipStatus property
+        Args:
+            value: Value to set for the membershipStatus property.
+        """
+        self._membership_status = value
     
     @property
     def role(self,) -> Optional[booking_staff_role.BookingStaffRole]:
@@ -140,6 +161,7 @@ class BookingStaffMember(booking_person.BookingPerson):
         writer.write_bool_value("availabilityIsAffectedByPersonalCalendar", self.availability_is_affected_by_personal_calendar)
         writer.write_int_value("colorIndex", self.color_index)
         writer.write_bool_value("isEmailNotificationEnabled", self.is_email_notification_enabled)
+        writer.write_enum_value("membershipStatus", self.membership_status)
         writer.write_enum_value("role", self.role)
         writer.write_str_value("timeZone", self.time_zone)
         writer.write_bool_value("useBusinessHours", self.use_business_hours)

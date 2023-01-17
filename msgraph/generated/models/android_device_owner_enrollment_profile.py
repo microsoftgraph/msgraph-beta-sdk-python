@@ -71,6 +71,8 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         self._enrollment_token_type: Optional[android_device_owner_enrollment_token_type.AndroidDeviceOwnerEnrollmentTokenType] = None
         # Total number of AOSP devices that have enrolled using the current token.
         self._enrollment_token_usage_count: Optional[int] = None
+        # Boolean indicating if this profile is an Android AOSP for Teams device profile.
+        self._is_teams_device_profile: Optional[bool] = None
         # Date time the enrollment profile was last modified.
         self._last_modified_date_time: Optional[datetime] = None
         # The OdataType property
@@ -242,6 +244,7 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
             "enrollment_mode": lambda n : setattr(self, 'enrollment_mode', n.get_enum_value(android_device_owner_enrollment_mode.AndroidDeviceOwnerEnrollmentMode)),
             "enrollment_token_type": lambda n : setattr(self, 'enrollment_token_type', n.get_enum_value(android_device_owner_enrollment_token_type.AndroidDeviceOwnerEnrollmentTokenType)),
             "enrollment_token_usage_count": lambda n : setattr(self, 'enrollment_token_usage_count', n.get_int_value()),
+            "is_teams_device_profile": lambda n : setattr(self, 'is_teams_device_profile', n.get_bool_value()),
             "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "qr_code_content": lambda n : setattr(self, 'qr_code_content', n.get_str_value()),
             "qr_code_image": lambda n : setattr(self, 'qr_code_image', n.get_object_value(mime_content.MimeContent)),
@@ -257,6 +260,23 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
+    
+    @property
+    def is_teams_device_profile(self,) -> Optional[bool]:
+        """
+        Gets the isTeamsDeviceProfile property value. Boolean indicating if this profile is an Android AOSP for Teams device profile.
+        Returns: Optional[bool]
+        """
+        return self._is_teams_device_profile
+    
+    @is_teams_device_profile.setter
+    def is_teams_device_profile(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the isTeamsDeviceProfile property value. Boolean indicating if this profile is an Android AOSP for Teams device profile.
+        Args:
+            value: Value to set for the isTeamsDeviceProfile property.
+        """
+        self._is_teams_device_profile = value
     
     @property
     def last_modified_date_time(self,) -> Optional[datetime]:
@@ -344,6 +364,7 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         writer.write_enum_value("enrollmentMode", self.enrollment_mode)
         writer.write_enum_value("enrollmentTokenType", self.enrollment_token_type)
         writer.write_int_value("enrollmentTokenUsageCount", self.enrollment_token_usage_count)
+        writer.write_bool_value("isTeamsDeviceProfile", self.is_teams_device_profile)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("qrCodeContent", self.qr_code_content)
         writer.write_object_value("qrCodeImage", self.qr_code_image)

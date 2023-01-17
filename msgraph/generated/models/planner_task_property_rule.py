@@ -10,7 +10,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @property
     def applied_categories(self,) -> Optional[planner_field_rules.PlannerFieldRules]:
         """
-        Gets the appliedCategories property value. The appliedCategories property
+        Gets the appliedCategories property value. Rules and restrictions for applied categories. This value does not currently support overrides. Accepted values for the default rule and individual overrides are allow, block.
         Returns: Optional[planner_field_rules.PlannerFieldRules]
         """
         return self._applied_categories
@@ -18,7 +18,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @applied_categories.setter
     def applied_categories(self,value: Optional[planner_field_rules.PlannerFieldRules] = None) -> None:
         """
-        Sets the appliedCategories property value. The appliedCategories property
+        Sets the appliedCategories property value. Rules and restrictions for applied categories. This value does not currently support overrides. Accepted values for the default rule and individual overrides are allow, block.
         Args:
             value: Value to set for the appliedCategories property.
         """
@@ -27,7 +27,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @property
     def assignments(self,) -> Optional[planner_field_rules.PlannerFieldRules]:
         """
-        Gets the assignments property value. The assignments property
+        Gets the assignments property value. Rules and restrictions for assignments. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, addSelf, addOther, remove, removeSelf, removeOther, block.
         Returns: Optional[planner_field_rules.PlannerFieldRules]
         """
         return self._assignments
@@ -35,7 +35,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @assignments.setter
     def assignments(self,value: Optional[planner_field_rules.PlannerFieldRules] = None) -> None:
         """
-        Sets the assignments property value. The assignments property
+        Sets the assignments property value. Rules and restrictions for assignments. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, addSelf, addOther, remove, removeSelf, removeOther, block.
         Args:
             value: Value to set for the assignments property.
         """
@@ -44,7 +44,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @property
     def check_lists(self,) -> Optional[planner_field_rules.PlannerFieldRules]:
         """
-        Gets the checkLists property value. The checkLists property
+        Gets the checkLists property value. Rules and restrictions for checklist. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, remove, update, check, reorder, block.
         Returns: Optional[planner_field_rules.PlannerFieldRules]
         """
         return self._check_lists
@@ -52,7 +52,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @check_lists.setter
     def check_lists(self,value: Optional[planner_field_rules.PlannerFieldRules] = None) -> None:
         """
-        Sets the checkLists property value. The checkLists property
+        Sets the checkLists property value. Rules and restrictions for checklist. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, remove, update, check, reorder, block.
         Args:
             value: Value to set for the checkLists property.
         """
@@ -64,33 +64,33 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.plannerTaskPropertyRule"
-        # The appliedCategories property
+        # Rules and restrictions for applied categories. This value does not currently support overrides. Accepted values for the default rule and individual overrides are allow, block.
         self._applied_categories: Optional[planner_field_rules.PlannerFieldRules] = None
-        # The assignments property
+        # Rules and restrictions for assignments. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, addSelf, addOther, remove, removeSelf, removeOther, block.
         self._assignments: Optional[planner_field_rules.PlannerFieldRules] = None
-        # The checkLists property
+        # Rules and restrictions for checklist. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, remove, update, check, reorder, block.
         self._check_lists: Optional[planner_field_rules.PlannerFieldRules] = None
-        # The delete property
+        # Rules and restrictions for deleting the task. Accepted values are allow and block.
         self._delete: Optional[List[str]] = None
-        # The dueDate property
+        # Rules and restrictions for changing the due date of the task. Accepted values are allow and block.
         self._due_date: Optional[List[str]] = None
-        # The move property
+        # Rules and restrictions for moving the task between buckets or plans. Accepted values are allow, moveBetweenPlans, moveBetweenBuckets, and block.
         self._move: Optional[List[str]] = None
-        # The notes property
+        # Rules and restrictions for changing the notes of the task. Accepted values are allow and block.
         self._notes: Optional[List[str]] = None
-        # The order property
+        # Rules and restrictions for changing the order of the task. Accepted values are allow and block.
         self._order: Optional[List[str]] = None
-        # The percentComplete property
+        # Rules and restrictions for changing the completion percentage of the task. Accepted values are allow, setToComplete, setToNotStarted, setToInProgress, and block.
         self._percent_complete: Optional[List[str]] = None
-        # The previewType property
+        # Rules and restrictions for changing the preview type of the task. Accepted values are allow and block.
         self._preview_type: Optional[List[str]] = None
-        # The priority property
+        # Rules and restrictions for changing the priority of the task. Accepted values are allow and block.
         self._priority: Optional[List[str]] = None
-        # The references property
+        # Rules and restrictions for references. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, remove, block.
         self._references: Optional[planner_field_rules.PlannerFieldRules] = None
-        # The startDate property
+        # Rules and restrictions for changing the start date of the task. Accepted values are allow and block.
         self._start_date: Optional[List[str]] = None
-        # The title property
+        # Rules and restrictions for changing the title of the task. Accepted values are allow and block.
         self._title: Optional[List[str]] = None
     
     @staticmethod
@@ -108,7 +108,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @property
     def delete(self,) -> Optional[List[str]]:
         """
-        Gets the delete property value. The delete property
+        Gets the delete property value. Rules and restrictions for deleting the task. Accepted values are allow and block.
         Returns: Optional[List[str]]
         """
         return self._delete
@@ -116,7 +116,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @delete.setter
     def delete(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the delete property value. The delete property
+        Sets the delete property value. Rules and restrictions for deleting the task. Accepted values are allow and block.
         Args:
             value: Value to set for the delete property.
         """
@@ -125,7 +125,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @property
     def due_date(self,) -> Optional[List[str]]:
         """
-        Gets the dueDate property value. The dueDate property
+        Gets the dueDate property value. Rules and restrictions for changing the due date of the task. Accepted values are allow and block.
         Returns: Optional[List[str]]
         """
         return self._due_date
@@ -133,7 +133,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @due_date.setter
     def due_date(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the dueDate property value. The dueDate property
+        Sets the dueDate property value. Rules and restrictions for changing the due date of the task. Accepted values are allow and block.
         Args:
             value: Value to set for the dueDate property.
         """
@@ -167,7 +167,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @property
     def move(self,) -> Optional[List[str]]:
         """
-        Gets the move property value. The move property
+        Gets the move property value. Rules and restrictions for moving the task between buckets or plans. Accepted values are allow, moveBetweenPlans, moveBetweenBuckets, and block.
         Returns: Optional[List[str]]
         """
         return self._move
@@ -175,7 +175,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @move.setter
     def move(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the move property value. The move property
+        Sets the move property value. Rules and restrictions for moving the task between buckets or plans. Accepted values are allow, moveBetweenPlans, moveBetweenBuckets, and block.
         Args:
             value: Value to set for the move property.
         """
@@ -184,7 +184,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @property
     def notes(self,) -> Optional[List[str]]:
         """
-        Gets the notes property value. The notes property
+        Gets the notes property value. Rules and restrictions for changing the notes of the task. Accepted values are allow and block.
         Returns: Optional[List[str]]
         """
         return self._notes
@@ -192,7 +192,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @notes.setter
     def notes(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the notes property value. The notes property
+        Sets the notes property value. Rules and restrictions for changing the notes of the task. Accepted values are allow and block.
         Args:
             value: Value to set for the notes property.
         """
@@ -201,7 +201,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @property
     def order(self,) -> Optional[List[str]]:
         """
-        Gets the order property value. The order property
+        Gets the order property value. Rules and restrictions for changing the order of the task. Accepted values are allow and block.
         Returns: Optional[List[str]]
         """
         return self._order
@@ -209,7 +209,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @order.setter
     def order(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the order property value. The order property
+        Sets the order property value. Rules and restrictions for changing the order of the task. Accepted values are allow and block.
         Args:
             value: Value to set for the order property.
         """
@@ -218,7 +218,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @property
     def percent_complete(self,) -> Optional[List[str]]:
         """
-        Gets the percentComplete property value. The percentComplete property
+        Gets the percentComplete property value. Rules and restrictions for changing the completion percentage of the task. Accepted values are allow, setToComplete, setToNotStarted, setToInProgress, and block.
         Returns: Optional[List[str]]
         """
         return self._percent_complete
@@ -226,7 +226,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @percent_complete.setter
     def percent_complete(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the percentComplete property value. The percentComplete property
+        Sets the percentComplete property value. Rules and restrictions for changing the completion percentage of the task. Accepted values are allow, setToComplete, setToNotStarted, setToInProgress, and block.
         Args:
             value: Value to set for the percentComplete property.
         """
@@ -235,7 +235,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @property
     def preview_type(self,) -> Optional[List[str]]:
         """
-        Gets the previewType property value. The previewType property
+        Gets the previewType property value. Rules and restrictions for changing the preview type of the task. Accepted values are allow and block.
         Returns: Optional[List[str]]
         """
         return self._preview_type
@@ -243,7 +243,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @preview_type.setter
     def preview_type(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the previewType property value. The previewType property
+        Sets the previewType property value. Rules and restrictions for changing the preview type of the task. Accepted values are allow and block.
         Args:
             value: Value to set for the previewType property.
         """
@@ -252,7 +252,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @property
     def priority(self,) -> Optional[List[str]]:
         """
-        Gets the priority property value. The priority property
+        Gets the priority property value. Rules and restrictions for changing the priority of the task. Accepted values are allow and block.
         Returns: Optional[List[str]]
         """
         return self._priority
@@ -260,7 +260,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @priority.setter
     def priority(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the priority property value. The priority property
+        Sets the priority property value. Rules and restrictions for changing the priority of the task. Accepted values are allow and block.
         Args:
             value: Value to set for the priority property.
         """
@@ -269,7 +269,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @property
     def references(self,) -> Optional[planner_field_rules.PlannerFieldRules]:
         """
-        Gets the references property value. The references property
+        Gets the references property value. Rules and restrictions for references. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, remove, block.
         Returns: Optional[planner_field_rules.PlannerFieldRules]
         """
         return self._references
@@ -277,7 +277,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @references.setter
     def references(self,value: Optional[planner_field_rules.PlannerFieldRules] = None) -> None:
         """
-        Sets the references property value. The references property
+        Sets the references property value. Rules and restrictions for references. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, remove, block.
         Args:
             value: Value to set for the references property.
         """
@@ -310,7 +310,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @property
     def start_date(self,) -> Optional[List[str]]:
         """
-        Gets the startDate property value. The startDate property
+        Gets the startDate property value. Rules and restrictions for changing the start date of the task. Accepted values are allow and block.
         Returns: Optional[List[str]]
         """
         return self._start_date
@@ -318,7 +318,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @start_date.setter
     def start_date(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the startDate property value. The startDate property
+        Sets the startDate property value. Rules and restrictions for changing the start date of the task. Accepted values are allow and block.
         Args:
             value: Value to set for the startDate property.
         """
@@ -327,7 +327,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @property
     def title(self,) -> Optional[List[str]]:
         """
-        Gets the title property value. The title property
+        Gets the title property value. Rules and restrictions for changing the title of the task. Accepted values are allow and block.
         Returns: Optional[List[str]]
         """
         return self._title
@@ -335,7 +335,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
     @title.setter
     def title(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the title property value. The title property
+        Sets the title property value. Rules and restrictions for changing the title of the task. Accepted values are allow and block.
         Args:
             value: Value to set for the title property.
         """

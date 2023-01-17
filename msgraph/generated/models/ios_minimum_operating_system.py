@@ -33,21 +33,21 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, Parsable):
 
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # Version 10.0 or later.
+        # When TRUE, only Version 10.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         self._v10_0: Optional[bool] = None
-        # Version 11.0 or later.
+        # When TRUE, only Version 11.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         self._v11_0: Optional[bool] = None
-        # Version 12.0 or later.
+        # When TRUE, only Version 12.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         self._v12_0: Optional[bool] = None
-        # Version 13.0 or later.
+        # When TRUE, only Version 13.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         self._v13_0: Optional[bool] = None
-        # Version 14.0 or later.
+        # When TRUE, only Version 14.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         self._v14_0: Optional[bool] = None
-        # Version 15.0 or later.
+        # When TRUE, only Version 15.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         self._v15_0: Optional[bool] = None
-        # Version 8.0 or later.
+        # When TRUE, only Version 8.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         self._v8_0: Optional[bool] = None
-        # Version 9.0 or later.
+        # When TRUE, only Version 9.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         self._v9_0: Optional[bool] = None
     
     @staticmethod
@@ -119,7 +119,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, Parsable):
     @property
     def v10_0(self,) -> Optional[bool]:
         """
-        Gets the v10_0 property value. Version 10.0 or later.
+        Gets the v10_0 property value. When TRUE, only Version 10.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         Returns: Optional[bool]
         """
         return self._v10_0
@@ -127,7 +127,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, Parsable):
     @v10_0.setter
     def v10_0(self,value: Optional[bool] = None) -> None:
         """
-        Sets the v10_0 property value. Version 10.0 or later.
+        Sets the v10_0 property value. When TRUE, only Version 10.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         Args:
             value: Value to set for the v10_0 property.
         """
@@ -136,7 +136,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, Parsable):
     @property
     def v11_0(self,) -> Optional[bool]:
         """
-        Gets the v11_0 property value. Version 11.0 or later.
+        Gets the v11_0 property value. When TRUE, only Version 11.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         Returns: Optional[bool]
         """
         return self._v11_0
@@ -144,7 +144,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, Parsable):
     @v11_0.setter
     def v11_0(self,value: Optional[bool] = None) -> None:
         """
-        Sets the v11_0 property value. Version 11.0 or later.
+        Sets the v11_0 property value. When TRUE, only Version 11.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         Args:
             value: Value to set for the v11_0 property.
         """
@@ -153,7 +153,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, Parsable):
     @property
     def v12_0(self,) -> Optional[bool]:
         """
-        Gets the v12_0 property value. Version 12.0 or later.
+        Gets the v12_0 property value. When TRUE, only Version 12.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         Returns: Optional[bool]
         """
         return self._v12_0
@@ -161,7 +161,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, Parsable):
     @v12_0.setter
     def v12_0(self,value: Optional[bool] = None) -> None:
         """
-        Sets the v12_0 property value. Version 12.0 or later.
+        Sets the v12_0 property value. When TRUE, only Version 12.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         Args:
             value: Value to set for the v12_0 property.
         """
@@ -170,7 +170,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, Parsable):
     @property
     def v13_0(self,) -> Optional[bool]:
         """
-        Gets the v13_0 property value. Version 13.0 or later.
+        Gets the v13_0 property value. When TRUE, only Version 13.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         Returns: Optional[bool]
         """
         return self._v13_0
@@ -178,7 +178,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, Parsable):
     @v13_0.setter
     def v13_0(self,value: Optional[bool] = None) -> None:
         """
-        Sets the v13_0 property value. Version 13.0 or later.
+        Sets the v13_0 property value. When TRUE, only Version 13.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         Args:
             value: Value to set for the v13_0 property.
         """
@@ -187,7 +187,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, Parsable):
     @property
     def v14_0(self,) -> Optional[bool]:
         """
-        Gets the v14_0 property value. Version 14.0 or later.
+        Gets the v14_0 property value. When TRUE, only Version 14.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         Returns: Optional[bool]
         """
         return self._v14_0
@@ -195,7 +195,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, Parsable):
     @v14_0.setter
     def v14_0(self,value: Optional[bool] = None) -> None:
         """
-        Sets the v14_0 property value. Version 14.0 or later.
+        Sets the v14_0 property value. When TRUE, only Version 14.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         Args:
             value: Value to set for the v14_0 property.
         """
@@ -204,7 +204,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, Parsable):
     @property
     def v15_0(self,) -> Optional[bool]:
         """
-        Gets the v15_0 property value. Version 15.0 or later.
+        Gets the v15_0 property value. When TRUE, only Version 15.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         Returns: Optional[bool]
         """
         return self._v15_0
@@ -212,7 +212,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, Parsable):
     @v15_0.setter
     def v15_0(self,value: Optional[bool] = None) -> None:
         """
-        Sets the v15_0 property value. Version 15.0 or later.
+        Sets the v15_0 property value. When TRUE, only Version 15.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         Args:
             value: Value to set for the v15_0 property.
         """
@@ -221,7 +221,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, Parsable):
     @property
     def v8_0(self,) -> Optional[bool]:
         """
-        Gets the v8_0 property value. Version 8.0 or later.
+        Gets the v8_0 property value. When TRUE, only Version 8.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         Returns: Optional[bool]
         """
         return self._v8_0
@@ -229,7 +229,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, Parsable):
     @v8_0.setter
     def v8_0(self,value: Optional[bool] = None) -> None:
         """
-        Sets the v8_0 property value. Version 8.0 or later.
+        Sets the v8_0 property value. When TRUE, only Version 8.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         Args:
             value: Value to set for the v8_0 property.
         """
@@ -238,7 +238,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, Parsable):
     @property
     def v9_0(self,) -> Optional[bool]:
         """
-        Gets the v9_0 property value. Version 9.0 or later.
+        Gets the v9_0 property value. When TRUE, only Version 9.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         Returns: Optional[bool]
         """
         return self._v9_0
@@ -246,7 +246,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, Parsable):
     @v9_0.setter
     def v9_0(self,value: Optional[bool] = None) -> None:
         """
-        Sets the v9_0 property value. Version 9.0 or later.
+        Sets the v9_0 property value. When TRUE, only Version 9.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         Args:
             value: Value to set for the v9_0 property.
         """

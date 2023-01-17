@@ -28,9 +28,9 @@ class Identity(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The display name of the identity. This property is read-only.
+        # The display name of the identity. Note that this might not always be available or up to date. For example, if a user changes their display name, the API might show the new value in a future response, but the items associated with the user won't show up as having changed when using delta.
         self._display_name: Optional[str] = None
-        # The identifier of the identity. This property is read-only.
+        # Unique identifier for the identity.
         self._id: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
@@ -50,7 +50,7 @@ class Identity(AdditionalDataHolder, Parsable):
     @property
     def display_name(self,) -> Optional[str]:
         """
-        Gets the displayName property value. The display name of the identity. This property is read-only.
+        Gets the displayName property value. The display name of the identity. Note that this might not always be available or up to date. For example, if a user changes their display name, the API might show the new value in a future response, but the items associated with the user won't show up as having changed when using delta.
         Returns: Optional[str]
         """
         return self._display_name
@@ -58,7 +58,7 @@ class Identity(AdditionalDataHolder, Parsable):
     @display_name.setter
     def display_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the displayName property value. The display name of the identity. This property is read-only.
+        Sets the displayName property value. The display name of the identity. Note that this might not always be available or up to date. For example, if a user changes their display name, the API might show the new value in a future response, but the items associated with the user won't show up as having changed when using delta.
         Args:
             value: Value to set for the displayName property.
         """
@@ -79,7 +79,7 @@ class Identity(AdditionalDataHolder, Parsable):
     @property
     def id(self,) -> Optional[str]:
         """
-        Gets the id property value. The identifier of the identity. This property is read-only.
+        Gets the id property value. Unique identifier for the identity.
         Returns: Optional[str]
         """
         return self._id
@@ -87,7 +87,7 @@ class Identity(AdditionalDataHolder, Parsable):
     @id.setter
     def id(self,value: Optional[str] = None) -> None:
         """
-        Sets the id property value. The identifier of the identity. This property is read-only.
+        Sets the id property value. Unique identifier for the identity.
         Args:
             value: Value to set for the id property.
         """
