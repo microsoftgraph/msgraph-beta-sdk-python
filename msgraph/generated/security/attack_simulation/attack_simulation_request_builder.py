@@ -12,6 +12,10 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 attack_simulation_root = lazy_import('msgraph.generated.models.attack_simulation_root')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+operations_request_builder = lazy_import('msgraph.generated.security.attack_simulation.operations.operations_request_builder')
+attack_simulation_operation_item_request_builder = lazy_import('msgraph.generated.security.attack_simulation.operations.item.attack_simulation_operation_item_request_builder')
+payloads_request_builder = lazy_import('msgraph.generated.security.attack_simulation.payloads.payloads_request_builder')
+payload_item_request_builder = lazy_import('msgraph.generated.security.attack_simulation.payloads.item.payload_item_request_builder')
 simulation_automations_request_builder = lazy_import('msgraph.generated.security.attack_simulation.simulation_automations.simulation_automations_request_builder')
 simulation_automation_item_request_builder = lazy_import('msgraph.generated.security.attack_simulation.simulation_automations.item.simulation_automation_item_request_builder')
 simulations_request_builder = lazy_import('msgraph.generated.security.attack_simulation.simulations.simulations_request_builder')
@@ -21,6 +25,20 @@ class AttackSimulationRequestBuilder():
     """
     Provides operations to manage the attackSimulation property of the microsoft.graph.security entity.
     """
+    @property
+    def operations(self) -> operations_request_builder.OperationsRequestBuilder:
+        """
+        Provides operations to manage the operations property of the microsoft.graph.attackSimulationRoot entity.
+        """
+        return operations_request_builder.OperationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def payloads(self) -> payloads_request_builder.PayloadsRequestBuilder:
+        """
+        Provides operations to manage the payloads property of the microsoft.graph.attackSimulationRoot entity.
+        """
+        return payloads_request_builder.PayloadsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @property
     def simulation_automations(self) -> simulation_automations_request_builder.SimulationAutomationsRequestBuilder:
         """
@@ -90,6 +108,19 @@ class AttackSimulationRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, attack_simulation_root.AttackSimulationRoot, response_handler, error_mapping)
     
+    def operations_by_id(self,id: str) -> attack_simulation_operation_item_request_builder.AttackSimulationOperationItemRequestBuilder:
+        """
+        Provides operations to manage the operations property of the microsoft.graph.attackSimulationRoot entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: attack_simulation_operation_item_request_builder.AttackSimulationOperationItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["attackSimulationOperation%2Did"] = id
+        return attack_simulation_operation_item_request_builder.AttackSimulationOperationItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def patch(self,body: Optional[attack_simulation_root.AttackSimulationRoot] = None, request_configuration: Optional[AttackSimulationRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[attack_simulation_root.AttackSimulationRoot]:
         """
         Update the navigation property attackSimulation in security
@@ -111,6 +142,19 @@ class AttackSimulationRequestBuilder():
         if not self.request_adapter:
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, attack_simulation_root.AttackSimulationRoot, response_handler, error_mapping)
+    
+    def payloads_by_id(self,id: str) -> payload_item_request_builder.PayloadItemRequestBuilder:
+        """
+        Provides operations to manage the payloads property of the microsoft.graph.attackSimulationRoot entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: payload_item_request_builder.PayloadItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["payload%2Did"] = id
+        return payload_item_request_builder.PayloadItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def simulation_automations_by_id(self,id: str) -> simulation_automation_item_request_builder.SimulationAutomationItemRequestBuilder:
         """

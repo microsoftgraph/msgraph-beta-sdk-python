@@ -13,7 +13,7 @@ class PlannerPlanConfiguration(entity.Entity):
     @property
     def buckets(self,) -> Optional[List[planner_plan_configuration_bucket_definition.PlannerPlanConfigurationBucketDefinition]]:
         """
-        Gets the buckets property value. The buckets property
+        Gets the buckets property value. List the buckets that should be created in the plan.
         Returns: Optional[List[planner_plan_configuration_bucket_definition.PlannerPlanConfigurationBucketDefinition]]
         """
         return self._buckets
@@ -21,7 +21,7 @@ class PlannerPlanConfiguration(entity.Entity):
     @buckets.setter
     def buckets(self,value: Optional[List[planner_plan_configuration_bucket_definition.PlannerPlanConfigurationBucketDefinition]] = None) -> None:
         """
-        Sets the buckets property value. The buckets property
+        Sets the buckets property value. List the buckets that should be created in the plan.
         Args:
             value: Value to set for the buckets property.
         """
@@ -32,19 +32,19 @@ class PlannerPlanConfiguration(entity.Entity):
         Instantiates a new plannerPlanConfiguration and sets the default values.
         """
         super().__init__()
-        # The buckets property
+        # List the buckets that should be created in the plan.
         self._buckets: Optional[List[planner_plan_configuration_bucket_definition.PlannerPlanConfigurationBucketDefinition]] = None
-        # The createdBy property
+        # The identity of the creator of the plan configuration.
         self._created_by: Optional[identity_set.IdentitySet] = None
-        # The createdDateTime property
+        # The date and time when the plan configuration was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         self._created_date_time: Optional[datetime] = None
-        # The defaultLanguage property
+        # The language code for the default language to be used for the names of the objects created for the plan.
         self._default_language: Optional[str] = None
-        # The lastModifiedBy property
+        # The identity of the user who last modified the plan configuration.
         self._last_modified_by: Optional[identity_set.IdentitySet] = None
-        # The lastModifiedDateTime property
+        # The date and time when the plan configuration was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         self._last_modified_date_time: Optional[datetime] = None
-        # The localizations property
+        # Localized names for the plan configuration.
         self._localizations: Optional[List[planner_plan_configuration_localization.PlannerPlanConfigurationLocalization]] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
@@ -52,7 +52,7 @@ class PlannerPlanConfiguration(entity.Entity):
     @property
     def created_by(self,) -> Optional[identity_set.IdentitySet]:
         """
-        Gets the createdBy property value. The createdBy property
+        Gets the createdBy property value. The identity of the creator of the plan configuration.
         Returns: Optional[identity_set.IdentitySet]
         """
         return self._created_by
@@ -60,7 +60,7 @@ class PlannerPlanConfiguration(entity.Entity):
     @created_by.setter
     def created_by(self,value: Optional[identity_set.IdentitySet] = None) -> None:
         """
-        Sets the createdBy property value. The createdBy property
+        Sets the createdBy property value. The identity of the creator of the plan configuration.
         Args:
             value: Value to set for the createdBy property.
         """
@@ -69,7 +69,7 @@ class PlannerPlanConfiguration(entity.Entity):
     @property
     def created_date_time(self,) -> Optional[datetime]:
         """
-        Gets the createdDateTime property value. The createdDateTime property
+        Gets the createdDateTime property value. The date and time when the plan configuration was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Returns: Optional[datetime]
         """
         return self._created_date_time
@@ -77,7 +77,7 @@ class PlannerPlanConfiguration(entity.Entity):
     @created_date_time.setter
     def created_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the createdDateTime property value. The createdDateTime property
+        Sets the createdDateTime property value. The date and time when the plan configuration was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
             value: Value to set for the createdDateTime property.
         """
@@ -98,7 +98,7 @@ class PlannerPlanConfiguration(entity.Entity):
     @property
     def default_language(self,) -> Optional[str]:
         """
-        Gets the defaultLanguage property value. The defaultLanguage property
+        Gets the defaultLanguage property value. The language code for the default language to be used for the names of the objects created for the plan.
         Returns: Optional[str]
         """
         return self._default_language
@@ -106,7 +106,7 @@ class PlannerPlanConfiguration(entity.Entity):
     @default_language.setter
     def default_language(self,value: Optional[str] = None) -> None:
         """
-        Sets the defaultLanguage property value. The defaultLanguage property
+        Sets the defaultLanguage property value. The language code for the default language to be used for the names of the objects created for the plan.
         Args:
             value: Value to set for the defaultLanguage property.
         """
@@ -133,7 +133,7 @@ class PlannerPlanConfiguration(entity.Entity):
     @property
     def last_modified_by(self,) -> Optional[identity_set.IdentitySet]:
         """
-        Gets the lastModifiedBy property value. The lastModifiedBy property
+        Gets the lastModifiedBy property value. The identity of the user who last modified the plan configuration.
         Returns: Optional[identity_set.IdentitySet]
         """
         return self._last_modified_by
@@ -141,7 +141,7 @@ class PlannerPlanConfiguration(entity.Entity):
     @last_modified_by.setter
     def last_modified_by(self,value: Optional[identity_set.IdentitySet] = None) -> None:
         """
-        Sets the lastModifiedBy property value. The lastModifiedBy property
+        Sets the lastModifiedBy property value. The identity of the user who last modified the plan configuration.
         Args:
             value: Value to set for the lastModifiedBy property.
         """
@@ -150,7 +150,7 @@ class PlannerPlanConfiguration(entity.Entity):
     @property
     def last_modified_date_time(self,) -> Optional[datetime]:
         """
-        Gets the lastModifiedDateTime property value. The lastModifiedDateTime property
+        Gets the lastModifiedDateTime property value. The date and time when the plan configuration was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Returns: Optional[datetime]
         """
         return self._last_modified_date_time
@@ -158,7 +158,7 @@ class PlannerPlanConfiguration(entity.Entity):
     @last_modified_date_time.setter
     def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
+        Sets the lastModifiedDateTime property value. The date and time when the plan configuration was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
             value: Value to set for the lastModifiedDateTime property.
         """
@@ -167,7 +167,7 @@ class PlannerPlanConfiguration(entity.Entity):
     @property
     def localizations(self,) -> Optional[List[planner_plan_configuration_localization.PlannerPlanConfigurationLocalization]]:
         """
-        Gets the localizations property value. The localizations property
+        Gets the localizations property value. Localized names for the plan configuration.
         Returns: Optional[List[planner_plan_configuration_localization.PlannerPlanConfigurationLocalization]]
         """
         return self._localizations
@@ -175,7 +175,7 @@ class PlannerPlanConfiguration(entity.Entity):
     @localizations.setter
     def localizations(self,value: Optional[List[planner_plan_configuration_localization.PlannerPlanConfigurationLocalization]] = None) -> None:
         """
-        Sets the localizations property value. The localizations property
+        Sets the localizations property value. Localized names for the plan configuration.
         Args:
             value: Value to set for the localizations property.
         """

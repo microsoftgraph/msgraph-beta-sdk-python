@@ -87,7 +87,7 @@ class ExternalConnection(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new externalConnection and sets the default values.
+        Instantiates a new ExternalConnection and sets the default values.
         """
         super().__init__()
         # Collects configurable settings related to activities involving connector content.

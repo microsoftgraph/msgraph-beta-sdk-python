@@ -28,9 +28,9 @@ class PlannerPlanConfigurationBucketLocalization(AdditionalDataHolder, Parsable)
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The externalBucketId property
+        # Application-specified identifier of the bucket.
         self._external_bucket_id: Optional[str] = None
-        # The name property
+        # Name of the bucket.
         self._name: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
@@ -50,7 +50,7 @@ class PlannerPlanConfigurationBucketLocalization(AdditionalDataHolder, Parsable)
     @property
     def external_bucket_id(self,) -> Optional[str]:
         """
-        Gets the externalBucketId property value. The externalBucketId property
+        Gets the externalBucketId property value. Application-specified identifier of the bucket.
         Returns: Optional[str]
         """
         return self._external_bucket_id
@@ -58,7 +58,7 @@ class PlannerPlanConfigurationBucketLocalization(AdditionalDataHolder, Parsable)
     @external_bucket_id.setter
     def external_bucket_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the externalBucketId property value. The externalBucketId property
+        Sets the externalBucketId property value. Application-specified identifier of the bucket.
         Args:
             value: Value to set for the externalBucketId property.
         """
@@ -79,7 +79,7 @@ class PlannerPlanConfigurationBucketLocalization(AdditionalDataHolder, Parsable)
     @property
     def name(self,) -> Optional[str]:
         """
-        Gets the name property value. The name property
+        Gets the name property value. Name of the bucket.
         Returns: Optional[str]
         """
         return self._name
@@ -87,7 +87,7 @@ class PlannerPlanConfigurationBucketLocalization(AdditionalDataHolder, Parsable)
     @name.setter
     def name(self,value: Optional[str] = None) -> None:
         """
-        Sets the name property value. The name property
+        Sets the name property value. Name of the bucket.
         Args:
             value: Value to set for the name property.
         """

@@ -88,7 +88,7 @@ class PlannerRequestBuilder():
     
     async def get(self,request_configuration: Optional[PlannerRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[business_scenario_planner.BusinessScenarioPlanner]:
         """
-        Get planner from solutions
+        Read the properties and relationships of a businessScenarioPlanner object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
@@ -158,7 +158,7 @@ class PlannerRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PlannerRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get planner from solutions
+        Read the properties and relationships of a businessScenarioPlanner object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -210,7 +210,7 @@ class PlannerRequestBuilder():
     @dataclass
     class PlannerRequestBuilderGetQueryParameters():
         """
-        Get planner from solutions
+        Read the properties and relationships of a businessScenarioPlanner object.
         """
         # Expand related entities
         expand: Optional[List[str]] = None

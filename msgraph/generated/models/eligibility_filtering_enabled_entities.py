@@ -5,4 +5,5 @@ class EligibilityFilteringEnabledEntities(Enum):
     SwapRequest = "swapRequest",
     OfferShiftRequest = "offerShiftRequest",
     UnknownFutureValue = "unknownFutureValue",
+    TimeOffReason = "timeOffReason",
 

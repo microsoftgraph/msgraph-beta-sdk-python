@@ -42,8 +42,6 @@ mobile_apps_request_builder = lazy_import('msgraph.generated.device_app_manageme
 mobile_app_item_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.item.mobile_app_item_request_builder')
 policy_sets_request_builder = lazy_import('msgraph.generated.device_app_management.policy_sets.policy_sets_request_builder')
 policy_set_item_request_builder = lazy_import('msgraph.generated.device_app_management.policy_sets.item.policy_set_item_request_builder')
-side_loading_keys_request_builder = lazy_import('msgraph.generated.device_app_management.side_loading_keys.side_loading_keys_request_builder')
-side_loading_key_item_request_builder = lazy_import('msgraph.generated.device_app_management.side_loading_keys.item.side_loading_key_item_request_builder')
 symantec_code_signing_certificate_request_builder = lazy_import('msgraph.generated.device_app_management.symantec_code_signing_certificate.symantec_code_signing_certificate_request_builder')
 sync_microsoft_store_for_business_apps_request_builder = lazy_import('msgraph.generated.device_app_management.sync_microsoft_store_for_business_apps.sync_microsoft_store_for_business_apps_request_builder')
 targeted_managed_app_configurations_request_builder = lazy_import('msgraph.generated.device_app_management.targeted_managed_app_configurations.targeted_managed_app_configurations_request_builder')
@@ -179,13 +177,6 @@ class DeviceAppManagementRequestBuilder():
         Provides operations to manage the policySets property of the microsoft.graph.deviceAppManagement entity.
         """
         return policy_sets_request_builder.PolicySetsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def side_loading_keys(self) -> side_loading_keys_request_builder.SideLoadingKeysRequestBuilder:
-        """
-        Provides operations to manage the sideLoadingKeys property of the microsoft.graph.deviceAppManagement entity.
-        """
-        return side_loading_keys_request_builder.SideLoadingKeysRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def symantec_code_signing_certificate(self) -> symantec_code_signing_certificate_request_builder.SymantecCodeSigningCertificateRequestBuilder:
@@ -523,19 +514,6 @@ class DeviceAppManagementRequestBuilder():
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["policySet%2Did"] = id
         return policy_set_item_request_builder.PolicySetItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def side_loading_keys_by_id(self,id: str) -> side_loading_key_item_request_builder.SideLoadingKeyItemRequestBuilder:
-        """
-        Provides operations to manage the sideLoadingKeys property of the microsoft.graph.deviceAppManagement entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: side_loading_key_item_request_builder.SideLoadingKeyItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["sideLoadingKey%2Did"] = id
-        return side_loading_key_item_request_builder.SideLoadingKeyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def targeted_managed_app_configurations_by_id(self,id: str) -> targeted_managed_app_configuration_item_request_builder.TargetedManagedAppConfigurationItemRequestBuilder:
         """

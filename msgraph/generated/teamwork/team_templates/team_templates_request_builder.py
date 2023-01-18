@@ -46,7 +46,7 @@ class TeamTemplatesRequestBuilder():
     
     async def get(self,request_configuration: Optional[TeamTemplatesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[team_template_collection_response.TeamTemplateCollectionResponse]:
         """
-        Get the list of teamTemplate objects that are available for a tenant. 
+        List the teamTemplateDefinition objects associated with a teamTemplate. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
@@ -87,7 +87,7 @@ class TeamTemplatesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TeamTemplatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the list of teamTemplate objects that are available for a tenant. 
+        List the teamTemplateDefinition objects associated with a teamTemplate. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -127,7 +127,7 @@ class TeamTemplatesRequestBuilder():
     @dataclass
     class TeamTemplatesRequestBuilderGetQueryParameters():
         """
-        Get the list of teamTemplate objects that are available for a tenant. 
+        List the teamTemplateDefinition objects associated with a teamTemplate. 
         """
         # Include count of items
         count: Optional[bool] = None

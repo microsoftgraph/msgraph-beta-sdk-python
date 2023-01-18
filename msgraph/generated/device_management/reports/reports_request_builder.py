@@ -45,6 +45,7 @@ get_device_install_status_report_request_builder = lazy_import('msgraph.generate
 get_device_management_intent_per_setting_contributing_profiles_request_builder = lazy_import('msgraph.generated.device_management.reports.get_device_management_intent_per_setting_contributing_profiles.get_device_management_intent_per_setting_contributing_profiles_request_builder')
 get_device_management_intent_settings_report_request_builder = lazy_import('msgraph.generated.device_management.reports.get_device_management_intent_settings_report.get_device_management_intent_settings_report_request_builder')
 get_device_non_compliance_report_request_builder = lazy_import('msgraph.generated.device_management.reports.get_device_non_compliance_report.get_device_non_compliance_report_request_builder')
+get_devices_without_compliance_policy_report_request_builder = lazy_import('msgraph.generated.device_management.reports.get_devices_without_compliance_policy_report.get_devices_without_compliance_policy_report_request_builder')
 get_encryption_report_for_devices_request_builder = lazy_import('msgraph.generated.device_management.reports.get_encryption_report_for_devices.get_encryption_report_for_devices_request_builder')
 get_enrollment_configuration_policies_by_device_request_builder = lazy_import('msgraph.generated.device_management.reports.get_enrollment_configuration_policies_by_device.get_enrollment_configuration_policies_by_device_request_builder')
 get_failed_mobile_apps_report_request_builder = lazy_import('msgraph.generated.device_management.reports.get_failed_mobile_apps_report.get_failed_mobile_apps_report_request_builder')
@@ -310,6 +311,13 @@ class ReportsRequestBuilder():
         Provides operations to call the getDeviceNonComplianceReport method.
         """
         return get_device_non_compliance_report_request_builder.GetDeviceNonComplianceReportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_devices_without_compliance_policy_report(self) -> get_devices_without_compliance_policy_report_request_builder.GetDevicesWithoutCompliancePolicyReportRequestBuilder:
+        """
+        Provides operations to call the getDevicesWithoutCompliancePolicyReport method.
+        """
+        return get_devices_without_compliance_policy_report_request_builder.GetDevicesWithoutCompliancePolicyReportRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_encryption_report_for_devices(self) -> get_encryption_report_for_devices_request_builder.GetEncryptionReportForDevicesRequestBuilder:

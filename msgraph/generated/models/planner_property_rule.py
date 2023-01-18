@@ -32,7 +32,7 @@ class PlannerPropertyRule(AdditionalDataHolder, Parsable):
 
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The ruleKind property
+        # Identifies which type of property rules is represented by this instance. The possible values are: taskRule, bucketRule, planRule, unknownFutureValue.
         self._rule_kind: Optional[planner_rule_kind.PlannerRuleKind] = None
     
     @staticmethod
@@ -78,7 +78,7 @@ class PlannerPropertyRule(AdditionalDataHolder, Parsable):
     @property
     def rule_kind(self,) -> Optional[planner_rule_kind.PlannerRuleKind]:
         """
-        Gets the ruleKind property value. The ruleKind property
+        Gets the ruleKind property value. Identifies which type of property rules is represented by this instance. The possible values are: taskRule, bucketRule, planRule, unknownFutureValue.
         Returns: Optional[planner_rule_kind.PlannerRuleKind]
         """
         return self._rule_kind
@@ -86,7 +86,7 @@ class PlannerPropertyRule(AdditionalDataHolder, Parsable):
     @rule_kind.setter
     def rule_kind(self,value: Optional[planner_rule_kind.PlannerRuleKind] = None) -> None:
         """
-        Sets the ruleKind property value. The ruleKind property
+        Sets the ruleKind property value. Identifies which type of property rules is represented by this instance. The possible values are: taskRule, bucketRule, planRule, unknownFutureValue.
         Args:
             value: Value to set for the ruleKind property.
         """

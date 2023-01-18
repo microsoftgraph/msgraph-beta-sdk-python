@@ -3,7 +3,9 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
+attack_simulation_operation = lazy_import('msgraph.generated.models.attack_simulation_operation')
 entity = lazy_import('msgraph.generated.models.entity')
+payload = lazy_import('msgraph.generated.models.payload')
 simulation = lazy_import('msgraph.generated.models.simulation')
 simulation_automation = lazy_import('msgraph.generated.models.simulation_automation')
 
@@ -15,6 +17,10 @@ class AttackSimulationRoot(entity.Entity):
         super().__init__()
         # The OdataType property
         self.odata_type: Optional[str] = None
+        # The operations property
+        self._operations: Optional[List[attack_simulation_operation.AttackSimulationOperation]] = None
+        # The payloads property
+        self._payloads: Optional[List[payload.Payload]] = None
         # Represents simulation automation created to run on a tenant.
         self._simulation_automations: Optional[List[simulation_automation.SimulationAutomation]] = None
         # Represents an attack simulation training campaign in a tenant.
@@ -38,12 +44,48 @@ class AttackSimulationRoot(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
+            "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(attack_simulation_operation.AttackSimulationOperation)),
+            "payloads": lambda n : setattr(self, 'payloads', n.get_collection_of_object_values(payload.Payload)),
             "simulation_automations": lambda n : setattr(self, 'simulation_automations', n.get_collection_of_object_values(simulation_automation.SimulationAutomation)),
             "simulations": lambda n : setattr(self, 'simulations', n.get_collection_of_object_values(simulation.Simulation)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
+    
+    @property
+    def operations(self,) -> Optional[List[attack_simulation_operation.AttackSimulationOperation]]:
+        """
+        Gets the operations property value. The operations property
+        Returns: Optional[List[attack_simulation_operation.AttackSimulationOperation]]
+        """
+        return self._operations
+    
+    @operations.setter
+    def operations(self,value: Optional[List[attack_simulation_operation.AttackSimulationOperation]] = None) -> None:
+        """
+        Sets the operations property value. The operations property
+        Args:
+            value: Value to set for the operations property.
+        """
+        self._operations = value
+    
+    @property
+    def payloads(self,) -> Optional[List[payload.Payload]]:
+        """
+        Gets the payloads property value. The payloads property
+        Returns: Optional[List[payload.Payload]]
+        """
+        return self._payloads
+    
+    @payloads.setter
+    def payloads(self,value: Optional[List[payload.Payload]] = None) -> None:
+        """
+        Sets the payloads property value. The payloads property
+        Args:
+            value: Value to set for the payloads property.
+        """
+        self._payloads = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -54,6 +96,8 @@ class AttackSimulationRoot(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
+        writer.write_collection_of_object_values("operations", self.operations)
+        writer.write_collection_of_object_values("payloads", self.payloads)
         writer.write_collection_of_object_values("simulationAutomations", self.simulation_automations)
         writer.write_collection_of_object_values("simulations", self.simulations)
     

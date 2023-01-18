@@ -25,7 +25,7 @@ class AllowedDataLocation(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new allowedDataLocation and sets the default values.
+        Instantiates a new AllowedDataLocation and sets the default values.
         """
         super().__init__()
         # The appId property

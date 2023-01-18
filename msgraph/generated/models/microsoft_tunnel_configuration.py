@@ -8,9 +8,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
 
 class MicrosoftTunnelConfiguration(entity.Entity):
-    """
-    Entity that represents a collection of Microsoft Tunnel settings
-    """
     @property
     def advanced_settings(self,) -> Optional[List[key_value_pair.KeyValuePair]]:
         """

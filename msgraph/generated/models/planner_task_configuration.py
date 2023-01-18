@@ -12,7 +12,7 @@ class PlannerTaskConfiguration(entity.Entity):
         Instantiates a new plannerTaskConfiguration and sets the default values.
         """
         super().__init__()
-        # The editPolicy property
+        # Policy configuration for tasks created for the businessScenario when they are being changed outside of the scenario.
         self._edit_policy: Optional[planner_task_policy.PlannerTaskPolicy] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
@@ -32,7 +32,7 @@ class PlannerTaskConfiguration(entity.Entity):
     @property
     def edit_policy(self,) -> Optional[planner_task_policy.PlannerTaskPolicy]:
         """
-        Gets the editPolicy property value. The editPolicy property
+        Gets the editPolicy property value. Policy configuration for tasks created for the businessScenario when they are being changed outside of the scenario.
         Returns: Optional[planner_task_policy.PlannerTaskPolicy]
         """
         return self._edit_policy
@@ -40,7 +40,7 @@ class PlannerTaskConfiguration(entity.Entity):
     @edit_policy.setter
     def edit_policy(self,value: Optional[planner_task_policy.PlannerTaskPolicy] = None) -> None:
         """
-        Sets the editPolicy property value. The editPolicy property
+        Sets the editPolicy property value. Policy configuration for tasks created for the businessScenario when they are being changed outside of the scenario.
         Args:
             value: Value to set for the editPolicy property.
         """

@@ -11,7 +11,7 @@ class BusinessScenarioTask(planner_task.PlannerTask):
     @property
     def business_scenario_properties(self,) -> Optional[business_scenario_properties.BusinessScenarioProperties]:
         """
-        Gets the businessScenarioProperties property value. The businessScenarioProperties property
+        Gets the businessScenarioProperties property value. Scenario-specific properties of the task. externalObjectId and externalBucketId properties must be specified when creating a task.
         Returns: Optional[business_scenario_properties.BusinessScenarioProperties]
         """
         return self._business_scenario_properties
@@ -19,7 +19,7 @@ class BusinessScenarioTask(planner_task.PlannerTask):
     @business_scenario_properties.setter
     def business_scenario_properties(self,value: Optional[business_scenario_properties.BusinessScenarioProperties] = None) -> None:
         """
-        Sets the businessScenarioProperties property value. The businessScenarioProperties property
+        Sets the businessScenarioProperties property value. Scenario-specific properties of the task. externalObjectId and externalBucketId properties must be specified when creating a task.
         Args:
             value: Value to set for the businessScenarioProperties property.
         """
@@ -30,11 +30,11 @@ class BusinessScenarioTask(planner_task.PlannerTask):
         Instantiates a new BusinessScenarioTask and sets the default values.
         """
         super().__init__()
-        # The businessScenarioProperties property
+        # Scenario-specific properties of the task. externalObjectId and externalBucketId properties must be specified when creating a task.
         self._business_scenario_properties: Optional[business_scenario_properties.BusinessScenarioProperties] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The target property
+        # Target of the task that specifies where the task should be placed. Must be specified when creating a task.
         self._target: Optional[business_scenario_task_target_base.BusinessScenarioTaskTargetBase] = None
     
     @staticmethod
@@ -77,7 +77,7 @@ class BusinessScenarioTask(planner_task.PlannerTask):
     @property
     def target(self,) -> Optional[business_scenario_task_target_base.BusinessScenarioTaskTargetBase]:
         """
-        Gets the target property value. The target property
+        Gets the target property value. Target of the task that specifies where the task should be placed. Must be specified when creating a task.
         Returns: Optional[business_scenario_task_target_base.BusinessScenarioTaskTargetBase]
         """
         return self._target
@@ -85,7 +85,7 @@ class BusinessScenarioTask(planner_task.PlannerTask):
     @target.setter
     def target(self,value: Optional[business_scenario_task_target_base.BusinessScenarioTaskTargetBase] = None) -> None:
         """
-        Sets the target property value. The target property
+        Sets the target property value. Target of the task that specifies where the task should be placed. Must be specified when creating a task.
         Args:
             value: Value to set for the target property.
         """

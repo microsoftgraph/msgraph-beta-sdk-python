@@ -6,5 +6,6 @@ class SingleSignOnMode(Enum):
     Saml = "saml",
     PingHeaderBased = "pingHeaderBased",
     AadHeaderBased = "aadHeaderBased",
+    OAuthToken = "oAuthToken",
     UnknownFutureValue = "unknownFutureValue",
 

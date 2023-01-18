@@ -11,7 +11,6 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.count.count_request_builder')
-workflow = lazy_import('msgraph.generated.models.identity_governance.workflow')
 workflow_collection_response = lazy_import('msgraph.generated.models.identity_governance.workflow_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -63,28 +62,6 @@ class WorkflowsRequestBuilder():
             raise Exception("Http core is null") 
         return await self.request_adapter.send_async(request_info, workflow_collection_response.WorkflowCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[workflow.Workflow] = None, request_configuration: Optional[WorkflowsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[workflow.Workflow]:
-        """
-        Create new navigation property to workflows for identityGovernance
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
-        Returns: Optional[workflow.Workflow]
-        """
-        if body is None:
-            raise Exception("body cannot be undefined")
-        request_info = self.to_post_request_information(
-            body, request_configuration
-        )
-        error_mapping: Dict[str, ParsableFactory] = {
-            "4XX": o_data_error.ODataError,
-            "5XX": o_data_error.ODataError,
-        }
-        if not self.request_adapter:
-            raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, workflow.Workflow, response_handler, error_mapping)
-    
     def to_get_request_information(self,request_configuration: Optional[WorkflowsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
         Get a list of the deleted workflow objects and their properties.
@@ -101,27 +78,6 @@ class WorkflowsRequestBuilder():
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
             request_info.add_request_options(request_configuration.options)
-        return request_info
-    
-    def to_post_request_information(self,body: Optional[workflow.Workflow] = None, request_configuration: Optional[WorkflowsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
-        """
-        Create new navigation property to workflows for identityGovernance
-        Args:
-            body: The request body
-            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: RequestInformation
-        """
-        if body is None:
-            raise Exception("body cannot be undefined")
-        request_info = RequestInformation()
-        request_info.url_template = self.url_template
-        request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
-        if request_configuration:
-            request_info.add_request_headers(request_configuration.headers)
-            request_info.add_request_options(request_configuration.options)
-        request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
     @dataclass
@@ -194,18 +150,6 @@ class WorkflowsRequestBuilder():
 
         # Request query parameters
         query_parameters: Optional[WorkflowsRequestBuilder.WorkflowsRequestBuilderGetQueryParameters] = None
-
-    
-    @dataclass
-    class WorkflowsRequestBuilderPostRequestConfiguration():
-        """
-        Configuration for the request such as headers, query parameters, and middleware options.
-        """
-        # Request headers
-        headers: Optional[Dict[str, str]] = None
-
-        # Request options
-        options: Optional[List[RequestOption]] = None
 
     
 

@@ -64,7 +64,7 @@ class PlanConfigurationRequestBuilder():
     
     async def get(self,request_configuration: Optional[PlanConfigurationRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[planner_plan_configuration.PlannerPlanConfiguration]:
         """
-        Get planConfiguration from solutions
+        Read the properties and relationships of a plannerPlanConfiguration object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
@@ -96,7 +96,7 @@ class PlanConfigurationRequestBuilder():
     
     async def patch(self,body: Optional[planner_plan_configuration.PlannerPlanConfiguration] = None, request_configuration: Optional[PlanConfigurationRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[planner_plan_configuration.PlannerPlanConfiguration]:
         """
-        Update the navigation property planConfiguration in solutions
+        Update the properties of a plannerPlanConfiguration object for a businessScenario.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -134,7 +134,7 @@ class PlanConfigurationRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PlanConfigurationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get planConfiguration from solutions
+        Read the properties and relationships of a plannerPlanConfiguration object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -152,7 +152,7 @@ class PlanConfigurationRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[planner_plan_configuration.PlannerPlanConfiguration] = None, request_configuration: Optional[PlanConfigurationRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update the navigation property planConfiguration in solutions
+        Update the properties of a plannerPlanConfiguration object for a businessScenario.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -186,7 +186,7 @@ class PlanConfigurationRequestBuilder():
     @dataclass
     class PlanConfigurationRequestBuilderGetQueryParameters():
         """
-        Get planConfiguration from solutions
+        Read the properties and relationships of a plannerPlanConfiguration object.
         """
         # Expand related entities
         expand: Optional[List[str]] = None

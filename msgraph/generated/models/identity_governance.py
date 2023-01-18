@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, Union
 access_review_set = lazy_import('msgraph.generated.models.access_review_set')
 app_consent_approval_route = lazy_import('msgraph.generated.models.app_consent_approval_route')
 entitlement_management = lazy_import('msgraph.generated.models.entitlement_management')
+privileged_access_root = lazy_import('msgraph.generated.models.privileged_access_root')
 terms_of_use_container = lazy_import('msgraph.generated.models.terms_of_use_container')
 lifecycle_workflows_container = lazy_import('msgraph.generated.models.identity_governance.lifecycle_workflows_container')
 
@@ -78,6 +79,8 @@ class IdentityGovernance(AdditionalDataHolder, Parsable):
         self._lifecycle_workflows: Optional[lifecycle_workflows_container.LifecycleWorkflowsContainer] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
+        # The privilegedAccess property
+        self._privileged_access: Optional[privileged_access_root.PrivilegedAccessRoot] = None
         # The termsOfUse property
         self._terms_of_use: Optional[terms_of_use_container.TermsOfUseContainer] = None
     
@@ -121,6 +124,7 @@ class IdentityGovernance(AdditionalDataHolder, Parsable):
             "entitlement_management": lambda n : setattr(self, 'entitlement_management', n.get_object_value(entitlement_management.EntitlementManagement)),
             "lifecycle_workflows": lambda n : setattr(self, 'lifecycle_workflows', n.get_object_value(lifecycle_workflows_container.LifecycleWorkflowsContainer)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "privileged_access": lambda n : setattr(self, 'privileged_access', n.get_object_value(privileged_access_root.PrivilegedAccessRoot)),
             "terms_of_use": lambda n : setattr(self, 'terms_of_use', n.get_object_value(terms_of_use_container.TermsOfUseContainer)),
         }
         return fields
@@ -159,6 +163,23 @@ class IdentityGovernance(AdditionalDataHolder, Parsable):
         """
         self._odata_type = value
     
+    @property
+    def privileged_access(self,) -> Optional[privileged_access_root.PrivilegedAccessRoot]:
+        """
+        Gets the privilegedAccess property value. The privilegedAccess property
+        Returns: Optional[privileged_access_root.PrivilegedAccessRoot]
+        """
+        return self._privileged_access
+    
+    @privileged_access.setter
+    def privileged_access(self,value: Optional[privileged_access_root.PrivilegedAccessRoot] = None) -> None:
+        """
+        Sets the privilegedAccess property value. The privilegedAccess property
+        Args:
+            value: Value to set for the privilegedAccess property.
+        """
+        self._privileged_access = value
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -172,6 +193,7 @@ class IdentityGovernance(AdditionalDataHolder, Parsable):
         writer.write_object_value("entitlementManagement", self.entitlement_management)
         writer.write_object_value("lifecycleWorkflows", self.lifecycle_workflows)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_object_value("privilegedAccess", self.privileged_access)
         writer.write_object_value("termsOfUse", self.terms_of_use)
         writer.write_additional_data_value(self.additional_data)
     

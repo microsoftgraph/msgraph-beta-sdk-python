@@ -81,7 +81,7 @@ class DirectoryAudit(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new DirectoryAudit and sets the default values.
+        Instantiates a new directoryAudit and sets the default values.
         """
         super().__init__()
         # Indicates the date and time the activity was performed. The Timestamp type is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.

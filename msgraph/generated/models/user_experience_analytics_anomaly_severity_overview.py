@@ -31,13 +31,13 @@ class UserExperienceAnalyticsAnomalySeverityOverview(AdditionalDataHolder, Parsa
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The number of high severity anomalies which have been detected. Valid values -2147483648 to 2147483647
+        # Indicates count of high severity anomalies which have been detected. Valid values -2147483648 to 2147483647
         self._high_severity_anomaly_count: Optional[int] = None
-        # The number of informational severity anomalies which have been detected. Valid values -2147483648 to 2147483647
+        # Indicates count of informational severity anomalies which have been detected. Valid values -2147483648 to 2147483647
         self._informational_severity_anomaly_count: Optional[int] = None
-        # The number of low severity anomalies which have been detected. Valid values -2147483648 to 2147483647
+        # Indicates count of low severity anomalies which have been detected. Valid values -2147483648 to 2147483647
         self._low_severity_anomaly_count: Optional[int] = None
-        # The number of medium severity anomalies which have been detected. Valid values -2147483648 to 2147483647
+        # Indicates count of medium severity anomalies which have been detected. Valid values -2147483648 to 2147483647
         self._medium_severity_anomaly_count: Optional[int] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
@@ -71,7 +71,7 @@ class UserExperienceAnalyticsAnomalySeverityOverview(AdditionalDataHolder, Parsa
     @property
     def high_severity_anomaly_count(self,) -> Optional[int]:
         """
-        Gets the highSeverityAnomalyCount property value. The number of high severity anomalies which have been detected. Valid values -2147483648 to 2147483647
+        Gets the highSeverityAnomalyCount property value. Indicates count of high severity anomalies which have been detected. Valid values -2147483648 to 2147483647
         Returns: Optional[int]
         """
         return self._high_severity_anomaly_count
@@ -79,7 +79,7 @@ class UserExperienceAnalyticsAnomalySeverityOverview(AdditionalDataHolder, Parsa
     @high_severity_anomaly_count.setter
     def high_severity_anomaly_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the highSeverityAnomalyCount property value. The number of high severity anomalies which have been detected. Valid values -2147483648 to 2147483647
+        Sets the highSeverityAnomalyCount property value. Indicates count of high severity anomalies which have been detected. Valid values -2147483648 to 2147483647
         Args:
             value: Value to set for the highSeverityAnomalyCount property.
         """
@@ -88,7 +88,7 @@ class UserExperienceAnalyticsAnomalySeverityOverview(AdditionalDataHolder, Parsa
     @property
     def informational_severity_anomaly_count(self,) -> Optional[int]:
         """
-        Gets the informationalSeverityAnomalyCount property value. The number of informational severity anomalies which have been detected. Valid values -2147483648 to 2147483647
+        Gets the informationalSeverityAnomalyCount property value. Indicates count of informational severity anomalies which have been detected. Valid values -2147483648 to 2147483647
         Returns: Optional[int]
         """
         return self._informational_severity_anomaly_count
@@ -96,7 +96,7 @@ class UserExperienceAnalyticsAnomalySeverityOverview(AdditionalDataHolder, Parsa
     @informational_severity_anomaly_count.setter
     def informational_severity_anomaly_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the informationalSeverityAnomalyCount property value. The number of informational severity anomalies which have been detected. Valid values -2147483648 to 2147483647
+        Sets the informationalSeverityAnomalyCount property value. Indicates count of informational severity anomalies which have been detected. Valid values -2147483648 to 2147483647
         Args:
             value: Value to set for the informationalSeverityAnomalyCount property.
         """
@@ -105,7 +105,7 @@ class UserExperienceAnalyticsAnomalySeverityOverview(AdditionalDataHolder, Parsa
     @property
     def low_severity_anomaly_count(self,) -> Optional[int]:
         """
-        Gets the lowSeverityAnomalyCount property value. The number of low severity anomalies which have been detected. Valid values -2147483648 to 2147483647
+        Gets the lowSeverityAnomalyCount property value. Indicates count of low severity anomalies which have been detected. Valid values -2147483648 to 2147483647
         Returns: Optional[int]
         """
         return self._low_severity_anomaly_count
@@ -113,7 +113,7 @@ class UserExperienceAnalyticsAnomalySeverityOverview(AdditionalDataHolder, Parsa
     @low_severity_anomaly_count.setter
     def low_severity_anomaly_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the lowSeverityAnomalyCount property value. The number of low severity anomalies which have been detected. Valid values -2147483648 to 2147483647
+        Sets the lowSeverityAnomalyCount property value. Indicates count of low severity anomalies which have been detected. Valid values -2147483648 to 2147483647
         Args:
             value: Value to set for the lowSeverityAnomalyCount property.
         """
@@ -122,7 +122,7 @@ class UserExperienceAnalyticsAnomalySeverityOverview(AdditionalDataHolder, Parsa
     @property
     def medium_severity_anomaly_count(self,) -> Optional[int]:
         """
-        Gets the mediumSeverityAnomalyCount property value. The number of medium severity anomalies which have been detected. Valid values -2147483648 to 2147483647
+        Gets the mediumSeverityAnomalyCount property value. Indicates count of medium severity anomalies which have been detected. Valid values -2147483648 to 2147483647
         Returns: Optional[int]
         """
         return self._medium_severity_anomaly_count
@@ -130,7 +130,7 @@ class UserExperienceAnalyticsAnomalySeverityOverview(AdditionalDataHolder, Parsa
     @medium_severity_anomaly_count.setter
     def medium_severity_anomaly_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the mediumSeverityAnomalyCount property value. The number of medium severity anomalies which have been detected. Valid values -2147483648 to 2147483647
+        Sets the mediumSeverityAnomalyCount property value. Indicates count of medium severity anomalies which have been detected. Valid values -2147483648 to 2147483647
         Args:
             value: Value to set for the mediumSeverityAnomalyCount property.
         """

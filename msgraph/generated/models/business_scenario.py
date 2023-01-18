@@ -14,29 +14,29 @@ class BusinessScenario(entity.Entity):
         Instantiates a new BusinessScenario and sets the default values.
         """
         super().__init__()
-        # The createdBy property
+        # The identity of the user who created the scenario.
         self._created_by: Optional[identity_set.IdentitySet] = None
-        # The createdDateTime property
+        # The date and time when the scenario was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         self._created_date_time: Optional[datetime] = None
-        # The displayName property
+        # Display name of the scenario.
         self._display_name: Optional[str] = None
-        # The lastModifiedBy property
+        # The identity of the user who last modified the scenario.
         self._last_modified_by: Optional[identity_set.IdentitySet] = None
-        # The lastModifiedDateTime property
+        # The date and time when the scenario was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         self._last_modified_date_time: Optional[datetime] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The ownerAppIds property
+        # Identifiers of applications that are authorized to work with this scenario.
         self._owner_app_ids: Optional[List[str]] = None
-        # The planner property
+        # Planner content related to the scenario.
         self._planner: Optional[business_scenario_planner.BusinessScenarioPlanner] = None
-        # The uniqueName property
+        # Unique name of the scenario. To avoid conflicts, the recommended value for the unique name is a reverse domain name format, owned by the author of the scenario. For example, a scenario authored by Contoso.com would have a unique name that starts with com.contoso.
         self._unique_name: Optional[str] = None
     
     @property
     def created_by(self,) -> Optional[identity_set.IdentitySet]:
         """
-        Gets the createdBy property value. The createdBy property
+        Gets the createdBy property value. The identity of the user who created the scenario.
         Returns: Optional[identity_set.IdentitySet]
         """
         return self._created_by
@@ -44,7 +44,7 @@ class BusinessScenario(entity.Entity):
     @created_by.setter
     def created_by(self,value: Optional[identity_set.IdentitySet] = None) -> None:
         """
-        Sets the createdBy property value. The createdBy property
+        Sets the createdBy property value. The identity of the user who created the scenario.
         Args:
             value: Value to set for the createdBy property.
         """
@@ -53,7 +53,7 @@ class BusinessScenario(entity.Entity):
     @property
     def created_date_time(self,) -> Optional[datetime]:
         """
-        Gets the createdDateTime property value. The createdDateTime property
+        Gets the createdDateTime property value. The date and time when the scenario was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Returns: Optional[datetime]
         """
         return self._created_date_time
@@ -61,7 +61,7 @@ class BusinessScenario(entity.Entity):
     @created_date_time.setter
     def created_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the createdDateTime property value. The createdDateTime property
+        Sets the createdDateTime property value. The date and time when the scenario was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
             value: Value to set for the createdDateTime property.
         """
@@ -82,7 +82,7 @@ class BusinessScenario(entity.Entity):
     @property
     def display_name(self,) -> Optional[str]:
         """
-        Gets the displayName property value. The displayName property
+        Gets the displayName property value. Display name of the scenario.
         Returns: Optional[str]
         """
         return self._display_name
@@ -90,7 +90,7 @@ class BusinessScenario(entity.Entity):
     @display_name.setter
     def display_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the displayName property value. The displayName property
+        Sets the displayName property value. Display name of the scenario.
         Args:
             value: Value to set for the displayName property.
         """
@@ -118,7 +118,7 @@ class BusinessScenario(entity.Entity):
     @property
     def last_modified_by(self,) -> Optional[identity_set.IdentitySet]:
         """
-        Gets the lastModifiedBy property value. The lastModifiedBy property
+        Gets the lastModifiedBy property value. The identity of the user who last modified the scenario.
         Returns: Optional[identity_set.IdentitySet]
         """
         return self._last_modified_by
@@ -126,7 +126,7 @@ class BusinessScenario(entity.Entity):
     @last_modified_by.setter
     def last_modified_by(self,value: Optional[identity_set.IdentitySet] = None) -> None:
         """
-        Sets the lastModifiedBy property value. The lastModifiedBy property
+        Sets the lastModifiedBy property value. The identity of the user who last modified the scenario.
         Args:
             value: Value to set for the lastModifiedBy property.
         """
@@ -135,7 +135,7 @@ class BusinessScenario(entity.Entity):
     @property
     def last_modified_date_time(self,) -> Optional[datetime]:
         """
-        Gets the lastModifiedDateTime property value. The lastModifiedDateTime property
+        Gets the lastModifiedDateTime property value. The date and time when the scenario was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Returns: Optional[datetime]
         """
         return self._last_modified_date_time
@@ -143,7 +143,7 @@ class BusinessScenario(entity.Entity):
     @last_modified_date_time.setter
     def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
+        Sets the lastModifiedDateTime property value. The date and time when the scenario was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
             value: Value to set for the lastModifiedDateTime property.
         """
@@ -152,7 +152,7 @@ class BusinessScenario(entity.Entity):
     @property
     def owner_app_ids(self,) -> Optional[List[str]]:
         """
-        Gets the ownerAppIds property value. The ownerAppIds property
+        Gets the ownerAppIds property value. Identifiers of applications that are authorized to work with this scenario.
         Returns: Optional[List[str]]
         """
         return self._owner_app_ids
@@ -160,7 +160,7 @@ class BusinessScenario(entity.Entity):
     @owner_app_ids.setter
     def owner_app_ids(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the ownerAppIds property value. The ownerAppIds property
+        Sets the ownerAppIds property value. Identifiers of applications that are authorized to work with this scenario.
         Args:
             value: Value to set for the ownerAppIds property.
         """
@@ -169,7 +169,7 @@ class BusinessScenario(entity.Entity):
     @property
     def planner(self,) -> Optional[business_scenario_planner.BusinessScenarioPlanner]:
         """
-        Gets the planner property value. The planner property
+        Gets the planner property value. Planner content related to the scenario.
         Returns: Optional[business_scenario_planner.BusinessScenarioPlanner]
         """
         return self._planner
@@ -177,7 +177,7 @@ class BusinessScenario(entity.Entity):
     @planner.setter
     def planner(self,value: Optional[business_scenario_planner.BusinessScenarioPlanner] = None) -> None:
         """
-        Sets the planner property value. The planner property
+        Sets the planner property value. Planner content related to the scenario.
         Args:
             value: Value to set for the planner property.
         """
@@ -204,7 +204,7 @@ class BusinessScenario(entity.Entity):
     @property
     def unique_name(self,) -> Optional[str]:
         """
-        Gets the uniqueName property value. The uniqueName property
+        Gets the uniqueName property value. Unique name of the scenario. To avoid conflicts, the recommended value for the unique name is a reverse domain name format, owned by the author of the scenario. For example, a scenario authored by Contoso.com would have a unique name that starts with com.contoso.
         Returns: Optional[str]
         """
         return self._unique_name
@@ -212,7 +212,7 @@ class BusinessScenario(entity.Entity):
     @unique_name.setter
     def unique_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the uniqueName property value. The uniqueName property
+        Sets the uniqueName property value. Unique name of the scenario. To avoid conflicts, the recommended value for the unique name is a reverse domain name format, owned by the author of the scenario. For example, a scenario authored by Contoso.com would have a unique name that starts with com.contoso.
         Args:
             value: Value to set for the uniqueName property.
         """

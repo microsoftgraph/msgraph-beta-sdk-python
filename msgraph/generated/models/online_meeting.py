@@ -19,6 +19,7 @@ meeting_registration = lazy_import('msgraph.generated.models.meeting_registratio
 online_meeting_presenters = lazy_import('msgraph.generated.models.online_meeting_presenters')
 online_meeting_role = lazy_import('msgraph.generated.models.online_meeting_role')
 virtual_appointment = lazy_import('msgraph.generated.models.virtual_appointment')
+watermark_protection_values = lazy_import('msgraph.generated.models.watermark_protection_values')
 
 class OnlineMeeting(entity.Entity):
     @property
@@ -296,6 +297,8 @@ class OnlineMeeting(entity.Entity):
         self._video_teleconference_id: Optional[str] = None
         # The virtualAppointment property
         self._virtual_appointment: Optional[virtual_appointment.VirtualAppointment] = None
+        # The watermarkProtection property
+        self._watermark_protection: Optional[watermark_protection_values.WatermarkProtectionValues] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OnlineMeeting:
@@ -398,6 +401,7 @@ class OnlineMeeting(entity.Entity):
             "transcripts": lambda n : setattr(self, 'transcripts', n.get_collection_of_object_values(call_transcript.CallTranscript)),
             "video_teleconference_id": lambda n : setattr(self, 'video_teleconference_id', n.get_str_value()),
             "virtual_appointment": lambda n : setattr(self, 'virtual_appointment', n.get_object_value(virtual_appointment.VirtualAppointment)),
+            "watermark_protection": lambda n : setattr(self, 'watermark_protection', n.get_object_value(watermark_protection_values.WatermarkProtectionValues)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -648,6 +652,7 @@ class OnlineMeeting(entity.Entity):
         writer.write_collection_of_object_values("transcripts", self.transcripts)
         writer.write_str_value("videoTeleconferenceId", self.video_teleconference_id)
         writer.write_object_value("virtualAppointment", self.virtual_appointment)
+        writer.write_object_value("watermarkProtection", self.watermark_protection)
     
     @property
     def start_date_time(self,) -> Optional[datetime]:
@@ -733,5 +738,22 @@ class OnlineMeeting(entity.Entity):
             value: Value to set for the virtualAppointment property.
         """
         self._virtual_appointment = value
+    
+    @property
+    def watermark_protection(self,) -> Optional[watermark_protection_values.WatermarkProtectionValues]:
+        """
+        Gets the watermarkProtection property value. The watermarkProtection property
+        Returns: Optional[watermark_protection_values.WatermarkProtectionValues]
+        """
+        return self._watermark_protection
+    
+    @watermark_protection.setter
+    def watermark_protection(self,value: Optional[watermark_protection_values.WatermarkProtectionValues] = None) -> None:
+        """
+        Sets the watermarkProtection property value. The watermarkProtection property
+        Args:
+            value: Value to set for the watermarkProtection property.
+        """
+        self._watermark_protection = value
     
 

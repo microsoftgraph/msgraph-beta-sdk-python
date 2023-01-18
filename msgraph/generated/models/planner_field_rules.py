@@ -30,11 +30,11 @@ class PlannerFieldRules(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The defaultRules property
+        # The default rules that apply if no override matches to the current data.
         self._default_rules: Optional[List[str]] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The overrides property
+        # Overrides that specify different rules for specific data associated with the field.
         self._overrides: Optional[List[planner_rule_override.PlannerRuleOverride]] = None
     
     @staticmethod
@@ -52,7 +52,7 @@ class PlannerFieldRules(AdditionalDataHolder, Parsable):
     @property
     def default_rules(self,) -> Optional[List[str]]:
         """
-        Gets the defaultRules property value. The defaultRules property
+        Gets the defaultRules property value. The default rules that apply if no override matches to the current data.
         Returns: Optional[List[str]]
         """
         return self._default_rules
@@ -60,7 +60,7 @@ class PlannerFieldRules(AdditionalDataHolder, Parsable):
     @default_rules.setter
     def default_rules(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the defaultRules property value. The defaultRules property
+        Sets the defaultRules property value. The default rules that apply if no override matches to the current data.
         Args:
             value: Value to set for the defaultRules property.
         """
@@ -98,7 +98,7 @@ class PlannerFieldRules(AdditionalDataHolder, Parsable):
     @property
     def overrides(self,) -> Optional[List[planner_rule_override.PlannerRuleOverride]]:
         """
-        Gets the overrides property value. The overrides property
+        Gets the overrides property value. Overrides that specify different rules for specific data associated with the field.
         Returns: Optional[List[planner_rule_override.PlannerRuleOverride]]
         """
         return self._overrides
@@ -106,7 +106,7 @@ class PlannerFieldRules(AdditionalDataHolder, Parsable):
     @overrides.setter
     def overrides(self,value: Optional[List[planner_rule_override.PlannerRuleOverride]] = None) -> None:
         """
-        Sets the overrides property value. The overrides property
+        Sets the overrides property value. Overrides that specify different rules for specific data associated with the field.
         Args:
             value: Value to set for the overrides property.
         """

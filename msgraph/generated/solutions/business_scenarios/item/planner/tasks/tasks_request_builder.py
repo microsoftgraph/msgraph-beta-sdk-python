@@ -46,7 +46,7 @@ class TasksRequestBuilder():
     
     async def get(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[business_scenario_task_collection_response.BusinessScenarioTaskCollectionResponse]:
         """
-        Get tasks from solutions
+        Get a list of the businessScenarioTask objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
             responseHandler: Response handler to use in place of the default response handling provided by the core service
@@ -65,7 +65,7 @@ class TasksRequestBuilder():
     
     async def post(self,body: Optional[business_scenario_task.BusinessScenarioTask] = None, request_configuration: Optional[TasksRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[business_scenario_task.BusinessScenarioTask]:
         """
-        Create new navigation property to tasks for solutions
+        Create a new businessScenarioTask object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -87,7 +87,7 @@ class TasksRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get tasks from solutions
+        Get a list of the businessScenarioTask objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -105,7 +105,7 @@ class TasksRequestBuilder():
     
     def to_post_request_information(self,body: Optional[business_scenario_task.BusinessScenarioTask] = None, request_configuration: Optional[TasksRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to tasks for solutions
+        Create a new businessScenarioTask object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -127,7 +127,7 @@ class TasksRequestBuilder():
     @dataclass
     class TasksRequestBuilderGetQueryParameters():
         """
-        Get tasks from solutions
+        Get a list of the businessScenarioTask objects and their properties.
         """
         # Include count of items
         count: Optional[bool] = None
