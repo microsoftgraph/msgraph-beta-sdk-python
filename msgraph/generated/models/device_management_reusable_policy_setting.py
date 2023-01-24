@@ -9,12 +9,9 @@ device_management_configuration_setting_instance = lazy_import('msgraph.generate
 entity = lazy_import('msgraph.generated.models.entity')
 
 class DeviceManagementReusablePolicySetting(entity.Entity):
-    """
-    Graph model for a reusable setting
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceManagementReusablePolicySetting and sets the default values.
+        Instantiates a new DeviceManagementReusablePolicySetting and sets the default values.
         """
         super().__init__()
         # reusable setting creation date and time. This property is read-only.

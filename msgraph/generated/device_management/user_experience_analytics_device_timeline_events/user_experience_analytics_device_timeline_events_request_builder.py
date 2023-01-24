@@ -44,12 +44,11 @@ class UserExperienceAnalyticsDeviceTimelineEventsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsDeviceTimelineEventsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_device_timeline_events_collection_response.UserExperienceAnalyticsDeviceTimelineEventsCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsDeviceTimelineEventsRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_device_timeline_events_collection_response.UserExperienceAnalyticsDeviceTimelineEventsCollectionResponse]:
         """
         The user experience analytics device events entity contains NRT device timeline events details.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_device_timeline_events_collection_response.UserExperienceAnalyticsDeviceTimelineEventsCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class UserExperienceAnalyticsDeviceTimelineEventsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_device_timeline_events_collection_response.UserExperienceAnalyticsDeviceTimelineEventsCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_device_timeline_events_collection_response.UserExperienceAnalyticsDeviceTimelineEventsCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[user_experience_analytics_device_timeline_events.UserExperienceAnalyticsDeviceTimelineEvents] = None, request_configuration: Optional[UserExperienceAnalyticsDeviceTimelineEventsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_device_timeline_events.UserExperienceAnalyticsDeviceTimelineEvents]:
+    async def post(self,body: Optional[user_experience_analytics_device_timeline_events.UserExperienceAnalyticsDeviceTimelineEvents] = None, request_configuration: Optional[UserExperienceAnalyticsDeviceTimelineEventsRequestBuilderPostRequestConfiguration] = None) -> Optional[user_experience_analytics_device_timeline_events.UserExperienceAnalyticsDeviceTimelineEvents]:
         """
         Create new navigation property to userExperienceAnalyticsDeviceTimelineEvents for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_device_timeline_events.UserExperienceAnalyticsDeviceTimelineEvents]
         """
         if body is None:
@@ -83,7 +81,7 @@ class UserExperienceAnalyticsDeviceTimelineEventsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_device_timeline_events.UserExperienceAnalyticsDeviceTimelineEvents, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_device_timeline_events.UserExperienceAnalyticsDeviceTimelineEvents, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UserExperienceAnalyticsDeviceTimelineEventsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

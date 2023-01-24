@@ -44,12 +44,11 @@ class OnPremisesSynchronizationRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[OnPremisesSynchronizationRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[on_premises_directory_synchronization_collection_response.OnPremisesDirectorySynchronizationCollectionResponse]:
+    async def get(self,request_configuration: Optional[OnPremisesSynchronizationRequestBuilderGetRequestConfiguration] = None) -> Optional[on_premises_directory_synchronization_collection_response.OnPremisesDirectorySynchronizationCollectionResponse]:
         """
         A container for on-premises directory synchronization functionalities that are available for the organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[on_premises_directory_synchronization_collection_response.OnPremisesDirectorySynchronizationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class OnPremisesSynchronizationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, on_premises_directory_synchronization_collection_response.OnPremisesDirectorySynchronizationCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, on_premises_directory_synchronization_collection_response.OnPremisesDirectorySynchronizationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[on_premises_directory_synchronization.OnPremisesDirectorySynchronization] = None, request_configuration: Optional[OnPremisesSynchronizationRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[on_premises_directory_synchronization.OnPremisesDirectorySynchronization]:
+    async def post(self,body: Optional[on_premises_directory_synchronization.OnPremisesDirectorySynchronization] = None, request_configuration: Optional[OnPremisesSynchronizationRequestBuilderPostRequestConfiguration] = None) -> Optional[on_premises_directory_synchronization.OnPremisesDirectorySynchronization]:
         """
         Create new navigation property to onPremisesSynchronization for directory
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[on_premises_directory_synchronization.OnPremisesDirectorySynchronization]
         """
         if body is None:
@@ -83,7 +81,7 @@ class OnPremisesSynchronizationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, on_premises_directory_synchronization.OnPremisesDirectorySynchronization, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, on_premises_directory_synchronization.OnPremisesDirectorySynchronization, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[OnPremisesSynchronizationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -7,12 +7,9 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class CloudPCConnectivityIssue(entity.Entity):
-    """
-    The user experience analyte connectivity issue entity.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new cloudPCConnectivityIssue and sets the default values.
+        Instantiates a new CloudPCConnectivityIssue and sets the default values.
         """
         super().__init__()
         # The Intune DeviceId of the device the connection is associated with.

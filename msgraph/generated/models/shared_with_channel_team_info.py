@@ -26,7 +26,7 @@ class SharedWithChannelTeamInfo(team_info.TeamInfo):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new SharedWithChannelTeamInfo and sets the default values.
+        Instantiates a new sharedWithChannelTeamInfo and sets the default values.
         """
         super().__init__()
         # A collection of team members who have access to the shared channel.

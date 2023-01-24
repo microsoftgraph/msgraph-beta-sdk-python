@@ -45,12 +45,11 @@ class PrivilegedApprovalRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PrivilegedApprovalRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_approval_collection_response.PrivilegedApprovalCollectionResponse]:
+    async def get(self,request_configuration: Optional[PrivilegedApprovalRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_approval_collection_response.PrivilegedApprovalCollectionResponse]:
         """
         Retrieve a list of privilegedapproval objects. To filter the results from the query, use the standard OData ``$filter`` expressions in the URIs.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_approval_collection_response.PrivilegedApprovalCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -62,7 +61,7 @@ class PrivilegedApprovalRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_approval_collection_response.PrivilegedApprovalCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_approval_collection_response.PrivilegedApprovalCollectionResponse, error_mapping)
     
     def my_requests(self,) -> my_requests_request_builder.MyRequestsRequestBuilder:
         """
@@ -71,13 +70,12 @@ class PrivilegedApprovalRequestBuilder():
         """
         return my_requests_request_builder.MyRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    async def post(self,body: Optional[privileged_approval.PrivilegedApproval] = None, request_configuration: Optional[PrivilegedApprovalRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_approval.PrivilegedApproval]:
+    async def post(self,body: Optional[privileged_approval.PrivilegedApproval] = None, request_configuration: Optional[PrivilegedApprovalRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_approval.PrivilegedApproval]:
         """
         Use this API to create a new privilegedApproval.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_approval.PrivilegedApproval]
         """
         if body is None:
@@ -91,7 +89,7 @@ class PrivilegedApprovalRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_approval.PrivilegedApproval, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_approval.PrivilegedApproval, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedApprovalRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

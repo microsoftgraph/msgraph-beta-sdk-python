@@ -44,12 +44,11 @@ class ProgramControlsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ProgramControlsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[program_control_collection_response.ProgramControlCollectionResponse]:
+    async def get(self,request_configuration: Optional[ProgramControlsRequestBuilderGetRequestConfiguration] = None) -> Optional[program_control_collection_response.ProgramControlCollectionResponse]:
         """
         In the Azure AD access reviews feature, list all the programControl objects, across all programs in the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[program_control_collection_response.ProgramControlCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class ProgramControlsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, program_control_collection_response.ProgramControlCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, program_control_collection_response.ProgramControlCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[program_control.ProgramControl] = None, request_configuration: Optional[ProgramControlsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[program_control.ProgramControl]:
+    async def post(self,body: Optional[program_control.ProgramControl] = None, request_configuration: Optional[ProgramControlsRequestBuilderPostRequestConfiguration] = None) -> Optional[program_control.ProgramControl]:
         """
         In the Azure AD access reviews feature, create a new programControl object.  This links an access review to a program. Prior to making this request, the caller must have previously
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[program_control.ProgramControl]
         """
         if body is None:
@@ -83,7 +81,7 @@ class ProgramControlsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, program_control.ProgramControl, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, program_control.ProgramControl, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ProgramControlsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

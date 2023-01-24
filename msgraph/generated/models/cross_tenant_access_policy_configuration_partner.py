@@ -6,6 +6,8 @@ from typing import Any, Callable, Dict, List, Optional, Union
 cross_tenant_access_policy_b2_b_setting = lazy_import('msgraph.generated.models.cross_tenant_access_policy_b2_b_setting')
 cross_tenant_access_policy_inbound_trust = lazy_import('msgraph.generated.models.cross_tenant_access_policy_inbound_trust')
 cross_tenant_access_policy_tenant_restrictions = lazy_import('msgraph.generated.models.cross_tenant_access_policy_tenant_restrictions')
+cross_tenant_identity_sync_policy_partner = lazy_import('msgraph.generated.models.cross_tenant_identity_sync_policy_partner')
+inbound_outbound_policy_configuration = lazy_import('msgraph.generated.models.inbound_outbound_policy_configuration')
 
 class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, Parsable):
     @property
@@ -24,6 +26,23 @@ class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, Parsable
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
+    
+    @property
+    def automatic_user_consent_settings(self,) -> Optional[inbound_outbound_policy_configuration.InboundOutboundPolicyConfiguration]:
+        """
+        Gets the automaticUserConsentSettings property value. Determines the partner-specific configuration for automatic user consent settings. Unless specifically configured, the inboundAllowed and outboundAllowed properties will be null and inherit from the default settings, which is always false.
+        Returns: Optional[inbound_outbound_policy_configuration.InboundOutboundPolicyConfiguration]
+        """
+        return self._automatic_user_consent_settings
+    
+    @automatic_user_consent_settings.setter
+    def automatic_user_consent_settings(self,value: Optional[inbound_outbound_policy_configuration.InboundOutboundPolicyConfiguration] = None) -> None:
+        """
+        Sets the automaticUserConsentSettings property value. Determines the partner-specific configuration for automatic user consent settings. Unless specifically configured, the inboundAllowed and outboundAllowed properties will be null and inherit from the default settings, which is always false.
+        Args:
+            value: Value to set for the automaticUserConsentSettings property.
+        """
+        self._automatic_user_consent_settings = value
     
     @property
     def b2b_collaboration_inbound(self,) -> Optional[cross_tenant_access_policy_b2_b_setting.CrossTenantAccessPolicyB2BSetting]:
@@ -100,6 +119,8 @@ class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, Parsable
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
+        # Determines the partner-specific configuration for automatic user consent settings. Unless specifically configured, the inboundAllowed and outboundAllowed properties will be null and inherit from the default settings, which is always false.
+        self._automatic_user_consent_settings: Optional[inbound_outbound_policy_configuration.InboundOutboundPolicyConfiguration] = None
         # Defines your partner-specific configuration for users from other organizations accessing your resources via Azure AD B2B collaboration.
         self._b2b_collaboration_inbound: Optional[cross_tenant_access_policy_b2_b_setting.CrossTenantAccessPolicyB2BSetting] = None
         # Defines your partner-specific configuration for users in your organization going outbound to access resources in another organization via Azure AD B2B collaboration.
@@ -108,6 +129,8 @@ class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, Parsable
         self._b2b_direct_connect_inbound: Optional[cross_tenant_access_policy_b2_b_setting.CrossTenantAccessPolicyB2BSetting] = None
         # Defines your partner-specific configuration for users in your organization going outbound to access resources in another organization via Azure AD B2B direct connect.
         self._b2b_direct_connect_outbound: Optional[cross_tenant_access_policy_b2_b_setting.CrossTenantAccessPolicyB2BSetting] = None
+        # Defines the cross-tenant policy for synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multi-tenant organization by automating creating, updating, and deleting users from one tenant to another.
+        self._identity_synchronization: Optional[cross_tenant_identity_sync_policy_partner.CrossTenantIdentitySyncPolicyPartner] = None
         # Determines the partner-specific configuration for trusting other Conditional Access claims from external Azure AD organizations.
         self._inbound_trust: Optional[cross_tenant_access_policy_inbound_trust.CrossTenantAccessPolicyInboundTrust] = None
         # Identifies whether the partner-specific configuration is a Cloud Service Provider for your organization.
@@ -137,10 +160,12 @@ class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, Parsable
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
+            "automatic_user_consent_settings": lambda n : setattr(self, 'automatic_user_consent_settings', n.get_object_value(inbound_outbound_policy_configuration.InboundOutboundPolicyConfiguration)),
             "b2b_collaboration_inbound": lambda n : setattr(self, 'b2b_collaboration_inbound', n.get_object_value(cross_tenant_access_policy_b2_b_setting.CrossTenantAccessPolicyB2BSetting)),
             "b2b_collaboration_outbound": lambda n : setattr(self, 'b2b_collaboration_outbound', n.get_object_value(cross_tenant_access_policy_b2_b_setting.CrossTenantAccessPolicyB2BSetting)),
             "b2b_direct_connect_inbound": lambda n : setattr(self, 'b2b_direct_connect_inbound', n.get_object_value(cross_tenant_access_policy_b2_b_setting.CrossTenantAccessPolicyB2BSetting)),
             "b2b_direct_connect_outbound": lambda n : setattr(self, 'b2b_direct_connect_outbound', n.get_object_value(cross_tenant_access_policy_b2_b_setting.CrossTenantAccessPolicyB2BSetting)),
+            "identity_synchronization": lambda n : setattr(self, 'identity_synchronization', n.get_object_value(cross_tenant_identity_sync_policy_partner.CrossTenantIdentitySyncPolicyPartner)),
             "inbound_trust": lambda n : setattr(self, 'inbound_trust', n.get_object_value(cross_tenant_access_policy_inbound_trust.CrossTenantAccessPolicyInboundTrust)),
             "is_service_provider": lambda n : setattr(self, 'is_service_provider', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -148,6 +173,23 @@ class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, Parsable
             "tenant_restrictions": lambda n : setattr(self, 'tenant_restrictions', n.get_object_value(cross_tenant_access_policy_tenant_restrictions.CrossTenantAccessPolicyTenantRestrictions)),
         }
         return fields
+    
+    @property
+    def identity_synchronization(self,) -> Optional[cross_tenant_identity_sync_policy_partner.CrossTenantIdentitySyncPolicyPartner]:
+        """
+        Gets the identitySynchronization property value. Defines the cross-tenant policy for synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multi-tenant organization by automating creating, updating, and deleting users from one tenant to another.
+        Returns: Optional[cross_tenant_identity_sync_policy_partner.CrossTenantIdentitySyncPolicyPartner]
+        """
+        return self._identity_synchronization
+    
+    @identity_synchronization.setter
+    def identity_synchronization(self,value: Optional[cross_tenant_identity_sync_policy_partner.CrossTenantIdentitySyncPolicyPartner] = None) -> None:
+        """
+        Sets the identitySynchronization property value. Defines the cross-tenant policy for synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multi-tenant organization by automating creating, updating, and deleting users from one tenant to another.
+        Args:
+            value: Value to set for the identitySynchronization property.
+        """
+        self._identity_synchronization = value
     
     @property
     def inbound_trust(self,) -> Optional[cross_tenant_access_policy_inbound_trust.CrossTenantAccessPolicyInboundTrust]:
@@ -208,10 +250,12 @@ class CrossTenantAccessPolicyConfigurationPartner(AdditionalDataHolder, Parsable
         """
         if writer is None:
             raise Exception("writer cannot be undefined")
+        writer.write_object_value("automaticUserConsentSettings", self.automatic_user_consent_settings)
         writer.write_object_value("b2bCollaborationInbound", self.b2b_collaboration_inbound)
         writer.write_object_value("b2bCollaborationOutbound", self.b2b_collaboration_outbound)
         writer.write_object_value("b2bDirectConnectInbound", self.b2b_direct_connect_inbound)
         writer.write_object_value("b2bDirectConnectOutbound", self.b2b_direct_connect_outbound)
+        writer.write_object_value("identitySynchronization", self.identity_synchronization)
         writer.write_object_value("inboundTrust", self.inbound_trust)
         writer.write_bool_value("isServiceProvider", self.is_service_provider)
         writer.write_str_value("@odata.type", self.odata_type)

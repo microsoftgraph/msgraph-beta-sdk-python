@@ -44,12 +44,11 @@ class UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionRequestB
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_app_health_app_performance_by_app_version_collection_response.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_app_health_app_performance_by_app_version_collection_response.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionCollectionResponse]:
         """
         User experience analytics appHealth Application Performance by App Version
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_app_health_app_performance_by_app_version_collection_response.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionRequestB
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_app_health_app_performance_by_app_version_collection_response.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_app_health_app_performance_by_app_version_collection_response.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[user_experience_analytics_app_health_app_performance_by_app_version.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion] = None, request_configuration: Optional[UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_app_health_app_performance_by_app_version.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion]:
+    async def post(self,body: Optional[user_experience_analytics_app_health_app_performance_by_app_version.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion] = None, request_configuration: Optional[UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionRequestBuilderPostRequestConfiguration] = None) -> Optional[user_experience_analytics_app_health_app_performance_by_app_version.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion]:
         """
         Create new navigation property to userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersion for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_app_health_app_performance_by_app_version.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion]
         """
         if body is None:
@@ -83,7 +81,7 @@ class UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionRequestB
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_app_health_app_performance_by_app_version.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_app_health_app_performance_by_app_version.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

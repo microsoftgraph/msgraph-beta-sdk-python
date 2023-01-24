@@ -44,12 +44,11 @@ class OperationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[teamwork_device_operation_collection_response.TeamworkDeviceOperationCollectionResponse]:
+    async def get(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None) -> Optional[teamwork_device_operation_collection_response.TeamworkDeviceOperationCollectionResponse]:
         """
         Get a list of the operations that are running on a Microsoft Teams-enabled device.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[teamwork_device_operation_collection_response.TeamworkDeviceOperationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class OperationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, teamwork_device_operation_collection_response.TeamworkDeviceOperationCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, teamwork_device_operation_collection_response.TeamworkDeviceOperationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[teamwork_device_operation.TeamworkDeviceOperation] = None, request_configuration: Optional[OperationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[teamwork_device_operation.TeamworkDeviceOperation]:
+    async def post(self,body: Optional[teamwork_device_operation.TeamworkDeviceOperation] = None, request_configuration: Optional[OperationsRequestBuilderPostRequestConfiguration] = None) -> Optional[teamwork_device_operation.TeamworkDeviceOperation]:
         """
         Create new navigation property to operations for teamwork
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[teamwork_device_operation.TeamworkDeviceOperation]
         """
         if body is None:
@@ -83,7 +81,7 @@ class OperationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, teamwork_device_operation.TeamworkDeviceOperation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, teamwork_device_operation.TeamworkDeviceOperation, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -44,12 +44,11 @@ class LearningProviderItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[LearningProviderItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[LearningProviderItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property learningProviders for employeeExperience
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,14 +59,13 @@ class LearningProviderItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[LearningProviderItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[learning_provider.LearningProvider]:
+    async def get(self,request_configuration: Optional[LearningProviderItemRequestBuilderGetRequestConfiguration] = None) -> Optional[learning_provider.LearningProvider]:
         """
         A collection of learning providers.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[learning_provider.LearningProvider]
         """
         request_info = self.to_get_request_information(
@@ -79,7 +77,7 @@ class LearningProviderItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, learning_provider.LearningProvider, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, learning_provider.LearningProvider, error_mapping)
     
     def learning_contents_by_id(self,id: str) -> learning_content_item_request_builder.LearningContentItemRequestBuilder:
         """
@@ -94,13 +92,12 @@ class LearningProviderItemRequestBuilder():
         url_tpl_params["learningContent%2Did"] = id
         return learning_content_item_request_builder.LearningContentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[learning_provider.LearningProvider] = None, request_configuration: Optional[LearningProviderItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[learning_provider.LearningProvider]:
+    async def patch(self,body: Optional[learning_provider.LearningProvider] = None, request_configuration: Optional[LearningProviderItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[learning_provider.LearningProvider]:
         """
         Update the navigation property learningProviders in employeeExperience
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[learning_provider.LearningProvider]
         """
         if body is None:
@@ -114,7 +111,7 @@ class LearningProviderItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, learning_provider.LearningProvider, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, learning_provider.LearningProvider, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[LearningProviderItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -44,12 +44,11 @@ class SensitivityLabelItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SensitivityLabelItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[SensitivityLabelItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property sensitivityLabels for informationProtection
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,14 +59,13 @@ class SensitivityLabelItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SensitivityLabelItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sensitivity_label.SensitivityLabel]:
+    async def get(self,request_configuration: Optional[SensitivityLabelItemRequestBuilderGetRequestConfiguration] = None) -> Optional[sensitivity_label.SensitivityLabel]:
         """
         Get sensitivityLabels from informationProtection
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sensitivity_label.SensitivityLabel]
         """
         request_info = self.to_get_request_information(
@@ -79,15 +77,14 @@ class SensitivityLabelItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sensitivity_label.SensitivityLabel, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, sensitivity_label.SensitivityLabel, error_mapping)
     
-    async def patch(self,body: Optional[sensitivity_label.SensitivityLabel] = None, request_configuration: Optional[SensitivityLabelItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sensitivity_label.SensitivityLabel]:
+    async def patch(self,body: Optional[sensitivity_label.SensitivityLabel] = None, request_configuration: Optional[SensitivityLabelItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[sensitivity_label.SensitivityLabel]:
         """
         Update the navigation property sensitivityLabels in informationProtection
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sensitivity_label.SensitivityLabel]
         """
         if body is None:
@@ -101,7 +98,7 @@ class SensitivityLabelItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sensitivity_label.SensitivityLabel, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, sensitivity_label.SensitivityLabel, error_mapping)
     
     def sublabels_by_id(self,id: str) -> SensitivityLabelItemRequestBuilder:
         """

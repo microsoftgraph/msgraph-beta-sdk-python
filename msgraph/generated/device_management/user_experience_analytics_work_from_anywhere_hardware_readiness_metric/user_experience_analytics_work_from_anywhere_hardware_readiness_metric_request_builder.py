@@ -35,12 +35,11 @@ class UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuild
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuild
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_work_from_anywhere_hardware_readiness_metric.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_work_from_anywhere_hardware_readiness_metric.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric]:
         """
         User experience analytics work from anywhere hardware readiness metrics.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_work_from_anywhere_hardware_readiness_metric.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuild
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_work_from_anywhere_hardware_readiness_metric.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_work_from_anywhere_hardware_readiness_metric.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric, error_mapping)
     
-    async def patch(self,body: Optional[user_experience_analytics_work_from_anywhere_hardware_readiness_metric.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric] = None, request_configuration: Optional[UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_work_from_anywhere_hardware_readiness_metric.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric]:
+    async def patch(self,body: Optional[user_experience_analytics_work_from_anywhere_hardware_readiness_metric.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric] = None, request_configuration: Optional[UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilderPatchRequestConfiguration] = None) -> Optional[user_experience_analytics_work_from_anywhere_hardware_readiness_metric.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric]:
         """
         Update the navigation property userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_work_from_anywhere_hardware_readiness_metric.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric]
         """
         if body is None:
@@ -92,7 +89,7 @@ class UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuild
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_work_from_anywhere_hardware_readiness_metric.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_work_from_anywhere_hardware_readiness_metric.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

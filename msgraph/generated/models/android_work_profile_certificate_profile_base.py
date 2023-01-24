@@ -47,7 +47,7 @@ class AndroidWorkProfileCertificateProfileBase(device_configuration.DeviceConfig
     
     def __init__(self,) -> None:
         """
-        Instantiates a new androidWorkProfileCertificateProfileBase and sets the default values.
+        Instantiates a new AndroidWorkProfileCertificateProfileBase and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.androidWorkProfileCertificateProfileBase"

@@ -44,12 +44,11 @@ class WebAccountsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[WebAccountsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[web_account_collection_response.WebAccountCollectionResponse]:
+    async def get(self,request_configuration: Optional[WebAccountsRequestBuilderGetRequestConfiguration] = None) -> Optional[web_account_collection_response.WebAccountCollectionResponse]:
         """
         Retrieve a list of webAccounts objects from the user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[web_account_collection_response.WebAccountCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class WebAccountsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, web_account_collection_response.WebAccountCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, web_account_collection_response.WebAccountCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[web_account.WebAccount] = None, request_configuration: Optional[WebAccountsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[web_account.WebAccount]:
+    async def post(self,body: Optional[web_account.WebAccount] = None, request_configuration: Optional[WebAccountsRequestBuilderPostRequestConfiguration] = None) -> Optional[web_account.WebAccount]:
         """
         Create a new webAccount object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[web_account.WebAccount]
         """
         if body is None:
@@ -83,7 +81,7 @@ class WebAccountsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, web_account.WebAccount, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, web_account.WebAccount, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[WebAccountsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

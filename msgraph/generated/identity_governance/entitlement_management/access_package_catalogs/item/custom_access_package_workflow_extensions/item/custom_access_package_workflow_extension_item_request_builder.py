@@ -35,12 +35,11 @@ class CustomAccessPackageWorkflowExtensionItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CustomAccessPackageWorkflowExtensionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CustomAccessPackageWorkflowExtensionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property customAccessPackageWorkflowExtensions for identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class CustomAccessPackageWorkflowExtensionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CustomAccessPackageWorkflowExtensionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension]:
+    async def get(self,request_configuration: Optional[CustomAccessPackageWorkflowExtensionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension]:
         """
         Get customAccessPackageWorkflowExtensions from identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class CustomAccessPackageWorkflowExtensionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension, error_mapping)
     
-    async def patch(self,body: Optional[custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension] = None, request_configuration: Optional[CustomAccessPackageWorkflowExtensionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension]:
+    async def patch(self,body: Optional[custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension] = None, request_configuration: Optional[CustomAccessPackageWorkflowExtensionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension]:
         """
         Update the navigation property customAccessPackageWorkflowExtensions in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension]
         """
         if body is None:
@@ -92,7 +89,7 @@ class CustomAccessPackageWorkflowExtensionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CustomAccessPackageWorkflowExtensionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

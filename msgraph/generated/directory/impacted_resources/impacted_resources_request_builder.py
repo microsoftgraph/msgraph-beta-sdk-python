@@ -11,8 +11,8 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.directory.impacted_resources.count.count_request_builder')
-recommendation_resource = lazy_import('msgraph.generated.models.recommendation_resource')
-recommendation_resource_collection_response = lazy_import('msgraph.generated.models.recommendation_resource_collection_response')
+impacted_resource = lazy_import('msgraph.generated.models.impacted_resource')
+impacted_resource_collection_response = lazy_import('msgraph.generated.models.impacted_resource_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ImpactedResourcesRequestBuilder():
@@ -44,13 +44,12 @@ class ImpactedResourcesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ImpactedResourcesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[recommendation_resource_collection_response.RecommendationResourceCollectionResponse]:
+    async def get(self,request_configuration: Optional[ImpactedResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[impacted_resource_collection_response.ImpactedResourceCollectionResponse]:
         """
         Get impactedResources from directory
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
-        Returns: Optional[recommendation_resource_collection_response.RecommendationResourceCollectionResponse]
+        Returns: Optional[impacted_resource_collection_response.ImpactedResourceCollectionResponse]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -61,16 +60,15 @@ class ImpactedResourcesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, recommendation_resource_collection_response.RecommendationResourceCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, impacted_resource_collection_response.ImpactedResourceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[recommendation_resource.RecommendationResource] = None, request_configuration: Optional[ImpactedResourcesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[recommendation_resource.RecommendationResource]:
+    async def post(self,body: Optional[impacted_resource.ImpactedResource] = None, request_configuration: Optional[ImpactedResourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[impacted_resource.ImpactedResource]:
         """
         Create new navigation property to impactedResources for directory
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
-        Returns: Optional[recommendation_resource.RecommendationResource]
+        Returns: Optional[impacted_resource.ImpactedResource]
         """
         if body is None:
             raise Exception("body cannot be undefined")
@@ -83,7 +81,7 @@ class ImpactedResourcesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, recommendation_resource.RecommendationResource, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, impacted_resource.ImpactedResource, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ImpactedResourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -103,7 +101,7 @@ class ImpactedResourcesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_post_request_information(self,body: Optional[recommendation_resource.RecommendationResource] = None, request_configuration: Optional[ImpactedResourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+    def to_post_request_information(self,body: Optional[impacted_resource.ImpactedResource] = None, request_configuration: Optional[ImpactedResourcesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
         Create new navigation property to impactedResources for directory
         Args:

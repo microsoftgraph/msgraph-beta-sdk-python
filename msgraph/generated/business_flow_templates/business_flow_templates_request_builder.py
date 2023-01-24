@@ -44,12 +44,11 @@ class BusinessFlowTemplatesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[BusinessFlowTemplatesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[business_flow_template_collection_response.BusinessFlowTemplateCollectionResponse]:
+    async def get(self,request_configuration: Optional[BusinessFlowTemplatesRequestBuilderGetRequestConfiguration] = None) -> Optional[business_flow_template_collection_response.BusinessFlowTemplateCollectionResponse]:
         """
         In the Azure AD access reviews feature, list all the businessFlowTemplate objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[business_flow_template_collection_response.BusinessFlowTemplateCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class BusinessFlowTemplatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, business_flow_template_collection_response.BusinessFlowTemplateCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, business_flow_template_collection_response.BusinessFlowTemplateCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[business_flow_template.BusinessFlowTemplate] = None, request_configuration: Optional[BusinessFlowTemplatesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[business_flow_template.BusinessFlowTemplate]:
+    async def post(self,body: Optional[business_flow_template.BusinessFlowTemplate] = None, request_configuration: Optional[BusinessFlowTemplatesRequestBuilderPostRequestConfiguration] = None) -> Optional[business_flow_template.BusinessFlowTemplate]:
         """
         Add new entity to businessFlowTemplates
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[business_flow_template.BusinessFlowTemplate]
         """
         if body is None:
@@ -83,7 +81,7 @@ class BusinessFlowTemplatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, business_flow_template.BusinessFlowTemplate, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, business_flow_template.BusinessFlowTemplate, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[BusinessFlowTemplatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

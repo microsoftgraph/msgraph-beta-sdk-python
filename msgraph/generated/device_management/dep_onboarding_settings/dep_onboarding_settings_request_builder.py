@@ -45,12 +45,11 @@ class DepOnboardingSettingsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DepOnboardingSettingsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[dep_onboarding_setting_collection_response.DepOnboardingSettingCollectionResponse]:
+    async def get(self,request_configuration: Optional[DepOnboardingSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[dep_onboarding_setting_collection_response.DepOnboardingSettingCollectionResponse]:
         """
         This collections of multiple DEP tokens per-tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[dep_onboarding_setting_collection_response.DepOnboardingSettingCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -62,7 +61,7 @@ class DepOnboardingSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, dep_onboarding_setting_collection_response.DepOnboardingSettingCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, dep_onboarding_setting_collection_response.DepOnboardingSettingCollectionResponse, error_mapping)
     
     def get_expiring_vpp_token_count_with_expiring_before_date_time(self,expiring_before_date_time: Optional[str] = None) -> get_expiring_vpp_token_count_with_expiring_before_date_time_request_builder.GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder:
         """
@@ -75,13 +74,12 @@ class DepOnboardingSettingsRequestBuilder():
             raise Exception("expiring_before_date_time cannot be undefined")
         return get_expiring_vpp_token_count_with_expiring_before_date_time_request_builder.GetExpiringVppTokenCountWithExpiringBeforeDateTimeRequestBuilder(self.request_adapter, self.path_parameters, expiringBeforeDateTime)
     
-    async def post(self,body: Optional[dep_onboarding_setting.DepOnboardingSetting] = None, request_configuration: Optional[DepOnboardingSettingsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[dep_onboarding_setting.DepOnboardingSetting]:
+    async def post(self,body: Optional[dep_onboarding_setting.DepOnboardingSetting] = None, request_configuration: Optional[DepOnboardingSettingsRequestBuilderPostRequestConfiguration] = None) -> Optional[dep_onboarding_setting.DepOnboardingSetting]:
         """
         Create new navigation property to depOnboardingSettings for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[dep_onboarding_setting.DepOnboardingSetting]
         """
         if body is None:
@@ -95,7 +93,7 @@ class DepOnboardingSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, dep_onboarding_setting.DepOnboardingSetting, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, dep_onboarding_setting.DepOnboardingSetting, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DepOnboardingSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

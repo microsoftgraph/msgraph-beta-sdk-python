@@ -9,9 +9,6 @@ device_management_partner_tenant_state = lazy_import('msgraph.generated.models.d
 entity = lazy_import('msgraph.generated.models.entity')
 
 class ComplianceManagementPartner(entity.Entity):
-    """
-    Compliance management partner for all platforms
-    """
     @property
     def android_enrollment_assignments(self,) -> Optional[List[compliance_management_partner_assignment.ComplianceManagementPartnerAssignment]]:
         """
@@ -48,7 +45,7 @@ class ComplianceManagementPartner(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new complianceManagementPartner and sets the default values.
+        Instantiates a new ComplianceManagementPartner and sets the default values.
         """
         super().__init__()
         # User groups which enroll Android devices through partner.

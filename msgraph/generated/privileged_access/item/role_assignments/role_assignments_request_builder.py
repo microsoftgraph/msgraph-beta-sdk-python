@@ -52,12 +52,11 @@ class RoleAssignmentsRequestBuilder():
         """
         return export_request_builder.ExportRequestBuilder(self.request_adapter, self.path_parameters)
     
-    async def get(self,request_configuration: Optional[RoleAssignmentsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_role_assignment_collection_response.GovernanceRoleAssignmentCollectionResponse]:
+    async def get(self,request_configuration: Optional[RoleAssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_role_assignment_collection_response.GovernanceRoleAssignmentCollectionResponse]:
         """
         A collection of role assignments for the provider.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_role_assignment_collection_response.GovernanceRoleAssignmentCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class RoleAssignmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_role_assignment_collection_response.GovernanceRoleAssignmentCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_role_assignment_collection_response.GovernanceRoleAssignmentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[governance_role_assignment.GovernanceRoleAssignment] = None, request_configuration: Optional[RoleAssignmentsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_role_assignment.GovernanceRoleAssignment]:
+    async def post(self,body: Optional[governance_role_assignment.GovernanceRoleAssignment] = None, request_configuration: Optional[RoleAssignmentsRequestBuilderPostRequestConfiguration] = None) -> Optional[governance_role_assignment.GovernanceRoleAssignment]:
         """
         Create new navigation property to roleAssignments for privilegedAccess
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_role_assignment.GovernanceRoleAssignment]
         """
         if body is None:
@@ -91,7 +89,7 @@ class RoleAssignmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_role_assignment.GovernanceRoleAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_role_assignment.GovernanceRoleAssignment, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RoleAssignmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

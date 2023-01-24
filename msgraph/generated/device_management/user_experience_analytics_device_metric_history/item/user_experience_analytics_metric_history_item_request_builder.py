@@ -35,12 +35,11 @@ class UserExperienceAnalyticsMetricHistoryItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[UserExperienceAnalyticsMetricHistoryItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[UserExperienceAnalyticsMetricHistoryItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property userExperienceAnalyticsDeviceMetricHistory for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class UserExperienceAnalyticsMetricHistoryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsMetricHistoryItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_metric_history.UserExperienceAnalyticsMetricHistory]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsMetricHistoryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_metric_history.UserExperienceAnalyticsMetricHistory]:
         """
         User experience analytics device metric history
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_metric_history.UserExperienceAnalyticsMetricHistory]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class UserExperienceAnalyticsMetricHistoryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_metric_history.UserExperienceAnalyticsMetricHistory, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_metric_history.UserExperienceAnalyticsMetricHistory, error_mapping)
     
-    async def patch(self,body: Optional[user_experience_analytics_metric_history.UserExperienceAnalyticsMetricHistory] = None, request_configuration: Optional[UserExperienceAnalyticsMetricHistoryItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_metric_history.UserExperienceAnalyticsMetricHistory]:
+    async def patch(self,body: Optional[user_experience_analytics_metric_history.UserExperienceAnalyticsMetricHistory] = None, request_configuration: Optional[UserExperienceAnalyticsMetricHistoryItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[user_experience_analytics_metric_history.UserExperienceAnalyticsMetricHistory]:
         """
         Update the navigation property userExperienceAnalyticsDeviceMetricHistory in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_metric_history.UserExperienceAnalyticsMetricHistory]
         """
         if body is None:
@@ -92,7 +89,7 @@ class UserExperienceAnalyticsMetricHistoryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_metric_history.UserExperienceAnalyticsMetricHistory, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_metric_history.UserExperienceAnalyticsMetricHistory, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UserExperienceAnalyticsMetricHistoryItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

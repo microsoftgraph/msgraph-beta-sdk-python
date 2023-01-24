@@ -44,12 +44,11 @@ class AccessPackageResourcesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AccessPackageResourcesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_resource_collection_response.AccessPackageResourceCollectionResponse]:
+    async def get(self,request_configuration: Optional[AccessPackageResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_resource_collection_response.AccessPackageResourceCollectionResponse]:
         """
         A reference to a resource associated with an access package catalog.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_resource_collection_response.AccessPackageResourceCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class AccessPackageResourcesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_resource_collection_response.AccessPackageResourceCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_resource_collection_response.AccessPackageResourceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[access_package_resource.AccessPackageResource] = None, request_configuration: Optional[AccessPackageResourcesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_resource.AccessPackageResource]:
+    async def post(self,body: Optional[access_package_resource.AccessPackageResource] = None, request_configuration: Optional[AccessPackageResourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[access_package_resource.AccessPackageResource]:
         """
         Create new navigation property to accessPackageResources for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_resource.AccessPackageResource]
         """
         if body is None:
@@ -83,7 +81,7 @@ class AccessPackageResourcesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_resource.AccessPackageResource, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_resource.AccessPackageResource, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageResourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

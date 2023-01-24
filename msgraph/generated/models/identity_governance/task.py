@@ -45,7 +45,7 @@ class Task(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new task and sets the default values.
+        Instantiates a new Task and sets the default values.
         """
         super().__init__()
         # Arguments included within the task.  For guidance to configure this property, see Configure the arguments for built-in Lifecycle Workflow tasks. Required.

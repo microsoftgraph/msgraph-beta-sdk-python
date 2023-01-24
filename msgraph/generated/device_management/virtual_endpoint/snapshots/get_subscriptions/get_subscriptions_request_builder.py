@@ -35,12 +35,11 @@ class GetSubscriptionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[GetSubscriptionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[get_subscriptions_response.GetSubscriptionsResponse]:
+    async def get(self,request_configuration: Optional[GetSubscriptionsRequestBuilderGetRequestConfiguration] = None) -> Optional[get_subscriptions_response.GetSubscriptionsResponse]:
         """
         Invoke function getSubscriptions
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[get_subscriptions_response.GetSubscriptionsResponse]
         """
         request_info = self.to_get_request_information(
@@ -52,7 +51,7 @@ class GetSubscriptionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, get_subscriptions_response.GetSubscriptionsResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, get_subscriptions_response.GetSubscriptionsResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetSubscriptionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

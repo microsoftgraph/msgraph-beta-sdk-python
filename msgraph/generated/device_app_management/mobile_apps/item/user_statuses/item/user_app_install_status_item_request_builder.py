@@ -52,12 +52,11 @@ class UserAppInstallStatusItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[UserAppInstallStatusItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[UserAppInstallStatusItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property userStatuses for deviceAppManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -68,7 +67,7 @@ class UserAppInstallStatusItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def device_statuses_by_id(self,id: str) -> mobile_app_install_status_item_request_builder.MobileAppInstallStatusItemRequestBuilder:
         """
@@ -83,12 +82,11 @@ class UserAppInstallStatusItemRequestBuilder():
         url_tpl_params["mobileAppInstallStatus%2Did"] = id
         return mobile_app_install_status_item_request_builder.MobileAppInstallStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[UserAppInstallStatusItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_app_install_status.UserAppInstallStatus]:
+    async def get(self,request_configuration: Optional[UserAppInstallStatusItemRequestBuilderGetRequestConfiguration] = None) -> Optional[user_app_install_status.UserAppInstallStatus]:
         """
         The list of installation states for this mobile app.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_app_install_status.UserAppInstallStatus]
         """
         request_info = self.to_get_request_information(
@@ -100,15 +98,14 @@ class UserAppInstallStatusItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_app_install_status.UserAppInstallStatus, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_app_install_status.UserAppInstallStatus, error_mapping)
     
-    async def patch(self,body: Optional[user_app_install_status.UserAppInstallStatus] = None, request_configuration: Optional[UserAppInstallStatusItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_app_install_status.UserAppInstallStatus]:
+    async def patch(self,body: Optional[user_app_install_status.UserAppInstallStatus] = None, request_configuration: Optional[UserAppInstallStatusItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[user_app_install_status.UserAppInstallStatus]:
         """
         Update the navigation property userStatuses in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_app_install_status.UserAppInstallStatus]
         """
         if body is None:
@@ -122,7 +119,7 @@ class UserAppInstallStatusItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_app_install_status.UserAppInstallStatus, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_app_install_status.UserAppInstallStatus, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UserAppInstallStatusItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -44,12 +44,11 @@ class LogCollectionRequestsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[LogCollectionRequestsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_log_collection_response_collection_response.DeviceLogCollectionResponseCollectionResponse]:
+    async def get(self,request_configuration: Optional[LogCollectionRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_log_collection_response_collection_response.DeviceLogCollectionResponseCollectionResponse]:
         """
         List of log collection requests
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_log_collection_response_collection_response.DeviceLogCollectionResponseCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class LogCollectionRequestsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_log_collection_response_collection_response.DeviceLogCollectionResponseCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_log_collection_response_collection_response.DeviceLogCollectionResponseCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[device_log_collection_response.DeviceLogCollectionResponse] = None, request_configuration: Optional[LogCollectionRequestsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_log_collection_response.DeviceLogCollectionResponse]:
+    async def post(self,body: Optional[device_log_collection_response.DeviceLogCollectionResponse] = None, request_configuration: Optional[LogCollectionRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[device_log_collection_response.DeviceLogCollectionResponse]:
         """
         Create new navigation property to logCollectionRequests for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_log_collection_response.DeviceLogCollectionResponse]
         """
         if body is None:
@@ -83,7 +81,7 @@ class LogCollectionRequestsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_log_collection_response.DeviceLogCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_log_collection_response.DeviceLogCollectionResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[LogCollectionRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

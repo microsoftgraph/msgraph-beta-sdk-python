@@ -44,12 +44,11 @@ class ActivitiesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ActivitiesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[external_activity_collection_response.ExternalActivityCollectionResponse]:
+    async def get(self,request_configuration: Optional[ActivitiesRequestBuilderGetRequestConfiguration] = None) -> Optional[external_activity_collection_response.ExternalActivityCollectionResponse]:
         """
         Write-only property. Returns results.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[external_activity_collection_response.ExternalActivityCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class ActivitiesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, external_activity_collection_response.ExternalActivityCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, external_activity_collection_response.ExternalActivityCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[external_activity.ExternalActivity] = None, request_configuration: Optional[ActivitiesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[external_activity.ExternalActivity]:
+    async def post(self,body: Optional[external_activity.ExternalActivity] = None, request_configuration: Optional[ActivitiesRequestBuilderPostRequestConfiguration] = None) -> Optional[external_activity.ExternalActivity]:
         """
         Create new navigation property to activities for external
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[external_activity.ExternalActivity]
         """
         if body is None:
@@ -83,7 +81,7 @@ class ActivitiesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, external_activity.ExternalActivity, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, external_activity.ExternalActivity, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ActivitiesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

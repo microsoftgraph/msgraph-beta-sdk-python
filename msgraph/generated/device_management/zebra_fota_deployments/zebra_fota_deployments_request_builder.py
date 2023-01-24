@@ -44,12 +44,11 @@ class ZebraFotaDeploymentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ZebraFotaDeploymentsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[zebra_fota_deployment_collection_response.ZebraFotaDeploymentCollectionResponse]:
+    async def get(self,request_configuration: Optional[ZebraFotaDeploymentsRequestBuilderGetRequestConfiguration] = None) -> Optional[zebra_fota_deployment_collection_response.ZebraFotaDeploymentCollectionResponse]:
         """
         Collection of ZebraFotaDeployments associated with account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[zebra_fota_deployment_collection_response.ZebraFotaDeploymentCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class ZebraFotaDeploymentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, zebra_fota_deployment_collection_response.ZebraFotaDeploymentCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, zebra_fota_deployment_collection_response.ZebraFotaDeploymentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[zebra_fota_deployment.ZebraFotaDeployment] = None, request_configuration: Optional[ZebraFotaDeploymentsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[zebra_fota_deployment.ZebraFotaDeployment]:
+    async def post(self,body: Optional[zebra_fota_deployment.ZebraFotaDeployment] = None, request_configuration: Optional[ZebraFotaDeploymentsRequestBuilderPostRequestConfiguration] = None) -> Optional[zebra_fota_deployment.ZebraFotaDeployment]:
         """
         Create new navigation property to zebraFotaDeployments for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[zebra_fota_deployment.ZebraFotaDeployment]
         """
         if body is None:
@@ -83,7 +81,7 @@ class ZebraFotaDeploymentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, zebra_fota_deployment.ZebraFotaDeployment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, zebra_fota_deployment.ZebraFotaDeployment, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ZebraFotaDeploymentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

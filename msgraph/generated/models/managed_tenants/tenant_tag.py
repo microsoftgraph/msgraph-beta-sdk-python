@@ -10,7 +10,7 @@ tenant_info = lazy_import('msgraph.generated.models.managed_tenants.tenant_info'
 class TenantTag(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new tenantTag and sets the default values.
+        Instantiates a new TenantTag and sets the default values.
         """
         super().__init__()
         # The identifier for the account that created the tenant tag. Required. Read-only.

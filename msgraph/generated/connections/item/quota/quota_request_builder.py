@@ -35,12 +35,11 @@ class QuotaRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[QuotaRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[QuotaRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property quota for connections
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class QuotaRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[QuotaRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[connection_quota.ConnectionQuota]:
+    async def get(self,request_configuration: Optional[QuotaRequestBuilderGetRequestConfiguration] = None) -> Optional[connection_quota.ConnectionQuota]:
         """
         Retrieve the properties and relationships of a connectionQuota object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[connection_quota.ConnectionQuota]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class QuotaRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, connection_quota.ConnectionQuota, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, connection_quota.ConnectionQuota, error_mapping)
     
-    async def patch(self,body: Optional[connection_quota.ConnectionQuota] = None, request_configuration: Optional[QuotaRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[connection_quota.ConnectionQuota]:
+    async def patch(self,body: Optional[connection_quota.ConnectionQuota] = None, request_configuration: Optional[QuotaRequestBuilderPatchRequestConfiguration] = None) -> Optional[connection_quota.ConnectionQuota]:
         """
         Update the navigation property quota in connections
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[connection_quota.ConnectionQuota]
         """
         if body is None:
@@ -92,7 +89,7 @@ class QuotaRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, connection_quota.ConnectionQuota, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, connection_quota.ConnectionQuota, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[QuotaRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -69,12 +69,11 @@ class PrivilegedSignupStatusRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PrivilegedSignupStatusRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_signup_status_collection_response.PrivilegedSignupStatusCollectionResponse]:
+    async def get(self,request_configuration: Optional[PrivilegedSignupStatusRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_signup_status_collection_response.PrivilegedSignupStatusCollectionResponse]:
         """
         Get entities from privilegedSignupStatus
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_signup_status_collection_response.PrivilegedSignupStatusCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -86,7 +85,7 @@ class PrivilegedSignupStatusRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_signup_status_collection_response.PrivilegedSignupStatusCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_signup_status_collection_response.PrivilegedSignupStatusCollectionResponse, error_mapping)
     
     def is_signed_up(self,) -> is_signed_up_request_builder.IsSignedUpRequestBuilder:
         """
@@ -95,13 +94,12 @@ class PrivilegedSignupStatusRequestBuilder():
         """
         return is_signed_up_request_builder.IsSignedUpRequestBuilder(self.request_adapter, self.path_parameters)
     
-    async def post(self,body: Optional[privileged_signup_status.PrivilegedSignupStatus] = None, request_configuration: Optional[PrivilegedSignupStatusRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_signup_status.PrivilegedSignupStatus]:
+    async def post(self,body: Optional[privileged_signup_status.PrivilegedSignupStatus] = None, request_configuration: Optional[PrivilegedSignupStatusRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_signup_status.PrivilegedSignupStatus]:
         """
         Add new entity to privilegedSignupStatus
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_signup_status.PrivilegedSignupStatus]
         """
         if body is None:
@@ -115,7 +113,7 @@ class PrivilegedSignupStatusRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_signup_status.PrivilegedSignupStatus, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_signup_status.PrivilegedSignupStatus, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedSignupStatusRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

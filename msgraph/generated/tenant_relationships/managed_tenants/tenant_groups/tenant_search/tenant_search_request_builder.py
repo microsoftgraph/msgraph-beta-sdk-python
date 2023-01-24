@@ -36,13 +36,12 @@ class TenantSearchRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[tenant_search_post_request_body.TenantSearchPostRequestBody] = None, request_configuration: Optional[TenantSearchRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant_search_response.TenantSearchResponse]:
+    async def post(self,body: Optional[tenant_search_post_request_body.TenantSearchPostRequestBody] = None, request_configuration: Optional[TenantSearchRequestBuilderPostRequestConfiguration] = None) -> Optional[tenant_search_response.TenantSearchResponse]:
         """
         Invoke action tenantSearch
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_search_response.TenantSearchResponse]
         """
         if body is None:
@@ -56,7 +55,7 @@ class TenantSearchRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant_search_response.TenantSearchResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant_search_response.TenantSearchResponse, error_mapping)
     
     def to_post_request_information(self,body: Optional[tenant_search_post_request_body.TenantSearchPostRequestBody] = None, request_configuration: Optional[TenantSearchRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

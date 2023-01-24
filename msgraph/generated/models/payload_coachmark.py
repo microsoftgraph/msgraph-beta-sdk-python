@@ -26,7 +26,7 @@ class PayloadCoachmark(AdditionalDataHolder, Parsable):
     @property
     def coachmark_location(self,) -> Optional[coachmark_location.CoachmarkLocation]:
         """
-        Gets the coachmarkLocation property value. The coachmarkLocation property
+        Gets the coachmarkLocation property value. The coachmark location.
         Returns: Optional[coachmark_location.CoachmarkLocation]
         """
         return self._coachmark_location
@@ -34,7 +34,7 @@ class PayloadCoachmark(AdditionalDataHolder, Parsable):
     @coachmark_location.setter
     def coachmark_location(self,value: Optional[coachmark_location.CoachmarkLocation] = None) -> None:
         """
-        Sets the coachmarkLocation property value. The coachmarkLocation property
+        Sets the coachmarkLocation property value. The coachmark location.
         Args:
             value: Value to set for the coachmarkLocation property.
         """
@@ -47,19 +47,19 @@ class PayloadCoachmark(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The coachmarkLocation property
+        # The coachmark location.
         self._coachmark_location: Optional[coachmark_location.CoachmarkLocation] = None
-        # The description property
+        # The description about the coachmark.
         self._description: Optional[str] = None
-        # The indicator property
+        # The coachmark indicator.
         self._indicator: Optional[str] = None
-        # The isValid property
+        # Indicates whether the coachmark is valid or not.
         self._is_valid: Optional[bool] = None
-        # The language property
+        # The coachmark language.
         self._language: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The order property
+        # The coachmark order.
         self._order: Optional[str] = None
     
     @staticmethod
@@ -77,7 +77,7 @@ class PayloadCoachmark(AdditionalDataHolder, Parsable):
     @property
     def description(self,) -> Optional[str]:
         """
-        Gets the description property value. The description property
+        Gets the description property value. The description about the coachmark.
         Returns: Optional[str]
         """
         return self._description
@@ -85,7 +85,7 @@ class PayloadCoachmark(AdditionalDataHolder, Parsable):
     @description.setter
     def description(self,value: Optional[str] = None) -> None:
         """
-        Sets the description property value. The description property
+        Sets the description property value. The description about the coachmark.
         Args:
             value: Value to set for the description property.
         """
@@ -110,7 +110,7 @@ class PayloadCoachmark(AdditionalDataHolder, Parsable):
     @property
     def indicator(self,) -> Optional[str]:
         """
-        Gets the indicator property value. The indicator property
+        Gets the indicator property value. The coachmark indicator.
         Returns: Optional[str]
         """
         return self._indicator
@@ -118,7 +118,7 @@ class PayloadCoachmark(AdditionalDataHolder, Parsable):
     @indicator.setter
     def indicator(self,value: Optional[str] = None) -> None:
         """
-        Sets the indicator property value. The indicator property
+        Sets the indicator property value. The coachmark indicator.
         Args:
             value: Value to set for the indicator property.
         """
@@ -127,7 +127,7 @@ class PayloadCoachmark(AdditionalDataHolder, Parsable):
     @property
     def is_valid(self,) -> Optional[bool]:
         """
-        Gets the isValid property value. The isValid property
+        Gets the isValid property value. Indicates whether the coachmark is valid or not.
         Returns: Optional[bool]
         """
         return self._is_valid
@@ -135,7 +135,7 @@ class PayloadCoachmark(AdditionalDataHolder, Parsable):
     @is_valid.setter
     def is_valid(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isValid property value. The isValid property
+        Sets the isValid property value. Indicates whether the coachmark is valid or not.
         Args:
             value: Value to set for the isValid property.
         """
@@ -144,7 +144,7 @@ class PayloadCoachmark(AdditionalDataHolder, Parsable):
     @property
     def language(self,) -> Optional[str]:
         """
-        Gets the language property value. The language property
+        Gets the language property value. The coachmark language.
         Returns: Optional[str]
         """
         return self._language
@@ -152,7 +152,7 @@ class PayloadCoachmark(AdditionalDataHolder, Parsable):
     @language.setter
     def language(self,value: Optional[str] = None) -> None:
         """
-        Sets the language property value. The language property
+        Sets the language property value. The coachmark language.
         Args:
             value: Value to set for the language property.
         """
@@ -178,7 +178,7 @@ class PayloadCoachmark(AdditionalDataHolder, Parsable):
     @property
     def order(self,) -> Optional[str]:
         """
-        Gets the order property value. The order property
+        Gets the order property value. The coachmark order.
         Returns: Optional[str]
         """
         return self._order
@@ -186,7 +186,7 @@ class PayloadCoachmark(AdditionalDataHolder, Parsable):
     @order.setter
     def order(self,value: Optional[str] = None) -> None:
         """
-        Sets the order property value. The order property
+        Sets the order property value. The coachmark order.
         Args:
             value: Value to set for the order property.
         """

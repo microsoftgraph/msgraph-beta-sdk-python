@@ -131,12 +131,11 @@ class InformationProtectionRequestBuilder():
         url_tpl_params["dataLossPreventionPolicy%2Did"] = id
         return data_loss_prevention_policy_item_request_builder.DataLossPreventionPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[InformationProtectionRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[InformationProtectionRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property informationProtection for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -147,14 +146,13 @@ class InformationProtectionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[InformationProtectionRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[information_protection.InformationProtection]:
+    async def get(self,request_configuration: Optional[InformationProtectionRequestBuilderGetRequestConfiguration] = None) -> Optional[information_protection.InformationProtection]:
         """
         Get informationProtection from me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[information_protection.InformationProtection]
         """
         request_info = self.to_get_request_information(
@@ -166,15 +164,14 @@ class InformationProtectionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, information_protection.InformationProtection, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, information_protection.InformationProtection, error_mapping)
     
-    async def patch(self,body: Optional[information_protection.InformationProtection] = None, request_configuration: Optional[InformationProtectionRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[information_protection.InformationProtection]:
+    async def patch(self,body: Optional[information_protection.InformationProtection] = None, request_configuration: Optional[InformationProtectionRequestBuilderPatchRequestConfiguration] = None) -> Optional[information_protection.InformationProtection]:
         """
         Update the navigation property informationProtection in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[information_protection.InformationProtection]
         """
         if body is None:
@@ -188,7 +185,7 @@ class InformationProtectionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, information_protection.InformationProtection, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, information_protection.InformationProtection, error_mapping)
     
     def sensitivity_labels_by_id(self,id: str) -> sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder:
         """

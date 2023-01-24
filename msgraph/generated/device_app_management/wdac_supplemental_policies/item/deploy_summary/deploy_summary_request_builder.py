@@ -35,12 +35,11 @@ class DeploySummaryRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DeploySummaryRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeploySummaryRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property deploySummary for deviceAppManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class DeploySummaryRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeploySummaryRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_defender_application_control_supplemental_policy_deployment_summary.WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary]:
+    async def get(self,request_configuration: Optional[DeploySummaryRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_defender_application_control_supplemental_policy_deployment_summary.WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary]:
         """
         WindowsDefenderApplicationControl supplemental policy deployment summary.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_defender_application_control_supplemental_policy_deployment_summary.WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class DeploySummaryRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_defender_application_control_supplemental_policy_deployment_summary.WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_defender_application_control_supplemental_policy_deployment_summary.WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary, error_mapping)
     
-    async def patch(self,body: Optional[windows_defender_application_control_supplemental_policy_deployment_summary.WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary] = None, request_configuration: Optional[DeploySummaryRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_defender_application_control_supplemental_policy_deployment_summary.WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary]:
+    async def patch(self,body: Optional[windows_defender_application_control_supplemental_policy_deployment_summary.WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary] = None, request_configuration: Optional[DeploySummaryRequestBuilderPatchRequestConfiguration] = None) -> Optional[windows_defender_application_control_supplemental_policy_deployment_summary.WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary]:
         """
         Update the navigation property deploySummary in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_defender_application_control_supplemental_policy_deployment_summary.WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary]
         """
         if body is None:
@@ -92,7 +89,7 @@ class DeploySummaryRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_defender_application_control_supplemental_policy_deployment_summary.WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_defender_application_control_supplemental_policy_deployment_summary.WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeploySummaryRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

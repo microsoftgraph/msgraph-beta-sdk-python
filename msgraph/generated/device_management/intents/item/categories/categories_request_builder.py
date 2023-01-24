@@ -44,12 +44,11 @@ class CategoriesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CategoriesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_intent_setting_category_collection_response.DeviceManagementIntentSettingCategoryCollectionResponse]:
+    async def get(self,request_configuration: Optional[CategoriesRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_intent_setting_category_collection_response.DeviceManagementIntentSettingCategoryCollectionResponse]:
         """
         Collection of setting categories within the intent
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_intent_setting_category_collection_response.DeviceManagementIntentSettingCategoryCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class CategoriesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_intent_setting_category_collection_response.DeviceManagementIntentSettingCategoryCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_intent_setting_category_collection_response.DeviceManagementIntentSettingCategoryCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[device_management_intent_setting_category.DeviceManagementIntentSettingCategory] = None, request_configuration: Optional[CategoriesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_intent_setting_category.DeviceManagementIntentSettingCategory]:
+    async def post(self,body: Optional[device_management_intent_setting_category.DeviceManagementIntentSettingCategory] = None, request_configuration: Optional[CategoriesRequestBuilderPostRequestConfiguration] = None) -> Optional[device_management_intent_setting_category.DeviceManagementIntentSettingCategory]:
         """
         Create new navigation property to categories for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_intent_setting_category.DeviceManagementIntentSettingCategory]
         """
         if body is None:
@@ -83,7 +81,7 @@ class CategoriesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_intent_setting_category.DeviceManagementIntentSettingCategory, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_intent_setting_category.DeviceManagementIntentSettingCategory, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CategoriesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

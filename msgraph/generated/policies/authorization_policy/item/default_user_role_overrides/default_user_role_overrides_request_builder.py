@@ -44,12 +44,11 @@ class DefaultUserRoleOverridesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DefaultUserRoleOverridesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[default_user_role_override_collection_response.DefaultUserRoleOverrideCollectionResponse]:
+    async def get(self,request_configuration: Optional[DefaultUserRoleOverridesRequestBuilderGetRequestConfiguration] = None) -> Optional[default_user_role_override_collection_response.DefaultUserRoleOverrideCollectionResponse]:
         """
         Get defaultUserRoleOverrides from policies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[default_user_role_override_collection_response.DefaultUserRoleOverrideCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class DefaultUserRoleOverridesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, default_user_role_override_collection_response.DefaultUserRoleOverrideCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, default_user_role_override_collection_response.DefaultUserRoleOverrideCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[default_user_role_override.DefaultUserRoleOverride] = None, request_configuration: Optional[DefaultUserRoleOverridesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[default_user_role_override.DefaultUserRoleOverride]:
+    async def post(self,body: Optional[default_user_role_override.DefaultUserRoleOverride] = None, request_configuration: Optional[DefaultUserRoleOverridesRequestBuilderPostRequestConfiguration] = None) -> Optional[default_user_role_override.DefaultUserRoleOverride]:
         """
         Create new navigation property to defaultUserRoleOverrides for policies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[default_user_role_override.DefaultUserRoleOverride]
         """
         if body is None:
@@ -83,7 +81,7 @@ class DefaultUserRoleOverridesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, default_user_role_override.DefaultUserRoleOverride, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, default_user_role_override.DefaultUserRoleOverride, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DefaultUserRoleOverridesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

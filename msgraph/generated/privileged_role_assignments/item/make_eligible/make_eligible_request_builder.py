@@ -35,12 +35,11 @@ class MakeEligibleRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,request_configuration: Optional[MakeEligibleRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_role_assignment.PrivilegedRoleAssignment]:
+    async def post(self,request_configuration: Optional[MakeEligibleRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_role_assignment.PrivilegedRoleAssignment]:
         """
         Make the role assignment eligible. If the role assignment is already eligible before the call, it does nothing. If the role assignment is permanent and the requestor is different from the target user, the role assignment will become eligible and the role will be deactivated for the target user. If the requestor is the target user and the role is Security Administrator or Privileged Role Administrator, the role will be activated with the default expiration.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_role_assignment.PrivilegedRoleAssignment]
         """
         request_info = self.to_post_request_information(
@@ -52,7 +51,7 @@ class MakeEligibleRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_role_assignment.PrivilegedRoleAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_role_assignment.PrivilegedRoleAssignment, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[MakeEligibleRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

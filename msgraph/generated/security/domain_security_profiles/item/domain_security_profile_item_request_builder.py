@@ -35,12 +35,11 @@ class DomainSecurityProfileItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DomainSecurityProfileItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DomainSecurityProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property domainSecurityProfiles for security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class DomainSecurityProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DomainSecurityProfileItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[domain_security_profile.DomainSecurityProfile]:
+    async def get(self,request_configuration: Optional[DomainSecurityProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[domain_security_profile.DomainSecurityProfile]:
         """
         Get domainSecurityProfiles from security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[domain_security_profile.DomainSecurityProfile]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class DomainSecurityProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, domain_security_profile.DomainSecurityProfile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, domain_security_profile.DomainSecurityProfile, error_mapping)
     
-    async def patch(self,body: Optional[domain_security_profile.DomainSecurityProfile] = None, request_configuration: Optional[DomainSecurityProfileItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[domain_security_profile.DomainSecurityProfile]:
+    async def patch(self,body: Optional[domain_security_profile.DomainSecurityProfile] = None, request_configuration: Optional[DomainSecurityProfileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[domain_security_profile.DomainSecurityProfile]:
         """
         Update the navigation property domainSecurityProfiles in security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[domain_security_profile.DomainSecurityProfile]
         """
         if body is None:
@@ -92,7 +89,7 @@ class DomainSecurityProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, domain_security_profile.DomainSecurityProfile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, domain_security_profile.DomainSecurityProfile, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DomainSecurityProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

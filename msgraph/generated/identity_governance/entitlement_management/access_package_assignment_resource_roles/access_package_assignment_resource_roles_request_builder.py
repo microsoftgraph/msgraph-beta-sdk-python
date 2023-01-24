@@ -45,12 +45,11 @@ class AccessPackageAssignmentResourceRolesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AccessPackageAssignmentResourceRolesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_assignment_resource_role_collection_response.AccessPackageAssignmentResourceRoleCollectionResponse]:
+    async def get(self,request_configuration: Optional[AccessPackageAssignmentResourceRolesRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_assignment_resource_role_collection_response.AccessPackageAssignmentResourceRoleCollectionResponse]:
         """
         Retrieve a list of accessPackageAssignmentResourceRole objects.  The resulting list includes all the resource roles of all assignments that the caller has access to read, across all catalogs and access packages.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_assignment_resource_role_collection_response.AccessPackageAssignmentResourceRoleCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -62,7 +61,7 @@ class AccessPackageAssignmentResourceRolesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_assignment_resource_role_collection_response.AccessPackageAssignmentResourceRoleCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_assignment_resource_role_collection_response.AccessPackageAssignmentResourceRoleCollectionResponse, error_mapping)
     
     def my(self,) -> my_request_builder.MyRequestBuilder:
         """
@@ -71,13 +70,12 @@ class AccessPackageAssignmentResourceRolesRequestBuilder():
         """
         return my_request_builder.MyRequestBuilder(self.request_adapter, self.path_parameters)
     
-    async def post(self,body: Optional[access_package_assignment_resource_role.AccessPackageAssignmentResourceRole] = None, request_configuration: Optional[AccessPackageAssignmentResourceRolesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_assignment_resource_role.AccessPackageAssignmentResourceRole]:
+    async def post(self,body: Optional[access_package_assignment_resource_role.AccessPackageAssignmentResourceRole] = None, request_configuration: Optional[AccessPackageAssignmentResourceRolesRequestBuilderPostRequestConfiguration] = None) -> Optional[access_package_assignment_resource_role.AccessPackageAssignmentResourceRole]:
         """
         Create new navigation property to accessPackageAssignmentResourceRoles for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_assignment_resource_role.AccessPackageAssignmentResourceRole]
         """
         if body is None:
@@ -91,7 +89,7 @@ class AccessPackageAssignmentResourceRolesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_assignment_resource_role.AccessPackageAssignmentResourceRole, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_assignment_resource_role.AccessPackageAssignmentResourceRole, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageAssignmentResourceRolesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

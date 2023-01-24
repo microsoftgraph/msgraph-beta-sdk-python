@@ -44,12 +44,11 @@ class MicrosoftTunnelSitesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[MicrosoftTunnelSitesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[microsoft_tunnel_site_collection_response.MicrosoftTunnelSiteCollectionResponse]:
+    async def get(self,request_configuration: Optional[MicrosoftTunnelSitesRequestBuilderGetRequestConfiguration] = None) -> Optional[microsoft_tunnel_site_collection_response.MicrosoftTunnelSiteCollectionResponse]:
         """
         Collection of MicrosoftTunnelSite settings associated with account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[microsoft_tunnel_site_collection_response.MicrosoftTunnelSiteCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class MicrosoftTunnelSitesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, microsoft_tunnel_site_collection_response.MicrosoftTunnelSiteCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, microsoft_tunnel_site_collection_response.MicrosoftTunnelSiteCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[microsoft_tunnel_site.MicrosoftTunnelSite] = None, request_configuration: Optional[MicrosoftTunnelSitesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[microsoft_tunnel_site.MicrosoftTunnelSite]:
+    async def post(self,body: Optional[microsoft_tunnel_site.MicrosoftTunnelSite] = None, request_configuration: Optional[MicrosoftTunnelSitesRequestBuilderPostRequestConfiguration] = None) -> Optional[microsoft_tunnel_site.MicrosoftTunnelSite]:
         """
         Create new navigation property to microsoftTunnelSites for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[microsoft_tunnel_site.MicrosoftTunnelSite]
         """
         if body is None:
@@ -83,7 +81,7 @@ class MicrosoftTunnelSitesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, microsoft_tunnel_site.MicrosoftTunnelSite, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, microsoft_tunnel_site.MicrosoftTunnelSite, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[MicrosoftTunnelSitesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

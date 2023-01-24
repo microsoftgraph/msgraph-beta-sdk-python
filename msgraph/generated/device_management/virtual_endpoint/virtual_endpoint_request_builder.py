@@ -194,12 +194,11 @@ class VirtualEndpointRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[VirtualEndpointRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[VirtualEndpointRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property virtualEndpoint for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -210,7 +209,7 @@ class VirtualEndpointRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def device_images_by_id(self,id: str) -> cloud_pc_device_image_item_request_builder.CloudPcDeviceImageItemRequestBuilder:
         """
@@ -251,12 +250,11 @@ class VirtualEndpointRequestBuilder():
         url_tpl_params["cloudPcGalleryImage%2Did"] = id
         return cloud_pc_gallery_image_item_request_builder.CloudPcGalleryImageItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[VirtualEndpointRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[virtual_endpoint.VirtualEndpoint]:
+    async def get(self,request_configuration: Optional[VirtualEndpointRequestBuilderGetRequestConfiguration] = None) -> Optional[virtual_endpoint.VirtualEndpoint]:
         """
         Get virtualEndpoint from deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[virtual_endpoint.VirtualEndpoint]
         """
         request_info = self.to_get_request_information(
@@ -268,7 +266,7 @@ class VirtualEndpointRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, virtual_endpoint.VirtualEndpoint, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, virtual_endpoint.VirtualEndpoint, error_mapping)
     
     def get_effective_permissions(self,) -> get_effective_permissions_request_builder.GetEffectivePermissionsRequestBuilder:
         """
@@ -290,13 +288,12 @@ class VirtualEndpointRequestBuilder():
         url_tpl_params["cloudPcOnPremisesConnection%2Did"] = id
         return cloud_pc_on_premises_connection_item_request_builder.CloudPcOnPremisesConnectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[virtual_endpoint.VirtualEndpoint] = None, request_configuration: Optional[VirtualEndpointRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[virtual_endpoint.VirtualEndpoint]:
+    async def patch(self,body: Optional[virtual_endpoint.VirtualEndpoint] = None, request_configuration: Optional[VirtualEndpointRequestBuilderPatchRequestConfiguration] = None) -> Optional[virtual_endpoint.VirtualEndpoint]:
         """
         Update the navigation property virtualEndpoint in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[virtual_endpoint.VirtualEndpoint]
         """
         if body is None:
@@ -310,7 +307,7 @@ class VirtualEndpointRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, virtual_endpoint.VirtualEndpoint, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, virtual_endpoint.VirtualEndpoint, error_mapping)
     
     def provisioning_policies_by_id(self,id: str) -> cloud_pc_provisioning_policy_item_request_builder.CloudPcProvisioningPolicyItemRequestBuilder:
         """

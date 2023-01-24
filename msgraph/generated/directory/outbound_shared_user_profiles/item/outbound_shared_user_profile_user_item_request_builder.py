@@ -44,12 +44,11 @@ class OutboundSharedUserProfileUserItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[OutboundSharedUserProfileUserItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[OutboundSharedUserProfileUserItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property outboundSharedUserProfiles for directory
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,14 +59,13 @@ class OutboundSharedUserProfileUserItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[OutboundSharedUserProfileUserItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[outbound_shared_user_profile.OutboundSharedUserProfile]:
+    async def get(self,request_configuration: Optional[OutboundSharedUserProfileUserItemRequestBuilderGetRequestConfiguration] = None) -> Optional[outbound_shared_user_profile.OutboundSharedUserProfile]:
         """
         Get outboundSharedUserProfiles from directory
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[outbound_shared_user_profile.OutboundSharedUserProfile]
         """
         request_info = self.to_get_request_information(
@@ -79,15 +77,14 @@ class OutboundSharedUserProfileUserItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, outbound_shared_user_profile.OutboundSharedUserProfile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, outbound_shared_user_profile.OutboundSharedUserProfile, error_mapping)
     
-    async def patch(self,body: Optional[outbound_shared_user_profile.OutboundSharedUserProfile] = None, request_configuration: Optional[OutboundSharedUserProfileUserItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[outbound_shared_user_profile.OutboundSharedUserProfile]:
+    async def patch(self,body: Optional[outbound_shared_user_profile.OutboundSharedUserProfile] = None, request_configuration: Optional[OutboundSharedUserProfileUserItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[outbound_shared_user_profile.OutboundSharedUserProfile]:
         """
         Update the navigation property outboundSharedUserProfiles in directory
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[outbound_shared_user_profile.OutboundSharedUserProfile]
         """
         if body is None:
@@ -101,7 +98,7 @@ class OutboundSharedUserProfileUserItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, outbound_shared_user_profile.OutboundSharedUserProfile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, outbound_shared_user_profile.OutboundSharedUserProfile, error_mapping)
     
     def tenants_by_id(self,id: str) -> tenant_reference_tenant_item_request_builder.TenantReferenceTenantItemRequestBuilder:
         """

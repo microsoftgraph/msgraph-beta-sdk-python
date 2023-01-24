@@ -36,13 +36,12 @@ class ChangeDeploymentStatusRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[change_deployment_status_post_request_body.ChangeDeploymentStatusPostRequestBody] = None, request_configuration: Optional[ChangeDeploymentStatusRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[management_action_deployment_status.ManagementActionDeploymentStatus]:
+    async def post(self,body: Optional[change_deployment_status_post_request_body.ChangeDeploymentStatusPostRequestBody] = None, request_configuration: Optional[ChangeDeploymentStatusRequestBuilderPostRequestConfiguration] = None) -> Optional[management_action_deployment_status.ManagementActionDeploymentStatus]:
         """
         Invoke action changeDeploymentStatus
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_action_deployment_status.ManagementActionDeploymentStatus]
         """
         if body is None:
@@ -56,7 +55,7 @@ class ChangeDeploymentStatusRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, management_action_deployment_status.ManagementActionDeploymentStatus, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, management_action_deployment_status.ManagementActionDeploymentStatus, error_mapping)
     
     def to_post_request_information(self,body: Optional[change_deployment_status_post_request_body.ChangeDeploymentStatusPostRequestBody] = None, request_configuration: Optional[ChangeDeploymentStatusRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

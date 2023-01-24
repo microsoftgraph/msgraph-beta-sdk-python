@@ -35,12 +35,11 @@ class ProgramControlTypeItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ProgramControlTypeItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ProgramControlTypeItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete entity from programControlTypes
+        Delete entity from programControlTypes by key (id)
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class ProgramControlTypeItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ProgramControlTypeItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[program_control_type.ProgramControlType]:
+    async def get(self,request_configuration: Optional[ProgramControlTypeItemRequestBuilderGetRequestConfiguration] = None) -> Optional[program_control_type.ProgramControlType]:
         """
-        Get entity from programControlTypes by key
+        Get entity from programControlTypes by key (id)
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[program_control_type.ProgramControlType]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class ProgramControlTypeItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, program_control_type.ProgramControlType, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, program_control_type.ProgramControlType, error_mapping)
     
-    async def patch(self,body: Optional[program_control_type.ProgramControlType] = None, request_configuration: Optional[ProgramControlTypeItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[program_control_type.ProgramControlType]:
+    async def patch(self,body: Optional[program_control_type.ProgramControlType] = None, request_configuration: Optional[ProgramControlTypeItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[program_control_type.ProgramControlType]:
         """
-        Update entity in programControlTypes
+        Update entity in programControlTypes by key (id)
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[program_control_type.ProgramControlType]
         """
         if body is None:
@@ -92,11 +89,11 @@ class ProgramControlTypeItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, program_control_type.ProgramControlType, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, program_control_type.ProgramControlType, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ProgramControlTypeItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete entity from programControlTypes
+        Delete entity from programControlTypes by key (id)
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -112,7 +109,7 @@ class ProgramControlTypeItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ProgramControlTypeItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get entity from programControlTypes by key
+        Get entity from programControlTypes by key (id)
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -130,7 +127,7 @@ class ProgramControlTypeItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[program_control_type.ProgramControlType] = None, request_configuration: Optional[ProgramControlTypeItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update entity in programControlTypes
+        Update entity in programControlTypes by key (id)
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -164,7 +161,7 @@ class ProgramControlTypeItemRequestBuilder():
     @dataclass
     class ProgramControlTypeItemRequestBuilderGetQueryParameters():
         """
-        Get entity from programControlTypes by key
+        Get entity from programControlTypes by key (id)
         """
         # Expand related entities
         expand: Optional[List[str]] = None

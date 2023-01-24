@@ -44,12 +44,11 @@ class DeviceStatesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DeviceStatesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[embedded_s_i_m_device_state_collection_response.EmbeddedSIMDeviceStateCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceStatesRequestBuilderGetRequestConfiguration] = None) -> Optional[embedded_s_i_m_device_state_collection_response.EmbeddedSIMDeviceStateCollectionResponse]:
         """
         Navigational property to a list of device states for this pool.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[embedded_s_i_m_device_state_collection_response.EmbeddedSIMDeviceStateCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class DeviceStatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, embedded_s_i_m_device_state_collection_response.EmbeddedSIMDeviceStateCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, embedded_s_i_m_device_state_collection_response.EmbeddedSIMDeviceStateCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[embedded_s_i_m_device_state.EmbeddedSIMDeviceState] = None, request_configuration: Optional[DeviceStatesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[embedded_s_i_m_device_state.EmbeddedSIMDeviceState]:
+    async def post(self,body: Optional[embedded_s_i_m_device_state.EmbeddedSIMDeviceState] = None, request_configuration: Optional[DeviceStatesRequestBuilderPostRequestConfiguration] = None) -> Optional[embedded_s_i_m_device_state.EmbeddedSIMDeviceState]:
         """
         Create new navigation property to deviceStates for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[embedded_s_i_m_device_state.EmbeddedSIMDeviceState]
         """
         if body is None:
@@ -83,7 +81,7 @@ class DeviceStatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, embedded_s_i_m_device_state.EmbeddedSIMDeviceState, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, embedded_s_i_m_device_state.EmbeddedSIMDeviceState, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceStatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -39,12 +39,11 @@ class GetTopMobileAppsWithStatusWithCountRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[GetTopMobileAppsWithStatusWithCountRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[get_top_mobile_apps_with_status_with_count_response.GetTopMobileAppsWithStatusWithCountResponse]:
+    async def get(self,request_configuration: Optional[GetTopMobileAppsWithStatusWithCountRequestBuilderGetRequestConfiguration] = None) -> Optional[get_top_mobile_apps_with_status_with_count_response.GetTopMobileAppsWithStatusWithCountResponse]:
         """
         Invoke function getTopMobileApps
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[get_top_mobile_apps_with_status_with_count_response.GetTopMobileAppsWithStatusWithCountResponse]
         """
         request_info = self.to_get_request_information(
@@ -56,7 +55,7 @@ class GetTopMobileAppsWithStatusWithCountRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, get_top_mobile_apps_with_status_with_count_response.GetTopMobileAppsWithStatusWithCountResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, get_top_mobile_apps_with_status_with_count_response.GetTopMobileAppsWithStatusWithCountResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetTopMobileAppsWithStatusWithCountRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

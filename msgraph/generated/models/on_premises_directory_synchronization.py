@@ -27,7 +27,7 @@ class OnPremisesDirectorySynchronization(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new onPremisesDirectorySynchronization and sets the default values.
+        Instantiates a new OnPremisesDirectorySynchronization and sets the default values.
         """
         super().__init__()
         # Consists of configurations that can be fine-tuned and impact the on-premises directory synchronization process for a tenant.

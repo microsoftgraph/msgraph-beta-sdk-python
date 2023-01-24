@@ -52,12 +52,11 @@ class TenantGroupsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[TenantGroupsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant_group_collection_response.TenantGroupCollectionResponse]:
+    async def get(self,request_configuration: Optional[TenantGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_group_collection_response.TenantGroupCollectionResponse]:
         """
         Get a list of the tenantGroup objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_group_collection_response.TenantGroupCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class TenantGroupsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant_group_collection_response.TenantGroupCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant_group_collection_response.TenantGroupCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[tenant_group.TenantGroup] = None, request_configuration: Optional[TenantGroupsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant_group.TenantGroup]:
+    async def post(self,body: Optional[tenant_group.TenantGroup] = None, request_configuration: Optional[TenantGroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[tenant_group.TenantGroup]:
         """
         Create new navigation property to tenantGroups for tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_group.TenantGroup]
         """
         if body is None:
@@ -91,7 +89,7 @@ class TenantGroupsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant_group.TenantGroup, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant_group.TenantGroup, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TenantGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

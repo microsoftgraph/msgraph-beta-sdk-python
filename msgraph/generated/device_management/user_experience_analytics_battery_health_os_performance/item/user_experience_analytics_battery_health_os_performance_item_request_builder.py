@@ -35,12 +35,11 @@ class UserExperienceAnalyticsBatteryHealthOsPerformanceItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthOsPerformanceItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthOsPerformanceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property userExperienceAnalyticsBatteryHealthOsPerformance for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class UserExperienceAnalyticsBatteryHealthOsPerformanceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthOsPerformanceItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_battery_health_os_performance.UserExperienceAnalyticsBatteryHealthOsPerformance]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthOsPerformanceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_battery_health_os_performance.UserExperienceAnalyticsBatteryHealthOsPerformance]:
         """
         User Experience Analytics Battery Health Os Performance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_battery_health_os_performance.UserExperienceAnalyticsBatteryHealthOsPerformance]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class UserExperienceAnalyticsBatteryHealthOsPerformanceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_os_performance.UserExperienceAnalyticsBatteryHealthOsPerformance, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_os_performance.UserExperienceAnalyticsBatteryHealthOsPerformance, error_mapping)
     
-    async def patch(self,body: Optional[user_experience_analytics_battery_health_os_performance.UserExperienceAnalyticsBatteryHealthOsPerformance] = None, request_configuration: Optional[UserExperienceAnalyticsBatteryHealthOsPerformanceItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_battery_health_os_performance.UserExperienceAnalyticsBatteryHealthOsPerformance]:
+    async def patch(self,body: Optional[user_experience_analytics_battery_health_os_performance.UserExperienceAnalyticsBatteryHealthOsPerformance] = None, request_configuration: Optional[UserExperienceAnalyticsBatteryHealthOsPerformanceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[user_experience_analytics_battery_health_os_performance.UserExperienceAnalyticsBatteryHealthOsPerformance]:
         """
         Update the navigation property userExperienceAnalyticsBatteryHealthOsPerformance in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_battery_health_os_performance.UserExperienceAnalyticsBatteryHealthOsPerformance]
         """
         if body is None:
@@ -92,7 +89,7 @@ class UserExperienceAnalyticsBatteryHealthOsPerformanceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_os_performance.UserExperienceAnalyticsBatteryHealthOsPerformance, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_os_performance.UserExperienceAnalyticsBatteryHealthOsPerformance, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthOsPerformanceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

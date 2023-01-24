@@ -8,9 +8,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 mobile_threat_partner_tenant_state = lazy_import('msgraph.generated.models.mobile_threat_partner_tenant_state')
 
 class MobileThreatDefenseConnector(entity.Entity):
-    """
-    Entity which represents a connection to Mobile threat defense partner.
-    """
     @property
     def allow_partner_to_collect_i_o_s_application_metadata(self,) -> Optional[bool]:
         """
@@ -98,7 +95,7 @@ class MobileThreatDefenseConnector(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new mobileThreatDefenseConnector and sets the default values.
+        Instantiates a new MobileThreatDefenseConnector and sets the default values.
         """
         super().__init__()
         # For IOS devices, allows the admin to configure whether the data sync partner may also collect metadata about installed applications from Intune

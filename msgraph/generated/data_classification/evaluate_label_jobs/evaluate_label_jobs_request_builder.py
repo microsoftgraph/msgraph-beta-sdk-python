@@ -44,12 +44,11 @@ class EvaluateLabelJobsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[EvaluateLabelJobsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[job_response_base_collection_response.JobResponseBaseCollectionResponse]:
+    async def get(self,request_configuration: Optional[EvaluateLabelJobsRequestBuilderGetRequestConfiguration] = None) -> Optional[job_response_base_collection_response.JobResponseBaseCollectionResponse]:
         """
         Get evaluateLabelJobs from dataClassification
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[job_response_base_collection_response.JobResponseBaseCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class EvaluateLabelJobsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, job_response_base_collection_response.JobResponseBaseCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, job_response_base_collection_response.JobResponseBaseCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[job_response_base.JobResponseBase] = None, request_configuration: Optional[EvaluateLabelJobsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[job_response_base.JobResponseBase]:
+    async def post(self,body: Optional[job_response_base.JobResponseBase] = None, request_configuration: Optional[EvaluateLabelJobsRequestBuilderPostRequestConfiguration] = None) -> Optional[job_response_base.JobResponseBase]:
         """
         Create new navigation property to evaluateLabelJobs for dataClassification
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[job_response_base.JobResponseBase]
         """
         if body is None:
@@ -83,7 +81,7 @@ class EvaluateLabelJobsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, job_response_base.JobResponseBase, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, job_response_base.JobResponseBase, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[EvaluateLabelJobsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

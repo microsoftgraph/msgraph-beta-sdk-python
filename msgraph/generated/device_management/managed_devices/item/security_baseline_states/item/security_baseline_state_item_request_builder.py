@@ -44,12 +44,11 @@ class SecurityBaselineStateItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SecurityBaselineStateItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[SecurityBaselineStateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property securityBaselineStates for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,14 +59,13 @@ class SecurityBaselineStateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SecurityBaselineStateItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[security_baseline_state.SecurityBaselineState]:
+    async def get(self,request_configuration: Optional[SecurityBaselineStateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[security_baseline_state.SecurityBaselineState]:
         """
         Security baseline states for this device.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[security_baseline_state.SecurityBaselineState]
         """
         request_info = self.to_get_request_information(
@@ -79,15 +77,14 @@ class SecurityBaselineStateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, security_baseline_state.SecurityBaselineState, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, security_baseline_state.SecurityBaselineState, error_mapping)
     
-    async def patch(self,body: Optional[security_baseline_state.SecurityBaselineState] = None, request_configuration: Optional[SecurityBaselineStateItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[security_baseline_state.SecurityBaselineState]:
+    async def patch(self,body: Optional[security_baseline_state.SecurityBaselineState] = None, request_configuration: Optional[SecurityBaselineStateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[security_baseline_state.SecurityBaselineState]:
         """
         Update the navigation property securityBaselineStates in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[security_baseline_state.SecurityBaselineState]
         """
         if body is None:
@@ -101,7 +98,7 @@ class SecurityBaselineStateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, security_baseline_state.SecurityBaselineState, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, security_baseline_state.SecurityBaselineState, error_mapping)
     
     def setting_states_by_id(self,id: str) -> security_baseline_setting_state_item_request_builder.SecurityBaselineSettingStateItemRequestBuilder:
         """

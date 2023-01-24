@@ -44,12 +44,11 @@ class UserRunStatesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserRunStatesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_script_user_state_collection_response.DeviceManagementScriptUserStateCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserRunStatesRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_script_user_state_collection_response.DeviceManagementScriptUserStateCollectionResponse]:
         """
         List of run states for this script across all users.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_script_user_state_collection_response.DeviceManagementScriptUserStateCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class UserRunStatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_script_user_state_collection_response.DeviceManagementScriptUserStateCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_script_user_state_collection_response.DeviceManagementScriptUserStateCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[device_management_script_user_state.DeviceManagementScriptUserState] = None, request_configuration: Optional[UserRunStatesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_script_user_state.DeviceManagementScriptUserState]:
+    async def post(self,body: Optional[device_management_script_user_state.DeviceManagementScriptUserState] = None, request_configuration: Optional[UserRunStatesRequestBuilderPostRequestConfiguration] = None) -> Optional[device_management_script_user_state.DeviceManagementScriptUserState]:
         """
         Create new navigation property to userRunStates for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_script_user_state.DeviceManagementScriptUserState]
         """
         if body is None:
@@ -83,7 +81,7 @@ class UserRunStatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_script_user_state.DeviceManagementScriptUserState, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_script_user_state.DeviceManagementScriptUserState, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UserRunStatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

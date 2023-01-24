@@ -14,9 +14,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 setting_state_device_summary = lazy_import('msgraph.generated.models.setting_state_device_summary')
 
 class DeviceCompliancePolicy(entity.Entity):
-    """
-    This is the base class for Compliance policy. Compliance policies are platform specific and individual per-platform compliance policies inherit from here. 
-    """
     @property
     def assignments(self,) -> Optional[List[device_compliance_policy_assignment.DeviceCompliancePolicyAssignment]]:
         """
@@ -36,7 +33,7 @@ class DeviceCompliancePolicy(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceCompliancePolicy and sets the default values.
+        Instantiates a new DeviceCompliancePolicy and sets the default values.
         """
         super().__init__()
         # The collection of assignments for this compliance policy.

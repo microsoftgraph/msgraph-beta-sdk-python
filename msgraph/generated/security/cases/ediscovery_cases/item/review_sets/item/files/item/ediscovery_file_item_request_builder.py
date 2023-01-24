@@ -68,12 +68,11 @@ class EdiscoveryFileItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[EdiscoveryFileItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[EdiscoveryFileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property files for security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -84,14 +83,13 @@ class EdiscoveryFileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[EdiscoveryFileItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ediscovery_file.EdiscoveryFile]:
+    async def get(self,request_configuration: Optional[EdiscoveryFileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_file.EdiscoveryFile]:
         """
         Represents files within the review set.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscovery_file.EdiscoveryFile]
         """
         request_info = self.to_get_request_information(
@@ -103,15 +101,14 @@ class EdiscoveryFileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ediscovery_file.EdiscoveryFile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ediscovery_file.EdiscoveryFile, error_mapping)
     
-    async def patch(self,body: Optional[ediscovery_file.EdiscoveryFile] = None, request_configuration: Optional[EdiscoveryFileItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ediscovery_file.EdiscoveryFile]:
+    async def patch(self,body: Optional[ediscovery_file.EdiscoveryFile] = None, request_configuration: Optional[EdiscoveryFileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ediscovery_file.EdiscoveryFile]:
         """
         Update the navigation property files in security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscovery_file.EdiscoveryFile]
         """
         if body is None:
@@ -125,7 +122,7 @@ class EdiscoveryFileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ediscovery_file.EdiscoveryFile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ediscovery_file.EdiscoveryFile, error_mapping)
     
     def tags_by_id(self,id: str) -> ediscovery_review_tag_item_request_builder.EdiscoveryReviewTagItemRequestBuilder:
         """

@@ -44,12 +44,11 @@ class ExternalPartnerSettingsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ExternalPartnerSettingsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_external_partner_setting_collection_response.CloudPcExternalPartnerSettingCollectionResponse]:
+    async def get(self,request_configuration: Optional[ExternalPartnerSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_external_partner_setting_collection_response.CloudPcExternalPartnerSettingCollectionResponse]:
         """
         Get a list of the cloudPcExternalPartnerSetting objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_external_partner_setting_collection_response.CloudPcExternalPartnerSettingCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class ExternalPartnerSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_external_partner_setting_collection_response.CloudPcExternalPartnerSettingCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_external_partner_setting_collection_response.CloudPcExternalPartnerSettingCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[cloud_pc_external_partner_setting.CloudPcExternalPartnerSetting] = None, request_configuration: Optional[ExternalPartnerSettingsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_external_partner_setting.CloudPcExternalPartnerSetting]:
+    async def post(self,body: Optional[cloud_pc_external_partner_setting.CloudPcExternalPartnerSetting] = None, request_configuration: Optional[ExternalPartnerSettingsRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_pc_external_partner_setting.CloudPcExternalPartnerSetting]:
         """
         Create a new cloudPcExternalPartnerSetting object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_external_partner_setting.CloudPcExternalPartnerSetting]
         """
         if body is None:
@@ -83,7 +81,7 @@ class ExternalPartnerSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_external_partner_setting.CloudPcExternalPartnerSetting, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_external_partner_setting.CloudPcExternalPartnerSetting, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ExternalPartnerSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

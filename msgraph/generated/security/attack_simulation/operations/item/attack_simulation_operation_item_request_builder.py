@@ -35,12 +35,11 @@ class AttackSimulationOperationItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AttackSimulationOperationItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AttackSimulationOperationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property operations for security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class AttackSimulationOperationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AttackSimulationOperationItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[attack_simulation_operation.AttackSimulationOperation]:
+    async def get(self,request_configuration: Optional[AttackSimulationOperationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[attack_simulation_operation.AttackSimulationOperation]:
         """
-        Get operations from security
+        Represents an attack simulation training operation.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[attack_simulation_operation.AttackSimulationOperation]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class AttackSimulationOperationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, attack_simulation_operation.AttackSimulationOperation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, attack_simulation_operation.AttackSimulationOperation, error_mapping)
     
-    async def patch(self,body: Optional[attack_simulation_operation.AttackSimulationOperation] = None, request_configuration: Optional[AttackSimulationOperationItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[attack_simulation_operation.AttackSimulationOperation]:
+    async def patch(self,body: Optional[attack_simulation_operation.AttackSimulationOperation] = None, request_configuration: Optional[AttackSimulationOperationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[attack_simulation_operation.AttackSimulationOperation]:
         """
         Update the navigation property operations in security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[attack_simulation_operation.AttackSimulationOperation]
         """
         if body is None:
@@ -92,7 +89,7 @@ class AttackSimulationOperationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, attack_simulation_operation.AttackSimulationOperation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, attack_simulation_operation.AttackSimulationOperation, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AttackSimulationOperationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -112,7 +109,7 @@ class AttackSimulationOperationItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AttackSimulationOperationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get operations from security
+        Represents an attack simulation training operation.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -164,7 +161,7 @@ class AttackSimulationOperationItemRequestBuilder():
     @dataclass
     class AttackSimulationOperationItemRequestBuilderGetQueryParameters():
         """
-        Get operations from security
+        Represents an attack simulation training operation.
         """
         # Expand related entities
         expand: Optional[List[str]] = None

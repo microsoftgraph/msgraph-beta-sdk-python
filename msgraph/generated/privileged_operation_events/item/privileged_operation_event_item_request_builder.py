@@ -35,12 +35,11 @@ class PrivilegedOperationEventItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PrivilegedOperationEventItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PrivilegedOperationEventItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete entity from privilegedOperationEvents
+        Delete entity from privilegedOperationEvents by key (id)
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class PrivilegedOperationEventItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PrivilegedOperationEventItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_operation_event.PrivilegedOperationEvent]:
+    async def get(self,request_configuration: Optional[PrivilegedOperationEventItemRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_operation_event.PrivilegedOperationEvent]:
         """
-        Get entity from privilegedOperationEvents by key
+        Get entity from privilegedOperationEvents by key (id)
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_operation_event.PrivilegedOperationEvent]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class PrivilegedOperationEventItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_operation_event.PrivilegedOperationEvent, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_operation_event.PrivilegedOperationEvent, error_mapping)
     
-    async def patch(self,body: Optional[privileged_operation_event.PrivilegedOperationEvent] = None, request_configuration: Optional[PrivilegedOperationEventItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_operation_event.PrivilegedOperationEvent]:
+    async def patch(self,body: Optional[privileged_operation_event.PrivilegedOperationEvent] = None, request_configuration: Optional[PrivilegedOperationEventItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[privileged_operation_event.PrivilegedOperationEvent]:
         """
-        Update entity in privilegedOperationEvents
+        Update entity in privilegedOperationEvents by key (id)
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_operation_event.PrivilegedOperationEvent]
         """
         if body is None:
@@ -92,11 +89,11 @@ class PrivilegedOperationEventItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_operation_event.PrivilegedOperationEvent, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_operation_event.PrivilegedOperationEvent, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PrivilegedOperationEventItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete entity from privilegedOperationEvents
+        Delete entity from privilegedOperationEvents by key (id)
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -112,7 +109,7 @@ class PrivilegedOperationEventItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedOperationEventItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get entity from privilegedOperationEvents by key
+        Get entity from privilegedOperationEvents by key (id)
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -130,7 +127,7 @@ class PrivilegedOperationEventItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[privileged_operation_event.PrivilegedOperationEvent] = None, request_configuration: Optional[PrivilegedOperationEventItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update entity in privilegedOperationEvents
+        Update entity in privilegedOperationEvents by key (id)
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -164,7 +161,7 @@ class PrivilegedOperationEventItemRequestBuilder():
     @dataclass
     class PrivilegedOperationEventItemRequestBuilderGetQueryParameters():
         """
-        Get entity from privilegedOperationEvents by key
+        Get entity from privilegedOperationEvents by key (id)
         """
         # Expand related entities
         expand: Optional[List[str]] = None

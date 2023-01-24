@@ -15,9 +15,6 @@ mobile_app_relationship = lazy_import('msgraph.generated.models.mobile_app_relat
 user_app_install_status = lazy_import('msgraph.generated.models.user_app_install_status')
 
 class MobileApp(entity.Entity):
-    """
-    An abstract class containing the base properties for Intune mobile apps.
-    """
     @property
     def assignments(self,) -> Optional[List[mobile_app_assignment.MobileAppAssignment]]:
         """

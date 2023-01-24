@@ -35,13 +35,12 @@ class ActivateRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[activate_post_request_body.ActivatePostRequestBody] = None, request_configuration: Optional[ActivateRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def post(self,body: Optional[activate_post_request_body.ActivatePostRequestBody] = None, request_configuration: Optional[ActivateRequestBuilderPostRequestConfiguration] = None) -> None:
         """
         Run a workflow object on-demand. You can run any workflow on-demand, including scheduled workflows. Workflows created from the 'Real-time employee termination' template are run on-demand only. When you run a workflow on demand, the tasks are executed regardless of whether the user state matches the scope and trigger execution conditions.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         if body is None:
             raise Exception("body cannot be undefined")
@@ -54,7 +53,7 @@ class ActivateRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def to_post_request_information(self,body: Optional[activate_post_request_body.ActivatePostRequestBody] = None, request_configuration: Optional[ActivateRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
