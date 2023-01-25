@@ -37,12 +37,11 @@ class GetOffice365ActiveUserCountsWithPeriodRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[GetOffice365ActiveUserCountsWithPeriodRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[get_office365_active_user_counts_with_period_response.GetOffice365ActiveUserCountsWithPeriodResponse]:
+    async def get(self,request_configuration: Optional[GetOffice365ActiveUserCountsWithPeriodRequestBuilderGetRequestConfiguration] = None) -> Optional[get_office365_active_user_counts_with_period_response.GetOffice365ActiveUserCountsWithPeriodResponse]:
         """
         Invoke function getOffice365ActiveUserCounts
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[get_office365_active_user_counts_with_period_response.GetOffice365ActiveUserCountsWithPeriodResponse]
         """
         request_info = self.to_get_request_information(
@@ -54,7 +53,7 @@ class GetOffice365ActiveUserCountsWithPeriodRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, get_office365_active_user_counts_with_period_response.GetOffice365ActiveUserCountsWithPeriodResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, get_office365_active_user_counts_with_period_response.GetOffice365ActiveUserCountsWithPeriodResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetOffice365ActiveUserCountsWithPeriodRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

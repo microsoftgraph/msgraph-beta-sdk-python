@@ -44,12 +44,11 @@ class ManagedTenantTicketingEndpointsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ManagedTenantTicketingEndpointsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_tenant_ticketing_endpoint_collection_response.ManagedTenantTicketingEndpointCollectionResponse]:
+    async def get(self,request_configuration: Optional[ManagedTenantTicketingEndpointsRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_tenant_ticketing_endpoint_collection_response.ManagedTenantTicketingEndpointCollectionResponse]:
         """
         Get managedTenantTicketingEndpoints from tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_tenant_ticketing_endpoint_collection_response.ManagedTenantTicketingEndpointCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class ManagedTenantTicketingEndpointsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_tenant_ticketing_endpoint_collection_response.ManagedTenantTicketingEndpointCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_tenant_ticketing_endpoint_collection_response.ManagedTenantTicketingEndpointCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[managed_tenant_ticketing_endpoint.ManagedTenantTicketingEndpoint] = None, request_configuration: Optional[ManagedTenantTicketingEndpointsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_tenant_ticketing_endpoint.ManagedTenantTicketingEndpoint]:
+    async def post(self,body: Optional[managed_tenant_ticketing_endpoint.ManagedTenantTicketingEndpoint] = None, request_configuration: Optional[ManagedTenantTicketingEndpointsRequestBuilderPostRequestConfiguration] = None) -> Optional[managed_tenant_ticketing_endpoint.ManagedTenantTicketingEndpoint]:
         """
         Create new navigation property to managedTenantTicketingEndpoints for tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_tenant_ticketing_endpoint.ManagedTenantTicketingEndpoint]
         """
         if body is None:
@@ -83,7 +81,7 @@ class ManagedTenantTicketingEndpointsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_tenant_ticketing_endpoint.ManagedTenantTicketingEndpoint, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_tenant_ticketing_endpoint.ManagedTenantTicketingEndpoint, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ManagedTenantTicketingEndpointsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

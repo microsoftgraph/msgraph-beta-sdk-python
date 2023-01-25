@@ -52,12 +52,11 @@ class GroupPolicyMigrationReportsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[GroupPolicyMigrationReportsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group_policy_migration_report_collection_response.GroupPolicyMigrationReportCollectionResponse]:
+    async def get(self,request_configuration: Optional[GroupPolicyMigrationReportsRequestBuilderGetRequestConfiguration] = None) -> Optional[group_policy_migration_report_collection_response.GroupPolicyMigrationReportCollectionResponse]:
         """
         A list of Group Policy migration reports.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_policy_migration_report_collection_response.GroupPolicyMigrationReportCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class GroupPolicyMigrationReportsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group_policy_migration_report_collection_response.GroupPolicyMigrationReportCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, group_policy_migration_report_collection_response.GroupPolicyMigrationReportCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[group_policy_migration_report.GroupPolicyMigrationReport] = None, request_configuration: Optional[GroupPolicyMigrationReportsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group_policy_migration_report.GroupPolicyMigrationReport]:
+    async def post(self,body: Optional[group_policy_migration_report.GroupPolicyMigrationReport] = None, request_configuration: Optional[GroupPolicyMigrationReportsRequestBuilderPostRequestConfiguration] = None) -> Optional[group_policy_migration_report.GroupPolicyMigrationReport]:
         """
         Create new navigation property to groupPolicyMigrationReports for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_policy_migration_report.GroupPolicyMigrationReport]
         """
         if body is None:
@@ -91,7 +89,7 @@ class GroupPolicyMigrationReportsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group_policy_migration_report.GroupPolicyMigrationReport, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, group_policy_migration_report.GroupPolicyMigrationReport, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GroupPolicyMigrationReportsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

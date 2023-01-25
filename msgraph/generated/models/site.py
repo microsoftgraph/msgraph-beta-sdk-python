@@ -8,6 +8,7 @@ column_definition = lazy_import('msgraph.generated.models.column_definition')
 content_type = lazy_import('msgraph.generated.models.content_type')
 deleted = lazy_import('msgraph.generated.models.deleted')
 drive = lazy_import('msgraph.generated.models.drive')
+information_protection = lazy_import('msgraph.generated.models.information_protection')
 item_analytics = lazy_import('msgraph.generated.models.item_analytics')
 list = lazy_import('msgraph.generated.models.list')
 onenote = lazy_import('msgraph.generated.models.onenote')
@@ -77,6 +78,8 @@ class Site(base_item.BaseItem):
         self._drives: Optional[List[drive.Drive]] = None
         # The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.
         self._external_columns: Optional[List[column_definition.ColumnDefinition]] = None
+        # The informationProtection property
+        self._information_protection: Optional[information_protection.InformationProtection] = None
         # Used to address any item contained in this site. This collection cannot be enumerated.
         self._items: Optional[List[base_item.BaseItem]] = None
         # The collection of lists under this site.
@@ -230,6 +233,7 @@ class Site(base_item.BaseItem):
             "drive": lambda n : setattr(self, 'drive', n.get_object_value(drive.Drive)),
             "drives": lambda n : setattr(self, 'drives', n.get_collection_of_object_values(drive.Drive)),
             "external_columns": lambda n : setattr(self, 'external_columns', n.get_collection_of_object_values(column_definition.ColumnDefinition)),
+            "information_protection": lambda n : setattr(self, 'information_protection', n.get_object_value(information_protection.InformationProtection)),
             "items": lambda n : setattr(self, 'items', n.get_collection_of_object_values(base_item.BaseItem)),
             "lists": lambda n : setattr(self, 'lists', n.get_collection_of_object_values(list.List)),
             "onenote": lambda n : setattr(self, 'onenote', n.get_object_value(onenote.Onenote)),
@@ -246,6 +250,23 @@ class Site(base_item.BaseItem):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
+    
+    @property
+    def information_protection(self,) -> Optional[information_protection.InformationProtection]:
+        """
+        Gets the informationProtection property value. The informationProtection property
+        Returns: Optional[information_protection.InformationProtection]
+        """
+        return self._information_protection
+    
+    @information_protection.setter
+    def information_protection(self,value: Optional[information_protection.InformationProtection] = None) -> None:
+        """
+        Sets the informationProtection property value. The informationProtection property
+        Args:
+            value: Value to set for the informationProtection property.
+        """
+        self._information_protection = value
     
     @property
     def items(self,) -> Optional[List[base_item.BaseItem]]:
@@ -383,6 +404,7 @@ class Site(base_item.BaseItem):
         writer.write_object_value("drive", self.drive)
         writer.write_collection_of_object_values("drives", self.drives)
         writer.write_collection_of_object_values("externalColumns", self.external_columns)
+        writer.write_object_value("informationProtection", self.information_protection)
         writer.write_collection_of_object_values("items", self.items)
         writer.write_collection_of_object_values("lists", self.lists)
         writer.write_object_value("onenote", self.onenote)

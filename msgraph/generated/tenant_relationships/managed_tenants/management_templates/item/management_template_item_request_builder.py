@@ -53,12 +53,11 @@ class ManagementTemplateItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ManagementTemplateItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ManagementTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property managementTemplates for tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -69,14 +68,13 @@ class ManagementTemplateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ManagementTemplateItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[management_template.ManagementTemplate]:
+    async def get(self,request_configuration: Optional[ManagementTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[management_template.ManagementTemplate]:
         """
         The collection of baseline management templates across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_template.ManagementTemplate]
         """
         request_info = self.to_get_request_information(
@@ -88,7 +86,7 @@ class ManagementTemplateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, management_template.ManagementTemplate, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, management_template.ManagementTemplate, error_mapping)
     
     def management_template_collections_by_id(self,id: str) -> management_template_collection_item_request_builder.ManagementTemplateCollectionItemRequestBuilder:
         """
@@ -116,13 +114,12 @@ class ManagementTemplateItemRequestBuilder():
         url_tpl_params["managementTemplateStep%2Did"] = id
         return management_template_step_item_request_builder.ManagementTemplateStepItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[management_template.ManagementTemplate] = None, request_configuration: Optional[ManagementTemplateItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[management_template.ManagementTemplate]:
+    async def patch(self,body: Optional[management_template.ManagementTemplate] = None, request_configuration: Optional[ManagementTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[management_template.ManagementTemplate]:
         """
         Update the navigation property managementTemplates in tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_template.ManagementTemplate]
         """
         if body is None:
@@ -136,7 +133,7 @@ class ManagementTemplateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, management_template.ManagementTemplate, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, management_template.ManagementTemplate, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ManagementTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

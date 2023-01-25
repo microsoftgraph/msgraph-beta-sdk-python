@@ -432,12 +432,11 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["credentialUserRegistrationsSummary%2Did"] = id
         return credential_user_registrations_summary_item_request_builder.CredentialUserRegistrationsSummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[ManagedTenantsRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ManagedTenantsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property managedTenants for tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -448,7 +447,7 @@ class ManagedTenantsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def device_compliance_policy_setting_state_summaries_by_id(self,id: str) -> device_compliance_policy_setting_state_summary_item_request_builder.DeviceCompliancePolicySettingStateSummaryItemRequestBuilder:
         """
@@ -463,12 +462,11 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["deviceCompliancePolicySettingStateSummary%2Did"] = id
         return device_compliance_policy_setting_state_summary_item_request_builder.DeviceCompliancePolicySettingStateSummaryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ManagedTenantsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_tenant.ManagedTenant]:
+    async def get(self,request_configuration: Optional[ManagedTenantsRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_tenant.ManagedTenant]:
         """
         The operations available to interact with the multi-tenant management platform.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_tenant.ManagedTenant]
         """
         request_info = self.to_get_request_information(
@@ -480,7 +478,7 @@ class ManagedTenantsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_tenant.ManagedTenant, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_tenant.ManagedTenant, error_mapping)
     
     def managed_device_compliances_by_id(self,id: str) -> managed_device_compliance_item_request_builder.ManagedDeviceComplianceItemRequestBuilder:
         """
@@ -729,13 +727,12 @@ class ManagedTenantsRequestBuilder():
         url_tpl_params["myRole%2DtenantId"] = id
         return my_role_tenant_item_request_builder.MyRoleTenantItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[managed_tenant.ManagedTenant] = None, request_configuration: Optional[ManagedTenantsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_tenant.ManagedTenant]:
+    async def patch(self,body: Optional[managed_tenant.ManagedTenant] = None, request_configuration: Optional[ManagedTenantsRequestBuilderPatchRequestConfiguration] = None) -> Optional[managed_tenant.ManagedTenant]:
         """
         Update the navigation property managedTenants in tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_tenant.ManagedTenant]
         """
         if body is None:
@@ -749,7 +746,7 @@ class ManagedTenantsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_tenant.ManagedTenant, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_tenant.ManagedTenant, error_mapping)
     
     def tenant_groups_by_id(self,id: str) -> tenant_group_item_request_builder.TenantGroupItemRequestBuilder:
         """

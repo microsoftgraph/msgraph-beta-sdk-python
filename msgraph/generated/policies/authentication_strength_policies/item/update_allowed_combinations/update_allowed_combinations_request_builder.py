@@ -36,13 +36,12 @@ class UpdateAllowedCombinationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[update_allowed_combinations_post_request_body.UpdateAllowedCombinationsPostRequestBody] = None, request_configuration: Optional[UpdateAllowedCombinationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[update_allowed_combinations_result.UpdateAllowedCombinationsResult]:
+    async def post(self,body: Optional[update_allowed_combinations_post_request_body.UpdateAllowedCombinationsPostRequestBody] = None, request_configuration: Optional[UpdateAllowedCombinationsRequestBuilderPostRequestConfiguration] = None) -> Optional[update_allowed_combinations_result.UpdateAllowedCombinationsResult]:
         """
         Update the allowedCombinations property of an authenticationStrengthPolicy object. To update other properties of an authenticationStrengthPolicy object, use the Update authenticationStrengthPolicy method.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[update_allowed_combinations_result.UpdateAllowedCombinationsResult]
         """
         if body is None:
@@ -56,7 +55,7 @@ class UpdateAllowedCombinationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, update_allowed_combinations_result.UpdateAllowedCombinationsResult, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, update_allowed_combinations_result.UpdateAllowedCombinationsResult, error_mapping)
     
     def to_post_request_information(self,body: Optional[update_allowed_combinations_post_request_body.UpdateAllowedCombinationsPostRequestBody] = None, request_configuration: Optional[UpdateAllowedCombinationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

@@ -44,12 +44,11 @@ class WindowsQualityUpdateProfilesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[WindowsQualityUpdateProfilesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_quality_update_profile_collection_response.WindowsQualityUpdateProfileCollectionResponse]:
+    async def get(self,request_configuration: Optional[WindowsQualityUpdateProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_quality_update_profile_collection_response.WindowsQualityUpdateProfileCollectionResponse]:
         """
         A collection of windows quality update profiles
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_quality_update_profile_collection_response.WindowsQualityUpdateProfileCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class WindowsQualityUpdateProfilesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_quality_update_profile_collection_response.WindowsQualityUpdateProfileCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_quality_update_profile_collection_response.WindowsQualityUpdateProfileCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[windows_quality_update_profile.WindowsQualityUpdateProfile] = None, request_configuration: Optional[WindowsQualityUpdateProfilesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_quality_update_profile.WindowsQualityUpdateProfile]:
+    async def post(self,body: Optional[windows_quality_update_profile.WindowsQualityUpdateProfile] = None, request_configuration: Optional[WindowsQualityUpdateProfilesRequestBuilderPostRequestConfiguration] = None) -> Optional[windows_quality_update_profile.WindowsQualityUpdateProfile]:
         """
         Create new navigation property to windowsQualityUpdateProfiles for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_quality_update_profile.WindowsQualityUpdateProfile]
         """
         if body is None:
@@ -83,7 +81,7 @@ class WindowsQualityUpdateProfilesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_quality_update_profile.WindowsQualityUpdateProfile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_quality_update_profile.WindowsQualityUpdateProfile, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[WindowsQualityUpdateProfilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

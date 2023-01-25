@@ -44,12 +44,11 @@ class UserExperienceAnalyticsDeviceStartupProcessesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsDeviceStartupProcessesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_device_startup_process_collection_response.UserExperienceAnalyticsDeviceStartupProcessCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsDeviceStartupProcessesRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_device_startup_process_collection_response.UserExperienceAnalyticsDeviceStartupProcessCollectionResponse]:
         """
         User experience analytics device Startup Processes
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_device_startup_process_collection_response.UserExperienceAnalyticsDeviceStartupProcessCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class UserExperienceAnalyticsDeviceStartupProcessesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_device_startup_process_collection_response.UserExperienceAnalyticsDeviceStartupProcessCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_device_startup_process_collection_response.UserExperienceAnalyticsDeviceStartupProcessCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[user_experience_analytics_device_startup_process.UserExperienceAnalyticsDeviceStartupProcess] = None, request_configuration: Optional[UserExperienceAnalyticsDeviceStartupProcessesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_device_startup_process.UserExperienceAnalyticsDeviceStartupProcess]:
+    async def post(self,body: Optional[user_experience_analytics_device_startup_process.UserExperienceAnalyticsDeviceStartupProcess] = None, request_configuration: Optional[UserExperienceAnalyticsDeviceStartupProcessesRequestBuilderPostRequestConfiguration] = None) -> Optional[user_experience_analytics_device_startup_process.UserExperienceAnalyticsDeviceStartupProcess]:
         """
         Create new navigation property to userExperienceAnalyticsDeviceStartupProcesses for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_device_startup_process.UserExperienceAnalyticsDeviceStartupProcess]
         """
         if body is None:
@@ -83,7 +81,7 @@ class UserExperienceAnalyticsDeviceStartupProcessesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_device_startup_process.UserExperienceAnalyticsDeviceStartupProcess, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_device_startup_process.UserExperienceAnalyticsDeviceStartupProcess, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UserExperienceAnalyticsDeviceStartupProcessesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

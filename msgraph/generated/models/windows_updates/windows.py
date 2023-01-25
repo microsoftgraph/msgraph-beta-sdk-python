@@ -9,7 +9,7 @@ updates = lazy_import('msgraph.generated.models.windows_updates.updates')
 class Windows(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new windows and sets the default values.
+        Instantiates a new Windows and sets the default values.
         """
         super().__init__()
         # The OdataType property

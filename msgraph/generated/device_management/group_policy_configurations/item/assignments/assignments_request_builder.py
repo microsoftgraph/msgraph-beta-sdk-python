@@ -44,12 +44,11 @@ class AssignmentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AssignmentsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group_policy_configuration_assignment_collection_response.GroupPolicyConfigurationAssignmentCollectionResponse]:
+    async def get(self,request_configuration: Optional[AssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[group_policy_configuration_assignment_collection_response.GroupPolicyConfigurationAssignmentCollectionResponse]:
         """
         The list of group assignments for the configuration.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_policy_configuration_assignment_collection_response.GroupPolicyConfigurationAssignmentCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class AssignmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group_policy_configuration_assignment_collection_response.GroupPolicyConfigurationAssignmentCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, group_policy_configuration_assignment_collection_response.GroupPolicyConfigurationAssignmentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[group_policy_configuration_assignment.GroupPolicyConfigurationAssignment] = None, request_configuration: Optional[AssignmentsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group_policy_configuration_assignment.GroupPolicyConfigurationAssignment]:
+    async def post(self,body: Optional[group_policy_configuration_assignment.GroupPolicyConfigurationAssignment] = None, request_configuration: Optional[AssignmentsRequestBuilderPostRequestConfiguration] = None) -> Optional[group_policy_configuration_assignment.GroupPolicyConfigurationAssignment]:
         """
         Create new navigation property to assignments for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_policy_configuration_assignment.GroupPolicyConfigurationAssignment]
         """
         if body is None:
@@ -83,7 +81,7 @@ class AssignmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group_policy_configuration_assignment.GroupPolicyConfigurationAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, group_policy_configuration_assignment.GroupPolicyConfigurationAssignment, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AssignmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -44,12 +44,11 @@ class AnniversariesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AnniversariesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[person_annual_event_collection_response.PersonAnnualEventCollectionResponse]:
+    async def get(self,request_configuration: Optional[AnniversariesRequestBuilderGetRequestConfiguration] = None) -> Optional[person_annual_event_collection_response.PersonAnnualEventCollectionResponse]:
         """
         Retrieve a list of personAnniversary objects for the given user from their profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[person_annual_event_collection_response.PersonAnnualEventCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class AnniversariesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, person_annual_event_collection_response.PersonAnnualEventCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, person_annual_event_collection_response.PersonAnnualEventCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[person_annual_event.PersonAnnualEvent] = None, request_configuration: Optional[AnniversariesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[person_annual_event.PersonAnnualEvent]:
+    async def post(self,body: Optional[person_annual_event.PersonAnnualEvent] = None, request_configuration: Optional[AnniversariesRequestBuilderPostRequestConfiguration] = None) -> Optional[person_annual_event.PersonAnnualEvent]:
         """
         Use this API to create a new personAnniversary object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[person_annual_event.PersonAnnualEvent]
         """
         if body is None:
@@ -83,7 +81,7 @@ class AnniversariesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, person_annual_event.PersonAnnualEvent, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, person_annual_event.PersonAnnualEvent, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AnniversariesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

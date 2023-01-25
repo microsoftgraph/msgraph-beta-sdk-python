@@ -35,12 +35,11 @@ class SymantecCodeSigningCertificateRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SymantecCodeSigningCertificateRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[SymantecCodeSigningCertificateRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property symantecCodeSigningCertificate for deviceAppManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class SymantecCodeSigningCertificateRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SymantecCodeSigningCertificateRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[symantec_code_signing_certificate.SymantecCodeSigningCertificate]:
+    async def get(self,request_configuration: Optional[SymantecCodeSigningCertificateRequestBuilderGetRequestConfiguration] = None) -> Optional[symantec_code_signing_certificate.SymantecCodeSigningCertificate]:
         """
         The WinPhone Symantec Code Signing Certificate.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[symantec_code_signing_certificate.SymantecCodeSigningCertificate]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class SymantecCodeSigningCertificateRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, symantec_code_signing_certificate.SymantecCodeSigningCertificate, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, symantec_code_signing_certificate.SymantecCodeSigningCertificate, error_mapping)
     
-    async def patch(self,body: Optional[symantec_code_signing_certificate.SymantecCodeSigningCertificate] = None, request_configuration: Optional[SymantecCodeSigningCertificateRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[symantec_code_signing_certificate.SymantecCodeSigningCertificate]:
+    async def patch(self,body: Optional[symantec_code_signing_certificate.SymantecCodeSigningCertificate] = None, request_configuration: Optional[SymantecCodeSigningCertificateRequestBuilderPatchRequestConfiguration] = None) -> Optional[symantec_code_signing_certificate.SymantecCodeSigningCertificate]:
         """
         Update the navigation property symantecCodeSigningCertificate in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[symantec_code_signing_certificate.SymantecCodeSigningCertificate]
         """
         if body is None:
@@ -92,7 +89,7 @@ class SymantecCodeSigningCertificateRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, symantec_code_signing_certificate.SymantecCodeSigningCertificate, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, symantec_code_signing_certificate.SymantecCodeSigningCertificate, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SymantecCodeSigningCertificateRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

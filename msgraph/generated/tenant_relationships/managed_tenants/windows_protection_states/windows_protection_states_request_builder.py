@@ -44,12 +44,11 @@ class WindowsProtectionStatesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[WindowsProtectionStatesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_protection_state_collection_response.WindowsProtectionStateCollectionResponse]:
+    async def get(self,request_configuration: Optional[WindowsProtectionStatesRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_protection_state_collection_response.WindowsProtectionStateCollectionResponse]:
         """
         Get a list of the windowsProtectionState objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_protection_state_collection_response.WindowsProtectionStateCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class WindowsProtectionStatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_protection_state_collection_response.WindowsProtectionStateCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_protection_state_collection_response.WindowsProtectionStateCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[windows_protection_state.WindowsProtectionState] = None, request_configuration: Optional[WindowsProtectionStatesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_protection_state.WindowsProtectionState]:
+    async def post(self,body: Optional[windows_protection_state.WindowsProtectionState] = None, request_configuration: Optional[WindowsProtectionStatesRequestBuilderPostRequestConfiguration] = None) -> Optional[windows_protection_state.WindowsProtectionState]:
         """
         Create new navigation property to windowsProtectionStates for tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_protection_state.WindowsProtectionState]
         """
         if body is None:
@@ -83,7 +81,7 @@ class WindowsProtectionStatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_protection_state.WindowsProtectionState, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_protection_state.WindowsProtectionState, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[WindowsProtectionStatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

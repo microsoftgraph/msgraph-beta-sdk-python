@@ -43,12 +43,11 @@ class ColorIconRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ColorIconRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ColorIconRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property colorIcon for appCatalogs
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +58,13 @@ class ColorIconRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ColorIconRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[teams_app_icon.TeamsAppIcon]:
+    async def get(self,request_configuration: Optional[ColorIconRequestBuilderGetRequestConfiguration] = None) -> Optional[teams_app_icon.TeamsAppIcon]:
         """
         Retrieve a Teams app icon associated with a specific definition of an app.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[teams_app_icon.TeamsAppIcon]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +76,14 @@ class ColorIconRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, teams_app_icon.TeamsAppIcon, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, teams_app_icon.TeamsAppIcon, error_mapping)
     
-    async def patch(self,body: Optional[teams_app_icon.TeamsAppIcon] = None, request_configuration: Optional[ColorIconRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[teams_app_icon.TeamsAppIcon]:
+    async def patch(self,body: Optional[teams_app_icon.TeamsAppIcon] = None, request_configuration: Optional[ColorIconRequestBuilderPatchRequestConfiguration] = None) -> Optional[teams_app_icon.TeamsAppIcon]:
         """
         Update the navigation property colorIcon in appCatalogs
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[teams_app_icon.TeamsAppIcon]
         """
         if body is None:
@@ -100,7 +97,7 @@ class ColorIconRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, teams_app_icon.TeamsAppIcon, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, teams_app_icon.TeamsAppIcon, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ColorIconRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

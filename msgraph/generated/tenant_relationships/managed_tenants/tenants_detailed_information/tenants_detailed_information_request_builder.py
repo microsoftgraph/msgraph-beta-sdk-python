@@ -44,12 +44,11 @@ class TenantsDetailedInformationRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[TenantsDetailedInformationRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant_detailed_information_collection_response.TenantDetailedInformationCollectionResponse]:
+    async def get(self,request_configuration: Optional[TenantsDetailedInformationRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_detailed_information_collection_response.TenantDetailedInformationCollectionResponse]:
         """
         Get a list of the tenantDetailedInformation objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_detailed_information_collection_response.TenantDetailedInformationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class TenantsDetailedInformationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant_detailed_information_collection_response.TenantDetailedInformationCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant_detailed_information_collection_response.TenantDetailedInformationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[tenant_detailed_information.TenantDetailedInformation] = None, request_configuration: Optional[TenantsDetailedInformationRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant_detailed_information.TenantDetailedInformation]:
+    async def post(self,body: Optional[tenant_detailed_information.TenantDetailedInformation] = None, request_configuration: Optional[TenantsDetailedInformationRequestBuilderPostRequestConfiguration] = None) -> Optional[tenant_detailed_information.TenantDetailedInformation]:
         """
         Create new navigation property to tenantsDetailedInformation for tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_detailed_information.TenantDetailedInformation]
         """
         if body is None:
@@ -83,7 +81,7 @@ class TenantsDetailedInformationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant_detailed_information.TenantDetailedInformation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant_detailed_information.TenantDetailedInformation, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TenantsDetailedInformationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

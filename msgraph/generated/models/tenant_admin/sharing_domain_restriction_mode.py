@@ -1,7 +1,7 @@
 from enum import Enum
 
 class SharingDomainRestrictionMode(Enum):
-    None_escaped = "none",
+    None_ = "none",
     AllowList = "allowList",
     BlockList = "blockList",
     UnknownFutureValue = "unknownFutureValue",

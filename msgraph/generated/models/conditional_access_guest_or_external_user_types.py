@@ -1,7 +1,7 @@
 from enum import Enum
 
 class ConditionalAccessGuestOrExternalUserTypes(Enum):
-    None_escaped = "none",
+    None_ = "none",
     InternalGuest = "internalGuest",
     B2bCollaborationGuest = "b2bCollaborationGuest",
     B2bCollaborationMember = "b2bCollaborationMember",

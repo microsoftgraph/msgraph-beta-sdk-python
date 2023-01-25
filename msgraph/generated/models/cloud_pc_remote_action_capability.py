@@ -10,7 +10,7 @@ class CloudPcRemoteActionCapability(AdditionalDataHolder, Parsable):
     @property
     def action_capability(self,) -> Optional[action_capability.ActionCapability]:
         """
-        Gets the actionCapability property value. The actionCapability property
+        Gets the actionCapability property value. Indicates the state of the supported action capability to perform a Cloud PC remote action. Possible values are: enabled, disabled. Default value is enabled.
         Returns: Optional[action_capability.ActionCapability]
         """
         return self._action_capability
@@ -18,7 +18,7 @@ class CloudPcRemoteActionCapability(AdditionalDataHolder, Parsable):
     @action_capability.setter
     def action_capability(self,value: Optional[action_capability.ActionCapability] = None) -> None:
         """
-        Sets the actionCapability property value. The actionCapability property
+        Sets the actionCapability property value. Indicates the state of the supported action capability to perform a Cloud PC remote action. Possible values are: enabled, disabled. Default value is enabled.
         Args:
             value: Value to set for the actionCapability property.
         """
@@ -27,7 +27,7 @@ class CloudPcRemoteActionCapability(AdditionalDataHolder, Parsable):
     @property
     def action_name(self,) -> Optional[cloud_pc_remote_action_name.CloudPcRemoteActionName]:
         """
-        Gets the actionName property value. The actionName property
+        Gets the actionName property value. The name of the supported Cloud PC remote action. Possible values are: unknown, restart, rename, restore, resize, reprovision, troubleShoot, changeUserAccountType, placeUnderReview. Default value is unknown.
         Returns: Optional[cloud_pc_remote_action_name.CloudPcRemoteActionName]
         """
         return self._action_name
@@ -35,7 +35,7 @@ class CloudPcRemoteActionCapability(AdditionalDataHolder, Parsable):
     @action_name.setter
     def action_name(self,value: Optional[cloud_pc_remote_action_name.CloudPcRemoteActionName] = None) -> None:
         """
-        Sets the actionName property value. The actionName property
+        Sets the actionName property value. The name of the supported Cloud PC remote action. Possible values are: unknown, restart, rename, restore, resize, reprovision, troubleShoot, changeUserAccountType, placeUnderReview. Default value is unknown.
         Args:
             value: Value to set for the actionName property.
         """
@@ -65,9 +65,9 @@ class CloudPcRemoteActionCapability(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The actionCapability property
+        # Indicates the state of the supported action capability to perform a Cloud PC remote action. Possible values are: enabled, disabled. Default value is enabled.
         self._action_capability: Optional[action_capability.ActionCapability] = None
-        # The actionName property
+        # The name of the supported Cloud PC remote action. Possible values are: unknown, restart, rename, restore, resize, reprovision, troubleShoot, changeUserAccountType, placeUnderReview. Default value is unknown.
         self._action_name: Optional[cloud_pc_remote_action_name.CloudPcRemoteActionName] = None
         # The OdataType property
         self._odata_type: Optional[str] = None

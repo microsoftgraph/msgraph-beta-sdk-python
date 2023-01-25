@@ -82,7 +82,7 @@ class OnPremisesPublishingProfile(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new onPremisesPublishingProfile and sets the default values.
+        Instantiates a new OnPremisesPublishingProfile and sets the default values.
         """
         super().__init__()
         # List of existing onPremisesAgentGroup objects. Read-only. Nullable.

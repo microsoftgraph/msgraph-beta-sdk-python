@@ -44,12 +44,11 @@ class UsageRightsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UsageRightsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[usage_right_collection_response.UsageRightCollectionResponse]:
+    async def get(self,request_configuration: Optional[UsageRightsRequestBuilderGetRequestConfiguration] = None) -> Optional[usage_right_collection_response.UsageRightCollectionResponse]:
         """
         Retrieve a list of usageRight objects for a given device.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[usage_right_collection_response.UsageRightCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class UsageRightsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, usage_right_collection_response.UsageRightCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, usage_right_collection_response.UsageRightCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[usage_right.UsageRight] = None, request_configuration: Optional[UsageRightsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[usage_right.UsageRight]:
+    async def post(self,body: Optional[usage_right.UsageRight] = None, request_configuration: Optional[UsageRightsRequestBuilderPostRequestConfiguration] = None) -> Optional[usage_right.UsageRight]:
         """
         Create new navigation property to usageRights for devices
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[usage_right.UsageRight]
         """
         if body is None:
@@ -83,7 +81,7 @@ class UsageRightsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, usage_right.UsageRight, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, usage_right.UsageRight, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UsageRightsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

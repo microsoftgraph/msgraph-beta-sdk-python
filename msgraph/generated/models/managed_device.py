@@ -42,6 +42,9 @@ user = lazy_import('msgraph.generated.models.user')
 windows_protection_state = lazy_import('msgraph.generated.models.windows_protection_state')
 
 class ManagedDevice(entity.Entity):
+    """
+    Devices that are managed or pre-enrolled through Intune
+    """
     @property
     def aad_registered(self,) -> Optional[bool]:
         """

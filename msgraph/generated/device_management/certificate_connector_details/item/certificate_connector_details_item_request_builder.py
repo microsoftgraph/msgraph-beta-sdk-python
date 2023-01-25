@@ -51,12 +51,11 @@ class CertificateConnectorDetailsItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CertificateConnectorDetailsItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CertificateConnectorDetailsItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property certificateConnectorDetails for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -67,14 +66,13 @@ class CertificateConnectorDetailsItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CertificateConnectorDetailsItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[certificate_connector_details.CertificateConnectorDetails]:
+    async def get(self,request_configuration: Optional[CertificateConnectorDetailsItemRequestBuilderGetRequestConfiguration] = None) -> Optional[certificate_connector_details.CertificateConnectorDetails]:
         """
         Collection of certificate connector details, each associated with a corresponding Intune Certificate Connector.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[certificate_connector_details.CertificateConnectorDetails]
         """
         request_info = self.to_get_request_information(
@@ -86,15 +84,14 @@ class CertificateConnectorDetailsItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, certificate_connector_details.CertificateConnectorDetails, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, certificate_connector_details.CertificateConnectorDetails, error_mapping)
     
-    async def patch(self,body: Optional[certificate_connector_details.CertificateConnectorDetails] = None, request_configuration: Optional[CertificateConnectorDetailsItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[certificate_connector_details.CertificateConnectorDetails]:
+    async def patch(self,body: Optional[certificate_connector_details.CertificateConnectorDetails] = None, request_configuration: Optional[CertificateConnectorDetailsItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[certificate_connector_details.CertificateConnectorDetails]:
         """
         Update the navigation property certificateConnectorDetails in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[certificate_connector_details.CertificateConnectorDetails]
         """
         if body is None:
@@ -108,7 +105,7 @@ class CertificateConnectorDetailsItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, certificate_connector_details.CertificateConnectorDetails, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, certificate_connector_details.CertificateConnectorDetails, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CertificateConnectorDetailsItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -8,7 +8,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 class AdminReportSettings(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new adminReportSettings and sets the default values.
+        Instantiates a new AdminReportSettings and sets the default values.
         """
         super().__init__()
         # If set to true, all reports will conceal user information such as usernames, groups, and sites. If false, all reports will show identifiable information. This property represents a setting in the Microsoft 365 admin center. Required.

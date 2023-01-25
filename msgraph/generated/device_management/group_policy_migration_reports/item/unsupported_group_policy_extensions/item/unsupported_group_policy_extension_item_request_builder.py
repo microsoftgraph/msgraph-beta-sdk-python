@@ -35,12 +35,11 @@ class UnsupportedGroupPolicyExtensionItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[UnsupportedGroupPolicyExtensionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[UnsupportedGroupPolicyExtensionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property unsupportedGroupPolicyExtensions for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class UnsupportedGroupPolicyExtensionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UnsupportedGroupPolicyExtensionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unsupported_group_policy_extension.UnsupportedGroupPolicyExtension]:
+    async def get(self,request_configuration: Optional[UnsupportedGroupPolicyExtensionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[unsupported_group_policy_extension.UnsupportedGroupPolicyExtension]:
         """
         A list of unsupported group policy extensions inside the Group Policy Object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unsupported_group_policy_extension.UnsupportedGroupPolicyExtension]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class UnsupportedGroupPolicyExtensionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unsupported_group_policy_extension.UnsupportedGroupPolicyExtension, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unsupported_group_policy_extension.UnsupportedGroupPolicyExtension, error_mapping)
     
-    async def patch(self,body: Optional[unsupported_group_policy_extension.UnsupportedGroupPolicyExtension] = None, request_configuration: Optional[UnsupportedGroupPolicyExtensionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unsupported_group_policy_extension.UnsupportedGroupPolicyExtension]:
+    async def patch(self,body: Optional[unsupported_group_policy_extension.UnsupportedGroupPolicyExtension] = None, request_configuration: Optional[UnsupportedGroupPolicyExtensionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[unsupported_group_policy_extension.UnsupportedGroupPolicyExtension]:
         """
         Update the navigation property unsupportedGroupPolicyExtensions in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unsupported_group_policy_extension.UnsupportedGroupPolicyExtension]
         """
         if body is None:
@@ -92,7 +89,7 @@ class UnsupportedGroupPolicyExtensionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unsupported_group_policy_extension.UnsupportedGroupPolicyExtension, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unsupported_group_policy_extension.UnsupportedGroupPolicyExtension, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UnsupportedGroupPolicyExtensionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

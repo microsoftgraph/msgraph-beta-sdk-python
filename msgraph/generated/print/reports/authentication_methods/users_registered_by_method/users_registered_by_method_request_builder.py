@@ -35,12 +35,11 @@ class UsersRegisteredByMethodRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UsersRegisteredByMethodRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_registration_method_summary.UserRegistrationMethodSummary]:
+    async def get(self,request_configuration: Optional[UsersRegisteredByMethodRequestBuilderGetRequestConfiguration] = None) -> Optional[user_registration_method_summary.UserRegistrationMethodSummary]:
         """
         Invoke function usersRegisteredByMethod
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_registration_method_summary.UserRegistrationMethodSummary]
         """
         request_info = self.to_get_request_information(
@@ -52,7 +51,7 @@ class UsersRegisteredByMethodRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_registration_method_summary.UserRegistrationMethodSummary, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_registration_method_summary.UserRegistrationMethodSummary, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UsersRegisteredByMethodRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -38,12 +38,11 @@ class GetOffice365GroupsActivityDetailWithDateRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[GetOffice365GroupsActivityDetailWithDateRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[get_office365_groups_activity_detail_with_date_response.GetOffice365GroupsActivityDetailWithDateResponse]:
+    async def get(self,request_configuration: Optional[GetOffice365GroupsActivityDetailWithDateRequestBuilderGetRequestConfiguration] = None) -> Optional[get_office365_groups_activity_detail_with_date_response.GetOffice365GroupsActivityDetailWithDateResponse]:
         """
         Invoke function getOffice365GroupsActivityDetail
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[get_office365_groups_activity_detail_with_date_response.GetOffice365GroupsActivityDetailWithDateResponse]
         """
         request_info = self.to_get_request_information(
@@ -55,7 +54,7 @@ class GetOffice365GroupsActivityDetailWithDateRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, get_office365_groups_activity_detail_with_date_response.GetOffice365GroupsActivityDetailWithDateResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, get_office365_groups_activity_detail_with_date_response.GetOffice365GroupsActivityDetailWithDateResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetOffice365GroupsActivityDetailWithDateRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

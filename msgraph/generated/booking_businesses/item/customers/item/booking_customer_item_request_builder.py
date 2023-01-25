@@ -35,12 +35,11 @@ class BookingCustomerItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[BookingCustomerItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[BookingCustomerItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property customers for bookingBusinesses
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class BookingCustomerItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[BookingCustomerItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[booking_customer.BookingCustomer]:
+    async def get(self,request_configuration: Optional[BookingCustomerItemRequestBuilderGetRequestConfiguration] = None) -> Optional[booking_customer.BookingCustomer]:
         """
         All the customers of this business. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[booking_customer.BookingCustomer]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class BookingCustomerItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, booking_customer.BookingCustomer, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, booking_customer.BookingCustomer, error_mapping)
     
-    async def patch(self,body: Optional[booking_customer.BookingCustomer] = None, request_configuration: Optional[BookingCustomerItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[booking_customer.BookingCustomer]:
+    async def patch(self,body: Optional[booking_customer.BookingCustomer] = None, request_configuration: Optional[BookingCustomerItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[booking_customer.BookingCustomer]:
         """
         Update the navigation property customers in bookingBusinesses
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[booking_customer.BookingCustomer]
         """
         if body is None:
@@ -92,7 +89,7 @@ class BookingCustomerItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, booking_customer.BookingCustomer, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, booking_customer.BookingCustomer, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[BookingCustomerItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

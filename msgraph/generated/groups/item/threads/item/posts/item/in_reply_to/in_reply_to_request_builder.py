@@ -122,12 +122,11 @@ class InReplyToRequestBuilder():
         url_tpl_params["extension%2Did"] = id
         return extension_item_request_builder.ExtensionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[InReplyToRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[post.Post]:
+    async def get(self,request_configuration: Optional[InReplyToRequestBuilderGetRequestConfiguration] = None) -> Optional[post.Post]:
         """
         The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[post.Post]
         """
         request_info = self.to_get_request_information(
@@ -139,7 +138,7 @@ class InReplyToRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, post.Post, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, post.Post, error_mapping)
     
     def mentions_by_id(self,id: str) -> mention_item_request_builder.MentionItemRequestBuilder:
         """

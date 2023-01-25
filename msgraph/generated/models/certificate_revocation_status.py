@@ -2,7 +2,7 @@ from enum import Enum
 
 class CertificateRevocationStatus(Enum):
     # Not revoked.
-    None_escaped = "none",
+    None_ = "none",
     # Revocation pending.
     Pending = "pending",
     # Revocation command issued.

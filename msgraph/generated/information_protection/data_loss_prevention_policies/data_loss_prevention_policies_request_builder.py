@@ -52,12 +52,11 @@ class DataLossPreventionPoliciesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DataLossPreventionPoliciesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[data_loss_prevention_policy_collection_response.DataLossPreventionPolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[DataLossPreventionPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[data_loss_prevention_policy_collection_response.DataLossPreventionPolicyCollectionResponse]:
         """
         Get dataLossPreventionPolicies from informationProtection
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[data_loss_prevention_policy_collection_response.DataLossPreventionPolicyCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class DataLossPreventionPoliciesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, data_loss_prevention_policy_collection_response.DataLossPreventionPolicyCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, data_loss_prevention_policy_collection_response.DataLossPreventionPolicyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[data_loss_prevention_policy.DataLossPreventionPolicy] = None, request_configuration: Optional[DataLossPreventionPoliciesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[data_loss_prevention_policy.DataLossPreventionPolicy]:
+    async def post(self,body: Optional[data_loss_prevention_policy.DataLossPreventionPolicy] = None, request_configuration: Optional[DataLossPreventionPoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[data_loss_prevention_policy.DataLossPreventionPolicy]:
         """
         Create new navigation property to dataLossPreventionPolicies for informationProtection
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[data_loss_prevention_policy.DataLossPreventionPolicy]
         """
         if body is None:
@@ -91,7 +89,7 @@ class DataLossPreventionPoliciesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, data_loss_prevention_policy.DataLossPreventionPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, data_loss_prevention_policy.DataLossPreventionPolicy, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DataLossPreventionPoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

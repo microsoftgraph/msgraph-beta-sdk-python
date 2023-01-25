@@ -68,12 +68,11 @@ class VendorRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[VendorRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[VendorRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property vendor for financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -84,14 +83,13 @@ class VendorRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[VendorRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[vendor.Vendor]:
+    async def get(self,request_configuration: Optional[VendorRequestBuilderGetRequestConfiguration] = None) -> Optional[vendor.Vendor]:
         """
         Get vendor from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[vendor.Vendor]
         """
         request_info = self.to_get_request_information(
@@ -103,15 +101,14 @@ class VendorRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, vendor.Vendor, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, vendor.Vendor, error_mapping)
     
-    async def patch(self,body: Optional[vendor.Vendor] = None, request_configuration: Optional[VendorRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[vendor.Vendor]:
+    async def patch(self,body: Optional[vendor.Vendor] = None, request_configuration: Optional[VendorRequestBuilderPatchRequestConfiguration] = None) -> Optional[vendor.Vendor]:
         """
         Update the navigation property vendor in financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[vendor.Vendor]
         """
         if body is None:
@@ -125,7 +122,7 @@ class VendorRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, vendor.Vendor, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, vendor.Vendor, error_mapping)
     
     def picture_by_id(self,id: str) -> picture_item_request_builder.PictureItemRequestBuilder:
         """

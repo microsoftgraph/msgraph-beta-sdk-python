@@ -1,7 +1,7 @@
 from enum import Enum
 
 class DeviceManagementConfigurationStringFormat(Enum):
-    None_escaped = "none",
+    None_ = "none",
     Email = "email",
     Guid = "guid",
     Ip = "ip",

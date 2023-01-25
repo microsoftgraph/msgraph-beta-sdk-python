@@ -44,12 +44,11 @@ class ManagedDeviceComplianceTrendsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ManagedDeviceComplianceTrendsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_device_compliance_trend_collection_response.ManagedDeviceComplianceTrendCollectionResponse]:
+    async def get(self,request_configuration: Optional[ManagedDeviceComplianceTrendsRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_device_compliance_trend_collection_response.ManagedDeviceComplianceTrendCollectionResponse]:
         """
         Get a list of the managedDeviceComplianceTrend objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_device_compliance_trend_collection_response.ManagedDeviceComplianceTrendCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class ManagedDeviceComplianceTrendsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_device_compliance_trend_collection_response.ManagedDeviceComplianceTrendCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_device_compliance_trend_collection_response.ManagedDeviceComplianceTrendCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[managed_device_compliance_trend.ManagedDeviceComplianceTrend] = None, request_configuration: Optional[ManagedDeviceComplianceTrendsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_device_compliance_trend.ManagedDeviceComplianceTrend]:
+    async def post(self,body: Optional[managed_device_compliance_trend.ManagedDeviceComplianceTrend] = None, request_configuration: Optional[ManagedDeviceComplianceTrendsRequestBuilderPostRequestConfiguration] = None) -> Optional[managed_device_compliance_trend.ManagedDeviceComplianceTrend]:
         """
         Create new navigation property to managedDeviceComplianceTrends for tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_device_compliance_trend.ManagedDeviceComplianceTrend]
         """
         if body is None:
@@ -83,7 +81,7 @@ class ManagedDeviceComplianceTrendsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_device_compliance_trend.ManagedDeviceComplianceTrend, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_device_compliance_trend.ManagedDeviceComplianceTrend, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ManagedDeviceComplianceTrendsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

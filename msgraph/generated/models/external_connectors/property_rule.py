@@ -36,7 +36,7 @@ class PropertyRule(AdditionalDataHolder, Parsable):
         # The operation property
         self._operation: Optional[rule_operation.RuleOperation] = None
         # The property from the externalItem schema. Required.
-        self._property: Optional[str] = None
+        self._property_: Optional[str] = None
         # A collection with one or many strings. The specified string(s) will be matched with the specified property using the specified operation. Required.
         self._values: Optional[List[str]] = None
         # The valuesJoinedBy property
@@ -62,7 +62,7 @@ class PropertyRule(AdditionalDataHolder, Parsable):
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "operation": lambda n : setattr(self, 'operation', n.get_enum_value(rule_operation.RuleOperation)),
-            "property": lambda n : setattr(self, 'property', n.get_str_value()),
+            "property": lambda n : setattr(self, 'property_', n.get_str_value()),
             "values": lambda n : setattr(self, 'values', n.get_collection_of_primitive_values(str)),
             "values_joined_by": lambda n : setattr(self, 'values_joined_by', n.get_enum_value(binary_operator.BinaryOperator)),
         }
@@ -103,21 +103,21 @@ class PropertyRule(AdditionalDataHolder, Parsable):
         self._operation = value
     
     @property
-    def property(self,) -> Optional[str]:
+    def property_(self,) -> Optional[str]:
         """
         Gets the property property value. The property from the externalItem schema. Required.
         Returns: Optional[str]
         """
-        return self._property
+        return self._property_
     
-    @property.setter
-    def property(self,value: Optional[str] = None) -> None:
+    @property_.setter
+    def property_(self,value: Optional[str] = None) -> None:
         """
         Sets the property property value. The property from the externalItem schema. Required.
         Args:
-            value: Value to set for the property property.
+            value: Value to set for the property_ property.
         """
-        self._property = value
+        self._property_ = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -129,7 +129,7 @@ class PropertyRule(AdditionalDataHolder, Parsable):
             raise Exception("writer cannot be undefined")
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("operation", self.operation)
-        writer.write_str_value("property", self.property)
+        writer.write_str_value("property", self.property_)
         writer.write_collection_of_primitive_values("values", self.values)
         writer.write_enum_value("valuesJoinedBy", self.values_joined_by)
         writer.write_additional_data_value(self.additional_data)

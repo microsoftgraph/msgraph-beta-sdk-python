@@ -44,12 +44,11 @@ class CloudPCsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CloudPCsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_p_c_collection_response.CloudPCCollectionResponse]:
+    async def get(self,request_configuration: Optional[CloudPCsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_p_c_collection_response.CloudPCCollectionResponse]:
         """
         List the cloudPC devices in a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_p_c_collection_response.CloudPCCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class CloudPCsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_p_c_collection_response.CloudPCCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_p_c_collection_response.CloudPCCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[cloud_p_c.CloudPC] = None, request_configuration: Optional[CloudPCsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_p_c.CloudPC]:
+    async def post(self,body: Optional[cloud_p_c.CloudPC] = None, request_configuration: Optional[CloudPCsRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_p_c.CloudPC]:
         """
         Create new navigation property to cloudPCs for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_p_c.CloudPC]
         """
         if body is None:
@@ -83,7 +81,7 @@ class CloudPCsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_p_c.CloudPC, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_p_c.CloudPC, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CloudPCsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

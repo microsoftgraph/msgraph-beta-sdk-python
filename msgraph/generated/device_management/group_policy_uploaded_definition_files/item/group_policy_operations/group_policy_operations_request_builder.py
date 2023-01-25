@@ -44,12 +44,11 @@ class GroupPolicyOperationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[GroupPolicyOperationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group_policy_operation_collection_response.GroupPolicyOperationCollectionResponse]:
+    async def get(self,request_configuration: Optional[GroupPolicyOperationsRequestBuilderGetRequestConfiguration] = None) -> Optional[group_policy_operation_collection_response.GroupPolicyOperationCollectionResponse]:
         """
         The list of operations on the uploaded ADMX file.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_policy_operation_collection_response.GroupPolicyOperationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class GroupPolicyOperationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group_policy_operation_collection_response.GroupPolicyOperationCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, group_policy_operation_collection_response.GroupPolicyOperationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[group_policy_operation.GroupPolicyOperation] = None, request_configuration: Optional[GroupPolicyOperationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group_policy_operation.GroupPolicyOperation]:
+    async def post(self,body: Optional[group_policy_operation.GroupPolicyOperation] = None, request_configuration: Optional[GroupPolicyOperationsRequestBuilderPostRequestConfiguration] = None) -> Optional[group_policy_operation.GroupPolicyOperation]:
         """
         Create new navigation property to groupPolicyOperations for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_policy_operation.GroupPolicyOperation]
         """
         if body is None:
@@ -83,7 +81,7 @@ class GroupPolicyOperationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group_policy_operation.GroupPolicyOperation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, group_policy_operation.GroupPolicyOperation, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GroupPolicyOperationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

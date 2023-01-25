@@ -44,12 +44,11 @@ class CloudPCConnectivityIssuesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CloudPCConnectivityIssuesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_p_c_connectivity_issue_collection_response.CloudPCConnectivityIssueCollectionResponse]:
+    async def get(self,request_configuration: Optional[CloudPCConnectivityIssuesRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_p_c_connectivity_issue_collection_response.CloudPCConnectivityIssueCollectionResponse]:
         """
         The list of CloudPC Connectivity Issue.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_p_c_connectivity_issue_collection_response.CloudPCConnectivityIssueCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class CloudPCConnectivityIssuesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_p_c_connectivity_issue_collection_response.CloudPCConnectivityIssueCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_p_c_connectivity_issue_collection_response.CloudPCConnectivityIssueCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[cloud_p_c_connectivity_issue.CloudPCConnectivityIssue] = None, request_configuration: Optional[CloudPCConnectivityIssuesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_p_c_connectivity_issue.CloudPCConnectivityIssue]:
+    async def post(self,body: Optional[cloud_p_c_connectivity_issue.CloudPCConnectivityIssue] = None, request_configuration: Optional[CloudPCConnectivityIssuesRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_p_c_connectivity_issue.CloudPCConnectivityIssue]:
         """
         Create new navigation property to cloudPCConnectivityIssues for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_p_c_connectivity_issue.CloudPCConnectivityIssue]
         """
         if body is None:
@@ -83,7 +81,7 @@ class CloudPCConnectivityIssuesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_p_c_connectivity_issue.CloudPCConnectivityIssue, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_p_c_connectivity_issue.CloudPCConnectivityIssue, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CloudPCConnectivityIssuesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

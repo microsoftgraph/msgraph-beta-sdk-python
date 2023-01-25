@@ -44,12 +44,11 @@ class LegalHoldsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[LegalHoldsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ediscovery_hold_policy_collection_response.EdiscoveryHoldPolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[LegalHoldsRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_hold_policy_collection_response.EdiscoveryHoldPolicyCollectionResponse]:
         """
         Get a list of the ediscoveryHoldPolicy objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscovery_hold_policy_collection_response.EdiscoveryHoldPolicyCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class LegalHoldsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ediscovery_hold_policy_collection_response.EdiscoveryHoldPolicyCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ediscovery_hold_policy_collection_response.EdiscoveryHoldPolicyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ediscovery_hold_policy.EdiscoveryHoldPolicy] = None, request_configuration: Optional[LegalHoldsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ediscovery_hold_policy.EdiscoveryHoldPolicy]:
+    async def post(self,body: Optional[ediscovery_hold_policy.EdiscoveryHoldPolicy] = None, request_configuration: Optional[LegalHoldsRequestBuilderPostRequestConfiguration] = None) -> Optional[ediscovery_hold_policy.EdiscoveryHoldPolicy]:
         """
         Create a new ediscoveryHoldPolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscovery_hold_policy.EdiscoveryHoldPolicy]
         """
         if body is None:
@@ -83,7 +81,7 @@ class LegalHoldsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ediscovery_hold_policy.EdiscoveryHoldPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ediscovery_hold_policy.EdiscoveryHoldPolicy, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[LegalHoldsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

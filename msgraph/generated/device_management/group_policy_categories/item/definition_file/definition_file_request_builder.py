@@ -35,12 +35,11 @@ class DefinitionFileRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DefinitionFileRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group_policy_definition_file.GroupPolicyDefinitionFile]:
+    async def get(self,request_configuration: Optional[DefinitionFileRequestBuilderGetRequestConfiguration] = None) -> Optional[group_policy_definition_file.GroupPolicyDefinitionFile]:
         """
         The id of the definition file the category came from
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_policy_definition_file.GroupPolicyDefinitionFile]
         """
         request_info = self.to_get_request_information(
@@ -52,7 +51,7 @@ class DefinitionFileRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group_policy_definition_file.GroupPolicyDefinitionFile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, group_policy_definition_file.GroupPolicyDefinitionFile, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DefinitionFileRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

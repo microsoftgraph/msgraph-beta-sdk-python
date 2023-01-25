@@ -44,12 +44,11 @@ class CountriesRegionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CountriesRegionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[country_region_collection_response.CountryRegionCollectionResponse]:
+    async def get(self,request_configuration: Optional[CountriesRegionsRequestBuilderGetRequestConfiguration] = None) -> Optional[country_region_collection_response.CountryRegionCollectionResponse]:
         """
         Get countriesRegions from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[country_region_collection_response.CountryRegionCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class CountriesRegionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, country_region_collection_response.CountryRegionCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, country_region_collection_response.CountryRegionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[country_region.CountryRegion] = None, request_configuration: Optional[CountriesRegionsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[country_region.CountryRegion]:
+    async def post(self,body: Optional[country_region.CountryRegion] = None, request_configuration: Optional[CountriesRegionsRequestBuilderPostRequestConfiguration] = None) -> Optional[country_region.CountryRegion]:
         """
         Create new navigation property to countriesRegions for financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[country_region.CountryRegion]
         """
         if body is None:
@@ -83,7 +81,7 @@ class CountriesRegionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, country_region.CountryRegion, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, country_region.CountryRegion, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CountriesRegionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

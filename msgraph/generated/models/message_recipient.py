@@ -10,7 +10,7 @@ message_status = lazy_import('msgraph.generated.models.message_status')
 class MessageRecipient(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new messageRecipient and sets the default values.
+        Instantiates a new MessageRecipient and sets the default values.
         """
         super().__init__()
         # The deliveryStatus property

@@ -44,12 +44,11 @@ class UserStatesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserStatesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_intent_user_state_collection_response.DeviceManagementIntentUserStateCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserStatesRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_intent_user_state_collection_response.DeviceManagementIntentUserStateCollectionResponse]:
         """
         Collection of states of all users that the intent is applied to
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_intent_user_state_collection_response.DeviceManagementIntentUserStateCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class UserStatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_intent_user_state_collection_response.DeviceManagementIntentUserStateCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_intent_user_state_collection_response.DeviceManagementIntentUserStateCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[device_management_intent_user_state.DeviceManagementIntentUserState] = None, request_configuration: Optional[UserStatesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_intent_user_state.DeviceManagementIntentUserState]:
+    async def post(self,body: Optional[device_management_intent_user_state.DeviceManagementIntentUserState] = None, request_configuration: Optional[UserStatesRequestBuilderPostRequestConfiguration] = None) -> Optional[device_management_intent_user_state.DeviceManagementIntentUserState]:
         """
         Create new navigation property to userStates for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_intent_user_state.DeviceManagementIntentUserState]
         """
         if body is None:
@@ -83,7 +81,7 @@ class UserStatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_intent_user_state.DeviceManagementIntentUserState, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_intent_user_state.DeviceManagementIntentUserState, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UserStatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

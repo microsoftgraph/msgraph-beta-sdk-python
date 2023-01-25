@@ -44,12 +44,11 @@ class VendorsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[VendorsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[vendor_collection_response.VendorCollectionResponse]:
+    async def get(self,request_configuration: Optional[VendorsRequestBuilderGetRequestConfiguration] = None) -> Optional[vendor_collection_response.VendorCollectionResponse]:
         """
         Get vendors from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[vendor_collection_response.VendorCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class VendorsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, vendor_collection_response.VendorCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, vendor_collection_response.VendorCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[vendor.Vendor] = None, request_configuration: Optional[VendorsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[vendor.Vendor]:
+    async def post(self,body: Optional[vendor.Vendor] = None, request_configuration: Optional[VendorsRequestBuilderPostRequestConfiguration] = None) -> Optional[vendor.Vendor]:
         """
         Create new navigation property to vendors for financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[vendor.Vendor]
         """
         if body is None:
@@ -83,7 +81,7 @@ class VendorsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, vendor.Vendor, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, vendor.Vendor, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[VendorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

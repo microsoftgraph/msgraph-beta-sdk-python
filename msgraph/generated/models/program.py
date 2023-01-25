@@ -9,7 +9,7 @@ program_control = lazy_import('msgraph.generated.models.program_control')
 class Program(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new Program and sets the default values.
+        Instantiates a new program and sets the default values.
         """
         super().__init__()
         # Controls associated with the program.

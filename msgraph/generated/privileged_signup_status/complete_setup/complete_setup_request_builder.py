@@ -36,13 +36,12 @@ class CompleteSetupRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[complete_setup_post_request_body.CompleteSetupPostRequestBody] = None, request_configuration: Optional[CompleteSetupRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[complete_setup_response.CompleteSetupResponse]:
+    async def post(self,body: Optional[complete_setup_post_request_body.CompleteSetupPostRequestBody] = None, request_configuration: Optional[CompleteSetupRequestBuilderPostRequestConfiguration] = None) -> Optional[complete_setup_response.CompleteSetupResponse]:
         """
         Invoke action completeSetup
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[complete_setup_response.CompleteSetupResponse]
         """
         if body is None:
@@ -56,7 +55,7 @@ class CompleteSetupRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, complete_setup_response.CompleteSetupResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, complete_setup_response.CompleteSetupResponse, error_mapping)
     
     def to_post_request_information(self,body: Optional[complete_setup_post_request_body.CompleteSetupPostRequestBody] = None, request_configuration: Optional[CompleteSetupRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

@@ -78,7 +78,7 @@ class PrintJob(entity.Entity):
         self._created_by: Optional[user_identity.UserIdentity] = None
         # The DateTimeOffset when the job was created. Read-only.
         self._created_date_time: Optional[datetime] = None
-        # The displayName property
+        # The name of the print job.
         self._display_name: Optional[str] = None
         # The documents property
         self._documents: Optional[List[print_document.PrintDocument]] = None
@@ -146,7 +146,7 @@ class PrintJob(entity.Entity):
     @property
     def display_name(self,) -> Optional[str]:
         """
-        Gets the displayName property value. The displayName property
+        Gets the displayName property value. The name of the print job.
         Returns: Optional[str]
         """
         return self._display_name
@@ -154,7 +154,7 @@ class PrintJob(entity.Entity):
     @display_name.setter
     def display_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the displayName property value. The displayName property
+        Sets the displayName property value. The name of the print job.
         Args:
             value: Value to set for the displayName property.
         """

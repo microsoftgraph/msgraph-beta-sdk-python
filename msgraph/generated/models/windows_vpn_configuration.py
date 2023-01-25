@@ -7,9 +7,6 @@ device_configuration = lazy_import('msgraph.generated.models.device_configuratio
 vpn_server = lazy_import('msgraph.generated.models.vpn_server')
 
 class WindowsVpnConfiguration(device_configuration.DeviceConfiguration):
-    """
-    Windows VPN configuration profile.
-    """
     @property
     def connection_name(self,) -> Optional[str]:
         """
@@ -29,7 +26,7 @@ class WindowsVpnConfiguration(device_configuration.DeviceConfiguration):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new windowsVpnConfiguration and sets the default values.
+        Instantiates a new WindowsVpnConfiguration and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.windowsVpnConfiguration"

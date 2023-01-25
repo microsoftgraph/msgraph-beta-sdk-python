@@ -44,12 +44,11 @@ class StepsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[StepsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[approval_step_collection_response.ApprovalStepCollectionResponse]:
+    async def get(self,request_configuration: Optional[StepsRequestBuilderGetRequestConfiguration] = None) -> Optional[approval_step_collection_response.ApprovalStepCollectionResponse]:
         """
         In Azure AD entitlement management, lists the approvalStep objects associated with an approval object.  This call can be made by an approver, providing the identifier of the access package assignment request.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[approval_step_collection_response.ApprovalStepCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class StepsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, approval_step_collection_response.ApprovalStepCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, approval_step_collection_response.ApprovalStepCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[approval_step.ApprovalStep] = None, request_configuration: Optional[StepsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[approval_step.ApprovalStep]:
+    async def post(self,body: Optional[approval_step.ApprovalStep] = None, request_configuration: Optional[StepsRequestBuilderPostRequestConfiguration] = None) -> Optional[approval_step.ApprovalStep]:
         """
         Create new navigation property to steps for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[approval_step.ApprovalStep]
         """
         if body is None:
@@ -83,7 +81,7 @@ class StepsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, approval_step.ApprovalStep, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, approval_step.ApprovalStep, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[StepsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

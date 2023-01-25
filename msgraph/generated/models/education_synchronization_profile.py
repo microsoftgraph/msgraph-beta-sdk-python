@@ -15,7 +15,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 class EducationSynchronizationProfile(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new educationSynchronizationProfile and sets the default values.
+        Instantiates a new EducationSynchronizationProfile and sets the default values.
         """
         super().__init__()
         # The dataProvider property

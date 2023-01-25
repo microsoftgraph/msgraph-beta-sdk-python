@@ -4,7 +4,7 @@ class VpnDeadPeerDetectionRate(Enum):
     # Medium
     Medium = "medium",
     # None
-    None_escaped = "none",
+    None_ = "none",
     # Low
     Low = "low",
     # High

@@ -44,12 +44,11 @@ class CachedReportConfigurationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CachedReportConfigurationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_cached_report_configuration_collection_response.DeviceManagementCachedReportConfigurationCollectionResponse]:
+    async def get(self,request_configuration: Optional[CachedReportConfigurationsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_cached_report_configuration_collection_response.DeviceManagementCachedReportConfigurationCollectionResponse]:
         """
         Entity representing the configuration of a cached report
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_cached_report_configuration_collection_response.DeviceManagementCachedReportConfigurationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class CachedReportConfigurationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_cached_report_configuration_collection_response.DeviceManagementCachedReportConfigurationCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_cached_report_configuration_collection_response.DeviceManagementCachedReportConfigurationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[device_management_cached_report_configuration.DeviceManagementCachedReportConfiguration] = None, request_configuration: Optional[CachedReportConfigurationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_cached_report_configuration.DeviceManagementCachedReportConfiguration]:
+    async def post(self,body: Optional[device_management_cached_report_configuration.DeviceManagementCachedReportConfiguration] = None, request_configuration: Optional[CachedReportConfigurationsRequestBuilderPostRequestConfiguration] = None) -> Optional[device_management_cached_report_configuration.DeviceManagementCachedReportConfiguration]:
         """
         Create new navigation property to cachedReportConfigurations for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_cached_report_configuration.DeviceManagementCachedReportConfiguration]
         """
         if body is None:
@@ -83,7 +81,7 @@ class CachedReportConfigurationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_cached_report_configuration.DeviceManagementCachedReportConfiguration, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_cached_report_configuration.DeviceManagementCachedReportConfiguration, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CachedReportConfigurationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -1,7 +1,7 @@
 from enum import Enum
 
 class SynchronizationSecret(Enum):
-    None_escaped = "None",
+    None_ = "None",
     UserName = "UserName",
     Password = "Password",
     SecretToken = "SecretToken",

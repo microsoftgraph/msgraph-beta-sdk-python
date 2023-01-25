@@ -91,12 +91,11 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property androidManagedStoreAccountEnterpriseSettings for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -107,14 +106,13 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]:
+    async def get(self,request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]:
         """
         The singleton Android managed store account enterprise settings entity.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]
         """
         request_info = self.to_get_request_information(
@@ -126,15 +124,14 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings, error_mapping)
     
-    async def patch(self,body: Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings] = None, request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]:
+    async def patch(self,body: Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings] = None, request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]:
         """
         Update the navigation property androidManagedStoreAccountEnterpriseSettings in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]
         """
         if body is None:
@@ -148,7 +145,7 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

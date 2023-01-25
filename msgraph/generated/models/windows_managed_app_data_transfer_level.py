@@ -4,5 +4,5 @@ class WindowsManagedAppDataTransferLevel(Enum):
     # All apps.
     AllApps = "allApps",
     # No apps.
-    None_escaped = "none",
+    None_ = "none",
 

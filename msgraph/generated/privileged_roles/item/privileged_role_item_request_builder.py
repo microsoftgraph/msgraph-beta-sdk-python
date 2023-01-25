@@ -89,12 +89,11 @@ class PrivilegedRoleItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PrivilegedRoleItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PrivilegedRoleItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete entity from privilegedRoles
+        Delete entity from privilegedRoles by key (id)
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -105,14 +104,13 @@ class PrivilegedRoleItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PrivilegedRoleItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_role.PrivilegedRole]:
+    async def get(self,request_configuration: Optional[PrivilegedRoleItemRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_role.PrivilegedRole]:
         """
         Retrieve the properties and relationships of privilegedRole object. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_role.PrivilegedRole]
         """
         request_info = self.to_get_request_information(
@@ -124,15 +122,14 @@ class PrivilegedRoleItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_role.PrivilegedRole, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_role.PrivilegedRole, error_mapping)
     
-    async def patch(self,body: Optional[privileged_role.PrivilegedRole] = None, request_configuration: Optional[PrivilegedRoleItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_role.PrivilegedRole]:
+    async def patch(self,body: Optional[privileged_role.PrivilegedRole] = None, request_configuration: Optional[PrivilegedRoleItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[privileged_role.PrivilegedRole]:
         """
-        Update entity in privilegedRoles
+        Update entity in privilegedRoles by key (id)
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_role.PrivilegedRole]
         """
         if body is None:
@@ -146,11 +143,11 @@ class PrivilegedRoleItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_role.PrivilegedRole, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_role.PrivilegedRole, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PrivilegedRoleItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete entity from privilegedRoles
+        Delete entity from privilegedRoles by key (id)
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -184,7 +181,7 @@ class PrivilegedRoleItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[privileged_role.PrivilegedRole] = None, request_configuration: Optional[PrivilegedRoleItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update entity in privilegedRoles
+        Update entity in privilegedRoles by key (id)
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

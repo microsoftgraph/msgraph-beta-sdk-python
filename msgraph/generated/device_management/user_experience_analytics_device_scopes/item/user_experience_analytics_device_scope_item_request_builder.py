@@ -43,12 +43,11 @@ class UserExperienceAnalyticsDeviceScopeItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[UserExperienceAnalyticsDeviceScopeItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[UserExperienceAnalyticsDeviceScopeItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property userExperienceAnalyticsDeviceScopes for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +58,13 @@ class UserExperienceAnalyticsDeviceScopeItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsDeviceScopeItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_device_scope.UserExperienceAnalyticsDeviceScope]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsDeviceScopeItemRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_device_scope.UserExperienceAnalyticsDeviceScope]:
         """
         The user experience analytics device scope entity contains device scope configuration use to apply filtering on the endpoint analytics reports.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_device_scope.UserExperienceAnalyticsDeviceScope]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +76,14 @@ class UserExperienceAnalyticsDeviceScopeItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_device_scope.UserExperienceAnalyticsDeviceScope, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_device_scope.UserExperienceAnalyticsDeviceScope, error_mapping)
     
-    async def patch(self,body: Optional[user_experience_analytics_device_scope.UserExperienceAnalyticsDeviceScope] = None, request_configuration: Optional[UserExperienceAnalyticsDeviceScopeItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_device_scope.UserExperienceAnalyticsDeviceScope]:
+    async def patch(self,body: Optional[user_experience_analytics_device_scope.UserExperienceAnalyticsDeviceScope] = None, request_configuration: Optional[UserExperienceAnalyticsDeviceScopeItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[user_experience_analytics_device_scope.UserExperienceAnalyticsDeviceScope]:
         """
         Update the navigation property userExperienceAnalyticsDeviceScopes in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_device_scope.UserExperienceAnalyticsDeviceScope]
         """
         if body is None:
@@ -100,7 +97,7 @@ class UserExperienceAnalyticsDeviceScopeItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_device_scope.UserExperienceAnalyticsDeviceScope, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_device_scope.UserExperienceAnalyticsDeviceScope, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UserExperienceAnalyticsDeviceScopeItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

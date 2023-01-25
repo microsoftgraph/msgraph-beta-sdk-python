@@ -43,12 +43,11 @@ class CaseExportOperationRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CaseExportOperationRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[case_export_operation_collection_response.CaseExportOperationCollectionResponse]:
+    async def get(self,request_configuration: Optional[CaseExportOperationRequestBuilderGetRequestConfiguration] = None) -> Optional[case_export_operation_collection_response.CaseExportOperationCollectionResponse]:
         """
         Get the items of type microsoft.graph.ediscovery.caseExportOperation in the microsoft.graph.ediscovery.caseOperation collection
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[case_export_operation_collection_response.CaseExportOperationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,7 +59,7 @@ class CaseExportOperationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, case_export_operation_collection_response.CaseExportOperationCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, case_export_operation_collection_response.CaseExportOperationCollectionResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CaseExportOperationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

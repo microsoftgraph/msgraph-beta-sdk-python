@@ -48,6 +48,10 @@ get_email_app_usage_user_counts_with_period_request_builder = lazy_import('msgra
 get_email_app_usage_user_detail_with_date_request_builder = lazy_import('msgraph.generated.reports.get_email_app_usage_user_detail_with_date.get_email_app_usage_user_detail_with_date_request_builder')
 get_email_app_usage_user_detail_with_period_request_builder = lazy_import('msgraph.generated.reports.get_email_app_usage_user_detail_with_period.get_email_app_usage_user_detail_with_period_request_builder')
 get_email_app_usage_versions_user_counts_with_period_request_builder = lazy_import('msgraph.generated.reports.get_email_app_usage_versions_user_counts_with_period.get_email_app_usage_versions_user_counts_with_period_request_builder')
+get_forms_user_activity_counts_with_period_request_builder = lazy_import('msgraph.generated.reports.get_forms_user_activity_counts_with_period.get_forms_user_activity_counts_with_period_request_builder')
+get_forms_user_activity_user_counts_with_period_request_builder = lazy_import('msgraph.generated.reports.get_forms_user_activity_user_counts_with_period.get_forms_user_activity_user_counts_with_period_request_builder')
+get_forms_user_activity_user_detail_with_date_request_builder = lazy_import('msgraph.generated.reports.get_forms_user_activity_user_detail_with_date.get_forms_user_activity_user_detail_with_date_request_builder')
+get_forms_user_activity_user_detail_with_period_request_builder = lazy_import('msgraph.generated.reports.get_forms_user_activity_user_detail_with_period.get_forms_user_activity_user_detail_with_period_request_builder')
 get_group_archived_print_jobs_with_group_id_with_start_date_time_with_end_date_time_request_builder = lazy_import('msgraph.generated.reports.get_group_archived_print_jobs_with_group_id_with_start_date_time_with_end_date_time.get_group_archived_print_jobs_with_group_id_with_start_date_time_with_end_date_time_request_builder')
 get_m365_app_platform_user_counts_with_period_request_builder = lazy_import('msgraph.generated.reports.get_m365_app_platform_user_counts_with_period.get_m365_app_platform_user_counts_with_period_request_builder')
 get_m365_app_user_counts_with_period_request_builder = lazy_import('msgraph.generated.reports.get_m365_app_user_counts_with_period.get_m365_app_user_counts_with_period_request_builder')
@@ -386,12 +390,11 @@ class ReportsRequestBuilder():
         """
         return device_configuration_user_activity_request_builder.DeviceConfigurationUserActivityRequestBuilder(self.request_adapter, self.path_parameters)
     
-    async def get(self,request_configuration: Optional[ReportsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[report_root.ReportRoot]:
+    async def get(self,request_configuration: Optional[ReportsRequestBuilderGetRequestConfiguration] = None) -> Optional[report_root.ReportRoot]:
         """
         Get reports
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[report_root.ReportRoot]
         """
         request_info = self.to_get_request_information(
@@ -403,7 +406,7 @@ class ReportsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, report_root.ReportRoot, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, report_root.ReportRoot, error_mapping)
     
     def get_attack_simulation_repeat_offenders(self,) -> get_attack_simulation_repeat_offenders_request_builder.GetAttackSimulationRepeatOffendersRequestBuilder:
         """
@@ -586,6 +589,50 @@ class ReportsRequestBuilder():
         if period is None:
             raise Exception("period cannot be undefined")
         return get_email_app_usage_versions_user_counts_with_period_request_builder.GetEmailAppUsageVersionsUserCountsWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
+    
+    def get_forms_user_activity_counts_with_period(self,period: Optional[str] = None) -> get_forms_user_activity_counts_with_period_request_builder.GetFormsUserActivityCountsWithPeriodRequestBuilder:
+        """
+        Provides operations to call the getFormsUserActivityCounts method.
+        Args:
+            period: Usage: period='{period}'
+        Returns: get_forms_user_activity_counts_with_period_request_builder.GetFormsUserActivityCountsWithPeriodRequestBuilder
+        """
+        if period is None:
+            raise Exception("period cannot be undefined")
+        return get_forms_user_activity_counts_with_period_request_builder.GetFormsUserActivityCountsWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
+    
+    def get_forms_user_activity_user_counts_with_period(self,period: Optional[str] = None) -> get_forms_user_activity_user_counts_with_period_request_builder.GetFormsUserActivityUserCountsWithPeriodRequestBuilder:
+        """
+        Provides operations to call the getFormsUserActivityUserCounts method.
+        Args:
+            period: Usage: period='{period}'
+        Returns: get_forms_user_activity_user_counts_with_period_request_builder.GetFormsUserActivityUserCountsWithPeriodRequestBuilder
+        """
+        if period is None:
+            raise Exception("period cannot be undefined")
+        return get_forms_user_activity_user_counts_with_period_request_builder.GetFormsUserActivityUserCountsWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
+    
+    def get_forms_user_activity_user_detail_with_date(self,date: Optional[Date] = None) -> get_forms_user_activity_user_detail_with_date_request_builder.GetFormsUserActivityUserDetailWithDateRequestBuilder:
+        """
+        Provides operations to call the getFormsUserActivityUserDetail method.
+        Args:
+            date: Usage: date={date}
+        Returns: get_forms_user_activity_user_detail_with_date_request_builder.GetFormsUserActivityUserDetailWithDateRequestBuilder
+        """
+        if date is None:
+            raise Exception("date cannot be undefined")
+        return get_forms_user_activity_user_detail_with_date_request_builder.GetFormsUserActivityUserDetailWithDateRequestBuilder(self.request_adapter, self.path_parameters, date)
+    
+    def get_forms_user_activity_user_detail_with_period(self,period: Optional[str] = None) -> get_forms_user_activity_user_detail_with_period_request_builder.GetFormsUserActivityUserDetailWithPeriodRequestBuilder:
+        """
+        Provides operations to call the getFormsUserActivityUserDetail method.
+        Args:
+            period: Usage: period='{period}'
+        Returns: get_forms_user_activity_user_detail_with_period_request_builder.GetFormsUserActivityUserDetailWithPeriodRequestBuilder
+        """
+        if period is None:
+            raise Exception("period cannot be undefined")
+        return get_forms_user_activity_user_detail_with_period_request_builder.GetFormsUserActivityUserDetailWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
     
     def get_group_archived_print_jobs_with_group_id_with_start_date_time_with_end_date_time(self,end_date_time: Optional[datetime] = None, group_id: Optional[str] = None, start_date_time: Optional[datetime] = None) -> get_group_archived_print_jobs_with_group_id_with_start_date_time_with_end_date_time_request_builder.GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTimeRequestBuilder:
         """
@@ -1771,13 +1818,12 @@ class ReportsRequestBuilder():
         url_tpl_params["printUsageByUser%2Did"] = id
         return print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[report_root.ReportRoot] = None, request_configuration: Optional[ReportsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[report_root.ReportRoot]:
+    async def patch(self,body: Optional[report_root.ReportRoot] = None, request_configuration: Optional[ReportsRequestBuilderPatchRequestConfiguration] = None) -> Optional[report_root.ReportRoot]:
         """
         Update reports
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[report_root.ReportRoot]
         """
         if body is None:
@@ -1791,7 +1837,7 @@ class ReportsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, report_root.ReportRoot, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, report_root.ReportRoot, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ReportsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

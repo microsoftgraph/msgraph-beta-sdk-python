@@ -25,6 +25,7 @@ column_definition_item_request_builder = lazy_import('msgraph.generated.sites.it
 get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder = lazy_import('msgraph.generated.sites.item.get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval.get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder')
 get_applicable_content_types_for_list_with_list_id_request_builder = lazy_import('msgraph.generated.sites.item.get_applicable_content_types_for_list_with_list_id.get_applicable_content_types_for_list_with_list_id_request_builder')
 get_by_path_with_path_request_builder = lazy_import('msgraph.generated.sites.item.get_by_path_with_path.get_by_path_with_path_request_builder')
+information_protection_request_builder = lazy_import('msgraph.generated.sites.item.information_protection.information_protection_request_builder')
 items_request_builder = lazy_import('msgraph.generated.sites.item.items.items_request_builder')
 base_item_item_request_builder = lazy_import('msgraph.generated.sites.item.items.item.base_item_item_request_builder')
 lists_request_builder = lazy_import('msgraph.generated.sites.item.lists.lists_request_builder')
@@ -85,6 +86,13 @@ class SiteItemRequestBuilder():
         Provides operations to manage the externalColumns property of the microsoft.graph.site entity.
         """
         return external_columns_request_builder.ExternalColumnsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def information_protection(self) -> information_protection_request_builder.InformationProtectionRequestBuilder:
+        """
+        Provides operations to manage the informationProtection property of the microsoft.graph.site entity.
+        """
+        return information_protection_request_builder.InformationProtectionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def items(self) -> items_request_builder.ItemsRequestBuilder:
@@ -212,12 +220,11 @@ class SiteItemRequestBuilder():
         url_tpl_params["columnDefinition%2Did"] = id
         return column_definition_item_request_builder.ColumnDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[SiteItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[site.Site]:
+    async def get(self,request_configuration: Optional[SiteItemRequestBuilderGetRequestConfiguration] = None) -> Optional[site.Site]:
         """
         Retrieve properties and relationships for a [site][] resource.A **site** resource represents a team site in SharePoint.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[site.Site]
         """
         request_info = self.to_get_request_information(
@@ -229,7 +236,7 @@ class SiteItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, site.Site, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, site.Site, error_mapping)
     
     def get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval(self,end_date_time: Optional[str] = None, interval: Optional[str] = None, start_date_time: Optional[str] = None) -> get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder:
         """
@@ -322,13 +329,12 @@ class SiteItemRequestBuilder():
         url_tpl_params["sitePage%2Did"] = id
         return site_page_item_request_builder.SitePageItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[site.Site] = None, request_configuration: Optional[SiteItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[site.Site]:
+    async def patch(self,body: Optional[site.Site] = None, request_configuration: Optional[SiteItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[site.Site]:
         """
-        Update entity in sites
+        Update entity in sites by key (id)
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[site.Site]
         """
         if body is None:
@@ -342,7 +348,7 @@ class SiteItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, site.Site, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, site.Site, error_mapping)
     
     def permissions_by_id(self,id: str) -> permission_item_request_builder.PermissionItemRequestBuilder:
         """
@@ -390,7 +396,7 @@ class SiteItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[site.Site] = None, request_configuration: Optional[SiteItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update entity in sites
+        Update entity in sites by key (id)
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

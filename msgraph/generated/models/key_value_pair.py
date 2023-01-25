@@ -28,11 +28,11 @@ class KeyValuePair(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # Name for this key-value pair
+        # Name for this key-value pair. For more information about possible names for each resource type that uses this configuration, see keyValuePair names and values.
         self._name: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # Value for this key-value pair
+        # Value for this key-value pair. For more information about possible values for each resource type that uses this configuration, see keyValuePair names and values.
         self._value: Optional[str] = None
     
     @staticmethod
@@ -62,7 +62,7 @@ class KeyValuePair(AdditionalDataHolder, Parsable):
     @property
     def name(self,) -> Optional[str]:
         """
-        Gets the name property value. Name for this key-value pair
+        Gets the name property value. Name for this key-value pair. For more information about possible names for each resource type that uses this configuration, see keyValuePair names and values.
         Returns: Optional[str]
         """
         return self._name
@@ -70,7 +70,7 @@ class KeyValuePair(AdditionalDataHolder, Parsable):
     @name.setter
     def name(self,value: Optional[str] = None) -> None:
         """
-        Sets the name property value. Name for this key-value pair
+        Sets the name property value. Name for this key-value pair. For more information about possible names for each resource type that uses this configuration, see keyValuePair names and values.
         Args:
             value: Value to set for the name property.
         """
@@ -109,7 +109,7 @@ class KeyValuePair(AdditionalDataHolder, Parsable):
     @property
     def value(self,) -> Optional[str]:
         """
-        Gets the value property value. Value for this key-value pair
+        Gets the value property value. Value for this key-value pair. For more information about possible values for each resource type that uses this configuration, see keyValuePair names and values.
         Returns: Optional[str]
         """
         return self._value
@@ -117,7 +117,7 @@ class KeyValuePair(AdditionalDataHolder, Parsable):
     @value.setter
     def value(self,value: Optional[str] = None) -> None:
         """
-        Sets the value property value. Value for this key-value pair
+        Sets the value property value. Value for this key-value pair. For more information about possible values for each resource type that uses this configuration, see keyValuePair names and values.
         Args:
             value: Value to set for the value property.
         """

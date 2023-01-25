@@ -35,12 +35,11 @@ class ManagedEBookCategoryItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ManagedEBookCategoryItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ManagedEBookCategoryItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property managedEBookCategories for deviceAppManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class ManagedEBookCategoryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ManagedEBookCategoryItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_e_book_category.ManagedEBookCategory]:
+    async def get(self,request_configuration: Optional[ManagedEBookCategoryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_e_book_category.ManagedEBookCategory]:
         """
         The mobile eBook categories.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_e_book_category.ManagedEBookCategory]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class ManagedEBookCategoryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_e_book_category.ManagedEBookCategory, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_e_book_category.ManagedEBookCategory, error_mapping)
     
-    async def patch(self,body: Optional[managed_e_book_category.ManagedEBookCategory] = None, request_configuration: Optional[ManagedEBookCategoryItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_e_book_category.ManagedEBookCategory]:
+    async def patch(self,body: Optional[managed_e_book_category.ManagedEBookCategory] = None, request_configuration: Optional[ManagedEBookCategoryItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[managed_e_book_category.ManagedEBookCategory]:
         """
         Update the navigation property managedEBookCategories in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_e_book_category.ManagedEBookCategory]
         """
         if body is None:
@@ -92,7 +89,7 @@ class ManagedEBookCategoryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_e_book_category.ManagedEBookCategory, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_e_book_category.ManagedEBookCategory, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ManagedEBookCategoryItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

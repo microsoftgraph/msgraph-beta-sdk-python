@@ -35,12 +35,11 @@ class UserExperienceAnalyticsMetricItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[UserExperienceAnalyticsMetricItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[UserExperienceAnalyticsMetricItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property metricValues for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class UserExperienceAnalyticsMetricItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsMetricItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_metric.UserExperienceAnalyticsMetric]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsMetricItemRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_metric.UserExperienceAnalyticsMetric]:
         """
         The metric values for the user experience analytics category.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_metric.UserExperienceAnalyticsMetric]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class UserExperienceAnalyticsMetricItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_metric.UserExperienceAnalyticsMetric, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_metric.UserExperienceAnalyticsMetric, error_mapping)
     
-    async def patch(self,body: Optional[user_experience_analytics_metric.UserExperienceAnalyticsMetric] = None, request_configuration: Optional[UserExperienceAnalyticsMetricItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_metric.UserExperienceAnalyticsMetric]:
+    async def patch(self,body: Optional[user_experience_analytics_metric.UserExperienceAnalyticsMetric] = None, request_configuration: Optional[UserExperienceAnalyticsMetricItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[user_experience_analytics_metric.UserExperienceAnalyticsMetric]:
         """
         Update the navigation property metricValues in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_metric.UserExperienceAnalyticsMetric]
         """
         if body is None:
@@ -92,7 +89,7 @@ class UserExperienceAnalyticsMetricItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_metric.UserExperienceAnalyticsMetric, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_metric.UserExperienceAnalyticsMetric, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UserExperienceAnalyticsMetricItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

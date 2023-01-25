@@ -44,12 +44,11 @@ class UserExperienceAnalyticsBaselinesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsBaselinesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_baseline_collection_response.UserExperienceAnalyticsBaselineCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsBaselinesRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_baseline_collection_response.UserExperienceAnalyticsBaselineCollectionResponse]:
         """
         User experience analytics baselines
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_baseline_collection_response.UserExperienceAnalyticsBaselineCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class UserExperienceAnalyticsBaselinesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_baseline_collection_response.UserExperienceAnalyticsBaselineCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_baseline_collection_response.UserExperienceAnalyticsBaselineCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[user_experience_analytics_baseline.UserExperienceAnalyticsBaseline] = None, request_configuration: Optional[UserExperienceAnalyticsBaselinesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_baseline.UserExperienceAnalyticsBaseline]:
+    async def post(self,body: Optional[user_experience_analytics_baseline.UserExperienceAnalyticsBaseline] = None, request_configuration: Optional[UserExperienceAnalyticsBaselinesRequestBuilderPostRequestConfiguration] = None) -> Optional[user_experience_analytics_baseline.UserExperienceAnalyticsBaseline]:
         """
         Create new navigation property to userExperienceAnalyticsBaselines for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_baseline.UserExperienceAnalyticsBaseline]
         """
         if body is None:
@@ -83,7 +81,7 @@ class UserExperienceAnalyticsBaselinesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_baseline.UserExperienceAnalyticsBaseline, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_baseline.UserExperienceAnalyticsBaseline, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UserExperienceAnalyticsBaselinesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

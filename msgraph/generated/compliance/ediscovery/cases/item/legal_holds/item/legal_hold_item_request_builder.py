@@ -62,12 +62,11 @@ class LegalHoldItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[LegalHoldItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[LegalHoldItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property legalHolds for compliance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -78,14 +77,13 @@ class LegalHoldItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[LegalHoldItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[legal_hold.LegalHold]:
+    async def get(self,request_configuration: Optional[LegalHoldItemRequestBuilderGetRequestConfiguration] = None) -> Optional[legal_hold.LegalHold]:
         """
         Returns a list of case legalHold objects for this case.  Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[legal_hold.LegalHold]
         """
         request_info = self.to_get_request_information(
@@ -97,15 +95,14 @@ class LegalHoldItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, legal_hold.LegalHold, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, legal_hold.LegalHold, error_mapping)
     
-    async def patch(self,body: Optional[legal_hold.LegalHold] = None, request_configuration: Optional[LegalHoldItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[legal_hold.LegalHold]:
+    async def patch(self,body: Optional[legal_hold.LegalHold] = None, request_configuration: Optional[LegalHoldItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[legal_hold.LegalHold]:
         """
         Update the navigation property legalHolds in compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[legal_hold.LegalHold]
         """
         if body is None:
@@ -119,7 +116,7 @@ class LegalHoldItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, legal_hold.LegalHold, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, legal_hold.LegalHold, error_mapping)
     
     def site_sources_by_id(self,id: str) -> site_source_item_request_builder.SiteSourceItemRequestBuilder:
         """

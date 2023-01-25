@@ -45,12 +45,11 @@ class AlertRecordsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AlertRecordsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[alert_record_collection_response.AlertRecordCollectionResponse]:
+    async def get(self,request_configuration: Optional[AlertRecordsRequestBuilderGetRequestConfiguration] = None) -> Optional[alert_record_collection_response.AlertRecordCollectionResponse]:
         """
         Get a list of the alertRecord objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[alert_record_collection_response.AlertRecordCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -62,7 +61,7 @@ class AlertRecordsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, alert_record_collection_response.AlertRecordCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, alert_record_collection_response.AlertRecordCollectionResponse, error_mapping)
     
     def get_portal_notifications(self,) -> get_portal_notifications_request_builder.GetPortalNotificationsRequestBuilder:
         """
@@ -71,13 +70,12 @@ class AlertRecordsRequestBuilder():
         """
         return get_portal_notifications_request_builder.GetPortalNotificationsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    async def post(self,body: Optional[alert_record.AlertRecord] = None, request_configuration: Optional[AlertRecordsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[alert_record.AlertRecord]:
+    async def post(self,body: Optional[alert_record.AlertRecord] = None, request_configuration: Optional[AlertRecordsRequestBuilderPostRequestConfiguration] = None) -> Optional[alert_record.AlertRecord]:
         """
         Create new navigation property to alertRecords for monitoring
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[alert_record.AlertRecord]
         """
         if body is None:
@@ -91,7 +89,7 @@ class AlertRecordsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, alert_record.AlertRecord, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, alert_record.AlertRecord, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AlertRecordsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
