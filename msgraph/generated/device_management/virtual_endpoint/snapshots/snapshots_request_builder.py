@@ -46,12 +46,11 @@ class SnapshotsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SnapshotsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_snapshot_collection_response.CloudPcSnapshotCollectionResponse]:
+    async def get(self,request_configuration: Optional[SnapshotsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_snapshot_collection_response.CloudPcSnapshotCollectionResponse]:
         """
         Get a list of cloudPcSnapshot objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_snapshot_collection_response.CloudPcSnapshotCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -63,7 +62,7 @@ class SnapshotsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_snapshot_collection_response.CloudPcSnapshotCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_snapshot_collection_response.CloudPcSnapshotCollectionResponse, error_mapping)
     
     def get_storage_accounts_with_subscription_id(self,subscription_id: Optional[str] = None) -> get_storage_accounts_with_subscription_id_request_builder.GetStorageAccountsWithSubscriptionIdRequestBuilder:
         """
@@ -83,13 +82,12 @@ class SnapshotsRequestBuilder():
         """
         return get_subscriptions_request_builder.GetSubscriptionsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    async def post(self,body: Optional[cloud_pc_snapshot.CloudPcSnapshot] = None, request_configuration: Optional[SnapshotsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_snapshot.CloudPcSnapshot]:
+    async def post(self,body: Optional[cloud_pc_snapshot.CloudPcSnapshot] = None, request_configuration: Optional[SnapshotsRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_pc_snapshot.CloudPcSnapshot]:
         """
         Create new navigation property to snapshots for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_snapshot.CloudPcSnapshot]
         """
         if body is None:
@@ -103,7 +101,7 @@ class SnapshotsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_snapshot.CloudPcSnapshot, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_snapshot.CloudPcSnapshot, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SnapshotsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

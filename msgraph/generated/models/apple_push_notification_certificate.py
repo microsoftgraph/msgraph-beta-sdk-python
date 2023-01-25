@@ -94,7 +94,7 @@ class ApplePushNotificationCertificate(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new applePushNotificationCertificate and sets the default values.
+        Instantiates a new ApplePushNotificationCertificate and sets the default values.
         """
         super().__init__()
         # Apple Id of the account used to create the MDM push certificate.

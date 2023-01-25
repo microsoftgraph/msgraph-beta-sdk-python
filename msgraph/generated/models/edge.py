@@ -9,7 +9,7 @@ internet_explorer_mode = lazy_import('msgraph.generated.models.internet_explorer
 class Edge(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new edge and sets the default values.
+        Instantiates a new Edge and sets the default values.
         """
         super().__init__()
         # A container for Internet Explorer mode resources.

@@ -8,9 +8,6 @@ user_experience_analytics_insight = lazy_import('msgraph.generated.models.user_e
 user_experience_analytics_metric = lazy_import('msgraph.generated.models.user_experience_analytics_metric')
 
 class UserExperienceAnalyticsCategory(entity.Entity):
-    """
-    The user experience analytics category entity contains the scores and insights for the various metrics of a category.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new userExperienceAnalyticsCategory and sets the default values.

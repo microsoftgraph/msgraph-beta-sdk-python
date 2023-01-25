@@ -44,12 +44,11 @@ class GalleryImagesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[GalleryImagesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_gallery_image_collection_response.CloudPcGalleryImageCollectionResponse]:
+    async def get(self,request_configuration: Optional[GalleryImagesRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_gallery_image_collection_response.CloudPcGalleryImageCollectionResponse]:
         """
         List the properties and relationships of the cloudPcGalleryImage objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_gallery_image_collection_response.CloudPcGalleryImageCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class GalleryImagesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_gallery_image_collection_response.CloudPcGalleryImageCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_gallery_image_collection_response.CloudPcGalleryImageCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[cloud_pc_gallery_image.CloudPcGalleryImage] = None, request_configuration: Optional[GalleryImagesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_gallery_image.CloudPcGalleryImage]:
+    async def post(self,body: Optional[cloud_pc_gallery_image.CloudPcGalleryImage] = None, request_configuration: Optional[GalleryImagesRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_pc_gallery_image.CloudPcGalleryImage]:
         """
         Create new navigation property to galleryImages for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_gallery_image.CloudPcGalleryImage]
         """
         if body is None:
@@ -83,7 +81,7 @@ class GalleryImagesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_gallery_image.CloudPcGalleryImage, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_gallery_image.CloudPcGalleryImage, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GalleryImagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

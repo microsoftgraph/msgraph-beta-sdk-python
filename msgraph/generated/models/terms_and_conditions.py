@@ -10,9 +10,6 @@ terms_and_conditions_assignment = lazy_import('msgraph.generated.models.terms_an
 terms_and_conditions_group_assignment = lazy_import('msgraph.generated.models.terms_and_conditions_group_assignment')
 
 class TermsAndConditions(entity.Entity):
-    """
-    A termsAndConditions entity represents the metadata and contents of a given Terms and Conditions (T&C) policy. T&C policies’ contents are presented to users upon their first attempt to enroll into Intune and subsequently upon edits where an administrator has required re-acceptance. They enable administrators to communicate the provisions to which a user must agree in order to have devices enrolled into Intune.
-    """
     @property
     def acceptance_statement(self,) -> Optional[str]:
         """
@@ -83,7 +80,7 @@ class TermsAndConditions(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new termsAndConditions and sets the default values.
+        Instantiates a new TermsAndConditions and sets the default values.
         """
         super().__init__()
         # Administrator-supplied explanation of the terms and conditions, typically describing what it means to accept the terms and conditions set out in the T&C policy. This is shown to the user on prompts to accept the T&C policy.

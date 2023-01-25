@@ -36,13 +36,12 @@ class GetTargetedUsersAndDevicesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[get_targeted_users_and_devices_post_request_body.GetTargetedUsersAndDevicesPostRequestBody] = None, request_configuration: Optional[GetTargetedUsersAndDevicesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[get_targeted_users_and_devices_response.GetTargetedUsersAndDevicesResponse]:
+    async def post(self,body: Optional[get_targeted_users_and_devices_post_request_body.GetTargetedUsersAndDevicesPostRequestBody] = None, request_configuration: Optional[GetTargetedUsersAndDevicesRequestBuilderPostRequestConfiguration] = None) -> Optional[get_targeted_users_and_devices_response.GetTargetedUsersAndDevicesResponse]:
         """
         Invoke action getTargetedUsersAndDevices
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[get_targeted_users_and_devices_response.GetTargetedUsersAndDevicesResponse]
         """
         if body is None:
@@ -56,7 +55,7 @@ class GetTargetedUsersAndDevicesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, get_targeted_users_and_devices_response.GetTargetedUsersAndDevicesResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, get_targeted_users_and_devices_response.GetTargetedUsersAndDevicesResponse, error_mapping)
     
     def to_post_request_information(self,body: Optional[get_targeted_users_and_devices_post_request_body.GetTargetedUsersAndDevicesPostRequestBody] = None, request_configuration: Optional[GetTargetedUsersAndDevicesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

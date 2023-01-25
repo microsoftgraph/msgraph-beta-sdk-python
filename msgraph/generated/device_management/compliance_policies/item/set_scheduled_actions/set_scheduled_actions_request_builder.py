@@ -36,13 +36,12 @@ class SetScheduledActionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[set_scheduled_actions_post_request_body.SetScheduledActionsPostRequestBody] = None, request_configuration: Optional[SetScheduledActionsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[set_scheduled_actions_response.SetScheduledActionsResponse]:
+    async def post(self,body: Optional[set_scheduled_actions_post_request_body.SetScheduledActionsPostRequestBody] = None, request_configuration: Optional[SetScheduledActionsRequestBuilderPostRequestConfiguration] = None) -> Optional[set_scheduled_actions_response.SetScheduledActionsResponse]:
         """
         Invoke action setScheduledActions
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[set_scheduled_actions_response.SetScheduledActionsResponse]
         """
         if body is None:
@@ -56,7 +55,7 @@ class SetScheduledActionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, set_scheduled_actions_response.SetScheduledActionsResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, set_scheduled_actions_response.SetScheduledActionsResponse, error_mapping)
     
     def to_post_request_information(self,body: Optional[set_scheduled_actions_post_request_body.SetScheduledActionsPostRequestBody] = None, request_configuration: Optional[SetScheduledActionsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

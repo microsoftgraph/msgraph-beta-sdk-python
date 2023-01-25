@@ -36,13 +36,12 @@ class UploadCertificateRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[upload_certificate_post_request_body.UploadCertificatePostRequestBody] = None, request_configuration: Optional[UploadCertificateRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[trust_framework_key.TrustFrameworkKey]:
+    async def post(self,body: Optional[upload_certificate_post_request_body.UploadCertificatePostRequestBody] = None, request_configuration: Optional[UploadCertificateRequestBuilderPostRequestConfiguration] = None) -> Optional[trust_framework_key.TrustFrameworkKey]:
         """
         Upload a certificate to a trustFrameworkKeyset. The input is a base-64 encoded value of the certificate contents. This method returns trustFrameworkKey.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[trust_framework_key.TrustFrameworkKey]
         """
         if body is None:
@@ -56,7 +55,7 @@ class UploadCertificateRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, trust_framework_key.TrustFrameworkKey, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, trust_framework_key.TrustFrameworkKey, error_mapping)
     
     def to_post_request_information(self,body: Optional[upload_certificate_post_request_body.UploadCertificatePostRequestBody] = None, request_configuration: Optional[UploadCertificateRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

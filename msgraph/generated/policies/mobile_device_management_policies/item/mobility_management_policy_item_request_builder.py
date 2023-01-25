@@ -44,12 +44,11 @@ class MobilityManagementPolicyItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property mobileDeviceManagementPolicies for policies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,14 +59,13 @@ class MobilityManagementPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mobility_management_policy.MobilityManagementPolicy]:
+    async def get(self,request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[mobility_management_policy.MobilityManagementPolicy]:
         """
         Get mobileDeviceManagementPolicies from policies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mobility_management_policy.MobilityManagementPolicy]
         """
         request_info = self.to_get_request_information(
@@ -79,7 +77,7 @@ class MobilityManagementPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mobility_management_policy.MobilityManagementPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, mobility_management_policy.MobilityManagementPolicy, error_mapping)
     
     def included_groups_by_id(self,id: str) -> group_item_request_builder.GroupItemRequestBuilder:
         """
@@ -94,13 +92,12 @@ class MobilityManagementPolicyItemRequestBuilder():
         url_tpl_params["group%2Did"] = id
         return group_item_request_builder.GroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[mobility_management_policy.MobilityManagementPolicy] = None, request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mobility_management_policy.MobilityManagementPolicy]:
+    async def patch(self,body: Optional[mobility_management_policy.MobilityManagementPolicy] = None, request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[mobility_management_policy.MobilityManagementPolicy]:
         """
         Update the navigation property mobileDeviceManagementPolicies in policies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mobility_management_policy.MobilityManagementPolicy]
         """
         if body is None:
@@ -114,7 +111,7 @@ class MobilityManagementPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mobility_management_policy.MobilityManagementPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, mobility_management_policy.MobilityManagementPolicy, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

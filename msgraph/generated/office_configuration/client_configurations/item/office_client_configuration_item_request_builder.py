@@ -81,12 +81,11 @@ class OfficeClientConfigurationItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[OfficeClientConfigurationItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[OfficeClientConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property clientConfigurations for officeConfiguration
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -97,14 +96,13 @@ class OfficeClientConfigurationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[OfficeClientConfigurationItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[office_client_configuration.OfficeClientConfiguration]:
+    async def get(self,request_configuration: Optional[OfficeClientConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[office_client_configuration.OfficeClientConfiguration]:
         """
         List of office Client configuration.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[office_client_configuration.OfficeClientConfiguration]
         """
         request_info = self.to_get_request_information(
@@ -116,15 +114,14 @@ class OfficeClientConfigurationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, office_client_configuration.OfficeClientConfiguration, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, office_client_configuration.OfficeClientConfiguration, error_mapping)
     
-    async def patch(self,body: Optional[office_client_configuration.OfficeClientConfiguration] = None, request_configuration: Optional[OfficeClientConfigurationItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[office_client_configuration.OfficeClientConfiguration]:
+    async def patch(self,body: Optional[office_client_configuration.OfficeClientConfiguration] = None, request_configuration: Optional[OfficeClientConfigurationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[office_client_configuration.OfficeClientConfiguration]:
         """
         Update the navigation property clientConfigurations in officeConfiguration
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[office_client_configuration.OfficeClientConfiguration]
         """
         if body is None:
@@ -138,7 +135,7 @@ class OfficeClientConfigurationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, office_client_configuration.OfficeClientConfiguration, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, office_client_configuration.OfficeClientConfiguration, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[OfficeClientConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -36,13 +36,12 @@ class RequestSignupUrlRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[request_signup_url_post_request_body.RequestSignupUrlPostRequestBody] = None, request_configuration: Optional[RequestSignupUrlRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[request_signup_url_response.RequestSignupUrlResponse]:
+    async def post(self,body: Optional[request_signup_url_post_request_body.RequestSignupUrlPostRequestBody] = None, request_configuration: Optional[RequestSignupUrlRequestBuilderPostRequestConfiguration] = None) -> Optional[request_signup_url_response.RequestSignupUrlResponse]:
         """
         Invoke action requestSignupUrl
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[request_signup_url_response.RequestSignupUrlResponse]
         """
         if body is None:
@@ -56,7 +55,7 @@ class RequestSignupUrlRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, request_signup_url_response.RequestSignupUrlResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, request_signup_url_response.RequestSignupUrlResponse, error_mapping)
     
     def to_post_request_information(self,body: Optional[request_signup_url_post_request_body.RequestSignupUrlPostRequestBody] = None, request_configuration: Optional[RequestSignupUrlRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

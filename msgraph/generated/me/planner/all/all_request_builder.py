@@ -52,12 +52,11 @@ class AllRequestBuilder():
         """
         return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
     
-    async def get(self,request_configuration: Optional[AllRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[planner_delta_collection_response.PlannerDeltaCollectionResponse]:
+    async def get(self,request_configuration: Optional[AllRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_delta_collection_response.PlannerDeltaCollectionResponse]:
         """
         Get all from me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[planner_delta_collection_response.PlannerDeltaCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class AllRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, planner_delta_collection_response.PlannerDeltaCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, planner_delta_collection_response.PlannerDeltaCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[planner_delta.PlannerDelta] = None, request_configuration: Optional[AllRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[planner_delta.PlannerDelta]:
+    async def post(self,body: Optional[planner_delta.PlannerDelta] = None, request_configuration: Optional[AllRequestBuilderPostRequestConfiguration] = None) -> Optional[planner_delta.PlannerDelta]:
         """
         Create new navigation property to all for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[planner_delta.PlannerDelta]
         """
         if body is None:
@@ -91,7 +89,7 @@ class AllRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, planner_delta.PlannerDelta, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, planner_delta.PlannerDelta, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AllRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

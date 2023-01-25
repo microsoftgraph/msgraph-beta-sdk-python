@@ -44,12 +44,11 @@ class DeviceAppManagementTasksRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DeviceAppManagementTasksRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_app_management_task_collection_response.DeviceAppManagementTaskCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceAppManagementTasksRequestBuilderGetRequestConfiguration] = None) -> Optional[device_app_management_task_collection_response.DeviceAppManagementTaskCollectionResponse]:
         """
         Device app management tasks.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_app_management_task_collection_response.DeviceAppManagementTaskCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class DeviceAppManagementTasksRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_app_management_task_collection_response.DeviceAppManagementTaskCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_app_management_task_collection_response.DeviceAppManagementTaskCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[device_app_management_task.DeviceAppManagementTask] = None, request_configuration: Optional[DeviceAppManagementTasksRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_app_management_task.DeviceAppManagementTask]:
+    async def post(self,body: Optional[device_app_management_task.DeviceAppManagementTask] = None, request_configuration: Optional[DeviceAppManagementTasksRequestBuilderPostRequestConfiguration] = None) -> Optional[device_app_management_task.DeviceAppManagementTask]:
         """
         Create new navigation property to deviceAppManagementTasks for deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_app_management_task.DeviceAppManagementTask]
         """
         if body is None:
@@ -83,7 +81,7 @@ class DeviceAppManagementTasksRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_app_management_task.DeviceAppManagementTask, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_app_management_task.DeviceAppManagementTask, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceAppManagementTasksRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

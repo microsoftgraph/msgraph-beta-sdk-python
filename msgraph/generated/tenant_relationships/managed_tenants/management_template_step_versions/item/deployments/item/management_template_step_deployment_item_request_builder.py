@@ -51,12 +51,11 @@ class ManagementTemplateStepDeploymentItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ManagementTemplateStepDeploymentItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ManagementTemplateStepDeploymentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property deployments for tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -67,14 +66,13 @@ class ManagementTemplateStepDeploymentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ManagementTemplateStepDeploymentItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[management_template_step_deployment.ManagementTemplateStepDeployment]:
+    async def get(self,request_configuration: Optional[ManagementTemplateStepDeploymentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[management_template_step_deployment.ManagementTemplateStepDeployment]:
         """
         Get deployments from tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_template_step_deployment.ManagementTemplateStepDeployment]
         """
         request_info = self.to_get_request_information(
@@ -86,15 +84,14 @@ class ManagementTemplateStepDeploymentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, management_template_step_deployment.ManagementTemplateStepDeployment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, management_template_step_deployment.ManagementTemplateStepDeployment, error_mapping)
     
-    async def patch(self,body: Optional[management_template_step_deployment.ManagementTemplateStepDeployment] = None, request_configuration: Optional[ManagementTemplateStepDeploymentItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[management_template_step_deployment.ManagementTemplateStepDeployment]:
+    async def patch(self,body: Optional[management_template_step_deployment.ManagementTemplateStepDeployment] = None, request_configuration: Optional[ManagementTemplateStepDeploymentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[management_template_step_deployment.ManagementTemplateStepDeployment]:
         """
         Update the navigation property deployments in tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_template_step_deployment.ManagementTemplateStepDeployment]
         """
         if body is None:
@@ -108,7 +105,7 @@ class ManagementTemplateStepDeploymentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, management_template_step_deployment.ManagementTemplateStepDeployment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, management_template_step_deployment.ManagementTemplateStepDeployment, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ManagementTemplateStepDeploymentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

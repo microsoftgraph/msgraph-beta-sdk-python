@@ -44,12 +44,11 @@ class AccessAssignmentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AccessAssignmentsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[delegated_admin_access_assignment_collection_response.DelegatedAdminAccessAssignmentCollectionResponse]:
+    async def get(self,request_configuration: Optional[AccessAssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[delegated_admin_access_assignment_collection_response.DelegatedAdminAccessAssignmentCollectionResponse]:
         """
         Get a list of the delegatedAdminAccessAssignment objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[delegated_admin_access_assignment_collection_response.DelegatedAdminAccessAssignmentCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class AccessAssignmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, delegated_admin_access_assignment_collection_response.DelegatedAdminAccessAssignmentCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, delegated_admin_access_assignment_collection_response.DelegatedAdminAccessAssignmentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[delegated_admin_access_assignment.DelegatedAdminAccessAssignment] = None, request_configuration: Optional[AccessAssignmentsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[delegated_admin_access_assignment.DelegatedAdminAccessAssignment]:
+    async def post(self,body: Optional[delegated_admin_access_assignment.DelegatedAdminAccessAssignment] = None, request_configuration: Optional[AccessAssignmentsRequestBuilderPostRequestConfiguration] = None) -> Optional[delegated_admin_access_assignment.DelegatedAdminAccessAssignment]:
         """
         Create a new delegatedAdminAccessAssignment object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[delegated_admin_access_assignment.DelegatedAdminAccessAssignment]
         """
         if body is None:
@@ -83,7 +81,7 @@ class AccessAssignmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, delegated_admin_access_assignment.DelegatedAdminAccessAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, delegated_admin_access_assignment.DelegatedAdminAccessAssignment, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AccessAssignmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

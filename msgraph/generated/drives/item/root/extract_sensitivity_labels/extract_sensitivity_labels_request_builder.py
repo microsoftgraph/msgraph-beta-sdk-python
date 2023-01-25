@@ -35,12 +35,11 @@ class ExtractSensitivityLabelsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,request_configuration: Optional[ExtractSensitivityLabelsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[extract_sensitivity_labels_result.ExtractSensitivityLabelsResult]:
+    async def post(self,request_configuration: Optional[ExtractSensitivityLabelsRequestBuilderPostRequestConfiguration] = None) -> Optional[extract_sensitivity_labels_result.ExtractSensitivityLabelsResult]:
         """
         Invoke action extractSensitivityLabels
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[extract_sensitivity_labels_result.ExtractSensitivityLabelsResult]
         """
         request_info = self.to_post_request_information(
@@ -52,7 +51,7 @@ class ExtractSensitivityLabelsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, extract_sensitivity_labels_result.ExtractSensitivityLabelsResult, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, extract_sensitivity_labels_result.ExtractSensitivityLabelsResult, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[ExtractSensitivityLabelsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

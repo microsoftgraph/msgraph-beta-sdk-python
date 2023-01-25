@@ -230,12 +230,11 @@ class TeamDefinitionRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[TeamDefinitionRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[TeamDefinitionRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property teamDefinition for teamwork
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -246,14 +245,13 @@ class TeamDefinitionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[TeamDefinitionRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[team.Team]:
+    async def get(self,request_configuration: Optional[TeamDefinitionRequestBuilderGetRequestConfiguration] = None) -> Optional[team.Team]:
         """
         Get the properties of the team associated with a teamTemplateDefinition object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[team.Team]
         """
         request_info = self.to_get_request_information(
@@ -265,7 +263,7 @@ class TeamDefinitionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, team.Team, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, team.Team, error_mapping)
     
     def incoming_channels_by_id(self,id: str) -> channel_item_request_builder.ChannelItemRequestBuilder:
         """
@@ -332,13 +330,12 @@ class TeamDefinitionRequestBuilder():
         url_tpl_params["user%2Did"] = id
         return user_item_request_builder.UserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[team.Team] = None, request_configuration: Optional[TeamDefinitionRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[team.Team]:
+    async def patch(self,body: Optional[team.Team] = None, request_configuration: Optional[TeamDefinitionRequestBuilderPatchRequestConfiguration] = None) -> Optional[team.Team]:
         """
         Update the navigation property teamDefinition in teamwork
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[team.Team]
         """
         if body is None:
@@ -352,7 +349,7 @@ class TeamDefinitionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, team.Team, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, team.Team, error_mapping)
     
     def permission_grants_by_id(self,id: str) -> resource_specific_permission_grant_item_request_builder.ResourceSpecificPermissionGrantItemRequestBuilder:
         """

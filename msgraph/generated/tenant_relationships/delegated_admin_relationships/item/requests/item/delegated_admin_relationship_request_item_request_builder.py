@@ -35,12 +35,11 @@ class DelegatedAdminRelationshipRequestItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DelegatedAdminRelationshipRequestItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DelegatedAdminRelationshipRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property requests for tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class DelegatedAdminRelationshipRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DelegatedAdminRelationshipRequestItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[delegated_admin_relationship_request.DelegatedAdminRelationshipRequest]:
+    async def get(self,request_configuration: Optional[DelegatedAdminRelationshipRequestItemRequestBuilderGetRequestConfiguration] = None) -> Optional[delegated_admin_relationship_request.DelegatedAdminRelationshipRequest]:
         """
         The requests associated with the delegated admin relationship.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[delegated_admin_relationship_request.DelegatedAdminRelationshipRequest]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class DelegatedAdminRelationshipRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, delegated_admin_relationship_request.DelegatedAdminRelationshipRequest, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, delegated_admin_relationship_request.DelegatedAdminRelationshipRequest, error_mapping)
     
-    async def patch(self,body: Optional[delegated_admin_relationship_request.DelegatedAdminRelationshipRequest] = None, request_configuration: Optional[DelegatedAdminRelationshipRequestItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[delegated_admin_relationship_request.DelegatedAdminRelationshipRequest]:
+    async def patch(self,body: Optional[delegated_admin_relationship_request.DelegatedAdminRelationshipRequest] = None, request_configuration: Optional[DelegatedAdminRelationshipRequestItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[delegated_admin_relationship_request.DelegatedAdminRelationshipRequest]:
         """
         Update the navigation property requests in tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[delegated_admin_relationship_request.DelegatedAdminRelationshipRequest]
         """
         if body is None:
@@ -92,7 +89,7 @@ class DelegatedAdminRelationshipRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, delegated_admin_relationship_request.DelegatedAdminRelationshipRequest, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, delegated_admin_relationship_request.DelegatedAdminRelationshipRequest, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DelegatedAdminRelationshipRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -8,12 +8,9 @@ entity = lazy_import('msgraph.generated.models.entity')
 onboarding_status = lazy_import('msgraph.generated.models.onboarding_status')
 
 class ChromeOSOnboardingSettings(entity.Entity):
-    """
-    Entity that represents a Chromebook tenant settings
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new chromeOSOnboardingSettings and sets the default values.
+        Instantiates a new ChromeOSOnboardingSettings and sets the default values.
         """
         super().__init__()
         # The ChromebookTenant's LastDirectorySyncDateTime

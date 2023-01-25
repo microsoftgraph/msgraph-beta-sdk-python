@@ -48,12 +48,11 @@ class AuthenticationMethodsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AuthenticationMethodsRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AuthenticationMethodsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property authenticationMethods for print
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -64,14 +63,13 @@ class AuthenticationMethodsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AuthenticationMethodsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_methods_root.AuthenticationMethodsRoot]:
+    async def get(self,request_configuration: Optional[AuthenticationMethodsRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication_methods_root.AuthenticationMethodsRoot]:
         """
         Container for navigation properties for Azure AD authentication methods resources.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_methods_root.AuthenticationMethodsRoot]
         """
         request_info = self.to_get_request_information(
@@ -83,15 +81,14 @@ class AuthenticationMethodsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_methods_root.AuthenticationMethodsRoot, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_methods_root.AuthenticationMethodsRoot, error_mapping)
     
-    async def patch(self,body: Optional[authentication_methods_root.AuthenticationMethodsRoot] = None, request_configuration: Optional[AuthenticationMethodsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_methods_root.AuthenticationMethodsRoot]:
+    async def patch(self,body: Optional[authentication_methods_root.AuthenticationMethodsRoot] = None, request_configuration: Optional[AuthenticationMethodsRequestBuilderPatchRequestConfiguration] = None) -> Optional[authentication_methods_root.AuthenticationMethodsRoot]:
         """
         Update the navigation property authenticationMethods in print
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_methods_root.AuthenticationMethodsRoot]
         """
         if body is None:
@@ -105,7 +102,7 @@ class AuthenticationMethodsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_methods_root.AuthenticationMethodsRoot, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_methods_root.AuthenticationMethodsRoot, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AuthenticationMethodsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

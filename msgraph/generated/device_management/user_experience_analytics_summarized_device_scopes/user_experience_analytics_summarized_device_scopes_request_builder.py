@@ -35,12 +35,11 @@ class UserExperienceAnalyticsSummarizedDeviceScopesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsSummarizedDeviceScopesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_device_scope_summary.UserExperienceAnalyticsDeviceScopeSummary]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsSummarizedDeviceScopesRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_device_scope_summary.UserExperienceAnalyticsDeviceScopeSummary]:
         """
         Invoke function userExperienceAnalyticsSummarizedDeviceScopes
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_device_scope_summary.UserExperienceAnalyticsDeviceScopeSummary]
         """
         request_info = self.to_get_request_information(
@@ -52,7 +51,7 @@ class UserExperienceAnalyticsSummarizedDeviceScopesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_device_scope_summary.UserExperienceAnalyticsDeviceScopeSummary, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_device_scope_summary.UserExperienceAnalyticsDeviceScopeSummary, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UserExperienceAnalyticsSummarizedDeviceScopesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

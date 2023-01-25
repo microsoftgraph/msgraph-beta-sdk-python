@@ -35,12 +35,11 @@ class GetGlobalScriptHighestAvailableVersionRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,request_configuration: Optional[GetGlobalScriptHighestAvailableVersionRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[get_global_script_highest_available_version_response.GetGlobalScriptHighestAvailableVersionResponse]:
+    async def post(self,request_configuration: Optional[GetGlobalScriptHighestAvailableVersionRequestBuilderPostRequestConfiguration] = None) -> Optional[get_global_script_highest_available_version_response.GetGlobalScriptHighestAvailableVersionResponse]:
         """
         Update the Proprietary Device Health Script
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[get_global_script_highest_available_version_response.GetGlobalScriptHighestAvailableVersionResponse]
         """
         request_info = self.to_post_request_information(
@@ -52,7 +51,7 @@ class GetGlobalScriptHighestAvailableVersionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, get_global_script_highest_available_version_response.GetGlobalScriptHighestAvailableVersionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, get_global_script_highest_available_version_response.GetGlobalScriptHighestAvailableVersionResponse, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[GetGlobalScriptHighestAvailableVersionRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

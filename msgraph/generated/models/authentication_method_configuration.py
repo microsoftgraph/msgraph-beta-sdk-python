@@ -5,6 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 authentication_method_state = lazy_import('msgraph.generated.models.authentication_method_state')
 entity = lazy_import('msgraph.generated.models.entity')
+exclude_target = lazy_import('msgraph.generated.models.exclude_target')
 
 class AuthenticationMethodConfiguration(entity.Entity):
     def __init__(self,) -> None:
@@ -12,6 +13,8 @@ class AuthenticationMethodConfiguration(entity.Entity):
         Instantiates a new authenticationMethodConfiguration and sets the default values.
         """
         super().__init__()
+        # Groups of users that are excluded from a policy.
+        self._exclude_targets: Optional[List[exclude_target.ExcludeTarget]] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
         # The state of the policy. Possible values are: enabled, disabled.
@@ -29,12 +32,30 @@ class AuthenticationMethodConfiguration(entity.Entity):
             raise Exception("parse_node cannot be undefined")
         return AuthenticationMethodConfiguration()
     
+    @property
+    def exclude_targets(self,) -> Optional[List[exclude_target.ExcludeTarget]]:
+        """
+        Gets the excludeTargets property value. Groups of users that are excluded from a policy.
+        Returns: Optional[List[exclude_target.ExcludeTarget]]
+        """
+        return self._exclude_targets
+    
+    @exclude_targets.setter
+    def exclude_targets(self,value: Optional[List[exclude_target.ExcludeTarget]] = None) -> None:
+        """
+        Sets the excludeTargets property value. Groups of users that are excluded from a policy.
+        Args:
+            value: Value to set for the excludeTargets property.
+        """
+        self._exclude_targets = value
+    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
+            "exclude_targets": lambda n : setattr(self, 'exclude_targets', n.get_collection_of_object_values(exclude_target.ExcludeTarget)),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(authentication_method_state.AuthenticationMethodState)),
         }
         super_fields = super().get_field_deserializers()
@@ -50,6 +71,7 @@ class AuthenticationMethodConfiguration(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
+        writer.write_collection_of_object_values("excludeTargets", self.exclude_targets)
         writer.write_enum_value("state", self.state)
     
     @property

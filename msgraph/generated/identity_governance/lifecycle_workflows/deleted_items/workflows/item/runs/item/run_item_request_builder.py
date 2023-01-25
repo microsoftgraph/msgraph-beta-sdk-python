@@ -53,12 +53,11 @@ class RunItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[RunItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[run.Run]:
+    async def get(self,request_configuration: Optional[RunItemRequestBuilderGetRequestConfiguration] = None) -> Optional[run.Run]:
         """
         Get runs from identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[run.Run]
         """
         request_info = self.to_get_request_information(
@@ -70,7 +69,7 @@ class RunItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, run.Run, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, run.Run, error_mapping)
     
     def task_processing_results_by_id(self,id: str) -> task_processing_result_item_request_builder.TaskProcessingResultItemRequestBuilder:
         """

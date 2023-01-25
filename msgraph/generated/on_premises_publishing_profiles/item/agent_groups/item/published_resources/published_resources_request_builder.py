@@ -44,12 +44,11 @@ class PublishedResourcesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PublishedResourcesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[published_resource_collection_response.PublishedResourceCollectionResponse]:
+    async def get(self,request_configuration: Optional[PublishedResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[published_resource_collection_response.PublishedResourceCollectionResponse]:
         """
         List of publishedResource that are assigned to an onPremisesAgentGroup. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[published_resource_collection_response.PublishedResourceCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class PublishedResourcesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, published_resource_collection_response.PublishedResourceCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, published_resource_collection_response.PublishedResourceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[published_resource.PublishedResource] = None, request_configuration: Optional[PublishedResourcesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[published_resource.PublishedResource]:
+    async def post(self,body: Optional[published_resource.PublishedResource] = None, request_configuration: Optional[PublishedResourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[published_resource.PublishedResource]:
         """
         Create new navigation property to publishedResources for onPremisesPublishingProfiles
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[published_resource.PublishedResource]
         """
         if body is None:
@@ -83,7 +81,7 @@ class PublishedResourcesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, published_resource.PublishedResource, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, published_resource.PublishedResource, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PublishedResourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

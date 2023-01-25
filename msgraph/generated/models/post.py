@@ -51,7 +51,7 @@ class Post(outlook_item.OutlookItem):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new Post and sets the default values.
+        Instantiates a new post and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.post"
@@ -72,7 +72,7 @@ class Post(outlook_item.OutlookItem):
         # The importance of a group post: low, normal, high.
         self._importance: Optional[importance.Importance] = None
         # The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.
-        self._in_reply_to: Optional[post.Post] = None
+        self._in_reply_to: Optional[Post] = None
         # The mentions property
         self._mentions: Optional[List[mention.Mention]] = None
         # The collection of multi-value extended properties defined for the post. Read-only. Nullable.
@@ -180,7 +180,7 @@ class Post(outlook_item.OutlookItem):
             "from": lambda n : setattr(self, 'from_escaped', n.get_object_value(recipient.Recipient)),
             "has_attachments": lambda n : setattr(self, 'has_attachments', n.get_bool_value()),
             "importance": lambda n : setattr(self, 'importance', n.get_enum_value(importance.Importance)),
-            "in_reply_to": lambda n : setattr(self, 'in_reply_to', n.get_object_value(post.Post)),
+            "in_reply_to": lambda n : setattr(self, 'in_reply_to', n.get_object_value(Post)),
             "mentions": lambda n : setattr(self, 'mentions', n.get_collection_of_object_values(mention.Mention)),
             "multi_value_extended_properties": lambda n : setattr(self, 'multi_value_extended_properties', n.get_collection_of_object_values(multi_value_legacy_extended_property.MultiValueLegacyExtendedProperty)),
             "new_participants": lambda n : setattr(self, 'new_participants', n.get_collection_of_object_values(recipient.Recipient)),
@@ -227,15 +227,15 @@ class Post(outlook_item.OutlookItem):
         self._importance = value
     
     @property
-    def in_reply_to(self,) -> Optional[post.Post]:
+    def in_reply_to(self,) -> Optional[Post]:
         """
         Gets the inReplyTo property value. The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.
-        Returns: Optional[post.Post]
+        Returns: Optional[Post]
         """
         return self._in_reply_to
     
     @in_reply_to.setter
-    def in_reply_to(self,value: Optional[post.Post] = None) -> None:
+    def in_reply_to(self,value: Optional[Post] = None) -> None:
         """
         Sets the inReplyTo property value. The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.
         Args:

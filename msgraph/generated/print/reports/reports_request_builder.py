@@ -372,12 +372,11 @@ class ReportsRequestBuilder():
         url_tpl_params["printUsageByUser%2Did"] = id
         return print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[ReportsRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ReportsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property reports for print
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -388,7 +387,7 @@ class ReportsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def device_configuration_device_activity(self,) -> device_configuration_device_activity_request_builder.DeviceConfigurationDeviceActivityRequestBuilder:
         """
@@ -404,12 +403,11 @@ class ReportsRequestBuilder():
         """
         return device_configuration_user_activity_request_builder.DeviceConfigurationUserActivityRequestBuilder(self.request_adapter, self.path_parameters)
     
-    async def get(self,request_configuration: Optional[ReportsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[report_root.ReportRoot]:
+    async def get(self,request_configuration: Optional[ReportsRequestBuilderGetRequestConfiguration] = None) -> Optional[report_root.ReportRoot]:
         """
         Get reports from print
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[report_root.ReportRoot]
         """
         request_info = self.to_get_request_information(
@@ -421,7 +419,7 @@ class ReportsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, report_root.ReportRoot, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, report_root.ReportRoot, error_mapping)
     
     def get_attack_simulation_repeat_offenders(self,) -> get_attack_simulation_repeat_offenders_request_builder.GetAttackSimulationRepeatOffendersRequestBuilder:
         """
@@ -1789,13 +1787,12 @@ class ReportsRequestBuilder():
         url_tpl_params["printUsageByUser%2Did"] = id
         return print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[report_root.ReportRoot] = None, request_configuration: Optional[ReportsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[report_root.ReportRoot]:
+    async def patch(self,body: Optional[report_root.ReportRoot] = None, request_configuration: Optional[ReportsRequestBuilderPatchRequestConfiguration] = None) -> Optional[report_root.ReportRoot]:
         """
         Update the navigation property reports in print
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[report_root.ReportRoot]
         """
         if body is None:
@@ -1809,7 +1806,7 @@ class ReportsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, report_root.ReportRoot, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, report_root.ReportRoot, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ReportsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

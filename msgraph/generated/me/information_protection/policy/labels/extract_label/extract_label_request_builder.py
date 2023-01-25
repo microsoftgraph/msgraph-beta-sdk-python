@@ -36,13 +36,12 @@ class ExtractLabelRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[extract_label_post_request_body.ExtractLabelPostRequestBody] = None, request_configuration: Optional[ExtractLabelRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[information_protection_content_label.InformationProtectionContentLabel]:
+    async def post(self,body: Optional[extract_label_post_request_body.ExtractLabelPostRequestBody] = None, request_configuration: Optional[ExtractLabelRequestBuilderPostRequestConfiguration] = None) -> Optional[information_protection_content_label.InformationProtectionContentLabel]:
         """
         Using the metadata that exists on an already-labeled piece of information, resolve the metadata to a specific sensitivity label. The contentInfo input is resolved to informationProtectionContentLabel.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[information_protection_content_label.InformationProtectionContentLabel]
         """
         if body is None:
@@ -56,7 +55,7 @@ class ExtractLabelRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, information_protection_content_label.InformationProtectionContentLabel, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, information_protection_content_label.InformationProtectionContentLabel, error_mapping)
     
     def to_post_request_information(self,body: Optional[extract_label_post_request_body.ExtractLabelPostRequestBody] = None, request_configuration: Optional[ExtractLabelRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

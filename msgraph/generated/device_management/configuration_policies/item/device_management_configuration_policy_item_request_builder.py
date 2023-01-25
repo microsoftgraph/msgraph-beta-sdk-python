@@ -90,12 +90,11 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DeviceManagementConfigurationPolicyItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceManagementConfigurationPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property configurationPolicies for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -106,14 +105,13 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceManagementConfigurationPolicyItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_configuration_policy.DeviceManagementConfigurationPolicy]:
+    async def get(self,request_configuration: Optional[DeviceManagementConfigurationPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_configuration_policy.DeviceManagementConfigurationPolicy]:
         """
         List of all Configuration policies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_configuration_policy.DeviceManagementConfigurationPolicy]
         """
         request_info = self.to_get_request_information(
@@ -125,15 +123,14 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_configuration_policy.DeviceManagementConfigurationPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_configuration_policy.DeviceManagementConfigurationPolicy, error_mapping)
     
-    async def patch(self,body: Optional[device_management_configuration_policy.DeviceManagementConfigurationPolicy] = None, request_configuration: Optional[DeviceManagementConfigurationPolicyItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_configuration_policy.DeviceManagementConfigurationPolicy]:
+    async def patch(self,body: Optional[device_management_configuration_policy.DeviceManagementConfigurationPolicy] = None, request_configuration: Optional[DeviceManagementConfigurationPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management_configuration_policy.DeviceManagementConfigurationPolicy]:
         """
         Update the navigation property configurationPolicies in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_configuration_policy.DeviceManagementConfigurationPolicy]
         """
         if body is None:
@@ -147,7 +144,7 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_configuration_policy.DeviceManagementConfigurationPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_configuration_policy.DeviceManagementConfigurationPolicy, error_mapping)
     
     def settings_by_id(self,id: str) -> device_management_configuration_setting_item_request_builder.DeviceManagementConfigurationSettingItemRequestBuilder:
         """

@@ -44,12 +44,11 @@ class SecurityBaselineStatesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SecurityBaselineStatesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[security_baseline_state_collection_response.SecurityBaselineStateCollectionResponse]:
+    async def get(self,request_configuration: Optional[SecurityBaselineStatesRequestBuilderGetRequestConfiguration] = None) -> Optional[security_baseline_state_collection_response.SecurityBaselineStateCollectionResponse]:
         """
         Security baseline states for this device.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[security_baseline_state_collection_response.SecurityBaselineStateCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class SecurityBaselineStatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, security_baseline_state_collection_response.SecurityBaselineStateCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, security_baseline_state_collection_response.SecurityBaselineStateCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[security_baseline_state.SecurityBaselineState] = None, request_configuration: Optional[SecurityBaselineStatesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[security_baseline_state.SecurityBaselineState]:
+    async def post(self,body: Optional[security_baseline_state.SecurityBaselineState] = None, request_configuration: Optional[SecurityBaselineStatesRequestBuilderPostRequestConfiguration] = None) -> Optional[security_baseline_state.SecurityBaselineState]:
         """
         Create new navigation property to securityBaselineStates for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[security_baseline_state.SecurityBaselineState]
         """
         if body is None:
@@ -83,7 +81,7 @@ class SecurityBaselineStatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, security_baseline_state.SecurityBaselineState, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, security_baseline_state.SecurityBaselineState, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SecurityBaselineStatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

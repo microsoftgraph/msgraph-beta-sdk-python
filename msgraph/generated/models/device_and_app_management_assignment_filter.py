@@ -9,12 +9,9 @@ entity = lazy_import('msgraph.generated.models.entity')
 payload_by_filter = lazy_import('msgraph.generated.models.payload_by_filter')
 
 class DeviceAndAppManagementAssignmentFilter(entity.Entity):
-    """
-    A class containing the properties used for Assignment Filter.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceAndAppManagementAssignmentFilter and sets the default values.
+        Instantiates a new DeviceAndAppManagementAssignmentFilter and sets the default values.
         """
         super().__init__()
         # Creation time of the Assignment Filter.

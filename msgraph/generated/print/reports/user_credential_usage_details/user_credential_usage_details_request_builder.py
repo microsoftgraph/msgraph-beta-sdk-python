@@ -44,12 +44,11 @@ class UserCredentialUsageDetailsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserCredentialUsageDetailsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_credential_usage_details_collection_response.UserCredentialUsageDetailsCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserCredentialUsageDetailsRequestBuilderGetRequestConfiguration] = None) -> Optional[user_credential_usage_details_collection_response.UserCredentialUsageDetailsCollectionResponse]:
         """
         Get a list of userCredentialUsageDetails objects for a given tenant. Details include user information, status of the reset, and the reason for failure.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_credential_usage_details_collection_response.UserCredentialUsageDetailsCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class UserCredentialUsageDetailsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_credential_usage_details_collection_response.UserCredentialUsageDetailsCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_credential_usage_details_collection_response.UserCredentialUsageDetailsCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[user_credential_usage_details.UserCredentialUsageDetails] = None, request_configuration: Optional[UserCredentialUsageDetailsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_credential_usage_details.UserCredentialUsageDetails]:
+    async def post(self,body: Optional[user_credential_usage_details.UserCredentialUsageDetails] = None, request_configuration: Optional[UserCredentialUsageDetailsRequestBuilderPostRequestConfiguration] = None) -> Optional[user_credential_usage_details.UserCredentialUsageDetails]:
         """
         Create new navigation property to userCredentialUsageDetails for print
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_credential_usage_details.UserCredentialUsageDetails]
         """
         if body is None:
@@ -83,7 +81,7 @@ class UserCredentialUsageDetailsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_credential_usage_details.UserCredentialUsageDetails, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_credential_usage_details.UserCredentialUsageDetails, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UserCredentialUsageDetailsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

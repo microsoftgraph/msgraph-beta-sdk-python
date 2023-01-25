@@ -90,12 +90,11 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property windowsDriverUpdateProfiles for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -106,7 +105,7 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def driver_inventories_by_id(self,id: str) -> windows_driver_update_inventory_item_request_builder.WindowsDriverUpdateInventoryItemRequestBuilder:
         """
@@ -121,12 +120,11 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
         url_tpl_params["windowsDriverUpdateInventory%2Did"] = id
         return windows_driver_update_inventory_item_request_builder.WindowsDriverUpdateInventoryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_driver_update_profile.WindowsDriverUpdateProfile]:
+    async def get(self,request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_driver_update_profile.WindowsDriverUpdateProfile]:
         """
         A collection of windows driver update profiles
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_driver_update_profile.WindowsDriverUpdateProfile]
         """
         request_info = self.to_get_request_information(
@@ -138,15 +136,14 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_driver_update_profile.WindowsDriverUpdateProfile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_driver_update_profile.WindowsDriverUpdateProfile, error_mapping)
     
-    async def patch(self,body: Optional[windows_driver_update_profile.WindowsDriverUpdateProfile] = None, request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_driver_update_profile.WindowsDriverUpdateProfile]:
+    async def patch(self,body: Optional[windows_driver_update_profile.WindowsDriverUpdateProfile] = None, request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[windows_driver_update_profile.WindowsDriverUpdateProfile]:
         """
         Update the navigation property windowsDriverUpdateProfiles in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_driver_update_profile.WindowsDriverUpdateProfile]
         """
         if body is None:
@@ -160,7 +157,7 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_driver_update_profile.WindowsDriverUpdateProfile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_driver_update_profile.WindowsDriverUpdateProfile, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

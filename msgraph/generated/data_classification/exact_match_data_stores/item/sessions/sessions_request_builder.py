@@ -44,12 +44,11 @@ class SessionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SessionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[exact_match_session_collection_response.ExactMatchSessionCollectionResponse]:
+    async def get(self,request_configuration: Optional[SessionsRequestBuilderGetRequestConfiguration] = None) -> Optional[exact_match_session_collection_response.ExactMatchSessionCollectionResponse]:
         """
         Get sessions from dataClassification
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[exact_match_session_collection_response.ExactMatchSessionCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class SessionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, exact_match_session_collection_response.ExactMatchSessionCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, exact_match_session_collection_response.ExactMatchSessionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[exact_match_session.ExactMatchSession] = None, request_configuration: Optional[SessionsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[exact_match_session.ExactMatchSession]:
+    async def post(self,body: Optional[exact_match_session.ExactMatchSession] = None, request_configuration: Optional[SessionsRequestBuilderPostRequestConfiguration] = None) -> Optional[exact_match_session.ExactMatchSession]:
         """
         Create new navigation property to sessions for dataClassification
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[exact_match_session.ExactMatchSession]
         """
         if body is None:
@@ -83,7 +81,7 @@ class SessionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, exact_match_session.ExactMatchSession, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, exact_match_session.ExactMatchSession, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SessionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

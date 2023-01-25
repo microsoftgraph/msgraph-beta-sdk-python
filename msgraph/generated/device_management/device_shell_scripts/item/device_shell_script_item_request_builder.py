@@ -100,12 +100,11 @@ class DeviceShellScriptItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DeviceShellScriptItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceShellScriptItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property deviceShellScripts for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -116,7 +115,7 @@ class DeviceShellScriptItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def device_run_states_by_id(self,id: str) -> device_management_script_device_state_item_request_builder.DeviceManagementScriptDeviceStateItemRequestBuilder:
         """
@@ -131,12 +130,11 @@ class DeviceShellScriptItemRequestBuilder():
         url_tpl_params["deviceManagementScriptDeviceState%2Did"] = id
         return device_management_script_device_state_item_request_builder.DeviceManagementScriptDeviceStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DeviceShellScriptItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_shell_script.DeviceShellScript]:
+    async def get(self,request_configuration: Optional[DeviceShellScriptItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_shell_script.DeviceShellScript]:
         """
         The list of device shell scripts associated with the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_shell_script.DeviceShellScript]
         """
         request_info = self.to_get_request_information(
@@ -148,7 +146,7 @@ class DeviceShellScriptItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_shell_script.DeviceShellScript, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_shell_script.DeviceShellScript, error_mapping)
     
     def group_assignments_by_id(self,id: str) -> device_management_script_group_assignment_item_request_builder.DeviceManagementScriptGroupAssignmentItemRequestBuilder:
         """
@@ -163,13 +161,12 @@ class DeviceShellScriptItemRequestBuilder():
         url_tpl_params["deviceManagementScriptGroupAssignment%2Did"] = id
         return device_management_script_group_assignment_item_request_builder.DeviceManagementScriptGroupAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[device_shell_script.DeviceShellScript] = None, request_configuration: Optional[DeviceShellScriptItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_shell_script.DeviceShellScript]:
+    async def patch(self,body: Optional[device_shell_script.DeviceShellScript] = None, request_configuration: Optional[DeviceShellScriptItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_shell_script.DeviceShellScript]:
         """
         Update the navigation property deviceShellScripts in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_shell_script.DeviceShellScript]
         """
         if body is None:
@@ -183,7 +180,7 @@ class DeviceShellScriptItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_shell_script.DeviceShellScript, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_shell_script.DeviceShellScript, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceShellScriptItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

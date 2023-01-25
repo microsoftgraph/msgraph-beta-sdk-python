@@ -44,12 +44,11 @@ class EnrollmentProfilesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[EnrollmentProfilesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[enrollment_profile_collection_response.EnrollmentProfileCollectionResponse]:
+    async def get(self,request_configuration: Optional[EnrollmentProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[enrollment_profile_collection_response.EnrollmentProfileCollectionResponse]:
         """
         The enrollment profiles.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[enrollment_profile_collection_response.EnrollmentProfileCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class EnrollmentProfilesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, enrollment_profile_collection_response.EnrollmentProfileCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, enrollment_profile_collection_response.EnrollmentProfileCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[enrollment_profile.EnrollmentProfile] = None, request_configuration: Optional[EnrollmentProfilesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[enrollment_profile.EnrollmentProfile]:
+    async def post(self,body: Optional[enrollment_profile.EnrollmentProfile] = None, request_configuration: Optional[EnrollmentProfilesRequestBuilderPostRequestConfiguration] = None) -> Optional[enrollment_profile.EnrollmentProfile]:
         """
         Create new navigation property to enrollmentProfiles for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[enrollment_profile.EnrollmentProfile]
         """
         if body is None:
@@ -83,7 +81,7 @@ class EnrollmentProfilesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, enrollment_profile.EnrollmentProfile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, enrollment_profile.EnrollmentProfile, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[EnrollmentProfilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

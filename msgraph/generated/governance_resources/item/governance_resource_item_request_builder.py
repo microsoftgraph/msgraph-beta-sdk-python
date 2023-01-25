@@ -79,12 +79,11 @@ class GovernanceResourceItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[GovernanceResourceItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[GovernanceResourceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
-        Delete entity from governanceResources
+        Delete entity from governanceResources by key (id)
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -95,14 +94,13 @@ class GovernanceResourceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[GovernanceResourceItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_resource.GovernanceResource]:
+    async def get(self,request_configuration: Optional[GovernanceResourceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_resource.GovernanceResource]:
         """
-        Get entity from governanceResources by key
+        Get entity from governanceResources by key (id)
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_resource.GovernanceResource]
         """
         request_info = self.to_get_request_information(
@@ -114,15 +112,14 @@ class GovernanceResourceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_resource.GovernanceResource, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_resource.GovernanceResource, error_mapping)
     
-    async def patch(self,body: Optional[governance_resource.GovernanceResource] = None, request_configuration: Optional[GovernanceResourceItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_resource.GovernanceResource]:
+    async def patch(self,body: Optional[governance_resource.GovernanceResource] = None, request_configuration: Optional[GovernanceResourceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[governance_resource.GovernanceResource]:
         """
-        Update entity in governanceResources
+        Update entity in governanceResources by key (id)
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_resource.GovernanceResource]
         """
         if body is None:
@@ -136,7 +133,7 @@ class GovernanceResourceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_resource.GovernanceResource, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_resource.GovernanceResource, error_mapping)
     
     def role_assignment_requests_by_id(self,id: str) -> governance_role_assignment_request_item_request_builder.GovernanceRoleAssignmentRequestItemRequestBuilder:
         """
@@ -192,7 +189,7 @@ class GovernanceResourceItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[GovernanceResourceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete entity from governanceResources
+        Delete entity from governanceResources by key (id)
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -208,7 +205,7 @@ class GovernanceResourceItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[GovernanceResourceItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get entity from governanceResources by key
+        Get entity from governanceResources by key (id)
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -226,7 +223,7 @@ class GovernanceResourceItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[governance_resource.GovernanceResource] = None, request_configuration: Optional[GovernanceResourceItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update entity in governanceResources
+        Update entity in governanceResources by key (id)
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -260,7 +257,7 @@ class GovernanceResourceItemRequestBuilder():
     @dataclass
     class GovernanceResourceItemRequestBuilderGetQueryParameters():
         """
-        Get entity from governanceResources by key
+        Get entity from governanceResources by key (id)
         """
         # Expand related entities
         expand: Optional[List[str]] = None

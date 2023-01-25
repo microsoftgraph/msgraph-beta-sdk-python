@@ -35,12 +35,11 @@ class ItemPhoneItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ItemPhoneItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ItemPhoneItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property phones for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class ItemPhoneItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ItemPhoneItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[item_phone.ItemPhone]:
+    async def get(self,request_configuration: Optional[ItemPhoneItemRequestBuilderGetRequestConfiguration] = None) -> Optional[item_phone.ItemPhone]:
         """
         Represents detailed information about phone numbers associated with a user in various services.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[item_phone.ItemPhone]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class ItemPhoneItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, item_phone.ItemPhone, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, item_phone.ItemPhone, error_mapping)
     
-    async def patch(self,body: Optional[item_phone.ItemPhone] = None, request_configuration: Optional[ItemPhoneItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[item_phone.ItemPhone]:
+    async def patch(self,body: Optional[item_phone.ItemPhone] = None, request_configuration: Optional[ItemPhoneItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[item_phone.ItemPhone]:
         """
         Update the navigation property phones in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[item_phone.ItemPhone]
         """
         if body is None:
@@ -92,7 +89,7 @@ class ItemPhoneItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, item_phone.ItemPhone, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, item_phone.ItemPhone, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ItemPhoneItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

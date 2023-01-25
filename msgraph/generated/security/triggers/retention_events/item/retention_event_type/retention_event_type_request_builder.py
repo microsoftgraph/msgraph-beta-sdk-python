@@ -35,12 +35,11 @@ class RetentionEventTypeRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[RetentionEventTypeRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[retention_event_type.RetentionEventType]:
+    async def get(self,request_configuration: Optional[RetentionEventTypeRequestBuilderGetRequestConfiguration] = None) -> Optional[retention_event_type.RetentionEventType]:
         """
         Specifies the event that will start the retention period for labels that use this event type when an event is created.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[retention_event_type.RetentionEventType]
         """
         request_info = self.to_get_request_information(
@@ -52,7 +51,7 @@ class RetentionEventTypeRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, retention_event_type.RetentionEventType, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, retention_event_type.RetentionEventType, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RetentionEventTypeRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

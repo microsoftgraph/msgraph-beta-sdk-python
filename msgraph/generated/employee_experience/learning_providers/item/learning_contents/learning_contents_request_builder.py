@@ -44,12 +44,11 @@ class LearningContentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[LearningContentsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[learning_content_collection_response.LearningContentCollectionResponse]:
+    async def get(self,request_configuration: Optional[LearningContentsRequestBuilderGetRequestConfiguration] = None) -> Optional[learning_content_collection_response.LearningContentCollectionResponse]:
         """
         Get a list of the learningContent resources and their properties. This list represents the metadata of the specified provider's content in Viva Learning.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[learning_content_collection_response.LearningContentCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class LearningContentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, learning_content_collection_response.LearningContentCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, learning_content_collection_response.LearningContentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[learning_content.LearningContent] = None, request_configuration: Optional[LearningContentsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[learning_content.LearningContent]:
+    async def post(self,body: Optional[learning_content.LearningContent] = None, request_configuration: Optional[LearningContentsRequestBuilderPostRequestConfiguration] = None) -> Optional[learning_content.LearningContent]:
         """
         Create new navigation property to learningContents for employeeExperience
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[learning_content.LearningContent]
         """
         if body is None:
@@ -83,7 +81,7 @@ class LearningContentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, learning_content.LearningContent, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, learning_content.LearningContent, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[LearningContentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

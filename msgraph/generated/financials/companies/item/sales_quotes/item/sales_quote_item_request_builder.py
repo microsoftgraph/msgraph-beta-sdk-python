@@ -92,12 +92,11 @@ class SalesQuoteItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SalesQuoteItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sales_quote.SalesQuote]:
+    async def get(self,request_configuration: Optional[SalesQuoteItemRequestBuilderGetRequestConfiguration] = None) -> Optional[sales_quote.SalesQuote]:
         """
         Get salesQuotes from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sales_quote.SalesQuote]
         """
         request_info = self.to_get_request_information(
@@ -109,15 +108,14 @@ class SalesQuoteItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sales_quote.SalesQuote, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, sales_quote.SalesQuote, error_mapping)
     
-    async def patch(self,body: Optional[sales_quote.SalesQuote] = None, request_configuration: Optional[SalesQuoteItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sales_quote.SalesQuote]:
+    async def patch(self,body: Optional[sales_quote.SalesQuote] = None, request_configuration: Optional[SalesQuoteItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[sales_quote.SalesQuote]:
         """
         Update the navigation property salesQuotes in financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sales_quote.SalesQuote]
         """
         if body is None:
@@ -131,7 +129,7 @@ class SalesQuoteItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sales_quote.SalesQuote, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, sales_quote.SalesQuote, error_mapping)
     
     def sales_quote_lines_by_id(self,id: str) -> sales_quote_line_item_request_builder.SalesQuoteLineItemRequestBuilder:
         """

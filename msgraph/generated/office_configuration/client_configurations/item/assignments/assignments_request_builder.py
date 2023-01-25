@@ -44,12 +44,11 @@ class AssignmentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AssignmentsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[office_client_configuration_assignment_collection_response.OfficeClientConfigurationAssignmentCollectionResponse]:
+    async def get(self,request_configuration: Optional[AssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[office_client_configuration_assignment_collection_response.OfficeClientConfigurationAssignmentCollectionResponse]:
         """
         The list of group assignments for the policy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[office_client_configuration_assignment_collection_response.OfficeClientConfigurationAssignmentCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class AssignmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, office_client_configuration_assignment_collection_response.OfficeClientConfigurationAssignmentCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, office_client_configuration_assignment_collection_response.OfficeClientConfigurationAssignmentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[office_client_configuration_assignment.OfficeClientConfigurationAssignment] = None, request_configuration: Optional[AssignmentsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[office_client_configuration_assignment.OfficeClientConfigurationAssignment]:
+    async def post(self,body: Optional[office_client_configuration_assignment.OfficeClientConfigurationAssignment] = None, request_configuration: Optional[AssignmentsRequestBuilderPostRequestConfiguration] = None) -> Optional[office_client_configuration_assignment.OfficeClientConfigurationAssignment]:
         """
         Create new navigation property to assignments for officeConfiguration
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[office_client_configuration_assignment.OfficeClientConfigurationAssignment]
         """
         if body is None:
@@ -83,7 +81,7 @@ class AssignmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, office_client_configuration_assignment.OfficeClientConfigurationAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, office_client_configuration_assignment.OfficeClientConfigurationAssignment, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AssignmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

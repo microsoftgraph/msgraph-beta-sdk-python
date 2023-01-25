@@ -35,12 +35,11 @@ class RenewRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,request_configuration: Optional[RenewRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[exact_match_session.ExactMatchSession]:
+    async def post(self,request_configuration: Optional[RenewRequestBuilderPostRequestConfiguration] = None) -> Optional[exact_match_session.ExactMatchSession]:
         """
         Invoke action renew
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[exact_match_session.ExactMatchSession]
         """
         request_info = self.to_post_request_information(
@@ -52,7 +51,7 @@ class RenewRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, exact_match_session.ExactMatchSession, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, exact_match_session.ExactMatchSession, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[RenewRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

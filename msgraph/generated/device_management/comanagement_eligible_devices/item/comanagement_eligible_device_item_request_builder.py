@@ -35,12 +35,11 @@ class ComanagementEligibleDeviceItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ComanagementEligibleDeviceItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ComanagementEligibleDeviceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property comanagementEligibleDevices for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class ComanagementEligibleDeviceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ComanagementEligibleDeviceItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[comanagement_eligible_device.ComanagementEligibleDevice]:
+    async def get(self,request_configuration: Optional[ComanagementEligibleDeviceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[comanagement_eligible_device.ComanagementEligibleDevice]:
         """
         The list of co-management eligible devices report
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[comanagement_eligible_device.ComanagementEligibleDevice]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class ComanagementEligibleDeviceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, comanagement_eligible_device.ComanagementEligibleDevice, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, comanagement_eligible_device.ComanagementEligibleDevice, error_mapping)
     
-    async def patch(self,body: Optional[comanagement_eligible_device.ComanagementEligibleDevice] = None, request_configuration: Optional[ComanagementEligibleDeviceItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[comanagement_eligible_device.ComanagementEligibleDevice]:
+    async def patch(self,body: Optional[comanagement_eligible_device.ComanagementEligibleDevice] = None, request_configuration: Optional[ComanagementEligibleDeviceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[comanagement_eligible_device.ComanagementEligibleDevice]:
         """
         Update the navigation property comanagementEligibleDevices in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[comanagement_eligible_device.ComanagementEligibleDevice]
         """
         if body is None:
@@ -92,7 +89,7 @@ class ComanagementEligibleDeviceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, comanagement_eligible_device.ComanagementEligibleDevice, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, comanagement_eligible_device.ComanagementEligibleDevice, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ComanagementEligibleDeviceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

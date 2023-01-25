@@ -44,12 +44,11 @@ class CertificationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CertificationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[person_certification_collection_response.PersonCertificationCollectionResponse]:
+    async def get(self,request_configuration: Optional[CertificationsRequestBuilderGetRequestConfiguration] = None) -> Optional[person_certification_collection_response.PersonCertificationCollectionResponse]:
         """
         Retrieve a list of personCertification objects from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[person_certification_collection_response.PersonCertificationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class CertificationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, person_certification_collection_response.PersonCertificationCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, person_certification_collection_response.PersonCertificationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[person_certification.PersonCertification] = None, request_configuration: Optional[CertificationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[person_certification.PersonCertification]:
+    async def post(self,body: Optional[person_certification.PersonCertification] = None, request_configuration: Optional[CertificationsRequestBuilderPostRequestConfiguration] = None) -> Optional[person_certification.PersonCertification]:
         """
         Create a new personCertification object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[person_certification.PersonCertification]
         """
         if body is None:
@@ -83,7 +81,7 @@ class CertificationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, person_certification.PersonCertification, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, person_certification.PersonCertification, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CertificationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

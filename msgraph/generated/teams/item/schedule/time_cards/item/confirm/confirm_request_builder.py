@@ -35,12 +35,11 @@ class ConfirmRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,request_configuration: Optional[ConfirmRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[time_card.TimeCard]:
+    async def post(self,request_configuration: Optional[ConfirmRequestBuilderPostRequestConfiguration] = None) -> Optional[time_card.TimeCard]:
         """
         Confirm a specific timeCard.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[time_card.TimeCard]
         """
         request_info = self.to_post_request_information(
@@ -52,7 +51,7 @@ class ConfirmRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, time_card.TimeCard, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, time_card.TimeCard, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[ConfirmRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

@@ -35,12 +35,11 @@ class CloneRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,request_configuration: Optional[CloneRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_reusable_policy_setting.DeviceManagementReusablePolicySetting]:
+    async def post(self,request_configuration: Optional[CloneRequestBuilderPostRequestConfiguration] = None) -> Optional[device_management_reusable_policy_setting.DeviceManagementReusablePolicySetting]:
         """
         Invoke action clone
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_reusable_policy_setting.DeviceManagementReusablePolicySetting]
         """
         request_info = self.to_post_request_information(
@@ -52,7 +51,7 @@ class CloneRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_reusable_policy_setting.DeviceManagementReusablePolicySetting, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_reusable_policy_setting.DeviceManagementReusablePolicySetting, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[CloneRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

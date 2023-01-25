@@ -44,12 +44,11 @@ class WorkflowsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[WorkflowsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[workflow_collection_response.WorkflowCollectionResponse]:
+    async def get(self,request_configuration: Optional[WorkflowsRequestBuilderGetRequestConfiguration] = None) -> Optional[workflow_collection_response.WorkflowCollectionResponse]:
         """
         Get the workflow resources from the workflows navigation property.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[workflow_collection_response.WorkflowCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class WorkflowsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, workflow_collection_response.WorkflowCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, workflow_collection_response.WorkflowCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[workflow.Workflow] = None, request_configuration: Optional[WorkflowsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[workflow.Workflow]:
+    async def post(self,body: Optional[workflow.Workflow] = None, request_configuration: Optional[WorkflowsRequestBuilderPostRequestConfiguration] = None) -> Optional[workflow.Workflow]:
         """
         Create a new workflow object. You can create up to 50 workflows in a tenant.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[workflow.Workflow]
         """
         if body is None:
@@ -83,7 +81,7 @@ class WorkflowsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, workflow.Workflow, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, workflow.Workflow, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[WorkflowsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

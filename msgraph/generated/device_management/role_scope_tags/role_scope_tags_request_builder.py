@@ -53,12 +53,11 @@ class RoleScopeTagsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[RoleScopeTagsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[role_scope_tag_collection_response.RoleScopeTagCollectionResponse]:
+    async def get(self,request_configuration: Optional[RoleScopeTagsRequestBuilderGetRequestConfiguration] = None) -> Optional[role_scope_tag_collection_response.RoleScopeTagCollectionResponse]:
         """
         The Role Scope Tags.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[role_scope_tag_collection_response.RoleScopeTagCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -70,7 +69,7 @@ class RoleScopeTagsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, role_scope_tag_collection_response.RoleScopeTagCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, role_scope_tag_collection_response.RoleScopeTagCollectionResponse, error_mapping)
     
     def has_custom_role_scope_tag(self,) -> has_custom_role_scope_tag_request_builder.HasCustomRoleScopeTagRequestBuilder:
         """
@@ -79,13 +78,12 @@ class RoleScopeTagsRequestBuilder():
         """
         return has_custom_role_scope_tag_request_builder.HasCustomRoleScopeTagRequestBuilder(self.request_adapter, self.path_parameters)
     
-    async def post(self,body: Optional[role_scope_tag.RoleScopeTag] = None, request_configuration: Optional[RoleScopeTagsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[role_scope_tag.RoleScopeTag]:
+    async def post(self,body: Optional[role_scope_tag.RoleScopeTag] = None, request_configuration: Optional[RoleScopeTagsRequestBuilderPostRequestConfiguration] = None) -> Optional[role_scope_tag.RoleScopeTag]:
         """
         Create new navigation property to roleScopeTags for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[role_scope_tag.RoleScopeTag]
         """
         if body is None:
@@ -99,7 +97,7 @@ class RoleScopeTagsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, role_scope_tag.RoleScopeTag, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, role_scope_tag.RoleScopeTag, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RoleScopeTagsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

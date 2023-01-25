@@ -35,12 +35,11 @@ class GetRemediationSummaryRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[GetRemediationSummaryRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_health_script_remediation_summary.DeviceHealthScriptRemediationSummary]:
+    async def get(self,request_configuration: Optional[GetRemediationSummaryRequestBuilderGetRequestConfiguration] = None) -> Optional[device_health_script_remediation_summary.DeviceHealthScriptRemediationSummary]:
         """
         Invoke function getRemediationSummary
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_health_script_remediation_summary.DeviceHealthScriptRemediationSummary]
         """
         request_info = self.to_get_request_information(
@@ -52,7 +51,7 @@ class GetRemediationSummaryRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_health_script_remediation_summary.DeviceHealthScriptRemediationSummary, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_health_script_remediation_summary.DeviceHealthScriptRemediationSummary, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetRemediationSummaryRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

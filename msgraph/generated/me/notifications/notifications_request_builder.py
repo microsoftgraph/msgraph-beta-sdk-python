@@ -44,12 +44,11 @@ class NotificationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[NotificationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[notification_collection_response.NotificationCollectionResponse]:
+    async def get(self,request_configuration: Optional[NotificationsRequestBuilderGetRequestConfiguration] = None) -> Optional[notification_collection_response.NotificationCollectionResponse]:
         """
         Get notifications from me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[notification_collection_response.NotificationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class NotificationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, notification_collection_response.NotificationCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, notification_collection_response.NotificationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[notification.Notification] = None, request_configuration: Optional[NotificationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[notification.Notification]:
+    async def post(self,body: Optional[notification.Notification] = None, request_configuration: Optional[NotificationsRequestBuilderPostRequestConfiguration] = None) -> Optional[notification.Notification]:
         """
         Create new navigation property to notifications for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[notification.Notification]
         """
         if body is None:
@@ -83,7 +81,7 @@ class NotificationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, notification.Notification, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, notification.Notification, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[NotificationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

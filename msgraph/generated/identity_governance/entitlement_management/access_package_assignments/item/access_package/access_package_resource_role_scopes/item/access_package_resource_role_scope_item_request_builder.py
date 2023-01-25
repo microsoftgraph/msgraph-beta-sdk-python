@@ -51,12 +51,11 @@ class AccessPackageResourceRoleScopeItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AccessPackageResourceRoleScopeItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AccessPackageResourceRoleScopeItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property accessPackageResourceRoleScopes for identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -67,14 +66,13 @@ class AccessPackageResourceRoleScopeItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AccessPackageResourceRoleScopeItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_resource_role_scope.AccessPackageResourceRoleScope]:
+    async def get(self,request_configuration: Optional[AccessPackageResourceRoleScopeItemRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_resource_role_scope.AccessPackageResourceRoleScope]:
         """
         Get accessPackageResourceRoleScopes from identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_resource_role_scope.AccessPackageResourceRoleScope]
         """
         request_info = self.to_get_request_information(
@@ -86,15 +84,14 @@ class AccessPackageResourceRoleScopeItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_resource_role_scope.AccessPackageResourceRoleScope, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_resource_role_scope.AccessPackageResourceRoleScope, error_mapping)
     
-    async def patch(self,body: Optional[access_package_resource_role_scope.AccessPackageResourceRoleScope] = None, request_configuration: Optional[AccessPackageResourceRoleScopeItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_resource_role_scope.AccessPackageResourceRoleScope]:
+    async def patch(self,body: Optional[access_package_resource_role_scope.AccessPackageResourceRoleScope] = None, request_configuration: Optional[AccessPackageResourceRoleScopeItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_package_resource_role_scope.AccessPackageResourceRoleScope]:
         """
         Update the navigation property accessPackageResourceRoleScopes in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_resource_role_scope.AccessPackageResourceRoleScope]
         """
         if body is None:
@@ -108,7 +105,7 @@ class AccessPackageResourceRoleScopeItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_resource_role_scope.AccessPackageResourceRoleScope, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_resource_role_scope.AccessPackageResourceRoleScope, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AccessPackageResourceRoleScopeItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

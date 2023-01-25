@@ -35,12 +35,11 @@ class CancelRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,request_configuration: Optional[CancelRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cancel_response.CancelResponse]:
+    async def post(self,request_configuration: Optional[CancelRequestBuilderPostRequestConfiguration] = None) -> Optional[cancel_response.CancelResponse]:
         """
         Invoke action cancel
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cancel_response.CancelResponse]
         """
         request_info = self.to_post_request_information(
@@ -52,7 +51,7 @@ class CancelRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cancel_response.CancelResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cancel_response.CancelResponse, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[CancelRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

@@ -44,12 +44,11 @@ class NdesConnectorsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[NdesConnectorsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ndes_connector_collection_response.NdesConnectorCollectionResponse]:
+    async def get(self,request_configuration: Optional[NdesConnectorsRequestBuilderGetRequestConfiguration] = None) -> Optional[ndes_connector_collection_response.NdesConnectorCollectionResponse]:
         """
         The collection of Ndes connectors for this account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ndes_connector_collection_response.NdesConnectorCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class NdesConnectorsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ndes_connector_collection_response.NdesConnectorCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ndes_connector_collection_response.NdesConnectorCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ndes_connector.NdesConnector] = None, request_configuration: Optional[NdesConnectorsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ndes_connector.NdesConnector]:
+    async def post(self,body: Optional[ndes_connector.NdesConnector] = None, request_configuration: Optional[NdesConnectorsRequestBuilderPostRequestConfiguration] = None) -> Optional[ndes_connector.NdesConnector]:
         """
         Create new navigation property to ndesConnectors for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ndes_connector.NdesConnector]
         """
         if body is None:
@@ -83,7 +81,7 @@ class NdesConnectorsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ndes_connector.NdesConnector, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ndes_connector.NdesConnector, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[NdesConnectorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -35,12 +35,11 @@ class UsageRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UsageRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_strength_usage.AuthenticationStrengthUsage]:
+    async def get(self,request_configuration: Optional[UsageRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication_strength_usage.AuthenticationStrengthUsage]:
         """
         Invoke function usage
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_strength_usage.AuthenticationStrengthUsage]
         """
         request_info = self.to_get_request_information(
@@ -52,7 +51,7 @@ class UsageRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_strength_usage.AuthenticationStrengthUsage, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_strength_usage.AuthenticationStrengthUsage, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UsageRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

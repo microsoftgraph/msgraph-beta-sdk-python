@@ -52,12 +52,11 @@ class ClientConfigurationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ClientConfigurationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[office_client_configuration_collection_response.OfficeClientConfigurationCollectionResponse]:
+    async def get(self,request_configuration: Optional[ClientConfigurationsRequestBuilderGetRequestConfiguration] = None) -> Optional[office_client_configuration_collection_response.OfficeClientConfigurationCollectionResponse]:
         """
         List of office Client configuration.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[office_client_configuration_collection_response.OfficeClientConfigurationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class ClientConfigurationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, office_client_configuration_collection_response.OfficeClientConfigurationCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, office_client_configuration_collection_response.OfficeClientConfigurationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[office_client_configuration.OfficeClientConfiguration] = None, request_configuration: Optional[ClientConfigurationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[office_client_configuration.OfficeClientConfiguration]:
+    async def post(self,body: Optional[office_client_configuration.OfficeClientConfiguration] = None, request_configuration: Optional[ClientConfigurationsRequestBuilderPostRequestConfiguration] = None) -> Optional[office_client_configuration.OfficeClientConfiguration]:
         """
         Create new navigation property to clientConfigurations for officeConfiguration
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[office_client_configuration.OfficeClientConfiguration]
         """
         if body is None:
@@ -91,7 +89,7 @@ class ClientConfigurationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, office_client_configuration.OfficeClientConfiguration, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, office_client_configuration.OfficeClientConfiguration, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ClientConfigurationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

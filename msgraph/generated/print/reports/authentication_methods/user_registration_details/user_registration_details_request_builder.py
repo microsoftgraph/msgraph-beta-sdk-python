@@ -44,12 +44,11 @@ class UserRegistrationDetailsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserRegistrationDetailsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_registration_details_collection_response.UserRegistrationDetailsCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserRegistrationDetailsRequestBuilderGetRequestConfiguration] = None) -> Optional[user_registration_details_collection_response.UserRegistrationDetailsCollectionResponse]:
         """
         Get a list of the authentication methods registered for the user as defined in the userRegistrationDetails object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_registration_details_collection_response.UserRegistrationDetailsCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class UserRegistrationDetailsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_registration_details_collection_response.UserRegistrationDetailsCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_registration_details_collection_response.UserRegistrationDetailsCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[user_registration_details.UserRegistrationDetails] = None, request_configuration: Optional[UserRegistrationDetailsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_registration_details.UserRegistrationDetails]:
+    async def post(self,body: Optional[user_registration_details.UserRegistrationDetails] = None, request_configuration: Optional[UserRegistrationDetailsRequestBuilderPostRequestConfiguration] = None) -> Optional[user_registration_details.UserRegistrationDetails]:
         """
         Create new navigation property to userRegistrationDetails for print
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_registration_details.UserRegistrationDetails]
         """
         if body is None:
@@ -83,7 +81,7 @@ class UserRegistrationDetailsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_registration_details.UserRegistrationDetails, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_registration_details.UserRegistrationDetails, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UserRegistrationDetailsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

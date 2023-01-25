@@ -35,12 +35,11 @@ class DispositionReviewStageItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DispositionReviewStageItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DispositionReviewStageItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property dispositionReviewStages for security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class DispositionReviewStageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DispositionReviewStageItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[disposition_review_stage.DispositionReviewStage]:
+    async def get(self,request_configuration: Optional[DispositionReviewStageItemRequestBuilderGetRequestConfiguration] = None) -> Optional[disposition_review_stage.DispositionReviewStage]:
         """
         Review stages during which reviewers are notified to determine whether a document must be deleted or retained.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[disposition_review_stage.DispositionReviewStage]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class DispositionReviewStageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, disposition_review_stage.DispositionReviewStage, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, disposition_review_stage.DispositionReviewStage, error_mapping)
     
-    async def patch(self,body: Optional[disposition_review_stage.DispositionReviewStage] = None, request_configuration: Optional[DispositionReviewStageItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[disposition_review_stage.DispositionReviewStage]:
+    async def patch(self,body: Optional[disposition_review_stage.DispositionReviewStage] = None, request_configuration: Optional[DispositionReviewStageItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[disposition_review_stage.DispositionReviewStage]:
         """
         Update the navigation property dispositionReviewStages in security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[disposition_review_stage.DispositionReviewStage]
         """
         if body is None:
@@ -92,7 +89,7 @@ class DispositionReviewStageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, disposition_review_stage.DispositionReviewStage, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, disposition_review_stage.DispositionReviewStage, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DispositionReviewStageItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

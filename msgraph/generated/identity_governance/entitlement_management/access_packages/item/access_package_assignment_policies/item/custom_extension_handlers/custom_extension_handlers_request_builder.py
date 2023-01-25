@@ -44,12 +44,11 @@ class CustomExtensionHandlersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CustomExtensionHandlersRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[custom_extension_handler_collection_response.CustomExtensionHandlerCollectionResponse]:
+    async def get(self,request_configuration: Optional[CustomExtensionHandlersRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_extension_handler_collection_response.CustomExtensionHandlerCollectionResponse]:
         """
         The collection of stages when to execute one or more custom access package workflow extensions. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[custom_extension_handler_collection_response.CustomExtensionHandlerCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class CustomExtensionHandlersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, custom_extension_handler_collection_response.CustomExtensionHandlerCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, custom_extension_handler_collection_response.CustomExtensionHandlerCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[custom_extension_handler.CustomExtensionHandler] = None, request_configuration: Optional[CustomExtensionHandlersRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[custom_extension_handler.CustomExtensionHandler]:
+    async def post(self,body: Optional[custom_extension_handler.CustomExtensionHandler] = None, request_configuration: Optional[CustomExtensionHandlersRequestBuilderPostRequestConfiguration] = None) -> Optional[custom_extension_handler.CustomExtensionHandler]:
         """
         Create new navigation property to customExtensionHandlers for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[custom_extension_handler.CustomExtensionHandler]
         """
         if body is None:
@@ -83,7 +81,7 @@ class CustomExtensionHandlersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, custom_extension_handler.CustomExtensionHandler, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, custom_extension_handler.CustomExtensionHandler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CustomExtensionHandlersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

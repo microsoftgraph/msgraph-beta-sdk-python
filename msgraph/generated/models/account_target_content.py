@@ -32,7 +32,7 @@ class AccountTargetContent(AdditionalDataHolder, Parsable):
 
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The type property
+        # The type of account target content. Possible values are: unknown,includeAll, addressBook,  unknownFutureValue.
         self._type: Optional[account_target_content_type.AccountTargetContentType] = None
     
     @staticmethod
@@ -90,7 +90,7 @@ class AccountTargetContent(AdditionalDataHolder, Parsable):
     @property
     def type(self,) -> Optional[account_target_content_type.AccountTargetContentType]:
         """
-        Gets the type property value. The type property
+        Gets the type property value. The type of account target content. Possible values are: unknown,includeAll, addressBook,  unknownFutureValue.
         Returns: Optional[account_target_content_type.AccountTargetContentType]
         """
         return self._type
@@ -98,7 +98,7 @@ class AccountTargetContent(AdditionalDataHolder, Parsable):
     @type.setter
     def type(self,value: Optional[account_target_content_type.AccountTargetContentType] = None) -> None:
         """
-        Sets the type property value. The type property
+        Sets the type property value. The type of account target content. Possible values are: unknown,includeAll, addressBook,  unknownFutureValue.
         Args:
             value: Value to set for the type property.
         """

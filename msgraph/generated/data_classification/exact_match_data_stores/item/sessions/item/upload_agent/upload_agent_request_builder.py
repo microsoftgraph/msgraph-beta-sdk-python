@@ -35,12 +35,11 @@ class UploadAgentRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[UploadAgentRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[UploadAgentRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property uploadAgent for dataClassification
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class UploadAgentRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UploadAgentRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[exact_match_upload_agent.ExactMatchUploadAgent]:
+    async def get(self,request_configuration: Optional[UploadAgentRequestBuilderGetRequestConfiguration] = None) -> Optional[exact_match_upload_agent.ExactMatchUploadAgent]:
         """
         Get uploadAgent from dataClassification
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[exact_match_upload_agent.ExactMatchUploadAgent]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class UploadAgentRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, exact_match_upload_agent.ExactMatchUploadAgent, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, exact_match_upload_agent.ExactMatchUploadAgent, error_mapping)
     
-    async def patch(self,body: Optional[exact_match_upload_agent.ExactMatchUploadAgent] = None, request_configuration: Optional[UploadAgentRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[exact_match_upload_agent.ExactMatchUploadAgent]:
+    async def patch(self,body: Optional[exact_match_upload_agent.ExactMatchUploadAgent] = None, request_configuration: Optional[UploadAgentRequestBuilderPatchRequestConfiguration] = None) -> Optional[exact_match_upload_agent.ExactMatchUploadAgent]:
         """
         Update the navigation property uploadAgent in dataClassification
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[exact_match_upload_agent.ExactMatchUploadAgent]
         """
         if body is None:
@@ -92,7 +89,7 @@ class UploadAgentRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, exact_match_upload_agent.ExactMatchUploadAgent, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, exact_match_upload_agent.ExactMatchUploadAgent, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UploadAgentRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -44,12 +44,11 @@ class SitesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SitesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[browser_site_collection_response.BrowserSiteCollectionResponse]:
+    async def get(self,request_configuration: Optional[SitesRequestBuilderGetRequestConfiguration] = None) -> Optional[browser_site_collection_response.BrowserSiteCollectionResponse]:
         """
         Get a list of the browserSite objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[browser_site_collection_response.BrowserSiteCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class SitesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, browser_site_collection_response.BrowserSiteCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, browser_site_collection_response.BrowserSiteCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[browser_site.BrowserSite] = None, request_configuration: Optional[SitesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[browser_site.BrowserSite]:
+    async def post(self,body: Optional[browser_site.BrowserSite] = None, request_configuration: Optional[SitesRequestBuilderPostRequestConfiguration] = None) -> Optional[browser_site.BrowserSite]:
         """
         Create a new browserSite object in a browserSiteList.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[browser_site.BrowserSite]
         """
         if body is None:
@@ -83,7 +81,7 @@ class SitesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, browser_site.BrowserSite, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, browser_site.BrowserSite, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SitesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -27,7 +27,7 @@ class TaskDefinition(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new taskDefinition and sets the default values.
+        Instantiates a new TaskDefinition and sets the default values.
         """
         super().__init__()
         # The category property

@@ -44,12 +44,11 @@ class UserExperienceAnalyticsDevicesWithoutCloudIdentityRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsDevicesWithoutCloudIdentityRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_device_without_cloud_identity_collection_response.UserExperienceAnalyticsDeviceWithoutCloudIdentityCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsDevicesWithoutCloudIdentityRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_device_without_cloud_identity_collection_response.UserExperienceAnalyticsDeviceWithoutCloudIdentityCollectionResponse]:
         """
         User experience analytics devices without cloud identity.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_device_without_cloud_identity_collection_response.UserExperienceAnalyticsDeviceWithoutCloudIdentityCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class UserExperienceAnalyticsDevicesWithoutCloudIdentityRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_device_without_cloud_identity_collection_response.UserExperienceAnalyticsDeviceWithoutCloudIdentityCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_device_without_cloud_identity_collection_response.UserExperienceAnalyticsDeviceWithoutCloudIdentityCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[user_experience_analytics_device_without_cloud_identity.UserExperienceAnalyticsDeviceWithoutCloudIdentity] = None, request_configuration: Optional[UserExperienceAnalyticsDevicesWithoutCloudIdentityRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_device_without_cloud_identity.UserExperienceAnalyticsDeviceWithoutCloudIdentity]:
+    async def post(self,body: Optional[user_experience_analytics_device_without_cloud_identity.UserExperienceAnalyticsDeviceWithoutCloudIdentity] = None, request_configuration: Optional[UserExperienceAnalyticsDevicesWithoutCloudIdentityRequestBuilderPostRequestConfiguration] = None) -> Optional[user_experience_analytics_device_without_cloud_identity.UserExperienceAnalyticsDeviceWithoutCloudIdentity]:
         """
         Create new navigation property to userExperienceAnalyticsDevicesWithoutCloudIdentity for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_device_without_cloud_identity.UserExperienceAnalyticsDeviceWithoutCloudIdentity]
         """
         if body is None:
@@ -83,7 +81,7 @@ class UserExperienceAnalyticsDevicesWithoutCloudIdentityRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_device_without_cloud_identity.UserExperienceAnalyticsDeviceWithoutCloudIdentity, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_device_without_cloud_identity.UserExperienceAnalyticsDeviceWithoutCloudIdentity, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UserExperienceAnalyticsDevicesWithoutCloudIdentityRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

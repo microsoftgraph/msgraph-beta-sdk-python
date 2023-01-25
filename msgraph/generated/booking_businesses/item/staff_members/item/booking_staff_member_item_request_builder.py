@@ -35,12 +35,11 @@ class BookingStaffMemberItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[BookingStaffMemberItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[BookingStaffMemberItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property staffMembers for bookingBusinesses
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class BookingStaffMemberItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[BookingStaffMemberItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[booking_staff_member.BookingStaffMember]:
+    async def get(self,request_configuration: Optional[BookingStaffMemberItemRequestBuilderGetRequestConfiguration] = None) -> Optional[booking_staff_member.BookingStaffMember]:
         """
         All the staff members that provide services in this business. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[booking_staff_member.BookingStaffMember]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class BookingStaffMemberItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, booking_staff_member.BookingStaffMember, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, booking_staff_member.BookingStaffMember, error_mapping)
     
-    async def patch(self,body: Optional[booking_staff_member.BookingStaffMember] = None, request_configuration: Optional[BookingStaffMemberItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[booking_staff_member.BookingStaffMember]:
+    async def patch(self,body: Optional[booking_staff_member.BookingStaffMember] = None, request_configuration: Optional[BookingStaffMemberItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[booking_staff_member.BookingStaffMember]:
         """
         Update the navigation property staffMembers in bookingBusinesses
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[booking_staff_member.BookingStaffMember]
         """
         if body is None:
@@ -92,7 +89,7 @@ class BookingStaffMemberItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, booking_staff_member.BookingStaffMember, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, booking_staff_member.BookingStaffMember, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[BookingStaffMemberItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

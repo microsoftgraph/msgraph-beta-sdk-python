@@ -7,12 +7,9 @@ entity = lazy_import('msgraph.generated.models.entity')
 mobile_app_intent_and_state_detail = lazy_import('msgraph.generated.models.mobile_app_intent_and_state_detail')
 
 class MobileAppIntentAndState(entity.Entity):
-    """
-    MobileApp Intent and Install State for a given device.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new mobileAppIntentAndState and sets the default values.
+        Instantiates a new MobileAppIntentAndState and sets the default values.
         """
         super().__init__()
         # Device identifier created or collected by Intune.

@@ -57,12 +57,11 @@ class TeamTemplateItemRequestBuilder():
         url_tpl_params["teamTemplateDefinition%2Did"] = id
         return team_template_definition_item_request_builder.TeamTemplateDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[TeamTemplateItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[TeamTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property teamTemplates for teamwork
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -73,14 +72,13 @@ class TeamTemplateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[TeamTemplateItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[team_template.TeamTemplate]:
+    async def get(self,request_configuration: Optional[TeamTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[team_template.TeamTemplate]:
         """
         The templates associated with a team.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[team_template.TeamTemplate]
         """
         request_info = self.to_get_request_information(
@@ -92,15 +90,14 @@ class TeamTemplateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, team_template.TeamTemplate, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, team_template.TeamTemplate, error_mapping)
     
-    async def patch(self,body: Optional[team_template.TeamTemplate] = None, request_configuration: Optional[TeamTemplateItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[team_template.TeamTemplate]:
+    async def patch(self,body: Optional[team_template.TeamTemplate] = None, request_configuration: Optional[TeamTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[team_template.TeamTemplate]:
         """
         Update the navigation property teamTemplates in teamwork
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[team_template.TeamTemplate]
         """
         if body is None:
@@ -114,7 +111,7 @@ class TeamTemplateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, team_template.TeamTemplate, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, team_template.TeamTemplate, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[TeamTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

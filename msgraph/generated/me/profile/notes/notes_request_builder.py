@@ -44,12 +44,11 @@ class NotesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[NotesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[person_annotation_collection_response.PersonAnnotationCollectionResponse]:
+    async def get(self,request_configuration: Optional[NotesRequestBuilderGetRequestConfiguration] = None) -> Optional[person_annotation_collection_response.PersonAnnotationCollectionResponse]:
         """
         Retrieve a list of personAnnotation objects from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[person_annotation_collection_response.PersonAnnotationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class NotesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, person_annotation_collection_response.PersonAnnotationCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, person_annotation_collection_response.PersonAnnotationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[person_annotation.PersonAnnotation] = None, request_configuration: Optional[NotesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[person_annotation.PersonAnnotation]:
+    async def post(self,body: Optional[person_annotation.PersonAnnotation] = None, request_configuration: Optional[NotesRequestBuilderPostRequestConfiguration] = None) -> Optional[person_annotation.PersonAnnotation]:
         """
         Create a new personAnnotation object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[person_annotation.PersonAnnotation]
         """
         if body is None:
@@ -83,7 +81,7 @@ class NotesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, person_annotation.PersonAnnotation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, person_annotation.PersonAnnotation, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[NotesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

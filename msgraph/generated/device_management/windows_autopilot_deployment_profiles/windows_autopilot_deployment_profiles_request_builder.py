@@ -52,12 +52,11 @@ class WindowsAutopilotDeploymentProfilesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[WindowsAutopilotDeploymentProfilesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_autopilot_deployment_profile_collection_response.WindowsAutopilotDeploymentProfileCollectionResponse]:
+    async def get(self,request_configuration: Optional[WindowsAutopilotDeploymentProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_autopilot_deployment_profile_collection_response.WindowsAutopilotDeploymentProfileCollectionResponse]:
         """
         Windows auto pilot deployment profiles
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_autopilot_deployment_profile_collection_response.WindowsAutopilotDeploymentProfileCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class WindowsAutopilotDeploymentProfilesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_autopilot_deployment_profile_collection_response.WindowsAutopilotDeploymentProfileCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_autopilot_deployment_profile_collection_response.WindowsAutopilotDeploymentProfileCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[windows_autopilot_deployment_profile.WindowsAutopilotDeploymentProfile] = None, request_configuration: Optional[WindowsAutopilotDeploymentProfilesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_autopilot_deployment_profile.WindowsAutopilotDeploymentProfile]:
+    async def post(self,body: Optional[windows_autopilot_deployment_profile.WindowsAutopilotDeploymentProfile] = None, request_configuration: Optional[WindowsAutopilotDeploymentProfilesRequestBuilderPostRequestConfiguration] = None) -> Optional[windows_autopilot_deployment_profile.WindowsAutopilotDeploymentProfile]:
         """
         Create new navigation property to windowsAutopilotDeploymentProfiles for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_autopilot_deployment_profile.WindowsAutopilotDeploymentProfile]
         """
         if body is None:
@@ -91,7 +89,7 @@ class WindowsAutopilotDeploymentProfilesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_autopilot_deployment_profile.WindowsAutopilotDeploymentProfile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_autopilot_deployment_profile.WindowsAutopilotDeploymentProfile, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[WindowsAutopilotDeploymentProfilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

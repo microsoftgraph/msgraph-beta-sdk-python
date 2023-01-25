@@ -43,12 +43,11 @@ class WorkflowTemplatesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[WorkflowTemplatesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[workflow_template_collection_response.WorkflowTemplateCollectionResponse]:
+    async def get(self,request_configuration: Optional[WorkflowTemplatesRequestBuilderGetRequestConfiguration] = None) -> Optional[workflow_template_collection_response.WorkflowTemplateCollectionResponse]:
         """
         Get a list of the workflowTemplate objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[workflow_template_collection_response.WorkflowTemplateCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,7 +59,7 @@ class WorkflowTemplatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, workflow_template_collection_response.WorkflowTemplateCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, workflow_template_collection_response.WorkflowTemplateCollectionResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[WorkflowTemplatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

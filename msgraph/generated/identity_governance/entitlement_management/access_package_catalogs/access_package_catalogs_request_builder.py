@@ -45,12 +45,11 @@ class AccessPackageCatalogsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AccessPackageCatalogsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_catalog_collection_response.AccessPackageCatalogCollectionResponse]:
+    async def get(self,request_configuration: Optional[AccessPackageCatalogsRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_catalog_collection_response.AccessPackageCatalogCollectionResponse]:
         """
         Retrieve a list of accessPackageCatalog objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_catalog_collection_response.AccessPackageCatalogCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -62,15 +61,14 @@ class AccessPackageCatalogsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_catalog_collection_response.AccessPackageCatalogCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_catalog_collection_response.AccessPackageCatalogCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[access_package_catalog.AccessPackageCatalog] = None, request_configuration: Optional[AccessPackageCatalogsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_catalog.AccessPackageCatalog]:
+    async def post(self,body: Optional[access_package_catalog.AccessPackageCatalog] = None, request_configuration: Optional[AccessPackageCatalogsRequestBuilderPostRequestConfiguration] = None) -> Optional[access_package_catalog.AccessPackageCatalog]:
         """
         Create a new accessPackageCatalog object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_catalog.AccessPackageCatalog]
         """
         if body is None:
@@ -84,7 +82,7 @@ class AccessPackageCatalogsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_catalog.AccessPackageCatalog, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_catalog.AccessPackageCatalog, error_mapping)
     
     def search(self,) -> search_request_builder.SearchRequestBuilder:
         """

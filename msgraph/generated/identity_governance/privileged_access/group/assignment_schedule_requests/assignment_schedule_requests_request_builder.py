@@ -56,12 +56,11 @@ class AssignmentScheduleRequestsRequestBuilder():
             raise Exception("on cannot be undefined")
         return filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
     
-    async def get(self,request_configuration: Optional[AssignmentScheduleRequestsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_access_group_assignment_schedule_request_collection_response.PrivilegedAccessGroupAssignmentScheduleRequestCollectionResponse]:
+    async def get(self,request_configuration: Optional[AssignmentScheduleRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access_group_assignment_schedule_request_collection_response.PrivilegedAccessGroupAssignmentScheduleRequestCollectionResponse]:
         """
         Get assignmentScheduleRequests from identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_access_group_assignment_schedule_request_collection_response.PrivilegedAccessGroupAssignmentScheduleRequestCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -73,15 +72,14 @@ class AssignmentScheduleRequestsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_access_group_assignment_schedule_request_collection_response.PrivilegedAccessGroupAssignmentScheduleRequestCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_access_group_assignment_schedule_request_collection_response.PrivilegedAccessGroupAssignmentScheduleRequestCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest] = None, request_configuration: Optional[AssignmentScheduleRequestsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest]:
+    async def post(self,body: Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest] = None, request_configuration: Optional[AssignmentScheduleRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest]:
         """
         Create new navigation property to assignmentScheduleRequests for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest]
         """
         if body is None:
@@ -95,7 +93,7 @@ class AssignmentScheduleRequestsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AssignmentScheduleRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

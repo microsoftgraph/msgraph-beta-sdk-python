@@ -44,12 +44,11 @@ class DeviceStatusesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DeviceStatusesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mobile_app_install_status_collection_response.MobileAppInstallStatusCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceStatusesRequestBuilderGetRequestConfiguration] = None) -> Optional[mobile_app_install_status_collection_response.MobileAppInstallStatusCollectionResponse]:
         """
         The install state of the app on devices.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mobile_app_install_status_collection_response.MobileAppInstallStatusCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class DeviceStatusesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mobile_app_install_status_collection_response.MobileAppInstallStatusCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, mobile_app_install_status_collection_response.MobileAppInstallStatusCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[mobile_app_install_status.MobileAppInstallStatus] = None, request_configuration: Optional[DeviceStatusesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mobile_app_install_status.MobileAppInstallStatus]:
+    async def post(self,body: Optional[mobile_app_install_status.MobileAppInstallStatus] = None, request_configuration: Optional[DeviceStatusesRequestBuilderPostRequestConfiguration] = None) -> Optional[mobile_app_install_status.MobileAppInstallStatus]:
         """
         Create new navigation property to deviceStatuses for deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mobile_app_install_status.MobileAppInstallStatus]
         """
         if body is None:
@@ -83,7 +81,7 @@ class DeviceStatusesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mobile_app_install_status.MobileAppInstallStatus, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, mobile_app_install_status.MobileAppInstallStatus, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceStatusesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

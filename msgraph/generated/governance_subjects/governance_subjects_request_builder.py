@@ -44,12 +44,11 @@ class GovernanceSubjectsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[GovernanceSubjectsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_subject_collection_response.GovernanceSubjectCollectionResponse]:
+    async def get(self,request_configuration: Optional[GovernanceSubjectsRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_subject_collection_response.GovernanceSubjectCollectionResponse]:
         """
         Get entities from governanceSubjects
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_subject_collection_response.GovernanceSubjectCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class GovernanceSubjectsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_subject_collection_response.GovernanceSubjectCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_subject_collection_response.GovernanceSubjectCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[governance_subject.GovernanceSubject] = None, request_configuration: Optional[GovernanceSubjectsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_subject.GovernanceSubject]:
+    async def post(self,body: Optional[governance_subject.GovernanceSubject] = None, request_configuration: Optional[GovernanceSubjectsRequestBuilderPostRequestConfiguration] = None) -> Optional[governance_subject.GovernanceSubject]:
         """
         Add new entity to governanceSubjects
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_subject.GovernanceSubject]
         """
         if body is None:
@@ -83,7 +81,7 @@ class GovernanceSubjectsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_subject.GovernanceSubject, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_subject.GovernanceSubject, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GovernanceSubjectsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
