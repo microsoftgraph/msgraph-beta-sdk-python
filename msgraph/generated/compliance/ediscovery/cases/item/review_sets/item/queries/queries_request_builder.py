@@ -44,11 +44,12 @@ class QueriesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[QueriesRequestBuilderGetRequestConfiguration] = None) -> Optional[review_set_query_collection_response.ReviewSetQueryCollectionResponse]:
+    async def get(self,request_configuration: Optional[QueriesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[review_set_query_collection_response.ReviewSetQueryCollectionResponse]:
         """
         Retrieve a list of eDiscovery reviewSetQuery objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[review_set_query_collection_response.ReviewSetQueryCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class QueriesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, review_set_query_collection_response.ReviewSetQueryCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, review_set_query_collection_response.ReviewSetQueryCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[review_set_query.ReviewSetQuery] = None, request_configuration: Optional[QueriesRequestBuilderPostRequestConfiguration] = None) -> Optional[review_set_query.ReviewSetQuery]:
+    async def post(self,body: Optional[review_set_query.ReviewSetQuery] = None, request_configuration: Optional[QueriesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[review_set_query.ReviewSetQuery]:
         """
         Create a new reviewSetQuery object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[review_set_query.ReviewSetQuery]
         """
         if body is None:
@@ -81,7 +83,7 @@ class QueriesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, review_set_query.ReviewSetQuery, error_mapping)
+        return await self.request_adapter.send_async(request_info, review_set_query.ReviewSetQuery, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[QueriesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

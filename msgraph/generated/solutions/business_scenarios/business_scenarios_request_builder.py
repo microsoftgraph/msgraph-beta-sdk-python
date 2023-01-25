@@ -44,11 +44,12 @@ class BusinessScenariosRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[BusinessScenariosRequestBuilderGetRequestConfiguration] = None) -> Optional[business_scenario_collection_response.BusinessScenarioCollectionResponse]:
+    async def get(self,request_configuration: Optional[BusinessScenariosRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[business_scenario_collection_response.BusinessScenarioCollectionResponse]:
         """
         Get a list of all businessScenario objects in an organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[business_scenario_collection_response.BusinessScenarioCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class BusinessScenariosRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, business_scenario_collection_response.BusinessScenarioCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, business_scenario_collection_response.BusinessScenarioCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[business_scenario.BusinessScenario] = None, request_configuration: Optional[BusinessScenariosRequestBuilderPostRequestConfiguration] = None) -> Optional[business_scenario.BusinessScenario]:
+    async def post(self,body: Optional[business_scenario.BusinessScenario] = None, request_configuration: Optional[BusinessScenariosRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[business_scenario.BusinessScenario]:
         """
         Create a new businessScenario object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[business_scenario.BusinessScenario]
         """
         if body is None:
@@ -81,7 +83,7 @@ class BusinessScenariosRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, business_scenario.BusinessScenario, error_mapping)
+        return await self.request_adapter.send_async(request_info, business_scenario.BusinessScenario, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[BusinessScenariosRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

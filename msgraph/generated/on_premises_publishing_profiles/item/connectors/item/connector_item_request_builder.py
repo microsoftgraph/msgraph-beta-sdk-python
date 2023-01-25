@@ -44,11 +44,12 @@ class ConnectorItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ConnectorItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ConnectorItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property connectors for onPremisesPublishingProfiles
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,13 +60,14 @@ class ConnectorItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[ConnectorItemRequestBuilderGetRequestConfiguration] = None) -> Optional[connector.Connector]:
+    async def get(self,request_configuration: Optional[ConnectorItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[connector.Connector]:
         """
         List of existing connector objects for applications published through Application Proxy. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[connector.Connector]
         """
         request_info = self.to_get_request_information(
@@ -77,7 +79,7 @@ class ConnectorItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, connector.Connector, error_mapping)
+        return await self.request_adapter.send_async(request_info, connector.Connector, response_handler, error_mapping)
     
     def member_of_by_id(self,id: str) -> connector_group_item_request_builder.ConnectorGroupItemRequestBuilder:
         """
@@ -92,12 +94,13 @@ class ConnectorItemRequestBuilder():
         url_tpl_params["connectorGroup%2Did"] = id
         return connector_group_item_request_builder.ConnectorGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[connector.Connector] = None, request_configuration: Optional[ConnectorItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[connector.Connector]:
+    async def patch(self,body: Optional[connector.Connector] = None, request_configuration: Optional[ConnectorItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[connector.Connector]:
         """
         Update the navigation property connectors in onPremisesPublishingProfiles
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[connector.Connector]
         """
         if body is None:
@@ -111,7 +114,7 @@ class ConnectorItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, connector.Connector, error_mapping)
+        return await self.request_adapter.send_async(request_info, connector.Connector, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ConnectorItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

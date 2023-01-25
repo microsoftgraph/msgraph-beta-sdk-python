@@ -44,11 +44,12 @@ class ScopedRoleMemberOfRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ScopedRoleMemberOfRequestBuilderGetRequestConfiguration] = None) -> Optional[scoped_role_membership_collection_response.ScopedRoleMembershipCollectionResponse]:
+    async def get(self,request_configuration: Optional[ScopedRoleMemberOfRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[scoped_role_membership_collection_response.ScopedRoleMembershipCollectionResponse]:
         """
         Retrieve a list of scopedRoleMembership for the user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[scoped_role_membership_collection_response.ScopedRoleMembershipCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class ScopedRoleMemberOfRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, scoped_role_membership_collection_response.ScopedRoleMembershipCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, scoped_role_membership_collection_response.ScopedRoleMembershipCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[scoped_role_membership.ScopedRoleMembership] = None, request_configuration: Optional[ScopedRoleMemberOfRequestBuilderPostRequestConfiguration] = None) -> Optional[scoped_role_membership.ScopedRoleMembership]:
+    async def post(self,body: Optional[scoped_role_membership.ScopedRoleMembership] = None, request_configuration: Optional[ScopedRoleMemberOfRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[scoped_role_membership.ScopedRoleMembership]:
         """
         Create new navigation property to scopedRoleMemberOf for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[scoped_role_membership.ScopedRoleMembership]
         """
         if body is None:
@@ -81,7 +83,7 @@ class ScopedRoleMemberOfRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, scoped_role_membership.ScopedRoleMembership, error_mapping)
+        return await self.request_adapter.send_async(request_info, scoped_role_membership.ScopedRoleMembership, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ScopedRoleMemberOfRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

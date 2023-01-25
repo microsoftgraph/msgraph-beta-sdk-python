@@ -35,11 +35,12 @@ class AccessReviewPolicyRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AccessReviewPolicyRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[AccessReviewPolicyRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property accessReviewPolicy for policies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class AccessReviewPolicyRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[AccessReviewPolicyRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_policy.AccessReviewPolicy]:
+    async def get(self,request_configuration: Optional[AccessReviewPolicyRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_policy.AccessReviewPolicy]:
         """
         Read the properties and relationships of an accessReviewPolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_policy.AccessReviewPolicy]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class AccessReviewPolicyRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_policy.AccessReviewPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_policy.AccessReviewPolicy, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[access_review_policy.AccessReviewPolicy] = None, request_configuration: Optional[AccessReviewPolicyRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_review_policy.AccessReviewPolicy]:
+    async def patch(self,body: Optional[access_review_policy.AccessReviewPolicy] = None, request_configuration: Optional[AccessReviewPolicyRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_policy.AccessReviewPolicy]:
         """
         Update the properties of an accessReviewPolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_policy.AccessReviewPolicy]
         """
         if body is None:
@@ -89,7 +92,7 @@ class AccessReviewPolicyRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_policy.AccessReviewPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_policy.AccessReviewPolicy, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AccessReviewPolicyRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -35,11 +35,12 @@ class SubscribedSkuItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SubscribedSkuItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[SubscribedSkuItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
-        Delete entity from subscribedSkus by key (id)
+        Delete entity from subscribedSkus
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class SubscribedSkuItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[SubscribedSkuItemRequestBuilderGetRequestConfiguration] = None) -> Optional[subscribed_sku.SubscribedSku]:
+    async def get(self,request_configuration: Optional[SubscribedSkuItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[subscribed_sku.SubscribedSku]:
         """
         Get a specific commercial subscription that an organization has acquired.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[subscribed_sku.SubscribedSku]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class SubscribedSkuItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, subscribed_sku.SubscribedSku, error_mapping)
+        return await self.request_adapter.send_async(request_info, subscribed_sku.SubscribedSku, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[subscribed_sku.SubscribedSku] = None, request_configuration: Optional[SubscribedSkuItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[subscribed_sku.SubscribedSku]:
+    async def patch(self,body: Optional[subscribed_sku.SubscribedSku] = None, request_configuration: Optional[SubscribedSkuItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[subscribed_sku.SubscribedSku]:
         """
-        Update entity in subscribedSkus by key (id)
+        Update entity in subscribedSkus
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[subscribed_sku.SubscribedSku]
         """
         if body is None:
@@ -89,11 +92,11 @@ class SubscribedSkuItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, subscribed_sku.SubscribedSku, error_mapping)
+        return await self.request_adapter.send_async(request_info, subscribed_sku.SubscribedSku, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SubscribedSkuItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete entity from subscribedSkus by key (id)
+        Delete entity from subscribedSkus
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -127,7 +130,7 @@ class SubscribedSkuItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[subscribed_sku.SubscribedSku] = None, request_configuration: Optional[SubscribedSkuItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update entity in subscribedSkus by key (id)
+        Update entity in subscribedSkus
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

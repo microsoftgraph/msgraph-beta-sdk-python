@@ -10,6 +10,9 @@ entity = lazy_import('msgraph.generated.models.entity')
 on_premises_conditional_access_settings = lazy_import('msgraph.generated.models.on_premises_conditional_access_settings')
 
 class DeviceManagementExchangeOnPremisesPolicy(entity.Entity):
+    """
+    Singleton entity which represents the Exchange OnPremises policy configured for a tenant.
+    """
     @property
     def access_rules(self,) -> Optional[List[device_management_exchange_access_rule.DeviceManagementExchangeAccessRule]]:
         """
@@ -46,7 +49,7 @@ class DeviceManagementExchangeOnPremisesPolicy(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new DeviceManagementExchangeOnPremisesPolicy and sets the default values.
+        Instantiates a new deviceManagementExchangeOnPremisesPolicy and sets the default values.
         """
         super().__init__()
         # The list of device access rules in Exchange. The access rules apply globally to the entire Exchange organization

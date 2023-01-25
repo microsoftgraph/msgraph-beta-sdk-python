@@ -44,11 +44,12 @@ class DataPolicyOperationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DataPolicyOperationsRequestBuilderGetRequestConfiguration] = None) -> Optional[data_policy_operation_collection_response.DataPolicyOperationCollectionResponse]:
+    async def get(self,request_configuration: Optional[DataPolicyOperationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[data_policy_operation_collection_response.DataPolicyOperationCollectionResponse]:
         """
         Retrieve the properties of the dataPolicyOperation object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[data_policy_operation_collection_response.DataPolicyOperationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class DataPolicyOperationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, data_policy_operation_collection_response.DataPolicyOperationCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, data_policy_operation_collection_response.DataPolicyOperationCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[data_policy_operation.DataPolicyOperation] = None, request_configuration: Optional[DataPolicyOperationsRequestBuilderPostRequestConfiguration] = None) -> Optional[data_policy_operation.DataPolicyOperation]:
+    async def post(self,body: Optional[data_policy_operation.DataPolicyOperation] = None, request_configuration: Optional[DataPolicyOperationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[data_policy_operation.DataPolicyOperation]:
         """
         Add new entity to dataPolicyOperations
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[data_policy_operation.DataPolicyOperation]
         """
         if body is None:
@@ -81,7 +83,7 @@ class DataPolicyOperationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, data_policy_operation.DataPolicyOperation, error_mapping)
+        return await self.request_adapter.send_async(request_info, data_policy_operation.DataPolicyOperation, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DataPolicyOperationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

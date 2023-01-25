@@ -35,11 +35,12 @@ class RetentionEventTypeItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[RetentionEventTypeItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RetentionEventTypeItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property retentionEventTypes for security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class RetentionEventTypeItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[RetentionEventTypeItemRequestBuilderGetRequestConfiguration] = None) -> Optional[retention_event_type.RetentionEventType]:
+    async def get(self,request_configuration: Optional[RetentionEventTypeItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[retention_event_type.RetentionEventType]:
         """
         Get retentionEventTypes from security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[retention_event_type.RetentionEventType]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class RetentionEventTypeItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, retention_event_type.RetentionEventType, error_mapping)
+        return await self.request_adapter.send_async(request_info, retention_event_type.RetentionEventType, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[retention_event_type.RetentionEventType] = None, request_configuration: Optional[RetentionEventTypeItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[retention_event_type.RetentionEventType]:
+    async def patch(self,body: Optional[retention_event_type.RetentionEventType] = None, request_configuration: Optional[RetentionEventTypeItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[retention_event_type.RetentionEventType]:
         """
         Update the navigation property retentionEventTypes in security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[retention_event_type.RetentionEventType]
         """
         if body is None:
@@ -89,7 +92,7 @@ class RetentionEventTypeItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, retention_event_type.RetentionEventType, error_mapping)
+        return await self.request_adapter.send_async(request_info, retention_event_type.RetentionEventType, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[RetentionEventTypeItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

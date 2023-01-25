@@ -37,11 +37,12 @@ class SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilderGetRequestConfiguration] = None) -> Optional[summarize_device_remote_connection_with_summarize_by_response.SummarizeDeviceRemoteConnectionWithSummarizeByResponse]:
+    async def get(self,request_configuration: Optional[SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[summarize_device_remote_connection_with_summarize_by_response.SummarizeDeviceRemoteConnectionWithSummarizeByResponse]:
         """
         Invoke function summarizeDeviceRemoteConnection
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[summarize_device_remote_connection_with_summarize_by_response.SummarizeDeviceRemoteConnectionWithSummarizeByResponse]
         """
         request_info = self.to_get_request_information(
@@ -53,7 +54,7 @@ class SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, summarize_device_remote_connection_with_summarize_by_response.SummarizeDeviceRemoteConnectionWithSummarizeByResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, summarize_device_remote_connection_with_summarize_by_response.SummarizeDeviceRemoteConnectionWithSummarizeByResponse, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

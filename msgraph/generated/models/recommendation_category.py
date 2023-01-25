@@ -1,7 +1,10 @@
 from enum import Enum
 
 class RecommendationCategory(Enum):
-    IdentityBestPractice = "identityBestPractice",
-    IdentitySecureScore = "identitySecureScore",
+    UsageAndCompliance = "usageAndCompliance",
+    Security = "security",
     UnknownFutureValue = "unknownFutureValue",
+    Productivity = "productivity",
+    Health = "health",
+    Configuration = "configuration",
 

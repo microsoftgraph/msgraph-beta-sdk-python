@@ -35,11 +35,12 @@ class MessageEventItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[MessageEventItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[MessageEventItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property events for messageTraces
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class MessageEventItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[MessageEventItemRequestBuilderGetRequestConfiguration] = None) -> Optional[message_event.MessageEvent]:
+    async def get(self,request_configuration: Optional[MessageEventItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[message_event.MessageEvent]:
         """
         Get events from messageTraces
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[message_event.MessageEvent]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class MessageEventItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, message_event.MessageEvent, error_mapping)
+        return await self.request_adapter.send_async(request_info, message_event.MessageEvent, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[message_event.MessageEvent] = None, request_configuration: Optional[MessageEventItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[message_event.MessageEvent]:
+    async def patch(self,body: Optional[message_event.MessageEvent] = None, request_configuration: Optional[MessageEventItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[message_event.MessageEvent]:
         """
         Update the navigation property events in messageTraces
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[message_event.MessageEvent]
         """
         if body is None:
@@ -89,7 +92,7 @@ class MessageEventItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, message_event.MessageEvent, error_mapping)
+        return await self.request_adapter.send_async(request_info, message_event.MessageEvent, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[MessageEventItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

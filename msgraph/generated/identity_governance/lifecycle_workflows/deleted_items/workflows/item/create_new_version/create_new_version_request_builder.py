@@ -36,12 +36,13 @@ class CreateNewVersionRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[create_new_version_post_request_body.CreateNewVersionPostRequestBody] = None, request_configuration: Optional[CreateNewVersionRequestBuilderPostRequestConfiguration] = None) -> Optional[workflow.Workflow]:
+    async def post(self,body: Optional[create_new_version_post_request_body.CreateNewVersionPostRequestBody] = None, request_configuration: Optional[CreateNewVersionRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[workflow.Workflow]:
         """
         Create a new version of the workflow object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[workflow.Workflow]
         """
         if body is None:
@@ -55,7 +56,7 @@ class CreateNewVersionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, workflow.Workflow, error_mapping)
+        return await self.request_adapter.send_async(request_info, workflow.Workflow, response_handler, error_mapping)
     
     def to_post_request_information(self,body: Optional[create_new_version_post_request_body.CreateNewVersionPostRequestBody] = None, request_configuration: Optional[CreateNewVersionRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

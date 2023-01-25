@@ -35,11 +35,12 @@ class OffboardTenantRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,request_configuration: Optional[OffboardTenantRequestBuilderPostRequestConfiguration] = None) -> Optional[tenant.Tenant]:
+    async def post(self,request_configuration: Optional[OffboardTenantRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant.Tenant]:
         """
         Carries out the appropriate procedures to remove a managed tenant from the multi-tenant management platform. No relationships, such as commerce and delegate administrative privileges, will be impacted. The only change made by invoking this action is the tenant will be deprovisioned from the multi-tenant management platform.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant.Tenant]
         """
         request_info = self.to_post_request_information(
@@ -51,7 +52,7 @@ class OffboardTenantRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant.Tenant, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant.Tenant, response_handler, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[OffboardTenantRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

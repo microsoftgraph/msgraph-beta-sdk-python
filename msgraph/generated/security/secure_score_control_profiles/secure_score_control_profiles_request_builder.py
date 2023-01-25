@@ -44,11 +44,12 @@ class SecureScoreControlProfilesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SecureScoreControlProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[secure_score_control_profile_collection_response.SecureScoreControlProfileCollectionResponse]:
+    async def get(self,request_configuration: Optional[SecureScoreControlProfilesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[secure_score_control_profile_collection_response.SecureScoreControlProfileCollectionResponse]:
         """
         Retrieves a list of secureScoreControlProfile objects for a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[secure_score_control_profile_collection_response.SecureScoreControlProfileCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class SecureScoreControlProfilesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, secure_score_control_profile_collection_response.SecureScoreControlProfileCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, secure_score_control_profile_collection_response.SecureScoreControlProfileCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[secure_score_control_profile.SecureScoreControlProfile] = None, request_configuration: Optional[SecureScoreControlProfilesRequestBuilderPostRequestConfiguration] = None) -> Optional[secure_score_control_profile.SecureScoreControlProfile]:
+    async def post(self,body: Optional[secure_score_control_profile.SecureScoreControlProfile] = None, request_configuration: Optional[SecureScoreControlProfilesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[secure_score_control_profile.SecureScoreControlProfile]:
         """
         Create new navigation property to secureScoreControlProfiles for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[secure_score_control_profile.SecureScoreControlProfile]
         """
         if body is None:
@@ -81,7 +83,7 @@ class SecureScoreControlProfilesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, secure_score_control_profile.SecureScoreControlProfile, error_mapping)
+        return await self.request_adapter.send_async(request_info, secure_score_control_profile.SecureScoreControlProfile, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SecureScoreControlProfilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

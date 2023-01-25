@@ -104,11 +104,11 @@ class Simulation(entity.Entity):
         self._description: Optional[str] = None
         # Display name of the attack simulation and training campaign. Supports $filter and $orderby.
         self._display_name: Optional[str] = None
-        # Simulation duration in days.
+        # The durationInDays property
         self._duration_in_days: Optional[int] = None
-        # Users excluded from the simulation.
+        # The excludedAccountTarget property
         self._excluded_account_target: Optional[account_target_content.AccountTargetContent] = None
-        # Users targeted in the simulation.
+        # The includedAccountTarget property
         self._included_account_target: Optional[account_target_content.AccountTargetContent] = None
         # Flag that represents if the attack simulation and training campaign was created from a simulation automation flow. Supports $filter and $orderby.
         self._is_automated: Optional[bool] = None
@@ -120,7 +120,7 @@ class Simulation(entity.Entity):
         self._launch_date_time: Optional[datetime] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The payload associated with a simulation during its creation.
+        # The payload property
         self._payload: Optional[payload.Payload] = None
         # Method of delivery of the phishing payload used in the attack simulation and training campaign. Possible values are: unknown, sms, email, teams, unknownFutureValue.
         self._payload_delivery_platform: Optional[payload_delivery_platform.PayloadDeliveryPlatform] = None
@@ -212,7 +212,7 @@ class Simulation(entity.Entity):
     @property
     def duration_in_days(self,) -> Optional[int]:
         """
-        Gets the durationInDays property value. Simulation duration in days.
+        Gets the durationInDays property value. The durationInDays property
         Returns: Optional[int]
         """
         return self._duration_in_days
@@ -220,7 +220,7 @@ class Simulation(entity.Entity):
     @duration_in_days.setter
     def duration_in_days(self,value: Optional[int] = None) -> None:
         """
-        Sets the durationInDays property value. Simulation duration in days.
+        Sets the durationInDays property value. The durationInDays property
         Args:
             value: Value to set for the durationInDays property.
         """
@@ -229,7 +229,7 @@ class Simulation(entity.Entity):
     @property
     def excluded_account_target(self,) -> Optional[account_target_content.AccountTargetContent]:
         """
-        Gets the excludedAccountTarget property value. Users excluded from the simulation.
+        Gets the excludedAccountTarget property value. The excludedAccountTarget property
         Returns: Optional[account_target_content.AccountTargetContent]
         """
         return self._excluded_account_target
@@ -237,7 +237,7 @@ class Simulation(entity.Entity):
     @excluded_account_target.setter
     def excluded_account_target(self,value: Optional[account_target_content.AccountTargetContent] = None) -> None:
         """
-        Sets the excludedAccountTarget property value. Users excluded from the simulation.
+        Sets the excludedAccountTarget property value. The excludedAccountTarget property
         Args:
             value: Value to set for the excludedAccountTarget property.
         """
@@ -276,7 +276,7 @@ class Simulation(entity.Entity):
     @property
     def included_account_target(self,) -> Optional[account_target_content.AccountTargetContent]:
         """
-        Gets the includedAccountTarget property value. Users targeted in the simulation.
+        Gets the includedAccountTarget property value. The includedAccountTarget property
         Returns: Optional[account_target_content.AccountTargetContent]
         """
         return self._included_account_target
@@ -284,7 +284,7 @@ class Simulation(entity.Entity):
     @included_account_target.setter
     def included_account_target(self,value: Optional[account_target_content.AccountTargetContent] = None) -> None:
         """
-        Sets the includedAccountTarget property value. Users targeted in the simulation.
+        Sets the includedAccountTarget property value. The includedAccountTarget property
         Args:
             value: Value to set for the includedAccountTarget property.
         """
@@ -361,7 +361,7 @@ class Simulation(entity.Entity):
     @property
     def payload(self,) -> Optional[payload.Payload]:
         """
-        Gets the payload property value. The payload associated with a simulation during its creation.
+        Gets the payload property value. The payload property
         Returns: Optional[payload.Payload]
         """
         return self._payload
@@ -369,7 +369,7 @@ class Simulation(entity.Entity):
     @payload.setter
     def payload(self,value: Optional[payload.Payload] = None) -> None:
         """
-        Sets the payload property value. The payload associated with a simulation during its creation.
+        Sets the payload property value. The payload property
         Args:
             value: Value to set for the payload property.
         """

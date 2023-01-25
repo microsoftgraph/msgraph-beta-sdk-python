@@ -44,11 +44,12 @@ class UserExperienceAnalyticsAnomalyRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsAnomalyRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_anomaly_collection_response.UserExperienceAnalyticsAnomalyCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsAnomalyRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_anomaly_collection_response.UserExperienceAnalyticsAnomalyCollectionResponse]:
         """
         The user experience analytics anomaly entity contains anomaly details.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_anomaly_collection_response.UserExperienceAnalyticsAnomalyCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class UserExperienceAnalyticsAnomalyRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_anomaly_collection_response.UserExperienceAnalyticsAnomalyCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_anomaly_collection_response.UserExperienceAnalyticsAnomalyCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[user_experience_analytics_anomaly.UserExperienceAnalyticsAnomaly] = None, request_configuration: Optional[UserExperienceAnalyticsAnomalyRequestBuilderPostRequestConfiguration] = None) -> Optional[user_experience_analytics_anomaly.UserExperienceAnalyticsAnomaly]:
+    async def post(self,body: Optional[user_experience_analytics_anomaly.UserExperienceAnalyticsAnomaly] = None, request_configuration: Optional[UserExperienceAnalyticsAnomalyRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_anomaly.UserExperienceAnalyticsAnomaly]:
         """
         Create new navigation property to userExperienceAnalyticsAnomaly for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_anomaly.UserExperienceAnalyticsAnomaly]
         """
         if body is None:
@@ -81,7 +83,7 @@ class UserExperienceAnalyticsAnomalyRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_anomaly.UserExperienceAnalyticsAnomaly, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_anomaly.UserExperienceAnalyticsAnomaly, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UserExperienceAnalyticsAnomalyRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

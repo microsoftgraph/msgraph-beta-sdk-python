@@ -44,11 +44,12 @@ class DeviceStatusesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DeviceStatusesRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_defender_application_control_supplemental_policy_deployment_status_collection_response.WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceStatusesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_defender_application_control_supplemental_policy_deployment_status_collection_response.WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusCollectionResponse]:
         """
         The list of device deployment states for this WindowsDefenderApplicationControl supplemental policy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_defender_application_control_supplemental_policy_deployment_status_collection_response.WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class DeviceStatusesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_defender_application_control_supplemental_policy_deployment_status_collection_response.WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_defender_application_control_supplemental_policy_deployment_status_collection_response.WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[windows_defender_application_control_supplemental_policy_deployment_status.WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus] = None, request_configuration: Optional[DeviceStatusesRequestBuilderPostRequestConfiguration] = None) -> Optional[windows_defender_application_control_supplemental_policy_deployment_status.WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus]:
+    async def post(self,body: Optional[windows_defender_application_control_supplemental_policy_deployment_status.WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus] = None, request_configuration: Optional[DeviceStatusesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_defender_application_control_supplemental_policy_deployment_status.WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus]:
         """
         Create new navigation property to deviceStatuses for deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_defender_application_control_supplemental_policy_deployment_status.WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus]
         """
         if body is None:
@@ -81,7 +83,7 @@ class DeviceStatusesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_defender_application_control_supplemental_policy_deployment_status.WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_defender_application_control_supplemental_policy_deployment_status.WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceStatusesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

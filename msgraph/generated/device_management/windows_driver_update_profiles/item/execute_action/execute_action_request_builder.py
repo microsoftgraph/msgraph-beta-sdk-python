@@ -36,12 +36,13 @@ class ExecuteActionRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[execute_action_post_request_body.ExecuteActionPostRequestBody] = None, request_configuration: Optional[ExecuteActionRequestBuilderPostRequestConfiguration] = None) -> Optional[bulk_driver_action_result.BulkDriverActionResult]:
+    async def post(self,body: Optional[execute_action_post_request_body.ExecuteActionPostRequestBody] = None, request_configuration: Optional[ExecuteActionRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[bulk_driver_action_result.BulkDriverActionResult]:
         """
         Invoke action executeAction
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[bulk_driver_action_result.BulkDriverActionResult]
         """
         if body is None:
@@ -55,7 +56,7 @@ class ExecuteActionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, bulk_driver_action_result.BulkDriverActionResult, error_mapping)
+        return await self.request_adapter.send_async(request_info, bulk_driver_action_result.BulkDriverActionResult, response_handler, error_mapping)
     
     def to_post_request_information(self,body: Optional[execute_action_post_request_body.ExecuteActionPostRequestBody] = None, request_configuration: Optional[ExecuteActionRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

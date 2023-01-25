@@ -14,6 +14,9 @@ vpn_proxy_server = lazy_import('msgraph.generated.models.vpn_proxy_server')
 vpn_server = lazy_import('msgraph.generated.models.vpn_server')
 
 class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
+    """
+    Apple VPN configuration profile.
+    """
     @property
     def associated_domains(self,) -> Optional[List[str]]:
         """
@@ -84,7 +87,7 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new AppleVpnConfiguration and sets the default values.
+        Instantiates a new appleVpnConfiguration and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.appleVpnConfiguration"

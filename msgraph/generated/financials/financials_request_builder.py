@@ -57,11 +57,12 @@ class FinancialsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[FinancialsRequestBuilderGetRequestConfiguration] = None) -> Optional[financials.Financials]:
+    async def get(self,request_configuration: Optional[FinancialsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[financials.Financials]:
         """
         Get financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[financials.Financials]
         """
         request_info = self.to_get_request_information(
@@ -73,14 +74,15 @@ class FinancialsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, financials.Financials, error_mapping)
+        return await self.request_adapter.send_async(request_info, financials.Financials, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[financials.Financials] = None, request_configuration: Optional[FinancialsRequestBuilderPatchRequestConfiguration] = None) -> Optional[financials.Financials]:
+    async def patch(self,body: Optional[financials.Financials] = None, request_configuration: Optional[FinancialsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[financials.Financials]:
         """
         Update financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[financials.Financials]
         """
         if body is None:
@@ -94,7 +96,7 @@ class FinancialsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, financials.Financials, error_mapping)
+        return await self.request_adapter.send_async(request_info, financials.Financials, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[FinancialsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

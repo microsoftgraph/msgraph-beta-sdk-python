@@ -44,11 +44,12 @@ class DeviceConfigurationRestrictedAppsViolationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DeviceConfigurationRestrictedAppsViolationsRequestBuilderGetRequestConfiguration] = None) -> Optional[restricted_apps_violation_collection_response.RestrictedAppsViolationCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceConfigurationRestrictedAppsViolationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[restricted_apps_violation_collection_response.RestrictedAppsViolationCollectionResponse]:
         """
         Restricted apps violations for this account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[restricted_apps_violation_collection_response.RestrictedAppsViolationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class DeviceConfigurationRestrictedAppsViolationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, restricted_apps_violation_collection_response.RestrictedAppsViolationCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, restricted_apps_violation_collection_response.RestrictedAppsViolationCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[restricted_apps_violation.RestrictedAppsViolation] = None, request_configuration: Optional[DeviceConfigurationRestrictedAppsViolationsRequestBuilderPostRequestConfiguration] = None) -> Optional[restricted_apps_violation.RestrictedAppsViolation]:
+    async def post(self,body: Optional[restricted_apps_violation.RestrictedAppsViolation] = None, request_configuration: Optional[DeviceConfigurationRestrictedAppsViolationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[restricted_apps_violation.RestrictedAppsViolation]:
         """
         Create new navigation property to deviceConfigurationRestrictedAppsViolations for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[restricted_apps_violation.RestrictedAppsViolation]
         """
         if body is None:
@@ -81,7 +83,7 @@ class DeviceConfigurationRestrictedAppsViolationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, restricted_apps_violation.RestrictedAppsViolation, error_mapping)
+        return await self.request_adapter.send_async(request_info, restricted_apps_violation.RestrictedAppsViolation, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceConfigurationRestrictedAppsViolationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

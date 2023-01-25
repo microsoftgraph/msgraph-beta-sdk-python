@@ -61,11 +61,12 @@ class ContentTypesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ContentTypesRequestBuilderGetRequestConfiguration] = None) -> Optional[content_type_collection_response.ContentTypeCollectionResponse]:
+    async def get(self,request_configuration: Optional[ContentTypesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[content_type_collection_response.ContentTypeCollectionResponse]:
         """
         Get the collection of [contentType][contentType] resources in a [list][].
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[content_type_collection_response.ContentTypeCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -77,7 +78,7 @@ class ContentTypesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, content_type_collection_response.ContentTypeCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, content_type_collection_response.ContentTypeCollectionResponse, response_handler, error_mapping)
     
     def get_compatible_hub_content_types(self,) -> get_compatible_hub_content_types_request_builder.GetCompatibleHubContentTypesRequestBuilder:
         """
@@ -86,12 +87,13 @@ class ContentTypesRequestBuilder():
         """
         return get_compatible_hub_content_types_request_builder.GetCompatibleHubContentTypesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    async def post(self,body: Optional[content_type.ContentType] = None, request_configuration: Optional[ContentTypesRequestBuilderPostRequestConfiguration] = None) -> Optional[content_type.ContentType]:
+    async def post(self,body: Optional[content_type.ContentType] = None, request_configuration: Optional[ContentTypesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[content_type.ContentType]:
         """
         Create new navigation property to contentTypes for sites
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[content_type.ContentType]
         """
         if body is None:
@@ -105,7 +107,7 @@ class ContentTypesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, content_type.ContentType, error_mapping)
+        return await self.request_adapter.send_async(request_info, content_type.ContentType, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ContentTypesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

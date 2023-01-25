@@ -35,11 +35,12 @@ class ParentGroupRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ParentGroupRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ParentGroupRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property parentGroup for termStore
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class ParentGroupRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[ParentGroupRequestBuilderGetRequestConfiguration] = None) -> Optional[group.Group]:
+    async def get(self,request_configuration: Optional[ParentGroupRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group.Group]:
         """
         The parent [group] that contains the set.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group.Group]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class ParentGroupRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group.Group, error_mapping)
+        return await self.request_adapter.send_async(request_info, group.Group, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[group.Group] = None, request_configuration: Optional[ParentGroupRequestBuilderPatchRequestConfiguration] = None) -> Optional[group.Group]:
+    async def patch(self,body: Optional[group.Group] = None, request_configuration: Optional[ParentGroupRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group.Group]:
         """
         Update the navigation property parentGroup in termStore
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group.Group]
         """
         if body is None:
@@ -89,7 +92,7 @@ class ParentGroupRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group.Group, error_mapping)
+        return await self.request_adapter.send_async(request_info, group.Group, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ParentGroupRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

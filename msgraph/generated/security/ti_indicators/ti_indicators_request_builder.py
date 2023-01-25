@@ -76,11 +76,12 @@ class TiIndicatorsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[TiIndicatorsRequestBuilderGetRequestConfiguration] = None) -> Optional[ti_indicator_collection_response.TiIndicatorCollectionResponse]:
+    async def get(self,request_configuration: Optional[TiIndicatorsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ti_indicator_collection_response.TiIndicatorCollectionResponse]:
         """
         Retrieve a list of tiIndicator objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ti_indicator_collection_response.TiIndicatorCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -92,14 +93,15 @@ class TiIndicatorsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ti_indicator_collection_response.TiIndicatorCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, ti_indicator_collection_response.TiIndicatorCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[ti_indicator.TiIndicator] = None, request_configuration: Optional[TiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> Optional[ti_indicator.TiIndicator]:
+    async def post(self,body: Optional[ti_indicator.TiIndicator] = None, request_configuration: Optional[TiIndicatorsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ti_indicator.TiIndicator]:
         """
         Create a new tiIndicator object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ti_indicator.TiIndicator]
         """
         if body is None:
@@ -113,7 +115,7 @@ class TiIndicatorsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ti_indicator.TiIndicator, error_mapping)
+        return await self.request_adapter.send_async(request_info, ti_indicator.TiIndicator, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TiIndicatorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -35,11 +35,12 @@ class DelegatedAdminServiceManagementDetailItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DelegatedAdminServiceManagementDetailItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[DelegatedAdminServiceManagementDetailItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property serviceManagementDetails for tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class DelegatedAdminServiceManagementDetailItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[DelegatedAdminServiceManagementDetailItemRequestBuilderGetRequestConfiguration] = None) -> Optional[delegated_admin_service_management_detail.DelegatedAdminServiceManagementDetail]:
+    async def get(self,request_configuration: Optional[DelegatedAdminServiceManagementDetailItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[delegated_admin_service_management_detail.DelegatedAdminServiceManagementDetail]:
         """
         Contains the management details of a service in the customer tenant that's managed by delegated administration.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[delegated_admin_service_management_detail.DelegatedAdminServiceManagementDetail]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class DelegatedAdminServiceManagementDetailItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, delegated_admin_service_management_detail.DelegatedAdminServiceManagementDetail, error_mapping)
+        return await self.request_adapter.send_async(request_info, delegated_admin_service_management_detail.DelegatedAdminServiceManagementDetail, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[delegated_admin_service_management_detail.DelegatedAdminServiceManagementDetail] = None, request_configuration: Optional[DelegatedAdminServiceManagementDetailItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[delegated_admin_service_management_detail.DelegatedAdminServiceManagementDetail]:
+    async def patch(self,body: Optional[delegated_admin_service_management_detail.DelegatedAdminServiceManagementDetail] = None, request_configuration: Optional[DelegatedAdminServiceManagementDetailItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[delegated_admin_service_management_detail.DelegatedAdminServiceManagementDetail]:
         """
         Update the navigation property serviceManagementDetails in tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[delegated_admin_service_management_detail.DelegatedAdminServiceManagementDetail]
         """
         if body is None:
@@ -89,7 +92,7 @@ class DelegatedAdminServiceManagementDetailItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, delegated_admin_service_management_detail.DelegatedAdminServiceManagementDetail, error_mapping)
+        return await self.request_adapter.send_async(request_info, delegated_admin_service_management_detail.DelegatedAdminServiceManagementDetail, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DelegatedAdminServiceManagementDetailItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

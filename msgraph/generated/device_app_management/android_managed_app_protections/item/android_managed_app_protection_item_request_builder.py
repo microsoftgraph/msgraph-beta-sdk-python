@@ -65,11 +65,12 @@ class AndroidManagedAppProtectionItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AndroidManagedAppProtectionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[AndroidManagedAppProtectionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property androidManagedAppProtections for deviceAppManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -80,13 +81,14 @@ class AndroidManagedAppProtectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[AndroidManagedAppProtectionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[android_managed_app_protection.AndroidManagedAppProtection]:
+    async def get(self,request_configuration: Optional[AndroidManagedAppProtectionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[android_managed_app_protection.AndroidManagedAppProtection]:
         """
         Android managed app policies.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[android_managed_app_protection.AndroidManagedAppProtection]
         """
         request_info = self.to_get_request_information(
@@ -98,14 +100,15 @@ class AndroidManagedAppProtectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, android_managed_app_protection.AndroidManagedAppProtection, error_mapping)
+        return await self.request_adapter.send_async(request_info, android_managed_app_protection.AndroidManagedAppProtection, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[android_managed_app_protection.AndroidManagedAppProtection] = None, request_configuration: Optional[AndroidManagedAppProtectionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[android_managed_app_protection.AndroidManagedAppProtection]:
+    async def patch(self,body: Optional[android_managed_app_protection.AndroidManagedAppProtection] = None, request_configuration: Optional[AndroidManagedAppProtectionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[android_managed_app_protection.AndroidManagedAppProtection]:
         """
         Update the navigation property androidManagedAppProtections in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[android_managed_app_protection.AndroidManagedAppProtection]
         """
         if body is None:
@@ -119,7 +122,7 @@ class AndroidManagedAppProtectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, android_managed_app_protection.AndroidManagedAppProtection, error_mapping)
+        return await self.request_adapter.send_async(request_info, android_managed_app_protection.AndroidManagedAppProtection, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AndroidManagedAppProtectionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

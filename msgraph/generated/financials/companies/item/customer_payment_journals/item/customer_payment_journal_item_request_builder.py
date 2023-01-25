@@ -65,11 +65,12 @@ class CustomerPaymentJournalItemRequestBuilder():
         url_tpl_params["customerPayment%2Did"] = id
         return customer_payment_item_request_builder.CustomerPaymentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[CustomerPaymentJournalItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[CustomerPaymentJournalItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property customerPaymentJournals for financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -80,13 +81,14 @@ class CustomerPaymentJournalItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[CustomerPaymentJournalItemRequestBuilderGetRequestConfiguration] = None) -> Optional[customer_payment_journal.CustomerPaymentJournal]:
+    async def get(self,request_configuration: Optional[CustomerPaymentJournalItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[customer_payment_journal.CustomerPaymentJournal]:
         """
         Get customerPaymentJournals from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[customer_payment_journal.CustomerPaymentJournal]
         """
         request_info = self.to_get_request_information(
@@ -98,14 +100,15 @@ class CustomerPaymentJournalItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, customer_payment_journal.CustomerPaymentJournal, error_mapping)
+        return await self.request_adapter.send_async(request_info, customer_payment_journal.CustomerPaymentJournal, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[customer_payment_journal.CustomerPaymentJournal] = None, request_configuration: Optional[CustomerPaymentJournalItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[customer_payment_journal.CustomerPaymentJournal]:
+    async def patch(self,body: Optional[customer_payment_journal.CustomerPaymentJournal] = None, request_configuration: Optional[CustomerPaymentJournalItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[customer_payment_journal.CustomerPaymentJournal]:
         """
         Update the navigation property customerPaymentJournals in financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[customer_payment_journal.CustomerPaymentJournal]
         """
         if body is None:
@@ -119,7 +122,7 @@ class CustomerPaymentJournalItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, customer_payment_journal.CustomerPaymentJournal, error_mapping)
+        return await self.request_adapter.send_async(request_info, customer_payment_journal.CustomerPaymentJournal, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CustomerPaymentJournalItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

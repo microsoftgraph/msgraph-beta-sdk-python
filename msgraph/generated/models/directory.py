@@ -10,11 +10,11 @@ directory_object = lazy_import('msgraph.generated.models.directory_object')
 entity = lazy_import('msgraph.generated.models.entity')
 feature_rollout_policy = lazy_import('msgraph.generated.models.feature_rollout_policy')
 identity_provider_base = lazy_import('msgraph.generated.models.identity_provider_base')
-impacted_resource = lazy_import('msgraph.generated.models.impacted_resource')
 inbound_shared_user_profile = lazy_import('msgraph.generated.models.inbound_shared_user_profile')
 on_premises_directory_synchronization = lazy_import('msgraph.generated.models.on_premises_directory_synchronization')
 outbound_shared_user_profile = lazy_import('msgraph.generated.models.outbound_shared_user_profile')
 recommendation = lazy_import('msgraph.generated.models.recommendation')
+recommendation_resource = lazy_import('msgraph.generated.models.recommendation_resource')
 shared_email_domain = lazy_import('msgraph.generated.models.shared_email_domain')
 
 class Directory(entity.Entity):
@@ -70,7 +70,7 @@ class Directory(entity.Entity):
         # Configure domain federation with organizations whose identity provider (IdP) supports either the SAML or WS-Fed protocol.
         self._federation_configurations: Optional[List[identity_provider_base.IdentityProviderBase]] = None
         # The impactedResources property
-        self._impacted_resources: Optional[List[impacted_resource.ImpactedResource]] = None
+        self._impacted_resources: Optional[List[recommendation_resource.RecommendationResource]] = None
         # The inboundSharedUserProfiles property
         self._inbound_shared_user_profiles: Optional[List[inbound_shared_user_profile.InboundSharedUserProfile]] = None
         # The OdataType property
@@ -176,7 +176,7 @@ class Directory(entity.Entity):
             "deleted_items": lambda n : setattr(self, 'deleted_items', n.get_collection_of_object_values(directory_object.DirectoryObject)),
             "feature_rollout_policies": lambda n : setattr(self, 'feature_rollout_policies', n.get_collection_of_object_values(feature_rollout_policy.FeatureRolloutPolicy)),
             "federation_configurations": lambda n : setattr(self, 'federation_configurations', n.get_collection_of_object_values(identity_provider_base.IdentityProviderBase)),
-            "impacted_resources": lambda n : setattr(self, 'impacted_resources', n.get_collection_of_object_values(impacted_resource.ImpactedResource)),
+            "impacted_resources": lambda n : setattr(self, 'impacted_resources', n.get_collection_of_object_values(recommendation_resource.RecommendationResource)),
             "inbound_shared_user_profiles": lambda n : setattr(self, 'inbound_shared_user_profiles', n.get_collection_of_object_values(inbound_shared_user_profile.InboundSharedUserProfile)),
             "on_premises_synchronization": lambda n : setattr(self, 'on_premises_synchronization', n.get_collection_of_object_values(on_premises_directory_synchronization.OnPremisesDirectorySynchronization)),
             "outbound_shared_user_profiles": lambda n : setattr(self, 'outbound_shared_user_profiles', n.get_collection_of_object_values(outbound_shared_user_profile.OutboundSharedUserProfile)),
@@ -188,15 +188,15 @@ class Directory(entity.Entity):
         return fields
     
     @property
-    def impacted_resources(self,) -> Optional[List[impacted_resource.ImpactedResource]]:
+    def impacted_resources(self,) -> Optional[List[recommendation_resource.RecommendationResource]]:
         """
         Gets the impactedResources property value. The impactedResources property
-        Returns: Optional[List[impacted_resource.ImpactedResource]]
+        Returns: Optional[List[recommendation_resource.RecommendationResource]]
         """
         return self._impacted_resources
     
     @impacted_resources.setter
-    def impacted_resources(self,value: Optional[List[impacted_resource.ImpactedResource]] = None) -> None:
+    def impacted_resources(self,value: Optional[List[recommendation_resource.RecommendationResource]] = None) -> None:
         """
         Sets the impactedResources property value. The impactedResources property
         Args:

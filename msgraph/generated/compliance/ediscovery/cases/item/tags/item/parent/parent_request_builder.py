@@ -35,11 +35,12 @@ class ParentRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ParentRequestBuilderGetRequestConfiguration] = None) -> Optional[tag.Tag]:
+    async def get(self,request_configuration: Optional[ParentRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tag.Tag]:
         """
         Returns the parent tag of the specified tag.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tag.Tag]
         """
         request_info = self.to_get_request_information(
@@ -51,7 +52,7 @@ class ParentRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tag.Tag, error_mapping)
+        return await self.request_adapter.send_async(request_info, tag.Tag, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ParentRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

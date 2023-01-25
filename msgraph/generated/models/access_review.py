@@ -31,7 +31,7 @@ class AccessReview(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new accessReview and sets the default values.
+        Instantiates a new AccessReview and sets the default values.
         """
         super().__init__()
         # The business flow template identifier. Required on create.  This value is case sensitive.
@@ -47,7 +47,7 @@ class AccessReview(entity.Entity):
         # The DateTime when the review is scheduled to end. This must be at least one day later than the start date.  Required on create.
         self._end_date_time: Optional[datetime] = None
         # The collection of access reviews instances past, present and future, if this object is a recurring access review.
-        self._instances: Optional[List[AccessReview]] = None
+        self._instances: Optional[List[access_review.AccessReview]] = None
         # The collection of decisions for the caller, if the caller is a reviewer.
         self._my_decisions: Optional[List[access_review_decision.AccessReviewDecision]] = None
         # The OdataType property
@@ -174,7 +174,7 @@ class AccessReview(entity.Entity):
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "end_date_time": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
-            "instances": lambda n : setattr(self, 'instances', n.get_collection_of_object_values(AccessReview)),
+            "instances": lambda n : setattr(self, 'instances', n.get_collection_of_object_values(access_review.AccessReview)),
             "my_decisions": lambda n : setattr(self, 'my_decisions', n.get_collection_of_object_values(access_review_decision.AccessReviewDecision)),
             "reviewed_entity": lambda n : setattr(self, 'reviewed_entity', n.get_object_value(identity.Identity)),
             "reviewers": lambda n : setattr(self, 'reviewers', n.get_collection_of_object_values(access_review_reviewer.AccessReviewReviewer)),
@@ -188,15 +188,15 @@ class AccessReview(entity.Entity):
         return fields
     
     @property
-    def instances(self,) -> Optional[List[AccessReview]]:
+    def instances(self,) -> Optional[List[access_review.AccessReview]]:
         """
         Gets the instances property value. The collection of access reviews instances past, present and future, if this object is a recurring access review.
-        Returns: Optional[List[AccessReview]]
+        Returns: Optional[List[access_review.AccessReview]]
         """
         return self._instances
     
     @instances.setter
-    def instances(self,value: Optional[List[AccessReview]] = None) -> None:
+    def instances(self,value: Optional[List[access_review.AccessReview]] = None) -> None:
         """
         Sets the instances property value. The collection of access reviews instances past, present and future, if this object is a recurring access review.
         Args:

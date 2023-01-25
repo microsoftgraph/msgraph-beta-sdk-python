@@ -52,11 +52,12 @@ class ResourceAccessProfilesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ResourceAccessProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_resource_access_profile_base_collection_response.DeviceManagementResourceAccessProfileBaseCollectionResponse]:
+    async def get(self,request_configuration: Optional[ResourceAccessProfilesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_resource_access_profile_base_collection_response.DeviceManagementResourceAccessProfileBaseCollectionResponse]:
         """
         Collection of resource access settings associated with account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_resource_access_profile_base_collection_response.DeviceManagementResourceAccessProfileBaseCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +69,15 @@ class ResourceAccessProfilesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_resource_access_profile_base_collection_response.DeviceManagementResourceAccessProfileBaseCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_resource_access_profile_base_collection_response.DeviceManagementResourceAccessProfileBaseCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[device_management_resource_access_profile_base.DeviceManagementResourceAccessProfileBase] = None, request_configuration: Optional[ResourceAccessProfilesRequestBuilderPostRequestConfiguration] = None) -> Optional[device_management_resource_access_profile_base.DeviceManagementResourceAccessProfileBase]:
+    async def post(self,body: Optional[device_management_resource_access_profile_base.DeviceManagementResourceAccessProfileBase] = None, request_configuration: Optional[ResourceAccessProfilesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_resource_access_profile_base.DeviceManagementResourceAccessProfileBase]:
         """
         Create new navigation property to resourceAccessProfiles for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_resource_access_profile_base.DeviceManagementResourceAccessProfileBase]
         """
         if body is None:
@@ -89,7 +91,7 @@ class ResourceAccessProfilesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_resource_access_profile_base.DeviceManagementResourceAccessProfileBase, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_resource_access_profile_base.DeviceManagementResourceAccessProfileBase, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ResourceAccessProfilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

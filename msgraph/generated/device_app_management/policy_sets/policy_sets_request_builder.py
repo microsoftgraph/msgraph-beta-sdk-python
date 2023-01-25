@@ -52,11 +52,12 @@ class PolicySetsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PolicySetsRequestBuilderGetRequestConfiguration] = None) -> Optional[policy_set_collection_response.PolicySetCollectionResponse]:
+    async def get(self,request_configuration: Optional[PolicySetsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[policy_set_collection_response.PolicySetCollectionResponse]:
         """
         The PolicySet of Policies and Applications
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[policy_set_collection_response.PolicySetCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +69,15 @@ class PolicySetsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, policy_set_collection_response.PolicySetCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, policy_set_collection_response.PolicySetCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[policy_set.PolicySet] = None, request_configuration: Optional[PolicySetsRequestBuilderPostRequestConfiguration] = None) -> Optional[policy_set.PolicySet]:
+    async def post(self,body: Optional[policy_set.PolicySet] = None, request_configuration: Optional[PolicySetsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[policy_set.PolicySet]:
         """
         Create new navigation property to policySets for deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[policy_set.PolicySet]
         """
         if body is None:
@@ -89,7 +91,7 @@ class PolicySetsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, policy_set.PolicySet, error_mapping)
+        return await self.request_adapter.send_async(request_info, policy_set.PolicySet, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PolicySetsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

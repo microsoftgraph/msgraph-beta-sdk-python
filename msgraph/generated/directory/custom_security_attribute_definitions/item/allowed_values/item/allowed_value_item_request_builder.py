@@ -35,11 +35,12 @@ class AllowedValueItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AllowedValueItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[AllowedValueItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property allowedValues for directory
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class AllowedValueItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[AllowedValueItemRequestBuilderGetRequestConfiguration] = None) -> Optional[allowed_value.AllowedValue]:
+    async def get(self,request_configuration: Optional[AllowedValueItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[allowed_value.AllowedValue]:
         """
         Values that are predefined for this custom security attribute.This navigation property is not returned by default and must be specified in an $expand query. For example, /directory/customSecurityAttributeDefinitions?$expand=allowedValues.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[allowed_value.AllowedValue]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class AllowedValueItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, allowed_value.AllowedValue, error_mapping)
+        return await self.request_adapter.send_async(request_info, allowed_value.AllowedValue, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[allowed_value.AllowedValue] = None, request_configuration: Optional[AllowedValueItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[allowed_value.AllowedValue]:
+    async def patch(self,body: Optional[allowed_value.AllowedValue] = None, request_configuration: Optional[AllowedValueItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[allowed_value.AllowedValue]:
         """
         Update the navigation property allowedValues in directory
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[allowed_value.AllowedValue]
         """
         if body is None:
@@ -89,7 +92,7 @@ class AllowedValueItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, allowed_value.AllowedValue, error_mapping)
+        return await self.request_adapter.send_async(request_info, allowed_value.AllowedValue, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AllowedValueItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

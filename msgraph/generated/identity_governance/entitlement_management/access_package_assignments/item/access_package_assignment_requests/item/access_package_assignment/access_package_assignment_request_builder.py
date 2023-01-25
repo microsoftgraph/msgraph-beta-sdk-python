@@ -35,11 +35,12 @@ class AccessPackageAssignmentRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AccessPackageAssignmentRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_assignment.AccessPackageAssignment]:
+    async def get(self,request_configuration: Optional[AccessPackageAssignmentRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_assignment.AccessPackageAssignment]:
         """
         For a requestType of UserAdd or AdminAdd, this is an access package assignment requested to be created.  For a requestType of UserRemove, AdminRemove or SystemRemove, this has the id property of an existing assignment to be removed.  Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_assignment.AccessPackageAssignment]
         """
         request_info = self.to_get_request_information(
@@ -51,7 +52,7 @@ class AccessPackageAssignmentRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_assignment.AccessPackageAssignment, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_assignment.AccessPackageAssignment, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageAssignmentRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

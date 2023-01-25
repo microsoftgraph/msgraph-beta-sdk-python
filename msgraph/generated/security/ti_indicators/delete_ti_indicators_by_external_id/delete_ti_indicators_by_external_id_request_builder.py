@@ -36,12 +36,13 @@ class DeleteTiIndicatorsByExternalIdRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[delete_ti_indicators_by_external_id_post_request_body.DeleteTiIndicatorsByExternalIdPostRequestBody] = None, request_configuration: Optional[DeleteTiIndicatorsByExternalIdRequestBuilderPostRequestConfiguration] = None) -> Optional[delete_ti_indicators_by_external_id_response.DeleteTiIndicatorsByExternalIdResponse]:
+    async def post(self,body: Optional[delete_ti_indicators_by_external_id_post_request_body.DeleteTiIndicatorsByExternalIdPostRequestBody] = None, request_configuration: Optional[DeleteTiIndicatorsByExternalIdRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[delete_ti_indicators_by_external_id_response.DeleteTiIndicatorsByExternalIdResponse]:
         """
         Delete multiple threat intelligence (TI) indicators in one request instead of multiple requests, when the request contains external IDs instead of IDs.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[delete_ti_indicators_by_external_id_response.DeleteTiIndicatorsByExternalIdResponse]
         """
         if body is None:
@@ -55,7 +56,7 @@ class DeleteTiIndicatorsByExternalIdRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, delete_ti_indicators_by_external_id_response.DeleteTiIndicatorsByExternalIdResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, delete_ti_indicators_by_external_id_response.DeleteTiIndicatorsByExternalIdResponse, response_handler, error_mapping)
     
     def to_post_request_information(self,body: Optional[delete_ti_indicators_by_external_id_post_request_body.DeleteTiIndicatorsByExternalIdPostRequestBody] = None, request_configuration: Optional[DeleteTiIndicatorsByExternalIdRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

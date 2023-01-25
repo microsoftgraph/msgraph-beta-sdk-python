@@ -35,11 +35,12 @@ class AuthenticationMethodConfigurationItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AuthenticationMethodConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[AuthenticationMethodConfigurationItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
-        Delete entity from authenticationMethodConfigurations by key (id)
+        Delete entity from authenticationMethodConfigurations
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class AuthenticationMethodConfigurationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[AuthenticationMethodConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication_method_configuration.AuthenticationMethodConfiguration]:
+    async def get(self,request_configuration: Optional[AuthenticationMethodConfigurationItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_method_configuration.AuthenticationMethodConfiguration]:
         """
-        Get entity from authenticationMethodConfigurations by key (id)
+        Get entity from authenticationMethodConfigurations by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_method_configuration.AuthenticationMethodConfiguration]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class AuthenticationMethodConfigurationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_method_configuration.AuthenticationMethodConfiguration, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_method_configuration.AuthenticationMethodConfiguration, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[authentication_method_configuration.AuthenticationMethodConfiguration] = None, request_configuration: Optional[AuthenticationMethodConfigurationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[authentication_method_configuration.AuthenticationMethodConfiguration]:
+    async def patch(self,body: Optional[authentication_method_configuration.AuthenticationMethodConfiguration] = None, request_configuration: Optional[AuthenticationMethodConfigurationItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_method_configuration.AuthenticationMethodConfiguration]:
         """
-        Update entity in authenticationMethodConfigurations by key (id)
+        Update entity in authenticationMethodConfigurations
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_method_configuration.AuthenticationMethodConfiguration]
         """
         if body is None:
@@ -89,11 +92,11 @@ class AuthenticationMethodConfigurationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_method_configuration.AuthenticationMethodConfiguration, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_method_configuration.AuthenticationMethodConfiguration, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AuthenticationMethodConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete entity from authenticationMethodConfigurations by key (id)
+        Delete entity from authenticationMethodConfigurations
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -109,7 +112,7 @@ class AuthenticationMethodConfigurationItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[AuthenticationMethodConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get entity from authenticationMethodConfigurations by key (id)
+        Get entity from authenticationMethodConfigurations by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -127,7 +130,7 @@ class AuthenticationMethodConfigurationItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[authentication_method_configuration.AuthenticationMethodConfiguration] = None, request_configuration: Optional[AuthenticationMethodConfigurationItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update entity in authenticationMethodConfigurations by key (id)
+        Update entity in authenticationMethodConfigurations
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -161,7 +164,7 @@ class AuthenticationMethodConfigurationItemRequestBuilder():
     @dataclass
     class AuthenticationMethodConfigurationItemRequestBuilderGetQueryParameters():
         """
-        Get entity from authenticationMethodConfigurations by key (id)
+        Get entity from authenticationMethodConfigurations by key
         """
         # Expand related entities
         expand: Optional[List[str]] = None

@@ -51,11 +51,12 @@ class CloudPcOnPremisesConnectionItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property onPremisesConnections for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -66,13 +67,14 @@ class CloudPcOnPremisesConnectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]:
+    async def get(self,request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]:
         """
         A defined collection of Azure resource information that can be used to establish on-premises network connectivity for Cloud PCs.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]
         """
         request_info = self.to_get_request_information(
@@ -84,14 +86,15 @@ class CloudPcOnPremisesConnectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_on_premises_connection.CloudPcOnPremisesConnection, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_on_premises_connection.CloudPcOnPremisesConnection, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection] = None, request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]:
+    async def patch(self,body: Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection] = None, request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]:
         """
         Update the navigation property onPremisesConnections in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]
         """
         if body is None:
@@ -105,7 +108,7 @@ class CloudPcOnPremisesConnectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_on_premises_connection.CloudPcOnPremisesConnection, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_on_premises_connection.CloudPcOnPremisesConnection, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

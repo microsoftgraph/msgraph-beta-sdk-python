@@ -35,11 +35,12 @@ class DeviceManagementScriptAssignmentItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DeviceManagementScriptAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceManagementScriptAssignmentItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property assignments for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class DeviceManagementScriptAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceManagementScriptAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_script_assignment.DeviceManagementScriptAssignment]:
+    async def get(self,request_configuration: Optional[DeviceManagementScriptAssignmentItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_script_assignment.DeviceManagementScriptAssignment]:
         """
         The list of group assignments for the device management script.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_script_assignment.DeviceManagementScriptAssignment]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class DeviceManagementScriptAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_script_assignment.DeviceManagementScriptAssignment, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_script_assignment.DeviceManagementScriptAssignment, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[device_management_script_assignment.DeviceManagementScriptAssignment] = None, request_configuration: Optional[DeviceManagementScriptAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management_script_assignment.DeviceManagementScriptAssignment]:
+    async def patch(self,body: Optional[device_management_script_assignment.DeviceManagementScriptAssignment] = None, request_configuration: Optional[DeviceManagementScriptAssignmentItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_script_assignment.DeviceManagementScriptAssignment]:
         """
         Update the navigation property assignments in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_script_assignment.DeviceManagementScriptAssignment]
         """
         if body is None:
@@ -89,7 +92,7 @@ class DeviceManagementScriptAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_script_assignment.DeviceManagementScriptAssignment, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_script_assignment.DeviceManagementScriptAssignment, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceManagementScriptAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

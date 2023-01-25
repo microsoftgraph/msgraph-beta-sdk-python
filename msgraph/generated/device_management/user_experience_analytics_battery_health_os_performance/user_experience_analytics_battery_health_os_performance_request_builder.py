@@ -44,11 +44,12 @@ class UserExperienceAnalyticsBatteryHealthOsPerformanceRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthOsPerformanceRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_battery_health_os_performance_collection_response.UserExperienceAnalyticsBatteryHealthOsPerformanceCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthOsPerformanceRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_battery_health_os_performance_collection_response.UserExperienceAnalyticsBatteryHealthOsPerformanceCollectionResponse]:
         """
         User Experience Analytics Battery Health Os Performance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_battery_health_os_performance_collection_response.UserExperienceAnalyticsBatteryHealthOsPerformanceCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class UserExperienceAnalyticsBatteryHealthOsPerformanceRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_os_performance_collection_response.UserExperienceAnalyticsBatteryHealthOsPerformanceCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_os_performance_collection_response.UserExperienceAnalyticsBatteryHealthOsPerformanceCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[user_experience_analytics_battery_health_os_performance.UserExperienceAnalyticsBatteryHealthOsPerformance] = None, request_configuration: Optional[UserExperienceAnalyticsBatteryHealthOsPerformanceRequestBuilderPostRequestConfiguration] = None) -> Optional[user_experience_analytics_battery_health_os_performance.UserExperienceAnalyticsBatteryHealthOsPerformance]:
+    async def post(self,body: Optional[user_experience_analytics_battery_health_os_performance.UserExperienceAnalyticsBatteryHealthOsPerformance] = None, request_configuration: Optional[UserExperienceAnalyticsBatteryHealthOsPerformanceRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_battery_health_os_performance.UserExperienceAnalyticsBatteryHealthOsPerformance]:
         """
         Create new navigation property to userExperienceAnalyticsBatteryHealthOsPerformance for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_battery_health_os_performance.UserExperienceAnalyticsBatteryHealthOsPerformance]
         """
         if body is None:
@@ -81,7 +83,7 @@ class UserExperienceAnalyticsBatteryHealthOsPerformanceRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_os_performance.UserExperienceAnalyticsBatteryHealthOsPerformance, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_os_performance.UserExperienceAnalyticsBatteryHealthOsPerformance, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthOsPerformanceRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

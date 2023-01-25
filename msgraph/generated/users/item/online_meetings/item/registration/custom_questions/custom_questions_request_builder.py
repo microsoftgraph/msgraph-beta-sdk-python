@@ -44,11 +44,12 @@ class CustomQuestionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CustomQuestionsRequestBuilderGetRequestConfiguration] = None) -> Optional[meeting_registration_question_collection_response.MeetingRegistrationQuestionCollectionResponse]:
+    async def get(self,request_configuration: Optional[CustomQuestionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[meeting_registration_question_collection_response.MeetingRegistrationQuestionCollectionResponse]:
         """
         Get a list of the custom registration questions associated with a meetingRegistration object on behalf of the organizer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[meeting_registration_question_collection_response.MeetingRegistrationQuestionCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class CustomQuestionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, meeting_registration_question_collection_response.MeetingRegistrationQuestionCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, meeting_registration_question_collection_response.MeetingRegistrationQuestionCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[meeting_registration_question.MeetingRegistrationQuestion] = None, request_configuration: Optional[CustomQuestionsRequestBuilderPostRequestConfiguration] = None) -> Optional[meeting_registration_question.MeetingRegistrationQuestion]:
+    async def post(self,body: Optional[meeting_registration_question.MeetingRegistrationQuestion] = None, request_configuration: Optional[CustomQuestionsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[meeting_registration_question.MeetingRegistrationQuestion]:
         """
         Create a custom registration question associated with a meetingRegistration object on behalf of the organizer.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[meeting_registration_question.MeetingRegistrationQuestion]
         """
         if body is None:
@@ -81,7 +83,7 @@ class CustomQuestionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, meeting_registration_question.MeetingRegistrationQuestion, error_mapping)
+        return await self.request_adapter.send_async(request_info, meeting_registration_question.MeetingRegistrationQuestion, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CustomQuestionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

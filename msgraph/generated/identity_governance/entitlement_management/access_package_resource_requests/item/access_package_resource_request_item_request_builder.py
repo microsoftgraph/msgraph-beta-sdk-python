@@ -51,11 +51,12 @@ class AccessPackageResourceRequestItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AccessPackageResourceRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[AccessPackageResourceRequestItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property accessPackageResourceRequests for identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -66,13 +67,14 @@ class AccessPackageResourceRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[AccessPackageResourceRequestItemRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_resource_request.AccessPackageResourceRequest]:
+    async def get(self,request_configuration: Optional[AccessPackageResourceRequestItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_resource_request.AccessPackageResourceRequest]:
         """
         Represents a request to add or remove a resource to or from a catalog respectively.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_resource_request.AccessPackageResourceRequest]
         """
         request_info = self.to_get_request_information(
@@ -84,14 +86,15 @@ class AccessPackageResourceRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_resource_request.AccessPackageResourceRequest, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_resource_request.AccessPackageResourceRequest, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[access_package_resource_request.AccessPackageResourceRequest] = None, request_configuration: Optional[AccessPackageResourceRequestItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_package_resource_request.AccessPackageResourceRequest]:
+    async def patch(self,body: Optional[access_package_resource_request.AccessPackageResourceRequest] = None, request_configuration: Optional[AccessPackageResourceRequestItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_resource_request.AccessPackageResourceRequest]:
         """
         Update the navigation property accessPackageResourceRequests in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_resource_request.AccessPackageResourceRequest]
         """
         if body is None:
@@ -105,7 +108,7 @@ class AccessPackageResourceRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_resource_request.AccessPackageResourceRequest, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_resource_request.AccessPackageResourceRequest, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AccessPackageResourceRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -44,11 +44,12 @@ class ProjectsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ProjectsRequestBuilderGetRequestConfiguration] = None) -> Optional[project_participation_collection_response.ProjectParticipationCollectionResponse]:
+    async def get(self,request_configuration: Optional[ProjectsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[project_participation_collection_response.ProjectParticipationCollectionResponse]:
         """
         Retrieve a list of projectParticipation objects from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[project_participation_collection_response.ProjectParticipationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class ProjectsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, project_participation_collection_response.ProjectParticipationCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, project_participation_collection_response.ProjectParticipationCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[project_participation.ProjectParticipation] = None, request_configuration: Optional[ProjectsRequestBuilderPostRequestConfiguration] = None) -> Optional[project_participation.ProjectParticipation]:
+    async def post(self,body: Optional[project_participation.ProjectParticipation] = None, request_configuration: Optional[ProjectsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[project_participation.ProjectParticipation]:
         """
         Use this API to create a new projectParticipation object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[project_participation.ProjectParticipation]
         """
         if body is None:
@@ -81,7 +83,7 @@ class ProjectsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, project_participation.ProjectParticipation, error_mapping)
+        return await self.request_adapter.send_async(request_info, project_participation.ProjectParticipation, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ProjectsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

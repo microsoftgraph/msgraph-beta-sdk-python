@@ -35,11 +35,12 @@ class EducationSynchronizationErrorItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[EducationSynchronizationErrorItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[EducationSynchronizationErrorItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property errors for education
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class EducationSynchronizationErrorItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[EducationSynchronizationErrorItemRequestBuilderGetRequestConfiguration] = None) -> Optional[education_synchronization_error.EducationSynchronizationError]:
+    async def get(self,request_configuration: Optional[EducationSynchronizationErrorItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[education_synchronization_error.EducationSynchronizationError]:
         """
         All errors associated with this synchronization profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[education_synchronization_error.EducationSynchronizationError]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class EducationSynchronizationErrorItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, education_synchronization_error.EducationSynchronizationError, error_mapping)
+        return await self.request_adapter.send_async(request_info, education_synchronization_error.EducationSynchronizationError, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[education_synchronization_error.EducationSynchronizationError] = None, request_configuration: Optional[EducationSynchronizationErrorItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[education_synchronization_error.EducationSynchronizationError]:
+    async def patch(self,body: Optional[education_synchronization_error.EducationSynchronizationError] = None, request_configuration: Optional[EducationSynchronizationErrorItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[education_synchronization_error.EducationSynchronizationError]:
         """
         Update the navigation property errors in education
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[education_synchronization_error.EducationSynchronizationError]
         """
         if body is None:
@@ -89,7 +92,7 @@ class EducationSynchronizationErrorItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, education_synchronization_error.EducationSynchronizationError, error_mapping)
+        return await self.request_adapter.send_async(request_info, education_synchronization_error.EducationSynchronizationError, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[EducationSynchronizationErrorItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

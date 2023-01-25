@@ -103,11 +103,12 @@ class CloudPCItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CloudPCItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[CloudPCItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property cloudPCs for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -118,13 +119,14 @@ class CloudPCItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[CloudPCItemRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_p_c.CloudPC]:
+    async def get(self,request_configuration: Optional[CloudPCItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_p_c.CloudPC]:
         """
         Cloud managed virtual desktops.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_p_c.CloudPC]
         """
         request_info = self.to_get_request_information(
@@ -136,7 +138,7 @@ class CloudPCItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_p_c.CloudPC, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_p_c.CloudPC, response_handler, error_mapping)
     
     def get_cloud_pc_connectivity_history(self,) -> get_cloud_pc_connectivity_history_request_builder.GetCloudPcConnectivityHistoryRequestBuilder:
         """
@@ -166,12 +168,13 @@ class CloudPCItemRequestBuilder():
         """
         return get_supported_cloud_pc_remote_actions_request_builder.GetSupportedCloudPcRemoteActionsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    async def patch(self,body: Optional[cloud_p_c.CloudPC] = None, request_configuration: Optional[CloudPCItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[cloud_p_c.CloudPC]:
+    async def patch(self,body: Optional[cloud_p_c.CloudPC] = None, request_configuration: Optional[CloudPCItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_p_c.CloudPC]:
         """
         Update the navigation property cloudPCs in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_p_c.CloudPC]
         """
         if body is None:
@@ -185,7 +188,7 @@ class CloudPCItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_p_c.CloudPC, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_p_c.CloudPC, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CloudPCItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -36,12 +36,13 @@ class SubmitTiIndicatorsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[submit_ti_indicators_post_request_body.SubmitTiIndicatorsPostRequestBody] = None, request_configuration: Optional[SubmitTiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> Optional[submit_ti_indicators_response.SubmitTiIndicatorsResponse]:
+    async def post(self,body: Optional[submit_ti_indicators_post_request_body.SubmitTiIndicatorsPostRequestBody] = None, request_configuration: Optional[SubmitTiIndicatorsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[submit_ti_indicators_response.SubmitTiIndicatorsResponse]:
         """
         Upload multiple threat intelligence (TI) indicators in one request instead of multiple requests.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[submit_ti_indicators_response.SubmitTiIndicatorsResponse]
         """
         if body is None:
@@ -55,7 +56,7 @@ class SubmitTiIndicatorsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, submit_ti_indicators_response.SubmitTiIndicatorsResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, submit_ti_indicators_response.SubmitTiIndicatorsResponse, response_handler, error_mapping)
     
     def to_post_request_information(self,body: Optional[submit_ti_indicators_post_request_body.SubmitTiIndicatorsPostRequestBody] = None, request_configuration: Optional[SubmitTiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

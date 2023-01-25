@@ -44,11 +44,12 @@ class DeviceManagementSettingCategoryItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DeviceManagementSettingCategoryItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceManagementSettingCategoryItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property categories for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,13 +60,14 @@ class DeviceManagementSettingCategoryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceManagementSettingCategoryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_setting_category.DeviceManagementSettingCategory]:
+    async def get(self,request_configuration: Optional[DeviceManagementSettingCategoryItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_setting_category.DeviceManagementSettingCategory]:
         """
         The available categories
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_setting_category.DeviceManagementSettingCategory]
         """
         request_info = self.to_get_request_information(
@@ -77,14 +79,15 @@ class DeviceManagementSettingCategoryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_setting_category.DeviceManagementSettingCategory, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_setting_category.DeviceManagementSettingCategory, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[device_management_setting_category.DeviceManagementSettingCategory] = None, request_configuration: Optional[DeviceManagementSettingCategoryItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management_setting_category.DeviceManagementSettingCategory]:
+    async def patch(self,body: Optional[device_management_setting_category.DeviceManagementSettingCategory] = None, request_configuration: Optional[DeviceManagementSettingCategoryItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_setting_category.DeviceManagementSettingCategory]:
         """
         Update the navigation property categories in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_setting_category.DeviceManagementSettingCategory]
         """
         if body is None:
@@ -98,7 +101,7 @@ class DeviceManagementSettingCategoryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_setting_category.DeviceManagementSettingCategory, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_setting_category.DeviceManagementSettingCategory, response_handler, error_mapping)
     
     def setting_definitions_by_id(self,id: str) -> device_management_setting_definition_item_request_builder.DeviceManagementSettingDefinitionItemRequestBuilder:
         """

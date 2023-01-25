@@ -44,11 +44,12 @@ class AdditionalSourcesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AdditionalSourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[data_source_collection_response.DataSourceCollectionResponse]:
+    async def get(self,request_configuration: Optional[AdditionalSourcesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[data_source_collection_response.DataSourceCollectionResponse]:
         """
         Get a list of additional dataSource objects associated with a source collection.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[data_source_collection_response.DataSourceCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class AdditionalSourcesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, data_source_collection_response.DataSourceCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, data_source_collection_response.DataSourceCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[data_source.DataSource] = None, request_configuration: Optional[AdditionalSourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[data_source.DataSource]:
+    async def post(self,body: Optional[data_source.DataSource] = None, request_configuration: Optional[AdditionalSourcesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[data_source.DataSource]:
         """
         Create new navigation property to additionalSources for compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[data_source.DataSource]
         """
         if body is None:
@@ -81,7 +83,7 @@ class AdditionalSourcesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, data_source.DataSource, error_mapping)
+        return await self.request_adapter.send_async(request_info, data_source.DataSource, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AdditionalSourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -89,11 +89,12 @@ class RoleInfoRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[RoleInfoRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RoleInfoRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property roleInfo for privilegedApproval
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -104,13 +105,14 @@ class RoleInfoRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[RoleInfoRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_role.PrivilegedRole]:
+    async def get(self,request_configuration: Optional[RoleInfoRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_role.PrivilegedRole]:
         """
         Get roleInfo from privilegedApproval
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_role.PrivilegedRole]
         """
         request_info = self.to_get_request_information(
@@ -122,14 +124,15 @@ class RoleInfoRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_role.PrivilegedRole, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_role.PrivilegedRole, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[privileged_role.PrivilegedRole] = None, request_configuration: Optional[RoleInfoRequestBuilderPatchRequestConfiguration] = None) -> Optional[privileged_role.PrivilegedRole]:
+    async def patch(self,body: Optional[privileged_role.PrivilegedRole] = None, request_configuration: Optional[RoleInfoRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_role.PrivilegedRole]:
         """
         Update the navigation property roleInfo in privilegedApproval
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_role.PrivilegedRole]
         """
         if body is None:
@@ -143,7 +146,7 @@ class RoleInfoRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_role.PrivilegedRole, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_role.PrivilegedRole, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[RoleInfoRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

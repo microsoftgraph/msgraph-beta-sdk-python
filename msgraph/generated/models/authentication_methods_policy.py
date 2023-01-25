@@ -5,7 +5,6 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 authentication_method_configuration = lazy_import('msgraph.generated.models.authentication_method_configuration')
-authentication_methods_policy_migration_state = lazy_import('msgraph.generated.models.authentication_methods_policy_migration_state')
 entity = lazy_import('msgraph.generated.models.entity')
 registration_enforcement = lazy_import('msgraph.generated.models.registration_enforcement')
 
@@ -42,8 +41,6 @@ class AuthenticationMethodsPolicy(entity.Entity):
         self._last_modified_date_time: Optional[datetime] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The state of migration of the authentication methods policy from the legacy multifactor authentication and self-service password reset (SSPR) policies. The possible values are: premigration - means the authentication methods policy is used for authentication only, legacy policies are respected. migrationInProgress - means the authentication methods policy is used for both authenication and SSPR, legacy policies are respected. migrationComplete - means the authentication methods policy is used for authentication and SSPR, legacy policies are ignored. unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
-        self._policy_migration_state: Optional[authentication_methods_policy_migration_state.AuthenticationMethodsPolicyMigrationState] = None
         # The version of the policy in use.
         self._policy_version: Optional[str] = None
         # Days before the user will be asked to reconfirm their method.
@@ -107,7 +104,6 @@ class AuthenticationMethodsPolicy(entity.Entity):
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "policy_migration_state": lambda n : setattr(self, 'policy_migration_state', n.get_enum_value(authentication_methods_policy_migration_state.AuthenticationMethodsPolicyMigrationState)),
             "policy_version": lambda n : setattr(self, 'policy_version', n.get_str_value()),
             "reconfirmation_in_days": lambda n : setattr(self, 'reconfirmation_in_days', n.get_int_value()),
             "registration_enforcement": lambda n : setattr(self, 'registration_enforcement', n.get_object_value(registration_enforcement.RegistrationEnforcement)),
@@ -132,23 +128,6 @@ class AuthenticationMethodsPolicy(entity.Entity):
             value: Value to set for the lastModifiedDateTime property.
         """
         self._last_modified_date_time = value
-    
-    @property
-    def policy_migration_state(self,) -> Optional[authentication_methods_policy_migration_state.AuthenticationMethodsPolicyMigrationState]:
-        """
-        Gets the policyMigrationState property value. The state of migration of the authentication methods policy from the legacy multifactor authentication and self-service password reset (SSPR) policies. The possible values are: premigration - means the authentication methods policy is used for authentication only, legacy policies are respected. migrationInProgress - means the authentication methods policy is used for both authenication and SSPR, legacy policies are respected. migrationComplete - means the authentication methods policy is used for authentication and SSPR, legacy policies are ignored. unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
-        Returns: Optional[authentication_methods_policy_migration_state.AuthenticationMethodsPolicyMigrationState]
-        """
-        return self._policy_migration_state
-    
-    @policy_migration_state.setter
-    def policy_migration_state(self,value: Optional[authentication_methods_policy_migration_state.AuthenticationMethodsPolicyMigrationState] = None) -> None:
-        """
-        Sets the policyMigrationState property value. The state of migration of the authentication methods policy from the legacy multifactor authentication and self-service password reset (SSPR) policies. The possible values are: premigration - means the authentication methods policy is used for authentication only, legacy policies are respected. migrationInProgress - means the authentication methods policy is used for both authenication and SSPR, legacy policies are respected. migrationComplete - means the authentication methods policy is used for authentication and SSPR, legacy policies are ignored. unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
-        Args:
-            value: Value to set for the policyMigrationState property.
-        """
-        self._policy_migration_state = value
     
     @property
     def policy_version(self,) -> Optional[str]:
@@ -214,7 +193,6 @@ class AuthenticationMethodsPolicy(entity.Entity):
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
-        writer.write_enum_value("policyMigrationState", self.policy_migration_state)
         writer.write_str_value("policyVersion", self.policy_version)
         writer.write_int_value("reconfirmationInDays", self.reconfirmation_in_days)
         writer.write_object_value("registrationEnforcement", self.registration_enforcement)

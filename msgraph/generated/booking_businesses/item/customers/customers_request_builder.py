@@ -44,11 +44,12 @@ class CustomersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CustomersRequestBuilderGetRequestConfiguration] = None) -> Optional[booking_customer_collection_response.BookingCustomerCollectionResponse]:
+    async def get(self,request_configuration: Optional[CustomersRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[booking_customer_collection_response.BookingCustomerCollectionResponse]:
         """
         Get a list of bookingCustomer objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[booking_customer_collection_response.BookingCustomerCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class CustomersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, booking_customer_collection_response.BookingCustomerCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, booking_customer_collection_response.BookingCustomerCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[booking_customer.BookingCustomer] = None, request_configuration: Optional[CustomersRequestBuilderPostRequestConfiguration] = None) -> Optional[booking_customer.BookingCustomer]:
+    async def post(self,body: Optional[booking_customer.BookingCustomer] = None, request_configuration: Optional[CustomersRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[booking_customer.BookingCustomer]:
         """
         Create a new bookingCustomer object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[booking_customer.BookingCustomer]
         """
         if body is None:
@@ -81,7 +83,7 @@ class CustomersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, booking_customer.BookingCustomer, error_mapping)
+        return await self.request_adapter.send_async(request_info, booking_customer.BookingCustomer, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CustomersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

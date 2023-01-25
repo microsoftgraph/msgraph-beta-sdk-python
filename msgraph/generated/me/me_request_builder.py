@@ -1113,11 +1113,12 @@ class MeRequestBuilder():
         url_tpl_params["site%2Did"] = id
         return site_item_request_builder.SiteItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[MeRequestBuilderGetRequestConfiguration] = None) -> Optional[user.User]:
+    async def get(self,request_configuration: Optional[MeRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user.User]:
         """
         Returns the user or organizational contact assigned as the user's manager. Optionally, you can expand the manager's chain up to the root node.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user.User]
         """
         request_info = self.to_get_request_information(
@@ -1129,7 +1130,7 @@ class MeRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user.User, error_mapping)
+        return await self.request_adapter.send_async(request_info, user.User, response_handler, error_mapping)
     
     def get_effective_device_enrollment_configurations(self,) -> get_effective_device_enrollment_configurations_request_builder.GetEffectiveDeviceEnrollmentConfigurationsRequestBuilder:
         """
@@ -1362,12 +1363,13 @@ class MeRequestBuilder():
         url_tpl_params["directoryObject%2Did"] = id
         return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[user.User] = None, request_configuration: Optional[MeRequestBuilderPatchRequestConfiguration] = None) -> Optional[user.User]:
+    async def patch(self,body: Optional[user.User] = None, request_configuration: Optional[MeRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user.User]:
         """
         Update the properties of a user object. Not all properties can be updated by Member or Guest users with their default permissions without Administrator roles. Compare member and guest default permissions to see properties they can manage.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user.User]
         """
         if body is None:
@@ -1381,7 +1383,7 @@ class MeRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user.User, error_mapping)
+        return await self.request_adapter.send_async(request_info, user.User, response_handler, error_mapping)
     
     def pending_access_review_instances_by_id(self,id: str) -> access_review_instance_item_request_builder.AccessReviewInstanceItemRequestBuilder:
         """

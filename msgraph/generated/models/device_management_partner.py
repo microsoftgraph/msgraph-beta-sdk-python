@@ -10,9 +10,12 @@ device_management_partner_tenant_state = lazy_import('msgraph.generated.models.d
 entity = lazy_import('msgraph.generated.models.entity')
 
 class DeviceManagementPartner(entity.Entity):
+    """
+    Entity which represents a connection to device management partner.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new DeviceManagementPartner and sets the default values.
+        Instantiates a new deviceManagementPartner and sets the default values.
         """
         super().__init__()
         # Partner display name

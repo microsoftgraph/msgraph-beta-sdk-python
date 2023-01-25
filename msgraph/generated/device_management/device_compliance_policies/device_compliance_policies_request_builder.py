@@ -85,11 +85,12 @@ class DeviceCompliancePoliciesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DeviceCompliancePoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[device_compliance_policy_collection_response.DeviceCompliancePolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceCompliancePoliciesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_compliance_policy_collection_response.DeviceCompliancePolicyCollectionResponse]:
         """
         The device compliance policies.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_compliance_policy_collection_response.DeviceCompliancePolicyCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -101,7 +102,7 @@ class DeviceCompliancePoliciesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_compliance_policy_collection_response.DeviceCompliancePolicyCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_compliance_policy_collection_response.DeviceCompliancePolicyCollectionResponse, response_handler, error_mapping)
     
     def get_devices_scheduled_to_retire(self,) -> get_devices_scheduled_to_retire_request_builder.GetDevicesScheduledToRetireRequestBuilder:
         """
@@ -110,12 +111,13 @@ class DeviceCompliancePoliciesRequestBuilder():
         """
         return get_devices_scheduled_to_retire_request_builder.GetDevicesScheduledToRetireRequestBuilder(self.request_adapter, self.path_parameters)
     
-    async def post(self,body: Optional[device_compliance_policy.DeviceCompliancePolicy] = None, request_configuration: Optional[DeviceCompliancePoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[device_compliance_policy.DeviceCompliancePolicy]:
+    async def post(self,body: Optional[device_compliance_policy.DeviceCompliancePolicy] = None, request_configuration: Optional[DeviceCompliancePoliciesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_compliance_policy.DeviceCompliancePolicy]:
         """
         Create new navigation property to deviceCompliancePolicies for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_compliance_policy.DeviceCompliancePolicy]
         """
         if body is None:
@@ -129,7 +131,7 @@ class DeviceCompliancePoliciesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_compliance_policy.DeviceCompliancePolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_compliance_policy.DeviceCompliancePolicy, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceCompliancePoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

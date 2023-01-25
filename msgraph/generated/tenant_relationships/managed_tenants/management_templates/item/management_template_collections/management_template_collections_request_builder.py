@@ -43,11 +43,12 @@ class ManagementTemplateCollectionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ManagementTemplateCollectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[management_template_collection_collection_response.ManagementTemplateCollectionCollectionResponse]:
+    async def get(self,request_configuration: Optional[ManagementTemplateCollectionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[management_template_collection_collection_response.ManagementTemplateCollectionCollectionResponse]:
         """
         Get managementTemplateCollections from tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_template_collection_collection_response.ManagementTemplateCollectionCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -59,7 +60,7 @@ class ManagementTemplateCollectionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, management_template_collection_collection_response.ManagementTemplateCollectionCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, management_template_collection_collection_response.ManagementTemplateCollectionCollectionResponse, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ManagementTemplateCollectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

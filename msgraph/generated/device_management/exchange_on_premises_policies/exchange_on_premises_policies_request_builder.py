@@ -44,11 +44,12 @@ class ExchangeOnPremisesPoliciesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ExchangeOnPremisesPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_exchange_on_premises_policy_collection_response.DeviceManagementExchangeOnPremisesPolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[ExchangeOnPremisesPoliciesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_exchange_on_premises_policy_collection_response.DeviceManagementExchangeOnPremisesPolicyCollectionResponse]:
         """
         The list of Exchange On Premisis policies configured by the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_exchange_on_premises_policy_collection_response.DeviceManagementExchangeOnPremisesPolicyCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class ExchangeOnPremisesPoliciesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_exchange_on_premises_policy_collection_response.DeviceManagementExchangeOnPremisesPolicyCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_exchange_on_premises_policy_collection_response.DeviceManagementExchangeOnPremisesPolicyCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy] = None, request_configuration: Optional[ExchangeOnPremisesPoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy]:
+    async def post(self,body: Optional[device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy] = None, request_configuration: Optional[ExchangeOnPremisesPoliciesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy]:
         """
         Create new navigation property to exchangeOnPremisesPolicies for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy]
         """
         if body is None:
@@ -81,7 +83,7 @@ class ExchangeOnPremisesPoliciesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ExchangeOnPremisesPoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

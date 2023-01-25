@@ -35,11 +35,12 @@ class ResetTenantOnboardingStatusRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,request_configuration: Optional[ResetTenantOnboardingStatusRequestBuilderPostRequestConfiguration] = None) -> Optional[tenant.Tenant]:
+    async def post(self,request_configuration: Optional[ResetTenantOnboardingStatusRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant.Tenant]:
         """
         Carries out the appropriate procedures to reset the onboarding status for the managed tenant that was removed from the multi-tenant management platform using the offboardTenant action. By invoking this action the platform will attempt to onboard the managed tenant for management.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant.Tenant]
         """
         request_info = self.to_post_request_information(
@@ -51,7 +52,7 @@ class ResetTenantOnboardingStatusRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant.Tenant, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant.Tenant, response_handler, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[ResetTenantOnboardingStatusRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

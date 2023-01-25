@@ -44,11 +44,12 @@ class CategorySummariesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CategorySummariesRequestBuilderGetRequestConfiguration] = None) -> Optional[mac_o_s_software_update_category_summary_collection_response.MacOSSoftwareUpdateCategorySummaryCollectionResponse]:
+    async def get(self,request_configuration: Optional[CategorySummariesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mac_o_s_software_update_category_summary_collection_response.MacOSSoftwareUpdateCategorySummaryCollectionResponse]:
         """
         Summary of the updates by category.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mac_o_s_software_update_category_summary_collection_response.MacOSSoftwareUpdateCategorySummaryCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class CategorySummariesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mac_o_s_software_update_category_summary_collection_response.MacOSSoftwareUpdateCategorySummaryCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, mac_o_s_software_update_category_summary_collection_response.MacOSSoftwareUpdateCategorySummaryCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary] = None, request_configuration: Optional[CategorySummariesRequestBuilderPostRequestConfiguration] = None) -> Optional[mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary]:
+    async def post(self,body: Optional[mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary] = None, request_configuration: Optional[CategorySummariesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary]:
         """
         Create new navigation property to categorySummaries for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary]
         """
         if body is None:
@@ -81,7 +83,7 @@ class CategorySummariesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary, error_mapping)
+        return await self.request_adapter.send_async(request_info, mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CategorySummariesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

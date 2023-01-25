@@ -36,12 +36,13 @@ class CreateRemoteHelpSessionRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[create_remote_help_session_post_request_body.CreateRemoteHelpSessionPostRequestBody] = None, request_configuration: Optional[CreateRemoteHelpSessionRequestBuilderPostRequestConfiguration] = None) -> Optional[create_remote_help_session_response.CreateRemoteHelpSessionResponse]:
+    async def post(self,body: Optional[create_remote_help_session_post_request_body.CreateRemoteHelpSessionPostRequestBody] = None, request_configuration: Optional[CreateRemoteHelpSessionRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[create_remote_help_session_response.CreateRemoteHelpSessionResponse]:
         """
         Remote help - Create session with a specific device
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[create_remote_help_session_response.CreateRemoteHelpSessionResponse]
         """
         if body is None:
@@ -55,7 +56,7 @@ class CreateRemoteHelpSessionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, create_remote_help_session_response.CreateRemoteHelpSessionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, create_remote_help_session_response.CreateRemoteHelpSessionResponse, response_handler, error_mapping)
     
     def to_post_request_information(self,body: Optional[create_remote_help_session_post_request_body.CreateRemoteHelpSessionPostRequestBody] = None, request_configuration: Optional[CreateRemoteHelpSessionRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

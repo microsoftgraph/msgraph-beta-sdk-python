@@ -35,11 +35,12 @@ class FindRoomListsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[FindRoomListsRequestBuilderGetRequestConfiguration] = None) -> Optional[find_room_lists_response.FindRoomListsResponse]:
+    async def get(self,request_configuration: Optional[FindRoomListsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[find_room_lists_response.FindRoomListsResponse]:
         """
         Get the room lists defined in a tenant, as represented by their emailAddress objects. Tenants can organize meeting rooms into room lists. In this API, each meeting room and room list is represented by an emailAddress instance.You can get all the room lists in the tenant, get all the rooms in the tenant, or get all the rooms in a specific room list.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[find_room_lists_response.FindRoomListsResponse]
         """
         request_info = self.to_get_request_information(
@@ -51,7 +52,7 @@ class FindRoomListsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, find_room_lists_response.FindRoomListsResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, find_room_lists_response.FindRoomListsResponse, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[FindRoomListsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

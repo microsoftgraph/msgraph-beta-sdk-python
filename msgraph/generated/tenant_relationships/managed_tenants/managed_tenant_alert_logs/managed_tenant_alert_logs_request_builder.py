@@ -44,11 +44,12 @@ class ManagedTenantAlertLogsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ManagedTenantAlertLogsRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_tenant_alert_log_collection_response.ManagedTenantAlertLogCollectionResponse]:
+    async def get(self,request_configuration: Optional[ManagedTenantAlertLogsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_tenant_alert_log_collection_response.ManagedTenantAlertLogCollectionResponse]:
         """
         Get managedTenantAlertLogs from tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_tenant_alert_log_collection_response.ManagedTenantAlertLogCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class ManagedTenantAlertLogsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_tenant_alert_log_collection_response.ManagedTenantAlertLogCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_tenant_alert_log_collection_response.ManagedTenantAlertLogCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[managed_tenant_alert_log.ManagedTenantAlertLog] = None, request_configuration: Optional[ManagedTenantAlertLogsRequestBuilderPostRequestConfiguration] = None) -> Optional[managed_tenant_alert_log.ManagedTenantAlertLog]:
+    async def post(self,body: Optional[managed_tenant_alert_log.ManagedTenantAlertLog] = None, request_configuration: Optional[ManagedTenantAlertLogsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_tenant_alert_log.ManagedTenantAlertLog]:
         """
         Create new navigation property to managedTenantAlertLogs for tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_tenant_alert_log.ManagedTenantAlertLog]
         """
         if body is None:
@@ -81,7 +83,7 @@ class ManagedTenantAlertLogsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_tenant_alert_log.ManagedTenantAlertLog, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_tenant_alert_log.ManagedTenantAlertLog, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ManagedTenantAlertLogsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

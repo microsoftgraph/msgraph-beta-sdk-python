@@ -30,7 +30,7 @@ class TaskReport(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new TaskReport and sets the default values.
+        Instantiates a new taskReport and sets the default values.
         """
         super().__init__()
         # The date time that the associated run completed. Value is null if the run has not completed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.

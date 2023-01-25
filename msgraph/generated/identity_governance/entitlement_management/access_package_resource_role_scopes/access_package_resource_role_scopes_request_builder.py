@@ -44,11 +44,12 @@ class AccessPackageResourceRoleScopesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AccessPackageResourceRoleScopesRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_resource_role_scope_collection_response.AccessPackageResourceRoleScopeCollectionResponse]:
+    async def get(self,request_configuration: Optional[AccessPackageResourceRoleScopesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_resource_role_scope_collection_response.AccessPackageResourceRoleScopeCollectionResponse]:
         """
         A reference to both a scope within a resource, and a role in that resource for that scope.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_resource_role_scope_collection_response.AccessPackageResourceRoleScopeCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class AccessPackageResourceRoleScopesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_resource_role_scope_collection_response.AccessPackageResourceRoleScopeCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_resource_role_scope_collection_response.AccessPackageResourceRoleScopeCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[access_package_resource_role_scope.AccessPackageResourceRoleScope] = None, request_configuration: Optional[AccessPackageResourceRoleScopesRequestBuilderPostRequestConfiguration] = None) -> Optional[access_package_resource_role_scope.AccessPackageResourceRoleScope]:
+    async def post(self,body: Optional[access_package_resource_role_scope.AccessPackageResourceRoleScope] = None, request_configuration: Optional[AccessPackageResourceRoleScopesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_resource_role_scope.AccessPackageResourceRoleScope]:
         """
         Create new navigation property to accessPackageResourceRoleScopes for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_resource_role_scope.AccessPackageResourceRoleScope]
         """
         if body is None:
@@ -81,7 +83,7 @@ class AccessPackageResourceRoleScopesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_resource_role_scope.AccessPackageResourceRoleScope, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_resource_role_scope.AccessPackageResourceRoleScope, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageResourceRoleScopesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

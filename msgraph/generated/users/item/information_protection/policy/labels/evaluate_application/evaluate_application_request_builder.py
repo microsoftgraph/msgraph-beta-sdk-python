@@ -36,12 +36,13 @@ class EvaluateApplicationRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[evaluate_application_post_request_body.EvaluateApplicationPostRequestBody] = None, request_configuration: Optional[EvaluateApplicationRequestBuilderPostRequestConfiguration] = None) -> Optional[evaluate_application_response.EvaluateApplicationResponse]:
+    async def post(self,body: Optional[evaluate_application_post_request_body.EvaluateApplicationPostRequestBody] = None, request_configuration: Optional[EvaluateApplicationRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[evaluate_application_response.EvaluateApplicationResponse]:
         """
         Compute the information protection label that should be applied and return the set of actions that must be taken to correctly label the information. This API is useful when a label should be set manually or explicitly by a user or service, rather than automatically based on file contents.  Given contentInfo, which includes existing content metadata key/value pairs, and labelingOptions as an input, the API returns an informationProtectionAction object that contains one of more of the following: 
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[evaluate_application_response.EvaluateApplicationResponse]
         """
         if body is None:
@@ -55,7 +56,7 @@ class EvaluateApplicationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, evaluate_application_response.EvaluateApplicationResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, evaluate_application_response.EvaluateApplicationResponse, response_handler, error_mapping)
     
     def to_post_request_information(self,body: Optional[evaluate_application_post_request_body.EvaluateApplicationPostRequestBody] = None, request_configuration: Optional[EvaluateApplicationRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

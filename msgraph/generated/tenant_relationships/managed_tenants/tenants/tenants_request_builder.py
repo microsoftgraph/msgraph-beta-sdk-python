@@ -44,11 +44,12 @@ class TenantsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[TenantsRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_collection_response.TenantCollectionResponse]:
+    async def get(self,request_configuration: Optional[TenantsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant_collection_response.TenantCollectionResponse]:
         """
         Get a list of the tenant objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_collection_response.TenantCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class TenantsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant_collection_response.TenantCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant_collection_response.TenantCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[tenant.Tenant] = None, request_configuration: Optional[TenantsRequestBuilderPostRequestConfiguration] = None) -> Optional[tenant.Tenant]:
+    async def post(self,body: Optional[tenant.Tenant] = None, request_configuration: Optional[TenantsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant.Tenant]:
         """
         Create new navigation property to tenants for tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant.Tenant]
         """
         if body is None:
@@ -81,7 +83,7 @@ class TenantsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant.Tenant, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant.Tenant, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TenantsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

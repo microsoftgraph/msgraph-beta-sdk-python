@@ -28,7 +28,7 @@ class FilterOperatorSchema(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new FilterOperatorSchema and sets the default values.
+        Instantiates a new filterOperatorSchema and sets the default values.
         """
         super().__init__()
         # The arity property

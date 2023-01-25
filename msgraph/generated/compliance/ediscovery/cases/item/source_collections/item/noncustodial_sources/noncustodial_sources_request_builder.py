@@ -43,11 +43,12 @@ class NoncustodialSourcesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[NoncustodialSourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[noncustodial_data_source_collection_response.NoncustodialDataSourceCollectionResponse]:
+    async def get(self,request_configuration: Optional[NoncustodialSourcesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[noncustodial_data_source_collection_response.NoncustodialDataSourceCollectionResponse]:
         """
         Get a list of noncustodialDataSource associated with a sourceCollection.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[noncustodial_data_source_collection_response.NoncustodialDataSourceCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -59,7 +60,7 @@ class NoncustodialSourcesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, noncustodial_data_source_collection_response.NoncustodialDataSourceCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, noncustodial_data_source_collection_response.NoncustodialDataSourceCollectionResponse, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[NoncustodialSourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

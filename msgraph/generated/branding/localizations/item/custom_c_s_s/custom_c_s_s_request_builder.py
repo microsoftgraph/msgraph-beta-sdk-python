@@ -34,11 +34,12 @@ class CustomCSSRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CustomCSSRequestBuilderGetRequestConfiguration] = None) -> bytes:
+    async def get(self,request_configuration: Optional[CustomCSSRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> bytes:
         """
         CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: bytes
         """
         request_info = self.to_get_request_information(
@@ -50,14 +51,15 @@ class CustomCSSRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
+        return await self.request_adapter.send_primitive_async(request_info, "bytes", response_handler, error_mapping)
     
-    async def put(self,body: bytes, request_configuration: Optional[CustomCSSRequestBuilderPutRequestConfiguration] = None) -> None:
+    async def put(self,body: bytes, request_configuration: Optional[CustomCSSRequestBuilderPutRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.
         Args:
             body: Binary request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         if body is None:
             raise Exception("body cannot be undefined")
@@ -70,7 +72,7 @@ class CustomCSSRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CustomCSSRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

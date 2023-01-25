@@ -44,11 +44,12 @@ class EmbeddedSIMActivationCodePoolsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[EmbeddedSIMActivationCodePoolsRequestBuilderGetRequestConfiguration] = None) -> Optional[embedded_s_i_m_activation_code_pool_collection_response.EmbeddedSIMActivationCodePoolCollectionResponse]:
+    async def get(self,request_configuration: Optional[EmbeddedSIMActivationCodePoolsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[embedded_s_i_m_activation_code_pool_collection_response.EmbeddedSIMActivationCodePoolCollectionResponse]:
         """
         The embedded SIM activation code pools created by this account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[embedded_s_i_m_activation_code_pool_collection_response.EmbeddedSIMActivationCodePoolCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class EmbeddedSIMActivationCodePoolsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, embedded_s_i_m_activation_code_pool_collection_response.EmbeddedSIMActivationCodePoolCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, embedded_s_i_m_activation_code_pool_collection_response.EmbeddedSIMActivationCodePoolCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool] = None, request_configuration: Optional[EmbeddedSIMActivationCodePoolsRequestBuilderPostRequestConfiguration] = None) -> Optional[embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool]:
+    async def post(self,body: Optional[embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool] = None, request_configuration: Optional[EmbeddedSIMActivationCodePoolsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool]:
         """
         Create new navigation property to embeddedSIMActivationCodePools for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool]
         """
         if body is None:
@@ -81,7 +83,7 @@ class EmbeddedSIMActivationCodePoolsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool, error_mapping)
+        return await self.request_adapter.send_async(request_info, embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[EmbeddedSIMActivationCodePoolsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

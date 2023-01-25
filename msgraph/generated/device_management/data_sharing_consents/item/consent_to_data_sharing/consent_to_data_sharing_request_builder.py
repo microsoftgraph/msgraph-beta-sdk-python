@@ -35,11 +35,12 @@ class ConsentToDataSharingRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,request_configuration: Optional[ConsentToDataSharingRequestBuilderPostRequestConfiguration] = None) -> Optional[data_sharing_consent.DataSharingConsent]:
+    async def post(self,request_configuration: Optional[ConsentToDataSharingRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[data_sharing_consent.DataSharingConsent]:
         """
         Invoke action consentToDataSharing
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[data_sharing_consent.DataSharingConsent]
         """
         request_info = self.to_post_request_information(
@@ -51,7 +52,7 @@ class ConsentToDataSharingRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, data_sharing_consent.DataSharingConsent, error_mapping)
+        return await self.request_adapter.send_async(request_info, data_sharing_consent.DataSharingConsent, response_handler, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[ConsentToDataSharingRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

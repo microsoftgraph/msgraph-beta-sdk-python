@@ -36,12 +36,13 @@ class QueryByPlatformTypeRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[query_by_platform_type_post_request_body.QueryByPlatformTypePostRequestBody] = None, request_configuration: Optional[QueryByPlatformTypeRequestBuilderPostRequestConfiguration] = None) -> Optional[query_by_platform_type_response.QueryByPlatformTypeResponse]:
+    async def post(self,body: Optional[query_by_platform_type_post_request_body.QueryByPlatformTypePostRequestBody] = None, request_configuration: Optional[QueryByPlatformTypeRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[query_by_platform_type_response.QueryByPlatformTypeResponse]:
         """
         Invoke action queryByPlatformType
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[query_by_platform_type_response.QueryByPlatformTypeResponse]
         """
         if body is None:
@@ -55,7 +56,7 @@ class QueryByPlatformTypeRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, query_by_platform_type_response.QueryByPlatformTypeResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, query_by_platform_type_response.QueryByPlatformTypeResponse, response_handler, error_mapping)
     
     def to_post_request_information(self,body: Optional[query_by_platform_type_post_request_body.QueryByPlatformTypePostRequestBody] = None, request_configuration: Optional[QueryByPlatformTypeRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

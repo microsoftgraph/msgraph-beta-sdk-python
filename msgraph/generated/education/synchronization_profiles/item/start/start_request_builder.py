@@ -35,11 +35,12 @@ class StartRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,request_configuration: Optional[StartRequestBuilderPostRequestConfiguration] = None) -> Optional[start_response.StartResponse]:
+    async def post(self,request_configuration: Optional[StartRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[start_response.StartResponse]:
         """
         Verify the files uploaded to a specific school data synchronization profile in the tenant. If the verification is successful, synchronization will start on the profile. Otherwise, the response will contain errors and warnings. If the response contains errors, the synchronization will not start. If the response contains only warnings, synchronization will start.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[start_response.StartResponse]
         """
         request_info = self.to_post_request_information(
@@ -51,7 +52,7 @@ class StartRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, start_response.StartResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, start_response.StartResponse, response_handler, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[StartRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

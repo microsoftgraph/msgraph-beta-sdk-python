@@ -44,11 +44,12 @@ class CatalogRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CatalogRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[CatalogRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property catalog for admin
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,7 +60,7 @@ class CatalogRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
     def entries_by_id(self,id: str) -> catalog_entry_item_request_builder.CatalogEntryItemRequestBuilder:
         """
@@ -74,11 +75,12 @@ class CatalogRequestBuilder():
         url_tpl_params["catalogEntry%2Did"] = id
         return catalog_entry_item_request_builder.CatalogEntryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[CatalogRequestBuilderGetRequestConfiguration] = None) -> Optional[catalog.Catalog]:
+    async def get(self,request_configuration: Optional[CatalogRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[catalog.Catalog]:
         """
         Catalog of content that can be approved for deployment by the deployment service. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[catalog.Catalog]
         """
         request_info = self.to_get_request_information(
@@ -90,14 +92,15 @@ class CatalogRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, catalog.Catalog, error_mapping)
+        return await self.request_adapter.send_async(request_info, catalog.Catalog, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[catalog.Catalog] = None, request_configuration: Optional[CatalogRequestBuilderPatchRequestConfiguration] = None) -> Optional[catalog.Catalog]:
+    async def patch(self,body: Optional[catalog.Catalog] = None, request_configuration: Optional[CatalogRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[catalog.Catalog]:
         """
         Update the navigation property catalog in admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[catalog.Catalog]
         """
         if body is None:
@@ -111,7 +114,7 @@ class CatalogRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, catalog.Catalog, error_mapping)
+        return await self.request_adapter.send_async(request_info, catalog.Catalog, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CatalogRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

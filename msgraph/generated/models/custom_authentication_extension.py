@@ -8,7 +8,7 @@ custom_callout_extension = lazy_import('msgraph.generated.models.custom_callout_
 class CustomAuthenticationExtension(custom_callout_extension.CustomCalloutExtension):
     def __init__(self,) -> None:
         """
-        Instantiates a new CustomAuthenticationExtension and sets the default values.
+        Instantiates a new customAuthenticationExtension and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.customAuthenticationExtension"

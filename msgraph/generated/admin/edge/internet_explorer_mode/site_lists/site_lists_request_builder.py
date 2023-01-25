@@ -44,11 +44,12 @@ class SiteListsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SiteListsRequestBuilderGetRequestConfiguration] = None) -> Optional[browser_site_list_collection_response.BrowserSiteListCollectionResponse]:
+    async def get(self,request_configuration: Optional[SiteListsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[browser_site_list_collection_response.BrowserSiteListCollectionResponse]:
         """
         Get a list of the browserSiteList objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[browser_site_list_collection_response.BrowserSiteListCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class SiteListsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, browser_site_list_collection_response.BrowserSiteListCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, browser_site_list_collection_response.BrowserSiteListCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[browser_site_list.BrowserSiteList] = None, request_configuration: Optional[SiteListsRequestBuilderPostRequestConfiguration] = None) -> Optional[browser_site_list.BrowserSiteList]:
+    async def post(self,body: Optional[browser_site_list.BrowserSiteList] = None, request_configuration: Optional[SiteListsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[browser_site_list.BrowserSiteList]:
         """
         Create a new browserSiteList object to support Internet Explorer mode.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[browser_site_list.BrowserSiteList]
         """
         if body is None:
@@ -81,7 +83,7 @@ class SiteListsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, browser_site_list.BrowserSiteList, error_mapping)
+        return await self.request_adapter.send_async(request_info, browser_site_list.BrowserSiteList, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SiteListsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -14,11 +14,11 @@ class AttackSimulationOperation(long_running_operation.LongRunningOperation):
         super().__init__()
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # Percentage of completion of the respective operation.
+        # The percentageCompleted property
         self._percentage_completed: Optional[int] = None
-        # Tenant identifier.
+        # The tenantId property
         self._tenant_id: Optional[str] = None
-        # The attack simulation operation type. Possible values are: createSimulation, updateSimulation, unknownFutureValue.
+        # The type property
         self._type: Optional[attack_simulation_operation_type.AttackSimulationOperationType] = None
     
     @staticmethod
@@ -50,7 +50,7 @@ class AttackSimulationOperation(long_running_operation.LongRunningOperation):
     @property
     def percentage_completed(self,) -> Optional[int]:
         """
-        Gets the percentageCompleted property value. Percentage of completion of the respective operation.
+        Gets the percentageCompleted property value. The percentageCompleted property
         Returns: Optional[int]
         """
         return self._percentage_completed
@@ -58,7 +58,7 @@ class AttackSimulationOperation(long_running_operation.LongRunningOperation):
     @percentage_completed.setter
     def percentage_completed(self,value: Optional[int] = None) -> None:
         """
-        Sets the percentageCompleted property value. Percentage of completion of the respective operation.
+        Sets the percentageCompleted property value. The percentageCompleted property
         Args:
             value: Value to set for the percentageCompleted property.
         """
@@ -80,7 +80,7 @@ class AttackSimulationOperation(long_running_operation.LongRunningOperation):
     @property
     def tenant_id(self,) -> Optional[str]:
         """
-        Gets the tenantId property value. Tenant identifier.
+        Gets the tenantId property value. The tenantId property
         Returns: Optional[str]
         """
         return self._tenant_id
@@ -88,7 +88,7 @@ class AttackSimulationOperation(long_running_operation.LongRunningOperation):
     @tenant_id.setter
     def tenant_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the tenantId property value. Tenant identifier.
+        Sets the tenantId property value. The tenantId property
         Args:
             value: Value to set for the tenantId property.
         """
@@ -97,7 +97,7 @@ class AttackSimulationOperation(long_running_operation.LongRunningOperation):
     @property
     def type(self,) -> Optional[attack_simulation_operation_type.AttackSimulationOperationType]:
         """
-        Gets the type property value. The attack simulation operation type. Possible values are: createSimulation, updateSimulation, unknownFutureValue.
+        Gets the type property value. The type property
         Returns: Optional[attack_simulation_operation_type.AttackSimulationOperationType]
         """
         return self._type
@@ -105,7 +105,7 @@ class AttackSimulationOperation(long_running_operation.LongRunningOperation):
     @type.setter
     def type(self,value: Optional[attack_simulation_operation_type.AttackSimulationOperationType] = None) -> None:
         """
-        Sets the type property value. The attack simulation operation type. Possible values are: createSimulation, updateSimulation, unknownFutureValue.
+        Sets the type property value. The type property
         Args:
             value: Value to set for the type property.
         """

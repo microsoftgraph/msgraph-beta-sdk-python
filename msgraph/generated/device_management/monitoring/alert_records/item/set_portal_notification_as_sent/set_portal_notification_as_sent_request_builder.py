@@ -34,11 +34,12 @@ class SetPortalNotificationAsSentRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,request_configuration: Optional[SetPortalNotificationAsSentRequestBuilderPostRequestConfiguration] = None) -> None:
+    async def post(self,request_configuration: Optional[SetPortalNotificationAsSentRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Set the status of the notification associated with the specified alertRecord on the Microsoft EndPoint Manager admin center as sent, by setting the **isPortalNotificationSent** property of the portal notification to `true`.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_post_request_information(
             request_configuration
@@ -49,7 +50,7 @@ class SetPortalNotificationAsSentRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[SetPortalNotificationAsSentRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

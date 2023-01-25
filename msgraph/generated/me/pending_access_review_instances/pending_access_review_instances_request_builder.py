@@ -56,11 +56,12 @@ class PendingAccessReviewInstancesRequestBuilder():
             raise Exception("on cannot be undefined")
         return filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
     
-    async def get(self,request_configuration: Optional[PendingAccessReviewInstancesRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_instance_collection_response.AccessReviewInstanceCollectionResponse]:
+    async def get(self,request_configuration: Optional[PendingAccessReviewInstancesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_instance_collection_response.AccessReviewInstanceCollectionResponse]:
         """
         Retrieve the accessReviewInstance objects pending approval by the calling user. A list of zero or more accessReviewInstance objects are returned, of which the calling user is an assigned reviewer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_instance_collection_response.AccessReviewInstanceCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -72,14 +73,15 @@ class PendingAccessReviewInstancesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_instance_collection_response.AccessReviewInstanceCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_instance_collection_response.AccessReviewInstanceCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[access_review_instance.AccessReviewInstance] = None, request_configuration: Optional[PendingAccessReviewInstancesRequestBuilderPostRequestConfiguration] = None) -> Optional[access_review_instance.AccessReviewInstance]:
+    async def post(self,body: Optional[access_review_instance.AccessReviewInstance] = None, request_configuration: Optional[PendingAccessReviewInstancesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_instance.AccessReviewInstance]:
         """
         Create new navigation property to pendingAccessReviewInstances for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_instance.AccessReviewInstance]
         """
         if body is None:
@@ -93,7 +95,7 @@ class PendingAccessReviewInstancesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_instance.AccessReviewInstance, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_instance.AccessReviewInstance, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PendingAccessReviewInstancesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

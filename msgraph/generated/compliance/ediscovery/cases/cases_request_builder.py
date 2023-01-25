@@ -44,11 +44,12 @@ class CasesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CasesRequestBuilderGetRequestConfiguration] = None) -> Optional[case_collection_response.CaseCollectionResponse]:
+    async def get(self,request_configuration: Optional[CasesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[case_collection_response.CaseCollectionResponse]:
         """
         Retrieve a list of case objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[case_collection_response.CaseCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class CasesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, case_collection_response.CaseCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, case_collection_response.CaseCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[case.Case] = None, request_configuration: Optional[CasesRequestBuilderPostRequestConfiguration] = None) -> Optional[case.Case]:
+    async def post(self,body: Optional[case.Case] = None, request_configuration: Optional[CasesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[case.Case]:
         """
         Create a new case object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[case.Case]
         """
         if body is None:
@@ -81,7 +83,7 @@ class CasesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, case.Case, error_mapping)
+        return await self.request_adapter.send_async(request_info, case.Case, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CasesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

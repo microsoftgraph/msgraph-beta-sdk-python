@@ -36,12 +36,13 @@ class RevokeGrantsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[revoke_grants_post_request_body.RevokeGrantsPostRequestBody] = None, request_configuration: Optional[RevokeGrantsRequestBuilderPostRequestConfiguration] = None) -> Optional[permission.Permission]:
+    async def post(self,body: Optional[revoke_grants_post_request_body.RevokeGrantsPostRequestBody] = None, request_configuration: Optional[RevokeGrantsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[permission.Permission]:
         """
         Revoke access to a [listItem][] or [driveItem][] granted via a sharing link by removing the specified [recipient][] from the link.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[permission.Permission]
         """
         if body is None:
@@ -55,7 +56,7 @@ class RevokeGrantsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, permission.Permission, error_mapping)
+        return await self.request_adapter.send_async(request_info, permission.Permission, response_handler, error_mapping)
     
     def to_post_request_information(self,body: Optional[revoke_grants_post_request_body.RevokeGrantsPostRequestBody] = None, request_configuration: Optional[RevokeGrantsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

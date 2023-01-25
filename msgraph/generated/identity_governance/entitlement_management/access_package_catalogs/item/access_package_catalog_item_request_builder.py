@@ -145,11 +145,12 @@ class AccessPackageCatalogItemRequestBuilder():
         url_tpl_params["customAccessPackageWorkflowExtension%2Did"] = id
         return custom_access_package_workflow_extension_item_request_builder.CustomAccessPackageWorkflowExtensionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[AccessPackageCatalogItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[AccessPackageCatalogItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property accessPackageCatalogs for identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -160,13 +161,14 @@ class AccessPackageCatalogItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[AccessPackageCatalogItemRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_catalog.AccessPackageCatalog]:
+    async def get(self,request_configuration: Optional[AccessPackageCatalogItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_catalog.AccessPackageCatalog]:
         """
         A container of access packages.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_catalog.AccessPackageCatalog]
         """
         request_info = self.to_get_request_information(
@@ -178,14 +180,15 @@ class AccessPackageCatalogItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_catalog.AccessPackageCatalog, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_catalog.AccessPackageCatalog, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[access_package_catalog.AccessPackageCatalog] = None, request_configuration: Optional[AccessPackageCatalogItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_package_catalog.AccessPackageCatalog]:
+    async def patch(self,body: Optional[access_package_catalog.AccessPackageCatalog] = None, request_configuration: Optional[AccessPackageCatalogItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_catalog.AccessPackageCatalog]:
         """
         Update the navigation property accessPackageCatalogs in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_catalog.AccessPackageCatalog]
         """
         if body is None:
@@ -199,7 +202,7 @@ class AccessPackageCatalogItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_catalog.AccessPackageCatalog, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_catalog.AccessPackageCatalog, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AccessPackageCatalogItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

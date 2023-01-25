@@ -44,11 +44,12 @@ class CustomSecurityAttributeDefinitionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CustomSecurityAttributeDefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_security_attribute_definition_collection_response.CustomSecurityAttributeDefinitionCollectionResponse]:
+    async def get(self,request_configuration: Optional[CustomSecurityAttributeDefinitionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[custom_security_attribute_definition_collection_response.CustomSecurityAttributeDefinitionCollectionResponse]:
         """
         Get a list of the customSecurityAttributeDefinition objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[custom_security_attribute_definition_collection_response.CustomSecurityAttributeDefinitionCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class CustomSecurityAttributeDefinitionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, custom_security_attribute_definition_collection_response.CustomSecurityAttributeDefinitionCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, custom_security_attribute_definition_collection_response.CustomSecurityAttributeDefinitionCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[custom_security_attribute_definition.CustomSecurityAttributeDefinition] = None, request_configuration: Optional[CustomSecurityAttributeDefinitionsRequestBuilderPostRequestConfiguration] = None) -> Optional[custom_security_attribute_definition.CustomSecurityAttributeDefinition]:
+    async def post(self,body: Optional[custom_security_attribute_definition.CustomSecurityAttributeDefinition] = None, request_configuration: Optional[CustomSecurityAttributeDefinitionsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[custom_security_attribute_definition.CustomSecurityAttributeDefinition]:
         """
         Create a new customSecurityAttributeDefinition object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[custom_security_attribute_definition.CustomSecurityAttributeDefinition]
         """
         if body is None:
@@ -81,7 +83,7 @@ class CustomSecurityAttributeDefinitionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, custom_security_attribute_definition.CustomSecurityAttributeDefinition, error_mapping)
+        return await self.request_adapter.send_async(request_info, custom_security_attribute_definition.CustomSecurityAttributeDefinition, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CustomSecurityAttributeDefinitionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

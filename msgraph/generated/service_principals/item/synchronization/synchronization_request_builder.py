@@ -62,11 +62,12 @@ class SynchronizationRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SynchronizationRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[SynchronizationRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property synchronization for servicePrincipals
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -77,13 +78,14 @@ class SynchronizationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[SynchronizationRequestBuilderGetRequestConfiguration] = None) -> Optional[synchronization.Synchronization]:
+    async def get(self,request_configuration: Optional[SynchronizationRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[synchronization.Synchronization]:
         """
         Get synchronization from servicePrincipals
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[synchronization.Synchronization]
         """
         request_info = self.to_get_request_information(
@@ -95,7 +97,7 @@ class SynchronizationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, synchronization.Synchronization, error_mapping)
+        return await self.request_adapter.send_async(request_info, synchronization.Synchronization, response_handler, error_mapping)
     
     def jobs_by_id(self,id: str) -> synchronization_job_item_request_builder.SynchronizationJobItemRequestBuilder:
         """
@@ -110,12 +112,13 @@ class SynchronizationRequestBuilder():
         url_tpl_params["synchronizationJob%2Did"] = id
         return synchronization_job_item_request_builder.SynchronizationJobItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[synchronization.Synchronization] = None, request_configuration: Optional[SynchronizationRequestBuilderPatchRequestConfiguration] = None) -> Optional[synchronization.Synchronization]:
+    async def patch(self,body: Optional[synchronization.Synchronization] = None, request_configuration: Optional[SynchronizationRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[synchronization.Synchronization]:
         """
         Update the navigation property synchronization in servicePrincipals
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[synchronization.Synchronization]
         """
         if body is None:
@@ -129,7 +132,7 @@ class SynchronizationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, synchronization.Synchronization, error_mapping)
+        return await self.request_adapter.send_async(request_info, synchronization.Synchronization, response_handler, error_mapping)
     
     def ping(self,) -> ping_request_builder.PingRequestBuilder:
         """

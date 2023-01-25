@@ -44,11 +44,12 @@ class ActivitiesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ActivitiesRequestBuilderGetRequestConfiguration] = None) -> Optional[item_activity_o_l_d_collection_response.ItemActivityOLDCollectionResponse]:
+    async def get(self,request_configuration: Optional[ActivitiesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[item_activity_o_l_d_collection_response.ItemActivityOLDCollectionResponse]:
         """
         The list of recent activities that took place on this item.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[item_activity_o_l_d_collection_response.ItemActivityOLDCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class ActivitiesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, item_activity_o_l_d_collection_response.ItemActivityOLDCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, item_activity_o_l_d_collection_response.ItemActivityOLDCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[item_activity_o_l_d.ItemActivityOLD] = None, request_configuration: Optional[ActivitiesRequestBuilderPostRequestConfiguration] = None) -> Optional[item_activity_o_l_d.ItemActivityOLD]:
+    async def post(self,body: Optional[item_activity_o_l_d.ItemActivityOLD] = None, request_configuration: Optional[ActivitiesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[item_activity_o_l_d.ItemActivityOLD]:
         """
         Create new navigation property to activities for groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[item_activity_o_l_d.ItemActivityOLD]
         """
         if body is None:
@@ -81,7 +83,7 @@ class ActivitiesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, item_activity_o_l_d.ItemActivityOLD, error_mapping)
+        return await self.request_adapter.send_async(request_info, item_activity_o_l_d.ItemActivityOLD, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ActivitiesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

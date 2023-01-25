@@ -36,11 +36,12 @@ class DeviceAndAppManagementAssignmentFilterItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DeviceAndAppManagementAssignmentFilterItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceAndAppManagementAssignmentFilterItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property assignmentFilters for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,13 +52,14 @@ class DeviceAndAppManagementAssignmentFilterItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceAndAppManagementAssignmentFilterItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]:
+    async def get(self,request_configuration: Optional[DeviceAndAppManagementAssignmentFilterItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]:
         """
         The list of assignment filters
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]
         """
         request_info = self.to_get_request_information(
@@ -69,7 +71,7 @@ class DeviceAndAppManagementAssignmentFilterItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter, response_handler, error_mapping)
     
     def get_supported_properties(self,) -> get_supported_properties_request_builder.GetSupportedPropertiesRequestBuilder:
         """
@@ -78,12 +80,13 @@ class DeviceAndAppManagementAssignmentFilterItemRequestBuilder():
         """
         return get_supported_properties_request_builder.GetSupportedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    async def patch(self,body: Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter] = None, request_configuration: Optional[DeviceAndAppManagementAssignmentFilterItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]:
+    async def patch(self,body: Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter] = None, request_configuration: Optional[DeviceAndAppManagementAssignmentFilterItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]:
         """
         Update the navigation property assignmentFilters in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]
         """
         if body is None:
@@ -97,7 +100,7 @@ class DeviceAndAppManagementAssignmentFilterItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceAndAppManagementAssignmentFilterItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -44,11 +44,12 @@ class AssignmentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[embedded_s_i_m_activation_code_pool_assignment_collection_response.EmbeddedSIMActivationCodePoolAssignmentCollectionResponse]:
+    async def get(self,request_configuration: Optional[AssignmentsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[embedded_s_i_m_activation_code_pool_assignment_collection_response.EmbeddedSIMActivationCodePoolAssignmentCollectionResponse]:
         """
         Navigational property to a list of targets to which this pool is assigned.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[embedded_s_i_m_activation_code_pool_assignment_collection_response.EmbeddedSIMActivationCodePoolAssignmentCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class AssignmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, embedded_s_i_m_activation_code_pool_assignment_collection_response.EmbeddedSIMActivationCodePoolAssignmentCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, embedded_s_i_m_activation_code_pool_assignment_collection_response.EmbeddedSIMActivationCodePoolAssignmentCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[embedded_s_i_m_activation_code_pool_assignment.EmbeddedSIMActivationCodePoolAssignment] = None, request_configuration: Optional[AssignmentsRequestBuilderPostRequestConfiguration] = None) -> Optional[embedded_s_i_m_activation_code_pool_assignment.EmbeddedSIMActivationCodePoolAssignment]:
+    async def post(self,body: Optional[embedded_s_i_m_activation_code_pool_assignment.EmbeddedSIMActivationCodePoolAssignment] = None, request_configuration: Optional[AssignmentsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[embedded_s_i_m_activation_code_pool_assignment.EmbeddedSIMActivationCodePoolAssignment]:
         """
         Create new navigation property to assignments for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[embedded_s_i_m_activation_code_pool_assignment.EmbeddedSIMActivationCodePoolAssignment]
         """
         if body is None:
@@ -81,7 +83,7 @@ class AssignmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, embedded_s_i_m_activation_code_pool_assignment.EmbeddedSIMActivationCodePoolAssignment, error_mapping)
+        return await self.request_adapter.send_async(request_info, embedded_s_i_m_activation_code_pool_assignment.EmbeddedSIMActivationCodePoolAssignment, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AssignmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

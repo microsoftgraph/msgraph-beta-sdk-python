@@ -44,11 +44,12 @@ class OnPremisesConnectionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[OnPremisesConnectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_on_premises_connection_collection_response.CloudPcOnPremisesConnectionCollectionResponse]:
+    async def get(self,request_configuration: Optional[OnPremisesConnectionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_on_premises_connection_collection_response.CloudPcOnPremisesConnectionCollectionResponse]:
         """
         List properties and relationships of the cloudPcOnPremisesConnection objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_on_premises_connection_collection_response.CloudPcOnPremisesConnectionCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class OnPremisesConnectionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_on_premises_connection_collection_response.CloudPcOnPremisesConnectionCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_on_premises_connection_collection_response.CloudPcOnPremisesConnectionCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection] = None, request_configuration: Optional[OnPremisesConnectionsRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]:
+    async def post(self,body: Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection] = None, request_configuration: Optional[OnPremisesConnectionsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]:
         """
         Create a new cloudPcOnPremisesConnection object for provisioning Cloud PCs.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]
         """
         if body is None:
@@ -81,7 +83,7 @@ class OnPremisesConnectionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_on_premises_connection.CloudPcOnPremisesConnection, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_on_premises_connection.CloudPcOnPremisesConnection, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[OnPremisesConnectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

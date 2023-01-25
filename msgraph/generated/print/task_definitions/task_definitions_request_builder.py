@@ -44,11 +44,12 @@ class TaskDefinitionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[TaskDefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[print_task_definition_collection_response.PrintTaskDefinitionCollectionResponse]:
+    async def get(self,request_configuration: Optional[TaskDefinitionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[print_task_definition_collection_response.PrintTaskDefinitionCollectionResponse]:
         """
         Retrieve a list of task definitions that the requesting app defined in the tenant. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[print_task_definition_collection_response.PrintTaskDefinitionCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class TaskDefinitionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, print_task_definition_collection_response.PrintTaskDefinitionCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, print_task_definition_collection_response.PrintTaskDefinitionCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[print_task_definition.PrintTaskDefinition] = None, request_configuration: Optional[TaskDefinitionsRequestBuilderPostRequestConfiguration] = None) -> Optional[print_task_definition.PrintTaskDefinition]:
+    async def post(self,body: Optional[print_task_definition.PrintTaskDefinition] = None, request_configuration: Optional[TaskDefinitionsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[print_task_definition.PrintTaskDefinition]:
         """
         Create a new task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[print_task_definition.PrintTaskDefinition]
         """
         if body is None:
@@ -81,7 +83,7 @@ class TaskDefinitionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, print_task_definition.PrintTaskDefinition, error_mapping)
+        return await self.request_adapter.send_async(request_info, print_task_definition.PrintTaskDefinition, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TaskDefinitionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

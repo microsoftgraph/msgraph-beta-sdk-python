@@ -52,11 +52,12 @@ class ImportedAppleDeviceIdentitiesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ImportedAppleDeviceIdentitiesRequestBuilderGetRequestConfiguration] = None) -> Optional[imported_apple_device_identity_collection_response.ImportedAppleDeviceIdentityCollectionResponse]:
+    async def get(self,request_configuration: Optional[ImportedAppleDeviceIdentitiesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[imported_apple_device_identity_collection_response.ImportedAppleDeviceIdentityCollectionResponse]:
         """
         The imported Apple device identities.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[imported_apple_device_identity_collection_response.ImportedAppleDeviceIdentityCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +69,15 @@ class ImportedAppleDeviceIdentitiesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, imported_apple_device_identity_collection_response.ImportedAppleDeviceIdentityCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, imported_apple_device_identity_collection_response.ImportedAppleDeviceIdentityCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[imported_apple_device_identity.ImportedAppleDeviceIdentity] = None, request_configuration: Optional[ImportedAppleDeviceIdentitiesRequestBuilderPostRequestConfiguration] = None) -> Optional[imported_apple_device_identity.ImportedAppleDeviceIdentity]:
+    async def post(self,body: Optional[imported_apple_device_identity.ImportedAppleDeviceIdentity] = None, request_configuration: Optional[ImportedAppleDeviceIdentitiesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[imported_apple_device_identity.ImportedAppleDeviceIdentity]:
         """
         Create new navigation property to importedAppleDeviceIdentities for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[imported_apple_device_identity.ImportedAppleDeviceIdentity]
         """
         if body is None:
@@ -89,7 +91,7 @@ class ImportedAppleDeviceIdentitiesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, imported_apple_device_identity.ImportedAppleDeviceIdentity, error_mapping)
+        return await self.request_adapter.send_async(request_info, imported_apple_device_identity.ImportedAppleDeviceIdentity, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ImportedAppleDeviceIdentitiesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

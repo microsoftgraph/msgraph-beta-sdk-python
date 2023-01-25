@@ -35,11 +35,12 @@ class MicrosoftApplicationDataAccessRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[MicrosoftApplicationDataAccessRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[MicrosoftApplicationDataAccessRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property microsoftApplicationDataAccess for organization
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class MicrosoftApplicationDataAccessRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[MicrosoftApplicationDataAccessRequestBuilderGetRequestConfiguration] = None) -> Optional[microsoft_application_data_access_settings.MicrosoftApplicationDataAccessSettings]:
+    async def get(self,request_configuration: Optional[MicrosoftApplicationDataAccessRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[microsoft_application_data_access_settings.MicrosoftApplicationDataAccessSettings]:
         """
         Get the _settings_ in a microsoftApplicationDataAccessSettings object that specify access from Microsoft applications to Microsoft 365 user data in an organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[microsoft_application_data_access_settings.MicrosoftApplicationDataAccessSettings]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class MicrosoftApplicationDataAccessRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, microsoft_application_data_access_settings.MicrosoftApplicationDataAccessSettings, error_mapping)
+        return await self.request_adapter.send_async(request_info, microsoft_application_data_access_settings.MicrosoftApplicationDataAccessSettings, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[microsoft_application_data_access_settings.MicrosoftApplicationDataAccessSettings] = None, request_configuration: Optional[MicrosoftApplicationDataAccessRequestBuilderPatchRequestConfiguration] = None) -> Optional[microsoft_application_data_access_settings.MicrosoftApplicationDataAccessSettings]:
+    async def patch(self,body: Optional[microsoft_application_data_access_settings.MicrosoftApplicationDataAccessSettings] = None, request_configuration: Optional[MicrosoftApplicationDataAccessRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[microsoft_application_data_access_settings.MicrosoftApplicationDataAccessSettings]:
         """
         Update the settings in a microsoftApplicationDataAccessSettings object that specify access from Microsoft applications to Microsoft 365 user data in an organization.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[microsoft_application_data_access_settings.MicrosoftApplicationDataAccessSettings]
         """
         if body is None:
@@ -89,7 +92,7 @@ class MicrosoftApplicationDataAccessRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, microsoft_application_data_access_settings.MicrosoftApplicationDataAccessSettings, error_mapping)
+        return await self.request_adapter.send_async(request_info, microsoft_application_data_access_settings.MicrosoftApplicationDataAccessSettings, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[MicrosoftApplicationDataAccessRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

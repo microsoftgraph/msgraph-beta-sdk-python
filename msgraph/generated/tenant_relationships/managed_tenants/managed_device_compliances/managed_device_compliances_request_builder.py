@@ -44,11 +44,12 @@ class ManagedDeviceCompliancesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ManagedDeviceCompliancesRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_device_compliance_collection_response.ManagedDeviceComplianceCollectionResponse]:
+    async def get(self,request_configuration: Optional[ManagedDeviceCompliancesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_device_compliance_collection_response.ManagedDeviceComplianceCollectionResponse]:
         """
         Get a list of the managedDeviceCompliance objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_device_compliance_collection_response.ManagedDeviceComplianceCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class ManagedDeviceCompliancesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_device_compliance_collection_response.ManagedDeviceComplianceCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_device_compliance_collection_response.ManagedDeviceComplianceCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[managed_device_compliance.ManagedDeviceCompliance] = None, request_configuration: Optional[ManagedDeviceCompliancesRequestBuilderPostRequestConfiguration] = None) -> Optional[managed_device_compliance.ManagedDeviceCompliance]:
+    async def post(self,body: Optional[managed_device_compliance.ManagedDeviceCompliance] = None, request_configuration: Optional[ManagedDeviceCompliancesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_device_compliance.ManagedDeviceCompliance]:
         """
         Create new navigation property to managedDeviceCompliances for tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_device_compliance.ManagedDeviceCompliance]
         """
         if body is None:
@@ -81,7 +83,7 @@ class ManagedDeviceCompliancesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_device_compliance.ManagedDeviceCompliance, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_device_compliance.ManagedDeviceCompliance, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ManagedDeviceCompliancesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

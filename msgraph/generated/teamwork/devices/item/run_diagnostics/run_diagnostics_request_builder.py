@@ -34,11 +34,12 @@ class RunDiagnosticsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,request_configuration: Optional[RunDiagnosticsRequestBuilderPostRequestConfiguration] = None) -> None:
+    async def post(self,request_configuration: Optional[RunDiagnosticsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Run and generate diagnostic logs for the specified Microsoft Teams-enabled device. This API triggers a long-running operation used to generate logs for a device.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_post_request_information(
             request_configuration
@@ -49,7 +50,7 @@ class RunDiagnosticsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[RunDiagnosticsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

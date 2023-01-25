@@ -44,11 +44,12 @@ class TaxAreasRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[TaxAreasRequestBuilderGetRequestConfiguration] = None) -> Optional[tax_area_collection_response.TaxAreaCollectionResponse]:
+    async def get(self,request_configuration: Optional[TaxAreasRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tax_area_collection_response.TaxAreaCollectionResponse]:
         """
         Get taxAreas from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tax_area_collection_response.TaxAreaCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class TaxAreasRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tax_area_collection_response.TaxAreaCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, tax_area_collection_response.TaxAreaCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[tax_area.TaxArea] = None, request_configuration: Optional[TaxAreasRequestBuilderPostRequestConfiguration] = None) -> Optional[tax_area.TaxArea]:
+    async def post(self,body: Optional[tax_area.TaxArea] = None, request_configuration: Optional[TaxAreasRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tax_area.TaxArea]:
         """
         Create new navigation property to taxAreas for financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tax_area.TaxArea]
         """
         if body is None:
@@ -81,7 +83,7 @@ class TaxAreasRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tax_area.TaxArea, error_mapping)
+        return await self.request_adapter.send_async(request_info, tax_area.TaxArea, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TaxAreasRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -44,11 +44,12 @@ class CredentialUserRegistrationsSummariesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CredentialUserRegistrationsSummariesRequestBuilderGetRequestConfiguration] = None) -> Optional[credential_user_registrations_summary_collection_response.CredentialUserRegistrationsSummaryCollectionResponse]:
+    async def get(self,request_configuration: Optional[CredentialUserRegistrationsSummariesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[credential_user_registrations_summary_collection_response.CredentialUserRegistrationsSummaryCollectionResponse]:
         """
         Get a list of the credentialUserRegistrationsSummary objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[credential_user_registrations_summary_collection_response.CredentialUserRegistrationsSummaryCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class CredentialUserRegistrationsSummariesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, credential_user_registrations_summary_collection_response.CredentialUserRegistrationsSummaryCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, credential_user_registrations_summary_collection_response.CredentialUserRegistrationsSummaryCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[credential_user_registrations_summary.CredentialUserRegistrationsSummary] = None, request_configuration: Optional[CredentialUserRegistrationsSummariesRequestBuilderPostRequestConfiguration] = None) -> Optional[credential_user_registrations_summary.CredentialUserRegistrationsSummary]:
+    async def post(self,body: Optional[credential_user_registrations_summary.CredentialUserRegistrationsSummary] = None, request_configuration: Optional[CredentialUserRegistrationsSummariesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[credential_user_registrations_summary.CredentialUserRegistrationsSummary]:
         """
         Create new navigation property to credentialUserRegistrationsSummaries for tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[credential_user_registrations_summary.CredentialUserRegistrationsSummary]
         """
         if body is None:
@@ -81,7 +83,7 @@ class CredentialUserRegistrationsSummariesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, credential_user_registrations_summary.CredentialUserRegistrationsSummary, error_mapping)
+        return await self.request_adapter.send_async(request_info, credential_user_registrations_summary.CredentialUserRegistrationsSummary, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CredentialUserRegistrationsSummariesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

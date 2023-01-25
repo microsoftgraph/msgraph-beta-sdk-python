@@ -228,7 +228,7 @@ class OnlineMeeting(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new OnlineMeeting and sets the default values.
+        Instantiates a new onlineMeeting and sets the default values.
         """
         super().__init__()
         # Indicates whether attendees can turn on their camera.

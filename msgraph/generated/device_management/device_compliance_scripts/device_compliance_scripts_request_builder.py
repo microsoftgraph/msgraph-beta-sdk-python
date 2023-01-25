@@ -44,11 +44,12 @@ class DeviceComplianceScriptsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DeviceComplianceScriptsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_compliance_script_collection_response.DeviceComplianceScriptCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceComplianceScriptsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_compliance_script_collection_response.DeviceComplianceScriptCollectionResponse]:
         """
         The list of device compliance scripts associated with the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_compliance_script_collection_response.DeviceComplianceScriptCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class DeviceComplianceScriptsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_compliance_script_collection_response.DeviceComplianceScriptCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_compliance_script_collection_response.DeviceComplianceScriptCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[device_compliance_script.DeviceComplianceScript] = None, request_configuration: Optional[DeviceComplianceScriptsRequestBuilderPostRequestConfiguration] = None) -> Optional[device_compliance_script.DeviceComplianceScript]:
+    async def post(self,body: Optional[device_compliance_script.DeviceComplianceScript] = None, request_configuration: Optional[DeviceComplianceScriptsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_compliance_script.DeviceComplianceScript]:
         """
         Create new navigation property to deviceComplianceScripts for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_compliance_script.DeviceComplianceScript]
         """
         if body is None:
@@ -81,7 +83,7 @@ class DeviceComplianceScriptsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_compliance_script.DeviceComplianceScript, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_compliance_script.DeviceComplianceScript, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceComplianceScriptsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -45,11 +45,12 @@ class PrivilegedRoleAssignmentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PrivilegedRoleAssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_role_assignment_collection_response.PrivilegedRoleAssignmentCollectionResponse]:
+    async def get(self,request_configuration: Optional[PrivilegedRoleAssignmentsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_role_assignment_collection_response.PrivilegedRoleAssignmentCollectionResponse]:
         """
         Retrieve a list of privilegedRoleAssignment objects, which correspond to all role assignments for the organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_role_assignment_collection_response.PrivilegedRoleAssignmentCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,7 +62,7 @@ class PrivilegedRoleAssignmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_role_assignment_collection_response.PrivilegedRoleAssignmentCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_role_assignment_collection_response.PrivilegedRoleAssignmentCollectionResponse, response_handler, error_mapping)
     
     def my(self,) -> my_request_builder.MyRequestBuilder:
         """
@@ -70,12 +71,13 @@ class PrivilegedRoleAssignmentsRequestBuilder():
         """
         return my_request_builder.MyRequestBuilder(self.request_adapter, self.path_parameters)
     
-    async def post(self,body: Optional[privileged_role_assignment.PrivilegedRoleAssignment] = None, request_configuration: Optional[PrivilegedRoleAssignmentsRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_role_assignment.PrivilegedRoleAssignment]:
+    async def post(self,body: Optional[privileged_role_assignment.PrivilegedRoleAssignment] = None, request_configuration: Optional[PrivilegedRoleAssignmentsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_role_assignment.PrivilegedRoleAssignment]:
         """
         Use this API to create a new  privilegedRoleAssignment.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_role_assignment.PrivilegedRoleAssignment]
         """
         if body is None:
@@ -89,7 +91,7 @@ class PrivilegedRoleAssignmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_role_assignment.PrivilegedRoleAssignment, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_role_assignment.PrivilegedRoleAssignment, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedRoleAssignmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

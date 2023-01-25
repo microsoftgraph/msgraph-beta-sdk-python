@@ -44,11 +44,12 @@ class AuthenticationEventListenersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AuthenticationEventListenersRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication_event_listener_collection_response.AuthenticationEventListenerCollectionResponse]:
+    async def get(self,request_configuration: Optional[AuthenticationEventListenersRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_event_listener_collection_response.AuthenticationEventListenerCollectionResponse]:
         """
         Get authenticationEventListeners from identity
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_event_listener_collection_response.AuthenticationEventListenerCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class AuthenticationEventListenersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_event_listener_collection_response.AuthenticationEventListenerCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_event_listener_collection_response.AuthenticationEventListenerCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[authentication_event_listener.AuthenticationEventListener] = None, request_configuration: Optional[AuthenticationEventListenersRequestBuilderPostRequestConfiguration] = None) -> Optional[authentication_event_listener.AuthenticationEventListener]:
+    async def post(self,body: Optional[authentication_event_listener.AuthenticationEventListener] = None, request_configuration: Optional[AuthenticationEventListenersRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_event_listener.AuthenticationEventListener]:
         """
         Create new navigation property to authenticationEventListeners for identity
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_event_listener.AuthenticationEventListener]
         """
         if body is None:
@@ -81,7 +83,7 @@ class AuthenticationEventListenersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_event_listener.AuthenticationEventListener, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_event_listener.AuthenticationEventListener, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AuthenticationEventListenersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

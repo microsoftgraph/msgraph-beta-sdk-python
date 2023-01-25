@@ -35,11 +35,12 @@ class PrivilegedSignupStatusItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PrivilegedSignupStatusItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[PrivilegedSignupStatusItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
-        Delete entity from privilegedSignupStatus by key (id)
+        Delete entity from privilegedSignupStatus
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class PrivilegedSignupStatusItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[PrivilegedSignupStatusItemRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_signup_status.PrivilegedSignupStatus]:
+    async def get(self,request_configuration: Optional[PrivilegedSignupStatusItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_signup_status.PrivilegedSignupStatus]:
         """
-        Get entity from privilegedSignupStatus by key (id)
+        Get entity from privilegedSignupStatus by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_signup_status.PrivilegedSignupStatus]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class PrivilegedSignupStatusItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_signup_status.PrivilegedSignupStatus, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_signup_status.PrivilegedSignupStatus, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[privileged_signup_status.PrivilegedSignupStatus] = None, request_configuration: Optional[PrivilegedSignupStatusItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[privileged_signup_status.PrivilegedSignupStatus]:
+    async def patch(self,body: Optional[privileged_signup_status.PrivilegedSignupStatus] = None, request_configuration: Optional[PrivilegedSignupStatusItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_signup_status.PrivilegedSignupStatus]:
         """
-        Update entity in privilegedSignupStatus by key (id)
+        Update entity in privilegedSignupStatus
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_signup_status.PrivilegedSignupStatus]
         """
         if body is None:
@@ -89,11 +92,11 @@ class PrivilegedSignupStatusItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_signup_status.PrivilegedSignupStatus, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_signup_status.PrivilegedSignupStatus, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PrivilegedSignupStatusItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete entity from privilegedSignupStatus by key (id)
+        Delete entity from privilegedSignupStatus
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -109,7 +112,7 @@ class PrivilegedSignupStatusItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedSignupStatusItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get entity from privilegedSignupStatus by key (id)
+        Get entity from privilegedSignupStatus by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -127,7 +130,7 @@ class PrivilegedSignupStatusItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[privileged_signup_status.PrivilegedSignupStatus] = None, request_configuration: Optional[PrivilegedSignupStatusItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update entity in privilegedSignupStatus by key (id)
+        Update entity in privilegedSignupStatus
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -161,7 +164,7 @@ class PrivilegedSignupStatusItemRequestBuilder():
     @dataclass
     class PrivilegedSignupStatusItemRequestBuilderGetQueryParameters():
         """
-        Get entity from privilegedSignupStatus by key (id)
+        Get entity from privilegedSignupStatus by key
         """
         # Expand related entities
         expand: Optional[List[str]] = None

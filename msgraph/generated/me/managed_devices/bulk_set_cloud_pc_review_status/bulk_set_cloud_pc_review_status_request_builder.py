@@ -36,12 +36,13 @@ class BulkSetCloudPcReviewStatusRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[bulk_set_cloud_pc_review_status_post_request_body.BulkSetCloudPcReviewStatusPostRequestBody] = None, request_configuration: Optional[BulkSetCloudPcReviewStatusRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_pc_bulk_remote_action_result.CloudPcBulkRemoteActionResult]:
+    async def post(self,body: Optional[bulk_set_cloud_pc_review_status_post_request_body.BulkSetCloudPcReviewStatusPostRequestBody] = None, request_configuration: Optional[BulkSetCloudPcReviewStatusRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_bulk_remote_action_result.CloudPcBulkRemoteActionResult]:
         """
         Set the review status of multiple Cloud PC devices with a single request that includes the IDs of Intune managed devices.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_bulk_remote_action_result.CloudPcBulkRemoteActionResult]
         """
         if body is None:
@@ -55,7 +56,7 @@ class BulkSetCloudPcReviewStatusRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_bulk_remote_action_result.CloudPcBulkRemoteActionResult, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_bulk_remote_action_result.CloudPcBulkRemoteActionResult, response_handler, error_mapping)
     
     def to_post_request_information(self,body: Optional[bulk_set_cloud_pc_review_status_post_request_body.BulkSetCloudPcReviewStatusPostRequestBody] = None, request_configuration: Optional[BulkSetCloudPcReviewStatusRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

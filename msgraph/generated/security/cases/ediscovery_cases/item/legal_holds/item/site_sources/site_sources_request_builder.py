@@ -44,11 +44,12 @@ class SiteSourcesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SiteSourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[site_source_collection_response.SiteSourceCollectionResponse]:
+    async def get(self,request_configuration: Optional[SiteSourcesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[site_source_collection_response.SiteSourceCollectionResponse]:
         """
         Data sources that represent SharePoint sites.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[site_source_collection_response.SiteSourceCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class SiteSourcesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, site_source_collection_response.SiteSourceCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, site_source_collection_response.SiteSourceCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[site_source.SiteSource] = None, request_configuration: Optional[SiteSourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[site_source.SiteSource]:
+    async def post(self,body: Optional[site_source.SiteSource] = None, request_configuration: Optional[SiteSourcesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[site_source.SiteSource]:
         """
         Create a new siteSource object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[site_source.SiteSource]
         """
         if body is None:
@@ -81,7 +83,7 @@ class SiteSourcesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, site_source.SiteSource, error_mapping)
+        return await self.request_adapter.send_async(request_info, site_source.SiteSource, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SiteSourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

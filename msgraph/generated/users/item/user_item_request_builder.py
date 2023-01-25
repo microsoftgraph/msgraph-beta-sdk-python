@@ -963,11 +963,12 @@ class UserItemRequestBuilder():
         url_tpl_params["directoryObject%2Did"] = id
         return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[UserItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[UserItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete user.   When deleted, user resources are moved to a temporary container and can be restored within 30 days.  After that time, they are permanently deleted.  To learn more, see deletedItems.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -978,7 +979,7 @@ class UserItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
     def device_enrollment_configurations_by_id(self,id: str) -> device_enrollment_configuration_item_request_builder.DeviceEnrollmentConfigurationItemRequestBuilder:
         """
@@ -1130,11 +1131,12 @@ class UserItemRequestBuilder():
         url_tpl_params["site%2Did"] = id
         return site_item_request_builder.SiteItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[UserItemRequestBuilderGetRequestConfiguration] = None) -> Optional[user.User]:
+    async def get(self,request_configuration: Optional[UserItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user.User]:
         """
         Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option. Because the **user** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **user** instance.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user.User]
         """
         request_info = self.to_get_request_information(
@@ -1146,7 +1148,7 @@ class UserItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user.User, error_mapping)
+        return await self.request_adapter.send_async(request_info, user.User, response_handler, error_mapping)
     
     def get_effective_device_enrollment_configurations(self,) -> get_effective_device_enrollment_configurations_request_builder.GetEffectiveDeviceEnrollmentConfigurationsRequestBuilder:
         """
@@ -1379,12 +1381,13 @@ class UserItemRequestBuilder():
         url_tpl_params["directoryObject%2Did"] = id
         return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[user.User] = None, request_configuration: Optional[UserItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[user.User]:
+    async def patch(self,body: Optional[user.User] = None, request_configuration: Optional[UserItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user.User]:
         """
         Update the properties of a user object. Not all properties can be updated by Member or Guest users with their default permissions without Administrator roles. Compare member and guest default permissions to see properties they can manage.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user.User]
         """
         if body is None:
@@ -1398,7 +1401,7 @@ class UserItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user.User, error_mapping)
+        return await self.request_adapter.send_async(request_info, user.User, response_handler, error_mapping)
     
     def pending_access_review_instances_by_id(self,id: str) -> access_review_instance_item_request_builder.AccessReviewInstanceItemRequestBuilder:
         """

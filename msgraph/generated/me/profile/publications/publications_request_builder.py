@@ -44,11 +44,12 @@ class PublicationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PublicationsRequestBuilderGetRequestConfiguration] = None) -> Optional[item_publication_collection_response.ItemPublicationCollectionResponse]:
+    async def get(self,request_configuration: Optional[PublicationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[item_publication_collection_response.ItemPublicationCollectionResponse]:
         """
         Retrieve a list of itemPublication objects from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[item_publication_collection_response.ItemPublicationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class PublicationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, item_publication_collection_response.ItemPublicationCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, item_publication_collection_response.ItemPublicationCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[item_publication.ItemPublication] = None, request_configuration: Optional[PublicationsRequestBuilderPostRequestConfiguration] = None) -> Optional[item_publication.ItemPublication]:
+    async def post(self,body: Optional[item_publication.ItemPublication] = None, request_configuration: Optional[PublicationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[item_publication.ItemPublication]:
         """
         Create a new itemPublication object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[item_publication.ItemPublication]
         """
         if body is None:
@@ -81,7 +83,7 @@ class PublicationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, item_publication.ItemPublication, error_mapping)
+        return await self.request_adapter.send_async(request_info, item_publication.ItemPublication, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PublicationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

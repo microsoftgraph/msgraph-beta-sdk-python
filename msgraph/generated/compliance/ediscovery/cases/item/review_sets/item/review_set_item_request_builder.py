@@ -60,11 +60,12 @@ class ReviewSetItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ReviewSetItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ReviewSetItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property reviewSets for compliance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -75,13 +76,14 @@ class ReviewSetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[ReviewSetItemRequestBuilderGetRequestConfiguration] = None) -> Optional[review_set.ReviewSet]:
+    async def get(self,request_configuration: Optional[ReviewSetItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[review_set.ReviewSet]:
         """
         Returns a list of reviewSet objects in the case. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[review_set.ReviewSet]
         """
         request_info = self.to_get_request_information(
@@ -93,14 +95,15 @@ class ReviewSetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, review_set.ReviewSet, error_mapping)
+        return await self.request_adapter.send_async(request_info, review_set.ReviewSet, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[review_set.ReviewSet] = None, request_configuration: Optional[ReviewSetItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[review_set.ReviewSet]:
+    async def patch(self,body: Optional[review_set.ReviewSet] = None, request_configuration: Optional[ReviewSetItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[review_set.ReviewSet]:
         """
         Update the navigation property reviewSets in compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[review_set.ReviewSet]
         """
         if body is None:
@@ -114,7 +117,7 @@ class ReviewSetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, review_set.ReviewSet, error_mapping)
+        return await self.request_adapter.send_async(request_info, review_set.ReviewSet, response_handler, error_mapping)
     
     def queries_by_id(self,id: str) -> review_set_query_item_request_builder.ReviewSetQueryItemRequestBuilder:
         """

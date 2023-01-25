@@ -44,11 +44,12 @@ class DelegatedAdminCustomersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DelegatedAdminCustomersRequestBuilderGetRequestConfiguration] = None) -> Optional[delegated_admin_customer_collection_response.DelegatedAdminCustomerCollectionResponse]:
+    async def get(self,request_configuration: Optional[DelegatedAdminCustomersRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[delegated_admin_customer_collection_response.DelegatedAdminCustomerCollectionResponse]:
         """
         Get a list of the delegatedAdminCustomer objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[delegated_admin_customer_collection_response.DelegatedAdminCustomerCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class DelegatedAdminCustomersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, delegated_admin_customer_collection_response.DelegatedAdminCustomerCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, delegated_admin_customer_collection_response.DelegatedAdminCustomerCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[delegated_admin_customer.DelegatedAdminCustomer] = None, request_configuration: Optional[DelegatedAdminCustomersRequestBuilderPostRequestConfiguration] = None) -> Optional[delegated_admin_customer.DelegatedAdminCustomer]:
+    async def post(self,body: Optional[delegated_admin_customer.DelegatedAdminCustomer] = None, request_configuration: Optional[DelegatedAdminCustomersRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[delegated_admin_customer.DelegatedAdminCustomer]:
         """
         Create new navigation property to delegatedAdminCustomers for tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[delegated_admin_customer.DelegatedAdminCustomer]
         """
         if body is None:
@@ -81,7 +83,7 @@ class DelegatedAdminCustomersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, delegated_admin_customer.DelegatedAdminCustomer, error_mapping)
+        return await self.request_adapter.send_async(request_info, delegated_admin_customer.DelegatedAdminCustomer, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DelegatedAdminCustomersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

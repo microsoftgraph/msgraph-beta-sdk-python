@@ -44,11 +44,12 @@ class MyRolesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[MyRolesRequestBuilderGetRequestConfiguration] = None) -> Optional[my_role_collection_response.MyRoleCollectionResponse]:
+    async def get(self,request_configuration: Optional[MyRolesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[my_role_collection_response.MyRoleCollectionResponse]:
         """
         Get the roles that a signed-in user has through a delegated relationship across managed tenants. For information on the types of delegated relationships between a Managed Service Provider (MSP) who uses Microsoft 365 Lighthouse, and their business customers with Microsoft 365 Business Premium tenants, see the following articles on the Partner Center:- Delegated administration privileges (DAP)- Granular delegated admin privileges (GDAP)
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[my_role_collection_response.MyRoleCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class MyRolesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, my_role_collection_response.MyRoleCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, my_role_collection_response.MyRoleCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[my_role.MyRole] = None, request_configuration: Optional[MyRolesRequestBuilderPostRequestConfiguration] = None) -> Optional[my_role.MyRole]:
+    async def post(self,body: Optional[my_role.MyRole] = None, request_configuration: Optional[MyRolesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[my_role.MyRole]:
         """
         Create new navigation property to myRoles for tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[my_role.MyRole]
         """
         if body is None:
@@ -81,7 +83,7 @@ class MyRolesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, my_role.MyRole, error_mapping)
+        return await self.request_adapter.send_async(request_info, my_role.MyRole, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[MyRolesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -64,7 +64,7 @@ class AndroidManagedStoreAccountEnterpriseSettings(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new AndroidManagedStoreAccountEnterpriseSettings and sets the default values.
+        Instantiates a new androidManagedStoreAccountEnterpriseSettings and sets the default values.
         """
         super().__init__()
         # Company codes for AndroidManagedStoreAccountEnterpriseSettings

@@ -132,11 +132,12 @@ class OnPremisesPublishingProfileItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[OnPremisesPublishingProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[OnPremisesPublishingProfileItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
-        Delete entity from onPremisesPublishingProfiles by key (id)
+        Delete entity from onPremisesPublishingProfiles
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -147,13 +148,14 @@ class OnPremisesPublishingProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[OnPremisesPublishingProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[on_premises_publishing_profile.OnPremisesPublishingProfile]:
+    async def get(self,request_configuration: Optional[OnPremisesPublishingProfileItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[on_premises_publishing_profile.OnPremisesPublishingProfile]:
         """
-        Get entity from onPremisesPublishingProfiles by key (id)
+        Get entity from onPremisesPublishingProfiles by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[on_premises_publishing_profile.OnPremisesPublishingProfile]
         """
         request_info = self.to_get_request_information(
@@ -165,14 +167,15 @@ class OnPremisesPublishingProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, on_premises_publishing_profile.OnPremisesPublishingProfile, error_mapping)
+        return await self.request_adapter.send_async(request_info, on_premises_publishing_profile.OnPremisesPublishingProfile, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[on_premises_publishing_profile.OnPremisesPublishingProfile] = None, request_configuration: Optional[OnPremisesPublishingProfileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[on_premises_publishing_profile.OnPremisesPublishingProfile]:
+    async def patch(self,body: Optional[on_premises_publishing_profile.OnPremisesPublishingProfile] = None, request_configuration: Optional[OnPremisesPublishingProfileItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[on_premises_publishing_profile.OnPremisesPublishingProfile]:
         """
-        Update entity in onPremisesPublishingProfiles by key (id)
+        Update entity in onPremisesPublishingProfiles
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[on_premises_publishing_profile.OnPremisesPublishingProfile]
         """
         if body is None:
@@ -186,7 +189,7 @@ class OnPremisesPublishingProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, on_premises_publishing_profile.OnPremisesPublishingProfile, error_mapping)
+        return await self.request_adapter.send_async(request_info, on_premises_publishing_profile.OnPremisesPublishingProfile, response_handler, error_mapping)
     
     def published_resources_by_id(self,id: str) -> published_resource_item_request_builder.PublishedResourceItemRequestBuilder:
         """
@@ -203,7 +206,7 @@ class OnPremisesPublishingProfileItemRequestBuilder():
     
     def to_delete_request_information(self,request_configuration: Optional[OnPremisesPublishingProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete entity from onPremisesPublishingProfiles by key (id)
+        Delete entity from onPremisesPublishingProfiles
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -219,7 +222,7 @@ class OnPremisesPublishingProfileItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[OnPremisesPublishingProfileItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get entity from onPremisesPublishingProfiles by key (id)
+        Get entity from onPremisesPublishingProfiles by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -237,7 +240,7 @@ class OnPremisesPublishingProfileItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[on_premises_publishing_profile.OnPremisesPublishingProfile] = None, request_configuration: Optional[OnPremisesPublishingProfileItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update entity in onPremisesPublishingProfiles by key (id)
+        Update entity in onPremisesPublishingProfiles
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -271,7 +274,7 @@ class OnPremisesPublishingProfileItemRequestBuilder():
     @dataclass
     class OnPremisesPublishingProfileItemRequestBuilderGetQueryParameters():
         """
-        Get entity from onPremisesPublishingProfiles by key (id)
+        Get entity from onPremisesPublishingProfiles by key
         """
         # Expand related entities
         expand: Optional[List[str]] = None

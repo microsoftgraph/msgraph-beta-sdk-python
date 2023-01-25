@@ -36,12 +36,13 @@ class GetPasswordSingleSignOnCredentialsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[get_password_single_sign_on_credentials_post_request_body.GetPasswordSingleSignOnCredentialsPostRequestBody] = None, request_configuration: Optional[GetPasswordSingleSignOnCredentialsRequestBuilderPostRequestConfiguration] = None) -> Optional[password_single_sign_on_credential_set.PasswordSingleSignOnCredentialSet]:
+    async def post(self,body: Optional[get_password_single_sign_on_credentials_post_request_body.GetPasswordSingleSignOnCredentialsPostRequestBody] = None, request_configuration: Optional[GetPasswordSingleSignOnCredentialsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[password_single_sign_on_credential_set.PasswordSingleSignOnCredentialSet]:
         """
         Get a list of single sign-on credentials using a password for a user or group.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[password_single_sign_on_credential_set.PasswordSingleSignOnCredentialSet]
         """
         if body is None:
@@ -55,7 +56,7 @@ class GetPasswordSingleSignOnCredentialsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, password_single_sign_on_credential_set.PasswordSingleSignOnCredentialSet, error_mapping)
+        return await self.request_adapter.send_async(request_info, password_single_sign_on_credential_set.PasswordSingleSignOnCredentialSet, response_handler, error_mapping)
     
     def to_post_request_information(self,body: Optional[get_password_single_sign_on_credentials_post_request_body.GetPasswordSingleSignOnCredentialsPostRequestBody] = None, request_configuration: Optional[GetPasswordSingleSignOnCredentialsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

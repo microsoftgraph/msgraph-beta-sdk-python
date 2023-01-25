@@ -44,11 +44,12 @@ class SimulationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SimulationsRequestBuilderGetRequestConfiguration] = None) -> Optional[simulation_collection_response.SimulationCollectionResponse]:
+    async def get(self,request_configuration: Optional[SimulationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[simulation_collection_response.SimulationCollectionResponse]:
         """
         Get a list of attack simulation campaigns for a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[simulation_collection_response.SimulationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class SimulationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, simulation_collection_response.SimulationCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, simulation_collection_response.SimulationCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[simulation.Simulation] = None, request_configuration: Optional[SimulationsRequestBuilderPostRequestConfiguration] = None) -> Optional[simulation.Simulation]:
+    async def post(self,body: Optional[simulation.Simulation] = None, request_configuration: Optional[SimulationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[simulation.Simulation]:
         """
-        Create an attack simulation campaign for a tenant.
+        Create new navigation property to simulations for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[simulation.Simulation]
         """
         if body is None:
@@ -81,7 +83,7 @@ class SimulationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, simulation.Simulation, error_mapping)
+        return await self.request_adapter.send_async(request_info, simulation.Simulation, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SimulationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -103,7 +105,7 @@ class SimulationsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[simulation.Simulation] = None, request_configuration: Optional[SimulationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create an attack simulation campaign for a tenant.
+        Create new navigation property to simulations for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

@@ -44,11 +44,12 @@ class ApprovalWorkflowProvidersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ApprovalWorkflowProvidersRequestBuilderGetRequestConfiguration] = None) -> Optional[approval_workflow_provider_collection_response.ApprovalWorkflowProviderCollectionResponse]:
+    async def get(self,request_configuration: Optional[ApprovalWorkflowProvidersRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[approval_workflow_provider_collection_response.ApprovalWorkflowProviderCollectionResponse]:
         """
         Get entities from approvalWorkflowProviders
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[approval_workflow_provider_collection_response.ApprovalWorkflowProviderCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class ApprovalWorkflowProvidersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, approval_workflow_provider_collection_response.ApprovalWorkflowProviderCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, approval_workflow_provider_collection_response.ApprovalWorkflowProviderCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[approval_workflow_provider.ApprovalWorkflowProvider] = None, request_configuration: Optional[ApprovalWorkflowProvidersRequestBuilderPostRequestConfiguration] = None) -> Optional[approval_workflow_provider.ApprovalWorkflowProvider]:
+    async def post(self,body: Optional[approval_workflow_provider.ApprovalWorkflowProvider] = None, request_configuration: Optional[ApprovalWorkflowProvidersRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[approval_workflow_provider.ApprovalWorkflowProvider]:
         """
         Add new entity to approvalWorkflowProviders
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[approval_workflow_provider.ApprovalWorkflowProvider]
         """
         if body is None:
@@ -81,7 +83,7 @@ class ApprovalWorkflowProvidersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, approval_workflow_provider.ApprovalWorkflowProvider, error_mapping)
+        return await self.request_adapter.send_async(request_info, approval_workflow_provider.ApprovalWorkflowProvider, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ApprovalWorkflowProvidersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

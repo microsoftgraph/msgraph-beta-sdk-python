@@ -12,6 +12,9 @@ management_state = lazy_import('msgraph.generated.models.management_state')
 owner_type = lazy_import('msgraph.generated.models.owner_type')
 
 class ComanagementEligibleDevice(entity.Entity):
+    """
+    Device Co-Management eligibility state
+    """
     @property
     def client_registration_status(self,) -> Optional[device_registration_state.DeviceRegistrationState]:
         """
@@ -31,7 +34,7 @@ class ComanagementEligibleDevice(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new ComanagementEligibleDevice and sets the default values.
+        Instantiates a new comanagementEligibleDevice and sets the default values.
         """
         super().__init__()
         # Device registration status.

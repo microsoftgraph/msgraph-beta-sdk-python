@@ -9,6 +9,9 @@ device_management_exchange_connector_type = lazy_import('msgraph.generated.model
 entity = lazy_import('msgraph.generated.models.entity')
 
 class DeviceManagementExchangeConnector(entity.Entity):
+    """
+    Entity which represents a connection to an Exchange environment.
+    """
     @property
     def connector_server_name(self,) -> Optional[str]:
         """
@@ -28,7 +31,7 @@ class DeviceManagementExchangeConnector(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new DeviceManagementExchangeConnector and sets the default values.
+        Instantiates a new deviceManagementExchangeConnector and sets the default values.
         """
         super().__init__()
         # The name of the server hosting the Exchange Connector.

@@ -65,11 +65,12 @@ class IosManagedAppProtectionItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[IosManagedAppProtectionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[IosManagedAppProtectionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property iosManagedAppProtections for deviceAppManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -80,13 +81,14 @@ class IosManagedAppProtectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[IosManagedAppProtectionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ios_managed_app_protection.IosManagedAppProtection]:
+    async def get(self,request_configuration: Optional[IosManagedAppProtectionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ios_managed_app_protection.IosManagedAppProtection]:
         """
         iOS managed app policies.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ios_managed_app_protection.IosManagedAppProtection]
         """
         request_info = self.to_get_request_information(
@@ -98,14 +100,15 @@ class IosManagedAppProtectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ios_managed_app_protection.IosManagedAppProtection, error_mapping)
+        return await self.request_adapter.send_async(request_info, ios_managed_app_protection.IosManagedAppProtection, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[ios_managed_app_protection.IosManagedAppProtection] = None, request_configuration: Optional[IosManagedAppProtectionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ios_managed_app_protection.IosManagedAppProtection]:
+    async def patch(self,body: Optional[ios_managed_app_protection.IosManagedAppProtection] = None, request_configuration: Optional[IosManagedAppProtectionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ios_managed_app_protection.IosManagedAppProtection]:
         """
         Update the navigation property iosManagedAppProtections in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ios_managed_app_protection.IosManagedAppProtection]
         """
         if body is None:
@@ -119,7 +122,7 @@ class IosManagedAppProtectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ios_managed_app_protection.IosManagedAppProtection, error_mapping)
+        return await self.request_adapter.send_async(request_info, ios_managed_app_protection.IosManagedAppProtection, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[IosManagedAppProtectionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

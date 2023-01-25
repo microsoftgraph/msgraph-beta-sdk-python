@@ -44,11 +44,12 @@ class ServiceManagementDetailsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ServiceManagementDetailsRequestBuilderGetRequestConfiguration] = None) -> Optional[delegated_admin_service_management_detail_collection_response.DelegatedAdminServiceManagementDetailCollectionResponse]:
+    async def get(self,request_configuration: Optional[ServiceManagementDetailsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[delegated_admin_service_management_detail_collection_response.DelegatedAdminServiceManagementDetailCollectionResponse]:
         """
         Get a list of the delegatedAdminServiceManagementDetail objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[delegated_admin_service_management_detail_collection_response.DelegatedAdminServiceManagementDetailCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class ServiceManagementDetailsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, delegated_admin_service_management_detail_collection_response.DelegatedAdminServiceManagementDetailCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, delegated_admin_service_management_detail_collection_response.DelegatedAdminServiceManagementDetailCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[delegated_admin_service_management_detail.DelegatedAdminServiceManagementDetail] = None, request_configuration: Optional[ServiceManagementDetailsRequestBuilderPostRequestConfiguration] = None) -> Optional[delegated_admin_service_management_detail.DelegatedAdminServiceManagementDetail]:
+    async def post(self,body: Optional[delegated_admin_service_management_detail.DelegatedAdminServiceManagementDetail] = None, request_configuration: Optional[ServiceManagementDetailsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[delegated_admin_service_management_detail.DelegatedAdminServiceManagementDetail]:
         """
         Create new navigation property to serviceManagementDetails for tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[delegated_admin_service_management_detail.DelegatedAdminServiceManagementDetail]
         """
         if body is None:
@@ -81,7 +83,7 @@ class ServiceManagementDetailsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, delegated_admin_service_management_detail.DelegatedAdminServiceManagementDetail, error_mapping)
+        return await self.request_adapter.send_async(request_info, delegated_admin_service_management_detail.DelegatedAdminServiceManagementDetail, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ServiceManagementDetailsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

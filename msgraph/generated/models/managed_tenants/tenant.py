@@ -11,7 +11,7 @@ tenant_status_information = lazy_import('msgraph.generated.models.managed_tenant
 class Tenant(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new Tenant and sets the default values.
+        Instantiates a new tenant and sets the default values.
         """
         super().__init__()
         # The relationship details for the tenant with the managing entity.

@@ -35,11 +35,12 @@ class DeviceManagementConfigurationPolicyAssignmentItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DeviceManagementConfigurationPolicyAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceManagementConfigurationPolicyAssignmentItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property assignments for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class DeviceManagementConfigurationPolicyAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceManagementConfigurationPolicyAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_configuration_policy_assignment.DeviceManagementConfigurationPolicyAssignment]:
+    async def get(self,request_configuration: Optional[DeviceManagementConfigurationPolicyAssignmentItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_configuration_policy_assignment.DeviceManagementConfigurationPolicyAssignment]:
         """
         Policy assignments
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_configuration_policy_assignment.DeviceManagementConfigurationPolicyAssignment]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class DeviceManagementConfigurationPolicyAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_configuration_policy_assignment.DeviceManagementConfigurationPolicyAssignment, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_configuration_policy_assignment.DeviceManagementConfigurationPolicyAssignment, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[device_management_configuration_policy_assignment.DeviceManagementConfigurationPolicyAssignment] = None, request_configuration: Optional[DeviceManagementConfigurationPolicyAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management_configuration_policy_assignment.DeviceManagementConfigurationPolicyAssignment]:
+    async def patch(self,body: Optional[device_management_configuration_policy_assignment.DeviceManagementConfigurationPolicyAssignment] = None, request_configuration: Optional[DeviceManagementConfigurationPolicyAssignmentItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_configuration_policy_assignment.DeviceManagementConfigurationPolicyAssignment]:
         """
         Update the navigation property assignments in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_configuration_policy_assignment.DeviceManagementConfigurationPolicyAssignment]
         """
         if body is None:
@@ -89,7 +92,7 @@ class DeviceManagementConfigurationPolicyAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_configuration_policy_assignment.DeviceManagementConfigurationPolicyAssignment, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_configuration_policy_assignment.DeviceManagementConfigurationPolicyAssignment, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceManagementConfigurationPolicyAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

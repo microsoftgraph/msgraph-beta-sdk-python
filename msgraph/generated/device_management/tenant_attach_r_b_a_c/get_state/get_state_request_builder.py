@@ -35,11 +35,12 @@ class GetStateRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[GetStateRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_attach_r_b_a_c_state.TenantAttachRBACState]:
+    async def get(self,request_configuration: Optional[GetStateRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant_attach_r_b_a_c_state.TenantAttachRBACState]:
         """
         Invoke function getState
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_attach_r_b_a_c_state.TenantAttachRBACState]
         """
         request_info = self.to_get_request_information(
@@ -51,7 +52,7 @@ class GetStateRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant_attach_r_b_a_c_state.TenantAttachRBACState, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant_attach_r_b_a_c_state.TenantAttachRBACState, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetStateRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
