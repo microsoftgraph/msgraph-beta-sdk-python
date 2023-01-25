@@ -35,11 +35,12 @@ class ItemCategoryItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ItemCategoryItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ItemCategoryItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property itemCategories for financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class ItemCategoryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[ItemCategoryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[item_category.ItemCategory]:
+    async def get(self,request_configuration: Optional[ItemCategoryItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[item_category.ItemCategory]:
         """
         Get itemCategories from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[item_category.ItemCategory]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class ItemCategoryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, item_category.ItemCategory, error_mapping)
+        return await self.request_adapter.send_async(request_info, item_category.ItemCategory, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[item_category.ItemCategory] = None, request_configuration: Optional[ItemCategoryItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[item_category.ItemCategory]:
+    async def patch(self,body: Optional[item_category.ItemCategory] = None, request_configuration: Optional[ItemCategoryItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[item_category.ItemCategory]:
         """
         Update the navigation property itemCategories in financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[item_category.ItemCategory]
         """
         if body is None:
@@ -89,7 +92,7 @@ class ItemCategoryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, item_category.ItemCategory, error_mapping)
+        return await self.request_adapter.send_async(request_info, item_category.ItemCategory, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ItemCategoryItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -67,11 +67,12 @@ class UpdatableAssetItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[UpdatableAssetItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[UpdatableAssetItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property exclusions for admin
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -82,13 +83,14 @@ class UpdatableAssetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[UpdatableAssetItemRequestBuilderGetRequestConfiguration] = None) -> Optional[updatable_asset.UpdatableAsset]:
+    async def get(self,request_configuration: Optional[UpdatableAssetItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[updatable_asset.UpdatableAsset]:
         """
         Specifies the assets to exclude from the audience.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[updatable_asset.UpdatableAsset]
         """
         request_info = self.to_get_request_information(
@@ -100,14 +102,15 @@ class UpdatableAssetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, updatable_asset.UpdatableAsset, error_mapping)
+        return await self.request_adapter.send_async(request_info, updatable_asset.UpdatableAsset, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[updatable_asset.UpdatableAsset] = None, request_configuration: Optional[UpdatableAssetItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[updatable_asset.UpdatableAsset]:
+    async def patch(self,body: Optional[updatable_asset.UpdatableAsset] = None, request_configuration: Optional[UpdatableAssetItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[updatable_asset.UpdatableAsset]:
         """
         Update the navigation property exclusions in admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[updatable_asset.UpdatableAsset]
         """
         if body is None:
@@ -121,7 +124,7 @@ class UpdatableAssetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, updatable_asset.UpdatableAsset, error_mapping)
+        return await self.request_adapter.send_async(request_info, updatable_asset.UpdatableAsset, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UpdatableAssetItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -75,11 +75,12 @@ class DirectorySettingTemplateItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DirectorySettingTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[DirectorySettingTemplateItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
-        Delete entity from directorySettingTemplates by key (id)
+        Delete entity from directorySettingTemplates
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -90,13 +91,14 @@ class DirectorySettingTemplateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[DirectorySettingTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_setting_template.DirectorySettingTemplate]:
+    async def get(self,request_configuration: Optional[DirectorySettingTemplateItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_setting_template.DirectorySettingTemplate]:
         """
         A directory setting template represents a template of settings from which settings may be created within a tenant. This operation allows retrieval of the properties of the **directorySettingTemplate** object, including the available settings and their defaults.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_setting_template.DirectorySettingTemplate]
         """
         request_info = self.to_get_request_information(
@@ -108,14 +110,15 @@ class DirectorySettingTemplateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_setting_template.DirectorySettingTemplate, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_setting_template.DirectorySettingTemplate, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[directory_setting_template.DirectorySettingTemplate] = None, request_configuration: Optional[DirectorySettingTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[directory_setting_template.DirectorySettingTemplate]:
+    async def patch(self,body: Optional[directory_setting_template.DirectorySettingTemplate] = None, request_configuration: Optional[DirectorySettingTemplateItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_setting_template.DirectorySettingTemplate]:
         """
-        Update entity in directorySettingTemplates by key (id)
+        Update entity in directorySettingTemplates
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_setting_template.DirectorySettingTemplate]
         """
         if body is None:
@@ -129,11 +132,11 @@ class DirectorySettingTemplateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_setting_template.DirectorySettingTemplate, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_setting_template.DirectorySettingTemplate, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DirectorySettingTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete entity from directorySettingTemplates by key (id)
+        Delete entity from directorySettingTemplates
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -167,7 +170,7 @@ class DirectorySettingTemplateItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[directory_setting_template.DirectorySettingTemplate] = None, request_configuration: Optional[DirectorySettingTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update entity in directorySettingTemplates by key (id)
+        Update entity in directorySettingTemplates
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

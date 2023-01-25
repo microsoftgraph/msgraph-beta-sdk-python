@@ -52,11 +52,12 @@ class RepliesRequestBuilder():
         """
         return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
     
-    async def get(self,request_configuration: Optional[RepliesRequestBuilderGetRequestConfiguration] = None) -> Optional[chat_message_collection_response.ChatMessageCollectionResponse]:
+    async def get(self,request_configuration: Optional[RepliesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[chat_message_collection_response.ChatMessageCollectionResponse]:
         """
         List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, simply call get channel message.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[chat_message_collection_response.ChatMessageCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +69,15 @@ class RepliesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, chat_message_collection_response.ChatMessageCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, chat_message_collection_response.ChatMessageCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[chat_message.ChatMessage] = None, request_configuration: Optional[RepliesRequestBuilderPostRequestConfiguration] = None) -> Optional[chat_message.ChatMessage]:
+    async def post(self,body: Optional[chat_message.ChatMessage] = None, request_configuration: Optional[RepliesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[chat_message.ChatMessage]:
         """
         Send a new reply to a chatMessage in a specified channel.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[chat_message.ChatMessage]
         """
         if body is None:
@@ -89,7 +91,7 @@ class RepliesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, chat_message.ChatMessage, error_mapping)
+        return await self.request_adapter.send_async(request_info, chat_message.ChatMessage, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RepliesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

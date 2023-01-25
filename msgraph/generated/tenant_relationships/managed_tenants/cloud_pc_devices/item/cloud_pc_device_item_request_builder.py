@@ -35,11 +35,12 @@ class CloudPcDeviceItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CloudPcDeviceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[CloudPcDeviceItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property cloudPcDevices for tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class CloudPcDeviceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[CloudPcDeviceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_device.CloudPcDevice]:
+    async def get(self,request_configuration: Optional[CloudPcDeviceItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_device.CloudPcDevice]:
         """
         The collection of cloud PC devices across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_device.CloudPcDevice]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class CloudPcDeviceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_device.CloudPcDevice, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_device.CloudPcDevice, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[cloud_pc_device.CloudPcDevice] = None, request_configuration: Optional[CloudPcDeviceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[cloud_pc_device.CloudPcDevice]:
+    async def patch(self,body: Optional[cloud_pc_device.CloudPcDevice] = None, request_configuration: Optional[CloudPcDeviceItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_device.CloudPcDevice]:
         """
         Update the navigation property cloudPcDevices in tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_device.CloudPcDevice]
         """
         if body is None:
@@ -89,7 +92,7 @@ class CloudPcDeviceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_device.CloudPcDevice, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_device.CloudPcDevice, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CloudPcDeviceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

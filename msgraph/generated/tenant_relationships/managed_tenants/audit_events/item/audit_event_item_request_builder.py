@@ -35,11 +35,12 @@ class AuditEventItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AuditEventItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[AuditEventItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property auditEvents for tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class AuditEventItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[AuditEventItemRequestBuilderGetRequestConfiguration] = None) -> Optional[audit_event.AuditEvent]:
+    async def get(self,request_configuration: Optional[AuditEventItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[audit_event.AuditEvent]:
         """
         The collection of audit events across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[audit_event.AuditEvent]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class AuditEventItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, audit_event.AuditEvent, error_mapping)
+        return await self.request_adapter.send_async(request_info, audit_event.AuditEvent, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[audit_event.AuditEvent] = None, request_configuration: Optional[AuditEventItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[audit_event.AuditEvent]:
+    async def patch(self,body: Optional[audit_event.AuditEvent] = None, request_configuration: Optional[AuditEventItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[audit_event.AuditEvent]:
         """
         Update the navigation property auditEvents in tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[audit_event.AuditEvent]
         """
         if body is None:
@@ -89,7 +92,7 @@ class AuditEventItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, audit_event.AuditEvent, error_mapping)
+        return await self.request_adapter.send_async(request_info, audit_event.AuditEvent, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AuditEventItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -68,11 +68,12 @@ class SitePageItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SitePageItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[SitePageItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property pages for groups
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -83,13 +84,14 @@ class SitePageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[SitePageItemRequestBuilderGetRequestConfiguration] = None) -> Optional[site_page.SitePage]:
+    async def get(self,request_configuration: Optional[SitePageItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[site_page.SitePage]:
         """
         The collection of pages in the SitePages list in this site.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[site_page.SitePage]
         """
         request_info = self.to_get_request_information(
@@ -101,14 +103,15 @@ class SitePageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, site_page.SitePage, error_mapping)
+        return await self.request_adapter.send_async(request_info, site_page.SitePage, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[site_page.SitePage] = None, request_configuration: Optional[SitePageItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[site_page.SitePage]:
+    async def patch(self,body: Optional[site_page.SitePage] = None, request_configuration: Optional[SitePageItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[site_page.SitePage]:
         """
         Update the navigation property pages in groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[site_page.SitePage]
         """
         if body is None:
@@ -122,7 +125,7 @@ class SitePageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, site_page.SitePage, error_mapping)
+        return await self.request_adapter.send_async(request_info, site_page.SitePage, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SitePageItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

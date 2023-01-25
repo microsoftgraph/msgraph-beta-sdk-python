@@ -144,11 +144,12 @@ class AccessReviewInstanceItemRequestBuilder():
         url_tpl_params["accessReviewInstanceDecisionItem%2Did"] = id
         return access_review_instance_decision_item_item_request_builder.AccessReviewInstanceDecisionItemItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[AccessReviewInstanceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[AccessReviewInstanceItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property pendingAccessReviewInstances for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -159,13 +160,14 @@ class AccessReviewInstanceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[AccessReviewInstanceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_instance.AccessReviewInstance]:
+    async def get(self,request_configuration: Optional[AccessReviewInstanceItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_instance.AccessReviewInstance]:
         """
         Navigation property to get list of access reviews pending approval by reviewer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_instance.AccessReviewInstance]
         """
         request_info = self.to_get_request_information(
@@ -177,14 +179,15 @@ class AccessReviewInstanceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_instance.AccessReviewInstance, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_instance.AccessReviewInstance, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[access_review_instance.AccessReviewInstance] = None, request_configuration: Optional[AccessReviewInstanceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_review_instance.AccessReviewInstance]:
+    async def patch(self,body: Optional[access_review_instance.AccessReviewInstance] = None, request_configuration: Optional[AccessReviewInstanceItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_instance.AccessReviewInstance]:
         """
         Update the navigation property pendingAccessReviewInstances in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_instance.AccessReviewInstance]
         """
         if body is None:
@@ -198,7 +201,7 @@ class AccessReviewInstanceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_instance.AccessReviewInstance, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_instance.AccessReviewInstance, response_handler, error_mapping)
     
     def stages_by_id(self,id: str) -> access_review_stage_item_request_builder.AccessReviewStageItemRequestBuilder:
         """

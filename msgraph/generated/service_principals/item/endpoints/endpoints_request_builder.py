@@ -44,11 +44,12 @@ class EndpointsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[EndpointsRequestBuilderGetRequestConfiguration] = None) -> Optional[endpoint_collection_response.EndpointCollectionResponse]:
+    async def get(self,request_configuration: Optional[EndpointsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[endpoint_collection_response.EndpointCollectionResponse]:
         """
         Endpoints available for discovery. Services like Sharepoint populate this property with a tenant specific SharePoint endpoints that other applications can discover and use in their experiences.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[endpoint_collection_response.EndpointCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class EndpointsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, endpoint_collection_response.EndpointCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, endpoint_collection_response.EndpointCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[endpoint.Endpoint] = None, request_configuration: Optional[EndpointsRequestBuilderPostRequestConfiguration] = None) -> Optional[endpoint.Endpoint]:
+    async def post(self,body: Optional[endpoint.Endpoint] = None, request_configuration: Optional[EndpointsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[endpoint.Endpoint]:
         """
         Create new navigation property to endpoints for servicePrincipals
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[endpoint.Endpoint]
         """
         if body is None:
@@ -81,7 +83,7 @@ class EndpointsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, endpoint.Endpoint, error_mapping)
+        return await self.request_adapter.send_async(request_info, endpoint.Endpoint, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[EndpointsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

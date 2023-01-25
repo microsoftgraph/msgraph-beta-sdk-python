@@ -217,11 +217,12 @@ class CallItemRequestBuilder():
         url_tpl_params["contentSharingSession%2Did"] = id
         return content_sharing_session_item_request_builder.ContentSharingSessionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[CallItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[CallItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property calls for app
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -232,13 +233,14 @@ class CallItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[CallItemRequestBuilderGetRequestConfiguration] = None) -> Optional[call.Call]:
+    async def get(self,request_configuration: Optional[CallItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[call.Call]:
         """
         Get calls from app
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[call.Call]
         """
         request_info = self.to_get_request_information(
@@ -250,7 +252,7 @@ class CallItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, call.Call, error_mapping)
+        return await self.request_adapter.send_async(request_info, call.Call, response_handler, error_mapping)
     
     def operations_by_id(self,id: str) -> comms_operation_item_request_builder.CommsOperationItemRequestBuilder:
         """
@@ -278,12 +280,13 @@ class CallItemRequestBuilder():
         url_tpl_params["participant%2Did"] = id
         return participant_item_request_builder.ParticipantItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[call.Call] = None, request_configuration: Optional[CallItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[call.Call]:
+    async def patch(self,body: Optional[call.Call] = None, request_configuration: Optional[CallItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[call.Call]:
         """
         Update the navigation property calls in app
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[call.Call]
         """
         if body is None:
@@ -297,7 +300,7 @@ class CallItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, call.Call, error_mapping)
+        return await self.request_adapter.send_async(request_info, call.Call, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CallItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

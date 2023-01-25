@@ -44,11 +44,12 @@ class NotificationMessageTemplatesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[NotificationMessageTemplatesRequestBuilderGetRequestConfiguration] = None) -> Optional[notification_message_template_collection_response.NotificationMessageTemplateCollectionResponse]:
+    async def get(self,request_configuration: Optional[NotificationMessageTemplatesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[notification_message_template_collection_response.NotificationMessageTemplateCollectionResponse]:
         """
         The Notification Message Templates.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[notification_message_template_collection_response.NotificationMessageTemplateCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class NotificationMessageTemplatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, notification_message_template_collection_response.NotificationMessageTemplateCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, notification_message_template_collection_response.NotificationMessageTemplateCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[notification_message_template.NotificationMessageTemplate] = None, request_configuration: Optional[NotificationMessageTemplatesRequestBuilderPostRequestConfiguration] = None) -> Optional[notification_message_template.NotificationMessageTemplate]:
+    async def post(self,body: Optional[notification_message_template.NotificationMessageTemplate] = None, request_configuration: Optional[NotificationMessageTemplatesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[notification_message_template.NotificationMessageTemplate]:
         """
         Create new navigation property to notificationMessageTemplates for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[notification_message_template.NotificationMessageTemplate]
         """
         if body is None:
@@ -81,7 +83,7 @@ class NotificationMessageTemplatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, notification_message_template.NotificationMessageTemplate, error_mapping)
+        return await self.request_adapter.send_async(request_info, notification_message_template.NotificationMessageTemplate, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[NotificationMessageTemplatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

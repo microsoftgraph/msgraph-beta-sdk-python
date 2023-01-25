@@ -51,11 +51,12 @@ class PurchaseInvoiceLineItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PurchaseInvoiceLineItemRequestBuilderGetRequestConfiguration] = None) -> Optional[purchase_invoice_line.PurchaseInvoiceLine]:
+    async def get(self,request_configuration: Optional[PurchaseInvoiceLineItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[purchase_invoice_line.PurchaseInvoiceLine]:
         """
         Get purchaseInvoiceLines from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[purchase_invoice_line.PurchaseInvoiceLine]
         """
         request_info = self.to_get_request_information(
@@ -67,14 +68,15 @@ class PurchaseInvoiceLineItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, purchase_invoice_line.PurchaseInvoiceLine, error_mapping)
+        return await self.request_adapter.send_async(request_info, purchase_invoice_line.PurchaseInvoiceLine, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[purchase_invoice_line.PurchaseInvoiceLine] = None, request_configuration: Optional[PurchaseInvoiceLineItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[purchase_invoice_line.PurchaseInvoiceLine]:
+    async def patch(self,body: Optional[purchase_invoice_line.PurchaseInvoiceLine] = None, request_configuration: Optional[PurchaseInvoiceLineItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[purchase_invoice_line.PurchaseInvoiceLine]:
         """
         Update the navigation property purchaseInvoiceLines in financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[purchase_invoice_line.PurchaseInvoiceLine]
         """
         if body is None:
@@ -88,7 +90,7 @@ class PurchaseInvoiceLineItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, purchase_invoice_line.PurchaseInvoiceLine, error_mapping)
+        return await self.request_adapter.send_async(request_info, purchase_invoice_line.PurchaseInvoiceLine, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PurchaseInvoiceLineItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -35,11 +35,12 @@ class WindowsUpdateCatalogItemItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[WindowsUpdateCatalogItemItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[WindowsUpdateCatalogItemItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property windowsUpdateCatalogItems for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class WindowsUpdateCatalogItemItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[WindowsUpdateCatalogItemItemRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_update_catalog_item.WindowsUpdateCatalogItem]:
+    async def get(self,request_configuration: Optional[WindowsUpdateCatalogItemItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_update_catalog_item.WindowsUpdateCatalogItem]:
         """
         A collection of windows update catalog items (fetaure updates item , quality updates item)
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_update_catalog_item.WindowsUpdateCatalogItem]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class WindowsUpdateCatalogItemItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_update_catalog_item.WindowsUpdateCatalogItem, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_update_catalog_item.WindowsUpdateCatalogItem, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[windows_update_catalog_item.WindowsUpdateCatalogItem] = None, request_configuration: Optional[WindowsUpdateCatalogItemItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[windows_update_catalog_item.WindowsUpdateCatalogItem]:
+    async def patch(self,body: Optional[windows_update_catalog_item.WindowsUpdateCatalogItem] = None, request_configuration: Optional[WindowsUpdateCatalogItemItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_update_catalog_item.WindowsUpdateCatalogItem]:
         """
         Update the navigation property windowsUpdateCatalogItems in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_update_catalog_item.WindowsUpdateCatalogItem]
         """
         if body is None:
@@ -89,7 +92,7 @@ class WindowsUpdateCatalogItemItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_update_catalog_item.WindowsUpdateCatalogItem, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_update_catalog_item.WindowsUpdateCatalogItem, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[WindowsUpdateCatalogItemItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

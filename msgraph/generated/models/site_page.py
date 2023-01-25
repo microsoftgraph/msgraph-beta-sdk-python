@@ -33,7 +33,7 @@ class SitePage(base_item.BaseItem):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new SitePage and sets the default values.
+        Instantiates a new sitePage and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.sitePage"

@@ -84,11 +84,12 @@ class GroupsRequestBuilder():
         """
         return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
     
-    async def get(self,request_configuration: Optional[GroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[group_collection_response.GroupCollectionResponse]:
+    async def get(self,request_configuration: Optional[GroupsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group_collection_response.GroupCollectionResponse]:
         """
         List all the groups available in an organization, excluding dynamic distribution groups. To retrieve dynamic distribution groups, use the Exchange admin center. This operation returns by default only a subset of the more commonly used properties for each group. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the group and specify the properties in a `$select` OData query option. The **hasMembersWithLicenseErrors** and **isArchived** properties are an exception and are not returned in the `$select` query.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_collection_response.GroupCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -100,14 +101,15 @@ class GroupsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group_collection_response.GroupCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, group_collection_response.GroupCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[group.Group] = None, request_configuration: Optional[GroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[group.Group]:
+    async def post(self,body: Optional[group.Group] = None, request_configuration: Optional[GroupsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group.Group]:
         """
         Create a new group as specified in the request body. You can create one of the following groups: This operation returns by default only a subset of the properties for each group. These default properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation and specify the properties in a `$select` OData query option. **Note**: To create a team, first create a group then add a team to it, see create team.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group.Group]
         """
         if body is None:
@@ -121,7 +123,7 @@ class GroupsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group.Group, error_mapping)
+        return await self.request_adapter.send_async(request_info, group.Group, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

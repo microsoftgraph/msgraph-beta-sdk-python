@@ -27,7 +27,7 @@ class FeatureRolloutPolicy(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new FeatureRolloutPolicy and sets the default values.
+        Instantiates a new featureRolloutPolicy and sets the default values.
         """
         super().__init__()
         # Nullable. Specifies a list of directoryObjects that feature is enabled for.

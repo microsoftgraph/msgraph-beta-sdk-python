@@ -11,6 +11,9 @@ email_sync_duration = lazy_import('msgraph.generated.models.email_sync_duration'
 user_email_source = lazy_import('msgraph.generated.models.user_email_source')
 
 class AndroidWorkProfileEasEmailProfileBase(device_configuration.DeviceConfiguration):
+    """
+    Base for Android Work Profile EAS Email profiles
+    """
     @property
     def authentication_method(self,) -> Optional[eas_authentication_method.EasAuthenticationMethod]:
         """
@@ -30,7 +33,7 @@ class AndroidWorkProfileEasEmailProfileBase(device_configuration.DeviceConfigura
     
     def __init__(self,) -> None:
         """
-        Instantiates a new AndroidWorkProfileEasEmailProfileBase and sets the default values.
+        Instantiates a new androidWorkProfileEasEmailProfileBase and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.androidWorkProfileEasEmailProfileBase"

@@ -36,12 +36,13 @@ class EvaluateClassificationResultsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[evaluate_classification_results_post_request_body.EvaluateClassificationResultsPostRequestBody] = None, request_configuration: Optional[EvaluateClassificationResultsRequestBuilderPostRequestConfiguration] = None) -> Optional[evaluate_classification_results_response.EvaluateClassificationResultsResponse]:
+    async def post(self,body: Optional[evaluate_classification_results_post_request_body.EvaluateClassificationResultsPostRequestBody] = None, request_configuration: Optional[EvaluateClassificationResultsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[evaluate_classification_results_response.EvaluateClassificationResultsResponse]:
         """
         Using classification results, compute the information protection label that should be applied and return the set of actions that must be taken to correctly label the information. This API is useful when a label should be set automatically based on classification of the file contents, rather than labeled directly by a user or service.  To evaluate based on classification results, provide contentInfo, which includes existing content metadata key/value pairs, and classification results. The API returns an informationProtectionAction that contains one of more of the following: 
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[evaluate_classification_results_response.EvaluateClassificationResultsResponse]
         """
         if body is None:
@@ -55,7 +56,7 @@ class EvaluateClassificationResultsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, evaluate_classification_results_response.EvaluateClassificationResultsResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, evaluate_classification_results_response.EvaluateClassificationResultsResponse, response_handler, error_mapping)
     
     def to_post_request_information(self,body: Optional[evaluate_classification_results_post_request_body.EvaluateClassificationResultsPostRequestBody] = None, request_configuration: Optional[EvaluateClassificationResultsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

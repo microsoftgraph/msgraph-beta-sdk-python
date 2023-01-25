@@ -75,11 +75,12 @@ class AdminRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AdminRequestBuilderGetRequestConfiguration] = None) -> Optional[admin.Admin]:
+    async def get(self,request_configuration: Optional[AdminRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[admin.Admin]:
         """
         Get admin
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[admin.Admin]
         """
         request_info = self.to_get_request_information(
@@ -91,14 +92,15 @@ class AdminRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, admin.Admin, error_mapping)
+        return await self.request_adapter.send_async(request_info, admin.Admin, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[admin.Admin] = None, request_configuration: Optional[AdminRequestBuilderPatchRequestConfiguration] = None) -> Optional[admin.Admin]:
+    async def patch(self,body: Optional[admin.Admin] = None, request_configuration: Optional[AdminRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[admin.Admin]:
         """
         Update admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[admin.Admin]
         """
         if body is None:
@@ -112,7 +114,7 @@ class AdminRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, admin.Admin, error_mapping)
+        return await self.request_adapter.send_async(request_info, admin.Admin, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AdminRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

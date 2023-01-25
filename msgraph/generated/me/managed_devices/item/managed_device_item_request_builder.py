@@ -477,11 +477,12 @@ class ManagedDeviceItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ManagedDeviceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ManagedDeviceItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property managedDevices for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -492,7 +493,7 @@ class ManagedDeviceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
     def detected_apps_by_id(self,id: str) -> detected_app_item_request_builder.DetectedAppItemRequestBuilder:
         """
@@ -533,11 +534,12 @@ class ManagedDeviceItemRequestBuilder():
         url_tpl_params["deviceConfigurationState%2Did"] = id
         return device_configuration_state_item_request_builder.DeviceConfigurationStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ManagedDeviceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_device.ManagedDevice]:
+    async def get(self,request_configuration: Optional[ManagedDeviceItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_device.ManagedDevice]:
         """
         The managed devices associated with the user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_device.ManagedDevice]
         """
         request_info = self.to_get_request_information(
@@ -549,7 +551,7 @@ class ManagedDeviceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_device.ManagedDevice, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_device.ManagedDevice, response_handler, error_mapping)
     
     def get_cloud_pc_remote_action_results(self,) -> get_cloud_pc_remote_action_results_request_builder.GetCloudPcRemoteActionResultsRequestBuilder:
         """
@@ -612,12 +614,13 @@ class ManagedDeviceItemRequestBuilder():
         url_tpl_params["managedDeviceMobileAppConfigurationState%2Did"] = id
         return managed_device_mobile_app_configuration_state_item_request_builder.ManagedDeviceMobileAppConfigurationStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[managed_device.ManagedDevice] = None, request_configuration: Optional[ManagedDeviceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[managed_device.ManagedDevice]:
+    async def patch(self,body: Optional[managed_device.ManagedDevice] = None, request_configuration: Optional[ManagedDeviceItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_device.ManagedDevice]:
         """
         Update the navigation property managedDevices in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_device.ManagedDevice]
         """
         if body is None:
@@ -631,7 +634,7 @@ class ManagedDeviceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_device.ManagedDevice, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_device.ManagedDevice, response_handler, error_mapping)
     
     def retrieve_remote_help_session_with_session_key(self,session_key: Optional[str] = None) -> retrieve_remote_help_session_with_session_key_request_builder.RetrieveRemoteHelpSessionWithSessionKeyRequestBuilder:
         """

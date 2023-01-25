@@ -44,11 +44,12 @@ class KeySetsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[KeySetsRequestBuilderGetRequestConfiguration] = None) -> Optional[trust_framework_key_set_collection_response.TrustFrameworkKeySetCollectionResponse]:
+    async def get(self,request_configuration: Optional[KeySetsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[trust_framework_key_set_collection_response.TrustFrameworkKeySetCollectionResponse]:
         """
         Retrieve a list of trustFrameworkKeySets.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[trust_framework_key_set_collection_response.TrustFrameworkKeySetCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class KeySetsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, trust_framework_key_set_collection_response.TrustFrameworkKeySetCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, trust_framework_key_set_collection_response.TrustFrameworkKeySetCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[trust_framework_key_set.TrustFrameworkKeySet] = None, request_configuration: Optional[KeySetsRequestBuilderPostRequestConfiguration] = None) -> Optional[trust_framework_key_set.TrustFrameworkKeySet]:
+    async def post(self,body: Optional[trust_framework_key_set.TrustFrameworkKeySet] = None, request_configuration: Optional[KeySetsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[trust_framework_key_set.TrustFrameworkKeySet]:
         """
         Create a new trustFrameworkKeySet. The ID of the **trustFrameworkKeySet** is expected in the create request; however, it can be modified by the service. The modified ID will be available in the response and in the location header.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[trust_framework_key_set.TrustFrameworkKeySet]
         """
         if body is None:
@@ -81,7 +83,7 @@ class KeySetsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, trust_framework_key_set.TrustFrameworkKeySet, error_mapping)
+        return await self.request_adapter.send_async(request_info, trust_framework_key_set.TrustFrameworkKeySet, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[KeySetsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

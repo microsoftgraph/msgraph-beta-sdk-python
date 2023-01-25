@@ -26,7 +26,7 @@ class IdentitySet(AdditionalDataHolder, Parsable):
     @property
     def application(self,) -> Optional[identity.Identity]:
         """
-        Gets the application property value. Optional. The application associated with this action.
+        Gets the application property value. The Identity of the Application. This property is read-only.
         Returns: Optional[identity.Identity]
         """
         return self._application
@@ -34,7 +34,7 @@ class IdentitySet(AdditionalDataHolder, Parsable):
     @application.setter
     def application(self,value: Optional[identity.Identity] = None) -> None:
         """
-        Sets the application property value. Optional. The application associated with this action.
+        Sets the application property value. The Identity of the Application. This property is read-only.
         Args:
             value: Value to set for the application property.
         """
@@ -47,13 +47,13 @@ class IdentitySet(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # Optional. The application associated with this action.
+        # The Identity of the Application. This property is read-only.
         self._application: Optional[identity.Identity] = None
-        # Optional. The device associated with this action.
+        # The Identity of the Device. This property is read-only.
         self._device: Optional[identity.Identity] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # Optional. The user associated with this action.
+        # The Identity of the User. This property is read-only.
         self._user: Optional[identity.Identity] = None
     
     @staticmethod
@@ -71,7 +71,7 @@ class IdentitySet(AdditionalDataHolder, Parsable):
     @property
     def device(self,) -> Optional[identity.Identity]:
         """
-        Gets the device property value. Optional. The device associated with this action.
+        Gets the device property value. The Identity of the Device. This property is read-only.
         Returns: Optional[identity.Identity]
         """
         return self._device
@@ -79,7 +79,7 @@ class IdentitySet(AdditionalDataHolder, Parsable):
     @device.setter
     def device(self,value: Optional[identity.Identity] = None) -> None:
         """
-        Sets the device property value. Optional. The device associated with this action.
+        Sets the device property value. The Identity of the Device. This property is read-only.
         Args:
             value: Value to set for the device property.
         """
@@ -132,7 +132,7 @@ class IdentitySet(AdditionalDataHolder, Parsable):
     @property
     def user(self,) -> Optional[identity.Identity]:
         """
-        Gets the user property value. Optional. The user associated with this action.
+        Gets the user property value. The Identity of the User. This property is read-only.
         Returns: Optional[identity.Identity]
         """
         return self._user
@@ -140,7 +140,7 @@ class IdentitySet(AdditionalDataHolder, Parsable):
     @user.setter
     def user(self,value: Optional[identity.Identity] = None) -> None:
         """
-        Sets the user property value. Optional. The user associated with this action.
+        Sets the user property value. The Identity of the User. This property is read-only.
         Args:
             value: Value to set for the user property.
         """

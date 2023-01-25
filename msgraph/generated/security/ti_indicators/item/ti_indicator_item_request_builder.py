@@ -35,11 +35,12 @@ class TiIndicatorItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[TiIndicatorItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[TiIndicatorItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property tiIndicators for security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class TiIndicatorItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[TiIndicatorItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ti_indicator.TiIndicator]:
+    async def get(self,request_configuration: Optional[TiIndicatorItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ti_indicator.TiIndicator]:
         """
         Get tiIndicators from security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ti_indicator.TiIndicator]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class TiIndicatorItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ti_indicator.TiIndicator, error_mapping)
+        return await self.request_adapter.send_async(request_info, ti_indicator.TiIndicator, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[ti_indicator.TiIndicator] = None, request_configuration: Optional[TiIndicatorItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ti_indicator.TiIndicator]:
+    async def patch(self,body: Optional[ti_indicator.TiIndicator] = None, request_configuration: Optional[TiIndicatorItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ti_indicator.TiIndicator]:
         """
         Update the navigation property tiIndicators in security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ti_indicator.TiIndicator]
         """
         if body is None:
@@ -89,7 +92,7 @@ class TiIndicatorItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ti_indicator.TiIndicator, error_mapping)
+        return await self.request_adapter.send_async(request_info, ti_indicator.TiIndicator, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[TiIndicatorItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

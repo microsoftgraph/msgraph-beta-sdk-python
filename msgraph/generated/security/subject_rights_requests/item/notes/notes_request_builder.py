@@ -44,11 +44,12 @@ class NotesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[NotesRequestBuilderGetRequestConfiguration] = None) -> Optional[authored_note_collection_response.AuthoredNoteCollectionResponse]:
+    async def get(self,request_configuration: Optional[NotesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authored_note_collection_response.AuthoredNoteCollectionResponse]:
         """
         Get the list of authored notes associated with a subject rights request. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authored_note_collection_response.AuthoredNoteCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class NotesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authored_note_collection_response.AuthoredNoteCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, authored_note_collection_response.AuthoredNoteCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[authored_note.AuthoredNote] = None, request_configuration: Optional[NotesRequestBuilderPostRequestConfiguration] = None) -> Optional[authored_note.AuthoredNote]:
+    async def post(self,body: Optional[authored_note.AuthoredNote] = None, request_configuration: Optional[NotesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authored_note.AuthoredNote]:
         """
         Create a new authoredNote object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authored_note.AuthoredNote]
         """
         if body is None:
@@ -81,7 +83,7 @@ class NotesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authored_note.AuthoredNote, error_mapping)
+        return await self.request_adapter.send_async(request_info, authored_note.AuthoredNote, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[NotesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

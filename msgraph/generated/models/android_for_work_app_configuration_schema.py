@@ -7,9 +7,12 @@ android_for_work_app_configuration_schema_item = lazy_import('msgraph.generated.
 entity = lazy_import('msgraph.generated.models.entity')
 
 class AndroidForWorkAppConfigurationSchema(entity.Entity):
+    """
+    Schema describing an Android for Work application's custom configurations.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new AndroidForWorkAppConfigurationSchema and sets the default values.
+        Instantiates a new androidForWorkAppConfigurationSchema and sets the default values.
         """
         super().__init__()
         # UTF8 encoded byte array containing example JSON string conforming to this schema that demonstrates how to set the configuration for this app

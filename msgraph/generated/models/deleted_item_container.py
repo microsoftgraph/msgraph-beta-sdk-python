@@ -9,7 +9,7 @@ workflow = lazy_import('msgraph.generated.models.identity_governance.workflow')
 class DeletedItemContainer(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new DeletedItemContainer and sets the default values.
+        Instantiates a new deletedItemContainer and sets the default values.
         """
         super().__init__()
         # The OdataType property

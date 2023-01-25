@@ -29,7 +29,7 @@ class AndroidForWorkSettings(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new AndroidForWorkSettings and sets the default values.
+        Instantiates a new androidForWorkSettings and sets the default values.
         """
         super().__init__()
         # Bind status of the tenant with the Google EMM API

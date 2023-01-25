@@ -44,11 +44,12 @@ class PatentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PatentsRequestBuilderGetRequestConfiguration] = None) -> Optional[item_patent_collection_response.ItemPatentCollectionResponse]:
+    async def get(self,request_configuration: Optional[PatentsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[item_patent_collection_response.ItemPatentCollectionResponse]:
         """
         Retrieve a list of itemPatent objects from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[item_patent_collection_response.ItemPatentCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class PatentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, item_patent_collection_response.ItemPatentCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, item_patent_collection_response.ItemPatentCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[item_patent.ItemPatent] = None, request_configuration: Optional[PatentsRequestBuilderPostRequestConfiguration] = None) -> Optional[item_patent.ItemPatent]:
+    async def post(self,body: Optional[item_patent.ItemPatent] = None, request_configuration: Optional[PatentsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[item_patent.ItemPatent]:
         """
         Create a new itemPatent object within a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[item_patent.ItemPatent]
         """
         if body is None:
@@ -81,7 +83,7 @@ class PatentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, item_patent.ItemPatent, error_mapping)
+        return await self.request_adapter.send_async(request_info, item_patent.ItemPatent, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PatentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

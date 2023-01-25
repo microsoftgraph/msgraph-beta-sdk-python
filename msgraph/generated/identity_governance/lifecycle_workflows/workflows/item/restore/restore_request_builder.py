@@ -35,11 +35,12 @@ class RestoreRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,request_configuration: Optional[RestoreRequestBuilderPostRequestConfiguration] = None) -> Optional[workflow.Workflow]:
+    async def post(self,request_configuration: Optional[RestoreRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[workflow.Workflow]:
         """
         Restore a workflow that has been deleted. You can only restore a workflow that was deleted within the last 30 days before Azure AD automatically permanently deletes it.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[workflow.Workflow]
         """
         request_info = self.to_post_request_information(
@@ -51,7 +52,7 @@ class RestoreRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, workflow.Workflow, error_mapping)
+        return await self.request_adapter.send_async(request_info, workflow.Workflow, response_handler, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[RestoreRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

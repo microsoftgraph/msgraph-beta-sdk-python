@@ -44,11 +44,12 @@ class MembersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[MembersRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_roster_member_collection_response.PlannerRosterMemberCollectionResponse]:
+    async def get(self,request_configuration: Optional[MembersRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[planner_roster_member_collection_response.PlannerRosterMemberCollectionResponse]:
         """
         Get the list of plannerRosterMembers from a plannerRoster.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[planner_roster_member_collection_response.PlannerRosterMemberCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class MembersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, planner_roster_member_collection_response.PlannerRosterMemberCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, planner_roster_member_collection_response.PlannerRosterMemberCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[planner_roster_member.PlannerRosterMember] = None, request_configuration: Optional[MembersRequestBuilderPostRequestConfiguration] = None) -> Optional[planner_roster_member.PlannerRosterMember]:
+    async def post(self,body: Optional[planner_roster_member.PlannerRosterMember] = None, request_configuration: Optional[MembersRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[planner_roster_member.PlannerRosterMember]:
         """
         Add a member to the plannerRoster object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[planner_roster_member.PlannerRosterMember]
         """
         if body is None:
@@ -81,7 +83,7 @@ class MembersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, planner_roster_member.PlannerRosterMember, error_mapping)
+        return await self.request_adapter.send_async(request_info, planner_roster_member.PlannerRosterMember, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[MembersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

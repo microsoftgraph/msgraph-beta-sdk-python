@@ -57,11 +57,12 @@ class RegistrationRequestBuilder():
         url_tpl_params["meetingRegistrationQuestion%2Did"] = id
         return meeting_registration_question_item_request_builder.MeetingRegistrationQuestionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[RegistrationRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[RegistrationRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Disable and delete the externalMeetingRegistration of an onlineMeeting.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -72,13 +73,14 @@ class RegistrationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[RegistrationRequestBuilderGetRequestConfiguration] = None) -> Optional[meeting_registration.MeetingRegistration]:
+    async def get(self,request_configuration: Optional[RegistrationRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[meeting_registration.MeetingRegistration]:
         """
         Get the meetingRegistration details associated with an onlineMeeting on behalf of the organizer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[meeting_registration.MeetingRegistration]
         """
         request_info = self.to_get_request_information(
@@ -90,14 +92,15 @@ class RegistrationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, meeting_registration.MeetingRegistration, error_mapping)
+        return await self.request_adapter.send_async(request_info, meeting_registration.MeetingRegistration, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[meeting_registration.MeetingRegistration] = None, request_configuration: Optional[RegistrationRequestBuilderPatchRequestConfiguration] = None) -> Optional[meeting_registration.MeetingRegistration]:
+    async def patch(self,body: Optional[meeting_registration.MeetingRegistration] = None, request_configuration: Optional[RegistrationRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[meeting_registration.MeetingRegistration]:
         """
         Update the details of a meetingRegistration object assciated with an onlineMeeting on behalf of the organizer.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[meeting_registration.MeetingRegistration]
         """
         if body is None:
@@ -111,7 +114,7 @@ class RegistrationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, meeting_registration.MeetingRegistration, error_mapping)
+        return await self.request_adapter.send_async(request_info, meeting_registration.MeetingRegistration, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[RegistrationRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

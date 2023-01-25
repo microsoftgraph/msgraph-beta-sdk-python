@@ -35,11 +35,12 @@ class SettingsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[lifecycle_management_settings.LifecycleManagementSettings]:
+    async def get(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[lifecycle_management_settings.LifecycleManagementSettings]:
         """
         Read the properties and relationships of a lifecycleManagementSettings object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[lifecycle_management_settings.LifecycleManagementSettings]
         """
         request_info = self.to_get_request_information(
@@ -51,14 +52,15 @@ class SettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, lifecycle_management_settings.LifecycleManagementSettings, error_mapping)
+        return await self.request_adapter.send_async(request_info, lifecycle_management_settings.LifecycleManagementSettings, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[lifecycle_management_settings.LifecycleManagementSettings] = None, request_configuration: Optional[SettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[lifecycle_management_settings.LifecycleManagementSettings]:
+    async def patch(self,body: Optional[lifecycle_management_settings.LifecycleManagementSettings] = None, request_configuration: Optional[SettingsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[lifecycle_management_settings.LifecycleManagementSettings]:
         """
         Update the properties of a lifecycleManagementSettings object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[lifecycle_management_settings.LifecycleManagementSettings]
         """
         if body is None:
@@ -72,7 +74,7 @@ class SettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, lifecycle_management_settings.LifecycleManagementSettings, error_mapping)
+        return await self.request_adapter.send_async(request_info, lifecycle_management_settings.LifecycleManagementSettings, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

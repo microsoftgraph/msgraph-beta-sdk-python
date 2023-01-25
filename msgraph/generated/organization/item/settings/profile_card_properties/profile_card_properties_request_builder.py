@@ -44,11 +44,12 @@ class ProfileCardPropertiesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ProfileCardPropertiesRequestBuilderGetRequestConfiguration] = None) -> Optional[profile_card_property_collection_response.ProfileCardPropertyCollectionResponse]:
+    async def get(self,request_configuration: Optional[ProfileCardPropertiesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[profile_card_property_collection_response.ProfileCardPropertyCollectionResponse]:
         """
         Get a collection of profileCardProperty resources of an organization. Each resource is identified by its **directoryPropertyName** property.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[profile_card_property_collection_response.ProfileCardPropertyCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class ProfileCardPropertiesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, profile_card_property_collection_response.ProfileCardPropertyCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, profile_card_property_collection_response.ProfileCardPropertyCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[profile_card_property.ProfileCardProperty] = None, request_configuration: Optional[ProfileCardPropertiesRequestBuilderPostRequestConfiguration] = None) -> Optional[profile_card_property.ProfileCardProperty]:
+    async def post(self,body: Optional[profile_card_property.ProfileCardProperty] = None, request_configuration: Optional[ProfileCardPropertiesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[profile_card_property.ProfileCardProperty]:
         """
         Create a new profileCardProperty for an organization. The new property is identified by its **directoryPropertyName** property. For more information on adding properties to the profile card for an organization, see customize the profile card.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[profile_card_property.ProfileCardProperty]
         """
         if body is None:
@@ -81,7 +83,7 @@ class ProfileCardPropertiesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, profile_card_property.ProfileCardProperty, error_mapping)
+        return await self.request_adapter.send_async(request_info, profile_card_property.ProfileCardProperty, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ProfileCardPropertiesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

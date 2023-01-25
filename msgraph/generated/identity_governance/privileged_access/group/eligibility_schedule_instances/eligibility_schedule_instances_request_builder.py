@@ -56,11 +56,12 @@ class EligibilityScheduleInstancesRequestBuilder():
             raise Exception("on cannot be undefined")
         return filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
     
-    async def get(self,request_configuration: Optional[EligibilityScheduleInstancesRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access_group_eligibility_schedule_instance_collection_response.PrivilegedAccessGroupEligibilityScheduleInstanceCollectionResponse]:
+    async def get(self,request_configuration: Optional[EligibilityScheduleInstancesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_access_group_eligibility_schedule_instance_collection_response.PrivilegedAccessGroupEligibilityScheduleInstanceCollectionResponse]:
         """
         Get eligibilityScheduleInstances from identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_access_group_eligibility_schedule_instance_collection_response.PrivilegedAccessGroupEligibilityScheduleInstanceCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -72,14 +73,15 @@ class EligibilityScheduleInstancesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_access_group_eligibility_schedule_instance_collection_response.PrivilegedAccessGroupEligibilityScheduleInstanceCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_access_group_eligibility_schedule_instance_collection_response.PrivilegedAccessGroupEligibilityScheduleInstanceCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance] = None, request_configuration: Optional[EligibilityScheduleInstancesRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance]:
+    async def post(self,body: Optional[privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance] = None, request_configuration: Optional[EligibilityScheduleInstancesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance]:
         """
         Create new navigation property to eligibilityScheduleInstances for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance]
         """
         if body is None:
@@ -93,7 +95,7 @@ class EligibilityScheduleInstancesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[EligibilityScheduleInstancesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

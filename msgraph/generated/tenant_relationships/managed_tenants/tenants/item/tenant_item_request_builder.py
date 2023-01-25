@@ -51,11 +51,12 @@ class TenantItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[TenantItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[TenantItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property tenants for tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -66,13 +67,14 @@ class TenantItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[TenantItemRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant.Tenant]:
+    async def get(self,request_configuration: Optional[TenantItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant.Tenant]:
         """
         The collection of tenants associated with the managing entity.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant.Tenant]
         """
         request_info = self.to_get_request_information(
@@ -84,14 +86,15 @@ class TenantItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant.Tenant, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant.Tenant, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[tenant.Tenant] = None, request_configuration: Optional[TenantItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[tenant.Tenant]:
+    async def patch(self,body: Optional[tenant.Tenant] = None, request_configuration: Optional[TenantItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant.Tenant]:
         """
         Update the navigation property tenants in tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant.Tenant]
         """
         if body is None:
@@ -105,7 +108,7 @@ class TenantItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant.Tenant, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant.Tenant, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[TenantItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

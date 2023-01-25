@@ -44,11 +44,12 @@ class PositionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PositionsRequestBuilderGetRequestConfiguration] = None) -> Optional[work_position_collection_response.WorkPositionCollectionResponse]:
+    async def get(self,request_configuration: Optional[PositionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[work_position_collection_response.WorkPositionCollectionResponse]:
         """
         Retrieve a list of workPosition objects from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[work_position_collection_response.WorkPositionCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class PositionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, work_position_collection_response.WorkPositionCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, work_position_collection_response.WorkPositionCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[work_position.WorkPosition] = None, request_configuration: Optional[PositionsRequestBuilderPostRequestConfiguration] = None) -> Optional[work_position.WorkPosition]:
+    async def post(self,body: Optional[work_position.WorkPosition] = None, request_configuration: Optional[PositionsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[work_position.WorkPosition]:
         """
         Use this API to create a new workPosition in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[work_position.WorkPosition]
         """
         if body is None:
@@ -81,7 +83,7 @@ class PositionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, work_position.WorkPosition, error_mapping)
+        return await self.request_adapter.send_async(request_info, work_position.WorkPosition, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PositionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -37,11 +37,12 @@ class GetLicensesForAppWithBundleIdRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[GetLicensesForAppWithBundleIdRequestBuilderGetRequestConfiguration] = None) -> Optional[get_licenses_for_app_with_bundle_id_response.GetLicensesForAppWithBundleIdResponse]:
+    async def get(self,request_configuration: Optional[GetLicensesForAppWithBundleIdRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[get_licenses_for_app_with_bundle_id_response.GetLicensesForAppWithBundleIdResponse]:
         """
         Invoke function getLicensesForApp
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[get_licenses_for_app_with_bundle_id_response.GetLicensesForAppWithBundleIdResponse]
         """
         request_info = self.to_get_request_information(
@@ -53,7 +54,7 @@ class GetLicensesForAppWithBundleIdRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, get_licenses_for_app_with_bundle_id_response.GetLicensesForAppWithBundleIdResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, get_licenses_for_app_with_bundle_id_response.GetLicensesForAppWithBundleIdResponse, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetLicensesForAppWithBundleIdRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

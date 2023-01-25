@@ -35,12 +35,13 @@ class ConfirmCompromisedRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[confirm_compromised_post_request_body.ConfirmCompromisedPostRequestBody] = None, request_configuration: Optional[ConfirmCompromisedRequestBuilderPostRequestConfiguration] = None) -> None:
+    async def post(self,body: Optional[confirm_compromised_post_request_body.ConfirmCompromisedPostRequestBody] = None, request_configuration: Optional[ConfirmCompromisedRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Allow admins to mark an event in the Azure AD sign in logs as risky. Events marked as risky by an admin are immediately flagged as high risk in Azure AD Identity Protection, overriding previous risk states. Admins can confirm that events flagged as risky by Azure AD Identity Protection are in fact risky. For details about investigating Identity Protection risks, see How to investigate risk.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         if body is None:
             raise Exception("body cannot be undefined")
@@ -53,7 +54,7 @@ class ConfirmCompromisedRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
     def to_post_request_information(self,body: Optional[confirm_compromised_post_request_body.ConfirmCompromisedPostRequestBody] = None, request_configuration: Optional[ConfirmCompromisedRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

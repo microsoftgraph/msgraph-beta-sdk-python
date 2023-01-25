@@ -36,11 +36,12 @@ class ServiceHealthIssueItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ServiceHealthIssueItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ServiceHealthIssueItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property issues for admin
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,13 +52,14 @@ class ServiceHealthIssueItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[ServiceHealthIssueItemRequestBuilderGetRequestConfiguration] = None) -> Optional[service_health_issue.ServiceHealthIssue]:
+    async def get(self,request_configuration: Optional[ServiceHealthIssueItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[service_health_issue.ServiceHealthIssue]:
         """
         A collection of service issues for tenant. This property is a contained navigation property, it is nullable and readonly.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[service_health_issue.ServiceHealthIssue]
         """
         request_info = self.to_get_request_information(
@@ -69,7 +71,7 @@ class ServiceHealthIssueItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, service_health_issue.ServiceHealthIssue, error_mapping)
+        return await self.request_adapter.send_async(request_info, service_health_issue.ServiceHealthIssue, response_handler, error_mapping)
     
     def incident_report(self,) -> incident_report_request_builder.IncidentReportRequestBuilder:
         """
@@ -78,12 +80,13 @@ class ServiceHealthIssueItemRequestBuilder():
         """
         return incident_report_request_builder.IncidentReportRequestBuilder(self.request_adapter, self.path_parameters)
     
-    async def patch(self,body: Optional[service_health_issue.ServiceHealthIssue] = None, request_configuration: Optional[ServiceHealthIssueItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[service_health_issue.ServiceHealthIssue]:
+    async def patch(self,body: Optional[service_health_issue.ServiceHealthIssue] = None, request_configuration: Optional[ServiceHealthIssueItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[service_health_issue.ServiceHealthIssue]:
         """
         Update the navigation property issues in admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[service_health_issue.ServiceHealthIssue]
         """
         if body is None:
@@ -97,7 +100,7 @@ class ServiceHealthIssueItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, service_health_issue.ServiceHealthIssue, error_mapping)
+        return await self.request_adapter.send_async(request_info, service_health_issue.ServiceHealthIssue, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ServiceHealthIssueItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

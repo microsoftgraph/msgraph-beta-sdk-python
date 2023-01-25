@@ -9,7 +9,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 class DocumentComment(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new DocumentComment and sets the default values.
+        Instantiates a new documentComment and sets the default values.
         """
         super().__init__()
         # The content property

@@ -44,11 +44,12 @@ class ExportJobsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ExportJobsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_export_job_collection_response.CloudPcExportJobCollectionResponse]:
+    async def get(self,request_configuration: Optional[ExportJobsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_export_job_collection_response.CloudPcExportJobCollectionResponse]:
         """
         The export jobs created for downloading reports.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_export_job_collection_response.CloudPcExportJobCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class ExportJobsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_export_job_collection_response.CloudPcExportJobCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_export_job_collection_response.CloudPcExportJobCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[cloud_pc_export_job.CloudPcExportJob] = None, request_configuration: Optional[ExportJobsRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_pc_export_job.CloudPcExportJob]:
+    async def post(self,body: Optional[cloud_pc_export_job.CloudPcExportJob] = None, request_configuration: Optional[ExportJobsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_export_job.CloudPcExportJob]:
         """
         Create a new cloudPcExportJob object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_export_job.CloudPcExportJob]
         """
         if body is None:
@@ -81,7 +83,7 @@ class ExportJobsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_export_job.CloudPcExportJob, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_export_job.CloudPcExportJob, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ExportJobsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

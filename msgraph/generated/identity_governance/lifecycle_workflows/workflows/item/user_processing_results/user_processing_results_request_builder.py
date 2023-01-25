@@ -45,11 +45,12 @@ class UserProcessingResultsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserProcessingResultsRequestBuilderGetRequestConfiguration] = None) -> Optional[user_processing_result_collection_response.UserProcessingResultCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserProcessingResultsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_processing_result_collection_response.UserProcessingResultCollectionResponse]:
         """
         Get the **userProcessingResult** resources for a workflow.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_processing_result_collection_response.UserProcessingResultCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,7 +62,7 @@ class UserProcessingResultsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_processing_result_collection_response.UserProcessingResultCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_processing_result_collection_response.UserProcessingResultCollectionResponse, response_handler, error_mapping)
     
     def summary_with_start_date_time_with_end_date_time(self,end_date_time: Optional[datetime] = None, start_date_time: Optional[datetime] = None) -> summary_with_start_date_time_with_end_date_time_request_builder.SummaryWithStartDateTimeWithEndDateTimeRequestBuilder:
         """

@@ -44,11 +44,12 @@ class AcronymsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AcronymsRequestBuilderGetRequestConfiguration] = None) -> Optional[acronym_collection_response.AcronymCollectionResponse]:
+    async def get(self,request_configuration: Optional[AcronymsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[acronym_collection_response.AcronymCollectionResponse]:
         """
         Get a list of the acronym objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[acronym_collection_response.AcronymCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class AcronymsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, acronym_collection_response.AcronymCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, acronym_collection_response.AcronymCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[acronym.Acronym] = None, request_configuration: Optional[AcronymsRequestBuilderPostRequestConfiguration] = None) -> Optional[acronym.Acronym]:
+    async def post(self,body: Optional[acronym.Acronym] = None, request_configuration: Optional[AcronymsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[acronym.Acronym]:
         """
         Create a new acronym object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[acronym.Acronym]
         """
         if body is None:
@@ -81,7 +83,7 @@ class AcronymsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, acronym.Acronym, error_mapping)
+        return await self.request_adapter.send_async(request_info, acronym.Acronym, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AcronymsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

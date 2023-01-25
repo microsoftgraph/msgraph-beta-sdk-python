@@ -105,11 +105,12 @@ class CommunicationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CommunicationsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_communications.CloudCommunications]:
+    async def get(self,request_configuration: Optional[CommunicationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_communications.CloudCommunications]:
         """
         Get communications
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_communications.CloudCommunications]
         """
         request_info = self.to_get_request_information(
@@ -121,7 +122,7 @@ class CommunicationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_communications.CloudCommunications, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_communications.CloudCommunications, response_handler, error_mapping)
     
     def online_meetings_by_id(self,id: str) -> online_meeting_item_request_builder.OnlineMeetingItemRequestBuilder:
         """
@@ -136,12 +137,13 @@ class CommunicationsRequestBuilder():
         url_tpl_params["onlineMeeting%2Did"] = id
         return online_meeting_item_request_builder.OnlineMeetingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[cloud_communications.CloudCommunications] = None, request_configuration: Optional[CommunicationsRequestBuilderPatchRequestConfiguration] = None) -> Optional[cloud_communications.CloudCommunications]:
+    async def patch(self,body: Optional[cloud_communications.CloudCommunications] = None, request_configuration: Optional[CommunicationsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_communications.CloudCommunications]:
         """
         Update communications
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_communications.CloudCommunications]
         """
         if body is None:
@@ -155,7 +157,7 @@ class CommunicationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_communications.CloudCommunications, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_communications.CloudCommunications, response_handler, error_mapping)
     
     def presences_by_id(self,id: str) -> presence_item_request_builder.PresenceItemRequestBuilder:
         """

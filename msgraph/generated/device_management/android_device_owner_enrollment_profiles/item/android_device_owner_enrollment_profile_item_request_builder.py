@@ -51,11 +51,12 @@ class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property androidDeviceOwnerEnrollmentProfiles for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -66,13 +67,14 @@ class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile]:
+    async def get(self,request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile]:
         """
         Android device owner enrollment profile entities.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile]
         """
         request_info = self.to_get_request_information(
@@ -84,14 +86,15 @@ class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile, error_mapping)
+        return await self.request_adapter.send_async(request_info, android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile] = None, request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile]:
+    async def patch(self,body: Optional[android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile] = None, request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile]:
         """
         Update the navigation property androidDeviceOwnerEnrollmentProfiles in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile]
         """
         if body is None:
@@ -105,7 +108,7 @@ class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile, error_mapping)
+        return await self.request_adapter.send_async(request_info, android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -44,11 +44,12 @@ class ConnectorsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ConnectorsRequestBuilderGetRequestConfiguration] = None) -> Optional[connector_collection_response.ConnectorCollectionResponse]:
+    async def get(self,request_configuration: Optional[ConnectorsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[connector_collection_response.ConnectorCollectionResponse]:
         """
         Retrieve a list of connector objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[connector_collection_response.ConnectorCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class ConnectorsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, connector_collection_response.ConnectorCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, connector_collection_response.ConnectorCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[connector.Connector] = None, request_configuration: Optional[ConnectorsRequestBuilderPostRequestConfiguration] = None) -> Optional[connector.Connector]:
+    async def post(self,body: Optional[connector.Connector] = None, request_configuration: Optional[ConnectorsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[connector.Connector]:
         """
         Create new navigation property to connectors for onPremisesPublishingProfiles
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[connector.Connector]
         """
         if body is None:
@@ -81,7 +83,7 @@ class ConnectorsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, connector.Connector, error_mapping)
+        return await self.request_adapter.send_async(request_info, connector.Connector, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ConnectorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

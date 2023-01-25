@@ -43,11 +43,12 @@ class SharepointRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SharepointRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[SharepointRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property sharepoint for admin
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -58,13 +59,14 @@ class SharepointRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[SharepointRequestBuilderGetRequestConfiguration] = None) -> Optional[sharepoint.Sharepoint]:
+    async def get(self,request_configuration: Optional[SharepointRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sharepoint.Sharepoint]:
         """
         A container for administrative resources to manage tenant-level settings for SharePoint and OneDrive.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sharepoint.Sharepoint]
         """
         request_info = self.to_get_request_information(
@@ -76,14 +78,15 @@ class SharepointRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sharepoint.Sharepoint, error_mapping)
+        return await self.request_adapter.send_async(request_info, sharepoint.Sharepoint, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[sharepoint.Sharepoint] = None, request_configuration: Optional[SharepointRequestBuilderPatchRequestConfiguration] = None) -> Optional[sharepoint.Sharepoint]:
+    async def patch(self,body: Optional[sharepoint.Sharepoint] = None, request_configuration: Optional[SharepointRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sharepoint.Sharepoint]:
         """
         Update the navigation property sharepoint in admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sharepoint.Sharepoint]
         """
         if body is None:
@@ -97,7 +100,7 @@ class SharepointRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sharepoint.Sharepoint, error_mapping)
+        return await self.request_adapter.send_async(request_info, sharepoint.Sharepoint, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SharepointRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

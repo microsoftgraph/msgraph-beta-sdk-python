@@ -147,11 +147,12 @@ class MobileAppItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[MobileAppItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[MobileAppItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property mobileApps for deviceAppManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -162,7 +163,7 @@ class MobileAppItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
     def device_statuses_by_id(self,id: str) -> mobile_app_install_status_item_request_builder.MobileAppInstallStatusItemRequestBuilder:
         """
@@ -177,11 +178,12 @@ class MobileAppItemRequestBuilder():
         url_tpl_params["mobileAppInstallStatus%2Did"] = id
         return mobile_app_install_status_item_request_builder.MobileAppInstallStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[MobileAppItemRequestBuilderGetRequestConfiguration] = None) -> Optional[mobile_app.MobileApp]:
+    async def get(self,request_configuration: Optional[MobileAppItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mobile_app.MobileApp]:
         """
         The mobile apps.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mobile_app.MobileApp]
         """
         request_info = self.to_get_request_information(
@@ -193,7 +195,7 @@ class MobileAppItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mobile_app.MobileApp, error_mapping)
+        return await self.request_adapter.send_async(request_info, mobile_app.MobileApp, response_handler, error_mapping)
     
     def get_related_app_states_with_user_principal_name_with_device_id(self,device_id: Optional[str] = None, user_principal_name: Optional[str] = None) -> get_related_app_states_with_user_principal_name_with_device_id_request_builder.GetRelatedAppStatesWithUserPrincipalNameWithDeviceIdRequestBuilder:
         """
@@ -209,12 +211,13 @@ class MobileAppItemRequestBuilder():
             raise Exception("user_principal_name cannot be undefined")
         return get_related_app_states_with_user_principal_name_with_device_id_request_builder.GetRelatedAppStatesWithUserPrincipalNameWithDeviceIdRequestBuilder(self.request_adapter, self.path_parameters, deviceId, userPrincipalName)
     
-    async def patch(self,body: Optional[mobile_app.MobileApp] = None, request_configuration: Optional[MobileAppItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[mobile_app.MobileApp]:
+    async def patch(self,body: Optional[mobile_app.MobileApp] = None, request_configuration: Optional[MobileAppItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mobile_app.MobileApp]:
         """
         Update the navigation property mobileApps in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mobile_app.MobileApp]
         """
         if body is None:
@@ -228,7 +231,7 @@ class MobileAppItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mobile_app.MobileApp, error_mapping)
+        return await self.request_adapter.send_async(request_info, mobile_app.MobileApp, response_handler, error_mapping)
     
     def relationships_by_id(self,id: str) -> mobile_app_relationship_item_request_builder.MobileAppRelationshipItemRequestBuilder:
         """

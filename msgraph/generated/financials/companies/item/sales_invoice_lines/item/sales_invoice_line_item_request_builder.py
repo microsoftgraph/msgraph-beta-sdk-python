@@ -51,11 +51,12 @@ class SalesInvoiceLineItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SalesInvoiceLineItemRequestBuilderGetRequestConfiguration] = None) -> Optional[sales_invoice_line.SalesInvoiceLine]:
+    async def get(self,request_configuration: Optional[SalesInvoiceLineItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sales_invoice_line.SalesInvoiceLine]:
         """
         Get salesInvoiceLines from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sales_invoice_line.SalesInvoiceLine]
         """
         request_info = self.to_get_request_information(
@@ -67,14 +68,15 @@ class SalesInvoiceLineItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sales_invoice_line.SalesInvoiceLine, error_mapping)
+        return await self.request_adapter.send_async(request_info, sales_invoice_line.SalesInvoiceLine, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[sales_invoice_line.SalesInvoiceLine] = None, request_configuration: Optional[SalesInvoiceLineItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[sales_invoice_line.SalesInvoiceLine]:
+    async def patch(self,body: Optional[sales_invoice_line.SalesInvoiceLine] = None, request_configuration: Optional[SalesInvoiceLineItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sales_invoice_line.SalesInvoiceLine]:
         """
         Update the navigation property salesInvoiceLines in financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sales_invoice_line.SalesInvoiceLine]
         """
         if body is None:
@@ -88,7 +90,7 @@ class SalesInvoiceLineItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sales_invoice_line.SalesInvoiceLine, error_mapping)
+        return await self.request_adapter.send_async(request_info, sales_invoice_line.SalesInvoiceLine, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SalesInvoiceLineItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

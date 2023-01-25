@@ -2091,11 +2091,12 @@ class DeviceManagementRequestBuilder():
         url_tpl_params["deviceManagementExchangeOnPremisesPolicy%2Did"] = id
         return device_management_exchange_on_premises_policy_item_request_builder.DeviceManagementExchangeOnPremisesPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DeviceManagementRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management.DeviceManagement]:
+    async def get(self,request_configuration: Optional[DeviceManagementRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management.DeviceManagement]:
         """
         Get deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management.DeviceManagement]
         """
         request_info = self.to_get_request_information(
@@ -2107,7 +2108,7 @@ class DeviceManagementRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management.DeviceManagement, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management.DeviceManagement, response_handler, error_mapping)
     
     def get_assigned_role_details(self,) -> get_assigned_role_details_request_builder.GetAssignedRoleDetailsRequestBuilder:
         """
@@ -2493,12 +2494,13 @@ class DeviceManagementRequestBuilder():
         url_tpl_params["oemWarrantyInformationOnboarding%2Did"] = id
         return oem_warranty_information_onboarding_item_request_builder.OemWarrantyInformationOnboardingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[device_management.DeviceManagement] = None, request_configuration: Optional[DeviceManagementRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management.DeviceManagement]:
+    async def patch(self,body: Optional[device_management.DeviceManagement] = None, request_configuration: Optional[DeviceManagementRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management.DeviceManagement]:
         """
         Update deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management.DeviceManagement]
         """
         if body is None:
@@ -2512,7 +2514,7 @@ class DeviceManagementRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management.DeviceManagement, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management.DeviceManagement, response_handler, error_mapping)
     
     def remote_action_audits_by_id(self,id: str) -> remote_action_audit_item_request_builder.RemoteActionAuditItemRequestBuilder:
         """

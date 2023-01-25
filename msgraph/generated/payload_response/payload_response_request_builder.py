@@ -44,11 +44,12 @@ class PayloadResponseRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PayloadResponseRequestBuilderGetRequestConfiguration] = None) -> Optional[payload_response_collection_response.PayloadResponseCollectionResponse]:
+    async def get(self,request_configuration: Optional[PayloadResponseRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[payload_response_collection_response.PayloadResponseCollectionResponse]:
         """
         Get entities from payloadResponse
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[payload_response_collection_response.PayloadResponseCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class PayloadResponseRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, payload_response_collection_response.PayloadResponseCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, payload_response_collection_response.PayloadResponseCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[payload_response.PayloadResponse] = None, request_configuration: Optional[PayloadResponseRequestBuilderPostRequestConfiguration] = None) -> Optional[payload_response.PayloadResponse]:
+    async def post(self,body: Optional[payload_response.PayloadResponse] = None, request_configuration: Optional[PayloadResponseRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[payload_response.PayloadResponse]:
         """
         Add new entity to payloadResponse
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[payload_response.PayloadResponse]
         """
         if body is None:
@@ -81,7 +83,7 @@ class PayloadResponseRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, payload_response.PayloadResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, payload_response.PayloadResponse, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PayloadResponseRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

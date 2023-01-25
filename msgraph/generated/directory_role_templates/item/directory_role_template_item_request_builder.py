@@ -75,11 +75,12 @@ class DirectoryRoleTemplateItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DirectoryRoleTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[DirectoryRoleTemplateItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
-        Delete entity from directoryRoleTemplates by key (id)
+        Delete entity from directoryRoleTemplates
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -90,13 +91,14 @@ class DirectoryRoleTemplateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[DirectoryRoleTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_role_template.DirectoryRoleTemplate]:
+    async def get(self,request_configuration: Optional[DirectoryRoleTemplateItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_role_template.DirectoryRoleTemplate]:
         """
         Retrieve the properties and relationships of a directoryroletemplate object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_role_template.DirectoryRoleTemplate]
         """
         request_info = self.to_get_request_information(
@@ -108,14 +110,15 @@ class DirectoryRoleTemplateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_role_template.DirectoryRoleTemplate, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_role_template.DirectoryRoleTemplate, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[directory_role_template.DirectoryRoleTemplate] = None, request_configuration: Optional[DirectoryRoleTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[directory_role_template.DirectoryRoleTemplate]:
+    async def patch(self,body: Optional[directory_role_template.DirectoryRoleTemplate] = None, request_configuration: Optional[DirectoryRoleTemplateItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_role_template.DirectoryRoleTemplate]:
         """
-        Update entity in directoryRoleTemplates by key (id)
+        Update entity in directoryRoleTemplates
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_role_template.DirectoryRoleTemplate]
         """
         if body is None:
@@ -129,11 +132,11 @@ class DirectoryRoleTemplateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_role_template.DirectoryRoleTemplate, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_role_template.DirectoryRoleTemplate, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DirectoryRoleTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete entity from directoryRoleTemplates by key (id)
+        Delete entity from directoryRoleTemplates
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -167,7 +170,7 @@ class DirectoryRoleTemplateItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[directory_role_template.DirectoryRoleTemplate] = None, request_configuration: Optional[DirectoryRoleTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update entity in directoryRoleTemplates by key (id)
+        Update entity in directoryRoleTemplates
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

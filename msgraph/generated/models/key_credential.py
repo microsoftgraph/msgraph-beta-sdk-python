@@ -29,7 +29,7 @@ class KeyCredential(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # A 40-character binary type that can be used to identify the credential. Optional. When not provided in the payload, defaults to the thumbprint of the certificate.
+        # Custom key identifier
         self._custom_key_identifier: Optional[bytes] = None
         # Friendly name for the key. Optional.
         self._display_name: Optional[str] = None
@@ -63,7 +63,7 @@ class KeyCredential(AdditionalDataHolder, Parsable):
     @property
     def custom_key_identifier(self,) -> Optional[bytes]:
         """
-        Gets the customKeyIdentifier property value. A 40-character binary type that can be used to identify the credential. Optional. When not provided in the payload, defaults to the thumbprint of the certificate.
+        Gets the customKeyIdentifier property value. Custom key identifier
         Returns: Optional[bytes]
         """
         return self._custom_key_identifier
@@ -71,7 +71,7 @@ class KeyCredential(AdditionalDataHolder, Parsable):
     @custom_key_identifier.setter
     def custom_key_identifier(self,value: Optional[bytes] = None) -> None:
         """
-        Sets the customKeyIdentifier property value. A 40-character binary type that can be used to identify the credential. Optional. When not provided in the payload, defaults to the thumbprint of the certificate.
+        Sets the customKeyIdentifier property value. Custom key identifier
         Args:
             value: Value to set for the customKeyIdentifier property.
         """

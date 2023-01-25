@@ -44,11 +44,12 @@ class SourceCollectionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SourceCollectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[source_collection_collection_response.SourceCollectionCollectionResponse]:
+    async def get(self,request_configuration: Optional[SourceCollectionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[source_collection_collection_response.SourceCollectionCollectionResponse]:
         """
         Get the list of sourceCollections from a case object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[source_collection_collection_response.SourceCollectionCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class SourceCollectionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, source_collection_collection_response.SourceCollectionCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, source_collection_collection_response.SourceCollectionCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[source_collection.SourceCollection] = None, request_configuration: Optional[SourceCollectionsRequestBuilderPostRequestConfiguration] = None) -> Optional[source_collection.SourceCollection]:
+    async def post(self,body: Optional[source_collection.SourceCollection] = None, request_configuration: Optional[SourceCollectionsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[source_collection.SourceCollection]:
         """
         Create a new sourceCollection object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[source_collection.SourceCollection]
         """
         if body is None:
@@ -81,7 +83,7 @@ class SourceCollectionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, source_collection.SourceCollection, error_mapping)
+        return await self.request_adapter.send_async(request_info, source_collection.SourceCollection, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SourceCollectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

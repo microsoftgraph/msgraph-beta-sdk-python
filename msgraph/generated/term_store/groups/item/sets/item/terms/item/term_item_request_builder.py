@@ -74,11 +74,12 @@ class TermItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[TermItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[TermItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property terms for termStore
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -89,13 +90,14 @@ class TermItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[TermItemRequestBuilderGetRequestConfiguration] = None) -> Optional[term.Term]:
+    async def get(self,request_configuration: Optional[TermItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[term.Term]:
         """
         All the terms under the set.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[term.Term]
         """
         request_info = self.to_get_request_information(
@@ -107,14 +109,15 @@ class TermItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, term.Term, error_mapping)
+        return await self.request_adapter.send_async(request_info, term.Term, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[term.Term] = None, request_configuration: Optional[TermItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[term.Term]:
+    async def patch(self,body: Optional[term.Term] = None, request_configuration: Optional[TermItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[term.Term]:
         """
         Update the navigation property terms in termStore
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[term.Term]
         """
         if body is None:
@@ -128,7 +131,7 @@ class TermItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, term.Term, error_mapping)
+        return await self.request_adapter.send_async(request_info, term.Term, response_handler, error_mapping)
     
     def relations_by_id(self,id: str) -> relation_item_request_builder.RelationItemRequestBuilder:
         """

@@ -37,11 +37,12 @@ class FindRoomsWithRoomListRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[FindRoomsWithRoomListRequestBuilderGetRequestConfiguration] = None) -> Optional[find_rooms_with_room_list_response.FindRoomsWithRoomListResponse]:
+    async def get(self,request_configuration: Optional[FindRoomsWithRoomListRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[find_rooms_with_room_list_response.FindRoomsWithRoomListResponse]:
         """
         Invoke function findRooms
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[find_rooms_with_room_list_response.FindRoomsWithRoomListResponse]
         """
         request_info = self.to_get_request_information(
@@ -53,7 +54,7 @@ class FindRoomsWithRoomListRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, find_rooms_with_room_list_response.FindRoomsWithRoomListResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, find_rooms_with_room_list_response.FindRoomsWithRoomListResponse, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[FindRoomsWithRoomListRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

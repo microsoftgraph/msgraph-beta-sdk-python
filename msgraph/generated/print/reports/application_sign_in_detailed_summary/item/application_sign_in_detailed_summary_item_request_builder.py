@@ -35,11 +35,12 @@ class ApplicationSignInDetailedSummaryItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ApplicationSignInDetailedSummaryItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ApplicationSignInDetailedSummaryItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property applicationSignInDetailedSummary for print
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class ApplicationSignInDetailedSummaryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[ApplicationSignInDetailedSummaryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[application_sign_in_detailed_summary.ApplicationSignInDetailedSummary]:
+    async def get(self,request_configuration: Optional[ApplicationSignInDetailedSummaryItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[application_sign_in_detailed_summary.ApplicationSignInDetailedSummary]:
         """
         Represents a detailed summary of an application sign-in.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[application_sign_in_detailed_summary.ApplicationSignInDetailedSummary]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class ApplicationSignInDetailedSummaryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, application_sign_in_detailed_summary.ApplicationSignInDetailedSummary, error_mapping)
+        return await self.request_adapter.send_async(request_info, application_sign_in_detailed_summary.ApplicationSignInDetailedSummary, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[application_sign_in_detailed_summary.ApplicationSignInDetailedSummary] = None, request_configuration: Optional[ApplicationSignInDetailedSummaryItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[application_sign_in_detailed_summary.ApplicationSignInDetailedSummary]:
+    async def patch(self,body: Optional[application_sign_in_detailed_summary.ApplicationSignInDetailedSummary] = None, request_configuration: Optional[ApplicationSignInDetailedSummaryItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[application_sign_in_detailed_summary.ApplicationSignInDetailedSummary]:
         """
         Update the navigation property applicationSignInDetailedSummary in print
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[application_sign_in_detailed_summary.ApplicationSignInDetailedSummary]
         """
         if body is None:
@@ -89,7 +92,7 @@ class ApplicationSignInDetailedSummaryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, application_sign_in_detailed_summary.ApplicationSignInDetailedSummary, error_mapping)
+        return await self.request_adapter.send_async(request_info, application_sign_in_detailed_summary.ApplicationSignInDetailedSummary, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ApplicationSignInDetailedSummaryItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

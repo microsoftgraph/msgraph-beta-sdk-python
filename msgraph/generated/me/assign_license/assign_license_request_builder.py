@@ -36,12 +36,13 @@ class AssignLicenseRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[assign_license_post_request_body.AssignLicensePostRequestBody] = None, request_configuration: Optional[AssignLicenseRequestBuilderPostRequestConfiguration] = None) -> Optional[user.User]:
+    async def post(self,body: Optional[assign_license_post_request_body.AssignLicensePostRequestBody] = None, request_configuration: Optional[AssignLicenseRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user.User]:
         """
         Add or remove licenses for the user to enable or disable their use of Microsoft cloud offerings. For example, an organization can have a Microsoft 365 Enterprise E3 subscription with 100 licenses, and this request assigns one of those licenses to a specific user. You can also enable and disable specific plans associated with a subscription. To learn more about subscriptions and licenses, see this Technet article. To get the subscriptions available in the directory, perform a GET subscribedSkus request. 
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user.User]
         """
         if body is None:
@@ -55,7 +56,7 @@ class AssignLicenseRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user.User, error_mapping)
+        return await self.request_adapter.send_async(request_info, user.User, response_handler, error_mapping)
     
     def to_post_request_information(self,body: Optional[assign_license_post_request_body.AssignLicensePostRequestBody] = None, request_configuration: Optional[AssignLicenseRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

@@ -43,11 +43,12 @@ class SettingsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SettingsRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[SettingsRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property settings for compliance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -58,13 +59,14 @@ class SettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[case_settings.CaseSettings]:
+    async def get(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[case_settings.CaseSettings]:
         """
         Read the properties and relationships of an eDiscovery caseSettings object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[case_settings.CaseSettings]
         """
         request_info = self.to_get_request_information(
@@ -76,14 +78,15 @@ class SettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, case_settings.CaseSettings, error_mapping)
+        return await self.request_adapter.send_async(request_info, case_settings.CaseSettings, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[case_settings.CaseSettings] = None, request_configuration: Optional[SettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[case_settings.CaseSettings]:
+    async def patch(self,body: Optional[case_settings.CaseSettings] = None, request_configuration: Optional[SettingsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[case_settings.CaseSettings]:
         """
         Update the properties of a an eDiscovery caseSettings object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[case_settings.CaseSettings]
         """
         if body is None:
@@ -97,7 +100,7 @@ class SettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, case_settings.CaseSettings, error_mapping)
+        return await self.request_adapter.send_async(request_info, case_settings.CaseSettings, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SettingsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

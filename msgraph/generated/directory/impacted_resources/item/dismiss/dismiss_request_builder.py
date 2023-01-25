@@ -11,7 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 dismiss_post_request_body = lazy_import('msgraph.generated.directory.impacted_resources.item.dismiss.dismiss_post_request_body')
-impacted_resource = lazy_import('msgraph.generated.models.impacted_resource')
+recommendation_resource = lazy_import('msgraph.generated.models.recommendation_resource')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class DismissRequestBuilder():
@@ -30,19 +30,20 @@ class DismissRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/directory/impactedResources/{impactedResource%2Did}/microsoft.graph.dismiss"
+        self.url_template: str = "{+baseurl}/directory/impactedResources/{recommendationResource%2Did}/microsoft.graph.dismiss"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[dismiss_post_request_body.DismissPostRequestBody] = None, request_configuration: Optional[DismissRequestBuilderPostRequestConfiguration] = None) -> Optional[impacted_resource.ImpactedResource]:
+    async def post(self,body: Optional[dismiss_post_request_body.DismissPostRequestBody] = None, request_configuration: Optional[DismissRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[recommendation_resource.RecommendationResource]:
         """
         Invoke action dismiss
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-        Returns: Optional[impacted_resource.ImpactedResource]
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
+        Returns: Optional[recommendation_resource.RecommendationResource]
         """
         if body is None:
             raise Exception("body cannot be undefined")
@@ -55,7 +56,7 @@ class DismissRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, impacted_resource.ImpactedResource, error_mapping)
+        return await self.request_adapter.send_async(request_info, recommendation_resource.RecommendationResource, response_handler, error_mapping)
     
     def to_post_request_information(self,body: Optional[dismiss_post_request_body.DismissPostRequestBody] = None, request_configuration: Optional[DismissRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

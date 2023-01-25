@@ -57,11 +57,12 @@ class IncidentItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[IncidentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[IncidentItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property incidents for security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -72,13 +73,14 @@ class IncidentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[IncidentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[incident.Incident]:
+    async def get(self,request_configuration: Optional[IncidentItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[incident.Incident]:
         """
         A collection of incidents in Microsoft 365 Defender, each of which is a set of correlated alerts and associated metadata that reflects the story of an attack.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[incident.Incident]
         """
         request_info = self.to_get_request_information(
@@ -90,14 +92,15 @@ class IncidentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, incident.Incident, error_mapping)
+        return await self.request_adapter.send_async(request_info, incident.Incident, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[incident.Incident] = None, request_configuration: Optional[IncidentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[incident.Incident]:
+    async def patch(self,body: Optional[incident.Incident] = None, request_configuration: Optional[IncidentItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[incident.Incident]:
         """
         Update the navigation property incidents in security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[incident.Incident]
         """
         if body is None:
@@ -111,7 +114,7 @@ class IncidentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, incident.Incident, error_mapping)
+        return await self.request_adapter.send_async(request_info, incident.Incident, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[IncidentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

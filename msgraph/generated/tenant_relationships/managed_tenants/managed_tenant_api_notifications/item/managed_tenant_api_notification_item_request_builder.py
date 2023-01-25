@@ -43,11 +43,12 @@ class ManagedTenantApiNotificationItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ManagedTenantApiNotificationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ManagedTenantApiNotificationItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property managedTenantApiNotifications for tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -58,13 +59,14 @@ class ManagedTenantApiNotificationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[ManagedTenantApiNotificationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_tenant_api_notification.ManagedTenantApiNotification]:
+    async def get(self,request_configuration: Optional[ManagedTenantApiNotificationItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_tenant_api_notification.ManagedTenantApiNotification]:
         """
         Get managedTenantApiNotifications from tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_tenant_api_notification.ManagedTenantApiNotification]
         """
         request_info = self.to_get_request_information(
@@ -76,14 +78,15 @@ class ManagedTenantApiNotificationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_tenant_api_notification.ManagedTenantApiNotification, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_tenant_api_notification.ManagedTenantApiNotification, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[managed_tenant_api_notification.ManagedTenantApiNotification] = None, request_configuration: Optional[ManagedTenantApiNotificationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[managed_tenant_api_notification.ManagedTenantApiNotification]:
+    async def patch(self,body: Optional[managed_tenant_api_notification.ManagedTenantApiNotification] = None, request_configuration: Optional[ManagedTenantApiNotificationItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_tenant_api_notification.ManagedTenantApiNotification]:
         """
         Update the navigation property managedTenantApiNotifications in tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_tenant_api_notification.ManagedTenantApiNotification]
         """
         if body is None:
@@ -97,7 +100,7 @@ class ManagedTenantApiNotificationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_tenant_api_notification.ManagedTenantApiNotification, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_tenant_api_notification.ManagedTenantApiNotification, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ManagedTenantApiNotificationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

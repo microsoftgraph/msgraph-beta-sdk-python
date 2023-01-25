@@ -44,11 +44,12 @@ class InterestsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[InterestsRequestBuilderGetRequestConfiguration] = None) -> Optional[person_interest_collection_response.PersonInterestCollectionResponse]:
+    async def get(self,request_configuration: Optional[InterestsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[person_interest_collection_response.PersonInterestCollectionResponse]:
         """
         Retrieve a list of personInterest objects from a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[person_interest_collection_response.PersonInterestCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class InterestsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, person_interest_collection_response.PersonInterestCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, person_interest_collection_response.PersonInterestCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[person_interest.PersonInterest] = None, request_configuration: Optional[InterestsRequestBuilderPostRequestConfiguration] = None) -> Optional[person_interest.PersonInterest]:
+    async def post(self,body: Optional[person_interest.PersonInterest] = None, request_configuration: Optional[InterestsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[person_interest.PersonInterest]:
         """
         Create a new personInterest.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[person_interest.PersonInterest]
         """
         if body is None:
@@ -81,7 +83,7 @@ class InterestsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, person_interest.PersonInterest, error_mapping)
+        return await self.request_adapter.send_async(request_info, person_interest.PersonInterest, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[InterestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

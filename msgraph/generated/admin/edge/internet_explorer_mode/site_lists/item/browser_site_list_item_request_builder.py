@@ -61,11 +61,12 @@ class BrowserSiteListItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[BrowserSiteListItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[BrowserSiteListItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property siteLists for admin
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -76,13 +77,14 @@ class BrowserSiteListItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[BrowserSiteListItemRequestBuilderGetRequestConfiguration] = None) -> Optional[browser_site_list.BrowserSiteList]:
+    async def get(self,request_configuration: Optional[BrowserSiteListItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[browser_site_list.BrowserSiteList]:
         """
         A collection of site lists to support Internet Explorer mode.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[browser_site_list.BrowserSiteList]
         """
         request_info = self.to_get_request_information(
@@ -94,14 +96,15 @@ class BrowserSiteListItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, browser_site_list.BrowserSiteList, error_mapping)
+        return await self.request_adapter.send_async(request_info, browser_site_list.BrowserSiteList, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[browser_site_list.BrowserSiteList] = None, request_configuration: Optional[BrowserSiteListItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[browser_site_list.BrowserSiteList]:
+    async def patch(self,body: Optional[browser_site_list.BrowserSiteList] = None, request_configuration: Optional[BrowserSiteListItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[browser_site_list.BrowserSiteList]:
         """
         Update the navigation property siteLists in admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[browser_site_list.BrowserSiteList]
         """
         if body is None:
@@ -115,7 +118,7 @@ class BrowserSiteListItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, browser_site_list.BrowserSiteList, error_mapping)
+        return await self.request_adapter.send_async(request_info, browser_site_list.BrowserSiteList, response_handler, error_mapping)
     
     def shared_cookies_by_id(self,id: str) -> browser_shared_cookie_item_request_builder.BrowserSharedCookieItemRequestBuilder:
         """

@@ -13,6 +13,9 @@ device_management_priority_meta_data = lazy_import('msgraph.generated.models.dev
 entity = lazy_import('msgraph.generated.models.entity')
 
 class DeviceManagementConfigurationPolicy(entity.Entity):
+    """
+    Device Management Configuration Policy
+    """
     @property
     def assignments(self,) -> Optional[List[device_management_configuration_policy_assignment.DeviceManagementConfigurationPolicyAssignment]]:
         """
@@ -32,7 +35,7 @@ class DeviceManagementConfigurationPolicy(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new DeviceManagementConfigurationPolicy and sets the default values.
+        Instantiates a new deviceManagementConfigurationPolicy and sets the default values.
         """
         super().__init__()
         # Policy assignments

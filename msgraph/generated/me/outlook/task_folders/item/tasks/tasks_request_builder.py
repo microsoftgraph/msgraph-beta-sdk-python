@@ -44,11 +44,12 @@ class TasksRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None) -> Optional[outlook_task_collection_response.OutlookTaskCollectionResponse]:
+    async def get(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[outlook_task_collection_response.OutlookTaskCollectionResponse]:
         """
         Get all the Outlook tasks in the specified folder. By default, this operation (and the POST, PATCH, and complete task operations) returnsdate-related properties in UTC.  You can use a `Prefer: outlook.timezone` request header to have all the date-related properties in the response represented in a time zonedifferent than UTC. See an example for getting a single task. You can apply the header similarly to get multiple tasks. If there is more than one task group, and you want to get all the tasks in a specific task group, firstget all the task folders in that task group,and then get the tasks in each of these task folders.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[outlook_task_collection_response.OutlookTaskCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class TasksRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, outlook_task_collection_response.OutlookTaskCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, outlook_task_collection_response.OutlookTaskCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[outlook_task.OutlookTask] = None, request_configuration: Optional[TasksRequestBuilderPostRequestConfiguration] = None) -> Optional[outlook_task.OutlookTask]:
+    async def post(self,body: Optional[outlook_task.OutlookTask] = None, request_configuration: Optional[TasksRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[outlook_task.OutlookTask]:
         """
         Create new navigation property to tasks for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[outlook_task.OutlookTask]
         """
         if body is None:
@@ -81,7 +83,7 @@ class TasksRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, outlook_task.OutlookTask, error_mapping)
+        return await self.request_adapter.send_async(request_info, outlook_task.OutlookTask, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TasksRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

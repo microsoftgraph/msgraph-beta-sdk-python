@@ -76,11 +76,12 @@ class UpdatableAssetsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UpdatableAssetsRequestBuilderGetRequestConfiguration] = None) -> Optional[updatable_asset_collection_response.UpdatableAssetCollectionResponse]:
+    async def get(self,request_configuration: Optional[UpdatableAssetsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[updatable_asset_collection_response.UpdatableAssetCollectionResponse]:
         """
-        Get a list of updatableAssetGroup objects and their properties. This operation filters on the fully qualified resource type, `microsoft.graph.windowsUpdates.updatableAssetGroup`, which inherits from updatableAsset.
+        Get a list of azureADDevice objects and their properties. This operation filters on the fully qualified resource type, `microsoft.graph.windowsUpdates.azureADDevice`, which inherits from updatableAsset.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[updatable_asset_collection_response.UpdatableAssetCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -92,14 +93,15 @@ class UpdatableAssetsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, updatable_asset_collection_response.UpdatableAssetCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, updatable_asset_collection_response.UpdatableAssetCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[updatable_asset.UpdatableAsset] = None, request_configuration: Optional[UpdatableAssetsRequestBuilderPostRequestConfiguration] = None) -> Optional[updatable_asset.UpdatableAsset]:
+    async def post(self,body: Optional[updatable_asset.UpdatableAsset] = None, request_configuration: Optional[UpdatableAssetsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[updatable_asset.UpdatableAsset]:
         """
         Create a new updatableAssetGroup object. The **updatableAssetGroup** resource inherits from updatableAsset.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[updatable_asset.UpdatableAsset]
         """
         if body is None:
@@ -113,11 +115,11 @@ class UpdatableAssetsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, updatable_asset.UpdatableAsset, error_mapping)
+        return await self.request_adapter.send_async(request_info, updatable_asset.UpdatableAsset, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UpdatableAssetsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of updatableAssetGroup objects and their properties. This operation filters on the fully qualified resource type, `microsoft.graph.windowsUpdates.updatableAssetGroup`, which inherits from updatableAsset.
+        Get a list of azureADDevice objects and their properties. This operation filters on the fully qualified resource type, `microsoft.graph.windowsUpdates.azureADDevice`, which inherits from updatableAsset.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -157,7 +159,7 @@ class UpdatableAssetsRequestBuilder():
     @dataclass
     class UpdatableAssetsRequestBuilderGetQueryParameters():
         """
-        Get a list of updatableAssetGroup objects and their properties. This operation filters on the fully qualified resource type, `microsoft.graph.windowsUpdates.updatableAssetGroup`, which inherits from updatableAsset.
+        Get a list of azureADDevice objects and their properties. This operation filters on the fully qualified resource type, `microsoft.graph.windowsUpdates.azureADDevice`, which inherits from updatableAsset.
         """
         # Include count of items
         count: Optional[bool] = None

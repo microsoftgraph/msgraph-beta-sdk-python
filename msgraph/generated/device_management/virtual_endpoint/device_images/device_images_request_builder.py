@@ -45,11 +45,12 @@ class DeviceImagesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DeviceImagesRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_device_image_collection_response.CloudPcDeviceImageCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceImagesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_device_image_collection_response.CloudPcDeviceImageCollectionResponse]:
         """
         List the properties and relationships of the cloudPcDeviceImage objects (OS images) uploaded to Cloud PC.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_device_image_collection_response.CloudPcDeviceImageCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,7 +62,7 @@ class DeviceImagesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_device_image_collection_response.CloudPcDeviceImageCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_device_image_collection_response.CloudPcDeviceImageCollectionResponse, response_handler, error_mapping)
     
     def get_source_images(self,) -> get_source_images_request_builder.GetSourceImagesRequestBuilder:
         """
@@ -70,12 +71,13 @@ class DeviceImagesRequestBuilder():
         """
         return get_source_images_request_builder.GetSourceImagesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    async def post(self,body: Optional[cloud_pc_device_image.CloudPcDeviceImage] = None, request_configuration: Optional[DeviceImagesRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_pc_device_image.CloudPcDeviceImage]:
+    async def post(self,body: Optional[cloud_pc_device_image.CloudPcDeviceImage] = None, request_configuration: Optional[DeviceImagesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_device_image.CloudPcDeviceImage]:
         """
         Create a new cloudPcDeviceImage object. Upload a custom OS image that you can later provision on Cloud PCs.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_device_image.CloudPcDeviceImage]
         """
         if body is None:
@@ -89,7 +91,7 @@ class DeviceImagesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_device_image.CloudPcDeviceImage, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_device_image.CloudPcDeviceImage, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceImagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

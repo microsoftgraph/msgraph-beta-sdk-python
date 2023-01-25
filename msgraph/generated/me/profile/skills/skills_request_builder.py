@@ -44,11 +44,12 @@ class SkillsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SkillsRequestBuilderGetRequestConfiguration] = None) -> Optional[skill_proficiency_collection_response.SkillProficiencyCollectionResponse]:
+    async def get(self,request_configuration: Optional[SkillsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[skill_proficiency_collection_response.SkillProficiencyCollectionResponse]:
         """
         Retrieve a list of skillProficiency objects in a user's profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[skill_proficiency_collection_response.SkillProficiencyCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class SkillsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, skill_proficiency_collection_response.SkillProficiencyCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, skill_proficiency_collection_response.SkillProficiencyCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[skill_proficiency.SkillProficiency] = None, request_configuration: Optional[SkillsRequestBuilderPostRequestConfiguration] = None) -> Optional[skill_proficiency.SkillProficiency]:
+    async def post(self,body: Optional[skill_proficiency.SkillProficiency] = None, request_configuration: Optional[SkillsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[skill_proficiency.SkillProficiency]:
         """
         Use this API to create a new skillProficiency object in a user's profile.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[skill_proficiency.SkillProficiency]
         """
         if body is None:
@@ -81,7 +83,7 @@ class SkillsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, skill_proficiency.SkillProficiency, error_mapping)
+        return await self.request_adapter.send_async(request_info, skill_proficiency.SkillProficiency, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SkillsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

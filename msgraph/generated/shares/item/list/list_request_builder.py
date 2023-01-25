@@ -122,11 +122,12 @@ class ListRequestBuilder():
         url_tpl_params["contentType%2Did"] = id
         return content_type_item_request_builder.ContentTypeItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[ListRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ListRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property list for shares
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -137,13 +138,14 @@ class ListRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[ListRequestBuilderGetRequestConfiguration] = None) -> Optional[list.List]:
+    async def get(self,request_configuration: Optional[ListRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[list.List]:
         """
         Used to access the underlying list
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[list.List]
         """
         request_info = self.to_get_request_information(
@@ -155,7 +157,7 @@ class ListRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, list.List, error_mapping)
+        return await self.request_adapter.send_async(request_info, list.List, response_handler, error_mapping)
     
     def items_by_id(self,id: str) -> list_item_item_request_builder.ListItemItemRequestBuilder:
         """
@@ -183,12 +185,13 @@ class ListRequestBuilder():
         url_tpl_params["richLongRunningOperation%2Did"] = id
         return rich_long_running_operation_item_request_builder.RichLongRunningOperationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[list.List] = None, request_configuration: Optional[ListRequestBuilderPatchRequestConfiguration] = None) -> Optional[list.List]:
+    async def patch(self,body: Optional[list.List] = None, request_configuration: Optional[ListRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[list.List]:
         """
         Update the navigation property list in shares
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[list.List]
         """
         if body is None:
@@ -202,7 +205,7 @@ class ListRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, list.List, error_mapping)
+        return await self.request_adapter.send_async(request_info, list.List, response_handler, error_mapping)
     
     def subscriptions_by_id(self,id: str) -> subscription_item_request_builder.SubscriptionItemRequestBuilder:
         """

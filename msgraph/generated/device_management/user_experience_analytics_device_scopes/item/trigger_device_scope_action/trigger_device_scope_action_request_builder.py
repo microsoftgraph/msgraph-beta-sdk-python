@@ -36,12 +36,13 @@ class TriggerDeviceScopeActionRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[trigger_device_scope_action_post_request_body.TriggerDeviceScopeActionPostRequestBody] = None, request_configuration: Optional[TriggerDeviceScopeActionRequestBuilderPostRequestConfiguration] = None) -> Optional[device_scope_action_result.DeviceScopeActionResult]:
+    async def post(self,body: Optional[trigger_device_scope_action_post_request_body.TriggerDeviceScopeActionPostRequestBody] = None, request_configuration: Optional[TriggerDeviceScopeActionRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_scope_action_result.DeviceScopeActionResult]:
         """
         Invoke action triggerDeviceScopeAction
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_scope_action_result.DeviceScopeActionResult]
         """
         if body is None:
@@ -55,7 +56,7 @@ class TriggerDeviceScopeActionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_scope_action_result.DeviceScopeActionResult, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_scope_action_result.DeviceScopeActionResult, response_handler, error_mapping)
     
     def to_post_request_information(self,body: Optional[trigger_device_scope_action_post_request_body.TriggerDeviceScopeActionPostRequestBody] = None, request_configuration: Optional[TriggerDeviceScopeActionRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

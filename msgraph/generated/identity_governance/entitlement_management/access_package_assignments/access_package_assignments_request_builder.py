@@ -79,11 +79,12 @@ class AccessPackageAssignmentsRequestBuilder():
             raise Exception("on cannot be undefined")
         return filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
     
-    async def get(self,request_configuration: Optional[AccessPackageAssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_assignment_collection_response.AccessPackageAssignmentCollectionResponse]:
+    async def get(self,request_configuration: Optional[AccessPackageAssignmentsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_assignment_collection_response.AccessPackageAssignmentCollectionResponse]:
         """
         In Azure AD entitlement management, retrieve a list of accessPackageAssignment objects. For directory-wide administrators, the resulting list includes all the assignments, current and well as expired, that the caller has access to read, across all catalogs and access packages.  If the caller is on behalf of a delegated user who is assigned only to catalog-specific delegated administrative roles, the request must supply a filter to indicate a specific access package, such as: `$filter=accessPackage/id eq 'a914b616-e04e-476b-aa37-91038f0b165b'`.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_assignment_collection_response.AccessPackageAssignmentCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -95,14 +96,15 @@ class AccessPackageAssignmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_assignment_collection_response.AccessPackageAssignmentCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_assignment_collection_response.AccessPackageAssignmentCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[access_package_assignment.AccessPackageAssignment] = None, request_configuration: Optional[AccessPackageAssignmentsRequestBuilderPostRequestConfiguration] = None) -> Optional[access_package_assignment.AccessPackageAssignment]:
+    async def post(self,body: Optional[access_package_assignment.AccessPackageAssignment] = None, request_configuration: Optional[AccessPackageAssignmentsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_assignment.AccessPackageAssignment]:
         """
         Create new navigation property to accessPackageAssignments for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_assignment.AccessPackageAssignment]
         """
         if body is None:
@@ -116,7 +118,7 @@ class AccessPackageAssignmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_assignment.AccessPackageAssignment, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_assignment.AccessPackageAssignment, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageAssignmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

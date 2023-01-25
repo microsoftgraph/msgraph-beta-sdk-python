@@ -102,11 +102,12 @@ class CustodianItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CustodianItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[CustodianItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property custodians for compliance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -117,13 +118,14 @@ class CustodianItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[CustodianItemRequestBuilderGetRequestConfiguration] = None) -> Optional[custodian.Custodian]:
+    async def get(self,request_configuration: Optional[CustodianItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[custodian.Custodian]:
         """
         Returns a list of case custodian objects for this case.  Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[custodian.Custodian]
         """
         request_info = self.to_get_request_information(
@@ -135,14 +137,15 @@ class CustodianItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, custodian.Custodian, error_mapping)
+        return await self.request_adapter.send_async(request_info, custodian.Custodian, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[custodian.Custodian] = None, request_configuration: Optional[CustodianItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[custodian.Custodian]:
+    async def patch(self,body: Optional[custodian.Custodian] = None, request_configuration: Optional[CustodianItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[custodian.Custodian]:
         """
         Update the navigation property custodians in compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[custodian.Custodian]
         """
         if body is None:
@@ -156,7 +159,7 @@ class CustodianItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, custodian.Custodian, error_mapping)
+        return await self.request_adapter.send_async(request_info, custodian.Custodian, response_handler, error_mapping)
     
     def site_sources_by_id(self,id: str) -> site_source_item_request_builder.SiteSourceItemRequestBuilder:
         """

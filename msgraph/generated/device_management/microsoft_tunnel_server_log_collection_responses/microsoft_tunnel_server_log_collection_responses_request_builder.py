@@ -44,11 +44,12 @@ class MicrosoftTunnelServerLogCollectionResponsesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[MicrosoftTunnelServerLogCollectionResponsesRequestBuilderGetRequestConfiguration] = None) -> Optional[microsoft_tunnel_server_log_collection_response_collection_response.MicrosoftTunnelServerLogCollectionResponseCollectionResponse]:
+    async def get(self,request_configuration: Optional[MicrosoftTunnelServerLogCollectionResponsesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[microsoft_tunnel_server_log_collection_response_collection_response.MicrosoftTunnelServerLogCollectionResponseCollectionResponse]:
         """
         Collection of MicrosoftTunnelServerLogCollectionResponse settings associated with account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[microsoft_tunnel_server_log_collection_response_collection_response.MicrosoftTunnelServerLogCollectionResponseCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class MicrosoftTunnelServerLogCollectionResponsesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, microsoft_tunnel_server_log_collection_response_collection_response.MicrosoftTunnelServerLogCollectionResponseCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, microsoft_tunnel_server_log_collection_response_collection_response.MicrosoftTunnelServerLogCollectionResponseCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[microsoft_tunnel_server_log_collection_response.MicrosoftTunnelServerLogCollectionResponse] = None, request_configuration: Optional[MicrosoftTunnelServerLogCollectionResponsesRequestBuilderPostRequestConfiguration] = None) -> Optional[microsoft_tunnel_server_log_collection_response.MicrosoftTunnelServerLogCollectionResponse]:
+    async def post(self,body: Optional[microsoft_tunnel_server_log_collection_response.MicrosoftTunnelServerLogCollectionResponse] = None, request_configuration: Optional[MicrosoftTunnelServerLogCollectionResponsesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[microsoft_tunnel_server_log_collection_response.MicrosoftTunnelServerLogCollectionResponse]:
         """
         Create new navigation property to microsoftTunnelServerLogCollectionResponses for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[microsoft_tunnel_server_log_collection_response.MicrosoftTunnelServerLogCollectionResponse]
         """
         if body is None:
@@ -81,7 +83,7 @@ class MicrosoftTunnelServerLogCollectionResponsesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, microsoft_tunnel_server_log_collection_response.MicrosoftTunnelServerLogCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, microsoft_tunnel_server_log_collection_response.MicrosoftTunnelServerLogCollectionResponse, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[MicrosoftTunnelServerLogCollectionResponsesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

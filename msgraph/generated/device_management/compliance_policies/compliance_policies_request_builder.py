@@ -44,11 +44,12 @@ class CompliancePoliciesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CompliancePoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_compliance_policy_collection_response.DeviceManagementCompliancePolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[CompliancePoliciesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_compliance_policy_collection_response.DeviceManagementCompliancePolicyCollectionResponse]:
         """
         List of all compliance policies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_compliance_policy_collection_response.DeviceManagementCompliancePolicyCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class CompliancePoliciesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_compliance_policy_collection_response.DeviceManagementCompliancePolicyCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_compliance_policy_collection_response.DeviceManagementCompliancePolicyCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[device_management_compliance_policy.DeviceManagementCompliancePolicy] = None, request_configuration: Optional[CompliancePoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[device_management_compliance_policy.DeviceManagementCompliancePolicy]:
+    async def post(self,body: Optional[device_management_compliance_policy.DeviceManagementCompliancePolicy] = None, request_configuration: Optional[CompliancePoliciesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_compliance_policy.DeviceManagementCompliancePolicy]:
         """
         Create new navigation property to compliancePolicies for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_compliance_policy.DeviceManagementCompliancePolicy]
         """
         if body is None:
@@ -81,7 +83,7 @@ class CompliancePoliciesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_compliance_policy.DeviceManagementCompliancePolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_compliance_policy.DeviceManagementCompliancePolicy, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CompliancePoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

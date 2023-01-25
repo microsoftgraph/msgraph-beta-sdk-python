@@ -12,9 +12,6 @@ group_policy_presentation = lazy_import('msgraph.generated.models.group_policy_p
 group_policy_type = lazy_import('msgraph.generated.models.group_policy_type')
 
 class GroupPolicyDefinition(entity.Entity):
-    """
-    The entity describes all of the information about a single group policy.
-    """
     @property
     def category(self,) -> Optional[group_policy_category.GroupPolicyCategory]:
         """

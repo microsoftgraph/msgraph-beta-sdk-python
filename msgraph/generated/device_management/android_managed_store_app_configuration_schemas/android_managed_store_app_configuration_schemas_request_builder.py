@@ -44,11 +44,12 @@ class AndroidManagedStoreAppConfigurationSchemasRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AndroidManagedStoreAppConfigurationSchemasRequestBuilderGetRequestConfiguration] = None) -> Optional[android_managed_store_app_configuration_schema_collection_response.AndroidManagedStoreAppConfigurationSchemaCollectionResponse]:
+    async def get(self,request_configuration: Optional[AndroidManagedStoreAppConfigurationSchemasRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[android_managed_store_app_configuration_schema_collection_response.AndroidManagedStoreAppConfigurationSchemaCollectionResponse]:
         """
         Android Enterprise app configuration schema entities.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[android_managed_store_app_configuration_schema_collection_response.AndroidManagedStoreAppConfigurationSchemaCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class AndroidManagedStoreAppConfigurationSchemasRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, android_managed_store_app_configuration_schema_collection_response.AndroidManagedStoreAppConfigurationSchemaCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, android_managed_store_app_configuration_schema_collection_response.AndroidManagedStoreAppConfigurationSchemaCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[android_managed_store_app_configuration_schema.AndroidManagedStoreAppConfigurationSchema] = None, request_configuration: Optional[AndroidManagedStoreAppConfigurationSchemasRequestBuilderPostRequestConfiguration] = None) -> Optional[android_managed_store_app_configuration_schema.AndroidManagedStoreAppConfigurationSchema]:
+    async def post(self,body: Optional[android_managed_store_app_configuration_schema.AndroidManagedStoreAppConfigurationSchema] = None, request_configuration: Optional[AndroidManagedStoreAppConfigurationSchemasRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[android_managed_store_app_configuration_schema.AndroidManagedStoreAppConfigurationSchema]:
         """
         Create new navigation property to androidManagedStoreAppConfigurationSchemas for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[android_managed_store_app_configuration_schema.AndroidManagedStoreAppConfigurationSchema]
         """
         if body is None:
@@ -81,7 +83,7 @@ class AndroidManagedStoreAppConfigurationSchemasRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, android_managed_store_app_configuration_schema.AndroidManagedStoreAppConfigurationSchema, error_mapping)
+        return await self.request_adapter.send_async(request_info, android_managed_store_app_configuration_schema.AndroidManagedStoreAppConfigurationSchema, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AndroidManagedStoreAppConfigurationSchemasRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

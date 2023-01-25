@@ -44,11 +44,12 @@ class SettingsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_configuration_setting_collection_response.DeviceManagementConfigurationSettingCollectionResponse]:
+    async def get(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_configuration_setting_collection_response.DeviceManagementConfigurationSettingCollectionResponse]:
         """
         Policy settings
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_configuration_setting_collection_response.DeviceManagementConfigurationSettingCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class SettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_configuration_setting_collection_response.DeviceManagementConfigurationSettingCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_configuration_setting_collection_response.DeviceManagementConfigurationSettingCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[device_management_configuration_setting.DeviceManagementConfigurationSetting] = None, request_configuration: Optional[SettingsRequestBuilderPostRequestConfiguration] = None) -> Optional[device_management_configuration_setting.DeviceManagementConfigurationSetting]:
+    async def post(self,body: Optional[device_management_configuration_setting.DeviceManagementConfigurationSetting] = None, request_configuration: Optional[SettingsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_configuration_setting.DeviceManagementConfigurationSetting]:
         """
         Create new navigation property to settings for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_configuration_setting.DeviceManagementConfigurationSetting]
         """
         if body is None:
@@ -81,7 +83,7 @@ class SettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_configuration_setting.DeviceManagementConfigurationSetting, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_configuration_setting.DeviceManagementConfigurationSetting, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

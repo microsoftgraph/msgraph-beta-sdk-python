@@ -35,11 +35,12 @@ class DefaultAppManagementPolicyRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DefaultAppManagementPolicyRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[DefaultAppManagementPolicyRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property defaultAppManagementPolicy for policies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class DefaultAppManagementPolicyRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[DefaultAppManagementPolicyRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_app_management_policy.TenantAppManagementPolicy]:
+    async def get(self,request_configuration: Optional[DefaultAppManagementPolicyRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant_app_management_policy.TenantAppManagementPolicy]:
         """
         Read the properties of a tenantAppManagementPolicy object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_app_management_policy.TenantAppManagementPolicy]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class DefaultAppManagementPolicyRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant_app_management_policy.TenantAppManagementPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant_app_management_policy.TenantAppManagementPolicy, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[tenant_app_management_policy.TenantAppManagementPolicy] = None, request_configuration: Optional[DefaultAppManagementPolicyRequestBuilderPatchRequestConfiguration] = None) -> Optional[tenant_app_management_policy.TenantAppManagementPolicy]:
+    async def patch(self,body: Optional[tenant_app_management_policy.TenantAppManagementPolicy] = None, request_configuration: Optional[DefaultAppManagementPolicyRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant_app_management_policy.TenantAppManagementPolicy]:
         """
         Update the properties of a tenantAppManagementPolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_app_management_policy.TenantAppManagementPolicy]
         """
         if body is None:
@@ -89,7 +92,7 @@ class DefaultAppManagementPolicyRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant_app_management_policy.TenantAppManagementPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant_app_management_policy.TenantAppManagementPolicy, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DefaultAppManagementPolicyRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

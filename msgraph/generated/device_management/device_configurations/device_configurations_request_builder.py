@@ -61,11 +61,12 @@ class DeviceConfigurationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DeviceConfigurationsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_configuration_collection_response.DeviceConfigurationCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceConfigurationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_configuration_collection_response.DeviceConfigurationCollectionResponse]:
         """
         The device configurations.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_configuration_collection_response.DeviceConfigurationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -77,7 +78,7 @@ class DeviceConfigurationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_configuration_collection_response.DeviceConfigurationCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_configuration_collection_response.DeviceConfigurationCollectionResponse, response_handler, error_mapping)
     
     def get_ios_available_update_versions(self,) -> get_ios_available_update_versions_request_builder.GetIosAvailableUpdateVersionsRequestBuilder:
         """
@@ -86,12 +87,13 @@ class DeviceConfigurationsRequestBuilder():
         """
         return get_ios_available_update_versions_request_builder.GetIosAvailableUpdateVersionsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    async def post(self,body: Optional[device_configuration.DeviceConfiguration] = None, request_configuration: Optional[DeviceConfigurationsRequestBuilderPostRequestConfiguration] = None) -> Optional[device_configuration.DeviceConfiguration]:
+    async def post(self,body: Optional[device_configuration.DeviceConfiguration] = None, request_configuration: Optional[DeviceConfigurationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_configuration.DeviceConfiguration]:
         """
         Create new navigation property to deviceConfigurations for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_configuration.DeviceConfiguration]
         """
         if body is None:
@@ -105,7 +107,7 @@ class DeviceConfigurationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_configuration.DeviceConfiguration, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_configuration.DeviceConfiguration, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceConfigurationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

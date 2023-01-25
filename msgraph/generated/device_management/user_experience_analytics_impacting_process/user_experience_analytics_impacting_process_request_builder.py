@@ -44,11 +44,12 @@ class UserExperienceAnalyticsImpactingProcessRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsImpactingProcessRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_impacting_process_collection_response.UserExperienceAnalyticsImpactingProcessCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsImpactingProcessRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_impacting_process_collection_response.UserExperienceAnalyticsImpactingProcessCollectionResponse]:
         """
         User experience analytics impacting process
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_impacting_process_collection_response.UserExperienceAnalyticsImpactingProcessCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class UserExperienceAnalyticsImpactingProcessRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_impacting_process_collection_response.UserExperienceAnalyticsImpactingProcessCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_impacting_process_collection_response.UserExperienceAnalyticsImpactingProcessCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[user_experience_analytics_impacting_process.UserExperienceAnalyticsImpactingProcess] = None, request_configuration: Optional[UserExperienceAnalyticsImpactingProcessRequestBuilderPostRequestConfiguration] = None) -> Optional[user_experience_analytics_impacting_process.UserExperienceAnalyticsImpactingProcess]:
+    async def post(self,body: Optional[user_experience_analytics_impacting_process.UserExperienceAnalyticsImpactingProcess] = None, request_configuration: Optional[UserExperienceAnalyticsImpactingProcessRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_impacting_process.UserExperienceAnalyticsImpactingProcess]:
         """
         Create new navigation property to userExperienceAnalyticsImpactingProcess for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_impacting_process.UserExperienceAnalyticsImpactingProcess]
         """
         if body is None:
@@ -81,7 +83,7 @@ class UserExperienceAnalyticsImpactingProcessRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_impacting_process.UserExperienceAnalyticsImpactingProcess, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_impacting_process.UserExperienceAnalyticsImpactingProcess, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UserExperienceAnalyticsImpactingProcessRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

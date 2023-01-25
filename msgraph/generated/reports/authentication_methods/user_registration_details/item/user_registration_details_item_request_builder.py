@@ -35,11 +35,12 @@ class UserRegistrationDetailsItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[UserRegistrationDetailsItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[UserRegistrationDetailsItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property userRegistrationDetails for reports
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class UserRegistrationDetailsItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[UserRegistrationDetailsItemRequestBuilderGetRequestConfiguration] = None) -> Optional[user_registration_details.UserRegistrationDetails]:
+    async def get(self,request_configuration: Optional[UserRegistrationDetailsItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_registration_details.UserRegistrationDetails]:
         """
         Represents the state of a user's authentication methods, including which methods are registered and which features the user is registered and capable of (such as multi-factor authentication, self-service password reset, and passwordless authentication).
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_registration_details.UserRegistrationDetails]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class UserRegistrationDetailsItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_registration_details.UserRegistrationDetails, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_registration_details.UserRegistrationDetails, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[user_registration_details.UserRegistrationDetails] = None, request_configuration: Optional[UserRegistrationDetailsItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[user_registration_details.UserRegistrationDetails]:
+    async def patch(self,body: Optional[user_registration_details.UserRegistrationDetails] = None, request_configuration: Optional[UserRegistrationDetailsItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_registration_details.UserRegistrationDetails]:
         """
         Update the navigation property userRegistrationDetails in reports
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_registration_details.UserRegistrationDetails]
         """
         if body is None:
@@ -89,7 +92,7 @@ class UserRegistrationDetailsItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_registration_details.UserRegistrationDetails, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_registration_details.UserRegistrationDetails, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UserRegistrationDetailsItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -35,11 +35,12 @@ class PolicyRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PolicyRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy]:
+    async def get(self,request_configuration: Optional[PolicyRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy]:
         """
         The navigation link to the WindowsDefenderApplicationControl supplemental policy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy]
         """
         request_info = self.to_get_request_information(
@@ -51,7 +52,7 @@ class PolicyRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PolicyRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -102,11 +102,12 @@ class PlannerRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PlannerRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[PlannerRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property planner for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -117,7 +118,7 @@ class PlannerRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
     def favorite_plans_by_id(self,id: str) -> planner_plan_item_request_builder.PlannerPlanItemRequestBuilder:
         """
@@ -132,11 +133,12 @@ class PlannerRequestBuilder():
         url_tpl_params["plannerPlan%2Did"] = id
         return planner_plan_item_request_builder.PlannerPlanItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[PlannerRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_user.PlannerUser]:
+    async def get(self,request_configuration: Optional[PlannerRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[planner_user.PlannerUser]:
         """
         Retrieve the properties and relationships of a plannerUser object. The returned properties include the user's favorite plans and recently viewed plans. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[planner_user.PlannerUser]
         """
         request_info = self.to_get_request_information(
@@ -148,14 +150,15 @@ class PlannerRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, planner_user.PlannerUser, error_mapping)
+        return await self.request_adapter.send_async(request_info, planner_user.PlannerUser, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[planner_user.PlannerUser] = None, request_configuration: Optional[PlannerRequestBuilderPatchRequestConfiguration] = None) -> Optional[planner_user.PlannerUser]:
+    async def patch(self,body: Optional[planner_user.PlannerUser] = None, request_configuration: Optional[PlannerRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[planner_user.PlannerUser]:
         """
         Update the properties of a plannerUser object. You can use this operation to add or remove plans from a user's favorite plans list, and to indicate which plans the user has recently viewed.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[planner_user.PlannerUser]
         """
         if body is None:
@@ -169,7 +172,7 @@ class PlannerRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, planner_user.PlannerUser, error_mapping)
+        return await self.request_adapter.send_async(request_info, planner_user.PlannerUser, response_handler, error_mapping)
     
     def plans_by_id(self,id: str) -> planner_plan_item_request_builder.PlannerPlanItemRequestBuilder:
         """

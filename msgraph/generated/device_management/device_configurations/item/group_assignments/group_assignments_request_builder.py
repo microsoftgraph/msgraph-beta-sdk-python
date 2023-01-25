@@ -44,11 +44,12 @@ class GroupAssignmentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[GroupAssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_configuration_group_assignment_collection_response.DeviceConfigurationGroupAssignmentCollectionResponse]:
+    async def get(self,request_configuration: Optional[GroupAssignmentsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_configuration_group_assignment_collection_response.DeviceConfigurationGroupAssignmentCollectionResponse]:
         """
         The list of group assignments for the device configuration profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_configuration_group_assignment_collection_response.DeviceConfigurationGroupAssignmentCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class GroupAssignmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_configuration_group_assignment_collection_response.DeviceConfigurationGroupAssignmentCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_configuration_group_assignment_collection_response.DeviceConfigurationGroupAssignmentCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[device_configuration_group_assignment.DeviceConfigurationGroupAssignment] = None, request_configuration: Optional[GroupAssignmentsRequestBuilderPostRequestConfiguration] = None) -> Optional[device_configuration_group_assignment.DeviceConfigurationGroupAssignment]:
+    async def post(self,body: Optional[device_configuration_group_assignment.DeviceConfigurationGroupAssignment] = None, request_configuration: Optional[GroupAssignmentsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_configuration_group_assignment.DeviceConfigurationGroupAssignment]:
         """
         Create new navigation property to groupAssignments for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_configuration_group_assignment.DeviceConfigurationGroupAssignment]
         """
         if body is None:
@@ -81,7 +83,7 @@ class GroupAssignmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_configuration_group_assignment.DeviceConfigurationGroupAssignment, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_configuration_group_assignment.DeviceConfigurationGroupAssignment, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GroupAssignmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

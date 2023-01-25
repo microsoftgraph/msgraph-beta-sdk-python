@@ -17,9 +17,9 @@ class AttackSimulationRoot(entity.Entity):
         super().__init__()
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # Represents an attack simulation training operation.
+        # The operations property
         self._operations: Optional[List[attack_simulation_operation.AttackSimulationOperation]] = None
-        # Represents an attack simulation training campaign payload in a tenant.
+        # The payloads property
         self._payloads: Optional[List[payload.Payload]] = None
         # Represents simulation automation created to run on a tenant.
         self._simulation_automations: Optional[List[simulation_automation.SimulationAutomation]] = None
@@ -56,7 +56,7 @@ class AttackSimulationRoot(entity.Entity):
     @property
     def operations(self,) -> Optional[List[attack_simulation_operation.AttackSimulationOperation]]:
         """
-        Gets the operations property value. Represents an attack simulation training operation.
+        Gets the operations property value. The operations property
         Returns: Optional[List[attack_simulation_operation.AttackSimulationOperation]]
         """
         return self._operations
@@ -64,7 +64,7 @@ class AttackSimulationRoot(entity.Entity):
     @operations.setter
     def operations(self,value: Optional[List[attack_simulation_operation.AttackSimulationOperation]] = None) -> None:
         """
-        Sets the operations property value. Represents an attack simulation training operation.
+        Sets the operations property value. The operations property
         Args:
             value: Value to set for the operations property.
         """
@@ -73,7 +73,7 @@ class AttackSimulationRoot(entity.Entity):
     @property
     def payloads(self,) -> Optional[List[payload.Payload]]:
         """
-        Gets the payloads property value. Represents an attack simulation training campaign payload in a tenant.
+        Gets the payloads property value. The payloads property
         Returns: Optional[List[payload.Payload]]
         """
         return self._payloads
@@ -81,7 +81,7 @@ class AttackSimulationRoot(entity.Entity):
     @payloads.setter
     def payloads(self,value: Optional[List[payload.Payload]] = None) -> None:
         """
-        Sets the payloads property value. Represents an attack simulation training campaign payload in a tenant.
+        Sets the payloads property value. The payloads property
         Args:
             value: Value to set for the payloads property.
         """

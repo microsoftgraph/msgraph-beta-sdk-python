@@ -56,11 +56,12 @@ class AppConsentRequestsForApprovalRequestBuilder():
             raise Exception("on cannot be undefined")
         return filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
     
-    async def get(self,request_configuration: Optional[AppConsentRequestsForApprovalRequestBuilderGetRequestConfiguration] = None) -> Optional[app_consent_request_collection_response.AppConsentRequestCollectionResponse]:
+    async def get(self,request_configuration: Optional[AppConsentRequestsForApprovalRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[app_consent_request_collection_response.AppConsentRequestCollectionResponse]:
         """
         Get appConsentRequestsForApproval from me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[app_consent_request_collection_response.AppConsentRequestCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -72,14 +73,15 @@ class AppConsentRequestsForApprovalRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, app_consent_request_collection_response.AppConsentRequestCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, app_consent_request_collection_response.AppConsentRequestCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[app_consent_request.AppConsentRequest] = None, request_configuration: Optional[AppConsentRequestsForApprovalRequestBuilderPostRequestConfiguration] = None) -> Optional[app_consent_request.AppConsentRequest]:
+    async def post(self,body: Optional[app_consent_request.AppConsentRequest] = None, request_configuration: Optional[AppConsentRequestsForApprovalRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[app_consent_request.AppConsentRequest]:
         """
         Create new navigation property to appConsentRequestsForApproval for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[app_consent_request.AppConsentRequest]
         """
         if body is None:
@@ -93,7 +95,7 @@ class AppConsentRequestsForApprovalRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, app_consent_request.AppConsentRequest, error_mapping)
+        return await self.request_adapter.send_async(request_info, app_consent_request.AppConsentRequest, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AppConsentRequestsForApprovalRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

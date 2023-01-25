@@ -43,11 +43,12 @@ class AlertsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AlertsRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_tenant_alert_collection_response.ManagedTenantAlertCollectionResponse]:
+    async def get(self,request_configuration: Optional[AlertsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_tenant_alert_collection_response.ManagedTenantAlertCollectionResponse]:
         """
         Get alerts from tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_tenant_alert_collection_response.ManagedTenantAlertCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -59,7 +60,7 @@ class AlertsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_tenant_alert_collection_response.ManagedTenantAlertCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_tenant_alert_collection_response.ManagedTenantAlertCollectionResponse, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AlertsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

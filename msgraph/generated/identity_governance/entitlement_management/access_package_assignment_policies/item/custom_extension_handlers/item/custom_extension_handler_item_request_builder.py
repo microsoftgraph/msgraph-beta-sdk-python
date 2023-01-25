@@ -43,11 +43,12 @@ class CustomExtensionHandlerItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CustomExtensionHandlerItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[CustomExtensionHandlerItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property customExtensionHandlers for identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -58,13 +59,14 @@ class CustomExtensionHandlerItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[CustomExtensionHandlerItemRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_extension_handler.CustomExtensionHandler]:
+    async def get(self,request_configuration: Optional[CustomExtensionHandlerItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[custom_extension_handler.CustomExtensionHandler]:
         """
         The collection of stages when to execute one or more custom access package workflow extensions. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[custom_extension_handler.CustomExtensionHandler]
         """
         request_info = self.to_get_request_information(
@@ -76,14 +78,15 @@ class CustomExtensionHandlerItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, custom_extension_handler.CustomExtensionHandler, error_mapping)
+        return await self.request_adapter.send_async(request_info, custom_extension_handler.CustomExtensionHandler, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[custom_extension_handler.CustomExtensionHandler] = None, request_configuration: Optional[CustomExtensionHandlerItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[custom_extension_handler.CustomExtensionHandler]:
+    async def patch(self,body: Optional[custom_extension_handler.CustomExtensionHandler] = None, request_configuration: Optional[CustomExtensionHandlerItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[custom_extension_handler.CustomExtensionHandler]:
         """
         Update the navigation property customExtensionHandlers in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[custom_extension_handler.CustomExtensionHandler]
         """
         if body is None:
@@ -97,7 +100,7 @@ class CustomExtensionHandlerItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, custom_extension_handler.CustomExtensionHandler, error_mapping)
+        return await self.request_adapter.send_async(request_info, custom_extension_handler.CustomExtensionHandler, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CustomExtensionHandlerItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

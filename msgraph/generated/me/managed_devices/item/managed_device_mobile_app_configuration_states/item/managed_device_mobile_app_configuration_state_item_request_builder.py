@@ -35,11 +35,12 @@ class ManagedDeviceMobileAppConfigurationStateItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ManagedDeviceMobileAppConfigurationStateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ManagedDeviceMobileAppConfigurationStateItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property managedDeviceMobileAppConfigurationStates for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class ManagedDeviceMobileAppConfigurationStateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[ManagedDeviceMobileAppConfigurationStateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_device_mobile_app_configuration_state.ManagedDeviceMobileAppConfigurationState]:
+    async def get(self,request_configuration: Optional[ManagedDeviceMobileAppConfigurationStateItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_device_mobile_app_configuration_state.ManagedDeviceMobileAppConfigurationState]:
         """
         Managed device mobile app configuration states for this device.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_device_mobile_app_configuration_state.ManagedDeviceMobileAppConfigurationState]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class ManagedDeviceMobileAppConfigurationStateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_device_mobile_app_configuration_state.ManagedDeviceMobileAppConfigurationState, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_device_mobile_app_configuration_state.ManagedDeviceMobileAppConfigurationState, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[managed_device_mobile_app_configuration_state.ManagedDeviceMobileAppConfigurationState] = None, request_configuration: Optional[ManagedDeviceMobileAppConfigurationStateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[managed_device_mobile_app_configuration_state.ManagedDeviceMobileAppConfigurationState]:
+    async def patch(self,body: Optional[managed_device_mobile_app_configuration_state.ManagedDeviceMobileAppConfigurationState] = None, request_configuration: Optional[ManagedDeviceMobileAppConfigurationStateItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_device_mobile_app_configuration_state.ManagedDeviceMobileAppConfigurationState]:
         """
         Update the navigation property managedDeviceMobileAppConfigurationStates in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_device_mobile_app_configuration_state.ManagedDeviceMobileAppConfigurationState]
         """
         if body is None:
@@ -89,7 +92,7 @@ class ManagedDeviceMobileAppConfigurationStateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_device_mobile_app_configuration_state.ManagedDeviceMobileAppConfigurationState, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_device_mobile_app_configuration_state.ManagedDeviceMobileAppConfigurationState, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ManagedDeviceMobileAppConfigurationStateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

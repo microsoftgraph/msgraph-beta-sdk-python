@@ -75,11 +75,12 @@ class ResourceSpecificPermissionGrantItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ResourceSpecificPermissionGrantItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ResourceSpecificPermissionGrantItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
-        Delete entity from permissionGrants by key (id)
+        Delete entity from permissionGrants
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -90,13 +91,14 @@ class ResourceSpecificPermissionGrantItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[ResourceSpecificPermissionGrantItemRequestBuilderGetRequestConfiguration] = None) -> Optional[resource_specific_permission_grant.ResourceSpecificPermissionGrant]:
+    async def get(self,request_configuration: Optional[ResourceSpecificPermissionGrantItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[resource_specific_permission_grant.ResourceSpecificPermissionGrant]:
         """
-        Get entity from permissionGrants by key (id)
+        Get entity from permissionGrants by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[resource_specific_permission_grant.ResourceSpecificPermissionGrant]
         """
         request_info = self.to_get_request_information(
@@ -108,14 +110,15 @@ class ResourceSpecificPermissionGrantItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, resource_specific_permission_grant.ResourceSpecificPermissionGrant, error_mapping)
+        return await self.request_adapter.send_async(request_info, resource_specific_permission_grant.ResourceSpecificPermissionGrant, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[resource_specific_permission_grant.ResourceSpecificPermissionGrant] = None, request_configuration: Optional[ResourceSpecificPermissionGrantItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[resource_specific_permission_grant.ResourceSpecificPermissionGrant]:
+    async def patch(self,body: Optional[resource_specific_permission_grant.ResourceSpecificPermissionGrant] = None, request_configuration: Optional[ResourceSpecificPermissionGrantItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[resource_specific_permission_grant.ResourceSpecificPermissionGrant]:
         """
-        Update entity in permissionGrants by key (id)
+        Update entity in permissionGrants
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[resource_specific_permission_grant.ResourceSpecificPermissionGrant]
         """
         if body is None:
@@ -129,11 +132,11 @@ class ResourceSpecificPermissionGrantItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, resource_specific_permission_grant.ResourceSpecificPermissionGrant, error_mapping)
+        return await self.request_adapter.send_async(request_info, resource_specific_permission_grant.ResourceSpecificPermissionGrant, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ResourceSpecificPermissionGrantItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete entity from permissionGrants by key (id)
+        Delete entity from permissionGrants
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -149,7 +152,7 @@ class ResourceSpecificPermissionGrantItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[ResourceSpecificPermissionGrantItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get entity from permissionGrants by key (id)
+        Get entity from permissionGrants by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -167,7 +170,7 @@ class ResourceSpecificPermissionGrantItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[resource_specific_permission_grant.ResourceSpecificPermissionGrant] = None, request_configuration: Optional[ResourceSpecificPermissionGrantItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update entity in permissionGrants by key (id)
+        Update entity in permissionGrants
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -201,7 +204,7 @@ class ResourceSpecificPermissionGrantItemRequestBuilder():
     @dataclass
     class ResourceSpecificPermissionGrantItemRequestBuilderGetQueryParameters():
         """
-        Get entity from permissionGrants by key (id)
+        Get entity from permissionGrants by key
         """
         # Expand related entities
         expand: Optional[List[str]] = None

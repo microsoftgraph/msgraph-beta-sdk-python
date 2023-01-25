@@ -35,11 +35,12 @@ class AssignmentFilterEvaluationStatusDetailsItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AssignmentFilterEvaluationStatusDetailsItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[AssignmentFilterEvaluationStatusDetailsItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property assignmentFilterEvaluationStatusDetails for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class AssignmentFilterEvaluationStatusDetailsItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[AssignmentFilterEvaluationStatusDetailsItemRequestBuilderGetRequestConfiguration] = None) -> Optional[assignment_filter_evaluation_status_details.AssignmentFilterEvaluationStatusDetails]:
+    async def get(self,request_configuration: Optional[AssignmentFilterEvaluationStatusDetailsItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[assignment_filter_evaluation_status_details.AssignmentFilterEvaluationStatusDetails]:
         """
         Managed device mobile app configuration states for this device.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[assignment_filter_evaluation_status_details.AssignmentFilterEvaluationStatusDetails]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class AssignmentFilterEvaluationStatusDetailsItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, assignment_filter_evaluation_status_details.AssignmentFilterEvaluationStatusDetails, error_mapping)
+        return await self.request_adapter.send_async(request_info, assignment_filter_evaluation_status_details.AssignmentFilterEvaluationStatusDetails, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[assignment_filter_evaluation_status_details.AssignmentFilterEvaluationStatusDetails] = None, request_configuration: Optional[AssignmentFilterEvaluationStatusDetailsItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[assignment_filter_evaluation_status_details.AssignmentFilterEvaluationStatusDetails]:
+    async def patch(self,body: Optional[assignment_filter_evaluation_status_details.AssignmentFilterEvaluationStatusDetails] = None, request_configuration: Optional[AssignmentFilterEvaluationStatusDetailsItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[assignment_filter_evaluation_status_details.AssignmentFilterEvaluationStatusDetails]:
         """
         Update the navigation property assignmentFilterEvaluationStatusDetails in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[assignment_filter_evaluation_status_details.AssignmentFilterEvaluationStatusDetails]
         """
         if body is None:
@@ -89,7 +92,7 @@ class AssignmentFilterEvaluationStatusDetailsItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, assignment_filter_evaluation_status_details.AssignmentFilterEvaluationStatusDetails, error_mapping)
+        return await self.request_adapter.send_async(request_info, assignment_filter_evaluation_status_details.AssignmentFilterEvaluationStatusDetails, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AssignmentFilterEvaluationStatusDetailsItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

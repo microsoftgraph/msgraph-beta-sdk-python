@@ -35,11 +35,12 @@ class PersonAnnotationItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PersonAnnotationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[PersonAnnotationItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property notes for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class PersonAnnotationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[PersonAnnotationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[person_annotation.PersonAnnotation]:
+    async def get(self,request_configuration: Optional[PersonAnnotationItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[person_annotation.PersonAnnotation]:
         """
         Represents notes that a user has added to their profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[person_annotation.PersonAnnotation]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class PersonAnnotationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, person_annotation.PersonAnnotation, error_mapping)
+        return await self.request_adapter.send_async(request_info, person_annotation.PersonAnnotation, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[person_annotation.PersonAnnotation] = None, request_configuration: Optional[PersonAnnotationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[person_annotation.PersonAnnotation]:
+    async def patch(self,body: Optional[person_annotation.PersonAnnotation] = None, request_configuration: Optional[PersonAnnotationItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[person_annotation.PersonAnnotation]:
         """
         Update the navigation property notes in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[person_annotation.PersonAnnotation]
         """
         if body is None:
@@ -89,7 +92,7 @@ class PersonAnnotationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, person_annotation.PersonAnnotation, error_mapping)
+        return await self.request_adapter.send_async(request_info, person_annotation.PersonAnnotation, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PersonAnnotationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -44,11 +44,12 @@ class TaxGroupsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[TaxGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[tax_group_collection_response.TaxGroupCollectionResponse]:
+    async def get(self,request_configuration: Optional[TaxGroupsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tax_group_collection_response.TaxGroupCollectionResponse]:
         """
         Get taxGroups from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tax_group_collection_response.TaxGroupCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class TaxGroupsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tax_group_collection_response.TaxGroupCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, tax_group_collection_response.TaxGroupCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[tax_group.TaxGroup] = None, request_configuration: Optional[TaxGroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[tax_group.TaxGroup]:
+    async def post(self,body: Optional[tax_group.TaxGroup] = None, request_configuration: Optional[TaxGroupsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tax_group.TaxGroup]:
         """
         Create new navigation property to taxGroups for financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tax_group.TaxGroup]
         """
         if body is None:
@@ -81,7 +83,7 @@ class TaxGroupsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tax_group.TaxGroup, error_mapping)
+        return await self.request_adapter.send_async(request_info, tax_group.TaxGroup, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TaxGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

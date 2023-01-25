@@ -76,11 +76,12 @@ class OnenoteSectionItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[OnenoteSectionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[OnenoteSectionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property sections for sites
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -91,13 +92,14 @@ class OnenoteSectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[OnenoteSectionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[onenote_section.OnenoteSection]:
+    async def get(self,request_configuration: Optional[OnenoteSectionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[onenote_section.OnenoteSection]:
         """
         The sections in the notebook. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[onenote_section.OnenoteSection]
         """
         request_info = self.to_get_request_information(
@@ -109,7 +111,7 @@ class OnenoteSectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, onenote_section.OnenoteSection, error_mapping)
+        return await self.request_adapter.send_async(request_info, onenote_section.OnenoteSection, response_handler, error_mapping)
     
     def pages_by_id(self,id: str) -> onenote_page_item_request_builder.OnenotePageItemRequestBuilder:
         """
@@ -124,12 +126,13 @@ class OnenoteSectionItemRequestBuilder():
         url_tpl_params["onenotePage%2Did"] = id
         return onenote_page_item_request_builder.OnenotePageItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[onenote_section.OnenoteSection] = None, request_configuration: Optional[OnenoteSectionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[onenote_section.OnenoteSection]:
+    async def patch(self,body: Optional[onenote_section.OnenoteSection] = None, request_configuration: Optional[OnenoteSectionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[onenote_section.OnenoteSection]:
         """
         Update the navigation property sections in sites
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[onenote_section.OnenoteSection]
         """
         if body is None:
@@ -143,7 +146,7 @@ class OnenoteSectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, onenote_section.OnenoteSection, error_mapping)
+        return await self.request_adapter.send_async(request_info, onenote_section.OnenoteSection, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[OnenoteSectionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

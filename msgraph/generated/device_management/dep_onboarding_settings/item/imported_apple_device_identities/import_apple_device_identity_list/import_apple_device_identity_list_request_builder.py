@@ -36,12 +36,13 @@ class ImportAppleDeviceIdentityListRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[import_apple_device_identity_list_post_request_body.ImportAppleDeviceIdentityListPostRequestBody] = None, request_configuration: Optional[ImportAppleDeviceIdentityListRequestBuilderPostRequestConfiguration] = None) -> Optional[import_apple_device_identity_list_response.ImportAppleDeviceIdentityListResponse]:
+    async def post(self,body: Optional[import_apple_device_identity_list_post_request_body.ImportAppleDeviceIdentityListPostRequestBody] = None, request_configuration: Optional[ImportAppleDeviceIdentityListRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[import_apple_device_identity_list_response.ImportAppleDeviceIdentityListResponse]:
         """
         Invoke action importAppleDeviceIdentityList
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[import_apple_device_identity_list_response.ImportAppleDeviceIdentityListResponse]
         """
         if body is None:
@@ -55,7 +56,7 @@ class ImportAppleDeviceIdentityListRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, import_apple_device_identity_list_response.ImportAppleDeviceIdentityListResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, import_apple_device_identity_list_response.ImportAppleDeviceIdentityListResponse, response_handler, error_mapping)
     
     def to_post_request_information(self,body: Optional[import_apple_device_identity_list_post_request_body.ImportAppleDeviceIdentityListPostRequestBody] = None, request_configuration: Optional[ImportAppleDeviceIdentityListRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

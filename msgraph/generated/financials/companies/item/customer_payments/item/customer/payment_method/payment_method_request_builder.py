@@ -35,11 +35,12 @@ class PaymentMethodRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PaymentMethodRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[PaymentMethodRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property paymentMethod for financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class PaymentMethodRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[PaymentMethodRequestBuilderGetRequestConfiguration] = None) -> Optional[payment_method.PaymentMethod]:
+    async def get(self,request_configuration: Optional[PaymentMethodRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[payment_method.PaymentMethod]:
         """
         Get paymentMethod from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[payment_method.PaymentMethod]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class PaymentMethodRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, payment_method.PaymentMethod, error_mapping)
+        return await self.request_adapter.send_async(request_info, payment_method.PaymentMethod, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[payment_method.PaymentMethod] = None, request_configuration: Optional[PaymentMethodRequestBuilderPatchRequestConfiguration] = None) -> Optional[payment_method.PaymentMethod]:
+    async def patch(self,body: Optional[payment_method.PaymentMethod] = None, request_configuration: Optional[PaymentMethodRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[payment_method.PaymentMethod]:
         """
         Update the navigation property paymentMethod in financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[payment_method.PaymentMethod]
         """
         if body is None:
@@ -89,7 +92,7 @@ class PaymentMethodRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, payment_method.PaymentMethod, error_mapping)
+        return await self.request_adapter.send_async(request_info, payment_method.PaymentMethod, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PaymentMethodRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

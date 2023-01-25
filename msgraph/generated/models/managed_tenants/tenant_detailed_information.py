@@ -25,7 +25,7 @@ class TenantDetailedInformation(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new TenantDetailedInformation and sets the default values.
+        Instantiates a new tenantDetailedInformation and sets the default values.
         """
         super().__init__()
         # The city where the managed tenant is located. Optional. Read-only.

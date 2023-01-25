@@ -44,11 +44,12 @@ class PayloadsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PayloadsRequestBuilderGetRequestConfiguration] = None) -> Optional[payload_collection_response.PayloadCollectionResponse]:
+    async def get(self,request_configuration: Optional[PayloadsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[payload_collection_response.PayloadCollectionResponse]:
         """
-        Get a list of payloads for attack simulation campaigns. This operation expects the mandatory parameter **source** to filter and query the respective data source.
+        Get payloads from security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[payload_collection_response.PayloadCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class PayloadsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, payload_collection_response.PayloadCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, payload_collection_response.PayloadCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[payload.Payload] = None, request_configuration: Optional[PayloadsRequestBuilderPostRequestConfiguration] = None) -> Optional[payload.Payload]:
+    async def post(self,body: Optional[payload.Payload] = None, request_configuration: Optional[PayloadsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[payload.Payload]:
         """
         Create new navigation property to payloads for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[payload.Payload]
         """
         if body is None:
@@ -81,11 +83,11 @@ class PayloadsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, payload.Payload, error_mapping)
+        return await self.request_adapter.send_async(request_info, payload.Payload, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PayloadsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of payloads for attack simulation campaigns. This operation expects the mandatory parameter **source** to filter and query the respective data source.
+        Get payloads from security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -125,7 +127,7 @@ class PayloadsRequestBuilder():
     @dataclass
     class PayloadsRequestBuilderGetQueryParameters():
         """
-        Get a list of payloads for attack simulation campaigns. This operation expects the mandatory parameter **source** to filter and query the respective data source.
+        Get payloads from security
         """
         # Include count of items
         count: Optional[bool] = None

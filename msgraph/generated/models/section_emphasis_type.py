@@ -2,7 +2,7 @@ from enum import Enum
 
 class SectionEmphasisType(Enum):
     None_escaped = "none",
-    Neutral = "neutral",
+    Netural = "netural",
     Soft = "soft",
     Strong = "strong",
     UnknownFutureValue = "unknownFutureValue",

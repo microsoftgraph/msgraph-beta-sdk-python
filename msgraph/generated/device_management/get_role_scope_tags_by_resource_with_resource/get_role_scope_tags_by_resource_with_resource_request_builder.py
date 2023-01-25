@@ -37,11 +37,12 @@ class GetRoleScopeTagsByResourceWithResourceRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[GetRoleScopeTagsByResourceWithResourceRequestBuilderGetRequestConfiguration] = None) -> Optional[get_role_scope_tags_by_resource_with_resource_response.GetRoleScopeTagsByResourceWithResourceResponse]:
+    async def get(self,request_configuration: Optional[GetRoleScopeTagsByResourceWithResourceRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[get_role_scope_tags_by_resource_with_resource_response.GetRoleScopeTagsByResourceWithResourceResponse]:
         """
         Invoke function getRoleScopeTagsByResource
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[get_role_scope_tags_by_resource_with_resource_response.GetRoleScopeTagsByResourceWithResourceResponse]
         """
         request_info = self.to_get_request_information(
@@ -53,7 +54,7 @@ class GetRoleScopeTagsByResourceWithResourceRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, get_role_scope_tags_by_resource_with_resource_response.GetRoleScopeTagsByResourceWithResourceResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, get_role_scope_tags_by_resource_with_resource_response.GetRoleScopeTagsByResourceWithResourceResponse, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetRoleScopeTagsByResourceWithResourceRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -68,11 +68,12 @@ class DirectorySettingTemplatesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DirectorySettingTemplatesRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_setting_template_collection_response.DirectorySettingTemplateCollectionResponse]:
+    async def get(self,request_configuration: Optional[DirectorySettingTemplatesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_setting_template_collection_response.DirectorySettingTemplateCollectionResponse]:
         """
         Directory setting templates represents a set of templates of directory settings, from which directory settings may be created and used within a tenant.  This operation retrieves the list of available **directorySettingTemplates** objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_setting_template_collection_response.DirectorySettingTemplateCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -84,14 +85,15 @@ class DirectorySettingTemplatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_setting_template_collection_response.DirectorySettingTemplateCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_setting_template_collection_response.DirectorySettingTemplateCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[directory_setting_template.DirectorySettingTemplate] = None, request_configuration: Optional[DirectorySettingTemplatesRequestBuilderPostRequestConfiguration] = None) -> Optional[directory_setting_template.DirectorySettingTemplate]:
+    async def post(self,body: Optional[directory_setting_template.DirectorySettingTemplate] = None, request_configuration: Optional[DirectorySettingTemplatesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_setting_template.DirectorySettingTemplate]:
         """
         Add new entity to directorySettingTemplates
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_setting_template.DirectorySettingTemplate]
         """
         if body is None:
@@ -105,7 +107,7 @@ class DirectorySettingTemplatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_setting_template.DirectorySettingTemplate, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_setting_template.DirectorySettingTemplate, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DirectorySettingTemplatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

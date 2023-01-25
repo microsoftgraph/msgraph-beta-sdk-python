@@ -35,11 +35,12 @@ class ConfigurationRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ConfigurationRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[ConfigurationRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property configuration for teamwork
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class ConfigurationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[ConfigurationRequestBuilderGetRequestConfiguration] = None) -> Optional[teamwork_device_configuration.TeamworkDeviceConfiguration]:
+    async def get(self,request_configuration: Optional[ConfigurationRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[teamwork_device_configuration.TeamworkDeviceConfiguration]:
         """
         Get the configuration details of a Microsoft Teams-enabled device, including software versions, peripheral device configuration (for example, camera, display, microphone, and speaker), hardware configuration, and Microsoft Teams client configuration.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[teamwork_device_configuration.TeamworkDeviceConfiguration]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class ConfigurationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, teamwork_device_configuration.TeamworkDeviceConfiguration, error_mapping)
+        return await self.request_adapter.send_async(request_info, teamwork_device_configuration.TeamworkDeviceConfiguration, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[teamwork_device_configuration.TeamworkDeviceConfiguration] = None, request_configuration: Optional[ConfigurationRequestBuilderPatchRequestConfiguration] = None) -> Optional[teamwork_device_configuration.TeamworkDeviceConfiguration]:
+    async def patch(self,body: Optional[teamwork_device_configuration.TeamworkDeviceConfiguration] = None, request_configuration: Optional[ConfigurationRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[teamwork_device_configuration.TeamworkDeviceConfiguration]:
         """
         Update the navigation property configuration in teamwork
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[teamwork_device_configuration.TeamworkDeviceConfiguration]
         """
         if body is None:
@@ -89,7 +92,7 @@ class ConfigurationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, teamwork_device_configuration.TeamworkDeviceConfiguration, error_mapping)
+        return await self.request_adapter.send_async(request_info, teamwork_device_configuration.TeamworkDeviceConfiguration, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ConfigurationRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

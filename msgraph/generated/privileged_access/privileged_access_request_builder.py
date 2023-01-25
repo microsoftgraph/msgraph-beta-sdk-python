@@ -44,11 +44,12 @@ class PrivilegedAccessRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PrivilegedAccessRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access_collection_response.PrivilegedAccessCollectionResponse]:
+    async def get(self,request_configuration: Optional[PrivilegedAccessRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_access_collection_response.PrivilegedAccessCollectionResponse]:
         """
         Get entities from privilegedAccess
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_access_collection_response.PrivilegedAccessCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class PrivilegedAccessRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_access_collection_response.PrivilegedAccessCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_access_collection_response.PrivilegedAccessCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[privileged_access.PrivilegedAccess] = None, request_configuration: Optional[PrivilegedAccessRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_access.PrivilegedAccess]:
+    async def post(self,body: Optional[privileged_access.PrivilegedAccess] = None, request_configuration: Optional[PrivilegedAccessRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_access.PrivilegedAccess]:
         """
         Add new entity to privilegedAccess
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_access.PrivilegedAccess]
         """
         if body is None:
@@ -81,7 +83,7 @@ class PrivilegedAccessRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_access.PrivilegedAccess, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_access.PrivilegedAccess, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedAccessRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

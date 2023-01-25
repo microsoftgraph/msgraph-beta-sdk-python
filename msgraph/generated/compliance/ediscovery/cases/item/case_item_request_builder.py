@@ -135,11 +135,12 @@ class CaseItemRequestBuilder():
         url_tpl_params["custodian%2Did"] = id
         return custodian_item_request_builder.CustodianItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[CaseItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[CaseItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property cases for compliance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -150,13 +151,14 @@ class CaseItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[CaseItemRequestBuilderGetRequestConfiguration] = None) -> Optional[case.Case]:
+    async def get(self,request_configuration: Optional[CaseItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[case.Case]:
         """
         Get cases from compliance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[case.Case]
         """
         request_info = self.to_get_request_information(
@@ -168,7 +170,7 @@ class CaseItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, case.Case, error_mapping)
+        return await self.request_adapter.send_async(request_info, case.Case, response_handler, error_mapping)
     
     def legal_holds_by_id(self,id: str) -> legal_hold_item_request_builder.LegalHoldItemRequestBuilder:
         """
@@ -209,12 +211,13 @@ class CaseItemRequestBuilder():
         url_tpl_params["caseOperation%2Did"] = id
         return case_operation_item_request_builder.CaseOperationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[case.Case] = None, request_configuration: Optional[CaseItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[case.Case]:
+    async def patch(self,body: Optional[case.Case] = None, request_configuration: Optional[CaseItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[case.Case]:
         """
         Update the navigation property cases in compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[case.Case]
         """
         if body is None:
@@ -228,7 +231,7 @@ class CaseItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, case.Case, error_mapping)
+        return await self.request_adapter.send_async(request_info, case.Case, response_handler, error_mapping)
     
     def review_sets_by_id(self,id: str) -> review_set_item_request_builder.ReviewSetItemRequestBuilder:
         """

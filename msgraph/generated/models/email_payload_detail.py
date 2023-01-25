@@ -12,13 +12,13 @@ class EmailPayloadDetail(payload_detail.PayloadDetail):
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.emailPayloadDetail"
-        # Email address of the user.
+        # The fromEmail property
         self._from_email: Optional[str] = None
-        # Display name of the user.
+        # The fromName property
         self._from_name: Optional[str] = None
-        # Indicates whether the sender is not from the user's organization.
+        # The isExternalSender property
         self._is_external_sender: Optional[bool] = None
-        # The subject of the email address sent to the user.
+        # The subject property
         self._subject: Optional[str] = None
     
     @staticmethod
@@ -36,7 +36,7 @@ class EmailPayloadDetail(payload_detail.PayloadDetail):
     @property
     def from_email(self,) -> Optional[str]:
         """
-        Gets the fromEmail property value. Email address of the user.
+        Gets the fromEmail property value. The fromEmail property
         Returns: Optional[str]
         """
         return self._from_email
@@ -44,7 +44,7 @@ class EmailPayloadDetail(payload_detail.PayloadDetail):
     @from_email.setter
     def from_email(self,value: Optional[str] = None) -> None:
         """
-        Sets the fromEmail property value. Email address of the user.
+        Sets the fromEmail property value. The fromEmail property
         Args:
             value: Value to set for the fromEmail property.
         """
@@ -53,7 +53,7 @@ class EmailPayloadDetail(payload_detail.PayloadDetail):
     @property
     def from_name(self,) -> Optional[str]:
         """
-        Gets the fromName property value. Display name of the user.
+        Gets the fromName property value. The fromName property
         Returns: Optional[str]
         """
         return self._from_name
@@ -61,7 +61,7 @@ class EmailPayloadDetail(payload_detail.PayloadDetail):
     @from_name.setter
     def from_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the fromName property value. Display name of the user.
+        Sets the fromName property value. The fromName property
         Args:
             value: Value to set for the fromName property.
         """
@@ -85,7 +85,7 @@ class EmailPayloadDetail(payload_detail.PayloadDetail):
     @property
     def is_external_sender(self,) -> Optional[bool]:
         """
-        Gets the isExternalSender property value. Indicates whether the sender is not from the user's organization.
+        Gets the isExternalSender property value. The isExternalSender property
         Returns: Optional[bool]
         """
         return self._is_external_sender
@@ -93,7 +93,7 @@ class EmailPayloadDetail(payload_detail.PayloadDetail):
     @is_external_sender.setter
     def is_external_sender(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isExternalSender property value. Indicates whether the sender is not from the user's organization.
+        Sets the isExternalSender property value. The isExternalSender property
         Args:
             value: Value to set for the isExternalSender property.
         """
@@ -116,7 +116,7 @@ class EmailPayloadDetail(payload_detail.PayloadDetail):
     @property
     def subject(self,) -> Optional[str]:
         """
-        Gets the subject property value. The subject of the email address sent to the user.
+        Gets the subject property value. The subject property
         Returns: Optional[str]
         """
         return self._subject
@@ -124,7 +124,7 @@ class EmailPayloadDetail(payload_detail.PayloadDetail):
     @subject.setter
     def subject(self,value: Optional[str] = None) -> None:
         """
-        Sets the subject property value. The subject of the email address sent to the user.
+        Sets the subject property value. The subject property
         Args:
             value: Value to set for the subject property.
         """

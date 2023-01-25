@@ -44,11 +44,12 @@ class DocumentSetVersionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DocumentSetVersionsRequestBuilderGetRequestConfiguration] = None) -> Optional[document_set_version_collection_response.DocumentSetVersionCollectionResponse]:
+    async def get(self,request_configuration: Optional[DocumentSetVersionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[document_set_version_collection_response.DocumentSetVersionCollectionResponse]:
         """
         Get a list of the versions of a document set item in a list.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[document_set_version_collection_response.DocumentSetVersionCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class DocumentSetVersionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, document_set_version_collection_response.DocumentSetVersionCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, document_set_version_collection_response.DocumentSetVersionCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[document_set_version.DocumentSetVersion] = None, request_configuration: Optional[DocumentSetVersionsRequestBuilderPostRequestConfiguration] = None) -> Optional[document_set_version.DocumentSetVersion]:
+    async def post(self,body: Optional[document_set_version.DocumentSetVersion] = None, request_configuration: Optional[DocumentSetVersionsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[document_set_version.DocumentSetVersion]:
         """
         Create a new version of a document set item in a list.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[document_set_version.DocumentSetVersion]
         """
         if body is None:
@@ -81,7 +83,7 @@ class DocumentSetVersionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, document_set_version.DocumentSetVersion, error_mapping)
+        return await self.request_adapter.send_async(request_info, document_set_version.DocumentSetVersion, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DocumentSetVersionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

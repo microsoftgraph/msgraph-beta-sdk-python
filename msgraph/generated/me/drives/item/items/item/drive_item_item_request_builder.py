@@ -247,11 +247,12 @@ class DriveItemItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DriveItemItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[DriveItemItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property items for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -262,7 +263,7 @@ class DriveItemItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
     def delta(self,) -> delta_request_builder.DeltaRequestBuilder:
         """
@@ -282,11 +283,12 @@ class DriveItemItemRequestBuilder():
             raise Exception("token cannot be undefined")
         return delta_with_token_request_builder.DeltaWithTokenRequestBuilder(self.request_adapter, self.path_parameters, token)
     
-    async def get(self,request_configuration: Optional[DriveItemItemRequestBuilderGetRequestConfiguration] = None) -> Optional[drive_item.DriveItem]:
+    async def get(self,request_configuration: Optional[DriveItemItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[drive_item.DriveItem]:
         """
         All items contained in the drive. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[drive_item.DriveItem]
         """
         request_info = self.to_get_request_information(
@@ -298,7 +300,7 @@ class DriveItemItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, drive_item.DriveItem, error_mapping)
+        return await self.request_adapter.send_async(request_info, drive_item.DriveItem, response_handler, error_mapping)
     
     def get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval(self,end_date_time: Optional[str] = None, interval: Optional[str] = None, start_date_time: Optional[str] = None) -> get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder:
         """
@@ -317,12 +319,13 @@ class DriveItemItemRequestBuilder():
             raise Exception("start_date_time cannot be undefined")
         return get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(self.request_adapter, self.path_parameters, endDateTime, interval, startDateTime)
     
-    async def patch(self,body: Optional[drive_item.DriveItem] = None, request_configuration: Optional[DriveItemItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[drive_item.DriveItem]:
+    async def patch(self,body: Optional[drive_item.DriveItem] = None, request_configuration: Optional[DriveItemItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[drive_item.DriveItem]:
         """
         Update the navigation property items in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[drive_item.DriveItem]
         """
         if body is None:
@@ -336,7 +339,7 @@ class DriveItemItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, drive_item.DriveItem, error_mapping)
+        return await self.request_adapter.send_async(request_info, drive_item.DriveItem, response_handler, error_mapping)
     
     def permissions_by_id(self,id: str) -> permission_item_request_builder.PermissionItemRequestBuilder:
         """

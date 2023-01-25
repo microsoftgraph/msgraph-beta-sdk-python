@@ -71,11 +71,12 @@ class AttackSimulationRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AttackSimulationRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[AttackSimulationRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property attackSimulation for security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -86,13 +87,14 @@ class AttackSimulationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[AttackSimulationRequestBuilderGetRequestConfiguration] = None) -> Optional[attack_simulation_root.AttackSimulationRoot]:
+    async def get(self,request_configuration: Optional[AttackSimulationRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[attack_simulation_root.AttackSimulationRoot]:
         """
         Provides tenants capability to launch a simulated and realistic phishing attack and learn from it.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[attack_simulation_root.AttackSimulationRoot]
         """
         request_info = self.to_get_request_information(
@@ -104,7 +106,7 @@ class AttackSimulationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, attack_simulation_root.AttackSimulationRoot, error_mapping)
+        return await self.request_adapter.send_async(request_info, attack_simulation_root.AttackSimulationRoot, response_handler, error_mapping)
     
     def operations_by_id(self,id: str) -> attack_simulation_operation_item_request_builder.AttackSimulationOperationItemRequestBuilder:
         """
@@ -119,12 +121,13 @@ class AttackSimulationRequestBuilder():
         url_tpl_params["attackSimulationOperation%2Did"] = id
         return attack_simulation_operation_item_request_builder.AttackSimulationOperationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[attack_simulation_root.AttackSimulationRoot] = None, request_configuration: Optional[AttackSimulationRequestBuilderPatchRequestConfiguration] = None) -> Optional[attack_simulation_root.AttackSimulationRoot]:
+    async def patch(self,body: Optional[attack_simulation_root.AttackSimulationRoot] = None, request_configuration: Optional[AttackSimulationRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[attack_simulation_root.AttackSimulationRoot]:
         """
         Update the navigation property attackSimulation in security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[attack_simulation_root.AttackSimulationRoot]
         """
         if body is None:
@@ -138,7 +141,7 @@ class AttackSimulationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, attack_simulation_root.AttackSimulationRoot, error_mapping)
+        return await self.request_adapter.send_async(request_info, attack_simulation_root.AttackSimulationRoot, response_handler, error_mapping)
     
     def payloads_by_id(self,id: str) -> payload_item_request_builder.PayloadItemRequestBuilder:
         """

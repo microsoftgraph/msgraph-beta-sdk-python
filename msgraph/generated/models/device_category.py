@@ -6,6 +6,9 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class DeviceCategory(entity.Entity):
+    """
+    Device categories provides a way to organize your devices. Using device categories, company administrators can define their own categories that make sense to their company. These categories can then be applied to a device in the Intune Azure console or selected by a user during device enrollment. You can filter reports and create dynamic Azure Active Directory device groups based on device categories.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new deviceCategory and sets the default values.

@@ -15,6 +15,9 @@ device_management_setting_instance = lazy_import('msgraph.generated.models.devic
 entity = lazy_import('msgraph.generated.models.entity')
 
 class DeviceManagementIntent(entity.Entity):
+    """
+    Entity that represents an intent to apply settings to a device
+    """
     @property
     def assignments(self,) -> Optional[List[device_management_intent_assignment.DeviceManagementIntentAssignment]]:
         """
@@ -51,7 +54,7 @@ class DeviceManagementIntent(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new DeviceManagementIntent and sets the default values.
+        Instantiates a new deviceManagementIntent and sets the default values.
         """
         super().__init__()
         # Collection of assignments

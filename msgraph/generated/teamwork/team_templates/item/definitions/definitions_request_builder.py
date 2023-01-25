@@ -44,11 +44,12 @@ class DefinitionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[team_template_definition_collection_response.TeamTemplateDefinitionCollectionResponse]:
+    async def get(self,request_configuration: Optional[DefinitionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[team_template_definition_collection_response.TeamTemplateDefinitionCollectionResponse]:
         """
         Get definitions from teamwork
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[team_template_definition_collection_response.TeamTemplateDefinitionCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class DefinitionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, team_template_definition_collection_response.TeamTemplateDefinitionCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, team_template_definition_collection_response.TeamTemplateDefinitionCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[team_template_definition.TeamTemplateDefinition] = None, request_configuration: Optional[DefinitionsRequestBuilderPostRequestConfiguration] = None) -> Optional[team_template_definition.TeamTemplateDefinition]:
+    async def post(self,body: Optional[team_template_definition.TeamTemplateDefinition] = None, request_configuration: Optional[DefinitionsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[team_template_definition.TeamTemplateDefinition]:
         """
         Create new navigation property to definitions for teamwork
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[team_template_definition.TeamTemplateDefinition]
         """
         if body is None:
@@ -81,7 +83,7 @@ class DefinitionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, team_template_definition.TeamTemplateDefinition, error_mapping)
+        return await self.request_adapter.send_async(request_info, team_template_definition.TeamTemplateDefinition, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DefinitionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

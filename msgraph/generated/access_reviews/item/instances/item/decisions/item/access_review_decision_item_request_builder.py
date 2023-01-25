@@ -35,11 +35,12 @@ class AccessReviewDecisionItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AccessReviewDecisionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[AccessReviewDecisionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
         Delete navigation property decisions for accessReviews
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -50,13 +51,14 @@ class AccessReviewDecisionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[AccessReviewDecisionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_decision.AccessReviewDecision]:
+    async def get(self,request_configuration: Optional[AccessReviewDecisionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_decision.AccessReviewDecision]:
         """
         The collection of decisions for this access review.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_decision.AccessReviewDecision]
         """
         request_info = self.to_get_request_information(
@@ -68,14 +70,15 @@ class AccessReviewDecisionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_decision.AccessReviewDecision, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_decision.AccessReviewDecision, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[access_review_decision.AccessReviewDecision] = None, request_configuration: Optional[AccessReviewDecisionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_review_decision.AccessReviewDecision]:
+    async def patch(self,body: Optional[access_review_decision.AccessReviewDecision] = None, request_configuration: Optional[AccessReviewDecisionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_decision.AccessReviewDecision]:
         """
         Update the navigation property decisions in accessReviews
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_decision.AccessReviewDecision]
         """
         if body is None:
@@ -89,7 +92,7 @@ class AccessReviewDecisionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_decision.AccessReviewDecision, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_decision.AccessReviewDecision, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AccessReviewDecisionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

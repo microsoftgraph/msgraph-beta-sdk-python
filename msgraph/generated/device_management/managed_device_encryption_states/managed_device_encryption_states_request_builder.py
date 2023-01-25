@@ -44,11 +44,12 @@ class ManagedDeviceEncryptionStatesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ManagedDeviceEncryptionStatesRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_device_encryption_state_collection_response.ManagedDeviceEncryptionStateCollectionResponse]:
+    async def get(self,request_configuration: Optional[ManagedDeviceEncryptionStatesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_device_encryption_state_collection_response.ManagedDeviceEncryptionStateCollectionResponse]:
         """
         Encryption report for devices in this account
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_device_encryption_state_collection_response.ManagedDeviceEncryptionStateCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class ManagedDeviceEncryptionStatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_device_encryption_state_collection_response.ManagedDeviceEncryptionStateCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_device_encryption_state_collection_response.ManagedDeviceEncryptionStateCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[managed_device_encryption_state.ManagedDeviceEncryptionState] = None, request_configuration: Optional[ManagedDeviceEncryptionStatesRequestBuilderPostRequestConfiguration] = None) -> Optional[managed_device_encryption_state.ManagedDeviceEncryptionState]:
+    async def post(self,body: Optional[managed_device_encryption_state.ManagedDeviceEncryptionState] = None, request_configuration: Optional[ManagedDeviceEncryptionStatesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_device_encryption_state.ManagedDeviceEncryptionState]:
         """
         Create new navigation property to managedDeviceEncryptionStates for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_device_encryption_state.ManagedDeviceEncryptionState]
         """
         if body is None:
@@ -81,7 +83,7 @@ class ManagedDeviceEncryptionStatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_device_encryption_state.ManagedDeviceEncryptionState, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_device_encryption_state.ManagedDeviceEncryptionState, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ManagedDeviceEncryptionStatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

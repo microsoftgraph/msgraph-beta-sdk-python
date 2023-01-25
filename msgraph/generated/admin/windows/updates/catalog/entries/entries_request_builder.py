@@ -44,11 +44,12 @@ class EntriesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[EntriesRequestBuilderGetRequestConfiguration] = None) -> Optional[catalog_entry_collection_response.CatalogEntryCollectionResponse]:
+    async def get(self,request_configuration: Optional[EntriesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[catalog_entry_collection_response.CatalogEntryCollectionResponse]:
         """
         Get a list of catalogEntry resources from the catalog. Currently, this operation returns entries of the featureUpdateCatalogEntry or qualityUpdateCatalog types, inherited from **catalogEntry**. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[catalog_entry_collection_response.CatalogEntryCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class EntriesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, catalog_entry_collection_response.CatalogEntryCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, catalog_entry_collection_response.CatalogEntryCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[catalog_entry.CatalogEntry] = None, request_configuration: Optional[EntriesRequestBuilderPostRequestConfiguration] = None) -> Optional[catalog_entry.CatalogEntry]:
+    async def post(self,body: Optional[catalog_entry.CatalogEntry] = None, request_configuration: Optional[EntriesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[catalog_entry.CatalogEntry]:
         """
         Create new navigation property to entries for admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[catalog_entry.CatalogEntry]
         """
         if body is None:
@@ -81,7 +83,7 @@ class EntriesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, catalog_entry.CatalogEntry, error_mapping)
+        return await self.request_adapter.send_async(request_info, catalog_entry.CatalogEntry, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[EntriesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -35,11 +35,12 @@ class GetSupportedCloudPcRemoteActionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[GetSupportedCloudPcRemoteActionsRequestBuilderGetRequestConfiguration] = None) -> Optional[get_supported_cloud_pc_remote_actions_response.GetSupportedCloudPcRemoteActionsResponse]:
+    async def get(self,request_configuration: Optional[GetSupportedCloudPcRemoteActionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[get_supported_cloud_pc_remote_actions_response.GetSupportedCloudPcRemoteActionsResponse]:
         """
         Invoke function getSupportedCloudPcRemoteActions
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[get_supported_cloud_pc_remote_actions_response.GetSupportedCloudPcRemoteActionsResponse]
         """
         request_info = self.to_get_request_information(
@@ -51,7 +52,7 @@ class GetSupportedCloudPcRemoteActionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, get_supported_cloud_pc_remote_actions_response.GetSupportedCloudPcRemoteActionsResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, get_supported_cloud_pc_remote_actions_response.GetSupportedCloudPcRemoteActionsResponse, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetSupportedCloudPcRemoteActionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

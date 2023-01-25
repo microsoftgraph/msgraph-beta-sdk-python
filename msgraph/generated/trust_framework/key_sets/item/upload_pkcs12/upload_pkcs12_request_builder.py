@@ -36,12 +36,13 @@ class UploadPkcs12RequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[upload_pkcs12_post_request_body.UploadPkcs12PostRequestBody] = None, request_configuration: Optional[UploadPkcs12RequestBuilderPostRequestConfiguration] = None) -> Optional[trust_framework_key.TrustFrameworkKey]:
+    async def post(self,body: Optional[upload_pkcs12_post_request_body.UploadPkcs12PostRequestBody] = None, request_configuration: Optional[UploadPkcs12RequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[trust_framework_key.TrustFrameworkKey]:
         """
         Upload a PKCS12 format key (PFX) to a trustFrameworkKeyset. The input is a base-64 encoded value of the Pfx certificate contents. This method returns trustFrameworkKey.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[trust_framework_key.TrustFrameworkKey]
         """
         if body is None:
@@ -55,7 +56,7 @@ class UploadPkcs12RequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, trust_framework_key.TrustFrameworkKey, error_mapping)
+        return await self.request_adapter.send_async(request_info, trust_framework_key.TrustFrameworkKey, response_handler, error_mapping)
     
     def to_post_request_information(self,body: Optional[upload_pkcs12_post_request_body.UploadPkcs12PostRequestBody] = None, request_configuration: Optional[UploadPkcs12RequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

@@ -117,7 +117,7 @@ class CloudPcOnPremisesConnection(entity.Entity):
         self._type: Optional[cloud_pc_on_premises_connection_type.CloudPcOnPremisesConnectionType] = None
         # The ID of the target virtual network. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}.
         self._virtual_network_id: Optional[str] = None
-        # Indicates resource location of the virtual target network. Read-only, computed value.
+        # The virtualNetworkLocation property
         self._virtual_network_location: Optional[str] = None
     
     @staticmethod
@@ -394,7 +394,7 @@ class CloudPcOnPremisesConnection(entity.Entity):
     @property
     def virtual_network_location(self,) -> Optional[str]:
         """
-        Gets the virtualNetworkLocation property value. Indicates resource location of the virtual target network. Read-only, computed value.
+        Gets the virtualNetworkLocation property value. The virtualNetworkLocation property
         Returns: Optional[str]
         """
         return self._virtual_network_location
@@ -402,7 +402,7 @@ class CloudPcOnPremisesConnection(entity.Entity):
     @virtual_network_location.setter
     def virtual_network_location(self,value: Optional[str] = None) -> None:
         """
-        Sets the virtualNetworkLocation property value. Indicates resource location of the virtual target network. Read-only, computed value.
+        Sets the virtualNetworkLocation property value. The virtualNetworkLocation property
         Args:
             value: Value to set for the virtualNetworkLocation property.
         """

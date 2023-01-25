@@ -36,12 +36,13 @@ class GetPlanRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[get_plan_post_request_body.GetPlanPostRequestBody] = None, request_configuration: Optional[GetPlanRequestBuilderPostRequestConfiguration] = None) -> Optional[business_scenario_plan_reference.BusinessScenarioPlanReference]:
+    async def post(self,body: Optional[get_plan_post_request_body.GetPlanPostRequestBody] = None, request_configuration: Optional[GetPlanRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[business_scenario_plan_reference.BusinessScenarioPlanReference]:
         """
         Get information about the plannerPlan mapped to a given target. If a **plannerPlan** doesn't exist for the specified target at the time of the request, a new plan will be created for the businessScenario.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[business_scenario_plan_reference.BusinessScenarioPlanReference]
         """
         if body is None:
@@ -55,7 +56,7 @@ class GetPlanRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, business_scenario_plan_reference.BusinessScenarioPlanReference, error_mapping)
+        return await self.request_adapter.send_async(request_info, business_scenario_plan_reference.BusinessScenarioPlanReference, response_handler, error_mapping)
     
     def to_post_request_information(self,body: Optional[get_plan_post_request_body.GetPlanPostRequestBody] = None, request_configuration: Optional[GetPlanRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """

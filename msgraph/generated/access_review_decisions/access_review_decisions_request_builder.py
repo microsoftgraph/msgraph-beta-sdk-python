@@ -44,11 +44,12 @@ class AccessReviewDecisionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AccessReviewDecisionsRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_decision_collection_response.AccessReviewDecisionCollectionResponse]:
+    async def get(self,request_configuration: Optional[AccessReviewDecisionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_decision_collection_response.AccessReviewDecisionCollectionResponse]:
         """
         Get entities from accessReviewDecisions
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_decision_collection_response.AccessReviewDecisionCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class AccessReviewDecisionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_decision_collection_response.AccessReviewDecisionCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_decision_collection_response.AccessReviewDecisionCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[access_review_decision.AccessReviewDecision] = None, request_configuration: Optional[AccessReviewDecisionsRequestBuilderPostRequestConfiguration] = None) -> Optional[access_review_decision.AccessReviewDecision]:
+    async def post(self,body: Optional[access_review_decision.AccessReviewDecision] = None, request_configuration: Optional[AccessReviewDecisionsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_decision.AccessReviewDecision]:
         """
         Add new entity to accessReviewDecisions
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_decision.AccessReviewDecision]
         """
         if body is None:
@@ -81,7 +83,7 @@ class AccessReviewDecisionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_decision.AccessReviewDecision, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_decision.AccessReviewDecision, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AccessReviewDecisionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

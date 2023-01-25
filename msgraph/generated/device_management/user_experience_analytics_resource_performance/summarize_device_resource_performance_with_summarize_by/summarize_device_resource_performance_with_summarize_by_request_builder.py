@@ -37,11 +37,12 @@ class SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilderGetRequestConfiguration] = None) -> Optional[summarize_device_resource_performance_with_summarize_by_response.SummarizeDeviceResourcePerformanceWithSummarizeByResponse]:
+    async def get(self,request_configuration: Optional[SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[summarize_device_resource_performance_with_summarize_by_response.SummarizeDeviceResourcePerformanceWithSummarizeByResponse]:
         """
         Invoke function summarizeDeviceResourcePerformance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[summarize_device_resource_performance_with_summarize_by_response.SummarizeDeviceResourcePerformanceWithSummarizeByResponse]
         """
         request_info = self.to_get_request_information(
@@ -53,7 +54,7 @@ class SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, summarize_device_resource_performance_with_summarize_by_response.SummarizeDeviceResourcePerformanceWithSummarizeByResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, summarize_device_resource_performance_with_summarize_by_response.SummarizeDeviceResourcePerformanceWithSummarizeByResponse, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

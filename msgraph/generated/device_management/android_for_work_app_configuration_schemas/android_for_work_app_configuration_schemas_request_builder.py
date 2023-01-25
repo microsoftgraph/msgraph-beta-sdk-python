@@ -44,11 +44,12 @@ class AndroidForWorkAppConfigurationSchemasRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AndroidForWorkAppConfigurationSchemasRequestBuilderGetRequestConfiguration] = None) -> Optional[android_for_work_app_configuration_schema_collection_response.AndroidForWorkAppConfigurationSchemaCollectionResponse]:
+    async def get(self,request_configuration: Optional[AndroidForWorkAppConfigurationSchemasRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[android_for_work_app_configuration_schema_collection_response.AndroidForWorkAppConfigurationSchemaCollectionResponse]:
         """
         Android for Work app configuration schema entities.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[android_for_work_app_configuration_schema_collection_response.AndroidForWorkAppConfigurationSchemaCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class AndroidForWorkAppConfigurationSchemasRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, android_for_work_app_configuration_schema_collection_response.AndroidForWorkAppConfigurationSchemaCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, android_for_work_app_configuration_schema_collection_response.AndroidForWorkAppConfigurationSchemaCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[android_for_work_app_configuration_schema.AndroidForWorkAppConfigurationSchema] = None, request_configuration: Optional[AndroidForWorkAppConfigurationSchemasRequestBuilderPostRequestConfiguration] = None) -> Optional[android_for_work_app_configuration_schema.AndroidForWorkAppConfigurationSchema]:
+    async def post(self,body: Optional[android_for_work_app_configuration_schema.AndroidForWorkAppConfigurationSchema] = None, request_configuration: Optional[AndroidForWorkAppConfigurationSchemasRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[android_for_work_app_configuration_schema.AndroidForWorkAppConfigurationSchema]:
         """
         Create new navigation property to androidForWorkAppConfigurationSchemas for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[android_for_work_app_configuration_schema.AndroidForWorkAppConfigurationSchema]
         """
         if body is None:
@@ -81,7 +83,7 @@ class AndroidForWorkAppConfigurationSchemasRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, android_for_work_app_configuration_schema.AndroidForWorkAppConfigurationSchema, error_mapping)
+        return await self.request_adapter.send_async(request_info, android_for_work_app_configuration_schema.AndroidForWorkAppConfigurationSchema, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AndroidForWorkAppConfigurationSchemasRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

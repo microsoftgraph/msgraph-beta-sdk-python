@@ -21,7 +21,7 @@ class Payload(entity.Entity):
     @property
     def brand(self,) -> Optional[payload_brand.PayloadBrand]:
         """
-        Gets the brand property value. The branch of a payload. Possible values are: unknown, other, americanExpress, capitalOne, dhl, docuSign, dropbox, facebook, firstAmerican, microsoft, netflix, scotiabank, stewartTitle, tesco, wellsFargo, syrinxCloud, adobe, teams, zoom, unknownFutureValue.
+        Gets the brand property value. The brand property
         Returns: Optional[payload_brand.PayloadBrand]
         """
         return self._brand
@@ -29,7 +29,7 @@ class Payload(entity.Entity):
     @brand.setter
     def brand(self,value: Optional[payload_brand.PayloadBrand] = None) -> None:
         """
-        Sets the brand property value. The branch of a payload. Possible values are: unknown, other, americanExpress, capitalOne, dhl, docuSign, dropbox, facebook, firstAmerican, microsoft, netflix, scotiabank, stewartTitle, tesco, wellsFargo, syrinxCloud, adobe, teams, zoom, unknownFutureValue.
+        Sets the brand property value. The brand property
         Args:
             value: Value to set for the brand property.
         """
@@ -38,7 +38,7 @@ class Payload(entity.Entity):
     @property
     def complexity(self,) -> Optional[payload_complexity.PayloadComplexity]:
         """
-        Gets the complexity property value. The complexity of a payload.Possible values are: unknown, low, medium, high, unknownFutureValue
+        Gets the complexity property value. The complexity property
         Returns: Optional[payload_complexity.PayloadComplexity]
         """
         return self._complexity
@@ -46,7 +46,7 @@ class Payload(entity.Entity):
     @complexity.setter
     def complexity(self,value: Optional[payload_complexity.PayloadComplexity] = None) -> None:
         """
-        Sets the complexity property value. The complexity of a payload.Possible values are: unknown, low, medium, high, unknownFutureValue
+        Sets the complexity property value. The complexity property
         Args:
             value: Value to set for the complexity property.
         """
@@ -57,57 +57,57 @@ class Payload(entity.Entity):
         Instantiates a new payload and sets the default values.
         """
         super().__init__()
-        # The branch of a payload. Possible values are: unknown, other, americanExpress, capitalOne, dhl, docuSign, dropbox, facebook, firstAmerican, microsoft, netflix, scotiabank, stewartTitle, tesco, wellsFargo, syrinxCloud, adobe, teams, zoom, unknownFutureValue.
+        # The brand property
         self._brand: Optional[payload_brand.PayloadBrand] = None
-        # The complexity of a payload.Possible values are: unknown, low, medium, high, unknownFutureValue
+        # The complexity property
         self._complexity: Optional[payload_complexity.PayloadComplexity] = None
-        # Identity of the user who created the attack simulation and training campaign payload.
+        # The createdBy property
         self._created_by: Optional[email_identity.EmailIdentity] = None
-        # Date and time when the attack simulation and training campaign payload.
+        # The createdDateTime property
         self._created_date_time: Optional[datetime] = None
-        # Description of the attack simulation and training campaign payload.
+        # The description property
         self._description: Optional[str] = None
-        # Additional details about the payload.
+        # The detail property
         self._detail: Optional[payload_detail.PayloadDetail] = None
-        # Display name of the attack simulation and training campaign payload. Supports $filter and $orderby.
+        # The displayName property
         self._display_name: Optional[str] = None
-        # Industry of a payload. Possible values are: unknown, other, banking, businessServices, consumerServices, education, energy, construction, consulting, financialServices, government, hospitality, insurance, legal, courierServices, IT, healthcare, manufacturing, retail, telecom, realEstate, unknownFutureValue.
+        # The industry property
         self._industry: Optional[payload_industry.PayloadIndustry] = None
-        # Indicates whether the attack simulation and training campaign payload was created from an automation flow. Supports $filter and $orderby.
+        # The isAutomated property
         self._is_automated: Optional[bool] = None
-        # Indicates whether the payload is controversial.
+        # The isControversial property
         self._is_controversial: Optional[bool] = None
-        # Indicates whether the payload is from any recent event.
+        # The isCurrentEvent property
         self._is_current_event: Optional[bool] = None
-        # Payload language.
+        # The language property
         self._language: Optional[str] = None
-        # Identity of the user who most recently modified the attack simulation and training campaign payload.
+        # The lastModifiedBy property
         self._last_modified_by: Optional[email_identity.EmailIdentity] = None
-        # Date and time when the attack simulation and training campaign payload was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        # The lastModifiedDateTime property
         self._last_modified_date_time: Optional[datetime] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # Free text tags for a payload.
+        # The payloadTags property
         self._payload_tags: Optional[List[str]] = None
-        # The payload delivery platform for a simulation. Possible values are: unknown, sms, email, teams, unknownFutureValue.
+        # The platform property
         self._platform: Optional[payload_delivery_platform.PayloadDeliveryPlatform] = None
-        # Predicted probability for a payload to phish a targeted user.
+        # The predictedCompromiseRate property
         self._predicted_compromise_rate: Optional[float] = None
-        # Attack type of the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, social, cloud, endpoint, unknownFutureValue.
+        # The simulationAttackType property
         self._simulation_attack_type: Optional[simulation_attack_type.SimulationAttackType] = None
         # The source property
         self._source: Optional[simulation_content_source.SimulationContentSource] = None
-        # Simulation content status. Supports $filter and $orderby. Possible values are: unknown, draft, ready, archive, delete, unknownFutureValue. Inherited from simulation.
+        # The status property
         self._status: Optional[simulation_content_status.SimulationContentStatus] = None
-        # The social engineering technique used in the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, credentialHarvesting, attachmentMalware, driveByUrl, linkInAttachment, linkToMalwareFile, unknownFutureValue. For more information on the types of social engineering attack techniques, see simulations.
+        # The technique property
         self._technique: Optional[simulation_attack_technique.SimulationAttackTechnique] = None
-        # The theme of a payload. Possible values are: unknown, other, accountActivation, accountVerification, billing, cleanUpMail, controversial, documentReceived, expense, incomingMessages, invoice, itemReceived, loginAlert, mailReceived, password, payment, payroll, personalizedOffer, quarantine, remoteWork, reviewMessage, securityUpdate, serviceSuspended, signatureRequired, upgradeMailboxStorage, verifyMailbox, voicemail, advertisement, employeeEngagement, unknownFutureValue.
+        # The theme property
         self._theme: Optional[payload_theme.PayloadTheme] = None
     
     @property
     def created_by(self,) -> Optional[email_identity.EmailIdentity]:
         """
-        Gets the createdBy property value. Identity of the user who created the attack simulation and training campaign payload.
+        Gets the createdBy property value. The createdBy property
         Returns: Optional[email_identity.EmailIdentity]
         """
         return self._created_by
@@ -115,7 +115,7 @@ class Payload(entity.Entity):
     @created_by.setter
     def created_by(self,value: Optional[email_identity.EmailIdentity] = None) -> None:
         """
-        Sets the createdBy property value. Identity of the user who created the attack simulation and training campaign payload.
+        Sets the createdBy property value. The createdBy property
         Args:
             value: Value to set for the createdBy property.
         """
@@ -124,7 +124,7 @@ class Payload(entity.Entity):
     @property
     def created_date_time(self,) -> Optional[datetime]:
         """
-        Gets the createdDateTime property value. Date and time when the attack simulation and training campaign payload.
+        Gets the createdDateTime property value. The createdDateTime property
         Returns: Optional[datetime]
         """
         return self._created_date_time
@@ -132,7 +132,7 @@ class Payload(entity.Entity):
     @created_date_time.setter
     def created_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the createdDateTime property value. Date and time when the attack simulation and training campaign payload.
+        Sets the createdDateTime property value. The createdDateTime property
         Args:
             value: Value to set for the createdDateTime property.
         """
@@ -153,7 +153,7 @@ class Payload(entity.Entity):
     @property
     def description(self,) -> Optional[str]:
         """
-        Gets the description property value. Description of the attack simulation and training campaign payload.
+        Gets the description property value. The description property
         Returns: Optional[str]
         """
         return self._description
@@ -161,7 +161,7 @@ class Payload(entity.Entity):
     @description.setter
     def description(self,value: Optional[str] = None) -> None:
         """
-        Sets the description property value. Description of the attack simulation and training campaign payload.
+        Sets the description property value. The description property
         Args:
             value: Value to set for the description property.
         """
@@ -170,7 +170,7 @@ class Payload(entity.Entity):
     @property
     def detail(self,) -> Optional[payload_detail.PayloadDetail]:
         """
-        Gets the detail property value. Additional details about the payload.
+        Gets the detail property value. The detail property
         Returns: Optional[payload_detail.PayloadDetail]
         """
         return self._detail
@@ -178,7 +178,7 @@ class Payload(entity.Entity):
     @detail.setter
     def detail(self,value: Optional[payload_detail.PayloadDetail] = None) -> None:
         """
-        Sets the detail property value. Additional details about the payload.
+        Sets the detail property value. The detail property
         Args:
             value: Value to set for the detail property.
         """
@@ -187,7 +187,7 @@ class Payload(entity.Entity):
     @property
     def display_name(self,) -> Optional[str]:
         """
-        Gets the displayName property value. Display name of the attack simulation and training campaign payload. Supports $filter and $orderby.
+        Gets the displayName property value. The displayName property
         Returns: Optional[str]
         """
         return self._display_name
@@ -195,7 +195,7 @@ class Payload(entity.Entity):
     @display_name.setter
     def display_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the displayName property value. Display name of the attack simulation and training campaign payload. Supports $filter and $orderby.
+        Sets the displayName property value. The displayName property
         Args:
             value: Value to set for the displayName property.
         """
@@ -237,7 +237,7 @@ class Payload(entity.Entity):
     @property
     def industry(self,) -> Optional[payload_industry.PayloadIndustry]:
         """
-        Gets the industry property value. Industry of a payload. Possible values are: unknown, other, banking, businessServices, consumerServices, education, energy, construction, consulting, financialServices, government, hospitality, insurance, legal, courierServices, IT, healthcare, manufacturing, retail, telecom, realEstate, unknownFutureValue.
+        Gets the industry property value. The industry property
         Returns: Optional[payload_industry.PayloadIndustry]
         """
         return self._industry
@@ -245,7 +245,7 @@ class Payload(entity.Entity):
     @industry.setter
     def industry(self,value: Optional[payload_industry.PayloadIndustry] = None) -> None:
         """
-        Sets the industry property value. Industry of a payload. Possible values are: unknown, other, banking, businessServices, consumerServices, education, energy, construction, consulting, financialServices, government, hospitality, insurance, legal, courierServices, IT, healthcare, manufacturing, retail, telecom, realEstate, unknownFutureValue.
+        Sets the industry property value. The industry property
         Args:
             value: Value to set for the industry property.
         """
@@ -254,7 +254,7 @@ class Payload(entity.Entity):
     @property
     def is_automated(self,) -> Optional[bool]:
         """
-        Gets the isAutomated property value. Indicates whether the attack simulation and training campaign payload was created from an automation flow. Supports $filter and $orderby.
+        Gets the isAutomated property value. The isAutomated property
         Returns: Optional[bool]
         """
         return self._is_automated
@@ -262,7 +262,7 @@ class Payload(entity.Entity):
     @is_automated.setter
     def is_automated(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isAutomated property value. Indicates whether the attack simulation and training campaign payload was created from an automation flow. Supports $filter and $orderby.
+        Sets the isAutomated property value. The isAutomated property
         Args:
             value: Value to set for the isAutomated property.
         """
@@ -271,7 +271,7 @@ class Payload(entity.Entity):
     @property
     def is_controversial(self,) -> Optional[bool]:
         """
-        Gets the isControversial property value. Indicates whether the payload is controversial.
+        Gets the isControversial property value. The isControversial property
         Returns: Optional[bool]
         """
         return self._is_controversial
@@ -279,7 +279,7 @@ class Payload(entity.Entity):
     @is_controversial.setter
     def is_controversial(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isControversial property value. Indicates whether the payload is controversial.
+        Sets the isControversial property value. The isControversial property
         Args:
             value: Value to set for the isControversial property.
         """
@@ -288,7 +288,7 @@ class Payload(entity.Entity):
     @property
     def is_current_event(self,) -> Optional[bool]:
         """
-        Gets the isCurrentEvent property value. Indicates whether the payload is from any recent event.
+        Gets the isCurrentEvent property value. The isCurrentEvent property
         Returns: Optional[bool]
         """
         return self._is_current_event
@@ -296,7 +296,7 @@ class Payload(entity.Entity):
     @is_current_event.setter
     def is_current_event(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isCurrentEvent property value. Indicates whether the payload is from any recent event.
+        Sets the isCurrentEvent property value. The isCurrentEvent property
         Args:
             value: Value to set for the isCurrentEvent property.
         """
@@ -305,7 +305,7 @@ class Payload(entity.Entity):
     @property
     def language(self,) -> Optional[str]:
         """
-        Gets the language property value. Payload language.
+        Gets the language property value. The language property
         Returns: Optional[str]
         """
         return self._language
@@ -313,7 +313,7 @@ class Payload(entity.Entity):
     @language.setter
     def language(self,value: Optional[str] = None) -> None:
         """
-        Sets the language property value. Payload language.
+        Sets the language property value. The language property
         Args:
             value: Value to set for the language property.
         """
@@ -322,7 +322,7 @@ class Payload(entity.Entity):
     @property
     def last_modified_by(self,) -> Optional[email_identity.EmailIdentity]:
         """
-        Gets the lastModifiedBy property value. Identity of the user who most recently modified the attack simulation and training campaign payload.
+        Gets the lastModifiedBy property value. The lastModifiedBy property
         Returns: Optional[email_identity.EmailIdentity]
         """
         return self._last_modified_by
@@ -330,7 +330,7 @@ class Payload(entity.Entity):
     @last_modified_by.setter
     def last_modified_by(self,value: Optional[email_identity.EmailIdentity] = None) -> None:
         """
-        Sets the lastModifiedBy property value. Identity of the user who most recently modified the attack simulation and training campaign payload.
+        Sets the lastModifiedBy property value. The lastModifiedBy property
         Args:
             value: Value to set for the lastModifiedBy property.
         """
@@ -339,7 +339,7 @@ class Payload(entity.Entity):
     @property
     def last_modified_date_time(self,) -> Optional[datetime]:
         """
-        Gets the lastModifiedDateTime property value. Date and time when the attack simulation and training campaign payload was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        Gets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Returns: Optional[datetime]
         """
         return self._last_modified_date_time
@@ -347,7 +347,7 @@ class Payload(entity.Entity):
     @last_modified_date_time.setter
     def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the lastModifiedDateTime property value. Date and time when the attack simulation and training campaign payload was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
             value: Value to set for the lastModifiedDateTime property.
         """
@@ -356,7 +356,7 @@ class Payload(entity.Entity):
     @property
     def payload_tags(self,) -> Optional[List[str]]:
         """
-        Gets the payloadTags property value. Free text tags for a payload.
+        Gets the payloadTags property value. The payloadTags property
         Returns: Optional[List[str]]
         """
         return self._payload_tags
@@ -364,7 +364,7 @@ class Payload(entity.Entity):
     @payload_tags.setter
     def payload_tags(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the payloadTags property value. Free text tags for a payload.
+        Sets the payloadTags property value. The payloadTags property
         Args:
             value: Value to set for the payloadTags property.
         """
@@ -373,7 +373,7 @@ class Payload(entity.Entity):
     @property
     def platform(self,) -> Optional[payload_delivery_platform.PayloadDeliveryPlatform]:
         """
-        Gets the platform property value. The payload delivery platform for a simulation. Possible values are: unknown, sms, email, teams, unknownFutureValue.
+        Gets the platform property value. The platform property
         Returns: Optional[payload_delivery_platform.PayloadDeliveryPlatform]
         """
         return self._platform
@@ -381,7 +381,7 @@ class Payload(entity.Entity):
     @platform.setter
     def platform(self,value: Optional[payload_delivery_platform.PayloadDeliveryPlatform] = None) -> None:
         """
-        Sets the platform property value. The payload delivery platform for a simulation. Possible values are: unknown, sms, email, teams, unknownFutureValue.
+        Sets the platform property value. The platform property
         Args:
             value: Value to set for the platform property.
         """
@@ -390,7 +390,7 @@ class Payload(entity.Entity):
     @property
     def predicted_compromise_rate(self,) -> Optional[float]:
         """
-        Gets the predictedCompromiseRate property value. Predicted probability for a payload to phish a targeted user.
+        Gets the predictedCompromiseRate property value. The predictedCompromiseRate property
         Returns: Optional[float]
         """
         return self._predicted_compromise_rate
@@ -398,7 +398,7 @@ class Payload(entity.Entity):
     @predicted_compromise_rate.setter
     def predicted_compromise_rate(self,value: Optional[float] = None) -> None:
         """
-        Sets the predictedCompromiseRate property value. Predicted probability for a payload to phish a targeted user.
+        Sets the predictedCompromiseRate property value. The predictedCompromiseRate property
         Args:
             value: Value to set for the predictedCompromiseRate property.
         """
@@ -439,7 +439,7 @@ class Payload(entity.Entity):
     @property
     def simulation_attack_type(self,) -> Optional[simulation_attack_type.SimulationAttackType]:
         """
-        Gets the simulationAttackType property value. Attack type of the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, social, cloud, endpoint, unknownFutureValue.
+        Gets the simulationAttackType property value. The simulationAttackType property
         Returns: Optional[simulation_attack_type.SimulationAttackType]
         """
         return self._simulation_attack_type
@@ -447,7 +447,7 @@ class Payload(entity.Entity):
     @simulation_attack_type.setter
     def simulation_attack_type(self,value: Optional[simulation_attack_type.SimulationAttackType] = None) -> None:
         """
-        Sets the simulationAttackType property value. Attack type of the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, social, cloud, endpoint, unknownFutureValue.
+        Sets the simulationAttackType property value. The simulationAttackType property
         Args:
             value: Value to set for the simulationAttackType property.
         """
@@ -473,7 +473,7 @@ class Payload(entity.Entity):
     @property
     def status(self,) -> Optional[simulation_content_status.SimulationContentStatus]:
         """
-        Gets the status property value. Simulation content status. Supports $filter and $orderby. Possible values are: unknown, draft, ready, archive, delete, unknownFutureValue. Inherited from simulation.
+        Gets the status property value. The status property
         Returns: Optional[simulation_content_status.SimulationContentStatus]
         """
         return self._status
@@ -481,7 +481,7 @@ class Payload(entity.Entity):
     @status.setter
     def status(self,value: Optional[simulation_content_status.SimulationContentStatus] = None) -> None:
         """
-        Sets the status property value. Simulation content status. Supports $filter and $orderby. Possible values are: unknown, draft, ready, archive, delete, unknownFutureValue. Inherited from simulation.
+        Sets the status property value. The status property
         Args:
             value: Value to set for the status property.
         """
@@ -490,7 +490,7 @@ class Payload(entity.Entity):
     @property
     def technique(self,) -> Optional[simulation_attack_technique.SimulationAttackTechnique]:
         """
-        Gets the technique property value. The social engineering technique used in the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, credentialHarvesting, attachmentMalware, driveByUrl, linkInAttachment, linkToMalwareFile, unknownFutureValue. For more information on the types of social engineering attack techniques, see simulations.
+        Gets the technique property value. The technique property
         Returns: Optional[simulation_attack_technique.SimulationAttackTechnique]
         """
         return self._technique
@@ -498,7 +498,7 @@ class Payload(entity.Entity):
     @technique.setter
     def technique(self,value: Optional[simulation_attack_technique.SimulationAttackTechnique] = None) -> None:
         """
-        Sets the technique property value. The social engineering technique used in the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, credentialHarvesting, attachmentMalware, driveByUrl, linkInAttachment, linkToMalwareFile, unknownFutureValue. For more information on the types of social engineering attack techniques, see simulations.
+        Sets the technique property value. The technique property
         Args:
             value: Value to set for the technique property.
         """
@@ -507,7 +507,7 @@ class Payload(entity.Entity):
     @property
     def theme(self,) -> Optional[payload_theme.PayloadTheme]:
         """
-        Gets the theme property value. The theme of a payload. Possible values are: unknown, other, accountActivation, accountVerification, billing, cleanUpMail, controversial, documentReceived, expense, incomingMessages, invoice, itemReceived, loginAlert, mailReceived, password, payment, payroll, personalizedOffer, quarantine, remoteWork, reviewMessage, securityUpdate, serviceSuspended, signatureRequired, upgradeMailboxStorage, verifyMailbox, voicemail, advertisement, employeeEngagement, unknownFutureValue.
+        Gets the theme property value. The theme property
         Returns: Optional[payload_theme.PayloadTheme]
         """
         return self._theme
@@ -515,7 +515,7 @@ class Payload(entity.Entity):
     @theme.setter
     def theme(self,value: Optional[payload_theme.PayloadTheme] = None) -> None:
         """
-        Sets the theme property value. The theme of a payload. Possible values are: unknown, other, accountActivation, accountVerification, billing, cleanUpMail, controversial, documentReceived, expense, incomingMessages, invoice, itemReceived, loginAlert, mailReceived, password, payment, payroll, personalizedOffer, quarantine, remoteWork, reviewMessage, securityUpdate, serviceSuspended, signatureRequired, upgradeMailboxStorage, verifyMailbox, voicemail, advertisement, employeeEngagement, unknownFutureValue.
+        Sets the theme property value. The theme property
         Args:
             value: Value to set for the theme property.
         """

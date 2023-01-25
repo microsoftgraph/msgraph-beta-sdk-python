@@ -35,11 +35,12 @@ class RoleDefinitionRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[RoleDefinitionRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_definition.UnifiedRoleDefinition]:
+    async def get(self,request_configuration: Optional[RoleDefinitionRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_role_definition.UnifiedRoleDefinition]:
         """
         Specifies the roleDefinition that the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment.  Supports $filter (eq operator on id, isBuiltIn, and displayName, and startsWith operator on displayName)  and $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_role_definition.UnifiedRoleDefinition]
         """
         request_info = self.to_get_request_information(
@@ -51,7 +52,7 @@ class RoleDefinitionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_role_definition.UnifiedRoleDefinition, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_role_definition.UnifiedRoleDefinition, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RoleDefinitionRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

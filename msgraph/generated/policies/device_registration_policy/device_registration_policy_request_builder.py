@@ -35,11 +35,12 @@ class DeviceRegistrationPolicyRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DeviceRegistrationPolicyRequestBuilderGetRequestConfiguration] = None) -> Optional[device_registration_policy.DeviceRegistrationPolicy]:
+    async def get(self,request_configuration: Optional[DeviceRegistrationPolicyRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_registration_policy.DeviceRegistrationPolicy]:
         """
         Read the properties and relationships of a deviceRegistrationPolicy object. Represents deviceRegistrationPolicy quota restrictions, additional authentication, and authorization policies to register device identities to your organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_registration_policy.DeviceRegistrationPolicy]
         """
         request_info = self.to_get_request_information(
@@ -51,7 +52,7 @@ class DeviceRegistrationPolicyRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_registration_policy.DeviceRegistrationPolicy, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_registration_policy.DeviceRegistrationPolicy, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceRegistrationPolicyRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

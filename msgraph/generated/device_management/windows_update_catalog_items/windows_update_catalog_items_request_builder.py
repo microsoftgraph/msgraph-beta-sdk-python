@@ -44,11 +44,12 @@ class WindowsUpdateCatalogItemsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[WindowsUpdateCatalogItemsRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_update_catalog_item_collection_response.WindowsUpdateCatalogItemCollectionResponse]:
+    async def get(self,request_configuration: Optional[WindowsUpdateCatalogItemsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_update_catalog_item_collection_response.WindowsUpdateCatalogItemCollectionResponse]:
         """
         A collection of windows update catalog items (fetaure updates item , quality updates item)
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_update_catalog_item_collection_response.WindowsUpdateCatalogItemCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class WindowsUpdateCatalogItemsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_update_catalog_item_collection_response.WindowsUpdateCatalogItemCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_update_catalog_item_collection_response.WindowsUpdateCatalogItemCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[windows_update_catalog_item.WindowsUpdateCatalogItem] = None, request_configuration: Optional[WindowsUpdateCatalogItemsRequestBuilderPostRequestConfiguration] = None) -> Optional[windows_update_catalog_item.WindowsUpdateCatalogItem]:
+    async def post(self,body: Optional[windows_update_catalog_item.WindowsUpdateCatalogItem] = None, request_configuration: Optional[WindowsUpdateCatalogItemsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_update_catalog_item.WindowsUpdateCatalogItem]:
         """
         Create new navigation property to windowsUpdateCatalogItems for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_update_catalog_item.WindowsUpdateCatalogItem]
         """
         if body is None:
@@ -81,7 +83,7 @@ class WindowsUpdateCatalogItemsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_update_catalog_item.WindowsUpdateCatalogItem, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_update_catalog_item.WindowsUpdateCatalogItem, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[WindowsUpdateCatalogItemsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -44,11 +44,12 @@ class PasswordMethodsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PasswordMethodsRequestBuilderGetRequestConfiguration] = None) -> Optional[password_authentication_method_collection_response.PasswordAuthenticationMethodCollectionResponse]:
+    async def get(self,request_configuration: Optional[PasswordMethodsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[password_authentication_method_collection_response.PasswordAuthenticationMethodCollectionResponse]:
         """
         Retrieve a list of password authentication method objects. This will return exactly one object, as a user can have exactly one password.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[password_authentication_method_collection_response.PasswordAuthenticationMethodCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,14 +61,15 @@ class PasswordMethodsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, password_authentication_method_collection_response.PasswordAuthenticationMethodCollectionResponse, error_mapping)
+        return await self.request_adapter.send_async(request_info, password_authentication_method_collection_response.PasswordAuthenticationMethodCollectionResponse, response_handler, error_mapping)
     
-    async def post(self,body: Optional[password_authentication_method.PasswordAuthenticationMethod] = None, request_configuration: Optional[PasswordMethodsRequestBuilderPostRequestConfiguration] = None) -> Optional[password_authentication_method.PasswordAuthenticationMethod]:
+    async def post(self,body: Optional[password_authentication_method.PasswordAuthenticationMethod] = None, request_configuration: Optional[PasswordMethodsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[password_authentication_method.PasswordAuthenticationMethod]:
         """
         Create new navigation property to passwordMethods for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[password_authentication_method.PasswordAuthenticationMethod]
         """
         if body is None:
@@ -81,7 +83,7 @@ class PasswordMethodsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, password_authentication_method.PasswordAuthenticationMethod, error_mapping)
+        return await self.request_adapter.send_async(request_info, password_authentication_method.PasswordAuthenticationMethod, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PasswordMethodsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

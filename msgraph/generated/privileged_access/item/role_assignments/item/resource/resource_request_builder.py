@@ -35,11 +35,12 @@ class ResourceRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ResourceRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_resource.GovernanceResource]:
+    async def get(self,request_configuration: Optional[ResourceRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_resource.GovernanceResource]:
         """
         Read-only. The resource associated with the role assignment.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_resource.GovernanceResource]
         """
         request_info = self.to_get_request_information(
@@ -51,7 +52,7 @@ class ResourceRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_resource.GovernanceResource, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_resource.GovernanceResource, response_handler, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ResourceRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

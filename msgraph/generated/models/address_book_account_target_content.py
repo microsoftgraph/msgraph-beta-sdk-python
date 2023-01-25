@@ -9,7 +9,7 @@ class AddressBookAccountTargetContent(account_target_content.AccountTargetConten
     @property
     def account_target_emails(self,) -> Optional[List[str]]:
         """
-        Gets the accountTargetEmails property value. List of user emails targeted for an attack simulation training campaign.
+        Gets the accountTargetEmails property value. The accountTargetEmails property
         Returns: Optional[List[str]]
         """
         return self._account_target_emails
@@ -17,7 +17,7 @@ class AddressBookAccountTargetContent(account_target_content.AccountTargetConten
     @account_target_emails.setter
     def account_target_emails(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the accountTargetEmails property value. List of user emails targeted for an attack simulation training campaign.
+        Sets the accountTargetEmails property value. The accountTargetEmails property
         Args:
             value: Value to set for the accountTargetEmails property.
         """
@@ -29,7 +29,7 @@ class AddressBookAccountTargetContent(account_target_content.AccountTargetConten
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.addressBookAccountTargetContent"
-        # List of user emails targeted for an attack simulation training campaign.
+        # The accountTargetEmails property
         self._account_target_emails: Optional[List[str]] = None
     
     @staticmethod

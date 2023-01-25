@@ -43,11 +43,12 @@ class CommandItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CommandItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
+    async def delete(self,request_configuration: Optional[CommandItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
         """
-        Delete entity from commands by key (id)
+        Delete entity from commands
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -58,13 +59,14 @@ class CommandItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
     
-    async def get(self,request_configuration: Optional[CommandItemRequestBuilderGetRequestConfiguration] = None) -> Optional[command.Command]:
+    async def get(self,request_configuration: Optional[CommandItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[command.Command]:
         """
-        Get entity from commands by key (id)
+        Get entity from commands by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[command.Command]
         """
         request_info = self.to_get_request_information(
@@ -76,14 +78,15 @@ class CommandItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, command.Command, error_mapping)
+        return await self.request_adapter.send_async(request_info, command.Command, response_handler, error_mapping)
     
-    async def patch(self,body: Optional[command.Command] = None, request_configuration: Optional[CommandItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[command.Command]:
+    async def patch(self,body: Optional[command.Command] = None, request_configuration: Optional[CommandItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[command.Command]:
         """
-        Update entity in commands by key (id)
+        Update entity in commands
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[command.Command]
         """
         if body is None:
@@ -97,11 +100,11 @@ class CommandItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, command.Command, error_mapping)
+        return await self.request_adapter.send_async(request_info, command.Command, response_handler, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CommandItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
-        Delete entity from commands by key (id)
+        Delete entity from commands
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -117,7 +120,7 @@ class CommandItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CommandItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get entity from commands by key (id)
+        Get entity from commands by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -135,7 +138,7 @@ class CommandItemRequestBuilder():
     
     def to_patch_request_information(self,body: Optional[command.Command] = None, request_configuration: Optional[CommandItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
-        Update entity in commands by key (id)
+        Update entity in commands
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -169,7 +172,7 @@ class CommandItemRequestBuilder():
     @dataclass
     class CommandItemRequestBuilderGetQueryParameters():
         """
-        Get entity from commands by key (id)
+        Get entity from commands by key
         """
         # Expand related entities
         expand: Optional[List[str]] = None
