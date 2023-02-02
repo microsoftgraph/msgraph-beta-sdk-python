@@ -66,7 +66,7 @@ class OsVersionCount(AdditionalDataHolder, Parsable):
         """
         Sets the deviceCount property value. Count of devices with malware for the OS version
         Args:
-            value: Value to set for the deviceCount property.
+            value: Value to set for the device_count property.
         """
         self._device_count = value
     
@@ -76,10 +76,10 @@ class OsVersionCount(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_count": lambda n : setattr(self, 'device_count', n.get_int_value()),
-            "last_update_date_time": lambda n : setattr(self, 'last_update_date_time', n.get_datetime_value()),
+            "deviceCount": lambda n : setattr(self, 'device_count', n.get_int_value()),
+            "lastUpdateDateTime": lambda n : setattr(self, 'last_update_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "os_version": lambda n : setattr(self, 'os_version', n.get_str_value()),
+            "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
         }
         return fields
     
@@ -96,7 +96,7 @@ class OsVersionCount(AdditionalDataHolder, Parsable):
         """
         Sets the lastUpdateDateTime property value. The Timestamp of the last update for the device count in UTC
         Args:
-            value: Value to set for the lastUpdateDateTime property.
+            value: Value to set for the last_update_date_time property.
         """
         self._last_update_date_time = value
     
@@ -113,7 +113,7 @@ class OsVersionCount(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -130,7 +130,7 @@ class OsVersionCount(AdditionalDataHolder, Parsable):
         """
         Sets the osVersion property value. OS version
         Args:
-            value: Value to set for the osVersion property.
+            value: Value to set for the os_version property.
         """
         self._os_version = value
     

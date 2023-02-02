@@ -37,8 +37,8 @@ class CredentialUserRegistrationCount(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "total_user_count": lambda n : setattr(self, 'total_user_count', n.get_int_value()),
-            "user_registration_counts": lambda n : setattr(self, 'user_registration_counts', n.get_collection_of_object_values(user_registration_count.UserRegistrationCount)),
+            "totalUserCount": lambda n : setattr(self, 'total_user_count', n.get_int_value()),
+            "userRegistrationCounts": lambda n : setattr(self, 'user_registration_counts', n.get_collection_of_object_values(user_registration_count.UserRegistrationCount)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -69,7 +69,7 @@ class CredentialUserRegistrationCount(entity.Entity):
         """
         Sets the totalUserCount property value. Provides the total user count in the tenant.
         Args:
-            value: Value to set for the totalUserCount property.
+            value: Value to set for the total_user_count property.
         """
         self._total_user_count = value
     
@@ -86,7 +86,7 @@ class CredentialUserRegistrationCount(entity.Entity):
         """
         Sets the userRegistrationCounts property value. A collection of registration count and status information for users in your tenant.
         Args:
-            value: Value to set for the userRegistrationCounts property.
+            value: Value to set for the user_registration_counts property.
         """
         self._user_registration_counts = value
     

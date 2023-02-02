@@ -45,7 +45,7 @@ class CustomTaskExtensionCalloutData(custom_extension_data.CustomExtensionData):
         fields = {
             "subject": lambda n : setattr(self, 'subject', n.get_object_value(user.User)),
             "task": lambda n : setattr(self, 'task', n.get_object_value(task.Task)),
-            "task_processingresult": lambda n : setattr(self, 'task_processingresult', n.get_object_value(task_processing_result.TaskProcessingResult)),
+            "taskProcessingresult": lambda n : setattr(self, 'task_processingresult', n.get_object_value(task_processing_result.TaskProcessingResult)),
             "workflow": lambda n : setattr(self, 'workflow', n.get_object_value(workflow.Workflow)),
         }
         super_fields = super().get_field_deserializers()
@@ -113,7 +113,7 @@ class CustomTaskExtensionCalloutData(custom_extension_data.CustomExtensionData):
         """
         Sets the taskProcessingresult property value. The taskProcessingresult property
         Args:
-            value: Value to set for the taskProcessingresult property.
+            value: Value to set for the task_processingresult property.
         """
         self._task_processingresult = value
     

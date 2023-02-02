@@ -43,7 +43,7 @@ class IosVppAppAssignedDeviceLicense(ios_vpp_app_assigned_license.IosVppAppAssig
         """
         Sets the deviceName property value. The device name.
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -53,8 +53,8 @@ class IosVppAppAssignedDeviceLicense(ios_vpp_app_assigned_license.IosVppAppAssig
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
-            "managed_device_id": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -73,7 +73,7 @@ class IosVppAppAssignedDeviceLicense(ios_vpp_app_assigned_license.IosVppAppAssig
         """
         Sets the managedDeviceId property value. The managed device ID.
         Args:
-            value: Value to set for the managedDeviceId property.
+            value: Value to set for the managed_device_id property.
         """
         self._managed_device_id = value
     

@@ -43,7 +43,7 @@ class CryptographySuite(AdditionalDataHolder, Parsable):
         """
         Sets the authenticationTransformConstants property value. Authentication Transform Constants. Possible values are: md5_96, sha1_96, sha_256_128, aes128Gcm, aes192Gcm, aes256Gcm.
         Args:
-            value: Value to set for the authenticationTransformConstants property.
+            value: Value to set for the authentication_transform_constants property.
         """
         self._authentication_transform_constants = value
     
@@ -60,7 +60,7 @@ class CryptographySuite(AdditionalDataHolder, Parsable):
         """
         Sets the cipherTransformConstants property value. Cipher Transform Constants. Possible values are: aes256, des, tripleDes, aes128, aes128Gcm, aes256Gcm, aes192, aes192Gcm, chaCha20Poly1305.
         Args:
-            value: Value to set for the cipherTransformConstants property.
+            value: Value to set for the cipher_transform_constants property.
         """
         self._cipher_transform_constants = value
     
@@ -111,7 +111,7 @@ class CryptographySuite(AdditionalDataHolder, Parsable):
         """
         Sets the dhGroup property value. Diffie Hellman Group. Possible values are: group1, group2, group14, ecp256, ecp384, group24.
         Args:
-            value: Value to set for the dhGroup property.
+            value: Value to set for the dh_group property.
         """
         self._dh_group = value
     
@@ -128,7 +128,7 @@ class CryptographySuite(AdditionalDataHolder, Parsable):
         """
         Sets the encryptionMethod property value. Encryption Method. Possible values are: aes256, des, tripleDes, aes128, aes128Gcm, aes256Gcm, aes192, aes192Gcm, chaCha20Poly1305.
         Args:
-            value: Value to set for the encryptionMethod property.
+            value: Value to set for the encryption_method property.
         """
         self._encryption_method = value
     
@@ -138,13 +138,13 @@ class CryptographySuite(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authentication_transform_constants": lambda n : setattr(self, 'authentication_transform_constants', n.get_enum_value(authentication_transform_constant.AuthenticationTransformConstant)),
-            "cipher_transform_constants": lambda n : setattr(self, 'cipher_transform_constants', n.get_enum_value(vpn_encryption_algorithm_type.VpnEncryptionAlgorithmType)),
-            "dh_group": lambda n : setattr(self, 'dh_group', n.get_enum_value(diffie_hellman_group.DiffieHellmanGroup)),
-            "encryption_method": lambda n : setattr(self, 'encryption_method', n.get_enum_value(vpn_encryption_algorithm_type.VpnEncryptionAlgorithmType)),
-            "integrity_check_method": lambda n : setattr(self, 'integrity_check_method', n.get_enum_value(vpn_integrity_algorithm_type.VpnIntegrityAlgorithmType)),
+            "authenticationTransformConstants": lambda n : setattr(self, 'authentication_transform_constants', n.get_enum_value(authentication_transform_constant.AuthenticationTransformConstant)),
+            "cipherTransformConstants": lambda n : setattr(self, 'cipher_transform_constants', n.get_enum_value(vpn_encryption_algorithm_type.VpnEncryptionAlgorithmType)),
+            "dhGroup": lambda n : setattr(self, 'dh_group', n.get_enum_value(diffie_hellman_group.DiffieHellmanGroup)),
+            "encryptionMethod": lambda n : setattr(self, 'encryption_method', n.get_enum_value(vpn_encryption_algorithm_type.VpnEncryptionAlgorithmType)),
+            "integrityCheckMethod": lambda n : setattr(self, 'integrity_check_method', n.get_enum_value(vpn_integrity_algorithm_type.VpnIntegrityAlgorithmType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "pfs_group": lambda n : setattr(self, 'pfs_group', n.get_enum_value(perfect_forward_secrecy_group.PerfectForwardSecrecyGroup)),
+            "pfsGroup": lambda n : setattr(self, 'pfs_group', n.get_enum_value(perfect_forward_secrecy_group.PerfectForwardSecrecyGroup)),
         }
         return fields
     
@@ -161,7 +161,7 @@ class CryptographySuite(AdditionalDataHolder, Parsable):
         """
         Sets the integrityCheckMethod property value. Integrity Check Method. Possible values are: sha2_256, sha1_96, sha1_160, sha2_384, sha2_512, md5.
         Args:
-            value: Value to set for the integrityCheckMethod property.
+            value: Value to set for the integrity_check_method property.
         """
         self._integrity_check_method = value
     
@@ -178,7 +178,7 @@ class CryptographySuite(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -195,7 +195,7 @@ class CryptographySuite(AdditionalDataHolder, Parsable):
         """
         Sets the pfsGroup property value. Perfect Forward Secrecy Group. Possible values are: pfs1, pfs2, pfs2048, ecp256, ecp384, pfsMM, pfs24.
         Args:
-            value: Value to set for the pfsGroup property.
+            value: Value to set for the pfs_group property.
         """
         self._pfs_group = value
     

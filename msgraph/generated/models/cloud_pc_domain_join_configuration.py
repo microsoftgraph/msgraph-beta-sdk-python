@@ -61,9 +61,9 @@ class CloudPcDomainJoinConfiguration(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "on_premises_connection_id": lambda n : setattr(self, 'on_premises_connection_id', n.get_str_value()),
-            "region_group": lambda n : setattr(self, 'region_group', n.get_enum_value(cloud_pc_region_group.CloudPcRegionGroup)),
-            "region_name": lambda n : setattr(self, 'region_name', n.get_str_value()),
+            "onPremisesConnectionId": lambda n : setattr(self, 'on_premises_connection_id', n.get_str_value()),
+            "regionGroup": lambda n : setattr(self, 'region_group', n.get_enum_value(cloud_pc_region_group.CloudPcRegionGroup)),
+            "regionName": lambda n : setattr(self, 'region_name', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(cloud_pc_domain_join_type.CloudPcDomainJoinType)),
         }
         return fields
@@ -81,7 +81,7 @@ class CloudPcDomainJoinConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -98,7 +98,7 @@ class CloudPcDomainJoinConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the onPremisesConnectionId property value. The Azure network connection ID that matches the virtual network IT admins want the provisioning policy to use when they create Cloud PCs. You can use this property in both domain join types: Azure AD joined or Hybrid Azure AD joined. If you enter an onPremisesConnectionId, leave regionName as empty.
         Args:
-            value: Value to set for the onPremisesConnectionId property.
+            value: Value to set for the on_premises_connection_id property.
         """
         self._on_premises_connection_id = value
     
@@ -115,7 +115,7 @@ class CloudPcDomainJoinConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the regionGroup property value. The regionGroup property
         Args:
-            value: Value to set for the regionGroup property.
+            value: Value to set for the region_group property.
         """
         self._region_group = value
     
@@ -132,7 +132,7 @@ class CloudPcDomainJoinConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the regionName property value. The supported Azure region where the IT admin wants the provisioning policy to create Cloud PCs. The underlying virtual network will be created and managed by the Windows 365 service. This can only be entered if the IT admin chooses Azure AD joined as the domain join type. If you enter a regionName, leave onPremisesConnectionId as empty.
         Args:
-            value: Value to set for the regionName property.
+            value: Value to set for the region_name property.
         """
         self._region_name = value
     

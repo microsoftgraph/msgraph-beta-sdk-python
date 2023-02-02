@@ -9,7 +9,7 @@ office_configuration_assignment_target = lazy_import('msgraph.generated.models.o
 class OfficeClientConfigurationAssignment(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new officeClientConfigurationAssignment and sets the default values.
+        Instantiates a new OfficeClientConfigurationAssignment and sets the default values.
         """
         super().__init__()
         # The OdataType property

@@ -23,7 +23,7 @@ class AndroidDeviceOwnerImportedPFXCertificateProfile(android_device_owner_certi
         """
         Sets the certificateAccessType property value. Certificate access type. Possible values are: userApproval, specificApps, unknownFutureValue.
         Args:
-            value: Value to set for the certificateAccessType property.
+            value: Value to set for the certificate_access_type property.
         """
         self._certificate_access_type = value
     
@@ -60,10 +60,10 @@ class AndroidDeviceOwnerImportedPFXCertificateProfile(android_device_owner_certi
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "certificate_access_type": lambda n : setattr(self, 'certificate_access_type', n.get_enum_value(android_device_owner_certificate_access_type.AndroidDeviceOwnerCertificateAccessType)),
-            "intended_purpose": lambda n : setattr(self, 'intended_purpose', n.get_enum_value(intended_purpose.IntendedPurpose)),
-            "managed_device_certificate_states": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(managed_device_certificate_state.ManagedDeviceCertificateState)),
-            "silent_certificate_access_details": lambda n : setattr(self, 'silent_certificate_access_details', n.get_collection_of_object_values(android_device_owner_silent_certificate_access.AndroidDeviceOwnerSilentCertificateAccess)),
+            "certificateAccessType": lambda n : setattr(self, 'certificate_access_type', n.get_enum_value(android_device_owner_certificate_access_type.AndroidDeviceOwnerCertificateAccessType)),
+            "intendedPurpose": lambda n : setattr(self, 'intended_purpose', n.get_enum_value(intended_purpose.IntendedPurpose)),
+            "managedDeviceCertificateStates": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(managed_device_certificate_state.ManagedDeviceCertificateState)),
+            "silentCertificateAccessDetails": lambda n : setattr(self, 'silent_certificate_access_details', n.get_collection_of_object_values(android_device_owner_silent_certificate_access.AndroidDeviceOwnerSilentCertificateAccess)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -82,7 +82,7 @@ class AndroidDeviceOwnerImportedPFXCertificateProfile(android_device_owner_certi
         """
         Sets the intendedPurpose property value. PFX Import Options.
         Args:
-            value: Value to set for the intendedPurpose property.
+            value: Value to set for the intended_purpose property.
         """
         self._intended_purpose = value
     
@@ -99,7 +99,7 @@ class AndroidDeviceOwnerImportedPFXCertificateProfile(android_device_owner_certi
         """
         Sets the managedDeviceCertificateStates property value. Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
         Args:
-            value: Value to set for the managedDeviceCertificateStates property.
+            value: Value to set for the managed_device_certificate_states property.
         """
         self._managed_device_certificate_states = value
     
@@ -130,7 +130,7 @@ class AndroidDeviceOwnerImportedPFXCertificateProfile(android_device_owner_certi
         """
         Sets the silentCertificateAccessDetails property value. Certificate access information. This collection can contain a maximum of 50 elements.
         Args:
-            value: Value to set for the silentCertificateAccessDetails property.
+            value: Value to set for the silent_certificate_access_details property.
         """
         self._silent_certificate_access_details = value
     

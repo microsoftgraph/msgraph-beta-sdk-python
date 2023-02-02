@@ -11,7 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.device_management.imported_windows_autopilot_device_identities.count.count_request_builder')
-import_request_builder = lazy_import('msgraph.generated.device_management.imported_windows_autopilot_device_identities.import_escaped.import_request_builder')
+import_request_builder = lazy_import('msgraph.generated.device_management.imported_windows_autopilot_device_identities.microsoft_graph_import.import_request_builder')
 imported_windows_autopilot_device_identity = lazy_import('msgraph.generated.models.imported_windows_autopilot_device_identity')
 imported_windows_autopilot_device_identity_collection_response = lazy_import('msgraph.generated.models.imported_windows_autopilot_device_identity_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -28,7 +28,7 @@ class ImportedWindowsAutopilotDeviceIdentitiesRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def import_escaped(self) -> import_request_builder.ImportRequestBuilder:
+    def microsoft_graph_import(self) -> import_request_builder.ImportRequestBuilder:
         """
         Provides operations to call the import method.
         """
@@ -52,12 +52,11 @@ class ImportedWindowsAutopilotDeviceIdentitiesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ImportedWindowsAutopilotDeviceIdentitiesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[imported_windows_autopilot_device_identity_collection_response.ImportedWindowsAutopilotDeviceIdentityCollectionResponse]:
+    async def get(self,request_configuration: Optional[ImportedWindowsAutopilotDeviceIdentitiesRequestBuilderGetRequestConfiguration] = None) -> Optional[imported_windows_autopilot_device_identity_collection_response.ImportedWindowsAutopilotDeviceIdentityCollectionResponse]:
         """
         Collection of imported Windows autopilot devices.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[imported_windows_autopilot_device_identity_collection_response.ImportedWindowsAutopilotDeviceIdentityCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class ImportedWindowsAutopilotDeviceIdentitiesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, imported_windows_autopilot_device_identity_collection_response.ImportedWindowsAutopilotDeviceIdentityCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, imported_windows_autopilot_device_identity_collection_response.ImportedWindowsAutopilotDeviceIdentityCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[imported_windows_autopilot_device_identity.ImportedWindowsAutopilotDeviceIdentity] = None, request_configuration: Optional[ImportedWindowsAutopilotDeviceIdentitiesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[imported_windows_autopilot_device_identity.ImportedWindowsAutopilotDeviceIdentity]:
+    async def post(self,body: Optional[imported_windows_autopilot_device_identity.ImportedWindowsAutopilotDeviceIdentity] = None, request_configuration: Optional[ImportedWindowsAutopilotDeviceIdentitiesRequestBuilderPostRequestConfiguration] = None) -> Optional[imported_windows_autopilot_device_identity.ImportedWindowsAutopilotDeviceIdentity]:
         """
         Create new navigation property to importedWindowsAutopilotDeviceIdentities for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[imported_windows_autopilot_device_identity.ImportedWindowsAutopilotDeviceIdentity]
         """
         if body is None:
@@ -91,7 +89,7 @@ class ImportedWindowsAutopilotDeviceIdentitiesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, imported_windows_autopilot_device_identity.ImportedWindowsAutopilotDeviceIdentity, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, imported_windows_autopilot_device_identity.ImportedWindowsAutopilotDeviceIdentity, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ImportedWindowsAutopilotDeviceIdentitiesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

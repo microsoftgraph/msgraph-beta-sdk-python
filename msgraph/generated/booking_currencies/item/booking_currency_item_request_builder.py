@@ -17,10 +17,11 @@ class BookingCurrencyItemRequestBuilder():
     """
     Provides operations to manage the collection of bookingCurrency entities.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, booking_currency_id: Optional[str] = None) -> None:
         """
         Instantiates a new BookingCurrencyItemRequestBuilder and sets the default values.
         Args:
+            bookingCurrencyId: key: id of bookingCurrency
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class BookingCurrencyItemRequestBuilder():
         self.url_template: str = "{+baseurl}/bookingCurrencies/{bookingCurrency%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["bookingCurrency%2Did"] = bookingCurrencyId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[BookingCurrencyItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[BookingCurrencyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete entity from bookingCurrencies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class BookingCurrencyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[BookingCurrencyItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[booking_currency.BookingCurrency]:
+    async def get(self,request_configuration: Optional[BookingCurrencyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[booking_currency.BookingCurrency]:
         """
         Get the properties of a bookingCurrency object that is available to a Microsoft Bookings business. Use the **id** property, which is the currency code, to specify the currency.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[booking_currency.BookingCurrency]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class BookingCurrencyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, booking_currency.BookingCurrency, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, booking_currency.BookingCurrency, error_mapping)
     
-    async def patch(self,body: Optional[booking_currency.BookingCurrency] = None, request_configuration: Optional[BookingCurrencyItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[booking_currency.BookingCurrency]:
+    async def patch(self,body: Optional[booking_currency.BookingCurrency] = None, request_configuration: Optional[BookingCurrencyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[booking_currency.BookingCurrency]:
         """
         Update entity in bookingCurrencies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[booking_currency.BookingCurrency]
         """
         if body is None:
@@ -92,7 +91,7 @@ class BookingCurrencyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, booking_currency.BookingCurrency, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, booking_currency.BookingCurrency, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[BookingCurrencyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

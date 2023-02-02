@@ -44,12 +44,11 @@ class SharedEmailDomainInvitationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SharedEmailDomainInvitationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[shared_email_domain_invitation_collection_response.SharedEmailDomainInvitationCollectionResponse]:
+    async def get(self,request_configuration: Optional[SharedEmailDomainInvitationsRequestBuilderGetRequestConfiguration] = None) -> Optional[shared_email_domain_invitation_collection_response.SharedEmailDomainInvitationCollectionResponse]:
         """
         Get sharedEmailDomainInvitations from domains
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[shared_email_domain_invitation_collection_response.SharedEmailDomainInvitationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class SharedEmailDomainInvitationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, shared_email_domain_invitation_collection_response.SharedEmailDomainInvitationCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, shared_email_domain_invitation_collection_response.SharedEmailDomainInvitationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[shared_email_domain_invitation.SharedEmailDomainInvitation] = None, request_configuration: Optional[SharedEmailDomainInvitationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[shared_email_domain_invitation.SharedEmailDomainInvitation]:
+    async def post(self,body: Optional[shared_email_domain_invitation.SharedEmailDomainInvitation] = None, request_configuration: Optional[SharedEmailDomainInvitationsRequestBuilderPostRequestConfiguration] = None) -> Optional[shared_email_domain_invitation.SharedEmailDomainInvitation]:
         """
         Create new navigation property to sharedEmailDomainInvitations for domains
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[shared_email_domain_invitation.SharedEmailDomainInvitation]
         """
         if body is None:
@@ -83,7 +81,7 @@ class SharedEmailDomainInvitationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, shared_email_domain_invitation.SharedEmailDomainInvitation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, shared_email_domain_invitation.SharedEmailDomainInvitation, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SharedEmailDomainInvitationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

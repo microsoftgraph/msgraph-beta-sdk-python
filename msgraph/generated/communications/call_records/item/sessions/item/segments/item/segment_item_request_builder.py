@@ -17,12 +17,13 @@ class SegmentItemRequestBuilder():
     """
     Provides operations to manage the segments property of the microsoft.graph.callRecords.session entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, segment_id: Optional[str] = None) -> None:
         """
         Instantiates a new SegmentItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            segmentId: key: id of segment
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -32,15 +33,15 @@ class SegmentItemRequestBuilder():
         self.url_template: str = "{+baseurl}/communications/callRecords/{callRecord%2Did}/sessions/{session%2Did}/segments/{segment%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["segment%2Did"] = segmentId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SegmentItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[SegmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property segments for communications
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class SegmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SegmentItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[segment.Segment]:
+    async def get(self,request_configuration: Optional[SegmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[segment.Segment]:
         """
         The list of segments involved in the session. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[segment.Segment]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class SegmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, segment.Segment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, segment.Segment, error_mapping)
     
-    async def patch(self,body: Optional[segment.Segment] = None, request_configuration: Optional[SegmentItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[segment.Segment]:
+    async def patch(self,body: Optional[segment.Segment] = None, request_configuration: Optional[SegmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[segment.Segment]:
         """
         Update the navigation property segments in communications
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[segment.Segment]
         """
         if body is None:
@@ -92,7 +91,7 @@ class SegmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, segment.Segment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, segment.Segment, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SegmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

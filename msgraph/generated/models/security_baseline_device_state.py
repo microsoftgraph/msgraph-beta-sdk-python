@@ -54,7 +54,7 @@ class SecurityBaselineDeviceState(entity.Entity):
         """
         Sets the deviceDisplayName property value. Display name of the device
         Args:
-            value: Value to set for the deviceDisplayName property.
+            value: Value to set for the device_display_name property.
         """
         self._device_display_name = value
     
@@ -64,11 +64,11 @@ class SecurityBaselineDeviceState(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_display_name": lambda n : setattr(self, 'device_display_name', n.get_str_value()),
-            "last_reported_date_time": lambda n : setattr(self, 'last_reported_date_time', n.get_datetime_value()),
-            "managed_device_id": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
+            "deviceDisplayName": lambda n : setattr(self, 'device_display_name', n.get_str_value()),
+            "lastReportedDateTime": lambda n : setattr(self, 'last_reported_date_time', n.get_datetime_value()),
+            "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(security_baseline_compliance_state.SecurityBaselineComplianceState)),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -87,7 +87,7 @@ class SecurityBaselineDeviceState(entity.Entity):
         """
         Sets the lastReportedDateTime property value. Last modified date time of the policy report
         Args:
-            value: Value to set for the lastReportedDateTime property.
+            value: Value to set for the last_reported_date_time property.
         """
         self._last_reported_date_time = value
     
@@ -104,7 +104,7 @@ class SecurityBaselineDeviceState(entity.Entity):
         """
         Sets the managedDeviceId property value. Intune device id
         Args:
-            value: Value to set for the managedDeviceId property.
+            value: Value to set for the managed_device_id property.
         """
         self._managed_device_id = value
     
@@ -153,7 +153,7 @@ class SecurityBaselineDeviceState(entity.Entity):
         """
         Sets the userPrincipalName property value. User Principal Name
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

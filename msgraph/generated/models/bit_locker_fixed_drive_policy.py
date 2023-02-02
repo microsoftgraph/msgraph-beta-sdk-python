@@ -68,7 +68,7 @@ class BitLockerFixedDrivePolicy(AdditionalDataHolder, Parsable):
         """
         Sets the encryptionMethod property value. Select the encryption method for fixed drives. Possible values are: aesCbc128, aesCbc256, xtsAes128, xtsAes256.
         Args:
-            value: Value to set for the encryptionMethod property.
+            value: Value to set for the encryption_method property.
         """
         self._encryption_method = value
     
@@ -78,10 +78,10 @@ class BitLockerFixedDrivePolicy(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "encryption_method": lambda n : setattr(self, 'encryption_method', n.get_enum_value(bit_locker_encryption_method.BitLockerEncryptionMethod)),
+            "encryptionMethod": lambda n : setattr(self, 'encryption_method', n.get_enum_value(bit_locker_encryption_method.BitLockerEncryptionMethod)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "recovery_options": lambda n : setattr(self, 'recovery_options', n.get_object_value(bit_locker_recovery_options.BitLockerRecoveryOptions)),
-            "require_encryption_for_write_access": lambda n : setattr(self, 'require_encryption_for_write_access', n.get_bool_value()),
+            "recoveryOptions": lambda n : setattr(self, 'recovery_options', n.get_object_value(bit_locker_recovery_options.BitLockerRecoveryOptions)),
+            "requireEncryptionForWriteAccess": lambda n : setattr(self, 'require_encryption_for_write_access', n.get_bool_value()),
         }
         return fields
     
@@ -98,7 +98,7 @@ class BitLockerFixedDrivePolicy(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -115,7 +115,7 @@ class BitLockerFixedDrivePolicy(AdditionalDataHolder, Parsable):
         """
         Sets the recoveryOptions property value. This policy setting allows you to control how BitLocker-protected fixed data drives are recovered in the absence of the required credentials. This policy setting is applied when you turn on BitLocker.
         Args:
-            value: Value to set for the recoveryOptions property.
+            value: Value to set for the recovery_options property.
         """
         self._recovery_options = value
     
@@ -132,7 +132,7 @@ class BitLockerFixedDrivePolicy(AdditionalDataHolder, Parsable):
         """
         Sets the requireEncryptionForWriteAccess property value. This policy setting determines whether BitLocker protection is required for fixed data drives to be writable on a computer.
         Args:
-            value: Value to set for the requireEncryptionForWriteAccess property.
+            value: Value to set for the require_encryption_for_write_access property.
         """
         self._require_encryption_for_write_access = value
     

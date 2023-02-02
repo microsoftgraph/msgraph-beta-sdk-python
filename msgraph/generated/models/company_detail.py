@@ -104,7 +104,7 @@ class CompanyDetail(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. Company name.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -116,11 +116,11 @@ class CompanyDetail(AdditionalDataHolder, Parsable):
         fields = {
             "address": lambda n : setattr(self, 'address', n.get_object_value(physical_address.PhysicalAddress)),
             "department": lambda n : setattr(self, 'department', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "office_location": lambda n : setattr(self, 'office_location', n.get_str_value()),
+            "officeLocation": lambda n : setattr(self, 'office_location', n.get_str_value()),
             "pronunciation": lambda n : setattr(self, 'pronunciation', n.get_str_value()),
-            "web_url": lambda n : setattr(self, 'web_url', n.get_str_value()),
+            "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
         return fields
     
@@ -137,7 +137,7 @@ class CompanyDetail(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -154,7 +154,7 @@ class CompanyDetail(AdditionalDataHolder, Parsable):
         """
         Sets the officeLocation property value. Office Location of the person referred to.
         Args:
-            value: Value to set for the officeLocation property.
+            value: Value to set for the office_location property.
         """
         self._office_location = value
     
@@ -205,7 +205,7 @@ class CompanyDetail(AdditionalDataHolder, Parsable):
         """
         Sets the webUrl property value. Link to the company home page.
         Args:
-            value: Value to set for the webUrl property.
+            value: Value to set for the web_url property.
         """
         self._web_url = value
     

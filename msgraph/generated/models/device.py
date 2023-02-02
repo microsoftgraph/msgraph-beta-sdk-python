@@ -25,7 +25,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the accountEnabled property value. true if the account is enabled; otherwise, false. Default is true.  Supports $filter (eq, ne, not, in). Only callers in Global Administrator and Cloud Device Administrator roles can set this property.
         Args:
-            value: Value to set for the accountEnabled property.
+            value: Value to set for the account_enabled property.
         """
         self._account_enabled = value
     
@@ -42,7 +42,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the alternativeSecurityIds property value. For internal use only. Not nullable. Supports $filter (eq, not, ge, le).
         Args:
-            value: Value to set for the alternativeSecurityIds property.
+            value: Value to set for the alternative_security_ids property.
         """
         self._alternative_security_ids = value
     
@@ -59,7 +59,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the approximateLastSignInDateTime property value. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only. Supports $filter (eq, ne, not, ge, le, and eq on null values) and $orderBy.
         Args:
-            value: Value to set for the approximateLastSignInDateTime property.
+            value: Value to set for the approximate_last_sign_in_date_time property.
         """
         self._approximate_last_sign_in_date_time = value
     
@@ -93,13 +93,13 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the complianceExpirationDateTime property value. The timestamp when the device is no longer deemed compliant. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         Args:
-            value: Value to set for the complianceExpirationDateTime property.
+            value: Value to set for the compliance_expiration_date_time property.
         """
         self._compliance_expiration_date_time = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new device and sets the default values.
+        Instantiates a new Device and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.device"
@@ -215,7 +215,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the deviceCategory property value. User-defined property set by Intune to automatically add devices to groups and simplify managing devices.
         Args:
-            value: Value to set for the deviceCategory property.
+            value: Value to set for the device_category property.
         """
         self._device_category = value
     
@@ -232,7 +232,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the deviceId property value. Unique Identifier set by Azure Device Registration Service at the time of registration. This is an alternate key that can be used to reference the device object. Also Supports $filter (eq, ne, not, startsWith).
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -249,7 +249,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the deviceMetadata property value. For internal use only. Set to null.
         Args:
-            value: Value to set for the deviceMetadata property.
+            value: Value to set for the device_metadata property.
         """
         self._device_metadata = value
     
@@ -266,7 +266,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the deviceOwnership property value. Ownership of the device. This property is set by Intune. Possible values are: unknown, company, personal.
         Args:
-            value: Value to set for the deviceOwnership property.
+            value: Value to set for the device_ownership property.
         """
         self._device_ownership = value
     
@@ -283,7 +283,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the deviceVersion property value. For internal use only.
         Args:
-            value: Value to set for the deviceVersion property.
+            value: Value to set for the device_version property.
         """
         self._device_version = value
     
@@ -300,7 +300,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the displayName property value. The display name for the device. Required. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderBy.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -317,7 +317,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the domainName property value. The on-premises domain name of Hybrid Azure AD joined devices. This property is set by Intune.
         Args:
-            value: Value to set for the domainName property.
+            value: Value to set for the domain_name property.
         """
         self._domain_name = value
     
@@ -334,7 +334,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the enrollmentProfileName property value. Enrollment profile applied to the device. For example, Apple Device Enrollment Profile, Device enrollment - Corporate device identifiers, or Windows Autopilot profile name. This property is set by Intune.
         Args:
-            value: Value to set for the enrollmentProfileName property.
+            value: Value to set for the enrollment_profile_name property.
         """
         self._enrollment_profile_name = value
     
@@ -351,7 +351,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the enrollmentType property value. Enrollment type of the device. This property is set by Intune. Possible values are: unknown, userEnrollment, deviceEnrollmentManager, appleBulkWithUser, appleBulkWithoutUser, windowsAzureADJoin, windowsBulkUserless, windowsAutoEnrollment, windowsBulkAzureDomainJoin, windowsCoManagement.
         Args:
-            value: Value to set for the enrollmentType property.
+            value: Value to set for the enrollment_type property.
         """
         self._enrollment_type = value
     
@@ -368,7 +368,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the extensionAttributes property value. Contains extension attributes 1-15 for the device. The individual extension attributes are not selectable. These properties are mastered in cloud and can be set during creation or update of a device object in Azure AD. Supports $filter (eq, not, startsWith, and eq on null values).
         Args:
-            value: Value to set for the extensionAttributes property.
+            value: Value to set for the extension_attributes property.
         """
         self._extension_attributes = value
     
@@ -395,49 +395,49 @@ class Device(directory_object.DirectoryObject):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "account_enabled": lambda n : setattr(self, 'account_enabled', n.get_bool_value()),
-            "alternative_security_ids": lambda n : setattr(self, 'alternative_security_ids', n.get_collection_of_object_values(alternative_security_id.AlternativeSecurityId)),
-            "approximate_last_sign_in_date_time": lambda n : setattr(self, 'approximate_last_sign_in_date_time', n.get_datetime_value()),
+            "accountEnabled": lambda n : setattr(self, 'account_enabled', n.get_bool_value()),
+            "alternativeSecurityIds": lambda n : setattr(self, 'alternative_security_ids', n.get_collection_of_object_values(alternative_security_id.AlternativeSecurityId)),
+            "approximateLastSignInDateTime": lambda n : setattr(self, 'approximate_last_sign_in_date_time', n.get_datetime_value()),
             "commands": lambda n : setattr(self, 'commands', n.get_collection_of_object_values(command.Command)),
-            "compliance_expiration_date_time": lambda n : setattr(self, 'compliance_expiration_date_time', n.get_datetime_value()),
-            "device_category": lambda n : setattr(self, 'device_category', n.get_str_value()),
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "device_metadata": lambda n : setattr(self, 'device_metadata', n.get_str_value()),
-            "device_ownership": lambda n : setattr(self, 'device_ownership', n.get_str_value()),
-            "device_version": lambda n : setattr(self, 'device_version', n.get_int_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "domain_name": lambda n : setattr(self, 'domain_name', n.get_str_value()),
-            "enrollment_profile_name": lambda n : setattr(self, 'enrollment_profile_name', n.get_str_value()),
-            "enrollment_type": lambda n : setattr(self, 'enrollment_type', n.get_str_value()),
-            "extension_attributes": lambda n : setattr(self, 'extension_attributes', n.get_object_value(on_premises_extension_attributes.OnPremisesExtensionAttributes)),
+            "complianceExpirationDateTime": lambda n : setattr(self, 'compliance_expiration_date_time', n.get_datetime_value()),
+            "deviceCategory": lambda n : setattr(self, 'device_category', n.get_str_value()),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "deviceMetadata": lambda n : setattr(self, 'device_metadata', n.get_str_value()),
+            "deviceOwnership": lambda n : setattr(self, 'device_ownership', n.get_str_value()),
+            "deviceVersion": lambda n : setattr(self, 'device_version', n.get_int_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "domainName": lambda n : setattr(self, 'domain_name', n.get_str_value()),
+            "enrollmentProfileName": lambda n : setattr(self, 'enrollment_profile_name', n.get_str_value()),
+            "enrollmentType": lambda n : setattr(self, 'enrollment_type', n.get_str_value()),
             "extensions": lambda n : setattr(self, 'extensions', n.get_collection_of_object_values(extension.Extension)),
+            "extensionAttributes": lambda n : setattr(self, 'extension_attributes', n.get_object_value(on_premises_extension_attributes.OnPremisesExtensionAttributes)),
             "hostnames": lambda n : setattr(self, 'hostnames', n.get_collection_of_primitive_values(str)),
-            "is_compliant": lambda n : setattr(self, 'is_compliant', n.get_bool_value()),
-            "is_managed": lambda n : setattr(self, 'is_managed', n.get_bool_value()),
-            "is_management_restricted": lambda n : setattr(self, 'is_management_restricted', n.get_bool_value()),
-            "is_rooted": lambda n : setattr(self, 'is_rooted', n.get_bool_value()),
+            "isCompliant": lambda n : setattr(self, 'is_compliant', n.get_bool_value()),
+            "isManaged": lambda n : setattr(self, 'is_managed', n.get_bool_value()),
+            "isManagementRestricted": lambda n : setattr(self, 'is_management_restricted', n.get_bool_value()),
+            "isRooted": lambda n : setattr(self, 'is_rooted', n.get_bool_value()),
             "kind": lambda n : setattr(self, 'kind', n.get_str_value()),
-            "management_type": lambda n : setattr(self, 'management_type', n.get_str_value()),
+            "managementType": lambda n : setattr(self, 'management_type', n.get_str_value()),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
-            "mdm_app_id": lambda n : setattr(self, 'mdm_app_id', n.get_str_value()),
-            "member_of": lambda n : setattr(self, 'member_of', n.get_collection_of_object_values(directory_object.DirectoryObject)),
+            "mdmAppId": lambda n : setattr(self, 'mdm_app_id', n.get_str_value()),
+            "memberOf": lambda n : setattr(self, 'member_of', n.get_collection_of_object_values(directory_object.DirectoryObject)),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "on_premises_last_sync_date_time": lambda n : setattr(self, 'on_premises_last_sync_date_time', n.get_datetime_value()),
-            "on_premises_sync_enabled": lambda n : setattr(self, 'on_premises_sync_enabled', n.get_bool_value()),
-            "operating_system": lambda n : setattr(self, 'operating_system', n.get_str_value()),
-            "operating_system_version": lambda n : setattr(self, 'operating_system_version', n.get_str_value()),
-            "physical_ids": lambda n : setattr(self, 'physical_ids', n.get_collection_of_primitive_values(str)),
+            "onPremisesLastSyncDateTime": lambda n : setattr(self, 'on_premises_last_sync_date_time', n.get_datetime_value()),
+            "onPremisesSyncEnabled": lambda n : setattr(self, 'on_premises_sync_enabled', n.get_bool_value()),
+            "operatingSystem": lambda n : setattr(self, 'operating_system', n.get_str_value()),
+            "operatingSystemVersion": lambda n : setattr(self, 'operating_system_version', n.get_str_value()),
+            "physicalIds": lambda n : setattr(self, 'physical_ids', n.get_collection_of_primitive_values(str)),
             "platform": lambda n : setattr(self, 'platform', n.get_str_value()),
-            "profile_type": lambda n : setattr(self, 'profile_type', n.get_str_value()),
-            "registered_owners": lambda n : setattr(self, 'registered_owners', n.get_collection_of_object_values(directory_object.DirectoryObject)),
-            "registered_users": lambda n : setattr(self, 'registered_users', n.get_collection_of_object_values(directory_object.DirectoryObject)),
-            "registration_date_time": lambda n : setattr(self, 'registration_date_time', n.get_datetime_value()),
+            "profileType": lambda n : setattr(self, 'profile_type', n.get_str_value()),
+            "registeredOwners": lambda n : setattr(self, 'registered_owners', n.get_collection_of_object_values(directory_object.DirectoryObject)),
+            "registeredUsers": lambda n : setattr(self, 'registered_users', n.get_collection_of_object_values(directory_object.DirectoryObject)),
+            "registrationDateTime": lambda n : setattr(self, 'registration_date_time', n.get_datetime_value()),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
-            "system_labels": lambda n : setattr(self, 'system_labels', n.get_collection_of_primitive_values(str)),
-            "transitive_member_of": lambda n : setattr(self, 'transitive_member_of', n.get_collection_of_object_values(directory_object.DirectoryObject)),
-            "trust_type": lambda n : setattr(self, 'trust_type', n.get_str_value()),
-            "usage_rights": lambda n : setattr(self, 'usage_rights', n.get_collection_of_object_values(usage_right.UsageRight)),
+            "systemLabels": lambda n : setattr(self, 'system_labels', n.get_collection_of_primitive_values(str)),
+            "transitiveMemberOf": lambda n : setattr(self, 'transitive_member_of', n.get_collection_of_object_values(directory_object.DirectoryObject)),
+            "trustType": lambda n : setattr(self, 'trust_type', n.get_str_value()),
+            "usageRights": lambda n : setattr(self, 'usage_rights', n.get_collection_of_object_values(usage_right.UsageRight)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -473,7 +473,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the isCompliant property value. true if the device complies with Mobile Device Management (MDM) policies; otherwise, false. Read-only. This can only be updated by Intune for any device OS type or by an approved MDM app for Windows OS devices. Supports $filter (eq, ne, not).
         Args:
-            value: Value to set for the isCompliant property.
+            value: Value to set for the is_compliant property.
         """
         self._is_compliant = value
     
@@ -490,7 +490,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the isManaged property value. true if the device is managed by a Mobile Device Management (MDM) app; otherwise, false. This can only be updated by Intune for any device OS type or by an approved MDM app for Windows OS devices. Supports $filter (eq, ne, not).
         Args:
-            value: Value to set for the isManaged property.
+            value: Value to set for the is_managed property.
         """
         self._is_managed = value
     
@@ -507,7 +507,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the isManagementRestricted property value. The isManagementRestricted property
         Args:
-            value: Value to set for the isManagementRestricted property.
+            value: Value to set for the is_management_restricted property.
         """
         self._is_management_restricted = value
     
@@ -524,7 +524,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the isRooted property value. true if device is rooted; false if device is jail-broken. This can only be updated by Intune.
         Args:
-            value: Value to set for the isRooted property.
+            value: Value to set for the is_rooted property.
         """
         self._is_rooted = value
     
@@ -558,7 +558,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the managementType property value. Management channel of the device.  This property is set by Intune. Possible values are: eas, mdm, easMdm, intuneClient, easIntuneClient, configurationManagerClient, configurationManagerClientMdm, configurationManagerClientMdmEas, unknown, jamf, googleCloudDevicePolicyController.
         Args:
-            value: Value to set for the managementType property.
+            value: Value to set for the management_type property.
         """
         self._management_type = value
     
@@ -592,7 +592,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the mdmAppId property value. Application identifier used to register device into MDM. Read-only. Supports $filter (eq, ne, not, startsWith).
         Args:
-            value: Value to set for the mdmAppId property.
+            value: Value to set for the mdm_app_id property.
         """
         self._mdm_app_id = value
     
@@ -609,7 +609,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the memberOf property value. Groups and administrative units that this device is a member of. Read-only. Nullable. Supports $expand.
         Args:
-            value: Value to set for the memberOf property.
+            value: Value to set for the member_of property.
         """
         self._member_of = value
     
@@ -660,7 +660,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the onPremisesLastSyncDateTime property value. The last time at which the object was synced with the on-premises directory. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z Read-only. Supports $filter (eq, ne, not, ge, le, in).
         Args:
-            value: Value to set for the onPremisesLastSyncDateTime property.
+            value: Value to set for the on_premises_last_sync_date_time property.
         """
         self._on_premises_last_sync_date_time = value
     
@@ -677,7 +677,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the onPremisesSyncEnabled property value. true if this object is synced from an on-premises directory; false if this object was originally synced from an on-premises directory but is no longer synced; null if this object has never been synced from an on-premises directory (default). Read-only. Supports $filter (eq, ne, not, in, and eq on null values).
         Args:
-            value: Value to set for the onPremisesSyncEnabled property.
+            value: Value to set for the on_premises_sync_enabled property.
         """
         self._on_premises_sync_enabled = value
     
@@ -694,7 +694,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the operatingSystem property value. The type of operating system on the device. Required. Supports $filter (eq, ne, not, ge, le, startsWith, and eq on null values).
         Args:
-            value: Value to set for the operatingSystem property.
+            value: Value to set for the operating_system property.
         """
         self._operating_system = value
     
@@ -711,7 +711,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the operatingSystemVersion property value. Operating system version of the device. Required. Supports $filter (eq, ne, not, ge, le, startsWith, and eq on null values).
         Args:
-            value: Value to set for the operatingSystemVersion property.
+            value: Value to set for the operating_system_version property.
         """
         self._operating_system_version = value
     
@@ -728,7 +728,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the physicalIds property value. For internal use only. Not nullable. Supports $filter (eq, not, ge, le, startsWith, /$count eq 0, /$count ne 0.
         Args:
-            value: Value to set for the physicalIds property.
+            value: Value to set for the physical_ids property.
         """
         self._physical_ids = value
     
@@ -762,7 +762,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the profileType property value. The profile type of the device. Possible values: RegisteredDevice (default), SecureVM, Printer, Shared, IoT.
         Args:
-            value: Value to set for the profileType property.
+            value: Value to set for the profile_type property.
         """
         self._profile_type = value
     
@@ -779,7 +779,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the registeredOwners property value. The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Currently, there can be only one owner. Read-only. Nullable. Supports $expand.
         Args:
-            value: Value to set for the registeredOwners property.
+            value: Value to set for the registered_owners property.
         """
         self._registered_owners = value
     
@@ -796,7 +796,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the registeredUsers property value. Collection of registered users of the device. For cloud joined devices and registered personal devices, registered users are set to the same value as registered owners at the time of registration. Read-only. Nullable. Supports $expand.
         Args:
-            value: Value to set for the registeredUsers property.
+            value: Value to set for the registered_users property.
         """
         self._registered_users = value
     
@@ -813,7 +813,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the registrationDateTime property value. Date and time of when the device was registered. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         Args:
-            value: Value to set for the registrationDateTime property.
+            value: Value to set for the registration_date_time property.
         """
         self._registration_date_time = value
     
@@ -840,8 +840,8 @@ class Device(directory_object.DirectoryObject):
         writer.write_str_value("domainName", self.domain_name)
         writer.write_str_value("enrollmentProfileName", self.enrollment_profile_name)
         writer.write_str_value("enrollmentType", self.enrollment_type)
-        writer.write_object_value("extensionAttributes", self.extension_attributes)
         writer.write_collection_of_object_values("extensions", self.extensions)
+        writer.write_object_value("extensionAttributes", self.extension_attributes)
         writer.write_collection_of_primitive_values("hostnames", self.hostnames)
         writer.write_bool_value("isCompliant", self.is_compliant)
         writer.write_bool_value("isManaged", self.is_managed)
@@ -900,7 +900,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the systemLabels property value. List of labels applied to the device by the system. Supports $filter (/$count eq 0, /$count ne 0).
         Args:
-            value: Value to set for the systemLabels property.
+            value: Value to set for the system_labels property.
         """
         self._system_labels = value
     
@@ -917,7 +917,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the transitiveMemberOf property value. Groups and administrative units that this device is a member of. This operation is transitive. Supports $expand.
         Args:
-            value: Value to set for the transitiveMemberOf property.
+            value: Value to set for the transitive_member_of property.
         """
         self._transitive_member_of = value
     
@@ -934,7 +934,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the trustType property value. Type of trust for the joined device. Read-only. Possible values: Workplace (indicates bring your own personal devices), AzureAd (Cloud only joined devices), ServerAd (on-premises domain joined devices joined to Azure AD). For more details, see Introduction to device management in Azure Active Directory
         Args:
-            value: Value to set for the trustType property.
+            value: Value to set for the trust_type property.
         """
         self._trust_type = value
     
@@ -951,7 +951,7 @@ class Device(directory_object.DirectoryObject):
         """
         Sets the usageRights property value. Represents the usage rights a device has been granted.
         Args:
-            value: Value to set for the usageRights property.
+            value: Value to set for the usage_rights property.
         """
         self._usage_rights = value
     

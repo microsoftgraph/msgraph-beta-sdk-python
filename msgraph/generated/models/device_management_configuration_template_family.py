@@ -2,7 +2,7 @@ from enum import Enum
 
 class DeviceManagementConfigurationTemplateFamily(Enum):
     # Default for Template Family when Policy is not linked to a Template
-    None_escaped = "none",
+    None_ = "none",
     # Template Family for EndpointSecurityAntivirus that manages the discrete group of antivirus settings for managed devices
     EndpointSecurityAntivirus = "endpointSecurityAntivirus",
     # Template Family for EndpointSecurityDiskEncryption that provides settings that are relevant for a devices built-in encryption  method, like FileVault or BitLocker

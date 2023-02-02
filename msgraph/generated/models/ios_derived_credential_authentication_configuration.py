@@ -41,7 +41,7 @@ class IosDerivedCredentialAuthenticationConfiguration(device_configuration.Devic
         """
         Sets the derivedCredentialSettings property value. Tenant level settings for the Derived Credentials to be used for authentication.
         Args:
-            value: Value to set for the derivedCredentialSettings property.
+            value: Value to set for the derived_credential_settings property.
         """
         self._derived_credential_settings = value
     
@@ -51,7 +51,7 @@ class IosDerivedCredentialAuthenticationConfiguration(device_configuration.Devic
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "derived_credential_settings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings)),
+            "derivedCredentialSettings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

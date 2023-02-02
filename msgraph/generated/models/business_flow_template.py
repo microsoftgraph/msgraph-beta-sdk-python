@@ -8,7 +8,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 class BusinessFlowTemplate(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new businessFlowTemplate and sets the default values.
+        Instantiates a new BusinessFlowTemplate and sets the default values.
         """
         super().__init__()
         # The name of the business flow template
@@ -41,7 +41,7 @@ class BusinessFlowTemplate(entity.Entity):
         """
         Sets the displayName property value. The name of the business flow template
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -51,7 +51,7 @@ class BusinessFlowTemplate(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

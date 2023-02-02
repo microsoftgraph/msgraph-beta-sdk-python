@@ -49,13 +49,13 @@ class AndroidScepCertificateProfile(android_certificate_profile_base.AndroidCert
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "hash_algorithm": lambda n : setattr(self, 'hash_algorithm', n.get_enum_value(hash_algorithms.HashAlgorithms)),
-            "key_size": lambda n : setattr(self, 'key_size', n.get_enum_value(key_size.KeySize)),
-            "key_usage": lambda n : setattr(self, 'key_usage', n.get_enum_value(key_usages.KeyUsages)),
-            "managed_device_certificate_states": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(managed_device_certificate_state.ManagedDeviceCertificateState)),
-            "scep_server_urls": lambda n : setattr(self, 'scep_server_urls', n.get_collection_of_primitive_values(str)),
-            "subject_alternative_name_format_string": lambda n : setattr(self, 'subject_alternative_name_format_string', n.get_str_value()),
-            "subject_name_format_string": lambda n : setattr(self, 'subject_name_format_string', n.get_str_value()),
+            "hashAlgorithm": lambda n : setattr(self, 'hash_algorithm', n.get_enum_value(hash_algorithms.HashAlgorithms)),
+            "keySize": lambda n : setattr(self, 'key_size', n.get_enum_value(key_size.KeySize)),
+            "keyUsage": lambda n : setattr(self, 'key_usage', n.get_enum_value(key_usages.KeyUsages)),
+            "managedDeviceCertificateStates": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(managed_device_certificate_state.ManagedDeviceCertificateState)),
+            "scepServerUrls": lambda n : setattr(self, 'scep_server_urls', n.get_collection_of_primitive_values(str)),
+            "subjectAlternativeNameFormatString": lambda n : setattr(self, 'subject_alternative_name_format_string', n.get_str_value()),
+            "subjectNameFormatString": lambda n : setattr(self, 'subject_name_format_string', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -74,7 +74,7 @@ class AndroidScepCertificateProfile(android_certificate_profile_base.AndroidCert
         """
         Sets the hashAlgorithm property value. Hash Algorithm Options.
         Args:
-            value: Value to set for the hashAlgorithm property.
+            value: Value to set for the hash_algorithm property.
         """
         self._hash_algorithm = value
     
@@ -91,7 +91,7 @@ class AndroidScepCertificateProfile(android_certificate_profile_base.AndroidCert
         """
         Sets the keySize property value. Key Size Options.
         Args:
-            value: Value to set for the keySize property.
+            value: Value to set for the key_size property.
         """
         self._key_size = value
     
@@ -108,7 +108,7 @@ class AndroidScepCertificateProfile(android_certificate_profile_base.AndroidCert
         """
         Sets the keyUsage property value. Key Usage Options.
         Args:
-            value: Value to set for the keyUsage property.
+            value: Value to set for the key_usage property.
         """
         self._key_usage = value
     
@@ -125,7 +125,7 @@ class AndroidScepCertificateProfile(android_certificate_profile_base.AndroidCert
         """
         Sets the managedDeviceCertificateStates property value. Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
         Args:
-            value: Value to set for the managedDeviceCertificateStates property.
+            value: Value to set for the managed_device_certificate_states property.
         """
         self._managed_device_certificate_states = value
     
@@ -142,7 +142,7 @@ class AndroidScepCertificateProfile(android_certificate_profile_base.AndroidCert
         """
         Sets the scepServerUrls property value. SCEP Server Url(s)
         Args:
-            value: Value to set for the scepServerUrls property.
+            value: Value to set for the scep_server_urls property.
         """
         self._scep_server_urls = value
     
@@ -176,7 +176,7 @@ class AndroidScepCertificateProfile(android_certificate_profile_base.AndroidCert
         """
         Sets the subjectAlternativeNameFormatString property value. Custom String that defines the AAD Attribute.
         Args:
-            value: Value to set for the subjectAlternativeNameFormatString property.
+            value: Value to set for the subject_alternative_name_format_string property.
         """
         self._subject_alternative_name_format_string = value
     
@@ -193,7 +193,7 @@ class AndroidScepCertificateProfile(android_certificate_profile_base.AndroidCert
         """
         Sets the subjectNameFormatString property value. Custom format to use with SubjectNameFormat = Custom. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
         Args:
-            value: Value to set for the subjectNameFormatString property.
+            value: Value to set for the subject_name_format_string property.
         """
         self._subject_name_format_string = value
     

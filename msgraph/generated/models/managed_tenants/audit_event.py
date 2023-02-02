@@ -37,7 +37,7 @@ class AuditEvent(entity.Entity):
         """
         Sets the activityDateTime property value. The time when the activity ocurred. Required. Read-only.
         Args:
-            value: Value to set for the activityDateTime property.
+            value: Value to set for the activity_date_time property.
         """
         self._activity_date_time = value
     
@@ -54,7 +54,7 @@ class AuditEvent(entity.Entity):
         """
         Sets the activityId property value. The identifier of the activity request that made the audit event. Required. Read-only.
         Args:
-            value: Value to set for the activityId property.
+            value: Value to set for the activity_id property.
         """
         self._activity_id = value
     
@@ -128,18 +128,18 @@ class AuditEvent(entity.Entity):
         """
         fields = {
             "activity": lambda n : setattr(self, 'activity', n.get_str_value()),
-            "activity_date_time": lambda n : setattr(self, 'activity_date_time', n.get_datetime_value()),
-            "activity_id": lambda n : setattr(self, 'activity_id', n.get_str_value()),
+            "activityDateTime": lambda n : setattr(self, 'activity_date_time', n.get_datetime_value()),
+            "activityId": lambda n : setattr(self, 'activity_id', n.get_str_value()),
             "category": lambda n : setattr(self, 'category', n.get_str_value()),
-            "http_verb": lambda n : setattr(self, 'http_verb', n.get_str_value()),
-            "initiated_by_app_id": lambda n : setattr(self, 'initiated_by_app_id', n.get_str_value()),
-            "initiated_by_upn": lambda n : setattr(self, 'initiated_by_upn', n.get_str_value()),
-            "initiated_by_user_id": lambda n : setattr(self, 'initiated_by_user_id', n.get_str_value()),
-            "ip_address": lambda n : setattr(self, 'ip_address', n.get_str_value()),
-            "request_body": lambda n : setattr(self, 'request_body', n.get_str_value()),
-            "request_url": lambda n : setattr(self, 'request_url', n.get_str_value()),
-            "tenant_ids": lambda n : setattr(self, 'tenant_ids', n.get_str_value()),
-            "tenant_names": lambda n : setattr(self, 'tenant_names', n.get_str_value()),
+            "httpVerb": lambda n : setattr(self, 'http_verb', n.get_str_value()),
+            "initiatedByAppId": lambda n : setattr(self, 'initiated_by_app_id', n.get_str_value()),
+            "initiatedByUpn": lambda n : setattr(self, 'initiated_by_upn', n.get_str_value()),
+            "initiatedByUserId": lambda n : setattr(self, 'initiated_by_user_id', n.get_str_value()),
+            "ipAddress": lambda n : setattr(self, 'ip_address', n.get_str_value()),
+            "requestBody": lambda n : setattr(self, 'request_body', n.get_str_value()),
+            "requestUrl": lambda n : setattr(self, 'request_url', n.get_str_value()),
+            "tenantIds": lambda n : setattr(self, 'tenant_ids', n.get_str_value()),
+            "tenantNames": lambda n : setattr(self, 'tenant_names', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -158,7 +158,7 @@ class AuditEvent(entity.Entity):
         """
         Sets the httpVerb property value. The HTTP verb that was used when making the API request. Required. Read-only.
         Args:
-            value: Value to set for the httpVerb property.
+            value: Value to set for the http_verb property.
         """
         self._http_verb = value
     
@@ -175,7 +175,7 @@ class AuditEvent(entity.Entity):
         """
         Sets the initiatedByAppId property value. The identifier of the app that was used to make the request. Required. Read-only.
         Args:
-            value: Value to set for the initiatedByAppId property.
+            value: Value to set for the initiated_by_app_id property.
         """
         self._initiated_by_app_id = value
     
@@ -192,7 +192,7 @@ class AuditEvent(entity.Entity):
         """
         Sets the initiatedByUpn property value. The UPN of the user who initiated the activity. Required. Read-only.
         Args:
-            value: Value to set for the initiatedByUpn property.
+            value: Value to set for the initiated_by_upn property.
         """
         self._initiated_by_upn = value
     
@@ -209,7 +209,7 @@ class AuditEvent(entity.Entity):
         """
         Sets the initiatedByUserId property value. The identifier of the user who initiated the activity. Required. Read-only.
         Args:
-            value: Value to set for the initiatedByUserId property.
+            value: Value to set for the initiated_by_user_id property.
         """
         self._initiated_by_user_id = value
     
@@ -226,7 +226,7 @@ class AuditEvent(entity.Entity):
         """
         Sets the ipAddress property value. The IP address of where the activity was initiated. This may be an IPv4 or IPv6 address. Required. Read-only.
         Args:
-            value: Value to set for the ipAddress property.
+            value: Value to set for the ip_address property.
         """
         self._ip_address = value
     
@@ -243,7 +243,7 @@ class AuditEvent(entity.Entity):
         """
         Sets the requestBody property value. The raw HTTP request body. Some sensitive information may be removed.
         Args:
-            value: Value to set for the requestBody property.
+            value: Value to set for the request_body property.
         """
         self._request_body = value
     
@@ -260,7 +260,7 @@ class AuditEvent(entity.Entity):
         """
         Sets the requestUrl property value. The raw HTTP request URL. Required. Read-only.
         Args:
-            value: Value to set for the requestUrl property.
+            value: Value to set for the request_url property.
         """
         self._request_url = value
     
@@ -300,7 +300,7 @@ class AuditEvent(entity.Entity):
         """
         Sets the tenantIds property value. The collection of Azure Active Directory tenant identifiers for the managed tenants that were impacted by this change. This is formatted as a list of comma-separated values. Required. Read-only.
         Args:
-            value: Value to set for the tenantIds property.
+            value: Value to set for the tenant_ids property.
         """
         self._tenant_ids = value
     
@@ -317,7 +317,7 @@ class AuditEvent(entity.Entity):
         """
         Sets the tenantNames property value. The collection of tenant names that were impacted by this change. This is formatted as a list of comma-separated values. Required. Read-only.
         Args:
-            value: Value to set for the tenantNames property.
+            value: Value to set for the tenant_names property.
         """
         self._tenant_names = value
     

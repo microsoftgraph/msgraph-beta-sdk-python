@@ -43,7 +43,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the batteryChargeCycles property value. The number of charge cycles the device’s current battery has gone through. Valid values 0 to 2147483647
         Args:
-            value: Value to set for the batteryChargeCycles property.
+            value: Value to set for the battery_charge_cycles property.
         """
         self._battery_charge_cycles = value
     
@@ -60,7 +60,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the batteryHealthPercentage property value. The device’s current battery’s health percentage. Valid values 0 to 100
         Args:
-            value: Value to set for the batteryHealthPercentage property.
+            value: Value to set for the battery_health_percentage property.
         """
         self._battery_health_percentage = value
     
@@ -77,7 +77,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the batteryLevelPercentage property value. The battery level, between 0.0 and 100, or null if the battery level cannot be determined. The update frequency of this property is per-checkin. Note this property is currently supported only on devices running iOS 5.0 and later, and is available only when Device Information access right is obtained. Valid values 0 to 100
         Args:
-            value: Value to set for the batteryLevelPercentage property.
+            value: Value to set for the battery_level_percentage property.
         """
         self._battery_level_percentage = value
     
@@ -94,7 +94,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the batterySerialNumber property value. The serial number of the device’s current battery
         Args:
-            value: Value to set for the batterySerialNumber property.
+            value: Value to set for the battery_serial_number property.
         """
         self._battery_serial_number = value
     
@@ -111,7 +111,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the cellularTechnology property value. Cellular technology of the device
         Args:
-            value: Value to set for the cellularTechnology property.
+            value: Value to set for the cellular_technology property.
         """
         self._cellular_technology = value
     
@@ -230,7 +230,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the deviceFullQualifiedDomainName property value. Returns the fully qualified domain name of the device (if any). If the device is not domain-joined, it returns an empty string.
         Args:
-            value: Value to set for the deviceFullQualifiedDomainName property.
+            value: Value to set for the device_full_qualified_domain_name property.
         """
         self._device_full_qualified_domain_name = value
     
@@ -247,7 +247,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the deviceGuardLocalSystemAuthorityCredentialGuardState property value. The deviceGuardLocalSystemAuthorityCredentialGuardState property
         Args:
-            value: Value to set for the deviceGuardLocalSystemAuthorityCredentialGuardState property.
+            value: Value to set for the device_guard_local_system_authority_credential_guard_state property.
         """
         self._device_guard_local_system_authority_credential_guard_state = value
     
@@ -264,7 +264,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the deviceGuardVirtualizationBasedSecurityHardwareRequirementState property value. The deviceGuardVirtualizationBasedSecurityHardwareRequirementState property
         Args:
-            value: Value to set for the deviceGuardVirtualizationBasedSecurityHardwareRequirementState property.
+            value: Value to set for the device_guard_virtualization_based_security_hardware_requirement_state property.
         """
         self._device_guard_virtualization_based_security_hardware_requirement_state = value
     
@@ -281,7 +281,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the deviceGuardVirtualizationBasedSecurityState property value. The deviceGuardVirtualizationBasedSecurityState property
         Args:
-            value: Value to set for the deviceGuardVirtualizationBasedSecurityState property.
+            value: Value to set for the device_guard_virtualization_based_security_state property.
         """
         self._device_guard_virtualization_based_security_state = value
     
@@ -298,7 +298,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the deviceLicensingLastErrorCode property value. A standard error code indicating the last error, or 0 indicating no error (default). The update frequency of this property is daily. Note this property is currently supported only for Windows based Device based subscription licensing. Valid values 0 to 2147483647
         Args:
-            value: Value to set for the deviceLicensingLastErrorCode property.
+            value: Value to set for the device_licensing_last_error_code property.
         """
         self._device_licensing_last_error_code = value
     
@@ -315,7 +315,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the deviceLicensingLastErrorDescription property value. Error text message as a descripition for deviceLicensingLastErrorCode. The update frequency of this property is daily. Note this property is currently supported only for Windows based Device based subscription licensing.
         Args:
-            value: Value to set for the deviceLicensingLastErrorDescription property.
+            value: Value to set for the device_licensing_last_error_description property.
         """
         self._device_licensing_last_error_description = value
     
@@ -332,7 +332,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the deviceLicensingStatus property value. Indicates the device licensing status after Windows device based subscription has been enabled.
         Args:
-            value: Value to set for the deviceLicensingStatus property.
+            value: Value to set for the device_licensing_status property.
         """
         self._device_licensing_status = value
     
@@ -349,7 +349,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the esimIdentifier property value. eSIM identifier
         Args:
-            value: Value to set for the esimIdentifier property.
+            value: Value to set for the esim_identifier property.
         """
         self._esim_identifier = value
     
@@ -366,7 +366,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the freeStorageSpace property value. Free storage space of the device.
         Args:
-            value: Value to set for the freeStorageSpace property.
+            value: Value to set for the free_storage_space property.
         """
         self._free_storage_space = value
     
@@ -376,47 +376,47 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "battery_charge_cycles": lambda n : setattr(self, 'battery_charge_cycles', n.get_int_value()),
-            "battery_health_percentage": lambda n : setattr(self, 'battery_health_percentage', n.get_int_value()),
-            "battery_level_percentage": lambda n : setattr(self, 'battery_level_percentage', n.get_float_value()),
-            "battery_serial_number": lambda n : setattr(self, 'battery_serial_number', n.get_str_value()),
-            "cellular_technology": lambda n : setattr(self, 'cellular_technology', n.get_str_value()),
-            "device_full_qualified_domain_name": lambda n : setattr(self, 'device_full_qualified_domain_name', n.get_str_value()),
-            "device_guard_local_system_authority_credential_guard_state": lambda n : setattr(self, 'device_guard_local_system_authority_credential_guard_state', n.get_enum_value(device_guard_local_system_authority_credential_guard_state.DeviceGuardLocalSystemAuthorityCredentialGuardState)),
-            "device_guard_virtualization_based_security_hardware_requirement_state": lambda n : setattr(self, 'device_guard_virtualization_based_security_hardware_requirement_state', n.get_enum_value(device_guard_virtualization_based_security_hardware_requirement_state.DeviceGuardVirtualizationBasedSecurityHardwareRequirementState)),
-            "device_guard_virtualization_based_security_state": lambda n : setattr(self, 'device_guard_virtualization_based_security_state', n.get_enum_value(device_guard_virtualization_based_security_state.DeviceGuardVirtualizationBasedSecurityState)),
-            "device_licensing_last_error_code": lambda n : setattr(self, 'device_licensing_last_error_code', n.get_int_value()),
-            "device_licensing_last_error_description": lambda n : setattr(self, 'device_licensing_last_error_description', n.get_str_value()),
-            "device_licensing_status": lambda n : setattr(self, 'device_licensing_status', n.get_enum_value(device_licensing_status.DeviceLicensingStatus)),
-            "esim_identifier": lambda n : setattr(self, 'esim_identifier', n.get_str_value()),
-            "free_storage_space": lambda n : setattr(self, 'free_storage_space', n.get_int_value()),
+            "batteryChargeCycles": lambda n : setattr(self, 'battery_charge_cycles', n.get_int_value()),
+            "batteryHealthPercentage": lambda n : setattr(self, 'battery_health_percentage', n.get_int_value()),
+            "batteryLevelPercentage": lambda n : setattr(self, 'battery_level_percentage', n.get_float_value()),
+            "batterySerialNumber": lambda n : setattr(self, 'battery_serial_number', n.get_str_value()),
+            "cellularTechnology": lambda n : setattr(self, 'cellular_technology', n.get_str_value()),
+            "deviceFullQualifiedDomainName": lambda n : setattr(self, 'device_full_qualified_domain_name', n.get_str_value()),
+            "deviceGuardLocalSystemAuthorityCredentialGuardState": lambda n : setattr(self, 'device_guard_local_system_authority_credential_guard_state', n.get_enum_value(device_guard_local_system_authority_credential_guard_state.DeviceGuardLocalSystemAuthorityCredentialGuardState)),
+            "deviceGuardVirtualizationBasedSecurityHardwareRequirementState": lambda n : setattr(self, 'device_guard_virtualization_based_security_hardware_requirement_state', n.get_enum_value(device_guard_virtualization_based_security_hardware_requirement_state.DeviceGuardVirtualizationBasedSecurityHardwareRequirementState)),
+            "deviceGuardVirtualizationBasedSecurityState": lambda n : setattr(self, 'device_guard_virtualization_based_security_state', n.get_enum_value(device_guard_virtualization_based_security_state.DeviceGuardVirtualizationBasedSecurityState)),
+            "deviceLicensingLastErrorCode": lambda n : setattr(self, 'device_licensing_last_error_code', n.get_int_value()),
+            "deviceLicensingLastErrorDescription": lambda n : setattr(self, 'device_licensing_last_error_description', n.get_str_value()),
+            "deviceLicensingStatus": lambda n : setattr(self, 'device_licensing_status', n.get_enum_value(device_licensing_status.DeviceLicensingStatus)),
+            "esimIdentifier": lambda n : setattr(self, 'esim_identifier', n.get_str_value()),
+            "freeStorageSpace": lambda n : setattr(self, 'free_storage_space', n.get_int_value()),
             "imei": lambda n : setattr(self, 'imei', n.get_str_value()),
-            "ip_address_v4": lambda n : setattr(self, 'ip_address_v4', n.get_str_value()),
-            "is_encrypted": lambda n : setattr(self, 'is_encrypted', n.get_bool_value()),
-            "is_shared_device": lambda n : setattr(self, 'is_shared_device', n.get_bool_value()),
-            "is_supervised": lambda n : setattr(self, 'is_supervised', n.get_bool_value()),
+            "ipAddressV4": lambda n : setattr(self, 'ip_address_v4', n.get_str_value()),
+            "isEncrypted": lambda n : setattr(self, 'is_encrypted', n.get_bool_value()),
+            "isSharedDevice": lambda n : setattr(self, 'is_shared_device', n.get_bool_value()),
+            "isSupervised": lambda n : setattr(self, 'is_supervised', n.get_bool_value()),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
             "meid": lambda n : setattr(self, 'meid', n.get_str_value()),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "operating_system_edition": lambda n : setattr(self, 'operating_system_edition', n.get_str_value()),
-            "operating_system_language": lambda n : setattr(self, 'operating_system_language', n.get_str_value()),
-            "operating_system_product_type": lambda n : setattr(self, 'operating_system_product_type', n.get_int_value()),
-            "os_build_number": lambda n : setattr(self, 'os_build_number', n.get_str_value()),
-            "phone_number": lambda n : setattr(self, 'phone_number', n.get_str_value()),
-            "product_name": lambda n : setattr(self, 'product_name', n.get_str_value()),
-            "resident_users_count": lambda n : setattr(self, 'resident_users_count', n.get_int_value()),
-            "serial_number": lambda n : setattr(self, 'serial_number', n.get_str_value()),
-            "shared_device_cached_users": lambda n : setattr(self, 'shared_device_cached_users', n.get_collection_of_object_values(shared_apple_device_user.SharedAppleDeviceUser)),
-            "subnet_address": lambda n : setattr(self, 'subnet_address', n.get_str_value()),
-            "subscriber_carrier": lambda n : setattr(self, 'subscriber_carrier', n.get_str_value()),
-            "system_management_b_i_o_s_version": lambda n : setattr(self, 'system_management_b_i_o_s_version', n.get_str_value()),
-            "total_storage_space": lambda n : setattr(self, 'total_storage_space', n.get_int_value()),
-            "tpm_manufacturer": lambda n : setattr(self, 'tpm_manufacturer', n.get_str_value()),
-            "tpm_specification_version": lambda n : setattr(self, 'tpm_specification_version', n.get_str_value()),
-            "tpm_version": lambda n : setattr(self, 'tpm_version', n.get_str_value()),
-            "wifi_mac": lambda n : setattr(self, 'wifi_mac', n.get_str_value()),
-            "wired_i_pv4_addresses": lambda n : setattr(self, 'wired_i_pv4_addresses', n.get_collection_of_primitive_values(str)),
+            "operatingSystemEdition": lambda n : setattr(self, 'operating_system_edition', n.get_str_value()),
+            "operatingSystemLanguage": lambda n : setattr(self, 'operating_system_language', n.get_str_value()),
+            "operatingSystemProductType": lambda n : setattr(self, 'operating_system_product_type', n.get_int_value()),
+            "osBuildNumber": lambda n : setattr(self, 'os_build_number', n.get_str_value()),
+            "phoneNumber": lambda n : setattr(self, 'phone_number', n.get_str_value()),
+            "productName": lambda n : setattr(self, 'product_name', n.get_str_value()),
+            "residentUsersCount": lambda n : setattr(self, 'resident_users_count', n.get_int_value()),
+            "serialNumber": lambda n : setattr(self, 'serial_number', n.get_str_value()),
+            "sharedDeviceCachedUsers": lambda n : setattr(self, 'shared_device_cached_users', n.get_collection_of_object_values(shared_apple_device_user.SharedAppleDeviceUser)),
+            "subnetAddress": lambda n : setattr(self, 'subnet_address', n.get_str_value()),
+            "subscriberCarrier": lambda n : setattr(self, 'subscriber_carrier', n.get_str_value()),
+            "systemManagementBIOSVersion": lambda n : setattr(self, 'system_management_b_i_o_s_version', n.get_str_value()),
+            "totalStorageSpace": lambda n : setattr(self, 'total_storage_space', n.get_int_value()),
+            "tpmManufacturer": lambda n : setattr(self, 'tpm_manufacturer', n.get_str_value()),
+            "tpmSpecificationVersion": lambda n : setattr(self, 'tpm_specification_version', n.get_str_value()),
+            "tpmVersion": lambda n : setattr(self, 'tpm_version', n.get_str_value()),
+            "wifiMac": lambda n : setattr(self, 'wifi_mac', n.get_str_value()),
+            "wiredIPv4Addresses": lambda n : setattr(self, 'wired_i_pv4_addresses', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -450,7 +450,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the ipAddressV4 property value. IPAddressV4
         Args:
-            value: Value to set for the ipAddressV4 property.
+            value: Value to set for the ip_address_v4 property.
         """
         self._ip_address_v4 = value
     
@@ -467,7 +467,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the isEncrypted property value. Encryption status of the device
         Args:
-            value: Value to set for the isEncrypted property.
+            value: Value to set for the is_encrypted property.
         """
         self._is_encrypted = value
     
@@ -484,7 +484,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the isSharedDevice property value. Shared iPad
         Args:
-            value: Value to set for the isSharedDevice property.
+            value: Value to set for the is_shared_device property.
         """
         self._is_shared_device = value
     
@@ -501,7 +501,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the isSupervised property value. Supervised mode of the device
         Args:
-            value: Value to set for the isSupervised property.
+            value: Value to set for the is_supervised property.
         """
         self._is_supervised = value
     
@@ -569,7 +569,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -586,7 +586,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the operatingSystemEdition property value. String that specifies the OS edition.
         Args:
-            value: Value to set for the operatingSystemEdition property.
+            value: Value to set for the operating_system_edition property.
         """
         self._operating_system_edition = value
     
@@ -603,7 +603,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the operatingSystemLanguage property value. Operating system language of the device
         Args:
-            value: Value to set for the operatingSystemLanguage property.
+            value: Value to set for the operating_system_language property.
         """
         self._operating_system_language = value
     
@@ -620,7 +620,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the operatingSystemProductType property value. Int that specifies the Windows Operating System ProductType. More details here https://go.microsoft.com/fwlink/?linkid=2126950. Valid values 0 to 2147483647
         Args:
-            value: Value to set for the operatingSystemProductType property.
+            value: Value to set for the operating_system_product_type property.
         """
         self._operating_system_product_type = value
     
@@ -637,7 +637,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the osBuildNumber property value. Operating System Build Number on Android device
         Args:
-            value: Value to set for the osBuildNumber property.
+            value: Value to set for the os_build_number property.
         """
         self._os_build_number = value
     
@@ -654,7 +654,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the phoneNumber property value. Phone number of the device
         Args:
-            value: Value to set for the phoneNumber property.
+            value: Value to set for the phone_number property.
         """
         self._phone_number = value
     
@@ -671,7 +671,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the productName property value. The product name, e.g. iPad8,12 etc. The update frequency of this property is weekly. Note this property is currently supported only on iOS/MacOS devices, and is available only when Device Information access right is obtained.
         Args:
-            value: Value to set for the productName property.
+            value: Value to set for the product_name property.
         """
         self._product_name = value
     
@@ -688,9 +688,26 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the residentUsersCount property value. The number of users currently on this device, or null (default) if the value of this property cannot be determined. The update frequency of this property is per-checkin. Note this property is currently supported only on devices running iOS 13.4 and later, and is available only when Device Information access right is obtained. Valid values 0 to 2147483647
         Args:
-            value: Value to set for the residentUsersCount property.
+            value: Value to set for the resident_users_count property.
         """
         self._resident_users_count = value
+    
+    @property
+    def serial_number(self,) -> Optional[str]:
+        """
+        Gets the serialNumber property value. Serial number.
+        Returns: Optional[str]
+        """
+        return self._serial_number
+    
+    @serial_number.setter
+    def serial_number(self,value: Optional[str] = None) -> None:
+        """
+        Sets the serialNumber property value. Serial number.
+        Args:
+            value: Value to set for the serial_number property.
+        """
+        self._serial_number = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -744,23 +761,6 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         writer.write_additional_data_value(self.additional_data)
     
     @property
-    def serial_number(self,) -> Optional[str]:
-        """
-        Gets the serialNumber property value. Serial number.
-        Returns: Optional[str]
-        """
-        return self._serial_number
-    
-    @serial_number.setter
-    def serial_number(self,value: Optional[str] = None) -> None:
-        """
-        Sets the serialNumber property value. Serial number.
-        Args:
-            value: Value to set for the serialNumber property.
-        """
-        self._serial_number = value
-    
-    @property
     def shared_device_cached_users(self,) -> Optional[List[shared_apple_device_user.SharedAppleDeviceUser]]:
         """
         Gets the sharedDeviceCachedUsers property value. All users on the shared Apple device
@@ -773,7 +773,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the sharedDeviceCachedUsers property value. All users on the shared Apple device
         Args:
-            value: Value to set for the sharedDeviceCachedUsers property.
+            value: Value to set for the shared_device_cached_users property.
         """
         self._shared_device_cached_users = value
     
@@ -790,7 +790,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the subnetAddress property value. SubnetAddress
         Args:
-            value: Value to set for the subnetAddress property.
+            value: Value to set for the subnet_address property.
         """
         self._subnet_address = value
     
@@ -807,7 +807,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the subscriberCarrier property value. Subscriber carrier of the device
         Args:
-            value: Value to set for the subscriberCarrier property.
+            value: Value to set for the subscriber_carrier property.
         """
         self._subscriber_carrier = value
     
@@ -824,7 +824,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the systemManagementBIOSVersion property value. BIOS version as reported by SMBIOS
         Args:
-            value: Value to set for the systemManagementBIOSVersion property.
+            value: Value to set for the system_management_b_i_o_s_version property.
         """
         self._system_management_b_i_o_s_version = value
     
@@ -841,7 +841,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the totalStorageSpace property value. Total storage space of the device.
         Args:
-            value: Value to set for the totalStorageSpace property.
+            value: Value to set for the total_storage_space property.
         """
         self._total_storage_space = value
     
@@ -858,7 +858,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the tpmManufacturer property value. The identifying information that uniquely names the TPM manufacturer
         Args:
-            value: Value to set for the tpmManufacturer property.
+            value: Value to set for the tpm_manufacturer property.
         """
         self._tpm_manufacturer = value
     
@@ -875,7 +875,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the tpmSpecificationVersion property value. String that specifies the specification version.
         Args:
-            value: Value to set for the tpmSpecificationVersion property.
+            value: Value to set for the tpm_specification_version property.
         """
         self._tpm_specification_version = value
     
@@ -892,7 +892,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the tpmVersion property value. The version of the TPM, as specified by the manufacturer
         Args:
-            value: Value to set for the tpmVersion property.
+            value: Value to set for the tpm_version property.
         """
         self._tpm_version = value
     
@@ -909,7 +909,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the wifiMac property value. WiFi MAC address of the device
         Args:
-            value: Value to set for the wifiMac property.
+            value: Value to set for the wifi_mac property.
         """
         self._wifi_mac = value
     
@@ -926,7 +926,7 @@ class HardwareInformation(AdditionalDataHolder, Parsable):
         """
         Sets the wiredIPv4Addresses property value. A list of wired IPv4 addresses. The update frequency (the maximum delay for the change of property value to be synchronized from the device to the cloud storage) of this property is daily. Note this property is currently supported only on devices running on Windows.
         Args:
-            value: Value to set for the wiredIPv4Addresses property.
+            value: Value to set for the wired_i_pv4_addresses property.
         """
         self._wired_i_pv4_addresses = value
     

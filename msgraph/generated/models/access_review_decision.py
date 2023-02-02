@@ -21,7 +21,7 @@ class AccessReviewDecision(entity.Entity):
         """
         Sets the accessRecommendation property value. The feature- generated recommendation shown to the reviewer, one of Approve, Deny or NotAvailable.
         Args:
-            value: Value to set for the accessRecommendation property.
+            value: Value to set for the access_recommendation property.
         """
         self._access_recommendation = value
     
@@ -38,7 +38,7 @@ class AccessReviewDecision(entity.Entity):
         """
         Sets the accessReviewId property value. The feature-generated id of the access review.
         Args:
-            value: Value to set for the accessReviewId property.
+            value: Value to set for the access_review_id property.
         """
         self._access_review_id = value
     
@@ -55,7 +55,7 @@ class AccessReviewDecision(entity.Entity):
         """
         Sets the appliedBy property value. When the review completes, if the results were manually applied, the user identity of the user who applied the decision. If the review was auto-applied, the userPrincipalName is empty.
         Args:
-            value: Value to set for the appliedBy property.
+            value: Value to set for the applied_by property.
         """
         self._applied_by = value
     
@@ -72,7 +72,7 @@ class AccessReviewDecision(entity.Entity):
         """
         Sets the appliedDateTime property value. The date and time when the review decision was applied.
         Args:
-            value: Value to set for the appliedDateTime property.
+            value: Value to set for the applied_date_time property.
         """
         self._applied_date_time = value
     
@@ -89,13 +89,13 @@ class AccessReviewDecision(entity.Entity):
         """
         Sets the applyResult property value. The outcome of applying the decision, one of NotApplied, Success, Failed, NotFound or NotSupported.
         Args:
-            value: Value to set for the applyResult property.
+            value: Value to set for the apply_result property.
         """
         self._apply_result = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new accessReviewDecision and sets the default values.
+        Instantiates a new AccessReviewDecision and sets the default values.
         """
         super().__init__()
         # The feature- generated recommendation shown to the reviewer, one of Approve, Deny or NotAvailable.
@@ -112,12 +112,12 @@ class AccessReviewDecision(entity.Entity):
         self._justification: Optional[str] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
+        # The result of the review, one of NotReviewed, Deny, DontKnow or Approve.
+        self._review_result: Optional[str] = None
         # The identity of the reviewer. If the recommendation was used as the review, the userPrincipalName is empty.
         self._reviewed_by: Optional[user_identity.UserIdentity] = None
         # The reviewedDateTime property
         self._reviewed_date_time: Optional[datetime] = None
-        # The result of the review, one of NotReviewed, Deny, DontKnow or Approve.
-        self._review_result: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessReviewDecision:
@@ -137,15 +137,15 @@ class AccessReviewDecision(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_recommendation": lambda n : setattr(self, 'access_recommendation', n.get_str_value()),
-            "access_review_id": lambda n : setattr(self, 'access_review_id', n.get_str_value()),
-            "applied_by": lambda n : setattr(self, 'applied_by', n.get_object_value(user_identity.UserIdentity)),
-            "applied_date_time": lambda n : setattr(self, 'applied_date_time', n.get_datetime_value()),
-            "apply_result": lambda n : setattr(self, 'apply_result', n.get_str_value()),
+            "accessRecommendation": lambda n : setattr(self, 'access_recommendation', n.get_str_value()),
+            "accessReviewId": lambda n : setattr(self, 'access_review_id', n.get_str_value()),
+            "appliedBy": lambda n : setattr(self, 'applied_by', n.get_object_value(user_identity.UserIdentity)),
+            "appliedDateTime": lambda n : setattr(self, 'applied_date_time', n.get_datetime_value()),
+            "applyResult": lambda n : setattr(self, 'apply_result', n.get_str_value()),
             "justification": lambda n : setattr(self, 'justification', n.get_str_value()),
-            "reviewed_by": lambda n : setattr(self, 'reviewed_by', n.get_object_value(user_identity.UserIdentity)),
-            "reviewed_date_time": lambda n : setattr(self, 'reviewed_date_time', n.get_datetime_value()),
-            "review_result": lambda n : setattr(self, 'review_result', n.get_str_value()),
+            "reviewedBy": lambda n : setattr(self, 'reviewed_by', n.get_object_value(user_identity.UserIdentity)),
+            "reviewedDateTime": lambda n : setattr(self, 'reviewed_date_time', n.get_datetime_value()),
+            "reviewResult": lambda n : setattr(self, 'review_result', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -169,6 +169,23 @@ class AccessReviewDecision(entity.Entity):
         self._justification = value
     
     @property
+    def review_result(self,) -> Optional[str]:
+        """
+        Gets the reviewResult property value. The result of the review, one of NotReviewed, Deny, DontKnow or Approve.
+        Returns: Optional[str]
+        """
+        return self._review_result
+    
+    @review_result.setter
+    def review_result(self,value: Optional[str] = None) -> None:
+        """
+        Sets the reviewResult property value. The result of the review, one of NotReviewed, Deny, DontKnow or Approve.
+        Args:
+            value: Value to set for the review_result property.
+        """
+        self._review_result = value
+    
+    @property
     def reviewed_by(self,) -> Optional[user_identity.UserIdentity]:
         """
         Gets the reviewedBy property value. The identity of the reviewer. If the recommendation was used as the review, the userPrincipalName is empty.
@@ -181,7 +198,7 @@ class AccessReviewDecision(entity.Entity):
         """
         Sets the reviewedBy property value. The identity of the reviewer. If the recommendation was used as the review, the userPrincipalName is empty.
         Args:
-            value: Value to set for the reviewedBy property.
+            value: Value to set for the reviewed_by property.
         """
         self._reviewed_by = value
     
@@ -198,26 +215,9 @@ class AccessReviewDecision(entity.Entity):
         """
         Sets the reviewedDateTime property value. The reviewedDateTime property
         Args:
-            value: Value to set for the reviewedDateTime property.
+            value: Value to set for the reviewed_date_time property.
         """
         self._reviewed_date_time = value
-    
-    @property
-    def review_result(self,) -> Optional[str]:
-        """
-        Gets the reviewResult property value. The result of the review, one of NotReviewed, Deny, DontKnow or Approve.
-        Returns: Optional[str]
-        """
-        return self._review_result
-    
-    @review_result.setter
-    def review_result(self,value: Optional[str] = None) -> None:
-        """
-        Sets the reviewResult property value. The result of the review, one of NotReviewed, Deny, DontKnow or Approve.
-        Args:
-            value: Value to set for the reviewResult property.
-        """
-        self._review_result = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

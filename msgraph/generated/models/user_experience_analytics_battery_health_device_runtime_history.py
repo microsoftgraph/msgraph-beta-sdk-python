@@ -6,12 +6,9 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory(entity.Entity):
-    """
-    The user experience analytics battery health runtime history entity contains the trend of runtime of a device over a period of 30 days
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsBatteryHealthDeviceRuntimeHistory and sets the default values.
+        Instantiates a new UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory and sets the default values.
         """
         super().__init__()
         # The unique identifier of the device, Intune DeviceID or SCCM device id.
@@ -48,7 +45,7 @@ class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory(entity.Entity):
         """
         Sets the deviceId property value. The unique identifier of the device, Intune DeviceID or SCCM device id.
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -65,7 +62,7 @@ class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory(entity.Entity):
         """
         Sets the estimatedRuntimeInMinutes property value. The estimated runtime of the device when the battery is fully charged. Unit in minutes. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the estimatedRuntimeInMinutes property.
+            value: Value to set for the estimated_runtime_in_minutes property.
         """
         self._estimated_runtime_in_minutes = value
     
@@ -75,9 +72,9 @@ class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "estimated_runtime_in_minutes": lambda n : setattr(self, 'estimated_runtime_in_minutes', n.get_int_value()),
-            "runtime_date_time": lambda n : setattr(self, 'runtime_date_time', n.get_str_value()),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "estimatedRuntimeInMinutes": lambda n : setattr(self, 'estimated_runtime_in_minutes', n.get_int_value()),
+            "runtimeDateTime": lambda n : setattr(self, 'runtime_date_time', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -96,7 +93,7 @@ class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory(entity.Entity):
         """
         Sets the runtimeDateTime property value. The datetime for the instance of runtime history.
         Args:
-            value: Value to set for the runtimeDateTime property.
+            value: Value to set for the runtime_date_time property.
         """
         self._runtime_date_time = value
     

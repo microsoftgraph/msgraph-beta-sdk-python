@@ -57,7 +57,7 @@ class ServicePrincipalCreationPolicy(policy_base.PolicyBase):
         fields = {
             "excludes": lambda n : setattr(self, 'excludes', n.get_collection_of_object_values(service_principal_creation_condition_set.ServicePrincipalCreationConditionSet)),
             "includes": lambda n : setattr(self, 'includes', n.get_collection_of_object_values(service_principal_creation_condition_set.ServicePrincipalCreationConditionSet)),
-            "is_built_in": lambda n : setattr(self, 'is_built_in', n.get_bool_value()),
+            "isBuiltIn": lambda n : setattr(self, 'is_built_in', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -93,7 +93,7 @@ class ServicePrincipalCreationPolicy(policy_base.PolicyBase):
         """
         Sets the isBuiltIn property value. The isBuiltIn property
         Args:
-            value: Value to set for the isBuiltIn property.
+            value: Value to set for the is_built_in property.
         """
         self._is_built_in = value
     

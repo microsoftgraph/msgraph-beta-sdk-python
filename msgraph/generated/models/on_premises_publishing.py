@@ -42,7 +42,7 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         """
         Sets the alternateUrl property value. If you are configuring a traffic manager in front of multiple App Proxy applications, the alternateUrl is the user-friendly URL that will point to the traffic manager.
         Args:
-            value: Value to set for the alternateUrl property.
+            value: Value to set for the alternate_url property.
         """
         self._alternate_url = value
     
@@ -59,7 +59,7 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         """
         Sets the applicationServerTimeout property value. The duration the connector will wait for a response from the backend application before closing the connection. Possible values are default, long. When set to default, the backend application timeout has a length of 85 seconds. When set to long, the backend timeout is increased to 180 seconds. Use long if your server takes more than 85 seconds to respond to requests or if you are unable to access the application and the error status is 'Backend Timeout'. Default value is default.
         Args:
-            value: Value to set for the applicationServerTimeout property.
+            value: Value to set for the application_server_timeout property.
         """
         self._application_server_timeout = value
     
@@ -76,7 +76,7 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         """
         Sets the applicationType property value. Indicates if this application is an Application Proxy configured application. This is pre-set by the system. Read-only.
         Args:
-            value: Value to set for the applicationType property.
+            value: Value to set for the application_type property.
         """
         self._application_type = value
     
@@ -117,9 +117,9 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         self._is_translate_links_in_body_enabled: Optional[bool] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # Represents the application segment collection for an on-premises wildcard application.
+        # The onPremisesApplicationSegments property
         self._on_premises_application_segments: Optional[List[on_premises_application_segment.OnPremisesApplicationSegment]] = None
-        # The segmentsConfiguration property
+        # Represents the collection of application segments for an on-premises wildcard application that's published through Azure AD Application Proxy.
         self._segments_configuration: Optional[segment_configuration.SegmentConfiguration] = None
         # Represents the single sign-on configuration for the on-premises application.
         self._single_sign_on_settings: Optional[on_premises_publishing_single_sign_on.OnPremisesPublishingSingleSignOn] = None
@@ -157,7 +157,7 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         """
         Sets the externalAuthenticationType property value. Details the pre-authentication setting for the application. Pre-authentication enforces that users must authenticate before accessing the app. Passthru does not require authentication. Possible values are: passthru, aadPreAuthentication.
         Args:
-            value: Value to set for the externalAuthenticationType property.
+            value: Value to set for the external_authentication_type property.
         """
         self._external_authentication_type = value
     
@@ -174,7 +174,7 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         """
         Sets the externalUrl property value. The published external url for the application. For example, https://intranet-contoso.msappproxy.net/.
         Args:
-            value: Value to set for the externalUrl property.
+            value: Value to set for the external_url property.
         """
         self._external_url = value
     
@@ -184,28 +184,28 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "alternate_url": lambda n : setattr(self, 'alternate_url', n.get_str_value()),
-            "application_server_timeout": lambda n : setattr(self, 'application_server_timeout', n.get_str_value()),
-            "application_type": lambda n : setattr(self, 'application_type', n.get_str_value()),
-            "external_authentication_type": lambda n : setattr(self, 'external_authentication_type', n.get_enum_value(external_authentication_type.ExternalAuthenticationType)),
-            "external_url": lambda n : setattr(self, 'external_url', n.get_str_value()),
-            "internal_url": lambda n : setattr(self, 'internal_url', n.get_str_value()),
-            "is_backend_certificate_validation_enabled": lambda n : setattr(self, 'is_backend_certificate_validation_enabled', n.get_bool_value()),
-            "is_http_only_cookie_enabled": lambda n : setattr(self, 'is_http_only_cookie_enabled', n.get_bool_value()),
-            "is_on_prem_publishing_enabled": lambda n : setattr(self, 'is_on_prem_publishing_enabled', n.get_bool_value()),
-            "is_persistent_cookie_enabled": lambda n : setattr(self, 'is_persistent_cookie_enabled', n.get_bool_value()),
-            "is_secure_cookie_enabled": lambda n : setattr(self, 'is_secure_cookie_enabled', n.get_bool_value()),
-            "is_state_session_enabled": lambda n : setattr(self, 'is_state_session_enabled', n.get_bool_value()),
-            "is_translate_host_header_enabled": lambda n : setattr(self, 'is_translate_host_header_enabled', n.get_bool_value()),
-            "is_translate_links_in_body_enabled": lambda n : setattr(self, 'is_translate_links_in_body_enabled', n.get_bool_value()),
+            "alternateUrl": lambda n : setattr(self, 'alternate_url', n.get_str_value()),
+            "applicationServerTimeout": lambda n : setattr(self, 'application_server_timeout', n.get_str_value()),
+            "applicationType": lambda n : setattr(self, 'application_type', n.get_str_value()),
+            "externalAuthenticationType": lambda n : setattr(self, 'external_authentication_type', n.get_enum_value(external_authentication_type.ExternalAuthenticationType)),
+            "externalUrl": lambda n : setattr(self, 'external_url', n.get_str_value()),
+            "internalUrl": lambda n : setattr(self, 'internal_url', n.get_str_value()),
+            "isBackendCertificateValidationEnabled": lambda n : setattr(self, 'is_backend_certificate_validation_enabled', n.get_bool_value()),
+            "isHttpOnlyCookieEnabled": lambda n : setattr(self, 'is_http_only_cookie_enabled', n.get_bool_value()),
+            "isOnPremPublishingEnabled": lambda n : setattr(self, 'is_on_prem_publishing_enabled', n.get_bool_value()),
+            "isPersistentCookieEnabled": lambda n : setattr(self, 'is_persistent_cookie_enabled', n.get_bool_value()),
+            "isSecureCookieEnabled": lambda n : setattr(self, 'is_secure_cookie_enabled', n.get_bool_value()),
+            "isStateSessionEnabled": lambda n : setattr(self, 'is_state_session_enabled', n.get_bool_value()),
+            "isTranslateHostHeaderEnabled": lambda n : setattr(self, 'is_translate_host_header_enabled', n.get_bool_value()),
+            "isTranslateLinksInBodyEnabled": lambda n : setattr(self, 'is_translate_links_in_body_enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "on_premises_application_segments": lambda n : setattr(self, 'on_premises_application_segments', n.get_collection_of_object_values(on_premises_application_segment.OnPremisesApplicationSegment)),
-            "segments_configuration": lambda n : setattr(self, 'segments_configuration', n.get_object_value(segment_configuration.SegmentConfiguration)),
-            "single_sign_on_settings": lambda n : setattr(self, 'single_sign_on_settings', n.get_object_value(on_premises_publishing_single_sign_on.OnPremisesPublishingSingleSignOn)),
-            "use_alternate_url_for_translation_and_redirect": lambda n : setattr(self, 'use_alternate_url_for_translation_and_redirect', n.get_bool_value()),
-            "verified_custom_domain_certificates_metadata": lambda n : setattr(self, 'verified_custom_domain_certificates_metadata', n.get_object_value(verified_custom_domain_certificates_metadata.VerifiedCustomDomainCertificatesMetadata)),
-            "verified_custom_domain_key_credential": lambda n : setattr(self, 'verified_custom_domain_key_credential', n.get_object_value(key_credential.KeyCredential)),
-            "verified_custom_domain_password_credential": lambda n : setattr(self, 'verified_custom_domain_password_credential', n.get_object_value(password_credential.PasswordCredential)),
+            "onPremisesApplicationSegments": lambda n : setattr(self, 'on_premises_application_segments', n.get_collection_of_object_values(on_premises_application_segment.OnPremisesApplicationSegment)),
+            "segmentsConfiguration": lambda n : setattr(self, 'segments_configuration', n.get_object_value(segment_configuration.SegmentConfiguration)),
+            "singleSignOnSettings": lambda n : setattr(self, 'single_sign_on_settings', n.get_object_value(on_premises_publishing_single_sign_on.OnPremisesPublishingSingleSignOn)),
+            "useAlternateUrlForTranslationAndRedirect": lambda n : setattr(self, 'use_alternate_url_for_translation_and_redirect', n.get_bool_value()),
+            "verifiedCustomDomainCertificatesMetadata": lambda n : setattr(self, 'verified_custom_domain_certificates_metadata', n.get_object_value(verified_custom_domain_certificates_metadata.VerifiedCustomDomainCertificatesMetadata)),
+            "verifiedCustomDomainKeyCredential": lambda n : setattr(self, 'verified_custom_domain_key_credential', n.get_object_value(key_credential.KeyCredential)),
+            "verifiedCustomDomainPasswordCredential": lambda n : setattr(self, 'verified_custom_domain_password_credential', n.get_object_value(password_credential.PasswordCredential)),
         }
         return fields
     
@@ -222,7 +222,7 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         """
         Sets the internalUrl property value. The internal url of the application. For example, https://intranet/.
         Args:
-            value: Value to set for the internalUrl property.
+            value: Value to set for the internal_url property.
         """
         self._internal_url = value
     
@@ -239,7 +239,7 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         """
         Sets the isBackendCertificateValidationEnabled property value. Indicates whether backend SSL certificate validation is enabled for the application. For all new Application Proxy apps, the property will be set to true by default. For all existing apps, the property will be set to false.
         Args:
-            value: Value to set for the isBackendCertificateValidationEnabled property.
+            value: Value to set for the is_backend_certificate_validation_enabled property.
         """
         self._is_backend_certificate_validation_enabled = value
     
@@ -256,7 +256,7 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         """
         Sets the isHttpOnlyCookieEnabled property value. Indicates if the HTTPOnly cookie flag should be set in the HTTP response headers. Set this value to true to have Application Proxy cookies include the HTTPOnly flag in the HTTP response headers. If using Remote Desktop Services, set this value to False. Default value is false.
         Args:
-            value: Value to set for the isHttpOnlyCookieEnabled property.
+            value: Value to set for the is_http_only_cookie_enabled property.
         """
         self._is_http_only_cookie_enabled = value
     
@@ -273,7 +273,7 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         """
         Sets the isOnPremPublishingEnabled property value. Indicates if the application is currently being published via Application Proxy or not. This is pre-set by the system. Read-only.
         Args:
-            value: Value to set for the isOnPremPublishingEnabled property.
+            value: Value to set for the is_on_prem_publishing_enabled property.
         """
         self._is_on_prem_publishing_enabled = value
     
@@ -290,7 +290,7 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         """
         Sets the isPersistentCookieEnabled property value. Indicates if the Persistent cookie flag should be set in the HTTP response headers. Keep this value set to false. Only use this setting for applications that can't share cookies between processes. For more information about cookie settings, see Cookie settings for accessing on-premises applications in Azure Active Directory. Default value is false.
         Args:
-            value: Value to set for the isPersistentCookieEnabled property.
+            value: Value to set for the is_persistent_cookie_enabled property.
         """
         self._is_persistent_cookie_enabled = value
     
@@ -307,7 +307,7 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         """
         Sets the isSecureCookieEnabled property value. Indicates if the Secure cookie flag should be set in the HTTP response headers. Set this value to true to transmit cookies over a secure channel such as an encrypted HTTPS request. Default value is true.
         Args:
-            value: Value to set for the isSecureCookieEnabled property.
+            value: Value to set for the is_secure_cookie_enabled property.
         """
         self._is_secure_cookie_enabled = value
     
@@ -324,7 +324,7 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         """
         Sets the isStateSessionEnabled property value. Indicates whether validation of the state parameter when the client uses the OAuth 2.0 authorization code grant flow is enabled. This setting allows admins to specify whether they want to enable CSRF protection for their apps.
         Args:
-            value: Value to set for the isStateSessionEnabled property.
+            value: Value to set for the is_state_session_enabled property.
         """
         self._is_state_session_enabled = value
     
@@ -341,7 +341,7 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         """
         Sets the isTranslateHostHeaderEnabled property value. Indicates if the application should translate urls in the reponse headers. Keep this value as true unless your application required the original host header in the authentication request. Default value is true.
         Args:
-            value: Value to set for the isTranslateHostHeaderEnabled property.
+            value: Value to set for the is_translate_host_header_enabled property.
         """
         self._is_translate_host_header_enabled = value
     
@@ -358,7 +358,7 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         """
         Sets the isTranslateLinksInBodyEnabled property value. Indicates if the application should translate urls in the application body. Keep this value as false unless you have hardcoded HTML links to other on-premises applications and don't use custom domains. For more information, see Link translation with Application Proxy. Default value is false.
         Args:
-            value: Value to set for the isTranslateLinksInBodyEnabled property.
+            value: Value to set for the is_translate_links_in_body_enabled property.
         """
         self._is_translate_links_in_body_enabled = value
     
@@ -375,14 +375,14 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
     @property
     def on_premises_application_segments(self,) -> Optional[List[on_premises_application_segment.OnPremisesApplicationSegment]]:
         """
-        Gets the onPremisesApplicationSegments property value. Represents the application segment collection for an on-premises wildcard application.
+        Gets the onPremisesApplicationSegments property value. The onPremisesApplicationSegments property
         Returns: Optional[List[on_premises_application_segment.OnPremisesApplicationSegment]]
         """
         return self._on_premises_application_segments
@@ -390,16 +390,16 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
     @on_premises_application_segments.setter
     def on_premises_application_segments(self,value: Optional[List[on_premises_application_segment.OnPremisesApplicationSegment]] = None) -> None:
         """
-        Sets the onPremisesApplicationSegments property value. Represents the application segment collection for an on-premises wildcard application.
+        Sets the onPremisesApplicationSegments property value. The onPremisesApplicationSegments property
         Args:
-            value: Value to set for the onPremisesApplicationSegments property.
+            value: Value to set for the on_premises_application_segments property.
         """
         self._on_premises_application_segments = value
     
     @property
     def segments_configuration(self,) -> Optional[segment_configuration.SegmentConfiguration]:
         """
-        Gets the segmentsConfiguration property value. The segmentsConfiguration property
+        Gets the segmentsConfiguration property value. Represents the collection of application segments for an on-premises wildcard application that's published through Azure AD Application Proxy.
         Returns: Optional[segment_configuration.SegmentConfiguration]
         """
         return self._segments_configuration
@@ -407,9 +407,9 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
     @segments_configuration.setter
     def segments_configuration(self,value: Optional[segment_configuration.SegmentConfiguration] = None) -> None:
         """
-        Sets the segmentsConfiguration property value. The segmentsConfiguration property
+        Sets the segmentsConfiguration property value. Represents the collection of application segments for an on-premises wildcard application that's published through Azure AD Application Proxy.
         Args:
-            value: Value to set for the segmentsConfiguration property.
+            value: Value to set for the segments_configuration property.
         """
         self._segments_configuration = value
     
@@ -458,7 +458,7 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         """
         Sets the singleSignOnSettings property value. Represents the single sign-on configuration for the on-premises application.
         Args:
-            value: Value to set for the singleSignOnSettings property.
+            value: Value to set for the single_sign_on_settings property.
         """
         self._single_sign_on_settings = value
     
@@ -475,7 +475,7 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         """
         Sets the useAlternateUrlForTranslationAndRedirect property value. The useAlternateUrlForTranslationAndRedirect property
         Args:
-            value: Value to set for the useAlternateUrlForTranslationAndRedirect property.
+            value: Value to set for the use_alternate_url_for_translation_and_redirect property.
         """
         self._use_alternate_url_for_translation_and_redirect = value
     
@@ -492,7 +492,7 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         """
         Sets the verifiedCustomDomainCertificatesMetadata property value. Details of the certificate associated with the application when a custom domain is in use. null when using the default domain. Read-only.
         Args:
-            value: Value to set for the verifiedCustomDomainCertificatesMetadata property.
+            value: Value to set for the verified_custom_domain_certificates_metadata property.
         """
         self._verified_custom_domain_certificates_metadata = value
     
@@ -509,7 +509,7 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         """
         Sets the verifiedCustomDomainKeyCredential property value. The associated key credential for the custom domain used.
         Args:
-            value: Value to set for the verifiedCustomDomainKeyCredential property.
+            value: Value to set for the verified_custom_domain_key_credential property.
         """
         self._verified_custom_domain_key_credential = value
     
@@ -526,7 +526,7 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         """
         Sets the verifiedCustomDomainPasswordCredential property value. The associated password credential for the custom domain used.
         Args:
-            value: Value to set for the verifiedCustomDomainPasswordCredential property.
+            value: Value to set for the verified_custom_domain_password_credential property.
         """
         self._verified_custom_domain_password_credential = value
     

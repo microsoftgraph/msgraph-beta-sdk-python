@@ -64,7 +64,7 @@ class CloudPcSourceDeviceImage(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The display name for the source image.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -74,11 +74,11 @@ class CloudPcSourceDeviceImage(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "subscription_display_name": lambda n : setattr(self, 'subscription_display_name', n.get_str_value()),
-            "subscription_id": lambda n : setattr(self, 'subscription_id', n.get_str_value()),
+            "subscriptionDisplayName": lambda n : setattr(self, 'subscription_display_name', n.get_str_value()),
+            "subscriptionId": lambda n : setattr(self, 'subscription_id', n.get_str_value()),
         }
         return fields
     
@@ -112,7 +112,7 @@ class CloudPcSourceDeviceImage(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -144,7 +144,7 @@ class CloudPcSourceDeviceImage(AdditionalDataHolder, Parsable):
         """
         Sets the subscriptionDisplayName property value. The display name of subscription that hosts the source image.
         Args:
-            value: Value to set for the subscriptionDisplayName property.
+            value: Value to set for the subscription_display_name property.
         """
         self._subscription_display_name = value
     
@@ -161,7 +161,7 @@ class CloudPcSourceDeviceImage(AdditionalDataHolder, Parsable):
         """
         Sets the subscriptionId property value. The ID of subscription that hosts the source image.
         Args:
-            value: Value to set for the subscriptionId property.
+            value: Value to set for the subscription_id property.
         """
         self._subscription_id = value
     

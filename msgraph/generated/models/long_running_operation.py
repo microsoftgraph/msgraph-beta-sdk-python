@@ -13,23 +13,23 @@ class LongRunningOperation(entity.Entity):
         Instantiates a new longRunningOperation and sets the default values.
         """
         super().__init__()
-        # The createdDateTime property
+        # The start time of the operation. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         self._created_date_time: Optional[datetime] = None
-        # The lastActionDateTime property
+        # The time of the last action in the operation. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         self._last_action_date_time: Optional[datetime] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The resourceLocation property
+        # URI of the resource that the operation is performed on.
         self._resource_location: Optional[str] = None
-        # The status property
+        # The status of the operation. The possible values are: notStarted, running, succeeded, failed, unknownFutureValue.
         self._status: Optional[long_running_operation_status.LongRunningOperationStatus] = None
-        # The statusDetail property
+        # Details about the status of the operation.
         self._status_detail: Optional[str] = None
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
         """
-        Gets the createdDateTime property value. The createdDateTime property
+        Gets the createdDateTime property value. The start time of the operation. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Returns: Optional[datetime]
         """
         return self._created_date_time
@@ -37,9 +37,9 @@ class LongRunningOperation(entity.Entity):
     @created_date_time.setter
     def created_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the createdDateTime property value. The createdDateTime property
+        Sets the createdDateTime property value. The start time of the operation. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -61,11 +61,11 @@ class LongRunningOperation(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "last_action_date_time": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
-            "resource_location": lambda n : setattr(self, 'resource_location', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
+            "resourceLocation": lambda n : setattr(self, 'resource_location', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(long_running_operation_status.LongRunningOperationStatus)),
-            "status_detail": lambda n : setattr(self, 'status_detail', n.get_str_value()),
+            "statusDetail": lambda n : setattr(self, 'status_detail', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -74,7 +74,7 @@ class LongRunningOperation(entity.Entity):
     @property
     def last_action_date_time(self,) -> Optional[datetime]:
         """
-        Gets the lastActionDateTime property value. The lastActionDateTime property
+        Gets the lastActionDateTime property value. The time of the last action in the operation. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Returns: Optional[datetime]
         """
         return self._last_action_date_time
@@ -82,16 +82,16 @@ class LongRunningOperation(entity.Entity):
     @last_action_date_time.setter
     def last_action_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the lastActionDateTime property value. The lastActionDateTime property
+        Sets the lastActionDateTime property value. The time of the last action in the operation. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the lastActionDateTime property.
+            value: Value to set for the last_action_date_time property.
         """
         self._last_action_date_time = value
     
     @property
     def resource_location(self,) -> Optional[str]:
         """
-        Gets the resourceLocation property value. The resourceLocation property
+        Gets the resourceLocation property value. URI of the resource that the operation is performed on.
         Returns: Optional[str]
         """
         return self._resource_location
@@ -99,9 +99,9 @@ class LongRunningOperation(entity.Entity):
     @resource_location.setter
     def resource_location(self,value: Optional[str] = None) -> None:
         """
-        Sets the resourceLocation property value. The resourceLocation property
+        Sets the resourceLocation property value. URI of the resource that the operation is performed on.
         Args:
-            value: Value to set for the resourceLocation property.
+            value: Value to set for the resource_location property.
         """
         self._resource_location = value
     
@@ -123,7 +123,7 @@ class LongRunningOperation(entity.Entity):
     @property
     def status(self,) -> Optional[long_running_operation_status.LongRunningOperationStatus]:
         """
-        Gets the status property value. The status property
+        Gets the status property value. The status of the operation. The possible values are: notStarted, running, succeeded, failed, unknownFutureValue.
         Returns: Optional[long_running_operation_status.LongRunningOperationStatus]
         """
         return self._status
@@ -131,7 +131,7 @@ class LongRunningOperation(entity.Entity):
     @status.setter
     def status(self,value: Optional[long_running_operation_status.LongRunningOperationStatus] = None) -> None:
         """
-        Sets the status property value. The status property
+        Sets the status property value. The status of the operation. The possible values are: notStarted, running, succeeded, failed, unknownFutureValue.
         Args:
             value: Value to set for the status property.
         """
@@ -140,7 +140,7 @@ class LongRunningOperation(entity.Entity):
     @property
     def status_detail(self,) -> Optional[str]:
         """
-        Gets the statusDetail property value. The statusDetail property
+        Gets the statusDetail property value. Details about the status of the operation.
         Returns: Optional[str]
         """
         return self._status_detail
@@ -148,9 +148,9 @@ class LongRunningOperation(entity.Entity):
     @status_detail.setter
     def status_detail(self,value: Optional[str] = None) -> None:
         """
-        Sets the statusDetail property value. The statusDetail property
+        Sets the statusDetail property value. Details about the status of the operation.
         Args:
-            value: Value to set for the statusDetail property.
+            value: Value to set for the status_detail property.
         """
         self._status_detail = value
     

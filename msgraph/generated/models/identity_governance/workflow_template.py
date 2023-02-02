@@ -28,7 +28,7 @@ class WorkflowTemplate(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new workflowTemplate and sets the default values.
+        Instantiates a new WorkflowTemplate and sets the default values.
         """
         super().__init__()
         # The category property
@@ -86,7 +86,7 @@ class WorkflowTemplate(entity.Entity):
         """
         Sets the displayName property value. The display name of the workflowTemplate.Supports $filter(eq, ne) and $orderby.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -103,7 +103,7 @@ class WorkflowTemplate(entity.Entity):
         """
         Sets the executionConditions property value. Conditions describing when to execute the workflow and the criteria to identify in-scope subject set.
         Args:
-            value: Value to set for the executionConditions property.
+            value: Value to set for the execution_conditions property.
         """
         self._execution_conditions = value
     
@@ -115,8 +115,8 @@ class WorkflowTemplate(entity.Entity):
         fields = {
             "category": lambda n : setattr(self, 'category', n.get_enum_value(lifecycle_workflow_category.LifecycleWorkflowCategory)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "execution_conditions": lambda n : setattr(self, 'execution_conditions', n.get_object_value(workflow_execution_conditions.WorkflowExecutionConditions)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "executionConditions": lambda n : setattr(self, 'execution_conditions', n.get_object_value(workflow_execution_conditions.WorkflowExecutionConditions)),
             "tasks": lambda n : setattr(self, 'tasks', n.get_collection_of_object_values(task.Task)),
         }
         super_fields = super().get_field_deserializers()

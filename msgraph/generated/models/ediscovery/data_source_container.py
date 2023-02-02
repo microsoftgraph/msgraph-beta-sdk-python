@@ -45,7 +45,7 @@ class DataSourceContainer(entity.Entity):
         """
         Sets the createdDateTime property value. Created date and time of the dataSourceContainer entity.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -74,7 +74,7 @@ class DataSourceContainer(entity.Entity):
         """
         Sets the displayName property value. Display name of the dataSourceContainer entity.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -84,12 +84,12 @@ class DataSourceContainer(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "hold_status": lambda n : setattr(self, 'hold_status', n.get_enum_value(data_source_hold_status.DataSourceHoldStatus)),
-            "last_index_operation": lambda n : setattr(self, 'last_index_operation', n.get_object_value(case_index_operation.CaseIndexOperation)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "released_date_time": lambda n : setattr(self, 'released_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "holdStatus": lambda n : setattr(self, 'hold_status', n.get_enum_value(data_source_hold_status.DataSourceHoldStatus)),
+            "lastIndexOperation": lambda n : setattr(self, 'last_index_operation', n.get_object_value(case_index_operation.CaseIndexOperation)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "releasedDateTime": lambda n : setattr(self, 'released_date_time', n.get_datetime_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(data_source_container_status.DataSourceContainerStatus)),
         }
         super_fields = super().get_field_deserializers()
@@ -109,7 +109,7 @@ class DataSourceContainer(entity.Entity):
         """
         Sets the holdStatus property value. The holdStatus property
         Args:
-            value: Value to set for the holdStatus property.
+            value: Value to set for the hold_status property.
         """
         self._hold_status = value
     
@@ -126,7 +126,7 @@ class DataSourceContainer(entity.Entity):
         """
         Sets the lastIndexOperation property value. The lastIndexOperation property
         Args:
-            value: Value to set for the lastIndexOperation property.
+            value: Value to set for the last_index_operation property.
         """
         self._last_index_operation = value
     
@@ -143,7 +143,7 @@ class DataSourceContainer(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. Last modified date and time of the dataSourceContainer.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -160,7 +160,7 @@ class DataSourceContainer(entity.Entity):
         """
         Sets the releasedDateTime property value. Date and time that the dataSourceContainer was released from the case.
         Args:
-            value: Value to set for the releasedDateTime property.
+            value: Value to set for the released_date_time property.
         """
         self._released_date_time = value
     

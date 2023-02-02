@@ -17,12 +17,13 @@ class ThreatAssessmentResultItemRequestBuilder():
     """
     Provides operations to manage the results property of the microsoft.graph.threatAssessmentRequest entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, threat_assessment_result_id: Optional[str] = None) -> None:
         """
         Instantiates a new ThreatAssessmentResultItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            threatAssessmentResultId: key: id of threatAssessmentResult
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -32,15 +33,15 @@ class ThreatAssessmentResultItemRequestBuilder():
         self.url_template: str = "{+baseurl}/me/informationProtection/threatAssessmentRequests/{threatAssessmentRequest%2Did}/results/{threatAssessmentResult%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["threatAssessmentResult%2Did"] = threatAssessmentResultId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ThreatAssessmentResultItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ThreatAssessmentResultItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property results for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class ThreatAssessmentResultItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ThreatAssessmentResultItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[threat_assessment_result.ThreatAssessmentResult]:
+    async def get(self,request_configuration: Optional[ThreatAssessmentResultItemRequestBuilderGetRequestConfiguration] = None) -> Optional[threat_assessment_result.ThreatAssessmentResult]:
         """
         A collection of threat assessment results. Read-only. By default, a GET /threatAssessmentRequests/{id} does not return this property unless you apply $expand on it.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[threat_assessment_result.ThreatAssessmentResult]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class ThreatAssessmentResultItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, threat_assessment_result.ThreatAssessmentResult, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, threat_assessment_result.ThreatAssessmentResult, error_mapping)
     
-    async def patch(self,body: Optional[threat_assessment_result.ThreatAssessmentResult] = None, request_configuration: Optional[ThreatAssessmentResultItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[threat_assessment_result.ThreatAssessmentResult]:
+    async def patch(self,body: Optional[threat_assessment_result.ThreatAssessmentResult] = None, request_configuration: Optional[ThreatAssessmentResultItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[threat_assessment_result.ThreatAssessmentResult]:
         """
         Update the navigation property results in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[threat_assessment_result.ThreatAssessmentResult]
         """
         if body is None:
@@ -92,7 +91,7 @@ class ThreatAssessmentResultItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, threat_assessment_result.ThreatAssessmentResult, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, threat_assessment_result.ThreatAssessmentResult, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ThreatAssessmentResultItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

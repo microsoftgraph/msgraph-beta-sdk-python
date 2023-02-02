@@ -36,7 +36,7 @@ class CurrentLabel(AdditionalDataHolder, Parsable):
         """
         Sets the applicationMode property value. The applicationMode property
         Args:
-            value: Value to set for the applicationMode property.
+            value: Value to set for the application_mode property.
         """
         self._application_mode = value
     
@@ -72,7 +72,7 @@ class CurrentLabel(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "application_mode": lambda n : setattr(self, 'application_mode', n.get_enum_value(application_mode.ApplicationMode)),
+            "applicationMode": lambda n : setattr(self, 'application_mode', n.get_enum_value(application_mode.ApplicationMode)),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -108,7 +108,7 @@ class CurrentLabel(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

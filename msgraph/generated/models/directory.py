@@ -10,11 +10,11 @@ directory_object = lazy_import('msgraph.generated.models.directory_object')
 entity = lazy_import('msgraph.generated.models.entity')
 feature_rollout_policy = lazy_import('msgraph.generated.models.feature_rollout_policy')
 identity_provider_base = lazy_import('msgraph.generated.models.identity_provider_base')
+impacted_resource = lazy_import('msgraph.generated.models.impacted_resource')
 inbound_shared_user_profile = lazy_import('msgraph.generated.models.inbound_shared_user_profile')
 on_premises_directory_synchronization = lazy_import('msgraph.generated.models.on_premises_directory_synchronization')
 outbound_shared_user_profile = lazy_import('msgraph.generated.models.outbound_shared_user_profile')
 recommendation = lazy_import('msgraph.generated.models.recommendation')
-recommendation_resource = lazy_import('msgraph.generated.models.recommendation_resource')
 shared_email_domain = lazy_import('msgraph.generated.models.shared_email_domain')
 
 class Directory(entity.Entity):
@@ -31,7 +31,7 @@ class Directory(entity.Entity):
         """
         Sets the administrativeUnits property value. Conceptual container for user and group directory objects.
         Args:
-            value: Value to set for the administrativeUnits property.
+            value: Value to set for the administrative_units property.
         """
         self._administrative_units = value
     
@@ -48,7 +48,7 @@ class Directory(entity.Entity):
         """
         Sets the attributeSets property value. Group of related custom security attribute definitions.
         Args:
-            value: Value to set for the attributeSets property.
+            value: Value to set for the attribute_sets property.
         """
         self._attribute_sets = value
     
@@ -70,7 +70,7 @@ class Directory(entity.Entity):
         # Configure domain federation with organizations whose identity provider (IdP) supports either the SAML or WS-Fed protocol.
         self._federation_configurations: Optional[List[identity_provider_base.IdentityProviderBase]] = None
         # The impactedResources property
-        self._impacted_resources: Optional[List[recommendation_resource.RecommendationResource]] = None
+        self._impacted_resources: Optional[List[impacted_resource.ImpactedResource]] = None
         # The inboundSharedUserProfiles property
         self._inbound_shared_user_profiles: Optional[List[inbound_shared_user_profile.InboundSharedUserProfile]] = None
         # The OdataType property
@@ -109,7 +109,7 @@ class Directory(entity.Entity):
         """
         Sets the customSecurityAttributeDefinitions property value. Schema of a custom security attributes (key-value pairs).
         Args:
-            value: Value to set for the customSecurityAttributeDefinitions property.
+            value: Value to set for the custom_security_attribute_definitions property.
         """
         self._custom_security_attribute_definitions = value
     
@@ -126,7 +126,7 @@ class Directory(entity.Entity):
         """
         Sets the deletedItems property value. The deletedItems property
         Args:
-            value: Value to set for the deletedItems property.
+            value: Value to set for the deleted_items property.
         """
         self._deleted_items = value
     
@@ -143,7 +143,7 @@ class Directory(entity.Entity):
         """
         Sets the featureRolloutPolicies property value. The featureRolloutPolicies property
         Args:
-            value: Value to set for the featureRolloutPolicies property.
+            value: Value to set for the feature_rollout_policies property.
         """
         self._feature_rollout_policies = value
     
@@ -160,7 +160,7 @@ class Directory(entity.Entity):
         """
         Sets the federationConfigurations property value. Configure domain federation with organizations whose identity provider (IdP) supports either the SAML or WS-Fed protocol.
         Args:
-            value: Value to set for the federationConfigurations property.
+            value: Value to set for the federation_configurations property.
         """
         self._federation_configurations = value
     
@@ -170,37 +170,37 @@ class Directory(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "administrative_units": lambda n : setattr(self, 'administrative_units', n.get_collection_of_object_values(administrative_unit.AdministrativeUnit)),
-            "attribute_sets": lambda n : setattr(self, 'attribute_sets', n.get_collection_of_object_values(attribute_set.AttributeSet)),
-            "custom_security_attribute_definitions": lambda n : setattr(self, 'custom_security_attribute_definitions', n.get_collection_of_object_values(custom_security_attribute_definition.CustomSecurityAttributeDefinition)),
-            "deleted_items": lambda n : setattr(self, 'deleted_items', n.get_collection_of_object_values(directory_object.DirectoryObject)),
-            "feature_rollout_policies": lambda n : setattr(self, 'feature_rollout_policies', n.get_collection_of_object_values(feature_rollout_policy.FeatureRolloutPolicy)),
-            "federation_configurations": lambda n : setattr(self, 'federation_configurations', n.get_collection_of_object_values(identity_provider_base.IdentityProviderBase)),
-            "impacted_resources": lambda n : setattr(self, 'impacted_resources', n.get_collection_of_object_values(recommendation_resource.RecommendationResource)),
-            "inbound_shared_user_profiles": lambda n : setattr(self, 'inbound_shared_user_profiles', n.get_collection_of_object_values(inbound_shared_user_profile.InboundSharedUserProfile)),
-            "on_premises_synchronization": lambda n : setattr(self, 'on_premises_synchronization', n.get_collection_of_object_values(on_premises_directory_synchronization.OnPremisesDirectorySynchronization)),
-            "outbound_shared_user_profiles": lambda n : setattr(self, 'outbound_shared_user_profiles', n.get_collection_of_object_values(outbound_shared_user_profile.OutboundSharedUserProfile)),
+            "administrativeUnits": lambda n : setattr(self, 'administrative_units', n.get_collection_of_object_values(administrative_unit.AdministrativeUnit)),
+            "attributeSets": lambda n : setattr(self, 'attribute_sets', n.get_collection_of_object_values(attribute_set.AttributeSet)),
+            "customSecurityAttributeDefinitions": lambda n : setattr(self, 'custom_security_attribute_definitions', n.get_collection_of_object_values(custom_security_attribute_definition.CustomSecurityAttributeDefinition)),
+            "deletedItems": lambda n : setattr(self, 'deleted_items', n.get_collection_of_object_values(directory_object.DirectoryObject)),
+            "featureRolloutPolicies": lambda n : setattr(self, 'feature_rollout_policies', n.get_collection_of_object_values(feature_rollout_policy.FeatureRolloutPolicy)),
+            "federationConfigurations": lambda n : setattr(self, 'federation_configurations', n.get_collection_of_object_values(identity_provider_base.IdentityProviderBase)),
+            "impactedResources": lambda n : setattr(self, 'impacted_resources', n.get_collection_of_object_values(impacted_resource.ImpactedResource)),
+            "inboundSharedUserProfiles": lambda n : setattr(self, 'inbound_shared_user_profiles', n.get_collection_of_object_values(inbound_shared_user_profile.InboundSharedUserProfile)),
+            "onPremisesSynchronization": lambda n : setattr(self, 'on_premises_synchronization', n.get_collection_of_object_values(on_premises_directory_synchronization.OnPremisesDirectorySynchronization)),
+            "outboundSharedUserProfiles": lambda n : setattr(self, 'outbound_shared_user_profiles', n.get_collection_of_object_values(outbound_shared_user_profile.OutboundSharedUserProfile)),
             "recommendations": lambda n : setattr(self, 'recommendations', n.get_collection_of_object_values(recommendation.Recommendation)),
-            "shared_email_domains": lambda n : setattr(self, 'shared_email_domains', n.get_collection_of_object_values(shared_email_domain.SharedEmailDomain)),
+            "sharedEmailDomains": lambda n : setattr(self, 'shared_email_domains', n.get_collection_of_object_values(shared_email_domain.SharedEmailDomain)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
     
     @property
-    def impacted_resources(self,) -> Optional[List[recommendation_resource.RecommendationResource]]:
+    def impacted_resources(self,) -> Optional[List[impacted_resource.ImpactedResource]]:
         """
         Gets the impactedResources property value. The impactedResources property
-        Returns: Optional[List[recommendation_resource.RecommendationResource]]
+        Returns: Optional[List[impacted_resource.ImpactedResource]]
         """
         return self._impacted_resources
     
     @impacted_resources.setter
-    def impacted_resources(self,value: Optional[List[recommendation_resource.RecommendationResource]] = None) -> None:
+    def impacted_resources(self,value: Optional[List[impacted_resource.ImpactedResource]] = None) -> None:
         """
         Sets the impactedResources property value. The impactedResources property
         Args:
-            value: Value to set for the impactedResources property.
+            value: Value to set for the impacted_resources property.
         """
         self._impacted_resources = value
     
@@ -217,7 +217,7 @@ class Directory(entity.Entity):
         """
         Sets the inboundSharedUserProfiles property value. The inboundSharedUserProfiles property
         Args:
-            value: Value to set for the inboundSharedUserProfiles property.
+            value: Value to set for the inbound_shared_user_profiles property.
         """
         self._inbound_shared_user_profiles = value
     
@@ -234,7 +234,7 @@ class Directory(entity.Entity):
         """
         Sets the onPremisesSynchronization property value. A container for on-premises directory synchronization functionalities that are available for the organization.
         Args:
-            value: Value to set for the onPremisesSynchronization property.
+            value: Value to set for the on_premises_synchronization property.
         """
         self._on_premises_synchronization = value
     
@@ -251,7 +251,7 @@ class Directory(entity.Entity):
         """
         Sets the outboundSharedUserProfiles property value. The outboundSharedUserProfiles property
         Args:
-            value: Value to set for the outboundSharedUserProfiles property.
+            value: Value to set for the outbound_shared_user_profiles property.
         """
         self._outbound_shared_user_profiles = value
     
@@ -307,7 +307,7 @@ class Directory(entity.Entity):
         """
         Sets the sharedEmailDomains property value. The sharedEmailDomains property
         Args:
-            value: Value to set for the sharedEmailDomains property.
+            value: Value to set for the shared_email_domains property.
         """
         self._shared_email_domains = value
     

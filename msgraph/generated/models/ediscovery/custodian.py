@@ -23,7 +23,7 @@ class Custodian(data_source_container.DataSourceContainer):
         """
         Sets the acknowledgedDateTime property value. Date and time the custodian acknowledged a hold notification.
         Args:
-            value: Value to set for the acknowledgedDateTime property.
+            value: Value to set for the acknowledged_date_time property.
         """
         self._acknowledged_date_time = value
     
@@ -40,7 +40,7 @@ class Custodian(data_source_container.DataSourceContainer):
         """
         Sets the applyHoldToSources property value. Identifies whether a custodian's sources were placed on hold during creation.
         Args:
-            value: Value to set for the applyHoldToSources property.
+            value: Value to set for the apply_hold_to_sources property.
         """
         self._apply_hold_to_sources = value
     
@@ -98,12 +98,12 @@ class Custodian(data_source_container.DataSourceContainer):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "acknowledged_date_time": lambda n : setattr(self, 'acknowledged_date_time', n.get_datetime_value()),
-            "apply_hold_to_sources": lambda n : setattr(self, 'apply_hold_to_sources', n.get_bool_value()),
+            "acknowledgedDateTime": lambda n : setattr(self, 'acknowledged_date_time', n.get_datetime_value()),
+            "applyHoldToSources": lambda n : setattr(self, 'apply_hold_to_sources', n.get_bool_value()),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
-            "site_sources": lambda n : setattr(self, 'site_sources', n.get_collection_of_object_values(site_source.SiteSource)),
-            "unified_group_sources": lambda n : setattr(self, 'unified_group_sources', n.get_collection_of_object_values(unified_group_source.UnifiedGroupSource)),
-            "user_sources": lambda n : setattr(self, 'user_sources', n.get_collection_of_object_values(user_source.UserSource)),
+            "siteSources": lambda n : setattr(self, 'site_sources', n.get_collection_of_object_values(site_source.SiteSource)),
+            "unifiedGroupSources": lambda n : setattr(self, 'unified_group_sources', n.get_collection_of_object_values(unified_group_source.UnifiedGroupSource)),
+            "userSources": lambda n : setattr(self, 'user_sources', n.get_collection_of_object_values(user_source.UserSource)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -138,7 +138,7 @@ class Custodian(data_source_container.DataSourceContainer):
         """
         Sets the siteSources property value. Data source entity for SharePoint sites associated with the custodian.
         Args:
-            value: Value to set for the siteSources property.
+            value: Value to set for the site_sources property.
         """
         self._site_sources = value
     
@@ -155,7 +155,7 @@ class Custodian(data_source_container.DataSourceContainer):
         """
         Sets the unifiedGroupSources property value. Data source entity for groups associated with the custodian.
         Args:
-            value: Value to set for the unifiedGroupSources property.
+            value: Value to set for the unified_group_sources property.
         """
         self._unified_group_sources = value
     
@@ -172,7 +172,7 @@ class Custodian(data_source_container.DataSourceContainer):
         """
         Sets the userSources property value. Data source entity for a the custodian. This is the container for a custodian's mailbox and OneDrive for Business site.
         Args:
-            value: Value to set for the userSources property.
+            value: Value to set for the user_sources property.
         """
         self._user_sources = value
     

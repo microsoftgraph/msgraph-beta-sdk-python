@@ -65,7 +65,7 @@ class BulkDriverActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the failedDriverIds property value. List of driver Ids where the action is failed.
         Args:
-            value: Value to set for the failedDriverIds property.
+            value: Value to set for the failed_driver_ids property.
         """
         self._failed_driver_ids = value
     
@@ -75,10 +75,10 @@ class BulkDriverActionResult(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "failed_driver_ids": lambda n : setattr(self, 'failed_driver_ids', n.get_collection_of_primitive_values(str)),
-            "not_found_driver_ids": lambda n : setattr(self, 'not_found_driver_ids', n.get_collection_of_primitive_values(str)),
+            "failedDriverIds": lambda n : setattr(self, 'failed_driver_ids', n.get_collection_of_primitive_values(str)),
+            "notFoundDriverIds": lambda n : setattr(self, 'not_found_driver_ids', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "successful_driver_ids": lambda n : setattr(self, 'successful_driver_ids', n.get_collection_of_primitive_values(str)),
+            "successfulDriverIds": lambda n : setattr(self, 'successful_driver_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -95,7 +95,7 @@ class BulkDriverActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the notFoundDriverIds property value. List of driver Ids that are not found.
         Args:
-            value: Value to set for the notFoundDriverIds property.
+            value: Value to set for the not_found_driver_ids property.
         """
         self._not_found_driver_ids = value
     
@@ -112,7 +112,7 @@ class BulkDriverActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -143,7 +143,7 @@ class BulkDriverActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the successfulDriverIds property value. List of driver Ids where the action is successful.
         Args:
-            value: Value to set for the successfulDriverIds property.
+            value: Value to set for the successful_driver_ids property.
         """
         self._successful_driver_ids = value
     

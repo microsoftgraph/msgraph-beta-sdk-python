@@ -21,7 +21,7 @@ class MobileAppTroubleshootingAppStateHistory(mobile_app_troubleshooting_history
         """
         Sets the actionType property value. Defines the Action Types for an Intune Application.
         Args:
-            value: Value to set for the actionType property.
+            value: Value to set for the action_type property.
         """
         self._action_type = value
     
@@ -64,7 +64,7 @@ class MobileAppTroubleshootingAppStateHistory(mobile_app_troubleshooting_history
         """
         Sets the errorCode property value. Error code for the failure, empty if no failure.
         Args:
-            value: Value to set for the errorCode property.
+            value: Value to set for the error_code property.
         """
         self._error_code = value
     
@@ -74,9 +74,9 @@ class MobileAppTroubleshootingAppStateHistory(mobile_app_troubleshooting_history
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "action_type": lambda n : setattr(self, 'action_type', n.get_enum_value(mobile_app_action_type.MobileAppActionType)),
-            "error_code": lambda n : setattr(self, 'error_code', n.get_str_value()),
-            "run_state": lambda n : setattr(self, 'run_state', n.get_enum_value(run_state.RunState)),
+            "actionType": lambda n : setattr(self, 'action_type', n.get_enum_value(mobile_app_action_type.MobileAppActionType)),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_str_value()),
+            "runState": lambda n : setattr(self, 'run_state', n.get_enum_value(run_state.RunState)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -95,7 +95,7 @@ class MobileAppTroubleshootingAppStateHistory(mobile_app_troubleshooting_history
         """
         Sets the runState property value. Indicates the type of execution status of the device management script.
         Args:
-            value: Value to set for the runState property.
+            value: Value to set for the run_state property.
         """
         self._run_state = value
     

@@ -20,7 +20,7 @@ class DeviceManagementConfigurationGroupSettingCollectionInstanceTemplate(device
         """
         Sets the allowUnmanagedValues property value. Linked policy may append values which are not present in the template.
         Args:
-            value: Value to set for the allowUnmanagedValues property.
+            value: Value to set for the allow_unmanaged_values property.
         """
         self._allow_unmanaged_values = value
     
@@ -53,8 +53,8 @@ class DeviceManagementConfigurationGroupSettingCollectionInstanceTemplate(device
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_unmanaged_values": lambda n : setattr(self, 'allow_unmanaged_values', n.get_bool_value()),
-            "group_setting_collection_value_template": lambda n : setattr(self, 'group_setting_collection_value_template', n.get_collection_of_object_values(device_management_configuration_group_setting_value_template.DeviceManagementConfigurationGroupSettingValueTemplate)),
+            "allowUnmanagedValues": lambda n : setattr(self, 'allow_unmanaged_values', n.get_bool_value()),
+            "groupSettingCollectionValueTemplate": lambda n : setattr(self, 'group_setting_collection_value_template', n.get_collection_of_object_values(device_management_configuration_group_setting_value_template.DeviceManagementConfigurationGroupSettingValueTemplate)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -73,7 +73,7 @@ class DeviceManagementConfigurationGroupSettingCollectionInstanceTemplate(device
         """
         Sets the groupSettingCollectionValueTemplate property value. Group Setting Collection Value Template
         Args:
-            value: Value to set for the groupSettingCollectionValueTemplate property.
+            value: Value to set for the group_setting_collection_value_template property.
         """
         self._group_setting_collection_value_template = value
     

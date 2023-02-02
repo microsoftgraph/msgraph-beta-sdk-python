@@ -8,12 +8,9 @@ entity = lazy_import('msgraph.generated.models.entity')
 user_experience_analytics_operating_system_restart_category = lazy_import('msgraph.generated.models.user_experience_analytics_operating_system_restart_category')
 
 class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
-    """
-    The user experience analytics device startup history entity contains device boot performance history details.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsDeviceStartupHistory and sets the default values.
+        Instantiates a new UserExperienceAnalyticsDeviceStartupHistory and sets the default values.
         """
         super().__init__()
         # The user experience analytics device core boot time in milliseconds.
@@ -64,7 +61,7 @@ class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
         """
         Sets the coreBootTimeInMs property value. The user experience analytics device core boot time in milliseconds.
         Args:
-            value: Value to set for the coreBootTimeInMs property.
+            value: Value to set for the core_boot_time_in_ms property.
         """
         self._core_boot_time_in_ms = value
     
@@ -81,7 +78,7 @@ class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
         """
         Sets the coreLoginTimeInMs property value. The user experience analytics device core login time in milliseconds.
         Args:
-            value: Value to set for the coreLoginTimeInMs property.
+            value: Value to set for the core_login_time_in_ms property.
         """
         self._core_login_time_in_ms = value
     
@@ -110,7 +107,7 @@ class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
         """
         Sets the deviceId property value. The user experience analytics device id.
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -127,7 +124,7 @@ class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
         """
         Sets the featureUpdateBootTimeInMs property value. The user experience analytics device feature update time in milliseconds.
         Args:
-            value: Value to set for the featureUpdateBootTimeInMs property.
+            value: Value to set for the feature_update_boot_time_in_ms property.
         """
         self._feature_update_boot_time_in_ms = value
     
@@ -137,22 +134,22 @@ class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "core_boot_time_in_ms": lambda n : setattr(self, 'core_boot_time_in_ms', n.get_int_value()),
-            "core_login_time_in_ms": lambda n : setattr(self, 'core_login_time_in_ms', n.get_int_value()),
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "feature_update_boot_time_in_ms": lambda n : setattr(self, 'feature_update_boot_time_in_ms', n.get_int_value()),
-            "group_policy_boot_time_in_ms": lambda n : setattr(self, 'group_policy_boot_time_in_ms', n.get_int_value()),
-            "group_policy_login_time_in_ms": lambda n : setattr(self, 'group_policy_login_time_in_ms', n.get_int_value()),
-            "is_feature_update": lambda n : setattr(self, 'is_feature_update', n.get_bool_value()),
-            "is_first_login": lambda n : setattr(self, 'is_first_login', n.get_bool_value()),
-            "operating_system_version": lambda n : setattr(self, 'operating_system_version', n.get_str_value()),
-            "responsive_desktop_time_in_ms": lambda n : setattr(self, 'responsive_desktop_time_in_ms', n.get_int_value()),
-            "restart_category": lambda n : setattr(self, 'restart_category', n.get_enum_value(user_experience_analytics_operating_system_restart_category.UserExperienceAnalyticsOperatingSystemRestartCategory)),
-            "restart_fault_bucket": lambda n : setattr(self, 'restart_fault_bucket', n.get_str_value()),
-            "restart_stop_code": lambda n : setattr(self, 'restart_stop_code', n.get_str_value()),
-            "start_time": lambda n : setattr(self, 'start_time', n.get_datetime_value()),
-            "total_boot_time_in_ms": lambda n : setattr(self, 'total_boot_time_in_ms', n.get_int_value()),
-            "total_login_time_in_ms": lambda n : setattr(self, 'total_login_time_in_ms', n.get_int_value()),
+            "coreBootTimeInMs": lambda n : setattr(self, 'core_boot_time_in_ms', n.get_int_value()),
+            "coreLoginTimeInMs": lambda n : setattr(self, 'core_login_time_in_ms', n.get_int_value()),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "featureUpdateBootTimeInMs": lambda n : setattr(self, 'feature_update_boot_time_in_ms', n.get_int_value()),
+            "groupPolicyBootTimeInMs": lambda n : setattr(self, 'group_policy_boot_time_in_ms', n.get_int_value()),
+            "groupPolicyLoginTimeInMs": lambda n : setattr(self, 'group_policy_login_time_in_ms', n.get_int_value()),
+            "isFeatureUpdate": lambda n : setattr(self, 'is_feature_update', n.get_bool_value()),
+            "isFirstLogin": lambda n : setattr(self, 'is_first_login', n.get_bool_value()),
+            "operatingSystemVersion": lambda n : setattr(self, 'operating_system_version', n.get_str_value()),
+            "responsiveDesktopTimeInMs": lambda n : setattr(self, 'responsive_desktop_time_in_ms', n.get_int_value()),
+            "restartCategory": lambda n : setattr(self, 'restart_category', n.get_enum_value(user_experience_analytics_operating_system_restart_category.UserExperienceAnalyticsOperatingSystemRestartCategory)),
+            "restartFaultBucket": lambda n : setattr(self, 'restart_fault_bucket', n.get_str_value()),
+            "restartStopCode": lambda n : setattr(self, 'restart_stop_code', n.get_str_value()),
+            "startTime": lambda n : setattr(self, 'start_time', n.get_datetime_value()),
+            "totalBootTimeInMs": lambda n : setattr(self, 'total_boot_time_in_ms', n.get_int_value()),
+            "totalLoginTimeInMs": lambda n : setattr(self, 'total_login_time_in_ms', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -171,7 +168,7 @@ class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
         """
         Sets the groupPolicyBootTimeInMs property value. The User experience analytics Device group policy boot time in milliseconds.
         Args:
-            value: Value to set for the groupPolicyBootTimeInMs property.
+            value: Value to set for the group_policy_boot_time_in_ms property.
         """
         self._group_policy_boot_time_in_ms = value
     
@@ -188,7 +185,7 @@ class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
         """
         Sets the groupPolicyLoginTimeInMs property value. The User experience analytics Device group policy login time in milliseconds.
         Args:
-            value: Value to set for the groupPolicyLoginTimeInMs property.
+            value: Value to set for the group_policy_login_time_in_ms property.
         """
         self._group_policy_login_time_in_ms = value
     
@@ -205,7 +202,7 @@ class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
         """
         Sets the isFeatureUpdate property value. The user experience analytics device boot record is a feature update.
         Args:
-            value: Value to set for the isFeatureUpdate property.
+            value: Value to set for the is_feature_update property.
         """
         self._is_feature_update = value
     
@@ -222,7 +219,7 @@ class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
         """
         Sets the isFirstLogin property value. The user experience analytics device first login.
         Args:
-            value: Value to set for the isFirstLogin property.
+            value: Value to set for the is_first_login property.
         """
         self._is_first_login = value
     
@@ -239,7 +236,7 @@ class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
         """
         Sets the operatingSystemVersion property value. The user experience analytics device boot record's operating system version.
         Args:
-            value: Value to set for the operatingSystemVersion property.
+            value: Value to set for the operating_system_version property.
         """
         self._operating_system_version = value
     
@@ -256,7 +253,7 @@ class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
         """
         Sets the responsiveDesktopTimeInMs property value. The user experience analytics responsive desktop time in milliseconds.
         Args:
-            value: Value to set for the responsiveDesktopTimeInMs property.
+            value: Value to set for the responsive_desktop_time_in_ms property.
         """
         self._responsive_desktop_time_in_ms = value
     
@@ -273,7 +270,7 @@ class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
         """
         Sets the restartCategory property value. Operating System restart category
         Args:
-            value: Value to set for the restartCategory property.
+            value: Value to set for the restart_category property.
         """
         self._restart_category = value
     
@@ -290,7 +287,7 @@ class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
         """
         Sets the restartFaultBucket property value. OS restart fault bucket. The fault bucket is used to find additional information about a system crash.
         Args:
-            value: Value to set for the restartFaultBucket property.
+            value: Value to set for the restart_fault_bucket property.
         """
         self._restart_fault_bucket = value
     
@@ -307,7 +304,7 @@ class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
         """
         Sets the restartStopCode property value. OS restart stop code. This shows the bug check code which can be used to look up the blue screen reason.
         Args:
-            value: Value to set for the restartStopCode property.
+            value: Value to set for the restart_stop_code property.
         """
         self._restart_stop_code = value
     
@@ -350,7 +347,7 @@ class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
         """
         Sets the startTime property value. The user experience analytics device boot start time.
         Args:
-            value: Value to set for the startTime property.
+            value: Value to set for the start_time property.
         """
         self._start_time = value
     
@@ -367,7 +364,7 @@ class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
         """
         Sets the totalBootTimeInMs property value. The user experience analytics device total boot time in milliseconds.
         Args:
-            value: Value to set for the totalBootTimeInMs property.
+            value: Value to set for the total_boot_time_in_ms property.
         """
         self._total_boot_time_in_ms = value
     
@@ -384,7 +381,7 @@ class UserExperienceAnalyticsDeviceStartupHistory(entity.Entity):
         """
         Sets the totalLoginTimeInMs property value. The user experience analytics device total login time in milliseconds.
         Args:
-            value: Value to set for the totalLoginTimeInMs property.
+            value: Value to set for the total_login_time_in_ms property.
         """
         self._total_login_time_in_ms = value
     

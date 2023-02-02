@@ -47,7 +47,7 @@ class InformationProtectionPolicySetting(entity.Entity):
         """
         Sets the defaultLabelId property value. The defaultLabelId property
         Args:
-            value: Value to set for the defaultLabelId property.
+            value: Value to set for the default_label_id property.
         """
         self._default_label_id = value
     
@@ -57,10 +57,10 @@ class InformationProtectionPolicySetting(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_label_id": lambda n : setattr(self, 'default_label_id', n.get_str_value()),
-            "is_downgrade_justification_required": lambda n : setattr(self, 'is_downgrade_justification_required', n.get_bool_value()),
-            "is_mandatory": lambda n : setattr(self, 'is_mandatory', n.get_bool_value()),
-            "more_info_url": lambda n : setattr(self, 'more_info_url', n.get_str_value()),
+            "defaultLabelId": lambda n : setattr(self, 'default_label_id', n.get_str_value()),
+            "isDowngradeJustificationRequired": lambda n : setattr(self, 'is_downgrade_justification_required', n.get_bool_value()),
+            "isMandatory": lambda n : setattr(self, 'is_mandatory', n.get_bool_value()),
+            "moreInfoUrl": lambda n : setattr(self, 'more_info_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -79,7 +79,7 @@ class InformationProtectionPolicySetting(entity.Entity):
         """
         Sets the isDowngradeJustificationRequired property value. Exposes whether justification input is required on label downgrade.
         Args:
-            value: Value to set for the isDowngradeJustificationRequired property.
+            value: Value to set for the is_downgrade_justification_required property.
         """
         self._is_downgrade_justification_required = value
     
@@ -96,7 +96,7 @@ class InformationProtectionPolicySetting(entity.Entity):
         """
         Sets the isMandatory property value. Exposes whether mandatory labeling is enabled.
         Args:
-            value: Value to set for the isMandatory property.
+            value: Value to set for the is_mandatory property.
         """
         self._is_mandatory = value
     
@@ -113,7 +113,7 @@ class InformationProtectionPolicySetting(entity.Entity):
         """
         Sets the moreInfoUrl property value. Exposes the more information URL that can be configured by the administrator.
         Args:
-            value: Value to set for the moreInfoUrl property.
+            value: Value to set for the more_info_url property.
         """
         self._more_info_url = value
     

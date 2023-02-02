@@ -51,7 +51,7 @@ class VersionAction(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "new_version": lambda n : setattr(self, 'new_version', n.get_str_value()),
+            "newVersion": lambda n : setattr(self, 'new_version', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -69,7 +69,7 @@ class VersionAction(AdditionalDataHolder, Parsable):
         """
         Sets the newVersion property value. The name of the new version that was created by this action.
         Args:
-            value: Value to set for the newVersion property.
+            value: Value to set for the new_version property.
         """
         self._new_version = value
     
@@ -86,7 +86,7 @@ class VersionAction(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

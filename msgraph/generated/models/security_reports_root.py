@@ -8,7 +8,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 class SecurityReportsRoot(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new securityReportsRoot and sets the default values.
+        Instantiates a new SecurityReportsRoot and sets the default values.
         """
         super().__init__()
         # The OdataType property

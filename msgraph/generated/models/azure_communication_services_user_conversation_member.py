@@ -19,7 +19,7 @@ class AzureCommunicationServicesUserConversationMember(conversation_member.Conve
         """
         Sets the azureCommunicationServicesId property value. The azureCommunicationServicesId property
         Args:
-            value: Value to set for the azureCommunicationServicesId property.
+            value: Value to set for the azure_communication_services_id property.
         """
         self._azure_communication_services_id = value
     
@@ -50,7 +50,7 @@ class AzureCommunicationServicesUserConversationMember(conversation_member.Conve
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "azure_communication_services_id": lambda n : setattr(self, 'azure_communication_services_id', n.get_str_value()),
+            "azureCommunicationServicesId": lambda n : setattr(self, 'azure_communication_services_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

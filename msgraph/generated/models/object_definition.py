@@ -81,7 +81,7 @@ class ObjectDefinition(AdditionalDataHolder, Parsable):
             "metadata": lambda n : setattr(self, 'metadata', n.get_collection_of_object_values(metadata_entry.MetadataEntry)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "supported_apis": lambda n : setattr(self, 'supported_apis', n.get_collection_of_primitive_values(str)),
+            "supportedApis": lambda n : setattr(self, 'supported_apis', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -132,7 +132,7 @@ class ObjectDefinition(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -164,7 +164,7 @@ class ObjectDefinition(AdditionalDataHolder, Parsable):
         """
         Sets the supportedApis property value. The supportedApis property
         Args:
-            value: Value to set for the supportedApis property.
+            value: Value to set for the supported_apis property.
         """
         self._supported_apis = value
     

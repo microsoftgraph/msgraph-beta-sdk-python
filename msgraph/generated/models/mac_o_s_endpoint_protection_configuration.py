@@ -23,7 +23,7 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the advancedThreatProtectionAutomaticSampleSubmission property value. Possible values of a property
         Args:
-            value: Value to set for the advancedThreatProtectionAutomaticSampleSubmission property.
+            value: Value to set for the advanced_threat_protection_automatic_sample_submission property.
         """
         self._advanced_threat_protection_automatic_sample_submission = value
     
@@ -40,7 +40,7 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the advancedThreatProtectionCloudDelivered property value. Possible values of a property
         Args:
-            value: Value to set for the advancedThreatProtectionCloudDelivered property.
+            value: Value to set for the advanced_threat_protection_cloud_delivered property.
         """
         self._advanced_threat_protection_cloud_delivered = value
     
@@ -57,7 +57,7 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the advancedThreatProtectionDiagnosticDataCollection property value. Possible values of a property
         Args:
-            value: Value to set for the advancedThreatProtectionDiagnosticDataCollection property.
+            value: Value to set for the advanced_threat_protection_diagnostic_data_collection property.
         """
         self._advanced_threat_protection_diagnostic_data_collection = value
     
@@ -74,7 +74,7 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the advancedThreatProtectionExcludedExtensions property value. A list of file extensions to exclude from antivirus scanning for Microsoft Defender Advanced Threat Protection on macOS.
         Args:
-            value: Value to set for the advancedThreatProtectionExcludedExtensions property.
+            value: Value to set for the advanced_threat_protection_excluded_extensions property.
         """
         self._advanced_threat_protection_excluded_extensions = value
     
@@ -91,7 +91,7 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the advancedThreatProtectionExcludedFiles property value. A list of paths to files to exclude from antivirus scanning for Microsoft Defender Advanced Threat Protection on macOS.
         Args:
-            value: Value to set for the advancedThreatProtectionExcludedFiles property.
+            value: Value to set for the advanced_threat_protection_excluded_files property.
         """
         self._advanced_threat_protection_excluded_files = value
     
@@ -108,7 +108,7 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the advancedThreatProtectionExcludedFolders property value. A list of paths to folders to exclude from antivirus scanning for Microsoft Defender Advanced Threat Protection on macOS.
         Args:
-            value: Value to set for the advancedThreatProtectionExcludedFolders property.
+            value: Value to set for the advanced_threat_protection_excluded_folders property.
         """
         self._advanced_threat_protection_excluded_folders = value
     
@@ -125,7 +125,7 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the advancedThreatProtectionExcludedProcesses property value. A list of process names to exclude from antivirus scanning for Microsoft Defender Advanced Threat Protection on macOS.
         Args:
-            value: Value to set for the advancedThreatProtectionExcludedProcesses property.
+            value: Value to set for the advanced_threat_protection_excluded_processes property.
         """
         self._advanced_threat_protection_excluded_processes = value
     
@@ -142,7 +142,7 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the advancedThreatProtectionRealTime property value. Possible values of a property
         Args:
-            value: Value to set for the advancedThreatProtectionRealTime property.
+            value: Value to set for the advanced_threat_protection_real_time property.
         """
         self._advanced_threat_protection_real_time = value
     
@@ -192,10 +192,10 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         self._firewall_applications: Optional[List[mac_o_s_firewall_application.MacOSFirewallApplication]] = None
         # Corresponds to the 'Block all incoming connections' option.
         self._firewall_block_all_incoming: Optional[bool] = None
-        # Whether the firewall should be enabled or not.
-        self._firewall_enabled: Optional[bool] = None
         # Corresponds to 'Enable stealth mode.'
         self._firewall_enable_stealth_mode: Optional[bool] = None
+        # Whether the firewall should be enabled or not.
+        self._firewall_enabled: Optional[bool] = None
         # App source options for macOS Gatekeeper.
         self._gatekeeper_allowed_app_source: Optional[mac_o_s_gatekeeper_app_sources.MacOSGatekeeperAppSources] = None
         # If set to true, the user override for Gatekeeper will be disabled.
@@ -226,7 +226,7 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the fileVaultAllowDeferralUntilSignOut property value. Optional. If set to true, the user can defer the enabling of FileVault until they sign out.
         Args:
-            value: Value to set for the fileVaultAllowDeferralUntilSignOut property.
+            value: Value to set for the file_vault_allow_deferral_until_sign_out property.
         """
         self._file_vault_allow_deferral_until_sign_out = value
     
@@ -243,7 +243,7 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the fileVaultDisablePromptAtSignOut property value. Optional. When using the Defer option, if set to true, the user is not prompted to enable FileVault at sign-out.
         Args:
-            value: Value to set for the fileVaultDisablePromptAtSignOut property.
+            value: Value to set for the file_vault_disable_prompt_at_sign_out property.
         """
         self._file_vault_disable_prompt_at_sign_out = value
     
@@ -260,7 +260,7 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the fileVaultEnabled property value. Whether FileVault should be enabled or not.
         Args:
-            value: Value to set for the fileVaultEnabled property.
+            value: Value to set for the file_vault_enabled property.
         """
         self._file_vault_enabled = value
     
@@ -277,7 +277,7 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the fileVaultHidePersonalRecoveryKey property value. Optional. A hidden personal recovery key does not appear on the user's screen during FileVault encryption, reducing the risk of it ending up in the wrong hands.
         Args:
-            value: Value to set for the fileVaultHidePersonalRecoveryKey property.
+            value: Value to set for the file_vault_hide_personal_recovery_key property.
         """
         self._file_vault_hide_personal_recovery_key = value
     
@@ -294,7 +294,7 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the fileVaultInstitutionalRecoveryKeyCertificate property value. Required if selected recovery key type(s) include InstitutionalRecoveryKey. The DER Encoded certificate file used to set an institutional recovery key.
         Args:
-            value: Value to set for the fileVaultInstitutionalRecoveryKeyCertificate property.
+            value: Value to set for the file_vault_institutional_recovery_key_certificate property.
         """
         self._file_vault_institutional_recovery_key_certificate = value
     
@@ -311,7 +311,7 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the fileVaultInstitutionalRecoveryKeyCertificateFileName property value. File name of the institutional recovery key certificate to display in UI. (.der).
         Args:
-            value: Value to set for the fileVaultInstitutionalRecoveryKeyCertificateFileName property.
+            value: Value to set for the file_vault_institutional_recovery_key_certificate_file_name property.
         """
         self._file_vault_institutional_recovery_key_certificate_file_name = value
     
@@ -328,7 +328,7 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the fileVaultNumberOfTimesUserCanIgnore property value. Optional. When using the Defer option, this is the maximum number of times the user can ignore prompts to enable FileVault before FileVault will be required for the user to sign in. If set to -1, it will always prompt to enable FileVault until FileVault is enabled, though it will allow the user to bypass enabling FileVault. Setting this to 0 will disable the feature.
         Args:
-            value: Value to set for the fileVaultNumberOfTimesUserCanIgnore property.
+            value: Value to set for the file_vault_number_of_times_user_can_ignore property.
         """
         self._file_vault_number_of_times_user_can_ignore = value
     
@@ -345,7 +345,7 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the fileVaultPersonalRecoveryKeyHelpMessage property value. Required if selected recovery key type(s) include PersonalRecoveryKey. A short message displayed to the user that explains how they can retrieve their personal recovery key.
         Args:
-            value: Value to set for the fileVaultPersonalRecoveryKeyHelpMessage property.
+            value: Value to set for the file_vault_personal_recovery_key_help_message property.
         """
         self._file_vault_personal_recovery_key_help_message = value
     
@@ -362,7 +362,7 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the fileVaultPersonalRecoveryKeyRotationInMonths property value. Optional. If selected recovery key type(s) include PersonalRecoveryKey, the frequency to rotate that key, in months.
         Args:
-            value: Value to set for the fileVaultPersonalRecoveryKeyRotationInMonths property.
+            value: Value to set for the file_vault_personal_recovery_key_rotation_in_months property.
         """
         self._file_vault_personal_recovery_key_rotation_in_months = value
     
@@ -379,7 +379,7 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the fileVaultSelectedRecoveryKeyTypes property value. Recovery key types for macOS FileVault
         Args:
-            value: Value to set for the fileVaultSelectedRecoveryKeyTypes property.
+            value: Value to set for the file_vault_selected_recovery_key_types property.
         """
         self._file_vault_selected_recovery_key_types = value
     
@@ -396,7 +396,7 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the firewallApplications property value. List of applications with firewall settings. Firewall settings for applications not on this list are determined by the user. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the firewallApplications property.
+            value: Value to set for the firewall_applications property.
         """
         self._firewall_applications = value
     
@@ -413,26 +413,9 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the firewallBlockAllIncoming property value. Corresponds to the 'Block all incoming connections' option.
         Args:
-            value: Value to set for the firewallBlockAllIncoming property.
+            value: Value to set for the firewall_block_all_incoming property.
         """
         self._firewall_block_all_incoming = value
-    
-    @property
-    def firewall_enabled(self,) -> Optional[bool]:
-        """
-        Gets the firewallEnabled property value. Whether the firewall should be enabled or not.
-        Returns: Optional[bool]
-        """
-        return self._firewall_enabled
-    
-    @firewall_enabled.setter
-    def firewall_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the firewallEnabled property value. Whether the firewall should be enabled or not.
-        Args:
-            value: Value to set for the firewallEnabled property.
-        """
-        self._firewall_enabled = value
     
     @property
     def firewall_enable_stealth_mode(self,) -> Optional[bool]:
@@ -447,9 +430,26 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the firewallEnableStealthMode property value. Corresponds to 'Enable stealth mode.'
         Args:
-            value: Value to set for the firewallEnableStealthMode property.
+            value: Value to set for the firewall_enable_stealth_mode property.
         """
         self._firewall_enable_stealth_mode = value
+    
+    @property
+    def firewall_enabled(self,) -> Optional[bool]:
+        """
+        Gets the firewallEnabled property value. Whether the firewall should be enabled or not.
+        Returns: Optional[bool]
+        """
+        return self._firewall_enabled
+    
+    @firewall_enabled.setter
+    def firewall_enabled(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the firewallEnabled property value. Whether the firewall should be enabled or not.
+        Args:
+            value: Value to set for the firewall_enabled property.
+        """
+        self._firewall_enabled = value
     
     @property
     def gatekeeper_allowed_app_source(self,) -> Optional[mac_o_s_gatekeeper_app_sources.MacOSGatekeeperAppSources]:
@@ -464,7 +464,7 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the gatekeeperAllowedAppSource property value. App source options for macOS Gatekeeper.
         Args:
-            value: Value to set for the gatekeeperAllowedAppSource property.
+            value: Value to set for the gatekeeper_allowed_app_source property.
         """
         self._gatekeeper_allowed_app_source = value
     
@@ -481,7 +481,7 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the gatekeeperBlockOverride property value. If set to true, the user override for Gatekeeper will be disabled.
         Args:
-            value: Value to set for the gatekeeperBlockOverride property.
+            value: Value to set for the gatekeeper_block_override property.
         """
         self._gatekeeper_block_override = value
     
@@ -491,30 +491,30 @@ class MacOSEndpointProtectionConfiguration(device_configuration.DeviceConfigurat
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "advanced_threat_protection_automatic_sample_submission": lambda n : setattr(self, 'advanced_threat_protection_automatic_sample_submission', n.get_enum_value(enablement.Enablement)),
-            "advanced_threat_protection_cloud_delivered": lambda n : setattr(self, 'advanced_threat_protection_cloud_delivered', n.get_enum_value(enablement.Enablement)),
-            "advanced_threat_protection_diagnostic_data_collection": lambda n : setattr(self, 'advanced_threat_protection_diagnostic_data_collection', n.get_enum_value(enablement.Enablement)),
-            "advanced_threat_protection_excluded_extensions": lambda n : setattr(self, 'advanced_threat_protection_excluded_extensions', n.get_collection_of_primitive_values(str)),
-            "advanced_threat_protection_excluded_files": lambda n : setattr(self, 'advanced_threat_protection_excluded_files', n.get_collection_of_primitive_values(str)),
-            "advanced_threat_protection_excluded_folders": lambda n : setattr(self, 'advanced_threat_protection_excluded_folders', n.get_collection_of_primitive_values(str)),
-            "advanced_threat_protection_excluded_processes": lambda n : setattr(self, 'advanced_threat_protection_excluded_processes', n.get_collection_of_primitive_values(str)),
-            "advanced_threat_protection_real_time": lambda n : setattr(self, 'advanced_threat_protection_real_time', n.get_enum_value(enablement.Enablement)),
-            "file_vault_allow_deferral_until_sign_out": lambda n : setattr(self, 'file_vault_allow_deferral_until_sign_out', n.get_bool_value()),
-            "file_vault_disable_prompt_at_sign_out": lambda n : setattr(self, 'file_vault_disable_prompt_at_sign_out', n.get_bool_value()),
-            "file_vault_enabled": lambda n : setattr(self, 'file_vault_enabled', n.get_bool_value()),
-            "file_vault_hide_personal_recovery_key": lambda n : setattr(self, 'file_vault_hide_personal_recovery_key', n.get_bool_value()),
-            "file_vault_institutional_recovery_key_certificate": lambda n : setattr(self, 'file_vault_institutional_recovery_key_certificate', n.get_bytes_value()),
-            "file_vault_institutional_recovery_key_certificate_file_name": lambda n : setattr(self, 'file_vault_institutional_recovery_key_certificate_file_name', n.get_str_value()),
-            "file_vault_number_of_times_user_can_ignore": lambda n : setattr(self, 'file_vault_number_of_times_user_can_ignore', n.get_int_value()),
-            "file_vault_personal_recovery_key_help_message": lambda n : setattr(self, 'file_vault_personal_recovery_key_help_message', n.get_str_value()),
-            "file_vault_personal_recovery_key_rotation_in_months": lambda n : setattr(self, 'file_vault_personal_recovery_key_rotation_in_months', n.get_int_value()),
-            "file_vault_selected_recovery_key_types": lambda n : setattr(self, 'file_vault_selected_recovery_key_types', n.get_enum_value(mac_o_s_file_vault_recovery_key_types.MacOSFileVaultRecoveryKeyTypes)),
-            "firewall_applications": lambda n : setattr(self, 'firewall_applications', n.get_collection_of_object_values(mac_o_s_firewall_application.MacOSFirewallApplication)),
-            "firewall_block_all_incoming": lambda n : setattr(self, 'firewall_block_all_incoming', n.get_bool_value()),
-            "firewall_enabled": lambda n : setattr(self, 'firewall_enabled', n.get_bool_value()),
-            "firewall_enable_stealth_mode": lambda n : setattr(self, 'firewall_enable_stealth_mode', n.get_bool_value()),
-            "gatekeeper_allowed_app_source": lambda n : setattr(self, 'gatekeeper_allowed_app_source', n.get_enum_value(mac_o_s_gatekeeper_app_sources.MacOSGatekeeperAppSources)),
-            "gatekeeper_block_override": lambda n : setattr(self, 'gatekeeper_block_override', n.get_bool_value()),
+            "advancedThreatProtectionAutomaticSampleSubmission": lambda n : setattr(self, 'advanced_threat_protection_automatic_sample_submission', n.get_enum_value(enablement.Enablement)),
+            "advancedThreatProtectionCloudDelivered": lambda n : setattr(self, 'advanced_threat_protection_cloud_delivered', n.get_enum_value(enablement.Enablement)),
+            "advancedThreatProtectionDiagnosticDataCollection": lambda n : setattr(self, 'advanced_threat_protection_diagnostic_data_collection', n.get_enum_value(enablement.Enablement)),
+            "advancedThreatProtectionExcludedExtensions": lambda n : setattr(self, 'advanced_threat_protection_excluded_extensions', n.get_collection_of_primitive_values(str)),
+            "advancedThreatProtectionExcludedFiles": lambda n : setattr(self, 'advanced_threat_protection_excluded_files', n.get_collection_of_primitive_values(str)),
+            "advancedThreatProtectionExcludedFolders": lambda n : setattr(self, 'advanced_threat_protection_excluded_folders', n.get_collection_of_primitive_values(str)),
+            "advancedThreatProtectionExcludedProcesses": lambda n : setattr(self, 'advanced_threat_protection_excluded_processes', n.get_collection_of_primitive_values(str)),
+            "advancedThreatProtectionRealTime": lambda n : setattr(self, 'advanced_threat_protection_real_time', n.get_enum_value(enablement.Enablement)),
+            "fileVaultAllowDeferralUntilSignOut": lambda n : setattr(self, 'file_vault_allow_deferral_until_sign_out', n.get_bool_value()),
+            "fileVaultDisablePromptAtSignOut": lambda n : setattr(self, 'file_vault_disable_prompt_at_sign_out', n.get_bool_value()),
+            "fileVaultEnabled": lambda n : setattr(self, 'file_vault_enabled', n.get_bool_value()),
+            "fileVaultHidePersonalRecoveryKey": lambda n : setattr(self, 'file_vault_hide_personal_recovery_key', n.get_bool_value()),
+            "fileVaultInstitutionalRecoveryKeyCertificate": lambda n : setattr(self, 'file_vault_institutional_recovery_key_certificate', n.get_bytes_value()),
+            "fileVaultInstitutionalRecoveryKeyCertificateFileName": lambda n : setattr(self, 'file_vault_institutional_recovery_key_certificate_file_name', n.get_str_value()),
+            "fileVaultNumberOfTimesUserCanIgnore": lambda n : setattr(self, 'file_vault_number_of_times_user_can_ignore', n.get_int_value()),
+            "fileVaultPersonalRecoveryKeyHelpMessage": lambda n : setattr(self, 'file_vault_personal_recovery_key_help_message', n.get_str_value()),
+            "fileVaultPersonalRecoveryKeyRotationInMonths": lambda n : setattr(self, 'file_vault_personal_recovery_key_rotation_in_months', n.get_int_value()),
+            "fileVaultSelectedRecoveryKeyTypes": lambda n : setattr(self, 'file_vault_selected_recovery_key_types', n.get_enum_value(mac_o_s_file_vault_recovery_key_types.MacOSFileVaultRecoveryKeyTypes)),
+            "firewallApplications": lambda n : setattr(self, 'firewall_applications', n.get_collection_of_object_values(mac_o_s_firewall_application.MacOSFirewallApplication)),
+            "firewallBlockAllIncoming": lambda n : setattr(self, 'firewall_block_all_incoming', n.get_bool_value()),
+            "firewallEnabled": lambda n : setattr(self, 'firewall_enabled', n.get_bool_value()),
+            "firewallEnableStealthMode": lambda n : setattr(self, 'firewall_enable_stealth_mode', n.get_bool_value()),
+            "gatekeeperAllowedAppSource": lambda n : setattr(self, 'gatekeeper_allowed_app_source', n.get_enum_value(mac_o_s_gatekeeper_app_sources.MacOSGatekeeperAppSources)),
+            "gatekeeperBlockOverride": lambda n : setattr(self, 'gatekeeper_block_override', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

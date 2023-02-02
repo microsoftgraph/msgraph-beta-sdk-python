@@ -11,8 +11,8 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.definitions.item.instances.item.stages.item.decisions.count.count_request_builder')
-filter_by_current_user_with_on_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.definitions.item.instances.item.stages.item.decisions.filter_by_current_user_with_on.filter_by_current_user_with_on_request_builder')
-record_all_decisions_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.definitions.item.instances.item.stages.item.decisions.record_all_decisions.record_all_decisions_request_builder')
+filter_by_current_user_with_on_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.definitions.item.instances.item.stages.item.decisions.microsoft_graph_filter_by_current_user_with_on.filter_by_current_user_with_on_request_builder')
+record_all_decisions_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.definitions.item.instances.item.stages.item.decisions.microsoft_graph_record_all_decisions.record_all_decisions_request_builder')
 access_review_instance_decision_item = lazy_import('msgraph.generated.models.access_review_instance_decision_item')
 access_review_instance_decision_item_collection_response = lazy_import('msgraph.generated.models.access_review_instance_decision_item_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -29,7 +29,7 @@ class DecisionsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def record_all_decisions(self) -> record_all_decisions_request_builder.RecordAllDecisionsRequestBuilder:
+    def microsoft_graph_record_all_decisions(self) -> record_all_decisions_request_builder.RecordAllDecisionsRequestBuilder:
         """
         Provides operations to call the recordAllDecisions method.
         """
@@ -53,23 +53,11 @@ class DecisionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
-        """
-        Provides operations to call the filterByCurrentUser method.
-        Args:
-            on: Usage: on='{on}'
-        Returns: filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder
-        """
-        if on is None:
-            raise Exception("on cannot be undefined")
-        return filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
-    
-    async def get(self,request_configuration: Optional[DecisionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_instance_decision_item_collection_response.AccessReviewInstanceDecisionItemCollectionResponse]:
+    async def get(self,request_configuration: Optional[DecisionsRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_instance_decision_item_collection_response.AccessReviewInstanceDecisionItemCollectionResponse]:
         """
         Get the decisions from a stage in a multi-stage access review. The decisions in an accessReviewStage object are represented by an accessReviewInstanceDecisionItem object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_instance_decision_item_collection_response.AccessReviewInstanceDecisionItemCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -81,15 +69,25 @@ class DecisionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_instance_decision_item_collection_response.AccessReviewInstanceDecisionItemCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_instance_decision_item_collection_response.AccessReviewInstanceDecisionItemCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[access_review_instance_decision_item.AccessReviewInstanceDecisionItem] = None, request_configuration: Optional[DecisionsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_instance_decision_item.AccessReviewInstanceDecisionItem]:
+    def microsoft_graph_filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
+        """
+        Provides operations to call the filterByCurrentUser method.
+        Args:
+            on: Usage: on='{on}'
+        Returns: filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder
+        """
+        if on is None:
+            raise Exception("on cannot be undefined")
+        return filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
+    
+    async def post(self,body: Optional[access_review_instance_decision_item.AccessReviewInstanceDecisionItem] = None, request_configuration: Optional[DecisionsRequestBuilderPostRequestConfiguration] = None) -> Optional[access_review_instance_decision_item.AccessReviewInstanceDecisionItem]:
         """
         Create new navigation property to decisions for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_instance_decision_item.AccessReviewInstanceDecisionItem]
         """
         if body is None:
@@ -103,7 +101,7 @@ class DecisionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_instance_decision_item.AccessReviewInstanceDecisionItem, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_instance_decision_item.AccessReviewInstanceDecisionItem, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DecisionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

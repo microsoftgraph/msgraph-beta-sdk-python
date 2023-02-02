@@ -17,10 +17,11 @@ class EnrollmentConfigurationAssignmentItemRequestBuilder():
     """
     Provides operations to manage the assignments property of the microsoft.graph.deviceEnrollmentConfiguration entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, enrollment_configuration_assignment_id: Optional[str] = None) -> None:
         """
         Instantiates a new EnrollmentConfigurationAssignmentItemRequestBuilder and sets the default values.
         Args:
+            enrollmentConfigurationAssignmentId: key: id of enrollmentConfigurationAssignment
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class EnrollmentConfigurationAssignmentItemRequestBuilder():
         self.url_template: str = "{+baseurl}/users/{user%2Did}/deviceEnrollmentConfigurations/{deviceEnrollmentConfiguration%2Did}/assignments/{enrollmentConfigurationAssignment%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["enrollmentConfigurationAssignment%2Did"] = enrollmentConfigurationAssignmentId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[EnrollmentConfigurationAssignmentItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[EnrollmentConfigurationAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property assignments for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class EnrollmentConfigurationAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[EnrollmentConfigurationAssignmentItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[enrollment_configuration_assignment.EnrollmentConfigurationAssignment]:
+    async def get(self,request_configuration: Optional[EnrollmentConfigurationAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[enrollment_configuration_assignment.EnrollmentConfigurationAssignment]:
         """
         The list of group assignments for the device configuration profile
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[enrollment_configuration_assignment.EnrollmentConfigurationAssignment]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class EnrollmentConfigurationAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, enrollment_configuration_assignment.EnrollmentConfigurationAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, enrollment_configuration_assignment.EnrollmentConfigurationAssignment, error_mapping)
     
-    async def patch(self,body: Optional[enrollment_configuration_assignment.EnrollmentConfigurationAssignment] = None, request_configuration: Optional[EnrollmentConfigurationAssignmentItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[enrollment_configuration_assignment.EnrollmentConfigurationAssignment]:
+    async def patch(self,body: Optional[enrollment_configuration_assignment.EnrollmentConfigurationAssignment] = None, request_configuration: Optional[EnrollmentConfigurationAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[enrollment_configuration_assignment.EnrollmentConfigurationAssignment]:
         """
         Update the navigation property assignments in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[enrollment_configuration_assignment.EnrollmentConfigurationAssignment]
         """
         if body is None:
@@ -92,7 +91,7 @@ class EnrollmentConfigurationAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, enrollment_configuration_assignment.EnrollmentConfigurationAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, enrollment_configuration_assignment.EnrollmentConfigurationAssignment, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[EnrollmentConfigurationAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -86,7 +86,7 @@ class ParseExpressionResponse(AdditionalDataHolder, Parsable):
         """
         Sets the evaluationResult property value. A collection of values produced by the evaluation of the expression.
         Args:
-            value: Value to set for the evaluationResult property.
+            value: Value to set for the evaluation_result property.
         """
         self._evaluation_result = value
     
@@ -103,7 +103,7 @@ class ParseExpressionResponse(AdditionalDataHolder, Parsable):
         """
         Sets the evaluationSucceeded property value. true if the evaluation was successful.
         Args:
-            value: Value to set for the evaluationSucceeded property.
+            value: Value to set for the evaluation_succeeded property.
         """
         self._evaluation_succeeded = value
     
@@ -114,11 +114,11 @@ class ParseExpressionResponse(AdditionalDataHolder, Parsable):
         """
         fields = {
             "error": lambda n : setattr(self, 'error', n.get_object_value(public_error.PublicError)),
-            "evaluation_result": lambda n : setattr(self, 'evaluation_result', n.get_collection_of_primitive_values(str)),
-            "evaluation_succeeded": lambda n : setattr(self, 'evaluation_succeeded', n.get_bool_value()),
+            "evaluationResult": lambda n : setattr(self, 'evaluation_result', n.get_collection_of_primitive_values(str)),
+            "evaluationSucceeded": lambda n : setattr(self, 'evaluation_succeeded', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "parsed_expression": lambda n : setattr(self, 'parsed_expression', n.get_object_value(attribute_mapping_source.AttributeMappingSource)),
-            "parsing_succeeded": lambda n : setattr(self, 'parsing_succeeded', n.get_bool_value()),
+            "parsedExpression": lambda n : setattr(self, 'parsed_expression', n.get_object_value(attribute_mapping_source.AttributeMappingSource)),
+            "parsingSucceeded": lambda n : setattr(self, 'parsing_succeeded', n.get_bool_value()),
         }
         return fields
     
@@ -135,7 +135,7 @@ class ParseExpressionResponse(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -152,7 +152,7 @@ class ParseExpressionResponse(AdditionalDataHolder, Parsable):
         """
         Sets the parsedExpression property value. An attributeMappingSource object representing the parsed expression.
         Args:
-            value: Value to set for the parsedExpression property.
+            value: Value to set for the parsed_expression property.
         """
         self._parsed_expression = value
     
@@ -169,7 +169,7 @@ class ParseExpressionResponse(AdditionalDataHolder, Parsable):
         """
         Sets the parsingSucceeded property value. true if the expression was parsed successfully.
         Args:
-            value: Value to set for the parsingSucceeded property.
+            value: Value to set for the parsing_succeeded property.
         """
         self._parsing_succeeded = value
     

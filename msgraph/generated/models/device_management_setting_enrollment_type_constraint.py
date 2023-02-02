@@ -40,7 +40,7 @@ class DeviceManagementSettingEnrollmentTypeConstraint(device_management_constrai
         """
         Sets the enrollmentTypes property value. List of enrollment types
         Args:
-            value: Value to set for the enrollmentTypes property.
+            value: Value to set for the enrollment_types property.
         """
         self._enrollment_types = value
     
@@ -50,7 +50,7 @@ class DeviceManagementSettingEnrollmentTypeConstraint(device_management_constrai
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "enrollment_types": lambda n : setattr(self, 'enrollment_types', n.get_collection_of_primitive_values(str)),
+            "enrollmentTypes": lambda n : setattr(self, 'enrollment_types', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

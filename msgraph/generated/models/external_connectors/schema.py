@@ -4,7 +4,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 entity = lazy_import('msgraph.generated.models.entity')
-property = lazy_import('msgraph.generated.models.external_connectors.property')
+property_ = lazy_import('msgraph.generated.models.external_connectors.property_')
 
 class Schema(entity.Entity):
     @property
@@ -20,7 +20,7 @@ class Schema(entity.Entity):
         """
         Sets the baseType property value. Must be set to microsoft.graph.externalItem. Required.
         Args:
-            value: Value to set for the baseType property.
+            value: Value to set for the base_type property.
         """
         self._base_type = value
     
@@ -34,7 +34,7 @@ class Schema(entity.Entity):
         # The OdataType property
         self.odata_type: Optional[str] = None
         # The properties defined for the items in the connection. The minimum number of properties is one, the maximum is 128.
-        self._properties: Optional[List[property.Property]] = None
+        self._properties: Optional[List[property_.Property_]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Schema:
@@ -54,23 +54,23 @@ class Schema(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "base_type": lambda n : setattr(self, 'base_type', n.get_str_value()),
-            "properties": lambda n : setattr(self, 'properties', n.get_collection_of_object_values(property.Property)),
+            "baseType": lambda n : setattr(self, 'base_type', n.get_str_value()),
+            "properties": lambda n : setattr(self, 'properties', n.get_collection_of_object_values(property_.Property_)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
     
     @property
-    def properties(self,) -> Optional[List[property.Property]]:
+    def properties(self,) -> Optional[List[property_.Property_]]:
         """
         Gets the properties property value. The properties defined for the items in the connection. The minimum number of properties is one, the maximum is 128.
-        Returns: Optional[List[property.Property]]
+        Returns: Optional[List[property_.Property_]]
         """
         return self._properties
     
     @properties.setter
-    def properties(self,value: Optional[List[property.Property]] = None) -> None:
+    def properties(self,value: Optional[List[property_.Property_]] = None) -> None:
         """
         Sets the properties property value. The properties defined for the items in the connection. The minimum number of properties is one, the maximum is 128.
         Args:

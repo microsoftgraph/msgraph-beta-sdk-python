@@ -46,7 +46,7 @@ class DeviceManagementSettingInstance(entity.Entity):
         """
         Sets the definitionId property value. The ID of the setting definition for this instance
         Args:
-            value: Value to set for the definitionId property.
+            value: Value to set for the definition_id property.
         """
         self._definition_id = value
     
@@ -56,8 +56,8 @@ class DeviceManagementSettingInstance(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "definition_id": lambda n : setattr(self, 'definition_id', n.get_str_value()),
-            "value_json": lambda n : setattr(self, 'value_json', n.get_str_value()),
+            "definitionId": lambda n : setattr(self, 'definition_id', n.get_str_value()),
+            "valueJson": lambda n : setattr(self, 'value_json', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -88,7 +88,7 @@ class DeviceManagementSettingInstance(entity.Entity):
         """
         Sets the valueJson property value. JSON representation of the value
         Args:
-            value: Value to set for the valueJson property.
+            value: Value to set for the value_json property.
         """
         self._value_json = value
     

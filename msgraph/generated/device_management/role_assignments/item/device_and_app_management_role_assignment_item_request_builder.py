@@ -26,10 +26,11 @@ class DeviceAndAppManagementRoleAssignmentItemRequestBuilder():
         """
         return role_scope_tags_request_builder.RoleScopeTagsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, device_and_app_management_role_assignment_id: Optional[str] = None) -> None:
         """
         Instantiates a new DeviceAndAppManagementRoleAssignmentItemRequestBuilder and sets the default values.
         Args:
+            deviceAndAppManagementRoleAssignmentId: key: id of deviceAndAppManagementRoleAssignment
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -41,15 +42,15 @@ class DeviceAndAppManagementRoleAssignmentItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceManagement/roleAssignments/{deviceAndAppManagementRoleAssignment%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["deviceAndAppManagementRoleAssignment%2Did"] = deviceAndAppManagementRoleAssignmentId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DeviceAndAppManagementRoleAssignmentItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceAndAppManagementRoleAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property roleAssignments for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,14 +61,13 @@ class DeviceAndAppManagementRoleAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceAndAppManagementRoleAssignmentItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment]:
+    async def get(self,request_configuration: Optional[DeviceAndAppManagementRoleAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment]:
         """
         The Role Assignments.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment]
         """
         request_info = self.to_get_request_information(
@@ -79,15 +79,14 @@ class DeviceAndAppManagementRoleAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment, error_mapping)
     
-    async def patch(self,body: Optional[device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment] = None, request_configuration: Optional[DeviceAndAppManagementRoleAssignmentItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment]:
+    async def patch(self,body: Optional[device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment] = None, request_configuration: Optional[DeviceAndAppManagementRoleAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment]:
         """
         Update the navigation property roleAssignments in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment]
         """
         if body is None:
@@ -101,7 +100,7 @@ class DeviceAndAppManagementRoleAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_and_app_management_role_assignment.DeviceAndAppManagementRoleAssignment, error_mapping)
     
     def role_scope_tags_by_id(self,id: str) -> role_scope_tag_item_request_builder.RoleScopeTagItemRequestBuilder:
         """

@@ -1,7 +1,7 @@
 from enum import Enum
 
 class DirectoryDefinitionDiscoverabilities(Enum):
-    None_escaped = "None",
+    None_ = "None",
     AttributeNames = "AttributeNames",
     AttributeDataTypes = "AttributeDataTypes",
     AttributeReadOnly = "AttributeReadOnly",

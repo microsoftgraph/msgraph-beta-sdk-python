@@ -27,7 +27,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the accountName property value. Account name.
         Args:
-            value: Value to set for the accountName property.
+            value: Value to set for the account_name property.
         """
         self._account_name = value
     
@@ -44,7 +44,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the authenticationMethod property value. Authentication method for this Email profile. Possible values are: usernameAndPassword, certificate, derivedCredential.
         Args:
-            value: Value to set for the authenticationMethod property.
+            value: Value to set for the authentication_method property.
         """
         self._authentication_method = value
     
@@ -61,7 +61,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the blockMovingMessagesToOtherEmailAccounts property value. Indicates whether or not to block moving messages to other email accounts.
         Args:
-            value: Value to set for the blockMovingMessagesToOtherEmailAccounts property.
+            value: Value to set for the block_moving_messages_to_other_email_accounts property.
         """
         self._block_moving_messages_to_other_email_accounts = value
     
@@ -78,7 +78,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the blockSendingEmailFromThirdPartyApps property value. Indicates whether or not to block sending email from third party apps.
         Args:
-            value: Value to set for the blockSendingEmailFromThirdPartyApps property.
+            value: Value to set for the block_sending_email_from_third_party_apps property.
         """
         self._block_sending_email_from_third_party_apps = value
     
@@ -95,7 +95,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the blockSyncingRecentlyUsedEmailAddresses property value. Indicates whether or not to block syncing recently used email addresses, for instance - when composing new email.
         Args:
-            value: Value to set for the blockSyncingRecentlyUsedEmailAddresses property.
+            value: Value to set for the block_syncing_recently_used_email_addresses property.
         """
         self._block_syncing_recently_used_email_addresses = value
     
@@ -185,7 +185,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the derivedCredentialSettings property value. Tenant level settings for the Derived Credentials to be used for authentication.
         Args:
-            value: Value to set for the derivedCredentialSettings property.
+            value: Value to set for the derived_credential_settings property.
         """
         self._derived_credential_settings = value
     
@@ -202,7 +202,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the durationOfEmailToSync property value. Possible values for email sync duration.
         Args:
-            value: Value to set for the durationOfEmailToSync property.
+            value: Value to set for the duration_of_email_to_sync property.
         """
         self._duration_of_email_to_sync = value
     
@@ -219,7 +219,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the easServices property value. Exchange data to sync. Possible values are: none, calendars, contacts, email, notes, reminders.
         Args:
-            value: Value to set for the easServices property.
+            value: Value to set for the eas_services property.
         """
         self._eas_services = value
     
@@ -236,7 +236,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the easServicesUserOverrideEnabled property value. Allow users to change sync settings.
         Args:
-            value: Value to set for the easServicesUserOverrideEnabled property.
+            value: Value to set for the eas_services_user_override_enabled property.
         """
         self._eas_services_user_override_enabled = value
     
@@ -253,7 +253,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the emailAddressSource property value. Possible values for username source or email source.
         Args:
-            value: Value to set for the emailAddressSource property.
+            value: Value to set for the email_address_source property.
         """
         self._email_address_source = value
     
@@ -270,7 +270,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the encryptionCertificateType property value. Encryption Certificate type for this Email profile. Possible values are: none, certificate, derivedCredential.
         Args:
-            value: Value to set for the encryptionCertificateType property.
+            value: Value to set for the encryption_certificate_type property.
         """
         self._encryption_certificate_type = value
     
@@ -280,33 +280,33 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "account_name": lambda n : setattr(self, 'account_name', n.get_str_value()),
-            "authentication_method": lambda n : setattr(self, 'authentication_method', n.get_enum_value(eas_authentication_method.EasAuthenticationMethod)),
-            "block_moving_messages_to_other_email_accounts": lambda n : setattr(self, 'block_moving_messages_to_other_email_accounts', n.get_bool_value()),
-            "block_sending_email_from_third_party_apps": lambda n : setattr(self, 'block_sending_email_from_third_party_apps', n.get_bool_value()),
-            "block_syncing_recently_used_email_addresses": lambda n : setattr(self, 'block_syncing_recently_used_email_addresses', n.get_bool_value()),
-            "derived_credential_settings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings)),
-            "duration_of_email_to_sync": lambda n : setattr(self, 'duration_of_email_to_sync', n.get_enum_value(email_sync_duration.EmailSyncDuration)),
-            "eas_services": lambda n : setattr(self, 'eas_services', n.get_enum_value(eas_services.EasServices)),
-            "eas_services_user_override_enabled": lambda n : setattr(self, 'eas_services_user_override_enabled', n.get_bool_value()),
-            "email_address_source": lambda n : setattr(self, 'email_address_source', n.get_enum_value(user_email_source.UserEmailSource)),
-            "encryption_certificate_type": lambda n : setattr(self, 'encryption_certificate_type', n.get_enum_value(email_certificate_type.EmailCertificateType)),
-            "host_name": lambda n : setattr(self, 'host_name', n.get_str_value()),
-            "identity_certificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(ios_certificate_profile_base.IosCertificateProfileBase)),
-            "per_app_v_p_n_profile_id": lambda n : setattr(self, 'per_app_v_p_n_profile_id', n.get_str_value()),
-            "require_smime": lambda n : setattr(self, 'require_smime', n.get_bool_value()),
-            "require_ssl": lambda n : setattr(self, 'require_ssl', n.get_bool_value()),
-            "signing_certificate_type": lambda n : setattr(self, 'signing_certificate_type', n.get_enum_value(email_certificate_type.EmailCertificateType)),
-            "smime_enable_per_message_switch": lambda n : setattr(self, 'smime_enable_per_message_switch', n.get_bool_value()),
-            "smime_encrypt_by_default_enabled": lambda n : setattr(self, 'smime_encrypt_by_default_enabled', n.get_bool_value()),
-            "smime_encrypt_by_default_user_override_enabled": lambda n : setattr(self, 'smime_encrypt_by_default_user_override_enabled', n.get_bool_value()),
-            "smime_encryption_certificate": lambda n : setattr(self, 'smime_encryption_certificate', n.get_object_value(ios_certificate_profile.IosCertificateProfile)),
-            "smime_encryption_certificate_user_override_enabled": lambda n : setattr(self, 'smime_encryption_certificate_user_override_enabled', n.get_bool_value()),
-            "smime_signing_certificate": lambda n : setattr(self, 'smime_signing_certificate', n.get_object_value(ios_certificate_profile.IosCertificateProfile)),
-            "smime_signing_certificate_user_override_enabled": lambda n : setattr(self, 'smime_signing_certificate_user_override_enabled', n.get_bool_value()),
-            "smime_signing_enabled": lambda n : setattr(self, 'smime_signing_enabled', n.get_bool_value()),
-            "smime_signing_user_override_enabled": lambda n : setattr(self, 'smime_signing_user_override_enabled', n.get_bool_value()),
-            "use_o_auth": lambda n : setattr(self, 'use_o_auth', n.get_bool_value()),
+            "accountName": lambda n : setattr(self, 'account_name', n.get_str_value()),
+            "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(eas_authentication_method.EasAuthenticationMethod)),
+            "blockMovingMessagesToOtherEmailAccounts": lambda n : setattr(self, 'block_moving_messages_to_other_email_accounts', n.get_bool_value()),
+            "blockSendingEmailFromThirdPartyApps": lambda n : setattr(self, 'block_sending_email_from_third_party_apps', n.get_bool_value()),
+            "blockSyncingRecentlyUsedEmailAddresses": lambda n : setattr(self, 'block_syncing_recently_used_email_addresses', n.get_bool_value()),
+            "derivedCredentialSettings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings)),
+            "durationOfEmailToSync": lambda n : setattr(self, 'duration_of_email_to_sync', n.get_enum_value(email_sync_duration.EmailSyncDuration)),
+            "easServices": lambda n : setattr(self, 'eas_services', n.get_enum_value(eas_services.EasServices)),
+            "easServicesUserOverrideEnabled": lambda n : setattr(self, 'eas_services_user_override_enabled', n.get_bool_value()),
+            "emailAddressSource": lambda n : setattr(self, 'email_address_source', n.get_enum_value(user_email_source.UserEmailSource)),
+            "encryptionCertificateType": lambda n : setattr(self, 'encryption_certificate_type', n.get_enum_value(email_certificate_type.EmailCertificateType)),
+            "hostName": lambda n : setattr(self, 'host_name', n.get_str_value()),
+            "identityCertificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(ios_certificate_profile_base.IosCertificateProfileBase)),
+            "perAppVPNProfileId": lambda n : setattr(self, 'per_app_v_p_n_profile_id', n.get_str_value()),
+            "requireSmime": lambda n : setattr(self, 'require_smime', n.get_bool_value()),
+            "requireSsl": lambda n : setattr(self, 'require_ssl', n.get_bool_value()),
+            "signingCertificateType": lambda n : setattr(self, 'signing_certificate_type', n.get_enum_value(email_certificate_type.EmailCertificateType)),
+            "smimeEnablePerMessageSwitch": lambda n : setattr(self, 'smime_enable_per_message_switch', n.get_bool_value()),
+            "smimeEncryptionCertificate": lambda n : setattr(self, 'smime_encryption_certificate', n.get_object_value(ios_certificate_profile.IosCertificateProfile)),
+            "smimeEncryptionCertificateUserOverrideEnabled": lambda n : setattr(self, 'smime_encryption_certificate_user_override_enabled', n.get_bool_value()),
+            "smimeEncryptByDefaultEnabled": lambda n : setattr(self, 'smime_encrypt_by_default_enabled', n.get_bool_value()),
+            "smimeEncryptByDefaultUserOverrideEnabled": lambda n : setattr(self, 'smime_encrypt_by_default_user_override_enabled', n.get_bool_value()),
+            "smimeSigningCertificate": lambda n : setattr(self, 'smime_signing_certificate', n.get_object_value(ios_certificate_profile.IosCertificateProfile)),
+            "smimeSigningCertificateUserOverrideEnabled": lambda n : setattr(self, 'smime_signing_certificate_user_override_enabled', n.get_bool_value()),
+            "smimeSigningEnabled": lambda n : setattr(self, 'smime_signing_enabled', n.get_bool_value()),
+            "smimeSigningUserOverrideEnabled": lambda n : setattr(self, 'smime_signing_user_override_enabled', n.get_bool_value()),
+            "useOAuth": lambda n : setattr(self, 'use_o_auth', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -325,7 +325,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the hostName property value. Exchange location that (URL) that the native mail app connects to.
         Args:
-            value: Value to set for the hostName property.
+            value: Value to set for the host_name property.
         """
         self._host_name = value
     
@@ -342,7 +342,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the identityCertificate property value. Identity certificate.
         Args:
-            value: Value to set for the identityCertificate property.
+            value: Value to set for the identity_certificate property.
         """
         self._identity_certificate = value
     
@@ -359,7 +359,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the perAppVPNProfileId property value. Profile ID of the Per-App VPN policy to be used to access emails from the native Mail client
         Args:
-            value: Value to set for the perAppVPNProfileId property.
+            value: Value to set for the per_app_v_p_n_profile_id property.
         """
         self._per_app_v_p_n_profile_id = value
     
@@ -376,7 +376,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the requireSmime property value. Indicates whether or not to use S/MIME certificate.
         Args:
-            value: Value to set for the requireSmime property.
+            value: Value to set for the require_smime property.
         """
         self._require_smime = value
     
@@ -393,7 +393,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the requireSsl property value. Indicates whether or not to use SSL.
         Args:
-            value: Value to set for the requireSsl property.
+            value: Value to set for the require_ssl property.
         """
         self._require_ssl = value
     
@@ -424,10 +424,10 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         writer.write_bool_value("requireSsl", self.require_ssl)
         writer.write_enum_value("signingCertificateType", self.signing_certificate_type)
         writer.write_bool_value("smimeEnablePerMessageSwitch", self.smime_enable_per_message_switch)
-        writer.write_bool_value("smimeEncryptByDefaultEnabled", self.smime_encrypt_by_default_enabled)
-        writer.write_bool_value("smimeEncryptByDefaultUserOverrideEnabled", self.smime_encrypt_by_default_user_override_enabled)
         writer.write_object_value("smimeEncryptionCertificate", self.smime_encryption_certificate)
         writer.write_bool_value("smimeEncryptionCertificateUserOverrideEnabled", self.smime_encryption_certificate_user_override_enabled)
+        writer.write_bool_value("smimeEncryptByDefaultEnabled", self.smime_encrypt_by_default_enabled)
+        writer.write_bool_value("smimeEncryptByDefaultUserOverrideEnabled", self.smime_encrypt_by_default_user_override_enabled)
         writer.write_object_value("smimeSigningCertificate", self.smime_signing_certificate)
         writer.write_bool_value("smimeSigningCertificateUserOverrideEnabled", self.smime_signing_certificate_user_override_enabled)
         writer.write_bool_value("smimeSigningEnabled", self.smime_signing_enabled)
@@ -447,7 +447,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the signingCertificateType property value. Signing Certificate type for this Email profile. Possible values are: none, certificate, derivedCredential.
         Args:
-            value: Value to set for the signingCertificateType property.
+            value: Value to set for the signing_certificate_type property.
         """
         self._signing_certificate_type = value
     
@@ -464,7 +464,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the smimeEnablePerMessageSwitch property value. Indicates whether or not to allow unencrypted emails.
         Args:
-            value: Value to set for the smimeEnablePerMessageSwitch property.
+            value: Value to set for the smime_enable_per_message_switch property.
         """
         self._smime_enable_per_message_switch = value
     
@@ -481,7 +481,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the smimeEncryptByDefaultEnabled property value. If set to true S/MIME encryption is enabled by default.
         Args:
-            value: Value to set for the smimeEncryptByDefaultEnabled property.
+            value: Value to set for the smime_encrypt_by_default_enabled property.
         """
         self._smime_encrypt_by_default_enabled = value
     
@@ -498,7 +498,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the smimeEncryptByDefaultUserOverrideEnabled property value. If set to true, the user can toggle the encryption by default setting.
         Args:
-            value: Value to set for the smimeEncryptByDefaultUserOverrideEnabled property.
+            value: Value to set for the smime_encrypt_by_default_user_override_enabled property.
         """
         self._smime_encrypt_by_default_user_override_enabled = value
     
@@ -515,7 +515,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the smimeEncryptionCertificate property value. S/MIME encryption certificate.
         Args:
-            value: Value to set for the smimeEncryptionCertificate property.
+            value: Value to set for the smime_encryption_certificate property.
         """
         self._smime_encryption_certificate = value
     
@@ -532,7 +532,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the smimeEncryptionCertificateUserOverrideEnabled property value. If set to true the user can select the S/MIME encryption identity.
         Args:
-            value: Value to set for the smimeEncryptionCertificateUserOverrideEnabled property.
+            value: Value to set for the smime_encryption_certificate_user_override_enabled property.
         """
         self._smime_encryption_certificate_user_override_enabled = value
     
@@ -549,7 +549,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the smimeSigningCertificate property value. S/MIME signing certificate.
         Args:
-            value: Value to set for the smimeSigningCertificate property.
+            value: Value to set for the smime_signing_certificate property.
         """
         self._smime_signing_certificate = value
     
@@ -566,7 +566,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the smimeSigningCertificateUserOverrideEnabled property value. If set to true, the user can select the signing identity.
         Args:
-            value: Value to set for the smimeSigningCertificateUserOverrideEnabled property.
+            value: Value to set for the smime_signing_certificate_user_override_enabled property.
         """
         self._smime_signing_certificate_user_override_enabled = value
     
@@ -583,7 +583,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the smimeSigningEnabled property value. If set to true S/MIME signing is enabled for this account
         Args:
-            value: Value to set for the smimeSigningEnabled property.
+            value: Value to set for the smime_signing_enabled property.
         """
         self._smime_signing_enabled = value
     
@@ -600,7 +600,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the smimeSigningUserOverrideEnabled property value. If set to true, the user can toggle S/MIME signing on or off.
         Args:
-            value: Value to set for the smimeSigningUserOverrideEnabled property.
+            value: Value to set for the smime_signing_user_override_enabled property.
         """
         self._smime_signing_user_override_enabled = value
     
@@ -617,7 +617,7 @@ class IosEasEmailProfileConfiguration(eas_email_profile_configuration_base.EasEm
         """
         Sets the useOAuth property value. Specifies whether the connection should use OAuth for authentication.
         Args:
-            value: Value to set for the useOAuth property.
+            value: Value to set for the use_o_auth property.
         """
         self._use_o_auth = value
     

@@ -17,10 +17,11 @@ class CatalogEntryItemRequestBuilder():
     """
     Provides operations to manage the entries property of the microsoft.graph.windowsUpdates.catalog entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, catalog_entry_id: Optional[str] = None) -> None:
         """
         Instantiates a new CatalogEntryItemRequestBuilder and sets the default values.
         Args:
+            catalogEntryId: key: id of catalogEntry
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class CatalogEntryItemRequestBuilder():
         self.url_template: str = "{+baseurl}/admin/windows/updates/catalog/entries/{catalogEntry%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["catalogEntry%2Did"] = catalogEntryId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CatalogEntryItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CatalogEntryItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property entries for admin
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class CatalogEntryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CatalogEntryItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[catalog_entry.CatalogEntry]:
+    async def get(self,request_configuration: Optional[CatalogEntryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[catalog_entry.CatalogEntry]:
         """
         Lists the content that you can approve for deployment. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[catalog_entry.CatalogEntry]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class CatalogEntryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, catalog_entry.CatalogEntry, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, catalog_entry.CatalogEntry, error_mapping)
     
-    async def patch(self,body: Optional[catalog_entry.CatalogEntry] = None, request_configuration: Optional[CatalogEntryItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[catalog_entry.CatalogEntry]:
+    async def patch(self,body: Optional[catalog_entry.CatalogEntry] = None, request_configuration: Optional[CatalogEntryItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[catalog_entry.CatalogEntry]:
         """
         Update the navigation property entries in admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[catalog_entry.CatalogEntry]
         """
         if body is None:
@@ -92,7 +91,7 @@ class CatalogEntryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, catalog_entry.CatalogEntry, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, catalog_entry.CatalogEntry, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CatalogEntryItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

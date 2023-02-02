@@ -57,8 +57,8 @@ class DeviceAndAppManagementAssignedRoleDetails(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "role_assignment_ids": lambda n : setattr(self, 'role_assignment_ids', n.get_collection_of_primitive_values(str)),
-            "role_definition_ids": lambda n : setattr(self, 'role_definition_ids', n.get_collection_of_primitive_values(str)),
+            "roleAssignmentIds": lambda n : setattr(self, 'role_assignment_ids', n.get_collection_of_primitive_values(str)),
+            "roleDefinitionIds": lambda n : setattr(self, 'role_definition_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -75,7 +75,7 @@ class DeviceAndAppManagementAssignedRoleDetails(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -92,7 +92,7 @@ class DeviceAndAppManagementAssignedRoleDetails(AdditionalDataHolder, Parsable):
         """
         Sets the roleAssignmentIds property value. Role Assignment IDs for the specifc Role Assignments assigned to a user. This property is read-only.
         Args:
-            value: Value to set for the roleAssignmentIds property.
+            value: Value to set for the role_assignment_ids property.
         """
         self._role_assignment_ids = value
     
@@ -109,7 +109,7 @@ class DeviceAndAppManagementAssignedRoleDetails(AdditionalDataHolder, Parsable):
         """
         Sets the roleDefinitionIds property value. Role Definition IDs for the specifc Role Definitions assigned to a user. This property is read-only.
         Args:
-            value: Value to set for the roleDefinitionIds property.
+            value: Value to set for the role_definition_ids property.
         """
         self._role_definition_ids = value
     

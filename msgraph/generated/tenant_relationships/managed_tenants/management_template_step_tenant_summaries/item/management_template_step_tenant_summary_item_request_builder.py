@@ -17,10 +17,11 @@ class ManagementTemplateStepTenantSummaryItemRequestBuilder():
     """
     Provides operations to manage the managementTemplateStepTenantSummaries property of the microsoft.graph.managedTenants.managedTenant entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, management_template_step_tenant_summary_id: Optional[str] = None) -> None:
         """
         Instantiates a new ManagementTemplateStepTenantSummaryItemRequestBuilder and sets the default values.
         Args:
+            managementTemplateStepTenantSummaryId: key: id of managementTemplateStepTenantSummary
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class ManagementTemplateStepTenantSummaryItemRequestBuilder():
         self.url_template: str = "{+baseurl}/tenantRelationships/managedTenants/managementTemplateStepTenantSummaries/{managementTemplateStepTenantSummary%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["managementTemplateStepTenantSummary%2Did"] = managementTemplateStepTenantSummaryId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ManagementTemplateStepTenantSummaryItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ManagementTemplateStepTenantSummaryItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property managementTemplateStepTenantSummaries for tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class ManagementTemplateStepTenantSummaryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ManagementTemplateStepTenantSummaryItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[management_template_step_tenant_summary.ManagementTemplateStepTenantSummary]:
+    async def get(self,request_configuration: Optional[ManagementTemplateStepTenantSummaryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[management_template_step_tenant_summary.ManagementTemplateStepTenantSummary]:
         """
         Get managementTemplateStepTenantSummaries from tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_template_step_tenant_summary.ManagementTemplateStepTenantSummary]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class ManagementTemplateStepTenantSummaryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, management_template_step_tenant_summary.ManagementTemplateStepTenantSummary, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, management_template_step_tenant_summary.ManagementTemplateStepTenantSummary, error_mapping)
     
-    async def patch(self,body: Optional[management_template_step_tenant_summary.ManagementTemplateStepTenantSummary] = None, request_configuration: Optional[ManagementTemplateStepTenantSummaryItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[management_template_step_tenant_summary.ManagementTemplateStepTenantSummary]:
+    async def patch(self,body: Optional[management_template_step_tenant_summary.ManagementTemplateStepTenantSummary] = None, request_configuration: Optional[ManagementTemplateStepTenantSummaryItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[management_template_step_tenant_summary.ManagementTemplateStepTenantSummary]:
         """
         Update the navigation property managementTemplateStepTenantSummaries in tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_template_step_tenant_summary.ManagementTemplateStepTenantSummary]
         """
         if body is None:
@@ -92,7 +91,7 @@ class ManagementTemplateStepTenantSummaryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, management_template_step_tenant_summary.ManagementTemplateStepTenantSummary, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, management_template_step_tenant_summary.ManagementTemplateStepTenantSummary, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ManagementTemplateStepTenantSummaryItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

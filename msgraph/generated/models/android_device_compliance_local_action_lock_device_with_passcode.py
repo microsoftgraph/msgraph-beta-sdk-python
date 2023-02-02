@@ -36,7 +36,7 @@ class AndroidDeviceComplianceLocalActionLockDeviceWithPasscode(android_device_co
         """
         fields = {
             "passcode": lambda n : setattr(self, 'passcode', n.get_str_value()),
-            "passcode_sign_in_failure_count_before_wipe": lambda n : setattr(self, 'passcode_sign_in_failure_count_before_wipe', n.get_int_value()),
+            "passcodeSignInFailureCountBeforeWipe": lambda n : setattr(self, 'passcode_sign_in_failure_count_before_wipe', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -72,7 +72,7 @@ class AndroidDeviceComplianceLocalActionLockDeviceWithPasscode(android_device_co
         """
         Sets the passcodeSignInFailureCountBeforeWipe property value. Number of sign in failures before wiping device, the value can be 4-11. Valid values 4 to 11
         Args:
-            value: Value to set for the passcodeSignInFailureCountBeforeWipe property.
+            value: Value to set for the passcode_sign_in_failure_count_before_wipe property.
         """
         self._passcode_sign_in_failure_count_before_wipe = value
     

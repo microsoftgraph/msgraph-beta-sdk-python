@@ -17,10 +17,11 @@ class AuthenticationMethodConfigurationItemRequestBuilder():
     """
     Provides operations to manage the authenticationMethodConfigurations property of the microsoft.graph.authenticationMethodsPolicy entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, authentication_method_configuration_id: Optional[str] = None) -> None:
         """
         Instantiates a new AuthenticationMethodConfigurationItemRequestBuilder and sets the default values.
         Args:
+            authenticationMethodConfigurationId: key: id of authenticationMethodConfiguration
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class AuthenticationMethodConfigurationItemRequestBuilder():
         self.url_template: str = "{+baseurl}/policies/authenticationMethodsPolicy/authenticationMethodConfigurations/{authenticationMethodConfiguration%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["authenticationMethodConfiguration%2Did"] = authenticationMethodConfigurationId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AuthenticationMethodConfigurationItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AuthenticationMethodConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property authenticationMethodConfigurations for policies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class AuthenticationMethodConfigurationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AuthenticationMethodConfigurationItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_method_configuration.AuthenticationMethodConfiguration]:
+    async def get(self,request_configuration: Optional[AuthenticationMethodConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication_method_configuration.AuthenticationMethodConfiguration]:
         """
         Represents the settings for each authentication method. Automatically expanded on GET /policies/authenticationMethodsPolicy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_method_configuration.AuthenticationMethodConfiguration]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class AuthenticationMethodConfigurationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_method_configuration.AuthenticationMethodConfiguration, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_method_configuration.AuthenticationMethodConfiguration, error_mapping)
     
-    async def patch(self,body: Optional[authentication_method_configuration.AuthenticationMethodConfiguration] = None, request_configuration: Optional[AuthenticationMethodConfigurationItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_method_configuration.AuthenticationMethodConfiguration]:
+    async def patch(self,body: Optional[authentication_method_configuration.AuthenticationMethodConfiguration] = None, request_configuration: Optional[AuthenticationMethodConfigurationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[authentication_method_configuration.AuthenticationMethodConfiguration]:
         """
         Update the navigation property authenticationMethodConfigurations in policies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_method_configuration.AuthenticationMethodConfiguration]
         """
         if body is None:
@@ -92,7 +91,7 @@ class AuthenticationMethodConfigurationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_method_configuration.AuthenticationMethodConfiguration, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_method_configuration.AuthenticationMethodConfiguration, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AuthenticationMethodConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

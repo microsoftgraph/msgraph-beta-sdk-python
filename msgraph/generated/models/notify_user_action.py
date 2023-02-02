@@ -5,7 +5,6 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 dlp_action_info = lazy_import('msgraph.generated.models.dlp_action_info')
-override_option = lazy_import('msgraph.generated.models.override_option')
 
 class NotifyUserAction(dlp_action_info.DlpActionInfo):
     @property
@@ -21,7 +20,7 @@ class NotifyUserAction(dlp_action_info.DlpActionInfo):
         """
         Sets the actionLastModifiedDateTime property value. The actionLastModifiedDateTime property
         Args:
-            value: Value to set for the actionLastModifiedDateTime property.
+            value: Value to set for the action_last_modified_date_time property.
         """
         self._action_last_modified_date_time = value
     
@@ -36,8 +35,6 @@ class NotifyUserAction(dlp_action_info.DlpActionInfo):
         self._email_text: Optional[str] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The overrideOption property
-        self._override_option: Optional[override_option.OverrideOption] = None
         # The policyTip property
         self._policy_tip: Optional[str] = None
         # The recipients property
@@ -68,7 +65,7 @@ class NotifyUserAction(dlp_action_info.DlpActionInfo):
         """
         Sets the emailText property value. The emailText property
         Args:
-            value: Value to set for the emailText property.
+            value: Value to set for the email_text property.
         """
         self._email_text = value
     
@@ -78,32 +75,14 @@ class NotifyUserAction(dlp_action_info.DlpActionInfo):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "action_last_modified_date_time": lambda n : setattr(self, 'action_last_modified_date_time', n.get_datetime_value()),
-            "email_text": lambda n : setattr(self, 'email_text', n.get_str_value()),
-            "override_option": lambda n : setattr(self, 'override_option', n.get_enum_value(override_option.OverrideOption)),
-            "policy_tip": lambda n : setattr(self, 'policy_tip', n.get_str_value()),
+            "actionLastModifiedDateTime": lambda n : setattr(self, 'action_last_modified_date_time', n.get_datetime_value()),
+            "emailText": lambda n : setattr(self, 'email_text', n.get_str_value()),
+            "policyTip": lambda n : setattr(self, 'policy_tip', n.get_str_value()),
             "recipients": lambda n : setattr(self, 'recipients', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def override_option(self,) -> Optional[override_option.OverrideOption]:
-        """
-        Gets the overrideOption property value. The overrideOption property
-        Returns: Optional[override_option.OverrideOption]
-        """
-        return self._override_option
-    
-    @override_option.setter
-    def override_option(self,value: Optional[override_option.OverrideOption] = None) -> None:
-        """
-        Sets the overrideOption property value. The overrideOption property
-        Args:
-            value: Value to set for the overrideOption property.
-        """
-        self._override_option = value
     
     @property
     def policy_tip(self,) -> Optional[str]:
@@ -118,7 +97,7 @@ class NotifyUserAction(dlp_action_info.DlpActionInfo):
         """
         Sets the policyTip property value. The policyTip property
         Args:
-            value: Value to set for the policyTip property.
+            value: Value to set for the policy_tip property.
         """
         self._policy_tip = value
     
@@ -150,7 +129,6 @@ class NotifyUserAction(dlp_action_info.DlpActionInfo):
         super().serialize(writer)
         writer.write_datetime_value("actionLastModifiedDateTime", self.action_last_modified_date_time)
         writer.write_str_value("emailText", self.email_text)
-        writer.write_enum_value("overrideOption", self.override_option)
         writer.write_str_value("policyTip", self.policy_tip)
         writer.write_collection_of_primitive_values("recipients", self.recipients)
     

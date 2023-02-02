@@ -48,13 +48,13 @@ class MacOSExtensionsConfiguration(device_configuration.DeviceConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "kernel_extension_allowed_team_identifiers": lambda n : setattr(self, 'kernel_extension_allowed_team_identifiers', n.get_collection_of_primitive_values(str)),
-            "kernel_extension_overrides_allowed": lambda n : setattr(self, 'kernel_extension_overrides_allowed', n.get_bool_value()),
-            "kernel_extensions_allowed": lambda n : setattr(self, 'kernel_extensions_allowed', n.get_collection_of_object_values(mac_o_s_kernel_extension.MacOSKernelExtension)),
-            "system_extensions_allowed": lambda n : setattr(self, 'system_extensions_allowed', n.get_collection_of_object_values(mac_o_s_system_extension.MacOSSystemExtension)),
-            "system_extensions_allowed_team_identifiers": lambda n : setattr(self, 'system_extensions_allowed_team_identifiers', n.get_collection_of_primitive_values(str)),
-            "system_extensions_allowed_types": lambda n : setattr(self, 'system_extensions_allowed_types', n.get_collection_of_object_values(mac_o_s_system_extension_type_mapping.MacOSSystemExtensionTypeMapping)),
-            "system_extensions_block_override": lambda n : setattr(self, 'system_extensions_block_override', n.get_bool_value()),
+            "kernelExtensionsAllowed": lambda n : setattr(self, 'kernel_extensions_allowed', n.get_collection_of_object_values(mac_o_s_kernel_extension.MacOSKernelExtension)),
+            "kernelExtensionAllowedTeamIdentifiers": lambda n : setattr(self, 'kernel_extension_allowed_team_identifiers', n.get_collection_of_primitive_values(str)),
+            "kernelExtensionOverridesAllowed": lambda n : setattr(self, 'kernel_extension_overrides_allowed', n.get_bool_value()),
+            "systemExtensionsAllowed": lambda n : setattr(self, 'system_extensions_allowed', n.get_collection_of_object_values(mac_o_s_system_extension.MacOSSystemExtension)),
+            "systemExtensionsAllowedTeamIdentifiers": lambda n : setattr(self, 'system_extensions_allowed_team_identifiers', n.get_collection_of_primitive_values(str)),
+            "systemExtensionsAllowedTypes": lambda n : setattr(self, 'system_extensions_allowed_types', n.get_collection_of_object_values(mac_o_s_system_extension_type_mapping.MacOSSystemExtensionTypeMapping)),
+            "systemExtensionsBlockOverride": lambda n : setattr(self, 'system_extensions_block_override', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -73,7 +73,7 @@ class MacOSExtensionsConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kernelExtensionAllowedTeamIdentifiers property value. All kernel extensions validly signed by the team identifiers in this list will be allowed to load.
         Args:
-            value: Value to set for the kernelExtensionAllowedTeamIdentifiers property.
+            value: Value to set for the kernel_extension_allowed_team_identifiers property.
         """
         self._kernel_extension_allowed_team_identifiers = value
     
@@ -90,7 +90,7 @@ class MacOSExtensionsConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kernelExtensionOverridesAllowed property value. If set to true, users can approve additional kernel extensions not explicitly allowed by configurations profiles.
         Args:
-            value: Value to set for the kernelExtensionOverridesAllowed property.
+            value: Value to set for the kernel_extension_overrides_allowed property.
         """
         self._kernel_extension_overrides_allowed = value
     
@@ -107,7 +107,7 @@ class MacOSExtensionsConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kernelExtensionsAllowed property value. A list of kernel extensions that will be allowed to load. . This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the kernelExtensionsAllowed property.
+            value: Value to set for the kernel_extensions_allowed property.
         """
         self._kernel_extensions_allowed = value
     
@@ -120,9 +120,9 @@ class MacOSExtensionsConfiguration(device_configuration.DeviceConfiguration):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
+        writer.write_collection_of_object_values("kernelExtensionsAllowed", self.kernel_extensions_allowed)
         writer.write_collection_of_primitive_values("kernelExtensionAllowedTeamIdentifiers", self.kernel_extension_allowed_team_identifiers)
         writer.write_bool_value("kernelExtensionOverridesAllowed", self.kernel_extension_overrides_allowed)
-        writer.write_collection_of_object_values("kernelExtensionsAllowed", self.kernel_extensions_allowed)
         writer.write_collection_of_object_values("systemExtensionsAllowed", self.system_extensions_allowed)
         writer.write_collection_of_primitive_values("systemExtensionsAllowedTeamIdentifiers", self.system_extensions_allowed_team_identifiers)
         writer.write_collection_of_object_values("systemExtensionsAllowedTypes", self.system_extensions_allowed_types)
@@ -141,7 +141,7 @@ class MacOSExtensionsConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the systemExtensionsAllowed property value. Gets or sets a list of allowed macOS system extensions. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the systemExtensionsAllowed property.
+            value: Value to set for the system_extensions_allowed property.
         """
         self._system_extensions_allowed = value
     
@@ -158,7 +158,7 @@ class MacOSExtensionsConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the systemExtensionsAllowedTeamIdentifiers property value. Gets or sets a list of allowed team identifiers. Any system extension signed with any of the specified team identifiers will be approved.
         Args:
-            value: Value to set for the systemExtensionsAllowedTeamIdentifiers property.
+            value: Value to set for the system_extensions_allowed_team_identifiers property.
         """
         self._system_extensions_allowed_team_identifiers = value
     
@@ -175,7 +175,7 @@ class MacOSExtensionsConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the systemExtensionsAllowedTypes property value. Gets or sets a list of allowed macOS system extension types. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the systemExtensionsAllowedTypes property.
+            value: Value to set for the system_extensions_allowed_types property.
         """
         self._system_extensions_allowed_types = value
     
@@ -192,7 +192,7 @@ class MacOSExtensionsConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the systemExtensionsBlockOverride property value. Gets or sets whether to allow the user to approve additional system extensions not explicitly allowed by configuration profiles.
         Args:
-            value: Value to set for the systemExtensionsBlockOverride property.
+            value: Value to set for the system_extensions_block_override property.
         """
         self._system_extensions_block_override = value
     

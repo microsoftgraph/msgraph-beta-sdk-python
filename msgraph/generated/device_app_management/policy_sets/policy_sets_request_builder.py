@@ -11,7 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.device_app_management.policy_sets.count.count_request_builder')
-get_policy_sets_request_builder = lazy_import('msgraph.generated.device_app_management.policy_sets.get_policy_sets.get_policy_sets_request_builder')
+get_policy_sets_request_builder = lazy_import('msgraph.generated.device_app_management.policy_sets.microsoft_graph_get_policy_sets.get_policy_sets_request_builder')
 policy_set = lazy_import('msgraph.generated.models.policy_set')
 policy_set_collection_response = lazy_import('msgraph.generated.models.policy_set_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -28,7 +28,7 @@ class PolicySetsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_policy_sets(self) -> get_policy_sets_request_builder.GetPolicySetsRequestBuilder:
+    def microsoft_graph_get_policy_sets(self) -> get_policy_sets_request_builder.GetPolicySetsRequestBuilder:
         """
         Provides operations to call the getPolicySets method.
         """
@@ -52,12 +52,11 @@ class PolicySetsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PolicySetsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[policy_set_collection_response.PolicySetCollectionResponse]:
+    async def get(self,request_configuration: Optional[PolicySetsRequestBuilderGetRequestConfiguration] = None) -> Optional[policy_set_collection_response.PolicySetCollectionResponse]:
         """
         The PolicySet of Policies and Applications
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[policy_set_collection_response.PolicySetCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class PolicySetsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, policy_set_collection_response.PolicySetCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, policy_set_collection_response.PolicySetCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[policy_set.PolicySet] = None, request_configuration: Optional[PolicySetsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[policy_set.PolicySet]:
+    async def post(self,body: Optional[policy_set.PolicySet] = None, request_configuration: Optional[PolicySetsRequestBuilderPostRequestConfiguration] = None) -> Optional[policy_set.PolicySet]:
         """
         Create new navigation property to policySets for deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[policy_set.PolicySet]
         """
         if body is None:
@@ -91,7 +89,7 @@ class PolicySetsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, policy_set.PolicySet, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, policy_set.PolicySet, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PolicySetsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

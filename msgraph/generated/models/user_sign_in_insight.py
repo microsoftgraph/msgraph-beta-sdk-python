@@ -34,7 +34,7 @@ class UserSignInInsight(governance_insight.GovernanceInsight):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "last_sign_in_date_time": lambda n : setattr(self, 'last_sign_in_date_time', n.get_datetime_value()),
+            "lastSignInDateTime": lambda n : setattr(self, 'last_sign_in_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -53,7 +53,7 @@ class UserSignInInsight(governance_insight.GovernanceInsight):
         """
         Sets the lastSignInDateTime property value. Indicates when the user last signed in
         Args:
-            value: Value to set for the lastSignInDateTime property.
+            value: Value to set for the last_sign_in_date_time property.
         """
         self._last_sign_in_date_time = value
     

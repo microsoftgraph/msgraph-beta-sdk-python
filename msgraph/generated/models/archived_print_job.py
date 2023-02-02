@@ -21,7 +21,7 @@ class ArchivedPrintJob(AdditionalDataHolder, Parsable):
         """
         Sets the acquiredByPrinter property value. True if the job was acquired by a printer; false otherwise. Read-only.
         Args:
-            value: Value to set for the acquiredByPrinter property.
+            value: Value to set for the acquired_by_printer property.
         """
         self._acquired_by_printer = value
     
@@ -38,7 +38,7 @@ class ArchivedPrintJob(AdditionalDataHolder, Parsable):
         """
         Sets the acquiredDateTime property value. The dateTimeOffset when the job was acquired by the printer, if any. Read-only.
         Args:
-            value: Value to set for the acquiredDateTime property.
+            value: Value to set for the acquired_date_time property.
         """
         self._acquired_date_time = value
     
@@ -72,7 +72,7 @@ class ArchivedPrintJob(AdditionalDataHolder, Parsable):
         """
         Sets the blackAndWhitePageCount property value. The number of black and white pages that were printed. Read-only.
         Args:
-            value: Value to set for the blackAndWhitePageCount property.
+            value: Value to set for the black_and_white_page_count property.
         """
         self._black_and_white_page_count = value
     
@@ -89,7 +89,7 @@ class ArchivedPrintJob(AdditionalDataHolder, Parsable):
         """
         Sets the colorPageCount property value. The number of color pages that were printed. Read-only.
         Args:
-            value: Value to set for the colorPageCount property.
+            value: Value to set for the color_page_count property.
         """
         self._color_page_count = value
     
@@ -106,7 +106,7 @@ class ArchivedPrintJob(AdditionalDataHolder, Parsable):
         """
         Sets the completionDateTime property value. The dateTimeOffset when the job was completed, canceled or aborted. Read-only.
         Args:
-            value: Value to set for the completionDateTime property.
+            value: Value to set for the completion_date_time property.
         """
         self._completion_date_time = value
     
@@ -161,7 +161,7 @@ class ArchivedPrintJob(AdditionalDataHolder, Parsable):
         """
         Sets the copiesPrinted property value. The number of copies that were printed. Read-only.
         Args:
-            value: Value to set for the copiesPrinted property.
+            value: Value to set for the copies_printed property.
         """
         self._copies_printed = value
     
@@ -178,7 +178,7 @@ class ArchivedPrintJob(AdditionalDataHolder, Parsable):
         """
         Sets the createdBy property value. The user who created the print job. Read-only.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -195,7 +195,7 @@ class ArchivedPrintJob(AdditionalDataHolder, Parsable):
         """
         Sets the createdDateTime property value. The dateTimeOffset when the job was created. Read-only.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -224,7 +224,7 @@ class ArchivedPrintJob(AdditionalDataHolder, Parsable):
         """
         Sets the duplexPageCount property value. The number of duplex (double-sided) pages that were printed. Read-only.
         Args:
-            value: Value to set for the duplexPageCount property.
+            value: Value to set for the duplex_page_count property.
         """
         self._duplex_page_count = value
     
@@ -234,21 +234,21 @@ class ArchivedPrintJob(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "acquired_by_printer": lambda n : setattr(self, 'acquired_by_printer', n.get_bool_value()),
-            "acquired_date_time": lambda n : setattr(self, 'acquired_date_time', n.get_datetime_value()),
-            "black_and_white_page_count": lambda n : setattr(self, 'black_and_white_page_count', n.get_int_value()),
-            "color_page_count": lambda n : setattr(self, 'color_page_count', n.get_int_value()),
-            "completion_date_time": lambda n : setattr(self, 'completion_date_time', n.get_datetime_value()),
-            "copies_printed": lambda n : setattr(self, 'copies_printed', n.get_int_value()),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(user_identity.UserIdentity)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "duplex_page_count": lambda n : setattr(self, 'duplex_page_count', n.get_int_value()),
+            "acquiredByPrinter": lambda n : setattr(self, 'acquired_by_printer', n.get_bool_value()),
+            "acquiredDateTime": lambda n : setattr(self, 'acquired_date_time', n.get_datetime_value()),
+            "blackAndWhitePageCount": lambda n : setattr(self, 'black_and_white_page_count', n.get_int_value()),
+            "colorPageCount": lambda n : setattr(self, 'color_page_count', n.get_int_value()),
+            "completionDateTime": lambda n : setattr(self, 'completion_date_time', n.get_datetime_value()),
+            "copiesPrinted": lambda n : setattr(self, 'copies_printed', n.get_int_value()),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(user_identity.UserIdentity)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "duplexPageCount": lambda n : setattr(self, 'duplex_page_count', n.get_int_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "page_count": lambda n : setattr(self, 'page_count', n.get_int_value()),
-            "printer_id": lambda n : setattr(self, 'printer_id', n.get_str_value()),
-            "processing_state": lambda n : setattr(self, 'processing_state', n.get_enum_value(print_job_processing_state.PrintJobProcessingState)),
-            "simplex_page_count": lambda n : setattr(self, 'simplex_page_count', n.get_int_value()),
+            "pageCount": lambda n : setattr(self, 'page_count', n.get_int_value()),
+            "printerId": lambda n : setattr(self, 'printer_id', n.get_str_value()),
+            "processingState": lambda n : setattr(self, 'processing_state', n.get_enum_value(print_job_processing_state.PrintJobProcessingState)),
+            "simplexPageCount": lambda n : setattr(self, 'simplex_page_count', n.get_int_value()),
         }
         return fields
     
@@ -282,7 +282,7 @@ class ArchivedPrintJob(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -299,7 +299,7 @@ class ArchivedPrintJob(AdditionalDataHolder, Parsable):
         """
         Sets the pageCount property value. The total number of pages that were printed. Read-only.
         Args:
-            value: Value to set for the pageCount property.
+            value: Value to set for the page_count property.
         """
         self._page_count = value
     
@@ -316,7 +316,7 @@ class ArchivedPrintJob(AdditionalDataHolder, Parsable):
         """
         Sets the printerId property value. The printer ID that the job was queued for. Read-only.
         Args:
-            value: Value to set for the printerId property.
+            value: Value to set for the printer_id property.
         """
         self._printer_id = value
     
@@ -333,7 +333,7 @@ class ArchivedPrintJob(AdditionalDataHolder, Parsable):
         """
         Sets the processingState property value. The processingState property
         Args:
-            value: Value to set for the processingState property.
+            value: Value to set for the processing_state property.
         """
         self._processing_state = value
     
@@ -375,7 +375,7 @@ class ArchivedPrintJob(AdditionalDataHolder, Parsable):
         """
         Sets the simplexPageCount property value. The number of simplex (single-sided) pages that were printed. Read-only.
         Args:
-            value: Value to set for the simplexPageCount property.
+            value: Value to set for the simplex_page_count property.
         """
         self._simplex_page_count = value
     

@@ -40,7 +40,7 @@ class ConditionalAccessSessionControls(AdditionalDataHolder, Parsable):
         """
         Sets the applicationEnforcedRestrictions property value. Session control to enforce application restrictions. Only Exchange Online and Sharepoint Online support this session control.
         Args:
-            value: Value to set for the applicationEnforcedRestrictions property.
+            value: Value to set for the application_enforced_restrictions property.
         """
         self._application_enforced_restrictions = value
     
@@ -57,7 +57,7 @@ class ConditionalAccessSessionControls(AdditionalDataHolder, Parsable):
         """
         Sets the cloudAppSecurity property value. Session control to apply cloud app security.
         Args:
-            value: Value to set for the cloudAppSecurity property.
+            value: Value to set for the cloud_app_security property.
         """
         self._cloud_app_security = value
     
@@ -96,7 +96,7 @@ class ConditionalAccessSessionControls(AdditionalDataHolder, Parsable):
         """
         Sets the continuousAccessEvaluation property value. Session control for continuous access evaluation settings.
         Args:
-            value: Value to set for the continuousAccessEvaluation property.
+            value: Value to set for the continuous_access_evaluation property.
         """
         self._continuous_access_evaluation = value
     
@@ -125,7 +125,7 @@ class ConditionalAccessSessionControls(AdditionalDataHolder, Parsable):
         """
         Sets the disableResilienceDefaults property value. Session control that determines whether it is acceptable for Azure AD to extend existing sessions based on information collected prior to an outage or not.
         Args:
-            value: Value to set for the disableResilienceDefaults property.
+            value: Value to set for the disable_resilience_defaults property.
         """
         self._disable_resilience_defaults = value
     
@@ -135,13 +135,13 @@ class ConditionalAccessSessionControls(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "application_enforced_restrictions": lambda n : setattr(self, 'application_enforced_restrictions', n.get_object_value(application_enforced_restrictions_session_control.ApplicationEnforcedRestrictionsSessionControl)),
-            "cloud_app_security": lambda n : setattr(self, 'cloud_app_security', n.get_object_value(cloud_app_security_session_control.CloudAppSecuritySessionControl)),
-            "continuous_access_evaluation": lambda n : setattr(self, 'continuous_access_evaluation', n.get_object_value(continuous_access_evaluation_session_control.ContinuousAccessEvaluationSessionControl)),
-            "disable_resilience_defaults": lambda n : setattr(self, 'disable_resilience_defaults', n.get_bool_value()),
+            "applicationEnforcedRestrictions": lambda n : setattr(self, 'application_enforced_restrictions', n.get_object_value(application_enforced_restrictions_session_control.ApplicationEnforcedRestrictionsSessionControl)),
+            "cloudAppSecurity": lambda n : setattr(self, 'cloud_app_security', n.get_object_value(cloud_app_security_session_control.CloudAppSecuritySessionControl)),
+            "continuousAccessEvaluation": lambda n : setattr(self, 'continuous_access_evaluation', n.get_object_value(continuous_access_evaluation_session_control.ContinuousAccessEvaluationSessionControl)),
+            "disableResilienceDefaults": lambda n : setattr(self, 'disable_resilience_defaults', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "persistent_browser": lambda n : setattr(self, 'persistent_browser', n.get_object_value(persistent_browser_session_control.PersistentBrowserSessionControl)),
-            "sign_in_frequency": lambda n : setattr(self, 'sign_in_frequency', n.get_object_value(sign_in_frequency_session_control.SignInFrequencySessionControl)),
+            "persistentBrowser": lambda n : setattr(self, 'persistent_browser', n.get_object_value(persistent_browser_session_control.PersistentBrowserSessionControl)),
+            "signInFrequency": lambda n : setattr(self, 'sign_in_frequency', n.get_object_value(sign_in_frequency_session_control.SignInFrequencySessionControl)),
         }
         return fields
     
@@ -158,7 +158,7 @@ class ConditionalAccessSessionControls(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -175,7 +175,7 @@ class ConditionalAccessSessionControls(AdditionalDataHolder, Parsable):
         """
         Sets the persistentBrowser property value. Session control to define whether to persist cookies or not. All apps should be selected for this session control to work correctly.
         Args:
-            value: Value to set for the persistentBrowser property.
+            value: Value to set for the persistent_browser property.
         """
         self._persistent_browser = value
     
@@ -209,7 +209,7 @@ class ConditionalAccessSessionControls(AdditionalDataHolder, Parsable):
         """
         Sets the signInFrequency property value. Session control to enforce signin frequency.
         Args:
-            value: Value to set for the signInFrequency property.
+            value: Value to set for the sign_in_frequency property.
         """
         self._sign_in_frequency = value
     

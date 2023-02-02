@@ -6,5 +6,5 @@ class AndroidForWorkSyncStatus(Enum):
     AndroidForWorkApiError = "androidForWorkApiError",
     ManagementServiceError = "managementServiceError",
     UnknownError = "unknownError",
-    None_escaped = "none",
+    None_ = "none",
 

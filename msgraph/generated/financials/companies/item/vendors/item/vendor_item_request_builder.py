@@ -50,12 +50,13 @@ class VendorItemRequestBuilder():
         """
         return picture_request_builder.PictureRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, vendor_id: Optional[str] = None) -> None:
         """
         Instantiates a new VendorItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            vendorId: key: id of vendor
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -65,15 +66,15 @@ class VendorItemRequestBuilder():
         self.url_template: str = "{+baseurl}/financials/companies/{company%2Did}/vendors/{vendor%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["vendor%2Did"] = vendorId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[VendorItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[VendorItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property vendors for financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -84,14 +85,13 @@ class VendorItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[VendorItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[vendor.Vendor]:
+    async def get(self,request_configuration: Optional[VendorItemRequestBuilderGetRequestConfiguration] = None) -> Optional[vendor.Vendor]:
         """
         Get vendors from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[vendor.Vendor]
         """
         request_info = self.to_get_request_information(
@@ -103,15 +103,14 @@ class VendorItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, vendor.Vendor, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, vendor.Vendor, error_mapping)
     
-    async def patch(self,body: Optional[vendor.Vendor] = None, request_configuration: Optional[VendorItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[vendor.Vendor]:
+    async def patch(self,body: Optional[vendor.Vendor] = None, request_configuration: Optional[VendorItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[vendor.Vendor]:
         """
         Update the navigation property vendors in financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[vendor.Vendor]
         """
         if body is None:
@@ -125,7 +124,7 @@ class VendorItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, vendor.Vendor, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, vendor.Vendor, error_mapping)
     
     def picture_by_id(self,id: str) -> picture_item_request_builder.PictureItemRequestBuilder:
         """

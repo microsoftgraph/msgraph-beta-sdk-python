@@ -17,10 +17,11 @@ class CountryRegionItemRequestBuilder():
     """
     Provides operations to manage the countriesRegions property of the microsoft.graph.company entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, country_region_id: Optional[str] = None) -> None:
         """
         Instantiates a new CountryRegionItemRequestBuilder and sets the default values.
         Args:
+            countryRegionId: key: id of countryRegion
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class CountryRegionItemRequestBuilder():
         self.url_template: str = "{+baseurl}/financials/companies/{company%2Did}/countriesRegions/{countryRegion%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["countryRegion%2Did"] = countryRegionId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CountryRegionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CountryRegionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property countriesRegions for financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class CountryRegionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CountryRegionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[country_region.CountryRegion]:
+    async def get(self,request_configuration: Optional[CountryRegionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[country_region.CountryRegion]:
         """
         Get countriesRegions from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[country_region.CountryRegion]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class CountryRegionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, country_region.CountryRegion, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, country_region.CountryRegion, error_mapping)
     
-    async def patch(self,body: Optional[country_region.CountryRegion] = None, request_configuration: Optional[CountryRegionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[country_region.CountryRegion]:
+    async def patch(self,body: Optional[country_region.CountryRegion] = None, request_configuration: Optional[CountryRegionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[country_region.CountryRegion]:
         """
         Update the navigation property countriesRegions in financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[country_region.CountryRegion]
         """
         if body is None:
@@ -92,7 +91,7 @@ class CountryRegionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, country_region.CountryRegion, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, country_region.CountryRegion, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CountryRegionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -45,7 +45,7 @@ class UnifiedRbacResourceScope(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -55,7 +55,7 @@ class UnifiedRbacResourceScope(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "scope": lambda n : setattr(self, 'scope', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
         }

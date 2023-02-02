@@ -14,7 +14,7 @@ governance_resource = lazy_import('msgraph.generated.models.governance_resource'
 governance_resource_collection_response = lazy_import('msgraph.generated.models.governance_resource_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.privileged_access.item.resources.count.count_request_builder')
-register_request_builder = lazy_import('msgraph.generated.privileged_access.item.resources.register.register_request_builder')
+register_request_builder = lazy_import('msgraph.generated.privileged_access.item.resources.microsoft_graph_register.register_request_builder')
 
 class ResourcesRequestBuilder():
     """
@@ -28,7 +28,7 @@ class ResourcesRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def register(self) -> register_request_builder.RegisterRequestBuilder:
+    def microsoft_graph_register(self) -> register_request_builder.RegisterRequestBuilder:
         """
         Provides operations to call the register method.
         """
@@ -52,12 +52,11 @@ class ResourcesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ResourcesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_resource_collection_response.GovernanceResourceCollectionResponse]:
+    async def get(self,request_configuration: Optional[ResourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_resource_collection_response.GovernanceResourceCollectionResponse]:
         """
         Retrieve a collection of governanceResource that the requestor has access to.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_resource_collection_response.GovernanceResourceCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class ResourcesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_resource_collection_response.GovernanceResourceCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_resource_collection_response.GovernanceResourceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[governance_resource.GovernanceResource] = None, request_configuration: Optional[ResourcesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_resource.GovernanceResource]:
+    async def post(self,body: Optional[governance_resource.GovernanceResource] = None, request_configuration: Optional[ResourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[governance_resource.GovernanceResource]:
         """
         Create new navigation property to resources for privilegedAccess
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_resource.GovernanceResource]
         """
         if body is None:
@@ -91,7 +89,7 @@ class ResourcesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_resource.GovernanceResource, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_resource.GovernanceResource, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ResourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

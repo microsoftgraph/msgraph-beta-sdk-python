@@ -17,10 +17,11 @@ class GovernanceInsightItemRequestBuilder():
     """
     Provides operations to manage the insights property of the microsoft.graph.accessReviewInstanceDecisionItem entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, governance_insight_id: Optional[str] = None) -> None:
         """
         Instantiates a new GovernanceInsightItemRequestBuilder and sets the default values.
         Args:
+            governanceInsightId: key: id of governanceInsight
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class GovernanceInsightItemRequestBuilder():
         self.url_template: str = "{+baseurl}/me/pendingAccessReviewInstances/{accessReviewInstance%2Did}/decisions/{accessReviewInstanceDecisionItem%2Did}/insights/{governanceInsight%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["governanceInsight%2Did"] = governanceInsightId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[GovernanceInsightItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[GovernanceInsightItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property insights for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class GovernanceInsightItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[GovernanceInsightItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_insight.GovernanceInsight]:
+    async def get(self,request_configuration: Optional[GovernanceInsightItemRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_insight.GovernanceInsight]:
         """
         Insights are recommendations to reviewers on whether to approve or deny a decision. There can be multiple insights associated with an accessReviewInstanceDecisionItem.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_insight.GovernanceInsight]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class GovernanceInsightItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_insight.GovernanceInsight, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_insight.GovernanceInsight, error_mapping)
     
-    async def patch(self,body: Optional[governance_insight.GovernanceInsight] = None, request_configuration: Optional[GovernanceInsightItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_insight.GovernanceInsight]:
+    async def patch(self,body: Optional[governance_insight.GovernanceInsight] = None, request_configuration: Optional[GovernanceInsightItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[governance_insight.GovernanceInsight]:
         """
         Update the navigation property insights in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_insight.GovernanceInsight]
         """
         if body is None:
@@ -92,7 +91,7 @@ class GovernanceInsightItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_insight.GovernanceInsight, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_insight.GovernanceInsight, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[GovernanceInsightItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

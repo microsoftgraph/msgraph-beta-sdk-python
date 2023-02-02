@@ -20,7 +20,7 @@ class AuthenticationCombinationConfiguration(entity.Entity):
         """
         Sets the appliesToCombinations property value. Which authentication method combinations this configuration applies to. Must be an allowedCombinations object that's defined for the authenticationStrengthPolicy. The only possible value for fido2combinationConfigurations is 'fido2'.
         Args:
-            value: Value to set for the appliesToCombinations property.
+            value: Value to set for the applies_to_combinations property.
         """
         self._applies_to_combinations = value
     
@@ -52,7 +52,7 @@ class AuthenticationCombinationConfiguration(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "applies_to_combinations": lambda n : setattr(self, 'applies_to_combinations', n.get_collection_of_enum_values(authentication_method_modes.AuthenticationMethodModes)),
+            "appliesToCombinations": lambda n : setattr(self, 'applies_to_combinations', n.get_collection_of_enum_values(authentication_method_modes.AuthenticationMethodModes)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

@@ -17,10 +17,11 @@ class AppManagementPolicyItemRequestBuilder():
         """
         return ref_request_builder.RefRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, app_management_policy_id: Optional[str] = None) -> None:
         """
         Instantiates a new AppManagementPolicyItemRequestBuilder and sets the default values.
         Args:
+            appManagementPolicyId: key: id of appManagementPolicy
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,6 +33,7 @@ class AppManagementPolicyItemRequestBuilder():
         self.url_template: str = "{+baseurl}/applications/{application%2Did}/appManagementPolicies/{appManagementPolicy%2Did}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["appManagementPolicy%2Did"] = appManagementPolicyId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     

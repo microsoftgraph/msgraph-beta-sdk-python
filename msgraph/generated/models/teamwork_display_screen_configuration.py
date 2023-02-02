@@ -35,7 +35,7 @@ class TeamworkDisplayScreenConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the backlightBrightness property value. The brightness level on the device (0-100). Not applicable for Microsoft Teams Rooms devices.
         Args:
-            value: Value to set for the backlightBrightness property.
+            value: Value to set for the backlight_brightness property.
         """
         self._backlight_brightness = value
     
@@ -52,7 +52,7 @@ class TeamworkDisplayScreenConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the backlightTimeout property value. Timeout for backlight (30-3600 secs). Not applicable for Teams Rooms devices.
         Args:
-            value: Value to set for the backlightTimeout property.
+            value: Value to set for the backlight_timeout property.
         """
         self._backlight_timeout = value
     
@@ -94,12 +94,12 @@ class TeamworkDisplayScreenConfiguration(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "backlight_brightness": lambda n : setattr(self, 'backlight_brightness', n.get_int_value()),
-            "backlight_timeout": lambda n : setattr(self, 'backlight_timeout', n.get_object_value(Timedelta)),
-            "is_high_contrast_enabled": lambda n : setattr(self, 'is_high_contrast_enabled', n.get_bool_value()),
-            "is_screensaver_enabled": lambda n : setattr(self, 'is_screensaver_enabled', n.get_bool_value()),
+            "backlightBrightness": lambda n : setattr(self, 'backlight_brightness', n.get_int_value()),
+            "backlightTimeout": lambda n : setattr(self, 'backlight_timeout', n.get_object_value(Timedelta)),
+            "isHighContrastEnabled": lambda n : setattr(self, 'is_high_contrast_enabled', n.get_bool_value()),
+            "isScreensaverEnabled": lambda n : setattr(self, 'is_screensaver_enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "screensaver_timeout": lambda n : setattr(self, 'screensaver_timeout', n.get_object_value(Timedelta)),
+            "screensaverTimeout": lambda n : setattr(self, 'screensaver_timeout', n.get_object_value(Timedelta)),
         }
         return fields
     
@@ -116,7 +116,7 @@ class TeamworkDisplayScreenConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isHighContrastEnabled property value. True if high contrast mode is enabled. Not applicable for Teams Rooms devices.
         Args:
-            value: Value to set for the isHighContrastEnabled property.
+            value: Value to set for the is_high_contrast_enabled property.
         """
         self._is_high_contrast_enabled = value
     
@@ -133,7 +133,7 @@ class TeamworkDisplayScreenConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isScreensaverEnabled property value. True if screensaver is enabled. Not applicable for Teams Rooms devices.
         Args:
-            value: Value to set for the isScreensaverEnabled property.
+            value: Value to set for the is_screensaver_enabled property.
         """
         self._is_screensaver_enabled = value
     
@@ -150,7 +150,7 @@ class TeamworkDisplayScreenConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -167,7 +167,7 @@ class TeamworkDisplayScreenConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the screensaverTimeout property value. Screensaver timeout from 30 to 3600 secs. Not applicable for Teams Rooms devices.
         Args:
-            value: Value to set for the screensaverTimeout property.
+            value: Value to set for the screensaver_timeout property.
         """
         self._screensaver_timeout = value
     

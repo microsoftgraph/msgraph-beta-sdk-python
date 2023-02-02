@@ -38,7 +38,7 @@ class DeviceAndAppManagementRoleAssignment(role_assignment.RoleAssignment):
         """
         fields = {
             "members": lambda n : setattr(self, 'members', n.get_collection_of_primitive_values(str)),
-            "role_scope_tags": lambda n : setattr(self, 'role_scope_tags', n.get_collection_of_object_values(role_scope_tag.RoleScopeTag)),
+            "roleScopeTags": lambda n : setattr(self, 'role_scope_tags', n.get_collection_of_object_values(role_scope_tag.RoleScopeTag)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -74,7 +74,7 @@ class DeviceAndAppManagementRoleAssignment(role_assignment.RoleAssignment):
         """
         Sets the roleScopeTags property value. The set of Role Scope Tags defined on the Role Assignment.
         Args:
-            value: Value to set for the roleScopeTags property.
+            value: Value to set for the role_scope_tags property.
         """
         self._role_scope_tags = value
     

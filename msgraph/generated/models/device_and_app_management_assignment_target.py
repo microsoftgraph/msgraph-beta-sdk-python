@@ -65,7 +65,7 @@ class DeviceAndAppManagementAssignmentTarget(AdditionalDataHolder, Parsable):
         """
         Sets the deviceAndAppManagementAssignmentFilterId property value. The Id of the filter for the target assignment.
         Args:
-            value: Value to set for the deviceAndAppManagementAssignmentFilterId property.
+            value: Value to set for the device_and_app_management_assignment_filter_id property.
         """
         self._device_and_app_management_assignment_filter_id = value
     
@@ -82,7 +82,7 @@ class DeviceAndAppManagementAssignmentTarget(AdditionalDataHolder, Parsable):
         """
         Sets the deviceAndAppManagementAssignmentFilterType property value. Represents type of the assignment filter.
         Args:
-            value: Value to set for the deviceAndAppManagementAssignmentFilterType property.
+            value: Value to set for the device_and_app_management_assignment_filter_type property.
         """
         self._device_and_app_management_assignment_filter_type = value
     
@@ -92,8 +92,8 @@ class DeviceAndAppManagementAssignmentTarget(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_and_app_management_assignment_filter_id": lambda n : setattr(self, 'device_and_app_management_assignment_filter_id', n.get_str_value()),
-            "device_and_app_management_assignment_filter_type": lambda n : setattr(self, 'device_and_app_management_assignment_filter_type', n.get_enum_value(device_and_app_management_assignment_filter_type.DeviceAndAppManagementAssignmentFilterType)),
+            "deviceAndAppManagementAssignmentFilterId": lambda n : setattr(self, 'device_and_app_management_assignment_filter_id', n.get_str_value()),
+            "deviceAndAppManagementAssignmentFilterType": lambda n : setattr(self, 'device_and_app_management_assignment_filter_type', n.get_enum_value(device_and_app_management_assignment_filter_type.DeviceAndAppManagementAssignmentFilterType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -111,7 +111,7 @@ class DeviceAndAppManagementAssignmentTarget(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

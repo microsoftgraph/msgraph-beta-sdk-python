@@ -17,10 +17,11 @@ class MobileAppRelationshipItemRequestBuilder():
     """
     Provides operations to manage the relationships property of the microsoft.graph.mobileApp entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, mobile_app_relationship_id: Optional[str] = None) -> None:
         """
         Instantiates a new MobileAppRelationshipItemRequestBuilder and sets the default values.
         Args:
+            mobileAppRelationshipId: key: id of mobileAppRelationship
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class MobileAppRelationshipItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/relationships/{mobileAppRelationship%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["mobileAppRelationship%2Did"] = mobileAppRelationshipId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[MobileAppRelationshipItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[MobileAppRelationshipItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property relationships for deviceAppManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class MobileAppRelationshipItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[MobileAppRelationshipItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mobile_app_relationship.MobileAppRelationship]:
+    async def get(self,request_configuration: Optional[MobileAppRelationshipItemRequestBuilderGetRequestConfiguration] = None) -> Optional[mobile_app_relationship.MobileAppRelationship]:
         """
         List of relationships for this mobile app.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mobile_app_relationship.MobileAppRelationship]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class MobileAppRelationshipItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mobile_app_relationship.MobileAppRelationship, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, mobile_app_relationship.MobileAppRelationship, error_mapping)
     
-    async def patch(self,body: Optional[mobile_app_relationship.MobileAppRelationship] = None, request_configuration: Optional[MobileAppRelationshipItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mobile_app_relationship.MobileAppRelationship]:
+    async def patch(self,body: Optional[mobile_app_relationship.MobileAppRelationship] = None, request_configuration: Optional[MobileAppRelationshipItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[mobile_app_relationship.MobileAppRelationship]:
         """
         Update the navigation property relationships in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mobile_app_relationship.MobileAppRelationship]
         """
         if body is None:
@@ -92,7 +91,7 @@ class MobileAppRelationshipItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mobile_app_relationship.MobileAppRelationship, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, mobile_app_relationship.MobileAppRelationship, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[MobileAppRelationshipItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

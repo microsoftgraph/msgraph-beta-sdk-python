@@ -10,9 +10,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 on_premises_conditional_access_settings = lazy_import('msgraph.generated.models.on_premises_conditional_access_settings')
 
 class DeviceManagementExchangeOnPremisesPolicy(entity.Entity):
-    """
-    Singleton entity which represents the Exchange OnPremises policy configured for a tenant.
-    """
     @property
     def access_rules(self,) -> Optional[List[device_management_exchange_access_rule.DeviceManagementExchangeAccessRule]]:
         """
@@ -26,7 +23,7 @@ class DeviceManagementExchangeOnPremisesPolicy(entity.Entity):
         """
         Sets the accessRules property value. The list of device access rules in Exchange. The access rules apply globally to the entire Exchange organization
         Args:
-            value: Value to set for the accessRules property.
+            value: Value to set for the access_rules property.
         """
         self._access_rules = value
     
@@ -43,13 +40,13 @@ class DeviceManagementExchangeOnPremisesPolicy(entity.Entity):
         """
         Sets the conditionalAccessSettings property value. The Exchange on premises conditional access settings. On premises conditional access will require devices to be both enrolled and compliant for mail access
         Args:
-            value: Value to set for the conditionalAccessSettings property.
+            value: Value to set for the conditional_access_settings property.
         """
         self._conditional_access_settings = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceManagementExchangeOnPremisesPolicy and sets the default values.
+        Instantiates a new DeviceManagementExchangeOnPremisesPolicy and sets the default values.
         """
         super().__init__()
         # The list of device access rules in Exchange. The access rules apply globally to the entire Exchange organization
@@ -90,7 +87,7 @@ class DeviceManagementExchangeOnPremisesPolicy(entity.Entity):
         """
         Sets the defaultAccessLevel property value. Access Level in Exchange.
         Args:
-            value: Value to set for the defaultAccessLevel property.
+            value: Value to set for the default_access_level property.
         """
         self._default_access_level = value
     
@@ -100,11 +97,11 @@ class DeviceManagementExchangeOnPremisesPolicy(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_rules": lambda n : setattr(self, 'access_rules', n.get_collection_of_object_values(device_management_exchange_access_rule.DeviceManagementExchangeAccessRule)),
-            "conditional_access_settings": lambda n : setattr(self, 'conditional_access_settings', n.get_object_value(on_premises_conditional_access_settings.OnPremisesConditionalAccessSettings)),
-            "default_access_level": lambda n : setattr(self, 'default_access_level', n.get_enum_value(device_management_exchange_access_level.DeviceManagementExchangeAccessLevel)),
-            "known_device_classes": lambda n : setattr(self, 'known_device_classes', n.get_collection_of_object_values(device_management_exchange_device_class.DeviceManagementExchangeDeviceClass)),
-            "notification_content": lambda n : setattr(self, 'notification_content', n.get_bytes_value()),
+            "accessRules": lambda n : setattr(self, 'access_rules', n.get_collection_of_object_values(device_management_exchange_access_rule.DeviceManagementExchangeAccessRule)),
+            "conditionalAccessSettings": lambda n : setattr(self, 'conditional_access_settings', n.get_object_value(on_premises_conditional_access_settings.OnPremisesConditionalAccessSettings)),
+            "defaultAccessLevel": lambda n : setattr(self, 'default_access_level', n.get_enum_value(device_management_exchange_access_level.DeviceManagementExchangeAccessLevel)),
+            "knownDeviceClasses": lambda n : setattr(self, 'known_device_classes', n.get_collection_of_object_values(device_management_exchange_device_class.DeviceManagementExchangeDeviceClass)),
+            "notificationContent": lambda n : setattr(self, 'notification_content', n.get_bytes_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -123,7 +120,7 @@ class DeviceManagementExchangeOnPremisesPolicy(entity.Entity):
         """
         Sets the knownDeviceClasses property value. The list of device classes known to Exchange
         Args:
-            value: Value to set for the knownDeviceClasses property.
+            value: Value to set for the known_device_classes property.
         """
         self._known_device_classes = value
     
@@ -140,7 +137,7 @@ class DeviceManagementExchangeOnPremisesPolicy(entity.Entity):
         """
         Sets the notificationContent property value. Notification text that will be sent to users quarantined by this policy. This is UTF8 encoded byte array HTML.
         Args:
-            value: Value to set for the notificationContent property.
+            value: Value to set for the notification_content property.
         """
         self._notification_content = value
     

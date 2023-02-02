@@ -14,7 +14,7 @@ assignments_request_builder = lazy_import('msgraph.generated.device_app_manageme
 policy_set_assignment_item_request_builder = lazy_import('msgraph.generated.device_app_management.policy_sets.item.assignments.item.policy_set_assignment_item_request_builder')
 items_request_builder = lazy_import('msgraph.generated.device_app_management.policy_sets.item.items.items_request_builder')
 policy_set_item_item_request_builder = lazy_import('msgraph.generated.device_app_management.policy_sets.item.items.item.policy_set_item_item_request_builder')
-update_request_builder = lazy_import('msgraph.generated.device_app_management.policy_sets.item.update.update_request_builder')
+update_request_builder = lazy_import('msgraph.generated.device_app_management.policy_sets.item.microsoft_graph_update.update_request_builder')
 policy_set = lazy_import('msgraph.generated.models.policy_set')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -37,7 +37,7 @@ class PolicySetItemRequestBuilder():
         return items_request_builder.ItemsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update(self) -> update_request_builder.UpdateRequestBuilder:
+    def microsoft_graph_update(self) -> update_request_builder.UpdateRequestBuilder:
         """
         Provides operations to call the update method.
         """
@@ -56,11 +56,12 @@ class PolicySetItemRequestBuilder():
         url_tpl_params["policySetAssignment%2Did"] = id
         return policy_set_assignment_item_request_builder.PolicySetAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, policy_set_id: Optional[str] = None) -> None:
         """
         Instantiates a new PolicySetItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            policySetId: key: id of policySet
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -71,15 +72,15 @@ class PolicySetItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceAppManagement/policySets/{policySet%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["policySet%2Did"] = policySetId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PolicySetItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PolicySetItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property policySets for deviceAppManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -90,14 +91,13 @@ class PolicySetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PolicySetItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[policy_set.PolicySet]:
+    async def get(self,request_configuration: Optional[PolicySetItemRequestBuilderGetRequestConfiguration] = None) -> Optional[policy_set.PolicySet]:
         """
         The PolicySet of Policies and Applications
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[policy_set.PolicySet]
         """
         request_info = self.to_get_request_information(
@@ -109,7 +109,7 @@ class PolicySetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, policy_set.PolicySet, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, policy_set.PolicySet, error_mapping)
     
     def items_by_id(self,id: str) -> policy_set_item_item_request_builder.PolicySetItemItemRequestBuilder:
         """
@@ -124,13 +124,12 @@ class PolicySetItemRequestBuilder():
         url_tpl_params["policySetItem%2Did"] = id
         return policy_set_item_item_request_builder.PolicySetItemItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[policy_set.PolicySet] = None, request_configuration: Optional[PolicySetItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[policy_set.PolicySet]:
+    async def patch(self,body: Optional[policy_set.PolicySet] = None, request_configuration: Optional[PolicySetItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[policy_set.PolicySet]:
         """
         Update the navigation property policySets in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[policy_set.PolicySet]
         """
         if body is None:
@@ -144,7 +143,7 @@ class PolicySetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, policy_set.PolicySet, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, policy_set.PolicySet, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PolicySetItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

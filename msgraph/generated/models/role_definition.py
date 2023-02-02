@@ -8,9 +8,6 @@ role_assignment = lazy_import('msgraph.generated.models.role_assignment')
 role_permission = lazy_import('msgraph.generated.models.role_permission')
 
 class RoleDefinition(entity.Entity):
-    """
-    The Role Definition resource. The role definition is the foundation of role based access in Intune. The role combines an Intune resource such as a Mobile App and associated role permissions such as Create or Read for the resource. There are two types of roles, built-in and custom. Built-in roles cannot be modified. Both built-in roles and custom roles must have assignments to be enforced. Create custom roles if you want to define a role that allows any of the available resources and role permissions to be combined into a single role.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new roleDefinition and sets the default values.
@@ -77,7 +74,7 @@ class RoleDefinition(entity.Entity):
         """
         Sets the displayName property value. Display Name of the Role definition.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -88,13 +85,13 @@ class RoleDefinition(entity.Entity):
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "is_built_in": lambda n : setattr(self, 'is_built_in', n.get_bool_value()),
-            "is_built_in_role_definition": lambda n : setattr(self, 'is_built_in_role_definition', n.get_bool_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "isBuiltIn": lambda n : setattr(self, 'is_built_in', n.get_bool_value()),
+            "isBuiltInRoleDefinition": lambda n : setattr(self, 'is_built_in_role_definition', n.get_bool_value()),
             "permissions": lambda n : setattr(self, 'permissions', n.get_collection_of_object_values(role_permission.RolePermission)),
-            "role_assignments": lambda n : setattr(self, 'role_assignments', n.get_collection_of_object_values(role_assignment.RoleAssignment)),
-            "role_permissions": lambda n : setattr(self, 'role_permissions', n.get_collection_of_object_values(role_permission.RolePermission)),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "roleAssignments": lambda n : setattr(self, 'role_assignments', n.get_collection_of_object_values(role_assignment.RoleAssignment)),
+            "rolePermissions": lambda n : setattr(self, 'role_permissions', n.get_collection_of_object_values(role_permission.RolePermission)),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -113,7 +110,7 @@ class RoleDefinition(entity.Entity):
         """
         Sets the isBuiltIn property value. Type of Role. Set to True if it is built-in, or set to False if it is a custom role definition.
         Args:
-            value: Value to set for the isBuiltIn property.
+            value: Value to set for the is_built_in property.
         """
         self._is_built_in = value
     
@@ -130,7 +127,7 @@ class RoleDefinition(entity.Entity):
         """
         Sets the isBuiltInRoleDefinition property value. Type of Role. Set to True if it is built-in, or set to False if it is a custom role definition.
         Args:
-            value: Value to set for the isBuiltInRoleDefinition property.
+            value: Value to set for the is_built_in_role_definition property.
         """
         self._is_built_in_role_definition = value
     
@@ -164,7 +161,7 @@ class RoleDefinition(entity.Entity):
         """
         Sets the roleAssignments property value. List of Role assignments for this role definition.
         Args:
-            value: Value to set for the roleAssignments property.
+            value: Value to set for the role_assignments property.
         """
         self._role_assignments = value
     
@@ -181,7 +178,7 @@ class RoleDefinition(entity.Entity):
         """
         Sets the rolePermissions property value. List of Role Permissions this role is allowed to perform. These must match the actionName that is defined as part of the rolePermission.
         Args:
-            value: Value to set for the rolePermissions property.
+            value: Value to set for the role_permissions property.
         """
         self._role_permissions = value
     
@@ -198,7 +195,7 @@ class RoleDefinition(entity.Entity):
         """
         Sets the roleScopeTagIds property value. List of Scope Tags for this Entity instance.
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     

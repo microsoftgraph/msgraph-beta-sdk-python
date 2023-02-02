@@ -39,7 +39,7 @@ class UserSecurityProfile(entity.Entity):
         """
         Sets the azureSubscriptionId property value. The azureSubscriptionId property
         Args:
-            value: Value to set for the azureSubscriptionId property.
+            value: Value to set for the azure_subscription_id property.
         """
         self._azure_subscription_id = value
     
@@ -56,13 +56,13 @@ class UserSecurityProfile(entity.Entity):
         """
         Sets the azureTenantId property value. The azureTenantId property
         Args:
-            value: Value to set for the azureTenantId property.
+            value: Value to set for the azure_tenant_id property.
         """
         self._azure_tenant_id = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new userSecurityProfile and sets the default values.
+        Instantiates a new UserSecurityProfile and sets the default values.
         """
         super().__init__()
         # The accounts property
@@ -101,7 +101,7 @@ class UserSecurityProfile(entity.Entity):
         """
         Sets the createdDateTime property value. The createdDateTime property
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -130,7 +130,7 @@ class UserSecurityProfile(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -141,15 +141,15 @@ class UserSecurityProfile(entity.Entity):
         """
         fields = {
             "accounts": lambda n : setattr(self, 'accounts', n.get_collection_of_object_values(user_account.UserAccount)),
-            "azure_subscription_id": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
-            "azure_tenant_id": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "risk_score": lambda n : setattr(self, 'risk_score', n.get_str_value()),
+            "azureSubscriptionId": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
+            "azureTenantId": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "riskScore": lambda n : setattr(self, 'risk_score', n.get_str_value()),
             "tags": lambda n : setattr(self, 'tags', n.get_collection_of_primitive_values(str)),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
-            "vendor_information": lambda n : setattr(self, 'vendor_information', n.get_object_value(security_vendor_information.SecurityVendorInformation)),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "vendorInformation": lambda n : setattr(self, 'vendor_information', n.get_object_value(security_vendor_information.SecurityVendorInformation)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -168,7 +168,7 @@ class UserSecurityProfile(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -185,7 +185,7 @@ class UserSecurityProfile(entity.Entity):
         """
         Sets the riskScore property value. The riskScore property
         Args:
-            value: Value to set for the riskScore property.
+            value: Value to set for the risk_score property.
         """
         self._risk_score = value
     
@@ -239,7 +239,7 @@ class UserSecurityProfile(entity.Entity):
         """
         Sets the userPrincipalName property value. The userPrincipalName property
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     
@@ -256,7 +256,7 @@ class UserSecurityProfile(entity.Entity):
         """
         Sets the vendorInformation property value. The vendorInformation property
         Args:
-            value: Value to set for the vendorInformation property.
+            value: Value to set for the vendor_information property.
         """
         self._vendor_information = value
     

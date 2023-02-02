@@ -35,7 +35,7 @@ class OmaSettingInteger(oma_setting.OmaSetting):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_read_only": lambda n : setattr(self, 'is_read_only', n.get_bool_value()),
+            "isReadOnly": lambda n : setattr(self, 'is_read_only', n.get_bool_value()),
             "value": lambda n : setattr(self, 'value', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -55,7 +55,7 @@ class OmaSettingInteger(oma_setting.OmaSetting):
         """
         Sets the isReadOnly property value. By setting to true, the CSP (configuration service provider) specified in the OMA-URI will perform a get, instead of set
         Args:
-            value: Value to set for the isReadOnly property.
+            value: Value to set for the is_read_only property.
         """
         self._is_read_only = value
     

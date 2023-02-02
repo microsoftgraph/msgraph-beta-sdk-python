@@ -23,7 +23,7 @@ class HostSecurityProfile(entity.Entity):
         """
         Sets the azureSubscriptionId property value. The azureSubscriptionId property
         Args:
-            value: Value to set for the azureSubscriptionId property.
+            value: Value to set for the azure_subscription_id property.
         """
         self._azure_subscription_id = value
     
@@ -40,13 +40,13 @@ class HostSecurityProfile(entity.Entity):
         """
         Sets the azureTenantId property value. The azureTenantId property
         Args:
-            value: Value to set for the azureTenantId property.
+            value: Value to set for the azure_tenant_id property.
         """
         self._azure_tenant_id = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new hostSecurityProfile and sets the default values.
+        Instantiates a new HostSecurityProfile and sets the default values.
         """
         super().__init__()
         # The azureSubscriptionId property
@@ -113,7 +113,7 @@ class HostSecurityProfile(entity.Entity):
         """
         Sets the firstSeenDateTime property value. The firstSeenDateTime property
         Args:
-            value: Value to set for the firstSeenDateTime property.
+            value: Value to set for the first_seen_date_time property.
         """
         self._first_seen_date_time = value
     
@@ -140,24 +140,24 @@ class HostSecurityProfile(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "azure_subscription_id": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
-            "azure_tenant_id": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
-            "first_seen_date_time": lambda n : setattr(self, 'first_seen_date_time', n.get_datetime_value()),
+            "azureSubscriptionId": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
+            "azureTenantId": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
+            "firstSeenDateTime": lambda n : setattr(self, 'first_seen_date_time', n.get_datetime_value()),
             "fqdn": lambda n : setattr(self, 'fqdn', n.get_str_value()),
-            "is_azure_ad_joined": lambda n : setattr(self, 'is_azure_ad_joined', n.get_bool_value()),
-            "is_azure_ad_registered": lambda n : setattr(self, 'is_azure_ad_registered', n.get_bool_value()),
-            "is_hybrid_azure_domain_joined": lambda n : setattr(self, 'is_hybrid_azure_domain_joined', n.get_bool_value()),
-            "last_seen_date_time": lambda n : setattr(self, 'last_seen_date_time', n.get_datetime_value()),
-            "logon_users": lambda n : setattr(self, 'logon_users', n.get_collection_of_object_values(logon_user.LogonUser)),
-            "net_bios_name": lambda n : setattr(self, 'net_bios_name', n.get_str_value()),
-            "network_interfaces": lambda n : setattr(self, 'network_interfaces', n.get_collection_of_object_values(network_interface.NetworkInterface)),
+            "isAzureAdJoined": lambda n : setattr(self, 'is_azure_ad_joined', n.get_bool_value()),
+            "isAzureAdRegistered": lambda n : setattr(self, 'is_azure_ad_registered', n.get_bool_value()),
+            "isHybridAzureDomainJoined": lambda n : setattr(self, 'is_hybrid_azure_domain_joined', n.get_bool_value()),
+            "lastSeenDateTime": lambda n : setattr(self, 'last_seen_date_time', n.get_datetime_value()),
+            "logonUsers": lambda n : setattr(self, 'logon_users', n.get_collection_of_object_values(logon_user.LogonUser)),
+            "networkInterfaces": lambda n : setattr(self, 'network_interfaces', n.get_collection_of_object_values(network_interface.NetworkInterface)),
+            "netBiosName": lambda n : setattr(self, 'net_bios_name', n.get_str_value()),
             "os": lambda n : setattr(self, 'os', n.get_str_value()),
-            "os_version": lambda n : setattr(self, 'os_version', n.get_str_value()),
-            "parent_host": lambda n : setattr(self, 'parent_host', n.get_str_value()),
-            "related_host_ids": lambda n : setattr(self, 'related_host_ids', n.get_collection_of_primitive_values(str)),
-            "risk_score": lambda n : setattr(self, 'risk_score', n.get_str_value()),
+            "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
+            "parentHost": lambda n : setattr(self, 'parent_host', n.get_str_value()),
+            "relatedHostIds": lambda n : setattr(self, 'related_host_ids', n.get_collection_of_primitive_values(str)),
+            "riskScore": lambda n : setattr(self, 'risk_score', n.get_str_value()),
             "tags": lambda n : setattr(self, 'tags', n.get_collection_of_primitive_values(str)),
-            "vendor_information": lambda n : setattr(self, 'vendor_information', n.get_object_value(security_vendor_information.SecurityVendorInformation)),
+            "vendorInformation": lambda n : setattr(self, 'vendor_information', n.get_object_value(security_vendor_information.SecurityVendorInformation)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -176,7 +176,7 @@ class HostSecurityProfile(entity.Entity):
         """
         Sets the isAzureAdJoined property value. The isAzureAdJoined property
         Args:
-            value: Value to set for the isAzureAdJoined property.
+            value: Value to set for the is_azure_ad_joined property.
         """
         self._is_azure_ad_joined = value
     
@@ -193,7 +193,7 @@ class HostSecurityProfile(entity.Entity):
         """
         Sets the isAzureAdRegistered property value. The isAzureAdRegistered property
         Args:
-            value: Value to set for the isAzureAdRegistered property.
+            value: Value to set for the is_azure_ad_registered property.
         """
         self._is_azure_ad_registered = value
     
@@ -210,7 +210,7 @@ class HostSecurityProfile(entity.Entity):
         """
         Sets the isHybridAzureDomainJoined property value. The isHybridAzureDomainJoined property
         Args:
-            value: Value to set for the isHybridAzureDomainJoined property.
+            value: Value to set for the is_hybrid_azure_domain_joined property.
         """
         self._is_hybrid_azure_domain_joined = value
     
@@ -227,7 +227,7 @@ class HostSecurityProfile(entity.Entity):
         """
         Sets the lastSeenDateTime property value. The lastSeenDateTime property
         Args:
-            value: Value to set for the lastSeenDateTime property.
+            value: Value to set for the last_seen_date_time property.
         """
         self._last_seen_date_time = value
     
@@ -244,7 +244,7 @@ class HostSecurityProfile(entity.Entity):
         """
         Sets the logonUsers property value. The logonUsers property
         Args:
-            value: Value to set for the logonUsers property.
+            value: Value to set for the logon_users property.
         """
         self._logon_users = value
     
@@ -261,7 +261,7 @@ class HostSecurityProfile(entity.Entity):
         """
         Sets the netBiosName property value. The netBiosName property
         Args:
-            value: Value to set for the netBiosName property.
+            value: Value to set for the net_bios_name property.
         """
         self._net_bios_name = value
     
@@ -278,7 +278,7 @@ class HostSecurityProfile(entity.Entity):
         """
         Sets the networkInterfaces property value. The networkInterfaces property
         Args:
-            value: Value to set for the networkInterfaces property.
+            value: Value to set for the network_interfaces property.
         """
         self._network_interfaces = value
     
@@ -312,7 +312,7 @@ class HostSecurityProfile(entity.Entity):
         """
         Sets the osVersion property value. The osVersion property
         Args:
-            value: Value to set for the osVersion property.
+            value: Value to set for the os_version property.
         """
         self._os_version = value
     
@@ -329,7 +329,7 @@ class HostSecurityProfile(entity.Entity):
         """
         Sets the parentHost property value. The parentHost property
         Args:
-            value: Value to set for the parentHost property.
+            value: Value to set for the parent_host property.
         """
         self._parent_host = value
     
@@ -346,7 +346,7 @@ class HostSecurityProfile(entity.Entity):
         """
         Sets the relatedHostIds property value. The relatedHostIds property
         Args:
-            value: Value to set for the relatedHostIds property.
+            value: Value to set for the related_host_ids property.
         """
         self._related_host_ids = value
     
@@ -363,7 +363,7 @@ class HostSecurityProfile(entity.Entity):
         """
         Sets the riskScore property value. The riskScore property
         Args:
-            value: Value to set for the riskScore property.
+            value: Value to set for the risk_score property.
         """
         self._risk_score = value
     
@@ -385,8 +385,8 @@ class HostSecurityProfile(entity.Entity):
         writer.write_bool_value("isHybridAzureDomainJoined", self.is_hybrid_azure_domain_joined)
         writer.write_datetime_value("lastSeenDateTime", self.last_seen_date_time)
         writer.write_collection_of_object_values("logonUsers", self.logon_users)
-        writer.write_str_value("netBiosName", self.net_bios_name)
         writer.write_collection_of_object_values("networkInterfaces", self.network_interfaces)
+        writer.write_str_value("netBiosName", self.net_bios_name)
         writer.write_str_value("os", self.os)
         writer.write_str_value("osVersion", self.os_version)
         writer.write_str_value("parentHost", self.parent_host)
@@ -425,7 +425,7 @@ class HostSecurityProfile(entity.Entity):
         """
         Sets the vendorInformation property value. The vendorInformation property
         Args:
-            value: Value to set for the vendorInformation property.
+            value: Value to set for the vendor_information property.
         """
         self._vendor_information = value
     

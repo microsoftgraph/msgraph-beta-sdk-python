@@ -7,9 +7,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class UserExperienceAnalyticsAnomalyDevice(entity.Entity):
-    """
-    The user experience analytics anomaly entity contains device details.
-    """
     @property
     def anomaly_id(self,) -> Optional[str]:
         """
@@ -23,7 +20,7 @@ class UserExperienceAnalyticsAnomalyDevice(entity.Entity):
         """
         Sets the anomalyId property value. The unique identifier of the anomaly.
         Args:
-            value: Value to set for the anomalyId property.
+            value: Value to set for the anomaly_id property.
         """
         self._anomaly_id = value
     
@@ -40,7 +37,7 @@ class UserExperienceAnalyticsAnomalyDevice(entity.Entity):
         """
         Sets the anomalyOnDeviceFirstOccurrenceDateTime property value. Indicates the first occurance date and time for the anomaly on the device.
         Args:
-            value: Value to set for the anomalyOnDeviceFirstOccurrenceDateTime property.
+            value: Value to set for the anomaly_on_device_first_occurrence_date_time property.
         """
         self._anomaly_on_device_first_occurrence_date_time = value
     
@@ -57,13 +54,13 @@ class UserExperienceAnalyticsAnomalyDevice(entity.Entity):
         """
         Sets the anomalyOnDeviceLatestOccurrenceDateTime property value. Indicates the latest occurance date and time for the anomaly on the device.
         Args:
-            value: Value to set for the anomalyOnDeviceLatestOccurrenceDateTime property.
+            value: Value to set for the anomaly_on_device_latest_occurrence_date_time property.
         """
         self._anomaly_on_device_latest_occurrence_date_time = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsAnomalyDevice and sets the default values.
+        Instantiates a new UserExperienceAnalyticsAnomalyDevice and sets the default values.
         """
         super().__init__()
         # The unique identifier of the anomaly.
@@ -112,7 +109,7 @@ class UserExperienceAnalyticsAnomalyDevice(entity.Entity):
         """
         Sets the deviceId property value. The unique identifier of the device.
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -129,7 +126,7 @@ class UserExperienceAnalyticsAnomalyDevice(entity.Entity):
         """
         Sets the deviceManufacturer property value. The manufacturer name of the device.
         Args:
-            value: Value to set for the deviceManufacturer property.
+            value: Value to set for the device_manufacturer property.
         """
         self._device_manufacturer = value
     
@@ -146,7 +143,7 @@ class UserExperienceAnalyticsAnomalyDevice(entity.Entity):
         """
         Sets the deviceModel property value. The model name of the device.
         Args:
-            value: Value to set for the deviceModel property.
+            value: Value to set for the device_model property.
         """
         self._device_model = value
     
@@ -163,7 +160,7 @@ class UserExperienceAnalyticsAnomalyDevice(entity.Entity):
         """
         Sets the deviceName property value. The name of the device.
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -173,15 +170,15 @@ class UserExperienceAnalyticsAnomalyDevice(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "anomaly_id": lambda n : setattr(self, 'anomaly_id', n.get_str_value()),
-            "anomaly_on_device_first_occurrence_date_time": lambda n : setattr(self, 'anomaly_on_device_first_occurrence_date_time', n.get_datetime_value()),
-            "anomaly_on_device_latest_occurrence_date_time": lambda n : setattr(self, 'anomaly_on_device_latest_occurrence_date_time', n.get_datetime_value()),
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "device_manufacturer": lambda n : setattr(self, 'device_manufacturer', n.get_str_value()),
-            "device_model": lambda n : setattr(self, 'device_model', n.get_str_value()),
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
-            "os_name": lambda n : setattr(self, 'os_name', n.get_str_value()),
-            "os_version": lambda n : setattr(self, 'os_version', n.get_str_value()),
+            "anomalyId": lambda n : setattr(self, 'anomaly_id', n.get_str_value()),
+            "anomalyOnDeviceFirstOccurrenceDateTime": lambda n : setattr(self, 'anomaly_on_device_first_occurrence_date_time', n.get_datetime_value()),
+            "anomalyOnDeviceLatestOccurrenceDateTime": lambda n : setattr(self, 'anomaly_on_device_latest_occurrence_date_time', n.get_datetime_value()),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "deviceManufacturer": lambda n : setattr(self, 'device_manufacturer', n.get_str_value()),
+            "deviceModel": lambda n : setattr(self, 'device_model', n.get_str_value()),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "osName": lambda n : setattr(self, 'os_name', n.get_str_value()),
+            "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -200,7 +197,7 @@ class UserExperienceAnalyticsAnomalyDevice(entity.Entity):
         """
         Sets the osName property value. The name of the OS installed on the device.
         Args:
-            value: Value to set for the osName property.
+            value: Value to set for the os_name property.
         """
         self._os_name = value
     
@@ -217,7 +214,7 @@ class UserExperienceAnalyticsAnomalyDevice(entity.Entity):
         """
         Sets the osVersion property value. The OS version installed on the device.
         Args:
-            value: Value to set for the osVersion property.
+            value: Value to set for the os_version property.
         """
         self._os_version = value
     

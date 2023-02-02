@@ -20,7 +20,7 @@ class AuthenticationMethodModeDetail(entity.Entity):
         """
         Sets the authenticationMethod property value. The authenticationMethod property
         Args:
-            value: Value to set for the authenticationMethod property.
+            value: Value to set for the authentication_method property.
         """
         self._authentication_method = value
     
@@ -61,7 +61,7 @@ class AuthenticationMethodModeDetail(entity.Entity):
         """
         Sets the displayName property value. The display name of this mode
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -71,8 +71,8 @@ class AuthenticationMethodModeDetail(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authentication_method": lambda n : setattr(self, 'authentication_method', n.get_enum_value(base_authentication_method.BaseAuthenticationMethod)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(base_authentication_method.BaseAuthenticationMethod)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

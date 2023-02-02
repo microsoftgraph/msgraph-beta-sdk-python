@@ -20,7 +20,7 @@ class UsageRight(entity.Entity):
         """
         Sets the catalogId property value. Product id corresponding to the usage right.
         Args:
-            value: Value to set for the catalogId property.
+            value: Value to set for the catalog_id property.
         """
         self._catalog_id = value
     
@@ -56,8 +56,8 @@ class UsageRight(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "catalog_id": lambda n : setattr(self, 'catalog_id', n.get_str_value()),
-            "service_identifier": lambda n : setattr(self, 'service_identifier', n.get_str_value()),
+            "catalogId": lambda n : setattr(self, 'catalog_id', n.get_str_value()),
+            "serviceIdentifier": lambda n : setattr(self, 'service_identifier', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(usage_right_state.UsageRightState)),
         }
         super_fields = super().get_field_deserializers()
@@ -90,7 +90,7 @@ class UsageRight(entity.Entity):
         """
         Sets the serviceIdentifier property value. Identifier of the service corresponding to the usage right.
         Args:
-            value: Value to set for the serviceIdentifier property.
+            value: Value to set for the service_identifier property.
         """
         self._service_identifier = value
     

@@ -17,10 +17,11 @@ class AccessPackageAssignmentItemRequestBuilder():
     """
     Provides operations to manage the accessPackageAssignments property of the microsoft.graph.accessPackageAssignmentResourceRole entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, access_package_assignment_id: Optional[str] = None) -> None:
         """
         Instantiates a new AccessPackageAssignmentItemRequestBuilder and sets the default values.
         Args:
+            accessPackageAssignmentId: key: id of accessPackageAssignment
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class AccessPackageAssignmentItemRequestBuilder():
         self.url_template: str = "{+baseurl}/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/{accessPackageAssignmentResourceRole%2Did}/accessPackageAssignments/{accessPackageAssignment%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["accessPackageAssignment%2Did"] = accessPackageAssignmentId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AccessPackageAssignmentItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_assignment.AccessPackageAssignment]:
+    async def get(self,request_configuration: Optional[AccessPackageAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_assignment.AccessPackageAssignment]:
         """
         The access package assignments resulting in this role assignment. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_assignment.AccessPackageAssignment]
         """
         request_info = self.to_get_request_information(
@@ -52,7 +53,7 @@ class AccessPackageAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_assignment.AccessPackageAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_assignment.AccessPackageAssignment, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

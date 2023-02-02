@@ -26,10 +26,11 @@ class OutlookTaskGroupItemRequestBuilder():
         """
         return task_folders_request_builder.TaskFoldersRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, outlook_task_group_id: Optional[str] = None) -> None:
         """
         Instantiates a new OutlookTaskGroupItemRequestBuilder and sets the default values.
         Args:
+            outlookTaskGroupId: key: id of outlookTaskGroup
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -41,15 +42,15 @@ class OutlookTaskGroupItemRequestBuilder():
         self.url_template: str = "{+baseurl}/users/{user%2Did}/outlook/taskGroups/{outlookTaskGroup%2Did}{?%24select}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["outlookTaskGroup%2Did"] = outlookTaskGroupId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[OutlookTaskGroupItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[OutlookTaskGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property taskGroups for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,14 +61,13 @@ class OutlookTaskGroupItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[OutlookTaskGroupItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[outlook_task_group.OutlookTaskGroup]:
+    async def get(self,request_configuration: Optional[OutlookTaskGroupItemRequestBuilderGetRequestConfiguration] = None) -> Optional[outlook_task_group.OutlookTaskGroup]:
         """
         Get taskGroups from users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[outlook_task_group.OutlookTaskGroup]
         """
         request_info = self.to_get_request_information(
@@ -79,15 +79,14 @@ class OutlookTaskGroupItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, outlook_task_group.OutlookTaskGroup, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, outlook_task_group.OutlookTaskGroup, error_mapping)
     
-    async def patch(self,body: Optional[outlook_task_group.OutlookTaskGroup] = None, request_configuration: Optional[OutlookTaskGroupItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[outlook_task_group.OutlookTaskGroup]:
+    async def patch(self,body: Optional[outlook_task_group.OutlookTaskGroup] = None, request_configuration: Optional[OutlookTaskGroupItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[outlook_task_group.OutlookTaskGroup]:
         """
         Update the navigation property taskGroups in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[outlook_task_group.OutlookTaskGroup]
         """
         if body is None:
@@ -101,7 +100,7 @@ class OutlookTaskGroupItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, outlook_task_group.OutlookTaskGroup, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, outlook_task_group.OutlookTaskGroup, error_mapping)
     
     def task_folders_by_id(self,id: str) -> outlook_task_folder_item_request_builder.OutlookTaskFolderItemRequestBuilder:
         """

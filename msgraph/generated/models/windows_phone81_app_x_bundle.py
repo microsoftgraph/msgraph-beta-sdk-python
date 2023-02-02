@@ -20,7 +20,7 @@ class WindowsPhone81AppXBundle(windows_phone81_app_x.WindowsPhone81AppX):
         """
         Sets the appXPackageInformationList property value. The list of AppX Package Information.
         Args:
-            value: Value to set for the appXPackageInformationList property.
+            value: Value to set for the app_x_package_information_list property.
         """
         self._app_x_package_information_list = value
     
@@ -51,7 +51,7 @@ class WindowsPhone81AppXBundle(windows_phone81_app_x.WindowsPhone81AppX):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_x_package_information_list": lambda n : setattr(self, 'app_x_package_information_list', n.get_collection_of_object_values(windows_package_information.WindowsPackageInformation)),
+            "appXPackageInformationList": lambda n : setattr(self, 'app_x_package_information_list', n.get_collection_of_object_values(windows_package_information.WindowsPackageInformation)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

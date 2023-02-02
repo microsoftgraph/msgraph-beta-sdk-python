@@ -20,7 +20,7 @@ class VppTokenRevokeLicensesActionResult(vpp_token_action_result.VppTokenActionR
         """
         Sets the actionFailureReason property value. Possible types of reasons for an Apple Volume Purchase Program token action failure.
         Args:
-            value: Value to set for the actionFailureReason property.
+            value: Value to set for the action_failure_reason property.
         """
         self._action_failure_reason = value
     
@@ -63,7 +63,7 @@ class VppTokenRevokeLicensesActionResult(vpp_token_action_result.VppTokenActionR
         """
         Sets the failedLicensesCount property value. A count of the number of licenses that failed to revoke.
         Args:
-            value: Value to set for the failedLicensesCount property.
+            value: Value to set for the failed_licenses_count property.
         """
         self._failed_licenses_count = value
     
@@ -73,9 +73,9 @@ class VppTokenRevokeLicensesActionResult(vpp_token_action_result.VppTokenActionR
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "action_failure_reason": lambda n : setattr(self, 'action_failure_reason', n.get_enum_value(vpp_token_action_failure_reason.VppTokenActionFailureReason)),
-            "failed_licenses_count": lambda n : setattr(self, 'failed_licenses_count', n.get_int_value()),
-            "total_licenses_count": lambda n : setattr(self, 'total_licenses_count', n.get_int_value()),
+            "actionFailureReason": lambda n : setattr(self, 'action_failure_reason', n.get_enum_value(vpp_token_action_failure_reason.VppTokenActionFailureReason)),
+            "failedLicensesCount": lambda n : setattr(self, 'failed_licenses_count', n.get_int_value()),
+            "totalLicensesCount": lambda n : setattr(self, 'total_licenses_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -107,7 +107,7 @@ class VppTokenRevokeLicensesActionResult(vpp_token_action_result.VppTokenActionR
         """
         Sets the totalLicensesCount property value. A count of the number of licenses that were attempted to revoke.
         Args:
-            value: Value to set for the totalLicensesCount property.
+            value: Value to set for the total_licenses_count property.
         """
         self._total_licenses_count = value
     

@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-generate_download_uri_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.history_definitions.item.instances.item.generate_download_uri.generate_download_uri_request_builder')
+generate_download_uri_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.history_definitions.item.instances.item.microsoft_graph_generate_download_uri.generate_download_uri_request_builder')
 access_review_history_instance = lazy_import('msgraph.generated.models.access_review_history_instance')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -19,16 +19,17 @@ class AccessReviewHistoryInstanceItemRequestBuilder():
     Provides operations to manage the instances property of the microsoft.graph.accessReviewHistoryDefinition entity.
     """
     @property
-    def generate_download_uri(self) -> generate_download_uri_request_builder.GenerateDownloadUriRequestBuilder:
+    def microsoft_graph_generate_download_uri(self) -> generate_download_uri_request_builder.GenerateDownloadUriRequestBuilder:
         """
         Provides operations to call the generateDownloadUri method.
         """
         return generate_download_uri_request_builder.GenerateDownloadUriRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, access_review_history_instance_id: Optional[str] = None) -> None:
         """
         Instantiates a new AccessReviewHistoryInstanceItemRequestBuilder and sets the default values.
         Args:
+            accessReviewHistoryInstanceId: key: id of accessReviewHistoryInstance
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -40,15 +41,15 @@ class AccessReviewHistoryInstanceItemRequestBuilder():
         self.url_template: str = "{+baseurl}/identityGovernance/accessReviews/historyDefinitions/{accessReviewHistoryDefinition%2Did}/instances/{accessReviewHistoryInstance%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["accessReviewHistoryInstance%2Did"] = accessReviewHistoryInstanceId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AccessReviewHistoryInstanceItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AccessReviewHistoryInstanceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property instances for identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +60,13 @@ class AccessReviewHistoryInstanceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AccessReviewHistoryInstanceItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_history_instance.AccessReviewHistoryInstance]:
+    async def get(self,request_configuration: Optional[AccessReviewHistoryInstanceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_history_instance.AccessReviewHistoryInstance]:
         """
         If the accessReviewHistoryDefinition is a recurring definition, instances represent each recurrence. A definition that does not recur will have exactly one instance.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_history_instance.AccessReviewHistoryInstance]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +78,14 @@ class AccessReviewHistoryInstanceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_history_instance.AccessReviewHistoryInstance, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_history_instance.AccessReviewHistoryInstance, error_mapping)
     
-    async def patch(self,body: Optional[access_review_history_instance.AccessReviewHistoryInstance] = None, request_configuration: Optional[AccessReviewHistoryInstanceItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_history_instance.AccessReviewHistoryInstance]:
+    async def patch(self,body: Optional[access_review_history_instance.AccessReviewHistoryInstance] = None, request_configuration: Optional[AccessReviewHistoryInstanceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_review_history_instance.AccessReviewHistoryInstance]:
         """
         Update the navigation property instances in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_history_instance.AccessReviewHistoryInstance]
         """
         if body is None:
@@ -100,7 +99,7 @@ class AccessReviewHistoryInstanceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_history_instance.AccessReviewHistoryInstance, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_history_instance.AccessReviewHistoryInstance, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AccessReviewHistoryInstanceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

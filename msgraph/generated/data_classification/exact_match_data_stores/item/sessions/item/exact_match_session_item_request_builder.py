@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-cancel_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.sessions.item.cancel.cancel_request_builder')
-commit_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.sessions.item.commit.commit_request_builder')
-renew_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.sessions.item.renew.renew_request_builder')
+cancel_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.sessions.item.microsoft_graph_cancel.cancel_request_builder')
+commit_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.sessions.item.microsoft_graph_commit.commit_request_builder')
+renew_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.sessions.item.microsoft_graph_renew.renew_request_builder')
 upload_agent_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.sessions.item.upload_agent.upload_agent_request_builder')
 exact_match_session = lazy_import('msgraph.generated.models.exact_match_session')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -22,21 +22,21 @@ class ExactMatchSessionItemRequestBuilder():
     Provides operations to manage the sessions property of the microsoft.graph.exactMatchDataStore entity.
     """
     @property
-    def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
+    def microsoft_graph_cancel(self) -> cancel_request_builder.CancelRequestBuilder:
         """
         Provides operations to call the cancel method.
         """
         return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def commit(self) -> commit_request_builder.CommitRequestBuilder:
+    def microsoft_graph_commit(self) -> commit_request_builder.CommitRequestBuilder:
         """
         Provides operations to call the commit method.
         """
         return commit_request_builder.CommitRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def renew(self) -> renew_request_builder.RenewRequestBuilder:
+    def microsoft_graph_renew(self) -> renew_request_builder.RenewRequestBuilder:
         """
         Provides operations to call the renew method.
         """
@@ -49,10 +49,11 @@ class ExactMatchSessionItemRequestBuilder():
         """
         return upload_agent_request_builder.UploadAgentRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, exact_match_session_id: Optional[str] = None) -> None:
         """
         Instantiates a new ExactMatchSessionItemRequestBuilder and sets the default values.
         Args:
+            exactMatchSessionId: key: id of exactMatchSession
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -64,15 +65,15 @@ class ExactMatchSessionItemRequestBuilder():
         self.url_template: str = "{+baseurl}/dataClassification/exactMatchDataStores/{exactMatchDataStore%2Did}/sessions/{exactMatchSession%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["exactMatchSession%2Did"] = exactMatchSessionId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ExactMatchSessionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ExactMatchSessionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property sessions for dataClassification
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -83,14 +84,13 @@ class ExactMatchSessionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ExactMatchSessionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[exact_match_session.ExactMatchSession]:
+    async def get(self,request_configuration: Optional[ExactMatchSessionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[exact_match_session.ExactMatchSession]:
         """
         Get sessions from dataClassification
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[exact_match_session.ExactMatchSession]
         """
         request_info = self.to_get_request_information(
@@ -102,15 +102,14 @@ class ExactMatchSessionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, exact_match_session.ExactMatchSession, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, exact_match_session.ExactMatchSession, error_mapping)
     
-    async def patch(self,body: Optional[exact_match_session.ExactMatchSession] = None, request_configuration: Optional[ExactMatchSessionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[exact_match_session.ExactMatchSession]:
+    async def patch(self,body: Optional[exact_match_session.ExactMatchSession] = None, request_configuration: Optional[ExactMatchSessionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[exact_match_session.ExactMatchSession]:
         """
         Update the navigation property sessions in dataClassification
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[exact_match_session.ExactMatchSession]
         """
         if body is None:
@@ -124,7 +123,7 @@ class ExactMatchSessionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, exact_match_session.ExactMatchSession, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, exact_match_session.ExactMatchSession, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ExactMatchSessionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

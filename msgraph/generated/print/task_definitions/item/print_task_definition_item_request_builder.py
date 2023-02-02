@@ -26,11 +26,12 @@ class PrintTaskDefinitionItemRequestBuilder():
         """
         return tasks_request_builder.TasksRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, print_task_definition_id: Optional[str] = None) -> None:
         """
         Instantiates a new PrintTaskDefinitionItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            printTaskDefinitionId: key: id of printTaskDefinition
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -41,15 +42,15 @@ class PrintTaskDefinitionItemRequestBuilder():
         self.url_template: str = "{+baseurl}/print/taskDefinitions/{printTaskDefinition%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["printTaskDefinition%2Did"] = printTaskDefinitionId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PrintTaskDefinitionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PrintTaskDefinitionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property taskDefinitions for print
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,14 +61,13 @@ class PrintTaskDefinitionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PrintTaskDefinitionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[print_task_definition.PrintTaskDefinition]:
+    async def get(self,request_configuration: Optional[PrintTaskDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[print_task_definition.PrintTaskDefinition]:
         """
         Get taskDefinitions from print
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[print_task_definition.PrintTaskDefinition]
         """
         request_info = self.to_get_request_information(
@@ -79,15 +79,14 @@ class PrintTaskDefinitionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, print_task_definition.PrintTaskDefinition, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, print_task_definition.PrintTaskDefinition, error_mapping)
     
-    async def patch(self,body: Optional[print_task_definition.PrintTaskDefinition] = None, request_configuration: Optional[PrintTaskDefinitionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[print_task_definition.PrintTaskDefinition]:
+    async def patch(self,body: Optional[print_task_definition.PrintTaskDefinition] = None, request_configuration: Optional[PrintTaskDefinitionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[print_task_definition.PrintTaskDefinition]:
         """
         Update the navigation property taskDefinitions in print
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[print_task_definition.PrintTaskDefinition]
         """
         if body is None:
@@ -101,7 +100,7 @@ class PrintTaskDefinitionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, print_task_definition.PrintTaskDefinition, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, print_task_definition.PrintTaskDefinition, error_mapping)
     
     def tasks_by_id(self,id: str) -> print_task_item_request_builder.PrintTaskItemRequestBuilder:
         """

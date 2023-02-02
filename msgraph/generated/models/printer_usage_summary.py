@@ -36,7 +36,7 @@ class PrinterUsageSummary(AdditionalDataHolder, Parsable):
         """
         Sets the completedJobCount property value. The completedJobCount property
         Args:
-            value: Value to set for the completedJobCount property.
+            value: Value to set for the completed_job_count property.
         """
         self._completed_job_count = value
     
@@ -82,14 +82,14 @@ class PrinterUsageSummary(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "completed_job_count": lambda n : setattr(self, 'completed_job_count', n.get_int_value()),
-            "incomplete_job_count": lambda n : setattr(self, 'incomplete_job_count', n.get_int_value()),
+            "completedJobCount": lambda n : setattr(self, 'completed_job_count', n.get_int_value()),
+            "incompleteJobCount": lambda n : setattr(self, 'incomplete_job_count', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "printer": lambda n : setattr(self, 'printer', n.get_object_value(directory_object.DirectoryObject)),
-            "printer_display_name": lambda n : setattr(self, 'printer_display_name', n.get_str_value()),
-            "printer_id": lambda n : setattr(self, 'printer_id', n.get_str_value()),
-            "printer_manufacturer": lambda n : setattr(self, 'printer_manufacturer', n.get_str_value()),
-            "printer_model": lambda n : setattr(self, 'printer_model', n.get_str_value()),
+            "printerDisplayName": lambda n : setattr(self, 'printer_display_name', n.get_str_value()),
+            "printerId": lambda n : setattr(self, 'printer_id', n.get_str_value()),
+            "printerManufacturer": lambda n : setattr(self, 'printer_manufacturer', n.get_str_value()),
+            "printerModel": lambda n : setattr(self, 'printer_model', n.get_str_value()),
         }
         return fields
     
@@ -106,7 +106,7 @@ class PrinterUsageSummary(AdditionalDataHolder, Parsable):
         """
         Sets the incompleteJobCount property value. The incompleteJobCount property
         Args:
-            value: Value to set for the incompleteJobCount property.
+            value: Value to set for the incomplete_job_count property.
         """
         self._incomplete_job_count = value
     
@@ -123,7 +123,7 @@ class PrinterUsageSummary(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -157,7 +157,7 @@ class PrinterUsageSummary(AdditionalDataHolder, Parsable):
         """
         Sets the printerDisplayName property value. The printerDisplayName property
         Args:
-            value: Value to set for the printerDisplayName property.
+            value: Value to set for the printer_display_name property.
         """
         self._printer_display_name = value
     
@@ -174,7 +174,7 @@ class PrinterUsageSummary(AdditionalDataHolder, Parsable):
         """
         Sets the printerId property value. The printerId property
         Args:
-            value: Value to set for the printerId property.
+            value: Value to set for the printer_id property.
         """
         self._printer_id = value
     
@@ -191,7 +191,7 @@ class PrinterUsageSummary(AdditionalDataHolder, Parsable):
         """
         Sets the printerManufacturer property value. The printerManufacturer property
         Args:
-            value: Value to set for the printerManufacturer property.
+            value: Value to set for the printer_manufacturer property.
         """
         self._printer_manufacturer = value
     
@@ -208,7 +208,7 @@ class PrinterUsageSummary(AdditionalDataHolder, Parsable):
         """
         Sets the printerModel property value. The printerModel property
         Args:
-            value: Value to set for the printerModel property.
+            value: Value to set for the printer_model property.
         """
         self._printer_model = value
     

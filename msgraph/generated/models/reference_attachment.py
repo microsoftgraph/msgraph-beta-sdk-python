@@ -45,12 +45,12 @@ class ReferenceAttachment(attachment.Attachment):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_folder": lambda n : setattr(self, 'is_folder', n.get_bool_value()),
+            "isFolder": lambda n : setattr(self, 'is_folder', n.get_bool_value()),
             "permission": lambda n : setattr(self, 'permission', n.get_enum_value(reference_attachment_permission.ReferenceAttachmentPermission)),
-            "preview_url": lambda n : setattr(self, 'preview_url', n.get_str_value()),
-            "provider_type": lambda n : setattr(self, 'provider_type', n.get_enum_value(reference_attachment_provider.ReferenceAttachmentProvider)),
-            "source_url": lambda n : setattr(self, 'source_url', n.get_str_value()),
-            "thumbnail_url": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
+            "previewUrl": lambda n : setattr(self, 'preview_url', n.get_str_value()),
+            "providerType": lambda n : setattr(self, 'provider_type', n.get_enum_value(reference_attachment_provider.ReferenceAttachmentProvider)),
+            "sourceUrl": lambda n : setattr(self, 'source_url', n.get_str_value()),
+            "thumbnailUrl": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -69,7 +69,7 @@ class ReferenceAttachment(attachment.Attachment):
         """
         Sets the isFolder property value. Specifies whether the attachment is a link to a folder. Must set this to true if sourceUrl is a link to a folder. Optional.
         Args:
-            value: Value to set for the isFolder property.
+            value: Value to set for the is_folder property.
         """
         self._is_folder = value
     
@@ -103,7 +103,7 @@ class ReferenceAttachment(attachment.Attachment):
         """
         Sets the previewUrl property value. Applies to only a reference attachment of an image - URL to get a preview image. Use thumbnailUrl and previewUrl only when sourceUrl identifies an image file. Optional.
         Args:
-            value: Value to set for the previewUrl property.
+            value: Value to set for the preview_url property.
         """
         self._preview_url = value
     
@@ -120,7 +120,7 @@ class ReferenceAttachment(attachment.Attachment):
         """
         Sets the providerType property value. The type of provider that supports an attachment of this contentType. Possible values are: other, oneDriveBusiness, oneDriveConsumer, dropbox. Optional.
         Args:
-            value: Value to set for the providerType property.
+            value: Value to set for the provider_type property.
         """
         self._provider_type = value
     
@@ -153,7 +153,7 @@ class ReferenceAttachment(attachment.Attachment):
         """
         Sets the sourceUrl property value. URL to get the attachment content. If this is a URL to a folder, then for the folder to be displayed correctly in Outlook or Outlook on the web, set isFolder to true. Required.
         Args:
-            value: Value to set for the sourceUrl property.
+            value: Value to set for the source_url property.
         """
         self._source_url = value
     
@@ -170,7 +170,7 @@ class ReferenceAttachment(attachment.Attachment):
         """
         Sets the thumbnailUrl property value. Applies to only a reference attachment of an image - URL to get a thumbnail image. Use thumbnailUrl and previewUrl only when sourceUrl identifies an image file. Optional.
         Args:
-            value: Value to set for the thumbnailUrl property.
+            value: Value to set for the thumbnail_url property.
         """
         self._thumbnail_url = value
     

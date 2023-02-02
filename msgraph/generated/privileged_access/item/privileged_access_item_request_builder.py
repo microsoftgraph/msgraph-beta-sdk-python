@@ -62,11 +62,12 @@ class PrivilegedAccessItemRequestBuilder():
         """
         return role_settings_request_builder.RoleSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, privileged_access_id: Optional[str] = None) -> None:
         """
         Instantiates a new PrivilegedAccessItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            privilegedAccessId: key: id of privilegedAccess
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -77,15 +78,15 @@ class PrivilegedAccessItemRequestBuilder():
         self.url_template: str = "{+baseurl}/privilegedAccess/{privilegedAccess%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["privilegedAccess%2Did"] = privilegedAccessId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PrivilegedAccessItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PrivilegedAccessItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete entity from privilegedAccess
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -96,14 +97,13 @@ class PrivilegedAccessItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PrivilegedAccessItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_access.PrivilegedAccess]:
+    async def get(self,request_configuration: Optional[PrivilegedAccessItemRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access.PrivilegedAccess]:
         """
         Get entity from privilegedAccess by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_access.PrivilegedAccess]
         """
         request_info = self.to_get_request_information(
@@ -115,15 +115,14 @@ class PrivilegedAccessItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_access.PrivilegedAccess, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_access.PrivilegedAccess, error_mapping)
     
-    async def patch(self,body: Optional[privileged_access.PrivilegedAccess] = None, request_configuration: Optional[PrivilegedAccessItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_access.PrivilegedAccess]:
+    async def patch(self,body: Optional[privileged_access.PrivilegedAccess] = None, request_configuration: Optional[PrivilegedAccessItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[privileged_access.PrivilegedAccess]:
         """
         Update entity in privilegedAccess
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_access.PrivilegedAccess]
         """
         if body is None:
@@ -137,7 +136,7 @@ class PrivilegedAccessItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_access.PrivilegedAccess, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_access.PrivilegedAccess, error_mapping)
     
     def resources_by_id(self,id: str) -> governance_resource_item_request_builder.GovernanceResourceItemRequestBuilder:
         """

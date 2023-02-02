@@ -44,12 +44,11 @@ class PolicyTemplatesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PolicyTemplatesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_policy_template_collection_response.GovernancePolicyTemplateCollectionResponse]:
+    async def get(self,request_configuration: Optional[PolicyTemplatesRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_policy_template_collection_response.GovernancePolicyTemplateCollectionResponse]:
         """
         Get policyTemplates from approvalWorkflowProviders
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_policy_template_collection_response.GovernancePolicyTemplateCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class PolicyTemplatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_policy_template_collection_response.GovernancePolicyTemplateCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_policy_template_collection_response.GovernancePolicyTemplateCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[governance_policy_template.GovernancePolicyTemplate] = None, request_configuration: Optional[PolicyTemplatesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_policy_template.GovernancePolicyTemplate]:
+    async def post(self,body: Optional[governance_policy_template.GovernancePolicyTemplate] = None, request_configuration: Optional[PolicyTemplatesRequestBuilderPostRequestConfiguration] = None) -> Optional[governance_policy_template.GovernancePolicyTemplate]:
         """
         Create new navigation property to policyTemplates for approvalWorkflowProviders
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_policy_template.GovernancePolicyTemplate]
         """
         if body is None:
@@ -83,7 +81,7 @@ class PolicyTemplatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_policy_template.GovernancePolicyTemplate, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_policy_template.GovernancePolicyTemplate, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PolicyTemplatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

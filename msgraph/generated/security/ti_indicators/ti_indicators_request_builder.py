@@ -14,10 +14,10 @@ ti_indicator = lazy_import('msgraph.generated.models.ti_indicator')
 ti_indicator_collection_response = lazy_import('msgraph.generated.models.ti_indicator_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.security.ti_indicators.count.count_request_builder')
-delete_ti_indicators_request_builder = lazy_import('msgraph.generated.security.ti_indicators.delete_ti_indicators.delete_ti_indicators_request_builder')
-delete_ti_indicators_by_external_id_request_builder = lazy_import('msgraph.generated.security.ti_indicators.delete_ti_indicators_by_external_id.delete_ti_indicators_by_external_id_request_builder')
-submit_ti_indicators_request_builder = lazy_import('msgraph.generated.security.ti_indicators.submit_ti_indicators.submit_ti_indicators_request_builder')
-update_ti_indicators_request_builder = lazy_import('msgraph.generated.security.ti_indicators.update_ti_indicators.update_ti_indicators_request_builder')
+delete_ti_indicators_request_builder = lazy_import('msgraph.generated.security.ti_indicators.microsoft_graph_delete_ti_indicators.delete_ti_indicators_request_builder')
+delete_ti_indicators_by_external_id_request_builder = lazy_import('msgraph.generated.security.ti_indicators.microsoft_graph_delete_ti_indicators_by_external_id.delete_ti_indicators_by_external_id_request_builder')
+submit_ti_indicators_request_builder = lazy_import('msgraph.generated.security.ti_indicators.microsoft_graph_submit_ti_indicators.submit_ti_indicators_request_builder')
+update_ti_indicators_request_builder = lazy_import('msgraph.generated.security.ti_indicators.microsoft_graph_update_ti_indicators.update_ti_indicators_request_builder')
 
 class TiIndicatorsRequestBuilder():
     """
@@ -31,28 +31,28 @@ class TiIndicatorsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def delete_ti_indicators(self) -> delete_ti_indicators_request_builder.DeleteTiIndicatorsRequestBuilder:
+    def microsoft_graph_delete_ti_indicators(self) -> delete_ti_indicators_request_builder.DeleteTiIndicatorsRequestBuilder:
         """
         Provides operations to call the deleteTiIndicators method.
         """
         return delete_ti_indicators_request_builder.DeleteTiIndicatorsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def delete_ti_indicators_by_external_id(self) -> delete_ti_indicators_by_external_id_request_builder.DeleteTiIndicatorsByExternalIdRequestBuilder:
+    def microsoft_graph_delete_ti_indicators_by_external_id(self) -> delete_ti_indicators_by_external_id_request_builder.DeleteTiIndicatorsByExternalIdRequestBuilder:
         """
         Provides operations to call the deleteTiIndicatorsByExternalId method.
         """
         return delete_ti_indicators_by_external_id_request_builder.DeleteTiIndicatorsByExternalIdRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def submit_ti_indicators(self) -> submit_ti_indicators_request_builder.SubmitTiIndicatorsRequestBuilder:
+    def microsoft_graph_submit_ti_indicators(self) -> submit_ti_indicators_request_builder.SubmitTiIndicatorsRequestBuilder:
         """
         Provides operations to call the submitTiIndicators method.
         """
         return submit_ti_indicators_request_builder.SubmitTiIndicatorsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_ti_indicators(self) -> update_ti_indicators_request_builder.UpdateTiIndicatorsRequestBuilder:
+    def microsoft_graph_update_ti_indicators(self) -> update_ti_indicators_request_builder.UpdateTiIndicatorsRequestBuilder:
         """
         Provides operations to call the updateTiIndicators method.
         """
@@ -76,12 +76,11 @@ class TiIndicatorsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[TiIndicatorsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ti_indicator_collection_response.TiIndicatorCollectionResponse]:
+    async def get(self,request_configuration: Optional[TiIndicatorsRequestBuilderGetRequestConfiguration] = None) -> Optional[ti_indicator_collection_response.TiIndicatorCollectionResponse]:
         """
         Retrieve a list of tiIndicator objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ti_indicator_collection_response.TiIndicatorCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -93,15 +92,14 @@ class TiIndicatorsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ti_indicator_collection_response.TiIndicatorCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ti_indicator_collection_response.TiIndicatorCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ti_indicator.TiIndicator] = None, request_configuration: Optional[TiIndicatorsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ti_indicator.TiIndicator]:
+    async def post(self,body: Optional[ti_indicator.TiIndicator] = None, request_configuration: Optional[TiIndicatorsRequestBuilderPostRequestConfiguration] = None) -> Optional[ti_indicator.TiIndicator]:
         """
         Create a new tiIndicator object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ti_indicator.TiIndicator]
         """
         if body is None:
@@ -115,7 +113,7 @@ class TiIndicatorsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ti_indicator.TiIndicator, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ti_indicator.TiIndicator, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TiIndicatorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

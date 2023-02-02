@@ -1,7 +1,7 @@
 from enum import Enum
 
 class TenantOnboardingEligibilityReason(Enum):
-    None_escaped = "none",
+    None_ = "none",
     ContractType = "contractType",
     DelegatedAdminPrivileges = "delegatedAdminPrivileges",
     UsersCount = "usersCount",

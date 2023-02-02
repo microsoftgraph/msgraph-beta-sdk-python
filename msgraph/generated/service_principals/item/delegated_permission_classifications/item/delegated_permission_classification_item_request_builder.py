@@ -17,10 +17,11 @@ class DelegatedPermissionClassificationItemRequestBuilder():
     """
     Provides operations to manage the delegatedPermissionClassifications property of the microsoft.graph.servicePrincipal entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, delegated_permission_classification_id: Optional[str] = None) -> None:
         """
         Instantiates a new DelegatedPermissionClassificationItemRequestBuilder and sets the default values.
         Args:
+            delegatedPermissionClassificationId: key: id of delegatedPermissionClassification
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class DelegatedPermissionClassificationItemRequestBuilder():
         self.url_template: str = "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/delegatedPermissionClassifications/{delegatedPermissionClassification%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["delegatedPermissionClassification%2Did"] = delegatedPermissionClassificationId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DelegatedPermissionClassificationItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DelegatedPermissionClassificationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property delegatedPermissionClassifications for servicePrincipals
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class DelegatedPermissionClassificationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DelegatedPermissionClassificationItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[delegated_permission_classification.DelegatedPermissionClassification]:
+    async def get(self,request_configuration: Optional[DelegatedPermissionClassificationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[delegated_permission_classification.DelegatedPermissionClassification]:
         """
         The permission classifications for delegated permissions exposed by the app that this service principal represents. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[delegated_permission_classification.DelegatedPermissionClassification]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class DelegatedPermissionClassificationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, delegated_permission_classification.DelegatedPermissionClassification, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, delegated_permission_classification.DelegatedPermissionClassification, error_mapping)
     
-    async def patch(self,body: Optional[delegated_permission_classification.DelegatedPermissionClassification] = None, request_configuration: Optional[DelegatedPermissionClassificationItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[delegated_permission_classification.DelegatedPermissionClassification]:
+    async def patch(self,body: Optional[delegated_permission_classification.DelegatedPermissionClassification] = None, request_configuration: Optional[DelegatedPermissionClassificationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[delegated_permission_classification.DelegatedPermissionClassification]:
         """
         Update the navigation property delegatedPermissionClassifications in servicePrincipals
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[delegated_permission_classification.DelegatedPermissionClassification]
         """
         if body is None:
@@ -92,7 +91,7 @@ class DelegatedPermissionClassificationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, delegated_permission_classification.DelegatedPermissionClassification, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, delegated_permission_classification.DelegatedPermissionClassification, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DelegatedPermissionClassificationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -17,12 +17,13 @@ class UserExperienceAnalyticsBatteryHealthAppImpactItemRequestBuilder():
     """
     Provides operations to manage the userExperienceAnalyticsBatteryHealthAppImpact property of the microsoft.graph.deviceManagement entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, user_experience_analytics_battery_health_app_impact_id: Optional[str] = None) -> None:
         """
         Instantiates a new UserExperienceAnalyticsBatteryHealthAppImpactItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            userExperienceAnalyticsBatteryHealthAppImpactId: key: id of userExperienceAnalyticsBatteryHealthAppImpact
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -32,15 +33,15 @@ class UserExperienceAnalyticsBatteryHealthAppImpactItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceManagement/userExperienceAnalyticsBatteryHealthAppImpact/{userExperienceAnalyticsBatteryHealthAppImpact%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["userExperienceAnalyticsBatteryHealthAppImpact%2Did"] = userExperienceAnalyticsBatteryHealthAppImpactId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthAppImpactItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthAppImpactItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property userExperienceAnalyticsBatteryHealthAppImpact for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class UserExperienceAnalyticsBatteryHealthAppImpactItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthAppImpactItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_battery_health_app_impact.UserExperienceAnalyticsBatteryHealthAppImpact]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthAppImpactItemRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_battery_health_app_impact.UserExperienceAnalyticsBatteryHealthAppImpact]:
         """
         User Experience Analytics Battery Health App Impact
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_battery_health_app_impact.UserExperienceAnalyticsBatteryHealthAppImpact]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class UserExperienceAnalyticsBatteryHealthAppImpactItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_app_impact.UserExperienceAnalyticsBatteryHealthAppImpact, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_app_impact.UserExperienceAnalyticsBatteryHealthAppImpact, error_mapping)
     
-    async def patch(self,body: Optional[user_experience_analytics_battery_health_app_impact.UserExperienceAnalyticsBatteryHealthAppImpact] = None, request_configuration: Optional[UserExperienceAnalyticsBatteryHealthAppImpactItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_battery_health_app_impact.UserExperienceAnalyticsBatteryHealthAppImpact]:
+    async def patch(self,body: Optional[user_experience_analytics_battery_health_app_impact.UserExperienceAnalyticsBatteryHealthAppImpact] = None, request_configuration: Optional[UserExperienceAnalyticsBatteryHealthAppImpactItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[user_experience_analytics_battery_health_app_impact.UserExperienceAnalyticsBatteryHealthAppImpact]:
         """
         Update the navigation property userExperienceAnalyticsBatteryHealthAppImpact in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_battery_health_app_impact.UserExperienceAnalyticsBatteryHealthAppImpact]
         """
         if body is None:
@@ -92,7 +91,7 @@ class UserExperienceAnalyticsBatteryHealthAppImpactItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_app_impact.UserExperienceAnalyticsBatteryHealthAppImpact, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_app_impact.UserExperienceAnalyticsBatteryHealthAppImpact, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthAppImpactItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

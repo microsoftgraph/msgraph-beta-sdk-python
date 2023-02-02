@@ -10,13 +10,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-assign_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.item.assign.assign_request_builder')
 assignments_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.item.assignments.assignments_request_builder')
 ios_lob_app_provisioning_configuration_assignment_item_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.item.assignments.item.ios_lob_app_provisioning_configuration_assignment_item_request_builder')
 device_statuses_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.item.device_statuses.device_statuses_request_builder')
 managed_device_mobile_app_configuration_device_status_item_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.item.device_statuses.item.managed_device_mobile_app_configuration_device_status_item_request_builder')
 group_assignments_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.item.group_assignments.group_assignments_request_builder')
 mobile_app_provisioning_config_group_assignment_item_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.item.group_assignments.item.mobile_app_provisioning_config_group_assignment_item_request_builder')
+assign_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.item.microsoft_graph_assign.assign_request_builder')
 user_statuses_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.item.user_statuses.user_statuses_request_builder')
 managed_device_mobile_app_configuration_user_status_item_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.item.user_statuses.item.managed_device_mobile_app_configuration_user_status_item_request_builder')
 ios_lob_app_provisioning_configuration = lazy_import('msgraph.generated.models.ios_lob_app_provisioning_configuration')
@@ -26,13 +26,6 @@ class IosLobAppProvisioningConfigurationItemRequestBuilder():
     """
     Provides operations to manage the iosLobAppProvisioningConfigurations property of the microsoft.graph.deviceAppManagement entity.
     """
-    @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
-        """
-        Provides operations to call the assign method.
-        """
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
@@ -55,6 +48,13 @@ class IosLobAppProvisioningConfigurationItemRequestBuilder():
         return group_assignments_request_builder.GroupAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def microsoft_graph_assign(self) -> assign_request_builder.AssignRequestBuilder:
+        """
+        Provides operations to call the assign method.
+        """
+        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def user_statuses(self) -> user_statuses_request_builder.UserStatusesRequestBuilder:
         """
         Provides operations to manage the userStatuses property of the microsoft.graph.iosLobAppProvisioningConfiguration entity.
@@ -74,10 +74,11 @@ class IosLobAppProvisioningConfigurationItemRequestBuilder():
         url_tpl_params["iosLobAppProvisioningConfigurationAssignment%2Did"] = id
         return ios_lob_app_provisioning_configuration_assignment_item_request_builder.IosLobAppProvisioningConfigurationAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, ios_lob_app_provisioning_configuration_id: Optional[str] = None) -> None:
         """
         Instantiates a new IosLobAppProvisioningConfigurationItemRequestBuilder and sets the default values.
         Args:
+            iosLobAppProvisioningConfigurationId: key: id of iosLobAppProvisioningConfiguration
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -89,15 +90,15 @@ class IosLobAppProvisioningConfigurationItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceAppManagement/iosLobAppProvisioningConfigurations/{iosLobAppProvisioningConfiguration%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["iosLobAppProvisioningConfiguration%2Did"] = iosLobAppProvisioningConfigurationId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[IosLobAppProvisioningConfigurationItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[IosLobAppProvisioningConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property iosLobAppProvisioningConfigurations for deviceAppManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -108,7 +109,7 @@ class IosLobAppProvisioningConfigurationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def device_statuses_by_id(self,id: str) -> managed_device_mobile_app_configuration_device_status_item_request_builder.ManagedDeviceMobileAppConfigurationDeviceStatusItemRequestBuilder:
         """
@@ -123,12 +124,11 @@ class IosLobAppProvisioningConfigurationItemRequestBuilder():
         url_tpl_params["managedDeviceMobileAppConfigurationDeviceStatus%2Did"] = id
         return managed_device_mobile_app_configuration_device_status_item_request_builder.ManagedDeviceMobileAppConfigurationDeviceStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[IosLobAppProvisioningConfigurationItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration]:
+    async def get(self,request_configuration: Optional[IosLobAppProvisioningConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration]:
         """
         The IOS Lob App Provisioning Configurations.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration]
         """
         request_info = self.to_get_request_information(
@@ -140,7 +140,7 @@ class IosLobAppProvisioningConfigurationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration, error_mapping)
     
     def group_assignments_by_id(self,id: str) -> mobile_app_provisioning_config_group_assignment_item_request_builder.MobileAppProvisioningConfigGroupAssignmentItemRequestBuilder:
         """
@@ -155,13 +155,12 @@ class IosLobAppProvisioningConfigurationItemRequestBuilder():
         url_tpl_params["mobileAppProvisioningConfigGroupAssignment%2Did"] = id
         return mobile_app_provisioning_config_group_assignment_item_request_builder.MobileAppProvisioningConfigGroupAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration] = None, request_configuration: Optional[IosLobAppProvisioningConfigurationItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration]:
+    async def patch(self,body: Optional[ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration] = None, request_configuration: Optional[IosLobAppProvisioningConfigurationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration]:
         """
         Update the navigation property iosLobAppProvisioningConfigurations in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration]
         """
         if body is None:
@@ -175,7 +174,7 @@ class IosLobAppProvisioningConfigurationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[IosLobAppProvisioningConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

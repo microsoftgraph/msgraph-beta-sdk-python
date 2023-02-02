@@ -11,9 +11,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 mime_content = lazy_import('msgraph.generated.models.mime_content')
 
 class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
-    """
-    Enrollment Profile used to enroll Android Enterprise devices using Google's Cloud Management.
-    """
     @property
     def account_id(self,) -> Optional[str]:
         """
@@ -27,7 +24,7 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         """
         Sets the accountId property value. Tenant GUID the enrollment profile belongs to.
         Args:
-            value: Value to set for the accountId property.
+            value: Value to set for the account_id property.
         """
         self._account_id = value
     
@@ -44,13 +41,13 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         """
         Sets the configureWifi property value. Boolean that indicates that the Wi-Fi network should be configured during device provisioning. When set to TRUE, device provisioning will use Wi-Fi related properties to automatically connect to Wi-Fi networks. When set to FALSE or undefined, other Wi-Fi related properties will be ignored. Default value is TRUE. Returned by default.
         Args:
-            value: Value to set for the configureWifi property.
+            value: Value to set for the configure_wifi property.
         """
         self._configure_wifi = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new androidDeviceOwnerEnrollmentProfile and sets the default values.
+        Instantiates a new AndroidDeviceOwnerEnrollmentProfile and sets the default values.
         """
         super().__init__()
         # Tenant GUID the enrollment profile belongs to.
@@ -111,7 +108,7 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         """
         Sets the createdDateTime property value. Date time the enrollment profile was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -157,7 +154,7 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         """
         Sets the displayName property value. Display name for the enrollment profile.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -174,7 +171,7 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         """
         Sets the enrolledDeviceCount property value. Total number of Android devices that have enrolled using this enrollment profile.
         Args:
-            value: Value to set for the enrolledDeviceCount property.
+            value: Value to set for the enrolled_device_count property.
         """
         self._enrolled_device_count = value
     
@@ -191,7 +188,7 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         """
         Sets the enrollmentMode property value. The enrollment mode for an enrollment profile.
         Args:
-            value: Value to set for the enrollmentMode property.
+            value: Value to set for the enrollment_mode property.
         """
         self._enrollment_mode = value
     
@@ -208,7 +205,7 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         """
         Sets the enrollmentTokenType property value. The enrollment token type for an enrollment profile.
         Args:
-            value: Value to set for the enrollmentTokenType property.
+            value: Value to set for the enrollment_token_type property.
         """
         self._enrollment_token_type = value
     
@@ -225,7 +222,7 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         """
         Sets the enrollmentTokenUsageCount property value. Total number of AOSP devices that have enrolled using the current token.
         Args:
-            value: Value to set for the enrollmentTokenUsageCount property.
+            value: Value to set for the enrollment_token_usage_count property.
         """
         self._enrollment_token_usage_count = value
     
@@ -235,27 +232,27 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "account_id": lambda n : setattr(self, 'account_id', n.get_str_value()),
-            "configure_wifi": lambda n : setattr(self, 'configure_wifi', n.get_bool_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "accountId": lambda n : setattr(self, 'account_id', n.get_str_value()),
+            "configureWifi": lambda n : setattr(self, 'configure_wifi', n.get_bool_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "enrolled_device_count": lambda n : setattr(self, 'enrolled_device_count', n.get_int_value()),
-            "enrollment_mode": lambda n : setattr(self, 'enrollment_mode', n.get_enum_value(android_device_owner_enrollment_mode.AndroidDeviceOwnerEnrollmentMode)),
-            "enrollment_token_type": lambda n : setattr(self, 'enrollment_token_type', n.get_enum_value(android_device_owner_enrollment_token_type.AndroidDeviceOwnerEnrollmentTokenType)),
-            "enrollment_token_usage_count": lambda n : setattr(self, 'enrollment_token_usage_count', n.get_int_value()),
-            "is_teams_device_profile": lambda n : setattr(self, 'is_teams_device_profile', n.get_bool_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "qr_code_content": lambda n : setattr(self, 'qr_code_content', n.get_str_value()),
-            "qr_code_image": lambda n : setattr(self, 'qr_code_image', n.get_object_value(mime_content.MimeContent)),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
-            "token_creation_date_time": lambda n : setattr(self, 'token_creation_date_time', n.get_datetime_value()),
-            "token_expiration_date_time": lambda n : setattr(self, 'token_expiration_date_time', n.get_datetime_value()),
-            "token_value": lambda n : setattr(self, 'token_value', n.get_str_value()),
-            "wifi_hidden": lambda n : setattr(self, 'wifi_hidden', n.get_bool_value()),
-            "wifi_password": lambda n : setattr(self, 'wifi_password', n.get_str_value()),
-            "wifi_security_type": lambda n : setattr(self, 'wifi_security_type', n.get_enum_value(aosp_wifi_security_type.AospWifiSecurityType)),
-            "wifi_ssid": lambda n : setattr(self, 'wifi_ssid', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "enrolledDeviceCount": lambda n : setattr(self, 'enrolled_device_count', n.get_int_value()),
+            "enrollmentMode": lambda n : setattr(self, 'enrollment_mode', n.get_enum_value(android_device_owner_enrollment_mode.AndroidDeviceOwnerEnrollmentMode)),
+            "enrollmentTokenType": lambda n : setattr(self, 'enrollment_token_type', n.get_enum_value(android_device_owner_enrollment_token_type.AndroidDeviceOwnerEnrollmentTokenType)),
+            "enrollmentTokenUsageCount": lambda n : setattr(self, 'enrollment_token_usage_count', n.get_int_value()),
+            "isTeamsDeviceProfile": lambda n : setattr(self, 'is_teams_device_profile', n.get_bool_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "qrCodeContent": lambda n : setattr(self, 'qr_code_content', n.get_str_value()),
+            "qrCodeImage": lambda n : setattr(self, 'qr_code_image', n.get_object_value(mime_content.MimeContent)),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "tokenCreationDateTime": lambda n : setattr(self, 'token_creation_date_time', n.get_datetime_value()),
+            "tokenExpirationDateTime": lambda n : setattr(self, 'token_expiration_date_time', n.get_datetime_value()),
+            "tokenValue": lambda n : setattr(self, 'token_value', n.get_str_value()),
+            "wifiHidden": lambda n : setattr(self, 'wifi_hidden', n.get_bool_value()),
+            "wifiPassword": lambda n : setattr(self, 'wifi_password', n.get_str_value()),
+            "wifiSecurityType": lambda n : setattr(self, 'wifi_security_type', n.get_enum_value(aosp_wifi_security_type.AospWifiSecurityType)),
+            "wifiSsid": lambda n : setattr(self, 'wifi_ssid', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -274,7 +271,7 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         """
         Sets the isTeamsDeviceProfile property value. Boolean indicating if this profile is an Android AOSP for Teams device profile.
         Args:
-            value: Value to set for the isTeamsDeviceProfile property.
+            value: Value to set for the is_teams_device_profile property.
         """
         self._is_teams_device_profile = value
     
@@ -291,7 +288,7 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. Date time the enrollment profile was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -308,7 +305,7 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         """
         Sets the qrCodeContent property value. String used to generate a QR code for the token.
         Args:
-            value: Value to set for the qrCodeContent property.
+            value: Value to set for the qr_code_content property.
         """
         self._qr_code_content = value
     
@@ -325,7 +322,7 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         """
         Sets the qrCodeImage property value. String used to generate a QR code for the token.
         Args:
-            value: Value to set for the qrCodeImage property.
+            value: Value to set for the qr_code_image property.
         """
         self._qr_code_image = value
     
@@ -342,7 +339,7 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         """
         Sets the roleScopeTagIds property value. List of Scope Tags for this Entity instance.
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     
@@ -390,7 +387,7 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         """
         Sets the tokenCreationDateTime property value. Date time the most recently created token was created.
         Args:
-            value: Value to set for the tokenCreationDateTime property.
+            value: Value to set for the token_creation_date_time property.
         """
         self._token_creation_date_time = value
     
@@ -407,7 +404,7 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         """
         Sets the tokenExpirationDateTime property value. Date time the most recently created token will expire.
         Args:
-            value: Value to set for the tokenExpirationDateTime property.
+            value: Value to set for the token_expiration_date_time property.
         """
         self._token_expiration_date_time = value
     
@@ -424,7 +421,7 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         """
         Sets the tokenValue property value. Value of the most recently created token for this enrollment profile.
         Args:
-            value: Value to set for the tokenValue property.
+            value: Value to set for the token_value property.
         """
         self._token_value = value
     
@@ -441,7 +438,7 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         """
         Sets the wifiHidden property value. Boolean that indicates if hidden wifi networks are enabled
         Args:
-            value: Value to set for the wifiHidden property.
+            value: Value to set for the wifi_hidden property.
         """
         self._wifi_hidden = value
     
@@ -458,7 +455,7 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         """
         Sets the wifiPassword property value. String that contains the wi-fi login password
         Args:
-            value: Value to set for the wifiPassword property.
+            value: Value to set for the wifi_password property.
         """
         self._wifi_password = value
     
@@ -475,7 +472,7 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         """
         Sets the wifiSecurityType property value. This enum represents Wi-Fi Security Types for Android Device Owner AOSP Scenarios.
         Args:
-            value: Value to set for the wifiSecurityType property.
+            value: Value to set for the wifi_security_type property.
         """
         self._wifi_security_type = value
     
@@ -492,7 +489,7 @@ class AndroidDeviceOwnerEnrollmentProfile(entity.Entity):
         """
         Sets the wifiSsid property value. String that contains the wi-fi login ssid
         Args:
-            value: Value to set for the wifiSsid property.
+            value: Value to set for the wifi_ssid property.
         """
         self._wifi_ssid = value
     

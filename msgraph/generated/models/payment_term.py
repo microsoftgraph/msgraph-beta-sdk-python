@@ -20,7 +20,7 @@ class PaymentTerm(entity.Entity):
         """
         Sets the calculateDiscountOnCreditMemos property value. The calculateDiscountOnCreditMemos property
         Args:
-            value: Value to set for the calculateDiscountOnCreditMemos property.
+            value: Value to set for the calculate_discount_on_credit_memos property.
         """
         self._calculate_discount_on_credit_memos = value
     
@@ -88,7 +88,7 @@ class PaymentTerm(entity.Entity):
         """
         Sets the discountDateCalculation property value. The discountDateCalculation property
         Args:
-            value: Value to set for the discountDateCalculation property.
+            value: Value to set for the discount_date_calculation property.
         """
         self._discount_date_calculation = value
     
@@ -105,7 +105,7 @@ class PaymentTerm(entity.Entity):
         """
         Sets the discountPercent property value. The discountPercent property
         Args:
-            value: Value to set for the discountPercent property.
+            value: Value to set for the discount_percent property.
         """
         self._discount_percent = value
     
@@ -122,7 +122,7 @@ class PaymentTerm(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -139,7 +139,7 @@ class PaymentTerm(entity.Entity):
         """
         Sets the dueDateCalculation property value. The dueDateCalculation property
         Args:
-            value: Value to set for the dueDateCalculation property.
+            value: Value to set for the due_date_calculation property.
         """
         self._due_date_calculation = value
     
@@ -149,13 +149,13 @@ class PaymentTerm(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "calculate_discount_on_credit_memos": lambda n : setattr(self, 'calculate_discount_on_credit_memos', n.get_bool_value()),
+            "calculateDiscountOnCreditMemos": lambda n : setattr(self, 'calculate_discount_on_credit_memos', n.get_bool_value()),
             "code": lambda n : setattr(self, 'code', n.get_str_value()),
-            "discount_date_calculation": lambda n : setattr(self, 'discount_date_calculation', n.get_str_value()),
-            "discount_percent": lambda n : setattr(self, 'discount_percent', n.get_float_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "due_date_calculation": lambda n : setattr(self, 'due_date_calculation', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "discountDateCalculation": lambda n : setattr(self, 'discount_date_calculation', n.get_str_value()),
+            "discountPercent": lambda n : setattr(self, 'discount_percent', n.get_float_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "dueDateCalculation": lambda n : setattr(self, 'due_date_calculation', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -174,7 +174,7 @@ class PaymentTerm(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     

@@ -44,12 +44,11 @@ class PolicyStatusDetailsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PolicyStatusDetailsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_autopilot_policy_status_detail_collection_response.DeviceManagementAutopilotPolicyStatusDetailCollectionResponse]:
+    async def get(self,request_configuration: Optional[PolicyStatusDetailsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_autopilot_policy_status_detail_collection_response.DeviceManagementAutopilotPolicyStatusDetailCollectionResponse]:
         """
         Policy and application status details for this device.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_autopilot_policy_status_detail_collection_response.DeviceManagementAutopilotPolicyStatusDetailCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class PolicyStatusDetailsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_autopilot_policy_status_detail_collection_response.DeviceManagementAutopilotPolicyStatusDetailCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_autopilot_policy_status_detail_collection_response.DeviceManagementAutopilotPolicyStatusDetailCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[device_management_autopilot_policy_status_detail.DeviceManagementAutopilotPolicyStatusDetail] = None, request_configuration: Optional[PolicyStatusDetailsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_autopilot_policy_status_detail.DeviceManagementAutopilotPolicyStatusDetail]:
+    async def post(self,body: Optional[device_management_autopilot_policy_status_detail.DeviceManagementAutopilotPolicyStatusDetail] = None, request_configuration: Optional[PolicyStatusDetailsRequestBuilderPostRequestConfiguration] = None) -> Optional[device_management_autopilot_policy_status_detail.DeviceManagementAutopilotPolicyStatusDetail]:
         """
         Create new navigation property to policyStatusDetails for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_autopilot_policy_status_detail.DeviceManagementAutopilotPolicyStatusDetail]
         """
         if body is None:
@@ -83,7 +81,7 @@ class PolicyStatusDetailsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_autopilot_policy_status_detail.DeviceManagementAutopilotPolicyStatusDetail, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_autopilot_policy_status_detail.DeviceManagementAutopilotPolicyStatusDetail, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PolicyStatusDetailsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

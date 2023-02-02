@@ -6,11 +6,30 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class TeamsAppSettings(entity.Entity):
+    @property
+    def allow_user_requests_for_app_access(self,) -> Optional[bool]:
+        """
+        Gets the allowUserRequestsForAppAccess property value. The allowUserRequestsForAppAccess property
+        Returns: Optional[bool]
+        """
+        return self._allow_user_requests_for_app_access
+    
+    @allow_user_requests_for_app_access.setter
+    def allow_user_requests_for_app_access(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the allowUserRequestsForAppAccess property value. The allowUserRequestsForAppAccess property
+        Args:
+            value: Value to set for the allow_user_requests_for_app_access property.
+        """
+        self._allow_user_requests_for_app_access = value
+    
     def __init__(self,) -> None:
         """
         Instantiates a new TeamsAppSettings and sets the default values.
         """
         super().__init__()
+        # The allowUserRequestsForAppAccess property
+        self._allow_user_requests_for_app_access: Optional[bool] = None
         # Indicates whether resource-specific consent for chats/meetings has been enabled for the tenant. If true, Teams apps that are allowed in the tenant and require resource-specific permissions can be installed inside chats and meetings. If false, the installation of any Teams app that requires resource-specific permissions in a chat or a meeting will be blocked.
         self._is_chat_resource_specific_consent_enabled: Optional[bool] = None
         # The OdataType property
@@ -34,7 +53,8 @@ class TeamsAppSettings(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_chat_resource_specific_consent_enabled": lambda n : setattr(self, 'is_chat_resource_specific_consent_enabled', n.get_bool_value()),
+            "allowUserRequestsForAppAccess": lambda n : setattr(self, 'allow_user_requests_for_app_access', n.get_bool_value()),
+            "isChatResourceSpecificConsentEnabled": lambda n : setattr(self, 'is_chat_resource_specific_consent_enabled', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -53,7 +73,7 @@ class TeamsAppSettings(entity.Entity):
         """
         Sets the isChatResourceSpecificConsentEnabled property value. Indicates whether resource-specific consent for chats/meetings has been enabled for the tenant. If true, Teams apps that are allowed in the tenant and require resource-specific permissions can be installed inside chats and meetings. If false, the installation of any Teams app that requires resource-specific permissions in a chat or a meeting will be blocked.
         Args:
-            value: Value to set for the isChatResourceSpecificConsentEnabled property.
+            value: Value to set for the is_chat_resource_specific_consent_enabled property.
         """
         self._is_chat_resource_specific_consent_enabled = value
     
@@ -66,6 +86,7 @@ class TeamsAppSettings(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
+        writer.write_bool_value("allowUserRequestsForAppAccess", self.allow_user_requests_for_app_access)
         writer.write_bool_value("isChatResourceSpecificConsentEnabled", self.is_chat_resource_specific_consent_enabled)
     
 

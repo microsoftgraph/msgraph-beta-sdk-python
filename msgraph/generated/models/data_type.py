@@ -2,7 +2,7 @@ from enum import Enum
 
 class DataType(Enum):
     # None data type.
-    None_escaped = "none",
+    None_ = "none",
     # Boolean data type.
     Boolean = "boolean",
     # Int64 data type.

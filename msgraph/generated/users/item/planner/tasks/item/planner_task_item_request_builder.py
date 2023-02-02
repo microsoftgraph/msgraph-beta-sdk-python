@@ -49,11 +49,12 @@ class PlannerTaskItemRequestBuilder():
         """
         return progress_task_board_format_request_builder.ProgressTaskBoardFormatRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, planner_task_id: Optional[str] = None) -> None:
         """
         Instantiates a new PlannerTaskItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            plannerTaskId: key: id of plannerTask
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -64,15 +65,15 @@ class PlannerTaskItemRequestBuilder():
         self.url_template: str = "{+baseurl}/users/{user%2Did}/planner/tasks/{plannerTask%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["plannerTask%2Did"] = plannerTaskId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PlannerTaskItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PlannerTaskItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property tasks for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -83,14 +84,13 @@ class PlannerTaskItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PlannerTaskItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[planner_task.PlannerTask]:
+    async def get(self,request_configuration: Optional[PlannerTaskItemRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_task.PlannerTask]:
         """
         Read-only. Nullable. Returns the plannerTasks assigned to the user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[planner_task.PlannerTask]
         """
         request_info = self.to_get_request_information(
@@ -102,15 +102,14 @@ class PlannerTaskItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, planner_task.PlannerTask, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, planner_task.PlannerTask, error_mapping)
     
-    async def patch(self,body: Optional[planner_task.PlannerTask] = None, request_configuration: Optional[PlannerTaskItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[planner_task.PlannerTask]:
+    async def patch(self,body: Optional[planner_task.PlannerTask] = None, request_configuration: Optional[PlannerTaskItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[planner_task.PlannerTask]:
         """
         Update the navigation property tasks in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[planner_task.PlannerTask]
         """
         if body is None:
@@ -124,7 +123,7 @@ class PlannerTaskItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, planner_task.PlannerTask, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, planner_task.PlannerTask, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PlannerTaskItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

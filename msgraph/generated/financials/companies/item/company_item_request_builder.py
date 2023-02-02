@@ -384,10 +384,11 @@ class CompanyItemRequestBuilder():
         url_tpl_params["companyInformation%2Did"] = id
         return company_information_item_request_builder.CompanyInformationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, company_id: Optional[str] = None) -> None:
         """
         Instantiates a new CompanyItemRequestBuilder and sets the default values.
         Args:
+            companyId: key: id of company
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -399,6 +400,7 @@ class CompanyItemRequestBuilder():
         self.url_template: str = "{+baseurl}/financials/companies/{company%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["company%2Did"] = companyId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
@@ -519,12 +521,11 @@ class CompanyItemRequestBuilder():
         url_tpl_params["generalLedgerEntry%2Did"] = id
         return general_ledger_entry_item_request_builder.GeneralLedgerEntryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[CompanyItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[company.Company]:
+    async def get(self,request_configuration: Optional[CompanyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[company.Company]:
         """
         Get companies from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[company.Company]
         """
         request_info = self.to_get_request_information(
@@ -536,7 +537,7 @@ class CompanyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, company.Company, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, company.Company, error_mapping)
     
     def item_categories_by_id(self,id: str) -> item_category_item_request_builder.ItemCategoryItemRequestBuilder:
         """

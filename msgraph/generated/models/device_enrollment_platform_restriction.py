@@ -37,7 +37,7 @@ class DeviceEnrollmentPlatformRestriction(AdditionalDataHolder, Parsable):
         """
         Sets the blockedManufacturers property value. Collection of blocked Manufacturers.
         Args:
-            value: Value to set for the blockedManufacturers property.
+            value: Value to set for the blocked_manufacturers property.
         """
         self._blocked_manufacturers = value
     
@@ -54,7 +54,7 @@ class DeviceEnrollmentPlatformRestriction(AdditionalDataHolder, Parsable):
         """
         Sets the blockedSkus property value. Collection of blocked Skus.
         Args:
-            value: Value to set for the blockedSkus property.
+            value: Value to set for the blocked_skus property.
         """
         self._blocked_skus = value
     
@@ -98,13 +98,13 @@ class DeviceEnrollmentPlatformRestriction(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "blocked_manufacturers": lambda n : setattr(self, 'blocked_manufacturers', n.get_collection_of_primitive_values(str)),
-            "blocked_skus": lambda n : setattr(self, 'blocked_skus', n.get_collection_of_primitive_values(str)),
+            "blockedManufacturers": lambda n : setattr(self, 'blocked_manufacturers', n.get_collection_of_primitive_values(str)),
+            "blockedSkus": lambda n : setattr(self, 'blocked_skus', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "os_maximum_version": lambda n : setattr(self, 'os_maximum_version', n.get_str_value()),
-            "os_minimum_version": lambda n : setattr(self, 'os_minimum_version', n.get_str_value()),
-            "personal_device_enrollment_blocked": lambda n : setattr(self, 'personal_device_enrollment_blocked', n.get_bool_value()),
-            "platform_blocked": lambda n : setattr(self, 'platform_blocked', n.get_bool_value()),
+            "osMaximumVersion": lambda n : setattr(self, 'os_maximum_version', n.get_str_value()),
+            "osMinimumVersion": lambda n : setattr(self, 'os_minimum_version', n.get_str_value()),
+            "personalDeviceEnrollmentBlocked": lambda n : setattr(self, 'personal_device_enrollment_blocked', n.get_bool_value()),
+            "platformBlocked": lambda n : setattr(self, 'platform_blocked', n.get_bool_value()),
         }
         return fields
     
@@ -121,7 +121,7 @@ class DeviceEnrollmentPlatformRestriction(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -138,7 +138,7 @@ class DeviceEnrollmentPlatformRestriction(AdditionalDataHolder, Parsable):
         """
         Sets the osMaximumVersion property value. Max OS version supported
         Args:
-            value: Value to set for the osMaximumVersion property.
+            value: Value to set for the os_maximum_version property.
         """
         self._os_maximum_version = value
     
@@ -155,7 +155,7 @@ class DeviceEnrollmentPlatformRestriction(AdditionalDataHolder, Parsable):
         """
         Sets the osMinimumVersion property value. Min OS version supported
         Args:
-            value: Value to set for the osMinimumVersion property.
+            value: Value to set for the os_minimum_version property.
         """
         self._os_minimum_version = value
     
@@ -172,7 +172,7 @@ class DeviceEnrollmentPlatformRestriction(AdditionalDataHolder, Parsable):
         """
         Sets the personalDeviceEnrollmentBlocked property value. Block personally owned devices from enrolling
         Args:
-            value: Value to set for the personalDeviceEnrollmentBlocked property.
+            value: Value to set for the personal_device_enrollment_blocked property.
         """
         self._personal_device_enrollment_blocked = value
     
@@ -189,7 +189,7 @@ class DeviceEnrollmentPlatformRestriction(AdditionalDataHolder, Parsable):
         """
         Sets the platformBlocked property value. Block the platform from enrolling
         Args:
-            value: Value to set for the platformBlocked property.
+            value: Value to set for the platform_blocked property.
         """
         self._platform_blocked = value
     

@@ -36,7 +36,7 @@ class AzureAdJoinPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the allowedGroups property value. The identifiers of the groups that are in the scope of the policy. Required when the appliesTo property is set to selected.
         Args:
-            value: Value to set for the allowedGroups property.
+            value: Value to set for the allowed_groups property.
         """
         self._allowed_groups = value
     
@@ -53,7 +53,7 @@ class AzureAdJoinPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the allowedUsers property value. The identifiers of users that are in the scope of the policy. Required when the appliesTo property is set to selected.
         Args:
-            value: Value to set for the allowedUsers property.
+            value: Value to set for the allowed_users property.
         """
         self._allowed_users = value
     
@@ -70,7 +70,7 @@ class AzureAdJoinPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the appliesTo property value. Specifies whether to block or allow fine-grained control of the policy scope. The possible values are: 0 (meaning none), 1 (meaning all), 2 (meaning selected), 3 (meaning unknownFutureValue). The default value is 1. When set to 2, at least one user or group identifier must be specified in either allowedUsers or allowedGroups.  Setting this property to 0 or 1 removes all identifiers in both allowedUsers and allowedGroups.
         Args:
-            value: Value to set for the appliesTo property.
+            value: Value to set for the applies_to property.
         """
         self._applies_to = value
     
@@ -110,10 +110,10 @@ class AzureAdJoinPolicy(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_groups": lambda n : setattr(self, 'allowed_groups', n.get_collection_of_primitive_values(str)),
-            "allowed_users": lambda n : setattr(self, 'allowed_users', n.get_collection_of_primitive_values(str)),
-            "applies_to": lambda n : setattr(self, 'applies_to', n.get_enum_value(policy_scope.PolicyScope)),
-            "is_admin_configurable": lambda n : setattr(self, 'is_admin_configurable', n.get_bool_value()),
+            "allowedGroups": lambda n : setattr(self, 'allowed_groups', n.get_collection_of_primitive_values(str)),
+            "allowedUsers": lambda n : setattr(self, 'allowed_users', n.get_collection_of_primitive_values(str)),
+            "appliesTo": lambda n : setattr(self, 'applies_to', n.get_enum_value(policy_scope.PolicyScope)),
+            "isAdminConfigurable": lambda n : setattr(self, 'is_admin_configurable', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -131,7 +131,7 @@ class AzureAdJoinPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the isAdminConfigurable property value. Specifies whether this policy scope is configurable by the admin. The default value is false. When an admin has enabled Intune (MEM) to manage devices, this property is set to false and appliesTo defaults to 1 (meaning all).
         Args:
-            value: Value to set for the isAdminConfigurable property.
+            value: Value to set for the is_admin_configurable property.
         """
         self._is_admin_configurable = value
     
@@ -148,7 +148,7 @@ class AzureAdJoinPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

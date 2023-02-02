@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails(entity.Entity):
-    """
-    The user experience analytics application performance entity contains app performance by app version details.
-    """
     @property
     def app_crash_count(self,) -> Optional[int]:
         """
@@ -22,7 +19,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails(entity.E
         """
         Sets the appCrashCount property value. The number of crashes for the app. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the appCrashCount property.
+            value: Value to set for the app_crash_count property.
         """
         self._app_crash_count = value
     
@@ -39,7 +36,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails(entity.E
         """
         Sets the appDisplayName property value. The friendly name of the application.
         Args:
-            value: Value to set for the appDisplayName property.
+            value: Value to set for the app_display_name property.
         """
         self._app_display_name = value
     
@@ -56,7 +53,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails(entity.E
         """
         Sets the appName property value. The name of the application.
         Args:
-            value: Value to set for the appName property.
+            value: Value to set for the app_name property.
         """
         self._app_name = value
     
@@ -73,7 +70,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails(entity.E
         """
         Sets the appPublisher property value. The publisher of the application.
         Args:
-            value: Value to set for the appPublisher property.
+            value: Value to set for the app_publisher property.
         """
         self._app_publisher = value
     
@@ -90,13 +87,13 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails(entity.E
         """
         Sets the appVersion property value. The version of the application.
         Args:
-            value: Value to set for the appVersion property.
+            value: Value to set for the app_version property.
         """
         self._app_version = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails and sets the default values.
+        Instantiates a new UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails and sets the default values.
         """
         super().__init__()
         # The number of crashes for the app. Valid values -2147483648 to 2147483647
@@ -143,7 +140,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails(entity.E
         """
         Sets the deviceCountWithCrashes property value. The total number of devices that have reported one or more application crashes for this application and version. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the deviceCountWithCrashes property.
+            value: Value to set for the device_count_with_crashes property.
         """
         self._device_count_with_crashes = value
     
@@ -153,14 +150,14 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails(entity.E
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_crash_count": lambda n : setattr(self, 'app_crash_count', n.get_int_value()),
-            "app_display_name": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
-            "app_name": lambda n : setattr(self, 'app_name', n.get_str_value()),
-            "app_publisher": lambda n : setattr(self, 'app_publisher', n.get_str_value()),
-            "app_version": lambda n : setattr(self, 'app_version', n.get_str_value()),
-            "device_count_with_crashes": lambda n : setattr(self, 'device_count_with_crashes', n.get_int_value()),
-            "is_latest_used_version": lambda n : setattr(self, 'is_latest_used_version', n.get_bool_value()),
-            "is_most_used_version": lambda n : setattr(self, 'is_most_used_version', n.get_bool_value()),
+            "appCrashCount": lambda n : setattr(self, 'app_crash_count', n.get_int_value()),
+            "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
+            "appName": lambda n : setattr(self, 'app_name', n.get_str_value()),
+            "appPublisher": lambda n : setattr(self, 'app_publisher', n.get_str_value()),
+            "appVersion": lambda n : setattr(self, 'app_version', n.get_str_value()),
+            "deviceCountWithCrashes": lambda n : setattr(self, 'device_count_with_crashes', n.get_int_value()),
+            "isLatestUsedVersion": lambda n : setattr(self, 'is_latest_used_version', n.get_bool_value()),
+            "isMostUsedVersion": lambda n : setattr(self, 'is_most_used_version', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -179,7 +176,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails(entity.E
         """
         Sets the isLatestUsedVersion property value. Is the version of application the latest version for that app that is in use.
         Args:
-            value: Value to set for the isLatestUsedVersion property.
+            value: Value to set for the is_latest_used_version property.
         """
         self._is_latest_used_version = value
     
@@ -196,7 +193,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails(entity.E
         """
         Sets the isMostUsedVersion property value. Is the version of application the most used version for that app.
         Args:
-            value: Value to set for the isMostUsedVersion property.
+            value: Value to set for the is_most_used_version property.
         """
         self._is_most_used_version = value
     

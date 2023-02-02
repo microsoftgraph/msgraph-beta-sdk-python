@@ -41,11 +41,12 @@ class RelationItemRequestBuilder():
         """
         return to_term_request_builder.ToTermRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, relation_id: Optional[str] = None) -> None:
         """
         Instantiates a new RelationItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            relationId: key: id of relation
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -56,15 +57,15 @@ class RelationItemRequestBuilder():
         self.url_template: str = "{+baseurl}/sites/{site%2Did}/termStore/groups/{group%2Did}/sets/{set%2Did}/children/{term%2Did}/relations/{relation%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["relation%2Did"] = relationId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[RelationItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[RelationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property relations for sites
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -75,14 +76,13 @@ class RelationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RelationItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[relation.Relation]:
+    async def get(self,request_configuration: Optional[RelationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[relation.Relation]:
         """
         To indicate which terms are related to the current term as either pinned or reused.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[relation.Relation]
         """
         request_info = self.to_get_request_information(
@@ -94,15 +94,14 @@ class RelationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, relation.Relation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, relation.Relation, error_mapping)
     
-    async def patch(self,body: Optional[relation.Relation] = None, request_configuration: Optional[RelationItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[relation.Relation]:
+    async def patch(self,body: Optional[relation.Relation] = None, request_configuration: Optional[RelationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[relation.Relation]:
         """
         Update the navigation property relations in sites
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[relation.Relation]
         """
         if body is None:
@@ -116,7 +115,7 @@ class RelationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, relation.Relation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, relation.Relation, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[RelationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

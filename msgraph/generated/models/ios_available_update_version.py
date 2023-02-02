@@ -68,7 +68,7 @@ class IosAvailableUpdateVersion(AdditionalDataHolder, Parsable):
         """
         Sets the expirationDateTime property value. The expiration date of the update.
         Args:
-            value: Value to set for the expirationDateTime property.
+            value: Value to set for the expiration_date_time property.
         """
         self._expiration_date_time = value
     
@@ -78,11 +78,11 @@ class IosAvailableUpdateVersion(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "expiration_date_time": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
+            "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "posting_date_time": lambda n : setattr(self, 'posting_date_time', n.get_datetime_value()),
-            "product_version": lambda n : setattr(self, 'product_version', n.get_str_value()),
-            "supported_devices": lambda n : setattr(self, 'supported_devices', n.get_collection_of_primitive_values(str)),
+            "postingDateTime": lambda n : setattr(self, 'posting_date_time', n.get_datetime_value()),
+            "productVersion": lambda n : setattr(self, 'product_version', n.get_str_value()),
+            "supportedDevices": lambda n : setattr(self, 'supported_devices', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -99,7 +99,7 @@ class IosAvailableUpdateVersion(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -116,7 +116,7 @@ class IosAvailableUpdateVersion(AdditionalDataHolder, Parsable):
         """
         Sets the postingDateTime property value. The posting date of the update.
         Args:
-            value: Value to set for the postingDateTime property.
+            value: Value to set for the posting_date_time property.
         """
         self._posting_date_time = value
     
@@ -133,7 +133,7 @@ class IosAvailableUpdateVersion(AdditionalDataHolder, Parsable):
         """
         Sets the productVersion property value. The version of the update.
         Args:
-            value: Value to set for the productVersion property.
+            value: Value to set for the product_version property.
         """
         self._product_version = value
     
@@ -165,7 +165,7 @@ class IosAvailableUpdateVersion(AdditionalDataHolder, Parsable):
         """
         Sets the supportedDevices property value. List of supported devices for the update.
         Args:
-            value: Value to set for the supportedDevices property.
+            value: Value to set for the supported_devices property.
         """
         self._supported_devices = value
     

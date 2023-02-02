@@ -58,7 +58,7 @@ class Office365GroupsActivityCounts(entity.Entity):
         """
         Sets the exchangeEmailsReceived property value. The number of emails received by Group mailboxes.
         Args:
-            value: Value to set for the exchangeEmailsReceived property.
+            value: Value to set for the exchange_emails_received property.
         """
         self._exchange_emails_received = value
     
@@ -68,15 +68,15 @@ class Office365GroupsActivityCounts(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "exchange_emails_received": lambda n : setattr(self, 'exchange_emails_received', n.get_int_value()),
-            "report_date": lambda n : setattr(self, 'report_date', n.get_object_value(Date)),
-            "report_period": lambda n : setattr(self, 'report_period', n.get_str_value()),
-            "report_refresh_date": lambda n : setattr(self, 'report_refresh_date', n.get_object_value(Date)),
-            "teams_channel_messages": lambda n : setattr(self, 'teams_channel_messages', n.get_int_value()),
-            "teams_meetings_organized": lambda n : setattr(self, 'teams_meetings_organized', n.get_int_value()),
-            "yammer_messages_liked": lambda n : setattr(self, 'yammer_messages_liked', n.get_int_value()),
-            "yammer_messages_posted": lambda n : setattr(self, 'yammer_messages_posted', n.get_int_value()),
-            "yammer_messages_read": lambda n : setattr(self, 'yammer_messages_read', n.get_int_value()),
+            "exchangeEmailsReceived": lambda n : setattr(self, 'exchange_emails_received', n.get_int_value()),
+            "reportDate": lambda n : setattr(self, 'report_date', n.get_object_value(Date)),
+            "reportPeriod": lambda n : setattr(self, 'report_period', n.get_str_value()),
+            "reportRefreshDate": lambda n : setattr(self, 'report_refresh_date', n.get_object_value(Date)),
+            "teamsChannelMessages": lambda n : setattr(self, 'teams_channel_messages', n.get_int_value()),
+            "teamsMeetingsOrganized": lambda n : setattr(self, 'teams_meetings_organized', n.get_int_value()),
+            "yammerMessagesLiked": lambda n : setattr(self, 'yammer_messages_liked', n.get_int_value()),
+            "yammerMessagesPosted": lambda n : setattr(self, 'yammer_messages_posted', n.get_int_value()),
+            "yammerMessagesRead": lambda n : setattr(self, 'yammer_messages_read', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -95,7 +95,7 @@ class Office365GroupsActivityCounts(entity.Entity):
         """
         Sets the reportDate property value. The date on which a number of emails were sent to a group mailbox or a number of messages were posted, read, or liked in a Yammer group
         Args:
-            value: Value to set for the reportDate property.
+            value: Value to set for the report_date property.
         """
         self._report_date = value
     
@@ -112,7 +112,7 @@ class Office365GroupsActivityCounts(entity.Entity):
         """
         Sets the reportPeriod property value. The number of days the report covers.
         Args:
-            value: Value to set for the reportPeriod property.
+            value: Value to set for the report_period property.
         """
         self._report_period = value
     
@@ -129,7 +129,7 @@ class Office365GroupsActivityCounts(entity.Entity):
         """
         Sets the reportRefreshDate property value. The latest date of the content.
         Args:
-            value: Value to set for the reportRefreshDate property.
+            value: Value to set for the report_refresh_date property.
         """
         self._report_refresh_date = value
     
@@ -165,7 +165,7 @@ class Office365GroupsActivityCounts(entity.Entity):
         """
         Sets the teamsChannelMessages property value. The teamsChannelMessages property
         Args:
-            value: Value to set for the teamsChannelMessages property.
+            value: Value to set for the teams_channel_messages property.
         """
         self._teams_channel_messages = value
     
@@ -182,7 +182,7 @@ class Office365GroupsActivityCounts(entity.Entity):
         """
         Sets the teamsMeetingsOrganized property value. The teamsMeetingsOrganized property
         Args:
-            value: Value to set for the teamsMeetingsOrganized property.
+            value: Value to set for the teams_meetings_organized property.
         """
         self._teams_meetings_organized = value
     
@@ -199,7 +199,7 @@ class Office365GroupsActivityCounts(entity.Entity):
         """
         Sets the yammerMessagesLiked property value. The number of messages liked in Yammer groups.
         Args:
-            value: Value to set for the yammerMessagesLiked property.
+            value: Value to set for the yammer_messages_liked property.
         """
         self._yammer_messages_liked = value
     
@@ -216,7 +216,7 @@ class Office365GroupsActivityCounts(entity.Entity):
         """
         Sets the yammerMessagesPosted property value. The number of messages posted to Yammer groups.
         Args:
-            value: Value to set for the yammerMessagesPosted property.
+            value: Value to set for the yammer_messages_posted property.
         """
         self._yammer_messages_posted = value
     
@@ -233,7 +233,7 @@ class Office365GroupsActivityCounts(entity.Entity):
         """
         Sets the yammerMessagesRead property value. The number of messages read in Yammer groups.
         Args:
-            value: Value to set for the yammerMessagesRead property.
+            value: Value to set for the yammer_messages_read property.
         """
         self._yammer_messages_read = value
     

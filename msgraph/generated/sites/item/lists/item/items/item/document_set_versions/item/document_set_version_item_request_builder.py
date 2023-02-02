@@ -12,23 +12,24 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 document_set_version = lazy_import('msgraph.generated.models.document_set_version')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-restore_request_builder = lazy_import('msgraph.generated.sites.item.lists.item.items.item.document_set_versions.item.restore.restore_request_builder')
+restore_request_builder = lazy_import('msgraph.generated.sites.item.lists.item.items.item.document_set_versions.item.microsoft_graph_restore.restore_request_builder')
 
 class DocumentSetVersionItemRequestBuilder():
     """
     Provides operations to manage the documentSetVersions property of the microsoft.graph.listItem entity.
     """
     @property
-    def restore(self) -> restore_request_builder.RestoreRequestBuilder:
+    def microsoft_graph_restore(self) -> restore_request_builder.RestoreRequestBuilder:
         """
         Provides operations to call the restore method.
         """
         return restore_request_builder.RestoreRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, document_set_version_id: Optional[str] = None) -> None:
         """
         Instantiates a new DocumentSetVersionItemRequestBuilder and sets the default values.
         Args:
+            documentSetVersionId: key: id of documentSetVersion
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -40,15 +41,15 @@ class DocumentSetVersionItemRequestBuilder():
         self.url_template: str = "{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/documentSetVersions/{documentSetVersion%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["documentSetVersion%2Did"] = documentSetVersionId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DocumentSetVersionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DocumentSetVersionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property documentSetVersions for sites
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +60,13 @@ class DocumentSetVersionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DocumentSetVersionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[document_set_version.DocumentSetVersion]:
+    async def get(self,request_configuration: Optional[DocumentSetVersionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[document_set_version.DocumentSetVersion]:
         """
         Version information for a document set version created by a user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[document_set_version.DocumentSetVersion]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +78,14 @@ class DocumentSetVersionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, document_set_version.DocumentSetVersion, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, document_set_version.DocumentSetVersion, error_mapping)
     
-    async def patch(self,body: Optional[document_set_version.DocumentSetVersion] = None, request_configuration: Optional[DocumentSetVersionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[document_set_version.DocumentSetVersion]:
+    async def patch(self,body: Optional[document_set_version.DocumentSetVersion] = None, request_configuration: Optional[DocumentSetVersionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[document_set_version.DocumentSetVersion]:
         """
         Update the navigation property documentSetVersions in sites
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[document_set_version.DocumentSetVersion]
         """
         if body is None:
@@ -100,7 +99,7 @@ class DocumentSetVersionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, document_set_version.DocumentSetVersion, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, document_set_version.DocumentSetVersion, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DocumentSetVersionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

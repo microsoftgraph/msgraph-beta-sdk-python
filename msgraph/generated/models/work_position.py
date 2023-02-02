@@ -97,7 +97,7 @@ class WorkPosition(item_facet.ItemFacet):
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_primitive_values(str)),
             "colleagues": lambda n : setattr(self, 'colleagues', n.get_collection_of_object_values(related_person.RelatedPerson)),
             "detail": lambda n : setattr(self, 'detail', n.get_object_value(position_detail.PositionDetail)),
-            "is_current": lambda n : setattr(self, 'is_current', n.get_bool_value()),
+            "isCurrent": lambda n : setattr(self, 'is_current', n.get_bool_value()),
             "manager": lambda n : setattr(self, 'manager', n.get_object_value(related_person.RelatedPerson)),
         }
         super_fields = super().get_field_deserializers()
@@ -117,7 +117,7 @@ class WorkPosition(item_facet.ItemFacet):
         """
         Sets the isCurrent property value. Denotes whether or not the position is current.
         Args:
-            value: Value to set for the isCurrent property.
+            value: Value to set for the is_current property.
         """
         self._is_current = value
     

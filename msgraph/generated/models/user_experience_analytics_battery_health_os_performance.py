@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class UserExperienceAnalyticsBatteryHealthOsPerformance(entity.Entity):
-    """
-    The user experience analytics battery health os performance entity contains battery related information for all operating system versions in their organization.
-    """
     @property
     def active_devices(self,) -> Optional[int]:
         """
@@ -22,7 +19,7 @@ class UserExperienceAnalyticsBatteryHealthOsPerformance(entity.Entity):
         """
         Sets the activeDevices property value. Number of active devices for that os version. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the activeDevices property.
+            value: Value to set for the active_devices property.
         """
         self._active_devices = value
     
@@ -39,7 +36,7 @@ class UserExperienceAnalyticsBatteryHealthOsPerformance(entity.Entity):
         """
         Sets the averageBatteryAgeInDays property value. The mean of the battery age for all devices running a particular operating system version in a tenant. Unit in days. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the averageBatteryAgeInDays property.
+            value: Value to set for the average_battery_age_in_days property.
         """
         self._average_battery_age_in_days = value
     
@@ -56,7 +53,7 @@ class UserExperienceAnalyticsBatteryHealthOsPerformance(entity.Entity):
         """
         Sets the averageEstimatedRuntimeInMinutes property value. The mean of the estimated runtimes on full charge for all devices running a particular operating system version. Unit in minutes. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the averageEstimatedRuntimeInMinutes property.
+            value: Value to set for the average_estimated_runtime_in_minutes property.
         """
         self._average_estimated_runtime_in_minutes = value
     
@@ -73,13 +70,13 @@ class UserExperienceAnalyticsBatteryHealthOsPerformance(entity.Entity):
         """
         Sets the averageMaxCapacityPercentage property value. The mean of the maximum capacity for all devices running a particular operating system version. Maximum capacity measures the full charge vs. design capacity for a device’s batteries.. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the averageMaxCapacityPercentage property.
+            value: Value to set for the average_max_capacity_percentage property.
         """
         self._average_max_capacity_percentage = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsBatteryHealthOsPerformance and sets the default values.
+        Instantiates a new UserExperienceAnalyticsBatteryHealthOsPerformance and sets the default values.
         """
         super().__init__()
         # Number of active devices for that os version. Valid values -2147483648 to 2147483647
@@ -115,12 +112,12 @@ class UserExperienceAnalyticsBatteryHealthOsPerformance(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "active_devices": lambda n : setattr(self, 'active_devices', n.get_int_value()),
-            "average_battery_age_in_days": lambda n : setattr(self, 'average_battery_age_in_days', n.get_int_value()),
-            "average_estimated_runtime_in_minutes": lambda n : setattr(self, 'average_estimated_runtime_in_minutes', n.get_int_value()),
-            "average_max_capacity_percentage": lambda n : setattr(self, 'average_max_capacity_percentage', n.get_int_value()),
-            "os_build_number": lambda n : setattr(self, 'os_build_number', n.get_str_value()),
-            "os_version": lambda n : setattr(self, 'os_version', n.get_str_value()),
+            "activeDevices": lambda n : setattr(self, 'active_devices', n.get_int_value()),
+            "averageBatteryAgeInDays": lambda n : setattr(self, 'average_battery_age_in_days', n.get_int_value()),
+            "averageEstimatedRuntimeInMinutes": lambda n : setattr(self, 'average_estimated_runtime_in_minutes', n.get_int_value()),
+            "averageMaxCapacityPercentage": lambda n : setattr(self, 'average_max_capacity_percentage', n.get_int_value()),
+            "osBuildNumber": lambda n : setattr(self, 'os_build_number', n.get_str_value()),
+            "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -139,7 +136,7 @@ class UserExperienceAnalyticsBatteryHealthOsPerformance(entity.Entity):
         """
         Sets the osBuildNumber property value. Build number of the operating system.
         Args:
-            value: Value to set for the osBuildNumber property.
+            value: Value to set for the os_build_number property.
         """
         self._os_build_number = value
     
@@ -156,7 +153,7 @@ class UserExperienceAnalyticsBatteryHealthOsPerformance(entity.Entity):
         """
         Sets the osVersion property value. Version of the operating system.
         Args:
-            value: Value to set for the osVersion property.
+            value: Value to set for the os_version property.
         """
         self._os_version = value
     

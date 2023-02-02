@@ -17,12 +17,13 @@ class SimulationAutomationRunItemRequestBuilder():
     """
     Provides operations to manage the runs property of the microsoft.graph.simulationAutomation entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, simulation_automation_run_id: Optional[str] = None) -> None:
         """
         Instantiates a new SimulationAutomationRunItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            simulationAutomationRunId: key: id of simulationAutomationRun
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -32,15 +33,15 @@ class SimulationAutomationRunItemRequestBuilder():
         self.url_template: str = "{+baseurl}/security/attackSimulation/simulationAutomations/{simulationAutomation%2Did}/runs/{simulationAutomationRun%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["simulationAutomationRun%2Did"] = simulationAutomationRunId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SimulationAutomationRunItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[SimulationAutomationRunItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property runs for security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class SimulationAutomationRunItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SimulationAutomationRunItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[simulation_automation_run.SimulationAutomationRun]:
+    async def get(self,request_configuration: Optional[SimulationAutomationRunItemRequestBuilderGetRequestConfiguration] = None) -> Optional[simulation_automation_run.SimulationAutomationRun]:
         """
         A collection of simulation automation runs.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[simulation_automation_run.SimulationAutomationRun]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class SimulationAutomationRunItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, simulation_automation_run.SimulationAutomationRun, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, simulation_automation_run.SimulationAutomationRun, error_mapping)
     
-    async def patch(self,body: Optional[simulation_automation_run.SimulationAutomationRun] = None, request_configuration: Optional[SimulationAutomationRunItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[simulation_automation_run.SimulationAutomationRun]:
+    async def patch(self,body: Optional[simulation_automation_run.SimulationAutomationRun] = None, request_configuration: Optional[SimulationAutomationRunItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[simulation_automation_run.SimulationAutomationRun]:
         """
         Update the navigation property runs in security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[simulation_automation_run.SimulationAutomationRun]
         """
         if body is None:
@@ -92,7 +91,7 @@ class SimulationAutomationRunItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, simulation_automation_run.SimulationAutomationRun, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, simulation_automation_run.SimulationAutomationRun, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SimulationAutomationRunItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

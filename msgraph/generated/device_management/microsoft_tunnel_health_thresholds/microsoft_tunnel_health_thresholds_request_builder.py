@@ -44,12 +44,11 @@ class MicrosoftTunnelHealthThresholdsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[MicrosoftTunnelHealthThresholdsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[microsoft_tunnel_health_threshold_collection_response.MicrosoftTunnelHealthThresholdCollectionResponse]:
+    async def get(self,request_configuration: Optional[MicrosoftTunnelHealthThresholdsRequestBuilderGetRequestConfiguration] = None) -> Optional[microsoft_tunnel_health_threshold_collection_response.MicrosoftTunnelHealthThresholdCollectionResponse]:
         """
         Collection of MicrosoftTunnelHealthThreshold settings associated with account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[microsoft_tunnel_health_threshold_collection_response.MicrosoftTunnelHealthThresholdCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class MicrosoftTunnelHealthThresholdsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, microsoft_tunnel_health_threshold_collection_response.MicrosoftTunnelHealthThresholdCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, microsoft_tunnel_health_threshold_collection_response.MicrosoftTunnelHealthThresholdCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[microsoft_tunnel_health_threshold.MicrosoftTunnelHealthThreshold] = None, request_configuration: Optional[MicrosoftTunnelHealthThresholdsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[microsoft_tunnel_health_threshold.MicrosoftTunnelHealthThreshold]:
+    async def post(self,body: Optional[microsoft_tunnel_health_threshold.MicrosoftTunnelHealthThreshold] = None, request_configuration: Optional[MicrosoftTunnelHealthThresholdsRequestBuilderPostRequestConfiguration] = None) -> Optional[microsoft_tunnel_health_threshold.MicrosoftTunnelHealthThreshold]:
         """
         Create new navigation property to microsoftTunnelHealthThresholds for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[microsoft_tunnel_health_threshold.MicrosoftTunnelHealthThreshold]
         """
         if body is None:
@@ -83,7 +81,7 @@ class MicrosoftTunnelHealthThresholdsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, microsoft_tunnel_health_threshold.MicrosoftTunnelHealthThreshold, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, microsoft_tunnel_health_threshold.MicrosoftTunnelHealthThreshold, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[MicrosoftTunnelHealthThresholdsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

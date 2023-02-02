@@ -80,7 +80,7 @@ class TenantStatusInformation(AdditionalDataHolder, Parsable):
         """
         Sets the delegatedPrivilegeStatus property value. The status of the delegated admin privilege relationship between the managing entity and the managed tenant. Possible values are: none, delegatedAdminPrivileges, unknownFutureValue, granularDelegatedAdminPrivileges, delegatedAndGranularDelegetedAdminPrivileges. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: granularDelegatedAdminPrivileges , delegatedAndGranularDelegetedAdminPrivileges. Optional. Read-only.
         Args:
-            value: Value to set for the delegatedPrivilegeStatus property.
+            value: Value to set for the delegated_privilege_status property.
         """
         self._delegated_privilege_status = value
     
@@ -90,16 +90,16 @@ class TenantStatusInformation(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "delegated_privilege_status": lambda n : setattr(self, 'delegated_privilege_status', n.get_enum_value(delegated_privilege_status.DelegatedPrivilegeStatus)),
-            "last_delegated_privilege_refresh_date_time": lambda n : setattr(self, 'last_delegated_privilege_refresh_date_time', n.get_datetime_value()),
+            "delegatedPrivilegeStatus": lambda n : setattr(self, 'delegated_privilege_status', n.get_enum_value(delegated_privilege_status.DelegatedPrivilegeStatus)),
+            "lastDelegatedPrivilegeRefreshDateTime": lambda n : setattr(self, 'last_delegated_privilege_refresh_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "offboarded_by_user_id": lambda n : setattr(self, 'offboarded_by_user_id', n.get_str_value()),
-            "offboarded_date_time": lambda n : setattr(self, 'offboarded_date_time', n.get_datetime_value()),
-            "onboarded_by_user_id": lambda n : setattr(self, 'onboarded_by_user_id', n.get_str_value()),
-            "onboarded_date_time": lambda n : setattr(self, 'onboarded_date_time', n.get_datetime_value()),
-            "onboarding_status": lambda n : setattr(self, 'onboarding_status', n.get_enum_value(tenant_onboarding_status.TenantOnboardingStatus)),
-            "tenant_onboarding_eligibility_reason": lambda n : setattr(self, 'tenant_onboarding_eligibility_reason', n.get_enum_value(tenant_onboarding_eligibility_reason.TenantOnboardingEligibilityReason)),
-            "workload_statuses": lambda n : setattr(self, 'workload_statuses', n.get_collection_of_object_values(workload_status.WorkloadStatus)),
+            "offboardedByUserId": lambda n : setattr(self, 'offboarded_by_user_id', n.get_str_value()),
+            "offboardedDateTime": lambda n : setattr(self, 'offboarded_date_time', n.get_datetime_value()),
+            "onboardedByUserId": lambda n : setattr(self, 'onboarded_by_user_id', n.get_str_value()),
+            "onboardedDateTime": lambda n : setattr(self, 'onboarded_date_time', n.get_datetime_value()),
+            "onboardingStatus": lambda n : setattr(self, 'onboarding_status', n.get_enum_value(tenant_onboarding_status.TenantOnboardingStatus)),
+            "tenantOnboardingEligibilityReason": lambda n : setattr(self, 'tenant_onboarding_eligibility_reason', n.get_enum_value(tenant_onboarding_eligibility_reason.TenantOnboardingEligibilityReason)),
+            "workloadStatuses": lambda n : setattr(self, 'workload_statuses', n.get_collection_of_object_values(workload_status.WorkloadStatus)),
         }
         return fields
     
@@ -116,7 +116,7 @@ class TenantStatusInformation(AdditionalDataHolder, Parsable):
         """
         Sets the lastDelegatedPrivilegeRefreshDateTime property value. The date and time the delegated admin privileges status was updated. Optional. Read-only.
         Args:
-            value: Value to set for the lastDelegatedPrivilegeRefreshDateTime property.
+            value: Value to set for the last_delegated_privilege_refresh_date_time property.
         """
         self._last_delegated_privilege_refresh_date_time = value
     
@@ -133,7 +133,7 @@ class TenantStatusInformation(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -150,7 +150,7 @@ class TenantStatusInformation(AdditionalDataHolder, Parsable):
         """
         Sets the offboardedByUserId property value. The identifier for the account that offboarded the managed tenant. Optional. Read-only.
         Args:
-            value: Value to set for the offboardedByUserId property.
+            value: Value to set for the offboarded_by_user_id property.
         """
         self._offboarded_by_user_id = value
     
@@ -167,7 +167,7 @@ class TenantStatusInformation(AdditionalDataHolder, Parsable):
         """
         Sets the offboardedDateTime property value. The date and time when the managed tenant was offboarded. Optional. Read-only.
         Args:
-            value: Value to set for the offboardedDateTime property.
+            value: Value to set for the offboarded_date_time property.
         """
         self._offboarded_date_time = value
     
@@ -184,7 +184,7 @@ class TenantStatusInformation(AdditionalDataHolder, Parsable):
         """
         Sets the onboardedByUserId property value. The identifier for the account that onboarded the managed tenant. Optional. Read-only.
         Args:
-            value: Value to set for the onboardedByUserId property.
+            value: Value to set for the onboarded_by_user_id property.
         """
         self._onboarded_by_user_id = value
     
@@ -201,7 +201,7 @@ class TenantStatusInformation(AdditionalDataHolder, Parsable):
         """
         Sets the onboardedDateTime property value. The date and time when the managed tenant was onboarded. Optional. Read-only.
         Args:
-            value: Value to set for the onboardedDateTime property.
+            value: Value to set for the onboarded_date_time property.
         """
         self._onboarded_date_time = value
     
@@ -218,7 +218,7 @@ class TenantStatusInformation(AdditionalDataHolder, Parsable):
         """
         Sets the onboardingStatus property value. The onboarding status for the managed tenant.. Possible values are: ineligible, inProcess, active, inactive, unknownFutureValue. Optional. Read-only.
         Args:
-            value: Value to set for the onboardingStatus property.
+            value: Value to set for the onboarding_status property.
         """
         self._onboarding_status = value
     
@@ -255,7 +255,7 @@ class TenantStatusInformation(AdditionalDataHolder, Parsable):
         """
         Sets the tenantOnboardingEligibilityReason property value. Organization's onboarding eligibility reason in Microsoft 365 Lighthouse.. Possible values are: none, contractType, delegatedAdminPrivileges,usersCount,license and unknownFutureValue. Optional. Read-only.
         Args:
-            value: Value to set for the tenantOnboardingEligibilityReason property.
+            value: Value to set for the tenant_onboarding_eligibility_reason property.
         """
         self._tenant_onboarding_eligibility_reason = value
     
@@ -272,7 +272,7 @@ class TenantStatusInformation(AdditionalDataHolder, Parsable):
         """
         Sets the workloadStatuses property value. The collection of workload statues for the managed tenant. Optional. Read-only.
         Args:
-            value: Value to set for the workloadStatuses property.
+            value: Value to set for the workload_statuses property.
         """
         self._workload_statuses = value
     

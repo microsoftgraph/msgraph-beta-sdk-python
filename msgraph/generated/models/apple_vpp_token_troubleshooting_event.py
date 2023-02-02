@@ -34,7 +34,7 @@ class AppleVppTokenTroubleshootingEvent(device_management_troubleshooting_event.
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "token_id": lambda n : setattr(self, 'token_id', n.get_str_value()),
+            "tokenId": lambda n : setattr(self, 'token_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -64,7 +64,7 @@ class AppleVppTokenTroubleshootingEvent(device_management_troubleshooting_event.
         """
         Sets the tokenId property value. Apple Volume Purchase Program Token Identifier.
         Args:
-            value: Value to set for the tokenId property.
+            value: Value to set for the token_id property.
         """
         self._token_id = value
     

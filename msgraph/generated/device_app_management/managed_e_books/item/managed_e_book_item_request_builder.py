@@ -10,7 +10,6 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-assign_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.assign.assign_request_builder')
 assignments_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.assignments.assignments_request_builder')
 managed_e_book_assignment_item_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.assignments.item.managed_e_book_assignment_item_request_builder')
 categories_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.categories.categories_request_builder')
@@ -18,6 +17,7 @@ managed_e_book_category_item_request_builder = lazy_import('msgraph.generated.de
 device_states_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.device_states.device_states_request_builder')
 device_install_state_item_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.device_states.item.device_install_state_item_request_builder')
 install_summary_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.install_summary.install_summary_request_builder')
+assign_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.microsoft_graph_assign.assign_request_builder')
 user_state_summary_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.user_state_summary.user_state_summary_request_builder')
 user_install_state_summary_item_request_builder = lazy_import('msgraph.generated.device_app_management.managed_e_books.item.user_state_summary.item.user_install_state_summary_item_request_builder')
 managed_e_book = lazy_import('msgraph.generated.models.managed_e_book')
@@ -27,13 +27,6 @@ class ManagedEBookItemRequestBuilder():
     """
     Provides operations to manage the managedEBooks property of the microsoft.graph.deviceAppManagement entity.
     """
-    @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
-        """
-        Provides operations to call the assign method.
-        """
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
@@ -61,6 +54,13 @@ class ManagedEBookItemRequestBuilder():
         Provides operations to manage the installSummary property of the microsoft.graph.managedEBook entity.
         """
         return install_summary_request_builder.InstallSummaryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_assign(self) -> assign_request_builder.AssignRequestBuilder:
+        """
+        Provides operations to call the assign method.
+        """
+        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def user_state_summary(self) -> user_state_summary_request_builder.UserStateSummaryRequestBuilder:
@@ -95,10 +95,11 @@ class ManagedEBookItemRequestBuilder():
         url_tpl_params["managedEBookCategory%2Did"] = id
         return managed_e_book_category_item_request_builder.ManagedEBookCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, managed_e_book_id: Optional[str] = None) -> None:
         """
         Instantiates a new ManagedEBookItemRequestBuilder and sets the default values.
         Args:
+            managedEBookId: key: id of managedEBook
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -110,15 +111,15 @@ class ManagedEBookItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["managedEBook%2Did"] = managedEBookId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ManagedEBookItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ManagedEBookItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property managedEBooks for deviceAppManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -129,7 +130,7 @@ class ManagedEBookItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def device_states_by_id(self,id: str) -> device_install_state_item_request_builder.DeviceInstallStateItemRequestBuilder:
         """
@@ -144,12 +145,11 @@ class ManagedEBookItemRequestBuilder():
         url_tpl_params["deviceInstallState%2Did"] = id
         return device_install_state_item_request_builder.DeviceInstallStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ManagedEBookItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_e_book.ManagedEBook]:
+    async def get(self,request_configuration: Optional[ManagedEBookItemRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_e_book.ManagedEBook]:
         """
         The Managed eBook.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_e_book.ManagedEBook]
         """
         request_info = self.to_get_request_information(
@@ -161,15 +161,14 @@ class ManagedEBookItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_e_book.ManagedEBook, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_e_book.ManagedEBook, error_mapping)
     
-    async def patch(self,body: Optional[managed_e_book.ManagedEBook] = None, request_configuration: Optional[ManagedEBookItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_e_book.ManagedEBook]:
+    async def patch(self,body: Optional[managed_e_book.ManagedEBook] = None, request_configuration: Optional[ManagedEBookItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[managed_e_book.ManagedEBook]:
         """
         Update the navigation property managedEBooks in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_e_book.ManagedEBook]
         """
         if body is None:
@@ -183,7 +182,7 @@ class ManagedEBookItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_e_book.ManagedEBook, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_e_book.ManagedEBook, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ManagedEBookItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

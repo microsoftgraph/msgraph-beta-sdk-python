@@ -28,7 +28,7 @@ class OnPremisesAgentGroup(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new onPremisesAgentGroup and sets the default values.
+        Instantiates a new OnPremisesAgentGroup and sets the default values.
         """
         super().__init__()
         # List of onPremisesAgent that are assigned to an onPremisesAgentGroup. Read-only. Nullable.
@@ -69,7 +69,7 @@ class OnPremisesAgentGroup(entity.Entity):
         """
         Sets the displayName property value. Display name of the onPremisesAgentGroup.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -80,10 +80,10 @@ class OnPremisesAgentGroup(entity.Entity):
         """
         fields = {
             "agents": lambda n : setattr(self, 'agents', n.get_collection_of_object_values(on_premises_agent.OnPremisesAgent)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "is_default": lambda n : setattr(self, 'is_default', n.get_bool_value()),
-            "published_resources": lambda n : setattr(self, 'published_resources', n.get_collection_of_object_values(published_resource.PublishedResource)),
-            "publishing_type": lambda n : setattr(self, 'publishing_type', n.get_enum_value(on_premises_publishing_type.OnPremisesPublishingType)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "isDefault": lambda n : setattr(self, 'is_default', n.get_bool_value()),
+            "publishedResources": lambda n : setattr(self, 'published_resources', n.get_collection_of_object_values(published_resource.PublishedResource)),
+            "publishingType": lambda n : setattr(self, 'publishing_type', n.get_enum_value(on_premises_publishing_type.OnPremisesPublishingType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -102,7 +102,7 @@ class OnPremisesAgentGroup(entity.Entity):
         """
         Sets the isDefault property value. Indicates if the onPremisesAgentGroup is the default agent group. Only a single agent group can be the default onPremisesAgentGroup and is set by the system.
         Args:
-            value: Value to set for the isDefault property.
+            value: Value to set for the is_default property.
         """
         self._is_default = value
     
@@ -119,7 +119,7 @@ class OnPremisesAgentGroup(entity.Entity):
         """
         Sets the publishedResources property value. List of publishedResource that are assigned to an onPremisesAgentGroup. Read-only. Nullable.
         Args:
-            value: Value to set for the publishedResources property.
+            value: Value to set for the published_resources property.
         """
         self._published_resources = value
     
@@ -136,7 +136,7 @@ class OnPremisesAgentGroup(entity.Entity):
         """
         Sets the publishingType property value. The publishingType property
         Args:
-            value: Value to set for the publishingType property.
+            value: Value to set for the publishing_type property.
         """
         self._publishing_type = value
     

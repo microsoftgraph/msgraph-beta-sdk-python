@@ -62,7 +62,7 @@ class AccessReviewPolicy(entity.Entity):
         """
         Sets the displayName property value. Display name for this policy. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -73,8 +73,8 @@ class AccessReviewPolicy(entity.Entity):
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "is_group_owner_management_enabled": lambda n : setattr(self, 'is_group_owner_management_enabled', n.get_bool_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "isGroupOwnerManagementEnabled": lambda n : setattr(self, 'is_group_owner_management_enabled', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -93,7 +93,7 @@ class AccessReviewPolicy(entity.Entity):
         """
         Sets the isGroupOwnerManagementEnabled property value. If true, group owners can create and manage access reviews on groups they own.
         Args:
-            value: Value to set for the isGroupOwnerManagementEnabled property.
+            value: Value to set for the is_group_owner_management_enabled property.
         """
         self._is_group_owner_management_enabled = value
     

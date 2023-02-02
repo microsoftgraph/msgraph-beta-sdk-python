@@ -33,7 +33,7 @@ class WorkflowVersion(workflow_base.WorkflowBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "version_number": lambda n : setattr(self, 'version_number', n.get_int_value()),
+            "versionNumber": lambda n : setattr(self, 'version_number', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -63,7 +63,7 @@ class WorkflowVersion(workflow_base.WorkflowBase):
         """
         Sets the versionNumber property value. The version of the workflow.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
         Args:
-            value: Value to set for the versionNumber property.
+            value: Value to set for the version_number property.
         """
         self._version_number = value
     

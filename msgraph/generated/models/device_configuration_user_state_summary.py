@@ -19,7 +19,7 @@ class DeviceConfigurationUserStateSummary(entity.Entity):
         """
         Sets the compliantUserCount property value. Number of compliant users
         Args:
-            value: Value to set for the compliantUserCount property.
+            value: Value to set for the compliant_user_count property.
         """
         self._compliant_user_count = value
     
@@ -36,7 +36,7 @@ class DeviceConfigurationUserStateSummary(entity.Entity):
         """
         Sets the conflictUserCount property value. Number of conflict users
         Args:
-            value: Value to set for the conflictUserCount property.
+            value: Value to set for the conflict_user_count property.
         """
         self._conflict_user_count = value
     
@@ -87,7 +87,7 @@ class DeviceConfigurationUserStateSummary(entity.Entity):
         """
         Sets the errorUserCount property value. Number of error users
         Args:
-            value: Value to set for the errorUserCount property.
+            value: Value to set for the error_user_count property.
         """
         self._error_user_count = value
     
@@ -97,13 +97,13 @@ class DeviceConfigurationUserStateSummary(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "compliant_user_count": lambda n : setattr(self, 'compliant_user_count', n.get_int_value()),
-            "conflict_user_count": lambda n : setattr(self, 'conflict_user_count', n.get_int_value()),
-            "error_user_count": lambda n : setattr(self, 'error_user_count', n.get_int_value()),
-            "non_compliant_user_count": lambda n : setattr(self, 'non_compliant_user_count', n.get_int_value()),
-            "not_applicable_user_count": lambda n : setattr(self, 'not_applicable_user_count', n.get_int_value()),
-            "remediated_user_count": lambda n : setattr(self, 'remediated_user_count', n.get_int_value()),
-            "unknown_user_count": lambda n : setattr(self, 'unknown_user_count', n.get_int_value()),
+            "compliantUserCount": lambda n : setattr(self, 'compliant_user_count', n.get_int_value()),
+            "conflictUserCount": lambda n : setattr(self, 'conflict_user_count', n.get_int_value()),
+            "errorUserCount": lambda n : setattr(self, 'error_user_count', n.get_int_value()),
+            "nonCompliantUserCount": lambda n : setattr(self, 'non_compliant_user_count', n.get_int_value()),
+            "notApplicableUserCount": lambda n : setattr(self, 'not_applicable_user_count', n.get_int_value()),
+            "remediatedUserCount": lambda n : setattr(self, 'remediated_user_count', n.get_int_value()),
+            "unknownUserCount": lambda n : setattr(self, 'unknown_user_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -122,7 +122,7 @@ class DeviceConfigurationUserStateSummary(entity.Entity):
         """
         Sets the nonCompliantUserCount property value. Number of NonCompliant users
         Args:
-            value: Value to set for the nonCompliantUserCount property.
+            value: Value to set for the non_compliant_user_count property.
         """
         self._non_compliant_user_count = value
     
@@ -139,7 +139,7 @@ class DeviceConfigurationUserStateSummary(entity.Entity):
         """
         Sets the notApplicableUserCount property value. Number of not applicable users
         Args:
-            value: Value to set for the notApplicableUserCount property.
+            value: Value to set for the not_applicable_user_count property.
         """
         self._not_applicable_user_count = value
     
@@ -156,7 +156,7 @@ class DeviceConfigurationUserStateSummary(entity.Entity):
         """
         Sets the remediatedUserCount property value. Number of remediated users
         Args:
-            value: Value to set for the remediatedUserCount property.
+            value: Value to set for the remediated_user_count property.
         """
         self._remediated_user_count = value
     
@@ -190,7 +190,7 @@ class DeviceConfigurationUserStateSummary(entity.Entity):
         """
         Sets the unknownUserCount property value. Number of unknown users
         Args:
-            value: Value to set for the unknownUserCount property.
+            value: Value to set for the unknown_user_count property.
         """
         self._unknown_user_count = value
     

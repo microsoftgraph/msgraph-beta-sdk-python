@@ -39,10 +39,11 @@ class AppManagementPolicyItemRequestBuilder():
         url_tpl_params["directoryObject%2Did"] = id
         return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, app_management_policy_id: Optional[str] = None) -> None:
         """
         Instantiates a new AppManagementPolicyItemRequestBuilder and sets the default values.
         Args:
+            appManagementPolicyId: key: id of appManagementPolicy
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -54,15 +55,15 @@ class AppManagementPolicyItemRequestBuilder():
         self.url_template: str = "{+baseurl}/policies/appManagementPolicies/{appManagementPolicy%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["appManagementPolicy%2Did"] = appManagementPolicyId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AppManagementPolicyItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AppManagementPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property appManagementPolicies for policies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -73,14 +74,13 @@ class AppManagementPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AppManagementPolicyItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[app_management_policy.AppManagementPolicy]:
+    async def get(self,request_configuration: Optional[AppManagementPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[app_management_policy.AppManagementPolicy]:
         """
         The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[app_management_policy.AppManagementPolicy]
         """
         request_info = self.to_get_request_information(
@@ -92,15 +92,14 @@ class AppManagementPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, app_management_policy.AppManagementPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, app_management_policy.AppManagementPolicy, error_mapping)
     
-    async def patch(self,body: Optional[app_management_policy.AppManagementPolicy] = None, request_configuration: Optional[AppManagementPolicyItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[app_management_policy.AppManagementPolicy]:
+    async def patch(self,body: Optional[app_management_policy.AppManagementPolicy] = None, request_configuration: Optional[AppManagementPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[app_management_policy.AppManagementPolicy]:
         """
         Update the navigation property appManagementPolicies in policies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[app_management_policy.AppManagementPolicy]
         """
         if body is None:
@@ -114,7 +113,7 @@ class AppManagementPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, app_management_policy.AppManagementPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, app_management_policy.AppManagementPolicy, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AppManagementPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

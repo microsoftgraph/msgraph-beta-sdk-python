@@ -57,8 +57,8 @@ class ValidationResult(AdditionalDataHolder, Parsable):
         fields = {
             "message": lambda n : setattr(self, 'message', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "rule_name": lambda n : setattr(self, 'rule_name', n.get_str_value()),
-            "validation_passed": lambda n : setattr(self, 'validation_passed', n.get_bool_value()),
+            "ruleName": lambda n : setattr(self, 'rule_name', n.get_str_value()),
+            "validationPassed": lambda n : setattr(self, 'validation_passed', n.get_bool_value()),
         }
         return fields
     
@@ -92,7 +92,7 @@ class ValidationResult(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -109,7 +109,7 @@ class ValidationResult(AdditionalDataHolder, Parsable):
         """
         Sets the ruleName property value. The string containing the name of the password validation rule that the action was validated against. Read-only. Not nullable.
         Args:
-            value: Value to set for the ruleName property.
+            value: Value to set for the rule_name property.
         """
         self._rule_name = value
     
@@ -140,7 +140,7 @@ class ValidationResult(AdditionalDataHolder, Parsable):
         """
         Sets the validationPassed property value. Whether the password passed or failed the validation rule. Read-only. Not nullable.
         Args:
-            value: Value to set for the validationPassed property.
+            value: Value to set for the validation_passed property.
         """
         self._validation_passed = value
     

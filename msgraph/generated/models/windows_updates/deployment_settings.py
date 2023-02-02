@@ -3,9 +3,11 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
+content_applicability_settings = lazy_import('msgraph.generated.models.windows_updates.content_applicability_settings')
+expedite_settings = lazy_import('msgraph.generated.models.windows_updates.expedite_settings')
 monitoring_settings = lazy_import('msgraph.generated.models.windows_updates.monitoring_settings')
-rollout_settings = lazy_import('msgraph.generated.models.windows_updates.rollout_settings')
-safeguard_settings = lazy_import('msgraph.generated.models.windows_updates.safeguard_settings')
+schedule_settings = lazy_import('msgraph.generated.models.windows_updates.schedule_settings')
+user_experience_settings = lazy_import('msgraph.generated.models.windows_updates.user_experience_settings')
 
 class DeploymentSettings(AdditionalDataHolder, Parsable):
     @property
@@ -32,14 +34,35 @@ class DeploymentSettings(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
+        # The contentApplicability property
+        self._content_applicability: Optional[content_applicability_settings.ContentApplicabilitySettings] = None
+        # The expedite property
+        self._expedite: Optional[expedite_settings.ExpediteSettings] = None
         # Settings governing conditions to monitor and automated actions to take.
         self._monitoring: Optional[monitoring_settings.MonitoringSettings] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # Settings governing how the content is rolled out.
-        self._rollout: Optional[rollout_settings.RolloutSettings] = None
-        # Settings governing safeguard holds on offering content.
-        self._safeguard: Optional[safeguard_settings.SafeguardSettings] = None
+        # The schedule property
+        self._schedule: Optional[schedule_settings.ScheduleSettings] = None
+        # The userExperience property
+        self._user_experience: Optional[user_experience_settings.UserExperienceSettings] = None
+    
+    @property
+    def content_applicability(self,) -> Optional[content_applicability_settings.ContentApplicabilitySettings]:
+        """
+        Gets the contentApplicability property value. The contentApplicability property
+        Returns: Optional[content_applicability_settings.ContentApplicabilitySettings]
+        """
+        return self._content_applicability
+    
+    @content_applicability.setter
+    def content_applicability(self,value: Optional[content_applicability_settings.ContentApplicabilitySettings] = None) -> None:
+        """
+        Sets the contentApplicability property value. The contentApplicability property
+        Args:
+            value: Value to set for the content_applicability property.
+        """
+        self._content_applicability = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeploymentSettings:
@@ -53,16 +76,35 @@ class DeploymentSettings(AdditionalDataHolder, Parsable):
             raise Exception("parse_node cannot be undefined")
         return DeploymentSettings()
     
+    @property
+    def expedite(self,) -> Optional[expedite_settings.ExpediteSettings]:
+        """
+        Gets the expedite property value. The expedite property
+        Returns: Optional[expedite_settings.ExpediteSettings]
+        """
+        return self._expedite
+    
+    @expedite.setter
+    def expedite(self,value: Optional[expedite_settings.ExpediteSettings] = None) -> None:
+        """
+        Sets the expedite property value. The expedite property
+        Args:
+            value: Value to set for the expedite property.
+        """
+        self._expedite = value
+    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
+            "contentApplicability": lambda n : setattr(self, 'content_applicability', n.get_object_value(content_applicability_settings.ContentApplicabilitySettings)),
+            "expedite": lambda n : setattr(self, 'expedite', n.get_object_value(expedite_settings.ExpediteSettings)),
             "monitoring": lambda n : setattr(self, 'monitoring', n.get_object_value(monitoring_settings.MonitoringSettings)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "rollout": lambda n : setattr(self, 'rollout', n.get_object_value(rollout_settings.RolloutSettings)),
-            "safeguard": lambda n : setattr(self, 'safeguard', n.get_object_value(safeguard_settings.SafeguardSettings)),
+            "schedule": lambda n : setattr(self, 'schedule', n.get_object_value(schedule_settings.ScheduleSettings)),
+            "userExperience": lambda n : setattr(self, 'user_experience', n.get_object_value(user_experience_settings.UserExperienceSettings)),
         }
         return fields
     
@@ -96,43 +138,26 @@ class DeploymentSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
     @property
-    def rollout(self,) -> Optional[rollout_settings.RolloutSettings]:
+    def schedule(self,) -> Optional[schedule_settings.ScheduleSettings]:
         """
-        Gets the rollout property value. Settings governing how the content is rolled out.
-        Returns: Optional[rollout_settings.RolloutSettings]
+        Gets the schedule property value. The schedule property
+        Returns: Optional[schedule_settings.ScheduleSettings]
         """
-        return self._rollout
+        return self._schedule
     
-    @rollout.setter
-    def rollout(self,value: Optional[rollout_settings.RolloutSettings] = None) -> None:
+    @schedule.setter
+    def schedule(self,value: Optional[schedule_settings.ScheduleSettings] = None) -> None:
         """
-        Sets the rollout property value. Settings governing how the content is rolled out.
+        Sets the schedule property value. The schedule property
         Args:
-            value: Value to set for the rollout property.
+            value: Value to set for the schedule property.
         """
-        self._rollout = value
-    
-    @property
-    def safeguard(self,) -> Optional[safeguard_settings.SafeguardSettings]:
-        """
-        Gets the safeguard property value. Settings governing safeguard holds on offering content.
-        Returns: Optional[safeguard_settings.SafeguardSettings]
-        """
-        return self._safeguard
-    
-    @safeguard.setter
-    def safeguard(self,value: Optional[safeguard_settings.SafeguardSettings] = None) -> None:
-        """
-        Sets the safeguard property value. Settings governing safeguard holds on offering content.
-        Args:
-            value: Value to set for the safeguard property.
-        """
-        self._safeguard = value
+        self._schedule = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -142,10 +167,29 @@ class DeploymentSettings(AdditionalDataHolder, Parsable):
         """
         if writer is None:
             raise Exception("writer cannot be undefined")
+        writer.write_object_value("contentApplicability", self.content_applicability)
+        writer.write_object_value("expedite", self.expedite)
         writer.write_object_value("monitoring", self.monitoring)
         writer.write_str_value("@odata.type", self.odata_type)
-        writer.write_object_value("rollout", self.rollout)
-        writer.write_object_value("safeguard", self.safeguard)
+        writer.write_object_value("schedule", self.schedule)
+        writer.write_object_value("userExperience", self.user_experience)
         writer.write_additional_data_value(self.additional_data)
+    
+    @property
+    def user_experience(self,) -> Optional[user_experience_settings.UserExperienceSettings]:
+        """
+        Gets the userExperience property value. The userExperience property
+        Returns: Optional[user_experience_settings.UserExperienceSettings]
+        """
+        return self._user_experience
+    
+    @user_experience.setter
+    def user_experience(self,value: Optional[user_experience_settings.UserExperienceSettings] = None) -> None:
+        """
+        Sets the userExperience property value. The userExperience property
+        Args:
+            value: Value to set for the user_experience property.
+        """
+        self._user_experience = value
     
 

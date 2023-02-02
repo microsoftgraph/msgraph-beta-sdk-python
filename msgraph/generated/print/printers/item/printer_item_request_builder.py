@@ -14,9 +14,9 @@ printer = lazy_import('msgraph.generated.models.printer')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 connectors_request_builder = lazy_import('msgraph.generated.print.printers.item.connectors.connectors_request_builder')
 print_connector_item_request_builder = lazy_import('msgraph.generated.print.printers.item.connectors.item.print_connector_item_request_builder')
-get_capabilities_request_builder = lazy_import('msgraph.generated.print.printers.item.get_capabilities.get_capabilities_request_builder')
-reset_defaults_request_builder = lazy_import('msgraph.generated.print.printers.item.reset_defaults.reset_defaults_request_builder')
-restore_factory_defaults_request_builder = lazy_import('msgraph.generated.print.printers.item.restore_factory_defaults.restore_factory_defaults_request_builder')
+get_capabilities_request_builder = lazy_import('msgraph.generated.print.printers.item.microsoft_graph_get_capabilities.get_capabilities_request_builder')
+reset_defaults_request_builder = lazy_import('msgraph.generated.print.printers.item.microsoft_graph_reset_defaults.reset_defaults_request_builder')
+restore_factory_defaults_request_builder = lazy_import('msgraph.generated.print.printers.item.microsoft_graph_restore_factory_defaults.restore_factory_defaults_request_builder')
 share_request_builder = lazy_import('msgraph.generated.print.printers.item.share.share_request_builder')
 shares_request_builder = lazy_import('msgraph.generated.print.printers.item.shares.shares_request_builder')
 printer_share_item_request_builder = lazy_import('msgraph.generated.print.printers.item.shares.item.printer_share_item_request_builder')
@@ -35,14 +35,21 @@ class PrinterItemRequestBuilder():
         return connectors_request_builder.ConnectorsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reset_defaults(self) -> reset_defaults_request_builder.ResetDefaultsRequestBuilder:
+    def microsoft_graph_get_capabilities(self) -> get_capabilities_request_builder.GetCapabilitiesRequestBuilder:
+        """
+        Provides operations to call the getCapabilities method.
+        """
+        return get_capabilities_request_builder.GetCapabilitiesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_reset_defaults(self) -> reset_defaults_request_builder.ResetDefaultsRequestBuilder:
         """
         Provides operations to call the resetDefaults method.
         """
         return reset_defaults_request_builder.ResetDefaultsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def restore_factory_defaults(self) -> restore_factory_defaults_request_builder.RestoreFactoryDefaultsRequestBuilder:
+    def microsoft_graph_restore_factory_defaults(self) -> restore_factory_defaults_request_builder.RestoreFactoryDefaultsRequestBuilder:
         """
         Provides operations to call the restoreFactoryDefaults method.
         """
@@ -82,11 +89,12 @@ class PrinterItemRequestBuilder():
         url_tpl_params["printConnector%2Did"] = id
         return print_connector_item_request_builder.PrintConnectorItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, printer_id: Optional[str] = None) -> None:
         """
         Instantiates a new PrinterItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            printerId: key: id of printer
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -97,15 +105,15 @@ class PrinterItemRequestBuilder():
         self.url_template: str = "{+baseurl}/print/printers/{printer%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["printer%2Did"] = printerId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PrinterItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PrinterItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property printers for print
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -116,14 +124,13 @@ class PrinterItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PrinterItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[printer.Printer]:
+    async def get(self,request_configuration: Optional[PrinterItemRequestBuilderGetRequestConfiguration] = None) -> Optional[printer.Printer]:
         """
         The list of printers registered in the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[printer.Printer]
         """
         request_info = self.to_get_request_information(
@@ -135,22 +142,14 @@ class PrinterItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, printer.Printer, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, printer.Printer, error_mapping)
     
-    def get_capabilities(self,) -> get_capabilities_request_builder.GetCapabilitiesRequestBuilder:
-        """
-        Provides operations to call the getCapabilities method.
-        Returns: get_capabilities_request_builder.GetCapabilitiesRequestBuilder
-        """
-        return get_capabilities_request_builder.GetCapabilitiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def patch(self,body: Optional[printer.Printer] = None, request_configuration: Optional[PrinterItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[printer.Printer]:
+    async def patch(self,body: Optional[printer.Printer] = None, request_configuration: Optional[PrinterItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[printer.Printer]:
         """
         Update the navigation property printers in print
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[printer.Printer]
         """
         if body is None:
@@ -164,7 +163,7 @@ class PrinterItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, printer.Printer, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, printer.Printer, error_mapping)
     
     def shares_by_id(self,id: str) -> printer_share_item_request_builder.PrinterShareItemRequestBuilder:
         """

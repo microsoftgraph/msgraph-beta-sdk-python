@@ -1,7 +1,7 @@
 from enum import Enum
 
 class GroupAccessType(Enum):
-    None_escaped = "none",
+    None_ = "none",
     Private = "private",
     Secret = "secret",
     Public = "public",

@@ -43,7 +43,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary(entit
         """
         Sets the deployedDeviceCount property value. Number of Devices that have successfully deployed this WindowsDefenderApplicationControl supplemental policy.
         Args:
-            value: Value to set for the deployedDeviceCount property.
+            value: Value to set for the deployed_device_count property.
         """
         self._deployed_device_count = value
     
@@ -60,7 +60,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary(entit
         """
         Sets the failedDeviceCount property value. Number of Devices that have failed to deploy this WindowsDefenderApplicationControl supplemental policy.
         Args:
-            value: Value to set for the failedDeviceCount property.
+            value: Value to set for the failed_device_count property.
         """
         self._failed_device_count = value
     
@@ -70,8 +70,8 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary(entit
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "deployed_device_count": lambda n : setattr(self, 'deployed_device_count', n.get_int_value()),
-            "failed_device_count": lambda n : setattr(self, 'failed_device_count', n.get_int_value()),
+            "deployedDeviceCount": lambda n : setattr(self, 'deployed_device_count', n.get_int_value()),
+            "failedDeviceCount": lambda n : setattr(self, 'failed_device_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

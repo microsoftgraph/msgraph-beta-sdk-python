@@ -10,12 +10,9 @@ device_management_partner_tenant_state = lazy_import('msgraph.generated.models.d
 entity = lazy_import('msgraph.generated.models.entity')
 
 class DeviceManagementPartner(entity.Entity):
-    """
-    Entity which represents a connection to device management partner.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceManagementPartner and sets the default values.
+        Instantiates a new DeviceManagementPartner and sets the default values.
         """
         super().__init__()
         # Partner display name
@@ -34,12 +31,8 @@ class DeviceManagementPartner(entity.Entity):
         self._partner_state: Optional[device_management_partner_tenant_state.DeviceManagementPartnerTenantState] = None
         # Partner Single tenant App id
         self._single_tenant_app_id: Optional[str] = None
-        # DateTime in UTC when PartnerDevices will be marked as NonCompliant. This will become obselete soon.
-        self._when_partner_devices_will_be_marked_as_non_compliant: Optional[datetime] = None
         # DateTime in UTC when PartnerDevices will be marked as NonCompliant
         self._when_partner_devices_will_be_marked_as_non_compliant_date_time: Optional[datetime] = None
-        # DateTime in UTC when PartnerDevices will be removed. This will become obselete soon.
-        self._when_partner_devices_will_be_removed: Optional[datetime] = None
         # DateTime in UTC when PartnerDevices will be removed
         self._when_partner_devices_will_be_removed_date_time: Optional[datetime] = None
     
@@ -68,7 +61,7 @@ class DeviceManagementPartner(entity.Entity):
         """
         Sets the displayName property value. Partner display name
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -78,17 +71,15 @@ class DeviceManagementPartner(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "groups_requiring_partner_enrollment": lambda n : setattr(self, 'groups_requiring_partner_enrollment', n.get_collection_of_object_values(device_management_partner_assignment.DeviceManagementPartnerAssignment)),
-            "is_configured": lambda n : setattr(self, 'is_configured', n.get_bool_value()),
-            "last_heartbeat_date_time": lambda n : setattr(self, 'last_heartbeat_date_time', n.get_datetime_value()),
-            "partner_app_type": lambda n : setattr(self, 'partner_app_type', n.get_enum_value(device_management_partner_app_type.DeviceManagementPartnerAppType)),
-            "partner_state": lambda n : setattr(self, 'partner_state', n.get_enum_value(device_management_partner_tenant_state.DeviceManagementPartnerTenantState)),
-            "single_tenant_app_id": lambda n : setattr(self, 'single_tenant_app_id', n.get_str_value()),
-            "when_partner_devices_will_be_marked_as_non_compliant": lambda n : setattr(self, 'when_partner_devices_will_be_marked_as_non_compliant', n.get_datetime_value()),
-            "when_partner_devices_will_be_marked_as_non_compliant_date_time": lambda n : setattr(self, 'when_partner_devices_will_be_marked_as_non_compliant_date_time', n.get_datetime_value()),
-            "when_partner_devices_will_be_removed": lambda n : setattr(self, 'when_partner_devices_will_be_removed', n.get_datetime_value()),
-            "when_partner_devices_will_be_removed_date_time": lambda n : setattr(self, 'when_partner_devices_will_be_removed_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "groupsRequiringPartnerEnrollment": lambda n : setattr(self, 'groups_requiring_partner_enrollment', n.get_collection_of_object_values(device_management_partner_assignment.DeviceManagementPartnerAssignment)),
+            "isConfigured": lambda n : setattr(self, 'is_configured', n.get_bool_value()),
+            "lastHeartbeatDateTime": lambda n : setattr(self, 'last_heartbeat_date_time', n.get_datetime_value()),
+            "partnerAppType": lambda n : setattr(self, 'partner_app_type', n.get_enum_value(device_management_partner_app_type.DeviceManagementPartnerAppType)),
+            "partnerState": lambda n : setattr(self, 'partner_state', n.get_enum_value(device_management_partner_tenant_state.DeviceManagementPartnerTenantState)),
+            "singleTenantAppId": lambda n : setattr(self, 'single_tenant_app_id', n.get_str_value()),
+            "whenPartnerDevicesWillBeMarkedAsNonCompliantDateTime": lambda n : setattr(self, 'when_partner_devices_will_be_marked_as_non_compliant_date_time', n.get_datetime_value()),
+            "whenPartnerDevicesWillBeRemovedDateTime": lambda n : setattr(self, 'when_partner_devices_will_be_removed_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -107,7 +98,7 @@ class DeviceManagementPartner(entity.Entity):
         """
         Sets the groupsRequiringPartnerEnrollment property value. User groups that specifies whether enrollment is through partner.
         Args:
-            value: Value to set for the groupsRequiringPartnerEnrollment property.
+            value: Value to set for the groups_requiring_partner_enrollment property.
         """
         self._groups_requiring_partner_enrollment = value
     
@@ -124,7 +115,7 @@ class DeviceManagementPartner(entity.Entity):
         """
         Sets the isConfigured property value. Whether device management partner is configured or not
         Args:
-            value: Value to set for the isConfigured property.
+            value: Value to set for the is_configured property.
         """
         self._is_configured = value
     
@@ -141,7 +132,7 @@ class DeviceManagementPartner(entity.Entity):
         """
         Sets the lastHeartbeatDateTime property value. Timestamp of last heartbeat after admin enabled option Connect to Device management Partner
         Args:
-            value: Value to set for the lastHeartbeatDateTime property.
+            value: Value to set for the last_heartbeat_date_time property.
         """
         self._last_heartbeat_date_time = value
     
@@ -158,7 +149,7 @@ class DeviceManagementPartner(entity.Entity):
         """
         Sets the partnerAppType property value. Partner App Type.
         Args:
-            value: Value to set for the partnerAppType property.
+            value: Value to set for the partner_app_type property.
         """
         self._partner_app_type = value
     
@@ -175,7 +166,7 @@ class DeviceManagementPartner(entity.Entity):
         """
         Sets the partnerState property value. Partner state of this tenant.
         Args:
-            value: Value to set for the partnerState property.
+            value: Value to set for the partner_state property.
         """
         self._partner_state = value
     
@@ -195,9 +186,7 @@ class DeviceManagementPartner(entity.Entity):
         writer.write_enum_value("partnerAppType", self.partner_app_type)
         writer.write_enum_value("partnerState", self.partner_state)
         writer.write_str_value("singleTenantAppId", self.single_tenant_app_id)
-        writer.write_datetime_value("whenPartnerDevicesWillBeMarkedAsNonCompliant", self.when_partner_devices_will_be_marked_as_non_compliant)
         writer.write_datetime_value("whenPartnerDevicesWillBeMarkedAsNonCompliantDateTime", self.when_partner_devices_will_be_marked_as_non_compliant_date_time)
-        writer.write_datetime_value("whenPartnerDevicesWillBeRemoved", self.when_partner_devices_will_be_removed)
         writer.write_datetime_value("whenPartnerDevicesWillBeRemovedDateTime", self.when_partner_devices_will_be_removed_date_time)
     
     @property
@@ -213,26 +202,9 @@ class DeviceManagementPartner(entity.Entity):
         """
         Sets the singleTenantAppId property value. Partner Single tenant App id
         Args:
-            value: Value to set for the singleTenantAppId property.
+            value: Value to set for the single_tenant_app_id property.
         """
         self._single_tenant_app_id = value
-    
-    @property
-    def when_partner_devices_will_be_marked_as_non_compliant(self,) -> Optional[datetime]:
-        """
-        Gets the whenPartnerDevicesWillBeMarkedAsNonCompliant property value. DateTime in UTC when PartnerDevices will be marked as NonCompliant. This will become obselete soon.
-        Returns: Optional[datetime]
-        """
-        return self._when_partner_devices_will_be_marked_as_non_compliant
-    
-    @when_partner_devices_will_be_marked_as_non_compliant.setter
-    def when_partner_devices_will_be_marked_as_non_compliant(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the whenPartnerDevicesWillBeMarkedAsNonCompliant property value. DateTime in UTC when PartnerDevices will be marked as NonCompliant. This will become obselete soon.
-        Args:
-            value: Value to set for the whenPartnerDevicesWillBeMarkedAsNonCompliant property.
-        """
-        self._when_partner_devices_will_be_marked_as_non_compliant = value
     
     @property
     def when_partner_devices_will_be_marked_as_non_compliant_date_time(self,) -> Optional[datetime]:
@@ -247,26 +219,9 @@ class DeviceManagementPartner(entity.Entity):
         """
         Sets the whenPartnerDevicesWillBeMarkedAsNonCompliantDateTime property value. DateTime in UTC when PartnerDevices will be marked as NonCompliant
         Args:
-            value: Value to set for the whenPartnerDevicesWillBeMarkedAsNonCompliantDateTime property.
+            value: Value to set for the when_partner_devices_will_be_marked_as_non_compliant_date_time property.
         """
         self._when_partner_devices_will_be_marked_as_non_compliant_date_time = value
-    
-    @property
-    def when_partner_devices_will_be_removed(self,) -> Optional[datetime]:
-        """
-        Gets the whenPartnerDevicesWillBeRemoved property value. DateTime in UTC when PartnerDevices will be removed. This will become obselete soon.
-        Returns: Optional[datetime]
-        """
-        return self._when_partner_devices_will_be_removed
-    
-    @when_partner_devices_will_be_removed.setter
-    def when_partner_devices_will_be_removed(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the whenPartnerDevicesWillBeRemoved property value. DateTime in UTC when PartnerDevices will be removed. This will become obselete soon.
-        Args:
-            value: Value to set for the whenPartnerDevicesWillBeRemoved property.
-        """
-        self._when_partner_devices_will_be_removed = value
     
     @property
     def when_partner_devices_will_be_removed_date_time(self,) -> Optional[datetime]:
@@ -281,7 +236,7 @@ class DeviceManagementPartner(entity.Entity):
         """
         Sets the whenPartnerDevicesWillBeRemovedDateTime property value. DateTime in UTC when PartnerDevices will be removed
         Args:
-            value: Value to set for the whenPartnerDevicesWillBeRemovedDateTime property.
+            value: Value to set for the when_partner_devices_will_be_removed_date_time property.
         """
         self._when_partner_devices_will_be_removed_date_time = value
     

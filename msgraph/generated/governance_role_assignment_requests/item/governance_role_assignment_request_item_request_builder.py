@@ -10,11 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-cancel_request_builder = lazy_import('msgraph.generated.governance_role_assignment_requests.item.cancel.cancel_request_builder')
+cancel_request_builder = lazy_import('msgraph.generated.governance_role_assignment_requests.item.microsoft_graph_cancel.cancel_request_builder')
+update_request_request_builder = lazy_import('msgraph.generated.governance_role_assignment_requests.item.microsoft_graph_update_request.update_request_request_builder')
 resource_request_builder = lazy_import('msgraph.generated.governance_role_assignment_requests.item.resource.resource_request_builder')
 role_definition_request_builder = lazy_import('msgraph.generated.governance_role_assignment_requests.item.role_definition.role_definition_request_builder')
 subject_request_builder = lazy_import('msgraph.generated.governance_role_assignment_requests.item.subject.subject_request_builder')
-update_request_request_builder = lazy_import('msgraph.generated.governance_role_assignment_requests.item.update_request.update_request_request_builder')
 governance_role_assignment_request = lazy_import('msgraph.generated.models.governance_role_assignment_request')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -23,11 +23,18 @@ class GovernanceRoleAssignmentRequestItemRequestBuilder():
     Provides operations to manage the collection of governanceRoleAssignmentRequest entities.
     """
     @property
-    def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
+    def microsoft_graph_cancel(self) -> cancel_request_builder.CancelRequestBuilder:
         """
         Provides operations to call the cancel method.
         """
         return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_update_request(self) -> update_request_request_builder.UpdateRequestRequestBuilder:
+        """
+        Provides operations to call the updateRequest method.
+        """
+        return update_request_request_builder.UpdateRequestRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def resource(self) -> resource_request_builder.ResourceRequestBuilder:
@@ -50,17 +57,11 @@ class GovernanceRoleAssignmentRequestItemRequestBuilder():
         """
         return subject_request_builder.SubjectRequestBuilder(self.request_adapter, self.path_parameters)
     
-    @property
-    def update_request(self) -> update_request_request_builder.UpdateRequestRequestBuilder:
-        """
-        Provides operations to call the updateRequest method.
-        """
-        return update_request_request_builder.UpdateRequestRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, governance_role_assignment_request_id: Optional[str] = None) -> None:
         """
         Instantiates a new GovernanceRoleAssignmentRequestItemRequestBuilder and sets the default values.
         Args:
+            governanceRoleAssignmentRequestId: key: id of governanceRoleAssignmentRequest
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -72,15 +73,15 @@ class GovernanceRoleAssignmentRequestItemRequestBuilder():
         self.url_template: str = "{+baseurl}/governanceRoleAssignmentRequests/{governanceRoleAssignmentRequest%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["governanceRoleAssignmentRequest%2Did"] = governanceRoleAssignmentRequestId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[GovernanceRoleAssignmentRequestItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[GovernanceRoleAssignmentRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete entity from governanceRoleAssignmentRequests
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -91,14 +92,13 @@ class GovernanceRoleAssignmentRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[GovernanceRoleAssignmentRequestItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_role_assignment_request.GovernanceRoleAssignmentRequest]:
+    async def get(self,request_configuration: Optional[GovernanceRoleAssignmentRequestItemRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_role_assignment_request.GovernanceRoleAssignmentRequest]:
         """
         Get entity from governanceRoleAssignmentRequests by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_role_assignment_request.GovernanceRoleAssignmentRequest]
         """
         request_info = self.to_get_request_information(
@@ -110,15 +110,14 @@ class GovernanceRoleAssignmentRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_role_assignment_request.GovernanceRoleAssignmentRequest, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_role_assignment_request.GovernanceRoleAssignmentRequest, error_mapping)
     
-    async def patch(self,body: Optional[governance_role_assignment_request.GovernanceRoleAssignmentRequest] = None, request_configuration: Optional[GovernanceRoleAssignmentRequestItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_role_assignment_request.GovernanceRoleAssignmentRequest]:
+    async def patch(self,body: Optional[governance_role_assignment_request.GovernanceRoleAssignmentRequest] = None, request_configuration: Optional[GovernanceRoleAssignmentRequestItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[governance_role_assignment_request.GovernanceRoleAssignmentRequest]:
         """
         Update entity in governanceRoleAssignmentRequests
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_role_assignment_request.GovernanceRoleAssignmentRequest]
         """
         if body is None:
@@ -132,7 +131,7 @@ class GovernanceRoleAssignmentRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_role_assignment_request.GovernanceRoleAssignmentRequest, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_role_assignment_request.GovernanceRoleAssignmentRequest, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[GovernanceRoleAssignmentRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

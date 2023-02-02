@@ -11,7 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.definitions.count.count_request_builder')
-filter_by_current_user_with_on_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.definitions.filter_by_current_user_with_on.filter_by_current_user_with_on_request_builder')
+filter_by_current_user_with_on_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.definitions.microsoft_graph_filter_by_current_user_with_on.filter_by_current_user_with_on_request_builder')
 access_review_schedule_definition = lazy_import('msgraph.generated.models.access_review_schedule_definition')
 access_review_schedule_definition_collection_response = lazy_import('msgraph.generated.models.access_review_schedule_definition_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -45,23 +45,11 @@ class DefinitionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
-        """
-        Provides operations to call the filterByCurrentUser method.
-        Args:
-            on: Usage: on='{on}'
-        Returns: filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder
-        """
-        if on is None:
-            raise Exception("on cannot be undefined")
-        return filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
-    
-    async def get(self,request_configuration: Optional[DefinitionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_schedule_definition_collection_response.AccessReviewScheduleDefinitionCollectionResponse]:
+    async def get(self,request_configuration: Optional[DefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_schedule_definition_collection_response.AccessReviewScheduleDefinitionCollectionResponse]:
         """
         Retrieve the accessReviewScheduleDefinition objects. A list of zero or more accessReviewScheduleDefinition objects are returned, including all of their nested properties, for each access review series created. This does not include the associated accessReviewInstance objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_schedule_definition_collection_response.AccessReviewScheduleDefinitionCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -73,15 +61,25 @@ class DefinitionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_schedule_definition_collection_response.AccessReviewScheduleDefinitionCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_schedule_definition_collection_response.AccessReviewScheduleDefinitionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[access_review_schedule_definition.AccessReviewScheduleDefinition] = None, request_configuration: Optional[DefinitionsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_schedule_definition.AccessReviewScheduleDefinition]:
+    def microsoft_graph_filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
+        """
+        Provides operations to call the filterByCurrentUser method.
+        Args:
+            on: Usage: on='{on}'
+        Returns: filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder
+        """
+        if on is None:
+            raise Exception("on cannot be undefined")
+        return filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
+    
+    async def post(self,body: Optional[access_review_schedule_definition.AccessReviewScheduleDefinition] = None, request_configuration: Optional[DefinitionsRequestBuilderPostRequestConfiguration] = None) -> Optional[access_review_schedule_definition.AccessReviewScheduleDefinition]:
         """
         Create a new accessReviewScheduleDefinition object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_schedule_definition.AccessReviewScheduleDefinition]
         """
         if body is None:
@@ -95,7 +93,7 @@ class DefinitionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_schedule_definition.AccessReviewScheduleDefinition, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_schedule_definition.AccessReviewScheduleDefinition, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DefinitionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

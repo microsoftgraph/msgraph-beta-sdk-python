@@ -25,10 +25,11 @@ class DeviceManagementExchangeOnPremisesPolicyItemRequestBuilder():
         """
         return conditional_access_settings_request_builder.ConditionalAccessSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, device_management_exchange_on_premises_policy_id: Optional[str] = None) -> None:
         """
         Instantiates a new DeviceManagementExchangeOnPremisesPolicyItemRequestBuilder and sets the default values.
         Args:
+            deviceManagementExchangeOnPremisesPolicyId: key: id of deviceManagementExchangeOnPremisesPolicy
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -40,15 +41,15 @@ class DeviceManagementExchangeOnPremisesPolicyItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceManagement/exchangeOnPremisesPolicies/{deviceManagementExchangeOnPremisesPolicy%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["deviceManagementExchangeOnPremisesPolicy%2Did"] = deviceManagementExchangeOnPremisesPolicyId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DeviceManagementExchangeOnPremisesPolicyItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceManagementExchangeOnPremisesPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property exchangeOnPremisesPolicies for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +60,13 @@ class DeviceManagementExchangeOnPremisesPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceManagementExchangeOnPremisesPolicyItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy]:
+    async def get(self,request_configuration: Optional[DeviceManagementExchangeOnPremisesPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy]:
         """
         The list of Exchange On Premisis policies configured by the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +78,14 @@ class DeviceManagementExchangeOnPremisesPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy, error_mapping)
     
-    async def patch(self,body: Optional[device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy] = None, request_configuration: Optional[DeviceManagementExchangeOnPremisesPolicyItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy]:
+    async def patch(self,body: Optional[device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy] = None, request_configuration: Optional[DeviceManagementExchangeOnPremisesPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy]:
         """
         Update the navigation property exchangeOnPremisesPolicies in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy]
         """
         if body is None:
@@ -100,7 +99,7 @@ class DeviceManagementExchangeOnPremisesPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_exchange_on_premises_policy.DeviceManagementExchangeOnPremisesPolicy, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceManagementExchangeOnPremisesPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

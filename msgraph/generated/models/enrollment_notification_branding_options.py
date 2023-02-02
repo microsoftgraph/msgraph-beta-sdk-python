@@ -2,7 +2,7 @@ from enum import Enum
 
 class EnrollmentNotificationBrandingOptions(Enum):
     # Indicates that the template has no branding.
-    None_escaped = "none",
+    None_ = "none",
     # Indicates that the Company Logo is included in the notification.
     IncludeCompanyLogo = "includeCompanyLogo",
     # Indicates that the Company Name is included in the notification.

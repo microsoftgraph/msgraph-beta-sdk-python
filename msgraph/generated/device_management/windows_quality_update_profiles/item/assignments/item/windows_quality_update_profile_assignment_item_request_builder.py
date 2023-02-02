@@ -17,12 +17,13 @@ class WindowsQualityUpdateProfileAssignmentItemRequestBuilder():
     """
     Provides operations to manage the assignments property of the microsoft.graph.windowsQualityUpdateProfile entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, windows_quality_update_profile_assignment_id: Optional[str] = None) -> None:
         """
         Instantiates a new WindowsQualityUpdateProfileAssignmentItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            windowsQualityUpdateProfileAssignmentId: key: id of windowsQualityUpdateProfileAssignment
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -32,15 +33,15 @@ class WindowsQualityUpdateProfileAssignmentItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceManagement/windowsQualityUpdateProfiles/{windowsQualityUpdateProfile%2Did}/assignments/{windowsQualityUpdateProfileAssignment%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["windowsQualityUpdateProfileAssignment%2Did"] = windowsQualityUpdateProfileAssignmentId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[WindowsQualityUpdateProfileAssignmentItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[WindowsQualityUpdateProfileAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property assignments for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class WindowsQualityUpdateProfileAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[WindowsQualityUpdateProfileAssignmentItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_quality_update_profile_assignment.WindowsQualityUpdateProfileAssignment]:
+    async def get(self,request_configuration: Optional[WindowsQualityUpdateProfileAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_quality_update_profile_assignment.WindowsQualityUpdateProfileAssignment]:
         """
         The list of group assignments of the profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_quality_update_profile_assignment.WindowsQualityUpdateProfileAssignment]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class WindowsQualityUpdateProfileAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_quality_update_profile_assignment.WindowsQualityUpdateProfileAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_quality_update_profile_assignment.WindowsQualityUpdateProfileAssignment, error_mapping)
     
-    async def patch(self,body: Optional[windows_quality_update_profile_assignment.WindowsQualityUpdateProfileAssignment] = None, request_configuration: Optional[WindowsQualityUpdateProfileAssignmentItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_quality_update_profile_assignment.WindowsQualityUpdateProfileAssignment]:
+    async def patch(self,body: Optional[windows_quality_update_profile_assignment.WindowsQualityUpdateProfileAssignment] = None, request_configuration: Optional[WindowsQualityUpdateProfileAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[windows_quality_update_profile_assignment.WindowsQualityUpdateProfileAssignment]:
         """
         Update the navigation property assignments in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_quality_update_profile_assignment.WindowsQualityUpdateProfileAssignment]
         """
         if body is None:
@@ -92,7 +91,7 @@ class WindowsQualityUpdateProfileAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_quality_update_profile_assignment.WindowsQualityUpdateProfileAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_quality_update_profile_assignment.WindowsQualityUpdateProfileAssignment, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[WindowsQualityUpdateProfileAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

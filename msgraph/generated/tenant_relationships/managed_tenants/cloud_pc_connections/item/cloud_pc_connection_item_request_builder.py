@@ -17,10 +17,11 @@ class CloudPcConnectionItemRequestBuilder():
     """
     Provides operations to manage the cloudPcConnections property of the microsoft.graph.managedTenants.managedTenant entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, cloud_pc_connection_id: Optional[str] = None) -> None:
         """
         Instantiates a new CloudPcConnectionItemRequestBuilder and sets the default values.
         Args:
+            cloudPcConnectionId: key: id of cloudPcConnection
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class CloudPcConnectionItemRequestBuilder():
         self.url_template: str = "{+baseurl}/tenantRelationships/managedTenants/cloudPcConnections/{cloudPcConnection%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["cloudPcConnection%2Did"] = cloudPcConnectionId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CloudPcConnectionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CloudPcConnectionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property cloudPcConnections for tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class CloudPcConnectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CloudPcConnectionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_connection.CloudPcConnection]:
+    async def get(self,request_configuration: Optional[CloudPcConnectionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_connection.CloudPcConnection]:
         """
         The collection of cloud PC connections across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_connection.CloudPcConnection]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class CloudPcConnectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_connection.CloudPcConnection, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_connection.CloudPcConnection, error_mapping)
     
-    async def patch(self,body: Optional[cloud_pc_connection.CloudPcConnection] = None, request_configuration: Optional[CloudPcConnectionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_connection.CloudPcConnection]:
+    async def patch(self,body: Optional[cloud_pc_connection.CloudPcConnection] = None, request_configuration: Optional[CloudPcConnectionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[cloud_pc_connection.CloudPcConnection]:
         """
         Update the navigation property cloudPcConnections in tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_connection.CloudPcConnection]
         """
         if body is None:
@@ -92,7 +91,7 @@ class CloudPcConnectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_connection.CloudPcConnection, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_connection.CloudPcConnection, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CloudPcConnectionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

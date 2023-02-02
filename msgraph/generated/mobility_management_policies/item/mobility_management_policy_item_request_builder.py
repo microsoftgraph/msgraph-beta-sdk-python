@@ -26,10 +26,11 @@ class MobilityManagementPolicyItemRequestBuilder():
         """
         return included_groups_request_builder.IncludedGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, mobility_management_policy_id: Optional[str] = None) -> None:
         """
         Instantiates a new MobilityManagementPolicyItemRequestBuilder and sets the default values.
         Args:
+            mobilityManagementPolicyId: key: id of mobilityManagementPolicy
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -41,15 +42,15 @@ class MobilityManagementPolicyItemRequestBuilder():
         self.url_template: str = "{+baseurl}/mobilityManagementPolicies/{mobilityManagementPolicy%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["mobilityManagementPolicy%2Did"] = mobilityManagementPolicyId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete entity from mobilityManagementPolicies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,14 +61,13 @@ class MobilityManagementPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mobility_management_policy.MobilityManagementPolicy]:
+    async def get(self,request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[mobility_management_policy.MobilityManagementPolicy]:
         """
         Get entity from mobilityManagementPolicies by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mobility_management_policy.MobilityManagementPolicy]
         """
         request_info = self.to_get_request_information(
@@ -79,7 +79,7 @@ class MobilityManagementPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mobility_management_policy.MobilityManagementPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, mobility_management_policy.MobilityManagementPolicy, error_mapping)
     
     def included_groups_by_id(self,id: str) -> group_item_request_builder.GroupItemRequestBuilder:
         """
@@ -94,13 +94,12 @@ class MobilityManagementPolicyItemRequestBuilder():
         url_tpl_params["group%2Did"] = id
         return group_item_request_builder.GroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[mobility_management_policy.MobilityManagementPolicy] = None, request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mobility_management_policy.MobilityManagementPolicy]:
+    async def patch(self,body: Optional[mobility_management_policy.MobilityManagementPolicy] = None, request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[mobility_management_policy.MobilityManagementPolicy]:
         """
         Update entity in mobilityManagementPolicies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mobility_management_policy.MobilityManagementPolicy]
         """
         if body is None:
@@ -114,7 +113,7 @@ class MobilityManagementPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mobility_management_policy.MobilityManagementPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, mobility_management_policy.MobilityManagementPolicy, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[MobilityManagementPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

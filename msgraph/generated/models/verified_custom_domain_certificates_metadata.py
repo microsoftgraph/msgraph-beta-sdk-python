@@ -67,7 +67,7 @@ class VerifiedCustomDomainCertificatesMetadata(AdditionalDataHolder, Parsable):
         """
         Sets the expiryDate property value. The expiry date of the custom domain certificate. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the expiryDate property.
+            value: Value to set for the expiry_date property.
         """
         self._expiry_date = value
     
@@ -77,11 +77,11 @@ class VerifiedCustomDomainCertificatesMetadata(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "expiry_date": lambda n : setattr(self, 'expiry_date', n.get_datetime_value()),
-            "issue_date": lambda n : setattr(self, 'issue_date', n.get_datetime_value()),
-            "issuer_name": lambda n : setattr(self, 'issuer_name', n.get_str_value()),
+            "expiryDate": lambda n : setattr(self, 'expiry_date', n.get_datetime_value()),
+            "issuerName": lambda n : setattr(self, 'issuer_name', n.get_str_value()),
+            "issueDate": lambda n : setattr(self, 'issue_date', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "subject_name": lambda n : setattr(self, 'subject_name', n.get_str_value()),
+            "subjectName": lambda n : setattr(self, 'subject_name', n.get_str_value()),
             "thumbprint": lambda n : setattr(self, 'thumbprint', n.get_str_value()),
         }
         return fields
@@ -99,7 +99,7 @@ class VerifiedCustomDomainCertificatesMetadata(AdditionalDataHolder, Parsable):
         """
         Sets the issueDate property value. The issue date of the custom domain. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the issueDate property.
+            value: Value to set for the issue_date property.
         """
         self._issue_date = value
     
@@ -116,7 +116,7 @@ class VerifiedCustomDomainCertificatesMetadata(AdditionalDataHolder, Parsable):
         """
         Sets the issuerName property value. The issuer name of the custom domain certificate.
         Args:
-            value: Value to set for the issuerName property.
+            value: Value to set for the issuer_name property.
         """
         self._issuer_name = value
     
@@ -133,7 +133,7 @@ class VerifiedCustomDomainCertificatesMetadata(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -146,8 +146,8 @@ class VerifiedCustomDomainCertificatesMetadata(AdditionalDataHolder, Parsable):
         if writer is None:
             raise Exception("writer cannot be undefined")
         writer.write_datetime_value("expiryDate", self.expiry_date)
-        writer.write_datetime_value("issueDate", self.issue_date)
         writer.write_str_value("issuerName", self.issuer_name)
+        writer.write_datetime_value("issueDate", self.issue_date)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("subjectName", self.subject_name)
         writer.write_str_value("thumbprint", self.thumbprint)
@@ -166,7 +166,7 @@ class VerifiedCustomDomainCertificatesMetadata(AdditionalDataHolder, Parsable):
         """
         Sets the subjectName property value. The subject name of the custom domain certificate.
         Args:
-            value: Value to set for the subjectName property.
+            value: Value to set for the subject_name property.
         """
         self._subject_name = value
     

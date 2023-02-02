@@ -37,7 +37,7 @@ class ConditionalAccessRuleSatisfied(AdditionalDataHolder, Parsable):
         """
         Sets the conditionalAccessCondition property value. Refers to the conditional access policy conditions that are satisfied. The possible values are: none, application, users, devicePlatform, location, clientType, signInRisk, userRisk, time, deviceState, client, ipAddressSeenByAzureAD, ipAddressSeenByResourceProvider, unknownFutureValue, servicePrincipals, servicePrincipalRisk. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: servicePrincipals, servicePrincipalRisk.
         Args:
-            value: Value to set for the conditionalAccessCondition property.
+            value: Value to set for the conditional_access_condition property.
         """
         self._conditional_access_condition = value
     
@@ -73,9 +73,9 @@ class ConditionalAccessRuleSatisfied(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "conditional_access_condition": lambda n : setattr(self, 'conditional_access_condition', n.get_enum_value(conditional_access_conditions.ConditionalAccessConditions)),
+            "conditionalAccessCondition": lambda n : setattr(self, 'conditional_access_condition', n.get_enum_value(conditional_access_conditions.ConditionalAccessConditions)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "rule_satisfied": lambda n : setattr(self, 'rule_satisfied', n.get_enum_value(conditional_access_rule.ConditionalAccessRule)),
+            "ruleSatisfied": lambda n : setattr(self, 'rule_satisfied', n.get_enum_value(conditional_access_rule.ConditionalAccessRule)),
         }
         return fields
     
@@ -92,7 +92,7 @@ class ConditionalAccessRuleSatisfied(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -109,7 +109,7 @@ class ConditionalAccessRuleSatisfied(AdditionalDataHolder, Parsable):
         """
         Sets the ruleSatisfied property value. Refers to the conditional access policy conditions that were satisfied. The possible values are: allApps, firstPartyApps, office365, appId, acr, appFilter, allUsers, guest, groupId, roleId, userId, allDevicePlatforms, devicePlatform, allLocations, insideCorpnet, allTrustedLocations, locationId, allDevices, deviceFilter, deviceState, unknownFutureValue, deviceFilterIncludeRuleNotMatched, allDeviceStates, anonymizedIPAddress, unfamiliarFeatures, nationStateIPAddress, realTimeThreatIntelligence, internalGuest, b2bCollaborationGuest, b2bCollaborationMember, b2bDirectConnectUser, otherExternalUser, serviceProvider. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: deviceFilterIncludeRuleNotMatched, allDeviceStates.
         Args:
-            value: Value to set for the ruleSatisfied property.
+            value: Value to set for the rule_satisfied property.
         """
         self._rule_satisfied = value
     

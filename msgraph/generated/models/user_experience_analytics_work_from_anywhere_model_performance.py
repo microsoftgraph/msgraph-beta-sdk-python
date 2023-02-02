@@ -7,9 +7,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 user_experience_analytics_health_state = lazy_import('msgraph.generated.models.user_experience_analytics_health_state')
 
 class UserExperienceAnalyticsWorkFromAnywhereModelPerformance(entity.Entity):
-    """
-    The user experience analytics work from anywhere model performance.
-    """
     @property
     def cloud_identity_score(self,) -> Optional[float]:
         """
@@ -23,7 +20,7 @@ class UserExperienceAnalyticsWorkFromAnywhereModelPerformance(entity.Entity):
         """
         Sets the cloudIdentityScore property value. The user experience work from anywhere's cloud identity score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         Args:
-            value: Value to set for the cloudIdentityScore property.
+            value: Value to set for the cloud_identity_score property.
         """
         self._cloud_identity_score = value
     
@@ -40,7 +37,7 @@ class UserExperienceAnalyticsWorkFromAnywhereModelPerformance(entity.Entity):
         """
         Sets the cloudManagementScore property value. The user experience work from anywhere's cloud management score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         Args:
-            value: Value to set for the cloudManagementScore property.
+            value: Value to set for the cloud_management_score property.
         """
         self._cloud_management_score = value
     
@@ -57,13 +54,13 @@ class UserExperienceAnalyticsWorkFromAnywhereModelPerformance(entity.Entity):
         """
         Sets the cloudProvisioningScore property value. The user experience work from anywhere's cloud provisioning score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         Args:
-            value: Value to set for the cloudProvisioningScore property.
+            value: Value to set for the cloud_provisioning_score property.
         """
         self._cloud_provisioning_score = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsWorkFromAnywhereModelPerformance and sets the default values.
+        Instantiates a new UserExperienceAnalyticsWorkFromAnywhereModelPerformance and sets the default values.
         """
         super().__init__()
         # The user experience work from anywhere's cloud identity score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
@@ -105,15 +102,15 @@ class UserExperienceAnalyticsWorkFromAnywhereModelPerformance(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "cloud_identity_score": lambda n : setattr(self, 'cloud_identity_score', n.get_float_value()),
-            "cloud_management_score": lambda n : setattr(self, 'cloud_management_score', n.get_float_value()),
-            "cloud_provisioning_score": lambda n : setattr(self, 'cloud_provisioning_score', n.get_float_value()),
-            "health_status": lambda n : setattr(self, 'health_status', n.get_enum_value(user_experience_analytics_health_state.UserExperienceAnalyticsHealthState)),
+            "cloudIdentityScore": lambda n : setattr(self, 'cloud_identity_score', n.get_float_value()),
+            "cloudManagementScore": lambda n : setattr(self, 'cloud_management_score', n.get_float_value()),
+            "cloudProvisioningScore": lambda n : setattr(self, 'cloud_provisioning_score', n.get_float_value()),
+            "healthStatus": lambda n : setattr(self, 'health_status', n.get_enum_value(user_experience_analytics_health_state.UserExperienceAnalyticsHealthState)),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
-            "model_device_count": lambda n : setattr(self, 'model_device_count', n.get_int_value()),
-            "windows_score": lambda n : setattr(self, 'windows_score', n.get_float_value()),
-            "work_from_anywhere_score": lambda n : setattr(self, 'work_from_anywhere_score', n.get_float_value()),
+            "modelDeviceCount": lambda n : setattr(self, 'model_device_count', n.get_int_value()),
+            "windowsScore": lambda n : setattr(self, 'windows_score', n.get_float_value()),
+            "workFromAnywhereScore": lambda n : setattr(self, 'work_from_anywhere_score', n.get_float_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -132,7 +129,7 @@ class UserExperienceAnalyticsWorkFromAnywhereModelPerformance(entity.Entity):
         """
         Sets the healthStatus property value. The healthStatus property
         Args:
-            value: Value to set for the healthStatus property.
+            value: Value to set for the health_status property.
         """
         self._health_status = value
     
@@ -183,7 +180,7 @@ class UserExperienceAnalyticsWorkFromAnywhereModelPerformance(entity.Entity):
         """
         Sets the modelDeviceCount property value. The user experience work from anywhere's devices count for the model. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the modelDeviceCount property.
+            value: Value to set for the model_device_count property.
         """
         self._model_device_count = value
     
@@ -219,7 +216,7 @@ class UserExperienceAnalyticsWorkFromAnywhereModelPerformance(entity.Entity):
         """
         Sets the windowsScore property value. The user experience work from anywhere windows score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         Args:
-            value: Value to set for the windowsScore property.
+            value: Value to set for the windows_score property.
         """
         self._windows_score = value
     
@@ -236,7 +233,7 @@ class UserExperienceAnalyticsWorkFromAnywhereModelPerformance(entity.Entity):
         """
         Sets the workFromAnywhereScore property value. The user experience work from anywhere overall score for the model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         Args:
-            value: Value to set for the workFromAnywhereScore property.
+            value: Value to set for the work_from_anywhere_score property.
         """
         self._work_from_anywhere_score = value
     

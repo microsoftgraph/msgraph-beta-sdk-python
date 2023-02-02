@@ -22,7 +22,7 @@ class UnifiedRoleAssignmentMultiple(entity.Entity):
         """
         Sets the appScopeIds property value. Ids of the app specific scopes when the assignment scopes are app specific. The scopes of an assignment determines the set of resources for which the principal has been granted access. Directory scopes are shared scopes stored in the directory that are understood by multiple applications. Use / for tenant-wide scope. App scopes are scopes that are defined and understood by this application only.
         Args:
-            value: Value to set for the appScopeIds property.
+            value: Value to set for the app_scope_ids property.
         """
         self._app_scope_ids = value
     
@@ -39,7 +39,7 @@ class UnifiedRoleAssignmentMultiple(entity.Entity):
         """
         Sets the appScopes property value. Read-only collection with details of the app specific scopes when the assignment scopes are app specific. Containment entity. Read-only.
         Args:
-            value: Value to set for the appScopes property.
+            value: Value to set for the app_scopes property.
         """
         self._app_scopes = value
     
@@ -62,7 +62,7 @@ class UnifiedRoleAssignmentMultiple(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new unifiedRoleAssignmentMultiple and sets the default values.
+        Instantiates a new UnifiedRoleAssignmentMultiple and sets the default values.
         """
         super().__init__()
         # Ids of the app specific scopes when the assignment scopes are app specific. The scopes of an assignment determines the set of resources for which the principal has been granted access. Directory scopes are shared scopes stored in the directory that are understood by multiple applications. Use / for tenant-wide scope. App scopes are scopes that are defined and understood by this application only.
@@ -132,7 +132,7 @@ class UnifiedRoleAssignmentMultiple(entity.Entity):
         """
         Sets the directoryScopeIds property value. Ids of the directory objects representing the scopes of the assignment. The scopes of an assignment determine the set of resources for which the principals have been granted access. Directory scopes are shared scopes stored in the directory that are understood by multiple applications. App scopes are scopes that are defined and understood by this application only.
         Args:
-            value: Value to set for the directoryScopeIds property.
+            value: Value to set for the directory_scope_ids property.
         """
         self._directory_scope_ids = value
     
@@ -149,7 +149,7 @@ class UnifiedRoleAssignmentMultiple(entity.Entity):
         """
         Sets the directoryScopes property value. Read-only collection referencing the directory objects that are scope of the assignment. Provided so that callers can get the directory objects using $expand at the same time as getting the role assignment. Read-only.  Supports $expand.
         Args:
-            value: Value to set for the directoryScopes property.
+            value: Value to set for the directory_scopes property.
         """
         self._directory_scopes = value
     
@@ -166,7 +166,7 @@ class UnifiedRoleAssignmentMultiple(entity.Entity):
         """
         Sets the displayName property value. Name of the role assignment. Required.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -176,17 +176,17 @@ class UnifiedRoleAssignmentMultiple(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_scope_ids": lambda n : setattr(self, 'app_scope_ids', n.get_collection_of_primitive_values(str)),
-            "app_scopes": lambda n : setattr(self, 'app_scopes', n.get_collection_of_object_values(app_scope.AppScope)),
+            "appScopes": lambda n : setattr(self, 'app_scopes', n.get_collection_of_object_values(app_scope.AppScope)),
+            "appScopeIds": lambda n : setattr(self, 'app_scope_ids', n.get_collection_of_primitive_values(str)),
             "condition": lambda n : setattr(self, 'condition', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "directory_scope_ids": lambda n : setattr(self, 'directory_scope_ids', n.get_collection_of_primitive_values(str)),
-            "directory_scopes": lambda n : setattr(self, 'directory_scopes', n.get_collection_of_object_values(directory_object.DirectoryObject)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "principal_ids": lambda n : setattr(self, 'principal_ids', n.get_collection_of_primitive_values(str)),
+            "directoryScopes": lambda n : setattr(self, 'directory_scopes', n.get_collection_of_object_values(directory_object.DirectoryObject)),
+            "directoryScopeIds": lambda n : setattr(self, 'directory_scope_ids', n.get_collection_of_primitive_values(str)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "principals": lambda n : setattr(self, 'principals', n.get_collection_of_object_values(directory_object.DirectoryObject)),
-            "role_definition": lambda n : setattr(self, 'role_definition', n.get_object_value(unified_role_definition.UnifiedRoleDefinition)),
-            "role_definition_id": lambda n : setattr(self, 'role_definition_id', n.get_str_value()),
+            "principalIds": lambda n : setattr(self, 'principal_ids', n.get_collection_of_primitive_values(str)),
+            "roleDefinition": lambda n : setattr(self, 'role_definition', n.get_object_value(unified_role_definition.UnifiedRoleDefinition)),
+            "roleDefinitionId": lambda n : setattr(self, 'role_definition_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -205,7 +205,7 @@ class UnifiedRoleAssignmentMultiple(entity.Entity):
         """
         Sets the principalIds property value. Identifiers of the principals to which the assignment is granted.  Supports $filter (any operator only).
         Args:
-            value: Value to set for the principalIds property.
+            value: Value to set for the principal_ids property.
         """
         self._principal_ids = value
     
@@ -239,7 +239,7 @@ class UnifiedRoleAssignmentMultiple(entity.Entity):
         """
         Sets the roleDefinition property value. Specifies the roleDefinition that the assignment is for. Provided so that callers can get the role definition using $expand at the same time as getting the role assignment.  Supports $filter (eq operator on id, isBuiltIn, and displayName, and startsWith operator on displayName)  and $expand.
         Args:
-            value: Value to set for the roleDefinition property.
+            value: Value to set for the role_definition property.
         """
         self._role_definition = value
     
@@ -256,7 +256,7 @@ class UnifiedRoleAssignmentMultiple(entity.Entity):
         """
         Sets the roleDefinitionId property value. Identifier of the unifiedRoleDefinition the assignment is for.
         Args:
-            value: Value to set for the roleDefinitionId property.
+            value: Value to set for the role_definition_id property.
         """
         self._role_definition_id = value
     
@@ -269,15 +269,15 @@ class UnifiedRoleAssignmentMultiple(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_collection_of_primitive_values("appScopeIds", self.app_scope_ids)
         writer.write_collection_of_object_values("appScopes", self.app_scopes)
+        writer.write_collection_of_primitive_values("appScopeIds", self.app_scope_ids)
         writer.write_str_value("condition", self.condition)
         writer.write_str_value("description", self.description)
-        writer.write_collection_of_primitive_values("directoryScopeIds", self.directory_scope_ids)
         writer.write_collection_of_object_values("directoryScopes", self.directory_scopes)
+        writer.write_collection_of_primitive_values("directoryScopeIds", self.directory_scope_ids)
         writer.write_str_value("displayName", self.display_name)
-        writer.write_collection_of_primitive_values("principalIds", self.principal_ids)
         writer.write_collection_of_object_values("principals", self.principals)
+        writer.write_collection_of_primitive_values("principalIds", self.principal_ids)
         writer.write_object_value("roleDefinition", self.role_definition)
         writer.write_str_value("roleDefinitionId", self.role_definition_id)
     

@@ -17,10 +17,11 @@ class BitlockerRecoveryKeyItemRequestBuilder():
     """
     Provides operations to manage the recoveryKeys property of the microsoft.graph.bitlocker entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, bitlocker_recovery_key_id: Optional[str] = None) -> None:
         """
         Instantiates a new BitlockerRecoveryKeyItemRequestBuilder and sets the default values.
         Args:
+            bitlockerRecoveryKeyId: key: id of bitlockerRecoveryKey
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class BitlockerRecoveryKeyItemRequestBuilder():
         self.url_template: str = "{+baseurl}/users/{user%2Did}/informationProtection/bitlocker/recoveryKeys/{bitlockerRecoveryKey%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["bitlockerRecoveryKey%2Did"] = bitlockerRecoveryKeyId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[BitlockerRecoveryKeyItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[bitlocker_recovery_key.BitlockerRecoveryKey]:
+    async def get(self,request_configuration: Optional[BitlockerRecoveryKeyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[bitlocker_recovery_key.BitlockerRecoveryKey]:
         """
         The recovery keys associated with the bitlocker entity.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[bitlocker_recovery_key.BitlockerRecoveryKey]
         """
         request_info = self.to_get_request_information(
@@ -52,7 +53,7 @@ class BitlockerRecoveryKeyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, bitlocker_recovery_key.BitlockerRecoveryKey, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, bitlocker_recovery_key.BitlockerRecoveryKey, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[BitlockerRecoveryKeyItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

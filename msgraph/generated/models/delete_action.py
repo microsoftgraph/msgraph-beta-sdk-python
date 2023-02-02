@@ -54,7 +54,7 @@ class DeleteAction(AdditionalDataHolder, Parsable):
         """
         fields = {
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "object_type": lambda n : setattr(self, 'object_type', n.get_str_value()),
+            "objectType": lambda n : setattr(self, 'object_type', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -89,7 +89,7 @@ class DeleteAction(AdditionalDataHolder, Parsable):
         """
         Sets the objectType property value. File or Folder, depending on the type of the deleted item.
         Args:
-            value: Value to set for the objectType property.
+            value: Value to set for the object_type property.
         """
         self._object_type = value
     
@@ -106,7 +106,7 @@ class DeleteAction(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

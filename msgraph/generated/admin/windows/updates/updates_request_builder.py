@@ -11,46 +11,64 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 catalog_request_builder = lazy_import('msgraph.generated.admin.windows.updates.catalog.catalog_request_builder')
+deployment_audiences_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployment_audiences.deployment_audiences_request_builder')
+deployment_audience_item_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployment_audiences.item.deployment_audience_item_request_builder')
 deployments_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.deployments_request_builder')
 deployment_item_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.deployment_item_request_builder')
 resource_connections_request_builder = lazy_import('msgraph.generated.admin.windows.updates.resource_connections.resource_connections_request_builder')
 resource_connection_item_request_builder = lazy_import('msgraph.generated.admin.windows.updates.resource_connections.item.resource_connection_item_request_builder')
 updatable_assets_request_builder = lazy_import('msgraph.generated.admin.windows.updates.updatable_assets.updatable_assets_request_builder')
 updatable_asset_item_request_builder = lazy_import('msgraph.generated.admin.windows.updates.updatable_assets.item.updatable_asset_item_request_builder')
+update_policies_request_builder = lazy_import('msgraph.generated.admin.windows.updates.update_policies.update_policies_request_builder')
+update_policy_item_request_builder = lazy_import('msgraph.generated.admin.windows.updates.update_policies.item.update_policy_item_request_builder')
+admin_windows_updates = lazy_import('msgraph.generated.models.admin_windows_updates')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-updates = lazy_import('msgraph.generated.models.windows_updates.updates')
 
 class UpdatesRequestBuilder():
     """
-    Provides operations to manage the updates property of the microsoft.graph.windowsUpdates.windows entity.
+    Provides operations to manage the updates property of the microsoft.graph.adminWindows entity.
     """
     @property
     def catalog(self) -> catalog_request_builder.CatalogRequestBuilder:
         """
-        Provides operations to manage the catalog property of the microsoft.graph.windowsUpdates.updates entity.
+        Provides operations to manage the catalog property of the microsoft.graph.adminWindowsUpdates entity.
         """
         return catalog_request_builder.CatalogRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def deployment_audiences(self) -> deployment_audiences_request_builder.DeploymentAudiencesRequestBuilder:
+        """
+        Provides operations to manage the deploymentAudiences property of the microsoft.graph.adminWindowsUpdates entity.
+        """
+        return deployment_audiences_request_builder.DeploymentAudiencesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def deployments(self) -> deployments_request_builder.DeploymentsRequestBuilder:
         """
-        Provides operations to manage the deployments property of the microsoft.graph.windowsUpdates.updates entity.
+        Provides operations to manage the deployments property of the microsoft.graph.adminWindowsUpdates entity.
         """
         return deployments_request_builder.DeploymentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def resource_connections(self) -> resource_connections_request_builder.ResourceConnectionsRequestBuilder:
         """
-        Provides operations to manage the resourceConnections property of the microsoft.graph.windowsUpdates.updates entity.
+        Provides operations to manage the resourceConnections property of the microsoft.graph.adminWindowsUpdates entity.
         """
         return resource_connections_request_builder.ResourceConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def updatable_assets(self) -> updatable_assets_request_builder.UpdatableAssetsRequestBuilder:
         """
-        Provides operations to manage the updatableAssets property of the microsoft.graph.windowsUpdates.updates entity.
+        Provides operations to manage the updatableAssets property of the microsoft.graph.adminWindowsUpdates entity.
         """
         return updatable_assets_request_builder.UpdatableAssetsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def update_policies(self) -> update_policies_request_builder.UpdatePoliciesRequestBuilder:
+        """
+        Provides operations to manage the updatePolicies property of the microsoft.graph.adminWindowsUpdates entity.
+        """
+        return update_policies_request_builder.UpdatePoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -70,12 +88,11 @@ class UpdatesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[UpdatesRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[UpdatesRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property updates for admin
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -86,11 +103,24 @@ class UpdatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
+    
+    def deployment_audiences_by_id(self,id: str) -> deployment_audience_item_request_builder.DeploymentAudienceItemRequestBuilder:
+        """
+        Provides operations to manage the deploymentAudiences property of the microsoft.graph.adminWindowsUpdates entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: deployment_audience_item_request_builder.DeploymentAudienceItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deploymentAudience%2Did"] = id
+        return deployment_audience_item_request_builder.DeploymentAudienceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def deployments_by_id(self,id: str) -> deployment_item_request_builder.DeploymentItemRequestBuilder:
         """
-        Provides operations to manage the deployments property of the microsoft.graph.windowsUpdates.updates entity.
+        Provides operations to manage the deployments property of the microsoft.graph.adminWindowsUpdates entity.
         Args:
             id: Unique identifier of the item
         Returns: deployment_item_request_builder.DeploymentItemRequestBuilder
@@ -101,13 +131,12 @@ class UpdatesRequestBuilder():
         url_tpl_params["deployment%2Did"] = id
         return deployment_item_request_builder.DeploymentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[UpdatesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[updates.Updates]:
+    async def get(self,request_configuration: Optional[UpdatesRequestBuilderGetRequestConfiguration] = None) -> Optional[admin_windows_updates.AdminWindowsUpdates]:
         """
-        Entity that acts as a container for the functionality of the Windows Update for Business deployment service. Read-only.
+        Get updates from admin
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
-        Returns: Optional[updates.Updates]
+        Returns: Optional[admin_windows_updates.AdminWindowsUpdates]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -118,16 +147,15 @@ class UpdatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, updates.Updates, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, admin_windows_updates.AdminWindowsUpdates, error_mapping)
     
-    async def patch(self,body: Optional[updates.Updates] = None, request_configuration: Optional[UpdatesRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[updates.Updates]:
+    async def patch(self,body: Optional[admin_windows_updates.AdminWindowsUpdates] = None, request_configuration: Optional[UpdatesRequestBuilderPatchRequestConfiguration] = None) -> Optional[admin_windows_updates.AdminWindowsUpdates]:
         """
         Update the navigation property updates in admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
-        Returns: Optional[updates.Updates]
+        Returns: Optional[admin_windows_updates.AdminWindowsUpdates]
         """
         if body is None:
             raise Exception("body cannot be undefined")
@@ -140,11 +168,11 @@ class UpdatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, updates.Updates, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, admin_windows_updates.AdminWindowsUpdates, error_mapping)
     
     def resource_connections_by_id(self,id: str) -> resource_connection_item_request_builder.ResourceConnectionItemRequestBuilder:
         """
-        Provides operations to manage the resourceConnections property of the microsoft.graph.windowsUpdates.updates entity.
+        Provides operations to manage the resourceConnections property of the microsoft.graph.adminWindowsUpdates entity.
         Args:
             id: Unique identifier of the item
         Returns: resource_connection_item_request_builder.ResourceConnectionItemRequestBuilder
@@ -173,7 +201,7 @@ class UpdatesRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[UpdatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Entity that acts as a container for the functionality of the Windows Update for Business deployment service. Read-only.
+        Get updates from admin
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -189,7 +217,7 @@ class UpdatesRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[updates.Updates] = None, request_configuration: Optional[UpdatesRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[admin_windows_updates.AdminWindowsUpdates] = None, request_configuration: Optional[UpdatesRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property updates in admin
         Args:
@@ -212,7 +240,7 @@ class UpdatesRequestBuilder():
     
     def updatable_assets_by_id(self,id: str) -> updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder:
         """
-        Provides operations to manage the updatableAssets property of the microsoft.graph.windowsUpdates.updates entity.
+        Provides operations to manage the updatableAssets property of the microsoft.graph.adminWindowsUpdates entity.
         Args:
             id: Unique identifier of the item
         Returns: updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder
@@ -222,6 +250,19 @@ class UpdatesRequestBuilder():
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["updatableAsset%2Did"] = id
         return updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    def update_policies_by_id(self,id: str) -> update_policy_item_request_builder.UpdatePolicyItemRequestBuilder:
+        """
+        Provides operations to manage the updatePolicies property of the microsoft.graph.adminWindowsUpdates entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: update_policy_item_request_builder.UpdatePolicyItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["updatePolicy%2Did"] = id
+        return update_policy_item_request_builder.UpdatePolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     @dataclass
     class UpdatesRequestBuilderDeleteRequestConfiguration():
@@ -238,7 +279,7 @@ class UpdatesRequestBuilder():
     @dataclass
     class UpdatesRequestBuilderGetQueryParameters():
         """
-        Entity that acts as a container for the functionality of the Windows Update for Business deployment service. Read-only.
+        Get updates from admin
         """
         # Expand related entities
         expand: Optional[List[str]] = None

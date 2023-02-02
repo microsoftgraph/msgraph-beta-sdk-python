@@ -56,9 +56,9 @@ class AppManagementConfiguration(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "key_credentials": lambda n : setattr(self, 'key_credentials', n.get_collection_of_object_values(key_credential_configuration.KeyCredentialConfiguration)),
+            "keyCredentials": lambda n : setattr(self, 'key_credentials', n.get_collection_of_object_values(key_credential_configuration.KeyCredentialConfiguration)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "password_credentials": lambda n : setattr(self, 'password_credentials', n.get_collection_of_object_values(password_credential_configuration.PasswordCredentialConfiguration)),
+            "passwordCredentials": lambda n : setattr(self, 'password_credentials', n.get_collection_of_object_values(password_credential_configuration.PasswordCredentialConfiguration)),
         }
         return fields
     
@@ -75,7 +75,7 @@ class AppManagementConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the keyCredentials property value. Collection of keyCredential restrictions settings to be applied to an application or service principal.
         Args:
-            value: Value to set for the keyCredentials property.
+            value: Value to set for the key_credentials property.
         """
         self._key_credentials = value
     
@@ -92,7 +92,7 @@ class AppManagementConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -109,7 +109,7 @@ class AppManagementConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the passwordCredentials property value. Collection of password restrictions settings to be applied to an application or service principal.
         Args:
-            value: Value to set for the passwordCredentials property.
+            value: Value to set for the password_credentials property.
         """
         self._password_credentials = value
     

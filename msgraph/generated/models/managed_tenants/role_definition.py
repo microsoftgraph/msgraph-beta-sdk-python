@@ -79,7 +79,7 @@ class RoleDefinition(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The display name for the role assignment.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -90,9 +90,9 @@ class RoleDefinition(AdditionalDataHolder, Parsable):
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "template_id": lambda n : setattr(self, 'template_id', n.get_str_value()),
+            "templateId": lambda n : setattr(self, 'template_id', n.get_str_value()),
         }
         return fields
     
@@ -109,7 +109,7 @@ class RoleDefinition(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -140,7 +140,7 @@ class RoleDefinition(AdditionalDataHolder, Parsable):
         """
         Sets the templateId property value. The unique identifier for the template.
         Args:
-            value: Value to set for the templateId property.
+            value: Value to set for the template_id property.
         """
         self._template_id = value
     

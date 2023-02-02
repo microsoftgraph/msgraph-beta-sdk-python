@@ -17,12 +17,13 @@ class RoleScopeTagAutoAssignmentItemRequestBuilder():
     """
     Provides operations to manage the assignments property of the microsoft.graph.roleScopeTag entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, role_scope_tag_auto_assignment_id: Optional[str] = None) -> None:
         """
         Instantiates a new RoleScopeTagAutoAssignmentItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            roleScopeTagAutoAssignmentId: key: id of roleScopeTagAutoAssignment
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -32,15 +33,15 @@ class RoleScopeTagAutoAssignmentItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceManagement/roleScopeTags/{roleScopeTag%2Did}/assignments/{roleScopeTagAutoAssignment%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["roleScopeTagAutoAssignment%2Did"] = roleScopeTagAutoAssignmentId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[RoleScopeTagAutoAssignmentItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[RoleScopeTagAutoAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property assignments for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class RoleScopeTagAutoAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RoleScopeTagAutoAssignmentItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[role_scope_tag_auto_assignment.RoleScopeTagAutoAssignment]:
+    async def get(self,request_configuration: Optional[RoleScopeTagAutoAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[role_scope_tag_auto_assignment.RoleScopeTagAutoAssignment]:
         """
         The list of assignments for this Role Scope Tag.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[role_scope_tag_auto_assignment.RoleScopeTagAutoAssignment]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class RoleScopeTagAutoAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, role_scope_tag_auto_assignment.RoleScopeTagAutoAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, role_scope_tag_auto_assignment.RoleScopeTagAutoAssignment, error_mapping)
     
-    async def patch(self,body: Optional[role_scope_tag_auto_assignment.RoleScopeTagAutoAssignment] = None, request_configuration: Optional[RoleScopeTagAutoAssignmentItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[role_scope_tag_auto_assignment.RoleScopeTagAutoAssignment]:
+    async def patch(self,body: Optional[role_scope_tag_auto_assignment.RoleScopeTagAutoAssignment] = None, request_configuration: Optional[RoleScopeTagAutoAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[role_scope_tag_auto_assignment.RoleScopeTagAutoAssignment]:
         """
         Update the navigation property assignments in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[role_scope_tag_auto_assignment.RoleScopeTagAutoAssignment]
         """
         if body is None:
@@ -92,7 +91,7 @@ class RoleScopeTagAutoAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, role_scope_tag_auto_assignment.RoleScopeTagAutoAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, role_scope_tag_auto_assignment.RoleScopeTagAutoAssignment, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[RoleScopeTagAutoAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

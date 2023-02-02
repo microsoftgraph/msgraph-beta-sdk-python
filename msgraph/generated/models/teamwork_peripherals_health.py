@@ -36,7 +36,7 @@ class TeamworkPeripheralsHealth(AdditionalDataHolder, Parsable):
         """
         Sets the communicationSpeakerHealth property value. The health details about the communication speaker.
         Args:
-            value: Value to set for the communicationSpeakerHealth property.
+            value: Value to set for the communication_speaker_health property.
         """
         self._communication_speaker_health = value
     
@@ -75,7 +75,7 @@ class TeamworkPeripheralsHealth(AdditionalDataHolder, Parsable):
         """
         Sets the contentCameraHealth property value. The health details about the content camera.
         Args:
-            value: Value to set for the contentCameraHealth property.
+            value: Value to set for the content_camera_health property.
         """
         self._content_camera_health = value
     
@@ -104,7 +104,7 @@ class TeamworkPeripheralsHealth(AdditionalDataHolder, Parsable):
         """
         Sets the displayHealthCollection property value. The health details about displays.
         Args:
-            value: Value to set for the displayHealthCollection property.
+            value: Value to set for the display_health_collection property.
         """
         self._display_health_collection = value
     
@@ -114,13 +114,13 @@ class TeamworkPeripheralsHealth(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "communication_speaker_health": lambda n : setattr(self, 'communication_speaker_health', n.get_object_value(teamwork_peripheral_health.TeamworkPeripheralHealth)),
-            "content_camera_health": lambda n : setattr(self, 'content_camera_health', n.get_object_value(teamwork_peripheral_health.TeamworkPeripheralHealth)),
-            "display_health_collection": lambda n : setattr(self, 'display_health_collection', n.get_collection_of_object_values(teamwork_peripheral_health.TeamworkPeripheralHealth)),
-            "microphone_health": lambda n : setattr(self, 'microphone_health', n.get_object_value(teamwork_peripheral_health.TeamworkPeripheralHealth)),
+            "communicationSpeakerHealth": lambda n : setattr(self, 'communication_speaker_health', n.get_object_value(teamwork_peripheral_health.TeamworkPeripheralHealth)),
+            "contentCameraHealth": lambda n : setattr(self, 'content_camera_health', n.get_object_value(teamwork_peripheral_health.TeamworkPeripheralHealth)),
+            "displayHealthCollection": lambda n : setattr(self, 'display_health_collection', n.get_collection_of_object_values(teamwork_peripheral_health.TeamworkPeripheralHealth)),
+            "microphoneHealth": lambda n : setattr(self, 'microphone_health', n.get_object_value(teamwork_peripheral_health.TeamworkPeripheralHealth)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "room_camera_health": lambda n : setattr(self, 'room_camera_health', n.get_object_value(teamwork_peripheral_health.TeamworkPeripheralHealth)),
-            "speaker_health": lambda n : setattr(self, 'speaker_health', n.get_object_value(teamwork_peripheral_health.TeamworkPeripheralHealth)),
+            "roomCameraHealth": lambda n : setattr(self, 'room_camera_health', n.get_object_value(teamwork_peripheral_health.TeamworkPeripheralHealth)),
+            "speakerHealth": lambda n : setattr(self, 'speaker_health', n.get_object_value(teamwork_peripheral_health.TeamworkPeripheralHealth)),
         }
         return fields
     
@@ -137,7 +137,7 @@ class TeamworkPeripheralsHealth(AdditionalDataHolder, Parsable):
         """
         Sets the microphoneHealth property value. The health details about the microphone.
         Args:
-            value: Value to set for the microphoneHealth property.
+            value: Value to set for the microphone_health property.
         """
         self._microphone_health = value
     
@@ -154,7 +154,7 @@ class TeamworkPeripheralsHealth(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -171,7 +171,7 @@ class TeamworkPeripheralsHealth(AdditionalDataHolder, Parsable):
         """
         Sets the roomCameraHealth property value. The health details about the room camera.
         Args:
-            value: Value to set for the roomCameraHealth property.
+            value: Value to set for the room_camera_health property.
         """
         self._room_camera_health = value
     
@@ -205,7 +205,7 @@ class TeamworkPeripheralsHealth(AdditionalDataHolder, Parsable):
         """
         Sets the speakerHealth property value. The health details about the speaker.
         Args:
-            value: Value to set for the speakerHealth property.
+            value: Value to set for the speaker_health property.
         """
         self._speaker_health = value
     

@@ -11,7 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_assignments.count.count_request_builder')
-export_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_assignments.export.export_request_builder')
+export_request_builder = lazy_import('msgraph.generated.governance_resources.item.role_assignments.microsoft_graph_export.export_request_builder')
 governance_role_assignment = lazy_import('msgraph.generated.models.governance_role_assignment')
 governance_role_assignment_collection_response = lazy_import('msgraph.generated.models.governance_role_assignment_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -26,6 +26,13 @@ class RoleAssignmentsRequestBuilder():
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_export(self) -> export_request_builder.ExportRequestBuilder:
+        """
+        Provides operations to call the export method.
+        """
+        return export_request_builder.ExportRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -45,19 +52,11 @@ class RoleAssignmentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def export(self,) -> export_request_builder.ExportRequestBuilder:
-        """
-        Provides operations to call the export method.
-        Returns: export_request_builder.ExportRequestBuilder
-        """
-        return export_request_builder.ExportRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def get(self,request_configuration: Optional[RoleAssignmentsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_role_assignment_collection_response.GovernanceRoleAssignmentCollectionResponse]:
+    async def get(self,request_configuration: Optional[RoleAssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_role_assignment_collection_response.GovernanceRoleAssignmentCollectionResponse]:
         """
         The collection of role assignments for the resource.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_role_assignment_collection_response.GovernanceRoleAssignmentCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class RoleAssignmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_role_assignment_collection_response.GovernanceRoleAssignmentCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_role_assignment_collection_response.GovernanceRoleAssignmentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[governance_role_assignment.GovernanceRoleAssignment] = None, request_configuration: Optional[RoleAssignmentsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_role_assignment.GovernanceRoleAssignment]:
+    async def post(self,body: Optional[governance_role_assignment.GovernanceRoleAssignment] = None, request_configuration: Optional[RoleAssignmentsRequestBuilderPostRequestConfiguration] = None) -> Optional[governance_role_assignment.GovernanceRoleAssignment]:
         """
         Create new navigation property to roleAssignments for governanceResources
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_role_assignment.GovernanceRoleAssignment]
         """
         if body is None:
@@ -91,7 +89,7 @@ class RoleAssignmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_role_assignment.GovernanceRoleAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_role_assignment.GovernanceRoleAssignment, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RoleAssignmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -25,10 +25,11 @@ class CustomerPaymentItemRequestBuilder():
         """
         return customer_request_builder.CustomerRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, customer_payment_id: Optional[str] = None) -> None:
         """
         Instantiates a new CustomerPaymentItemRequestBuilder and sets the default values.
         Args:
+            customerPaymentId: key: id of customerPayment
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -40,15 +41,15 @@ class CustomerPaymentItemRequestBuilder():
         self.url_template: str = "{+baseurl}/financials/companies/{company%2Did}/customerPayments/{customerPayment%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["customerPayment%2Did"] = customerPaymentId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CustomerPaymentItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CustomerPaymentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property customerPayments for financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +60,13 @@ class CustomerPaymentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CustomerPaymentItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[customer_payment.CustomerPayment]:
+    async def get(self,request_configuration: Optional[CustomerPaymentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[customer_payment.CustomerPayment]:
         """
         Get customerPayments from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[customer_payment.CustomerPayment]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +78,14 @@ class CustomerPaymentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, customer_payment.CustomerPayment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, customer_payment.CustomerPayment, error_mapping)
     
-    async def patch(self,body: Optional[customer_payment.CustomerPayment] = None, request_configuration: Optional[CustomerPaymentItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[customer_payment.CustomerPayment]:
+    async def patch(self,body: Optional[customer_payment.CustomerPayment] = None, request_configuration: Optional[CustomerPaymentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[customer_payment.CustomerPayment]:
         """
         Update the navigation property customerPayments in financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[customer_payment.CustomerPayment]
         """
         if body is None:
@@ -100,7 +99,7 @@ class CustomerPaymentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, customer_payment.CustomerPayment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, customer_payment.CustomerPayment, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CustomerPaymentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

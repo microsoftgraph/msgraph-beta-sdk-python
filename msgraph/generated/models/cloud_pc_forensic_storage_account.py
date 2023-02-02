@@ -36,8 +36,8 @@ class CloudPcForensicStorageAccount(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "storage_account_id": lambda n : setattr(self, 'storage_account_id', n.get_str_value()),
-            "storage_account_name": lambda n : setattr(self, 'storage_account_name', n.get_str_value()),
+            "storageAccountId": lambda n : setattr(self, 'storage_account_id', n.get_str_value()),
+            "storageAccountName": lambda n : setattr(self, 'storage_account_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -68,7 +68,7 @@ class CloudPcForensicStorageAccount(entity.Entity):
         """
         Sets the storageAccountId property value. The ID of the storage account.
         Args:
-            value: Value to set for the storageAccountId property.
+            value: Value to set for the storage_account_id property.
         """
         self._storage_account_id = value
     
@@ -85,7 +85,7 @@ class CloudPcForensicStorageAccount(entity.Entity):
         """
         Sets the storageAccountName property value. The name of the storage account.
         Args:
-            value: Value to set for the storageAccountName property.
+            value: Value to set for the storage_account_name property.
         """
         self._storage_account_name = value
     

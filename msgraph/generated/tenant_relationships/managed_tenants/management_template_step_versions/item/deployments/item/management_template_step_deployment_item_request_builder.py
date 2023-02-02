@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 management_template_step_deployment = lazy_import('msgraph.generated.models.managed_tenants.management_template_step_deployment')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-change_deployment_status_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.management_template_step_versions.item.deployments.item.change_deployment_status.change_deployment_status_request_builder')
+change_deployment_status_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.management_template_step_versions.item.deployments.item.microsoft_graph_managed_tenants_change_deployment_status.change_deployment_status_request_builder')
 template_step_version_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.management_template_step_versions.item.deployments.item.template_step_version.template_step_version_request_builder')
 
 class ManagementTemplateStepDeploymentItemRequestBuilder():
@@ -20,7 +20,7 @@ class ManagementTemplateStepDeploymentItemRequestBuilder():
     Provides operations to manage the deployments property of the microsoft.graph.managedTenants.managementTemplateStepVersion entity.
     """
     @property
-    def change_deployment_status(self) -> change_deployment_status_request_builder.ChangeDeploymentStatusRequestBuilder:
+    def microsoft_graph_managed_tenants_change_deployment_status(self) -> change_deployment_status_request_builder.ChangeDeploymentStatusRequestBuilder:
         """
         Provides operations to call the changeDeploymentStatus method.
         """
@@ -33,10 +33,11 @@ class ManagementTemplateStepDeploymentItemRequestBuilder():
         """
         return template_step_version_request_builder.TemplateStepVersionRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, management_template_step_deployment_id: Optional[str] = None) -> None:
         """
         Instantiates a new ManagementTemplateStepDeploymentItemRequestBuilder and sets the default values.
         Args:
+            managementTemplateStepDeploymentId: key: id of managementTemplateStepDeployment
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -48,15 +49,15 @@ class ManagementTemplateStepDeploymentItemRequestBuilder():
         self.url_template: str = "{+baseurl}/tenantRelationships/managedTenants/managementTemplateStepVersions/{managementTemplateStepVersion%2Did}/deployments/{managementTemplateStepDeployment%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["managementTemplateStepDeployment%2Did"] = managementTemplateStepDeploymentId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ManagementTemplateStepDeploymentItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ManagementTemplateStepDeploymentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property deployments for tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -67,14 +68,13 @@ class ManagementTemplateStepDeploymentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ManagementTemplateStepDeploymentItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[management_template_step_deployment.ManagementTemplateStepDeployment]:
+    async def get(self,request_configuration: Optional[ManagementTemplateStepDeploymentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[management_template_step_deployment.ManagementTemplateStepDeployment]:
         """
         Get deployments from tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_template_step_deployment.ManagementTemplateStepDeployment]
         """
         request_info = self.to_get_request_information(
@@ -86,15 +86,14 @@ class ManagementTemplateStepDeploymentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, management_template_step_deployment.ManagementTemplateStepDeployment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, management_template_step_deployment.ManagementTemplateStepDeployment, error_mapping)
     
-    async def patch(self,body: Optional[management_template_step_deployment.ManagementTemplateStepDeployment] = None, request_configuration: Optional[ManagementTemplateStepDeploymentItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[management_template_step_deployment.ManagementTemplateStepDeployment]:
+    async def patch(self,body: Optional[management_template_step_deployment.ManagementTemplateStepDeployment] = None, request_configuration: Optional[ManagementTemplateStepDeploymentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[management_template_step_deployment.ManagementTemplateStepDeployment]:
         """
         Update the navigation property deployments in tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_template_step_deployment.ManagementTemplateStepDeployment]
         """
         if body is None:
@@ -108,7 +107,7 @@ class ManagementTemplateStepDeploymentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, management_template_step_deployment.ManagementTemplateStepDeployment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, management_template_step_deployment.ManagementTemplateStepDeployment, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ManagementTemplateStepDeploymentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -7,9 +7,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 user_experience_analytics_health_state = lazy_import('msgraph.generated.models.user_experience_analytics_health_state')
 
 class UserExperienceAnalyticsAppHealthDeviceModelPerformance(entity.Entity):
-    """
-    The user experience analytics device model performance entity contains device model performance details.
-    """
     @property
     def active_device_count(self,) -> Optional[int]:
         """
@@ -23,13 +20,13 @@ class UserExperienceAnalyticsAppHealthDeviceModelPerformance(entity.Entity):
         """
         Sets the activeDeviceCount property value. The number of active devices for the model. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the activeDeviceCount property.
+            value: Value to set for the active_device_count property.
         """
         self._active_device_count = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsAppHealthDeviceModelPerformance and sets the default values.
+        Instantiates a new UserExperienceAnalyticsAppHealthDeviceModelPerformance and sets the default values.
         """
         super().__init__()
         # The number of active devices for the model. Valid values -2147483648 to 2147483647
@@ -74,7 +71,7 @@ class UserExperienceAnalyticsAppHealthDeviceModelPerformance(entity.Entity):
         """
         Sets the deviceManufacturer property value. The manufacturer name of the device.
         Args:
-            value: Value to set for the deviceManufacturer property.
+            value: Value to set for the device_manufacturer property.
         """
         self._device_manufacturer = value
     
@@ -91,7 +88,7 @@ class UserExperienceAnalyticsAppHealthDeviceModelPerformance(entity.Entity):
         """
         Sets the deviceModel property value. The model name of the device.
         Args:
-            value: Value to set for the deviceModel property.
+            value: Value to set for the device_model property.
         """
         self._device_model = value
     
@@ -101,13 +98,13 @@ class UserExperienceAnalyticsAppHealthDeviceModelPerformance(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "active_device_count": lambda n : setattr(self, 'active_device_count', n.get_int_value()),
-            "device_manufacturer": lambda n : setattr(self, 'device_manufacturer', n.get_str_value()),
-            "device_model": lambda n : setattr(self, 'device_model', n.get_str_value()),
-            "health_status": lambda n : setattr(self, 'health_status', n.get_enum_value(user_experience_analytics_health_state.UserExperienceAnalyticsHealthState)),
-            "mean_time_to_failure_in_minutes": lambda n : setattr(self, 'mean_time_to_failure_in_minutes', n.get_int_value()),
-            "model_app_health_score": lambda n : setattr(self, 'model_app_health_score', n.get_float_value()),
-            "model_app_health_status": lambda n : setattr(self, 'model_app_health_status', n.get_str_value()),
+            "activeDeviceCount": lambda n : setattr(self, 'active_device_count', n.get_int_value()),
+            "deviceManufacturer": lambda n : setattr(self, 'device_manufacturer', n.get_str_value()),
+            "deviceModel": lambda n : setattr(self, 'device_model', n.get_str_value()),
+            "healthStatus": lambda n : setattr(self, 'health_status', n.get_enum_value(user_experience_analytics_health_state.UserExperienceAnalyticsHealthState)),
+            "meanTimeToFailureInMinutes": lambda n : setattr(self, 'mean_time_to_failure_in_minutes', n.get_int_value()),
+            "modelAppHealthScore": lambda n : setattr(self, 'model_app_health_score', n.get_float_value()),
+            "modelAppHealthStatus": lambda n : setattr(self, 'model_app_health_status', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -126,7 +123,7 @@ class UserExperienceAnalyticsAppHealthDeviceModelPerformance(entity.Entity):
         """
         Sets the healthStatus property value. The healthStatus property
         Args:
-            value: Value to set for the healthStatus property.
+            value: Value to set for the health_status property.
         """
         self._health_status = value
     
@@ -143,7 +140,7 @@ class UserExperienceAnalyticsAppHealthDeviceModelPerformance(entity.Entity):
         """
         Sets the meanTimeToFailureInMinutes property value. The mean time to failure for the model device in minutes. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the meanTimeToFailureInMinutes property.
+            value: Value to set for the mean_time_to_failure_in_minutes property.
         """
         self._mean_time_to_failure_in_minutes = value
     
@@ -160,7 +157,7 @@ class UserExperienceAnalyticsAppHealthDeviceModelPerformance(entity.Entity):
         """
         Sets the modelAppHealthScore property value. The app health score of the device model. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         Args:
-            value: Value to set for the modelAppHealthScore property.
+            value: Value to set for the model_app_health_score property.
         """
         self._model_app_health_score = value
     
@@ -177,7 +174,7 @@ class UserExperienceAnalyticsAppHealthDeviceModelPerformance(entity.Entity):
         """
         Sets the modelAppHealthStatus property value. The overall app health status of the device model.
         Args:
-            value: Value to set for the modelAppHealthStatus property.
+            value: Value to set for the model_app_health_status property.
         """
         self._model_app_health_status = value
     

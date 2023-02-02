@@ -8,7 +8,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 class AuthenticationContextClassReference(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new authenticationContextClassReference and sets the default values.
+        Instantiates a new AuthenticationContextClassReference and sets the default values.
         """
         super().__init__()
         # A short explanation of the policies that are enforced by authenticationContextClassReference. This value should be used to provide secondary text to describe the authentication context class reference when building user facing admin experiences. For example, selection UX.
@@ -62,7 +62,7 @@ class AuthenticationContextClassReference(entity.Entity):
         """
         Sets the displayName property value. A friendly name that identifies the authenticationContextClassReference object when building user-facing admin experiences. For example, a selection UX.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -73,8 +73,8 @@ class AuthenticationContextClassReference(entity.Entity):
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "is_available": lambda n : setattr(self, 'is_available', n.get_bool_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "isAvailable": lambda n : setattr(self, 'is_available', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -93,7 +93,7 @@ class AuthenticationContextClassReference(entity.Entity):
         """
         Sets the isAvailable property value. Indicates whether the authenticationContextClassReference has been published by the security admin and is ready for use by apps. When it is set to false, it should not be shown in selection UX used to tag resources with authentication context class values. It will still be shown in the Conditionall Access policy authoring experience.  Supports $filter (eq).
         Args:
-            value: Value to set for the isAvailable property.
+            value: Value to set for the is_available property.
         """
         self._is_available = value
     

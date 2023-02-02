@@ -20,7 +20,7 @@ class DeviceConfigurationDeviceOverview(entity.Entity):
         """
         Sets the configurationVersion property value. Version of the policy for that overview
         Args:
-            value: Value to set for the configurationVersion property.
+            value: Value to set for the configuration_version property.
         """
         self._configuration_version = value
     
@@ -37,7 +37,7 @@ class DeviceConfigurationDeviceOverview(entity.Entity):
         """
         Sets the conflictCount property value. Number of devices in conflict
         Args:
-            value: Value to set for the conflictCount property.
+            value: Value to set for the conflict_count property.
         """
         self._conflict_count = value
     
@@ -92,7 +92,7 @@ class DeviceConfigurationDeviceOverview(entity.Entity):
         """
         Sets the errorCount property value. Number of error devices
         Args:
-            value: Value to set for the errorCount property.
+            value: Value to set for the error_count property.
         """
         self._error_count = value
     
@@ -109,7 +109,7 @@ class DeviceConfigurationDeviceOverview(entity.Entity):
         """
         Sets the failedCount property value. Number of failed devices
         Args:
-            value: Value to set for the failedCount property.
+            value: Value to set for the failed_count property.
         """
         self._failed_count = value
     
@@ -119,15 +119,15 @@ class DeviceConfigurationDeviceOverview(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "configuration_version": lambda n : setattr(self, 'configuration_version', n.get_int_value()),
-            "conflict_count": lambda n : setattr(self, 'conflict_count', n.get_int_value()),
-            "error_count": lambda n : setattr(self, 'error_count', n.get_int_value()),
-            "failed_count": lambda n : setattr(self, 'failed_count', n.get_int_value()),
-            "last_update_date_time": lambda n : setattr(self, 'last_update_date_time', n.get_datetime_value()),
-            "not_applicable_count": lambda n : setattr(self, 'not_applicable_count', n.get_int_value()),
-            "not_applicable_platform_count": lambda n : setattr(self, 'not_applicable_platform_count', n.get_int_value()),
-            "pending_count": lambda n : setattr(self, 'pending_count', n.get_int_value()),
-            "success_count": lambda n : setattr(self, 'success_count', n.get_int_value()),
+            "configurationVersion": lambda n : setattr(self, 'configuration_version', n.get_int_value()),
+            "conflictCount": lambda n : setattr(self, 'conflict_count', n.get_int_value()),
+            "errorCount": lambda n : setattr(self, 'error_count', n.get_int_value()),
+            "failedCount": lambda n : setattr(self, 'failed_count', n.get_int_value()),
+            "lastUpdateDateTime": lambda n : setattr(self, 'last_update_date_time', n.get_datetime_value()),
+            "notApplicableCount": lambda n : setattr(self, 'not_applicable_count', n.get_int_value()),
+            "notApplicablePlatformCount": lambda n : setattr(self, 'not_applicable_platform_count', n.get_int_value()),
+            "pendingCount": lambda n : setattr(self, 'pending_count', n.get_int_value()),
+            "successCount": lambda n : setattr(self, 'success_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -146,7 +146,7 @@ class DeviceConfigurationDeviceOverview(entity.Entity):
         """
         Sets the lastUpdateDateTime property value. Last update time
         Args:
-            value: Value to set for the lastUpdateDateTime property.
+            value: Value to set for the last_update_date_time property.
         """
         self._last_update_date_time = value
     
@@ -163,7 +163,7 @@ class DeviceConfigurationDeviceOverview(entity.Entity):
         """
         Sets the notApplicableCount property value. Number of not applicable devices
         Args:
-            value: Value to set for the notApplicableCount property.
+            value: Value to set for the not_applicable_count property.
         """
         self._not_applicable_count = value
     
@@ -180,7 +180,7 @@ class DeviceConfigurationDeviceOverview(entity.Entity):
         """
         Sets the notApplicablePlatformCount property value. Number of not applicable devices due to mismatch platform and policy
         Args:
-            value: Value to set for the notApplicablePlatformCount property.
+            value: Value to set for the not_applicable_platform_count property.
         """
         self._not_applicable_platform_count = value
     
@@ -197,7 +197,7 @@ class DeviceConfigurationDeviceOverview(entity.Entity):
         """
         Sets the pendingCount property value. Number of pending devices
         Args:
-            value: Value to set for the pendingCount property.
+            value: Value to set for the pending_count property.
         """
         self._pending_count = value
     
@@ -233,7 +233,7 @@ class DeviceConfigurationDeviceOverview(entity.Entity):
         """
         Sets the successCount property value. Number of succeeded devices
         Args:
-            value: Value to set for the successCount property.
+            value: Value to set for the success_count property.
         """
         self._success_count = value
     

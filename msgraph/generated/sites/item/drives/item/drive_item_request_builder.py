@@ -17,10 +17,11 @@ class DriveItemRequestBuilder():
     """
     Provides operations to manage the drives property of the microsoft.graph.site entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, drive_id: Optional[str] = None) -> None:
         """
         Instantiates a new DriveItemRequestBuilder and sets the default values.
         Args:
+            driveId: key: id of drive
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class DriveItemRequestBuilder():
         self.url_template: str = "{+baseurl}/sites/{site%2Did}/drives/{drive%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["drive%2Did"] = driveId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DriveItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[drive.Drive]:
+    async def get(self,request_configuration: Optional[DriveItemRequestBuilderGetRequestConfiguration] = None) -> Optional[drive.Drive]:
         """
         The collection of drives (document libraries) under this site.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[drive.Drive]
         """
         request_info = self.to_get_request_information(
@@ -52,7 +53,7 @@ class DriveItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, drive.Drive, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, drive.Drive, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DriveItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

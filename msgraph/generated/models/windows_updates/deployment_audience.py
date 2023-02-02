@@ -4,14 +4,34 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 entity = lazy_import('msgraph.generated.models.entity')
+applicable_content = lazy_import('msgraph.generated.models.windows_updates.applicable_content')
 updatable_asset = lazy_import('msgraph.generated.models.windows_updates.updatable_asset')
 
 class DeploymentAudience(entity.Entity):
+    @property
+    def applicable_content(self,) -> Optional[List[applicable_content.ApplicableContent]]:
+        """
+        Gets the applicableContent property value. The applicableContent property
+        Returns: Optional[List[applicable_content.ApplicableContent]]
+        """
+        return self._applicable_content
+    
+    @applicable_content.setter
+    def applicable_content(self,value: Optional[List[applicable_content.ApplicableContent]] = None) -> None:
+        """
+        Sets the applicableContent property value. The applicableContent property
+        Args:
+            value: Value to set for the applicable_content property.
+        """
+        self._applicable_content = value
+    
     def __init__(self,) -> None:
         """
         Instantiates a new deploymentAudience and sets the default values.
         """
         super().__init__()
+        # The applicableContent property
+        self._applicable_content: Optional[List[applicable_content.ApplicableContent]] = None
         # Specifies the assets to exclude from the audience.
         self._exclusions: Optional[List[updatable_asset.UpdatableAsset]] = None
         # Specifies the assets to include in the audience.
@@ -54,6 +74,7 @@ class DeploymentAudience(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
+            "applicableContent": lambda n : setattr(self, 'applicable_content', n.get_collection_of_object_values(applicable_content.ApplicableContent)),
             "exclusions": lambda n : setattr(self, 'exclusions', n.get_collection_of_object_values(updatable_asset.UpdatableAsset)),
             "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(updatable_asset.UpdatableAsset)),
         }
@@ -87,6 +108,7 @@ class DeploymentAudience(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
+        writer.write_collection_of_object_values("applicableContent", self.applicable_content)
         writer.write_collection_of_object_values("exclusions", self.exclusions)
         writer.write_collection_of_object_values("members", self.members)
     

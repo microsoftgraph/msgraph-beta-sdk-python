@@ -54,7 +54,7 @@ class ActivitySettings(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "url_to_item_resolvers": lambda n : setattr(self, 'url_to_item_resolvers', n.get_collection_of_object_values(url_to_item_resolver_base.UrlToItemResolverBase)),
+            "urlToItemResolvers": lambda n : setattr(self, 'url_to_item_resolvers', n.get_collection_of_object_values(url_to_item_resolver_base.UrlToItemResolverBase)),
         }
         return fields
     
@@ -71,7 +71,7 @@ class ActivitySettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -100,7 +100,7 @@ class ActivitySettings(AdditionalDataHolder, Parsable):
         """
         Sets the urlToItemResolvers property value. Specifies configurations to identify an externalItem based on a shared URL.
         Args:
-            value: Value to set for the urlToItemResolvers property.
+            value: Value to set for the url_to_item_resolvers property.
         """
         self._url_to_item_resolvers = value
     

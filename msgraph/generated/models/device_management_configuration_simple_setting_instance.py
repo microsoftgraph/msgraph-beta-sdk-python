@@ -34,7 +34,7 @@ class DeviceManagementConfigurationSimpleSettingInstance(device_management_confi
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "simple_setting_value": lambda n : setattr(self, 'simple_setting_value', n.get_object_value(device_management_configuration_simple_setting_value.DeviceManagementConfigurationSimpleSettingValue)),
+            "simpleSettingValue": lambda n : setattr(self, 'simple_setting_value', n.get_object_value(device_management_configuration_simple_setting_value.DeviceManagementConfigurationSimpleSettingValue)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -64,7 +64,7 @@ class DeviceManagementConfigurationSimpleSettingInstance(device_management_confi
         """
         Sets the simpleSettingValue property value. The simpleSettingValue property
         Args:
-            value: Value to set for the simpleSettingValue property.
+            value: Value to set for the simple_setting_value property.
         """
         self._simple_setting_value = value
     

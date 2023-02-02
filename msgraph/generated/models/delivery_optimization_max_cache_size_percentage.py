@@ -33,7 +33,7 @@ class DeliveryOptimizationMaxCacheSizePercentage(delivery_optimization_max_cache
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "maximum_cache_size_percentage": lambda n : setattr(self, 'maximum_cache_size_percentage', n.get_int_value()),
+            "maximumCacheSizePercentage": lambda n : setattr(self, 'maximum_cache_size_percentage', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -52,7 +52,7 @@ class DeliveryOptimizationMaxCacheSizePercentage(delivery_optimization_max_cache
         """
         Sets the maximumCacheSizePercentage property value. Specifies the maximum cache size that Delivery Optimization can utilize, as a percentage of disk size (1-100). Valid values 1 to 100
         Args:
-            value: Value to set for the maximumCacheSizePercentage property.
+            value: Value to set for the maximum_cache_size_percentage property.
         """
         self._maximum_cache_size_percentage = value
     

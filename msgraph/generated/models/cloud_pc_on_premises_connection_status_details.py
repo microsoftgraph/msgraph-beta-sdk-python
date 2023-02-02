@@ -65,7 +65,7 @@ class CloudPcOnPremisesConnectionStatusDetails(AdditionalDataHolder, Parsable):
         """
         Sets the endDateTime property value. The end time of the connection health check. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the endDateTime property.
+            value: Value to set for the end_date_time property.
         """
         self._end_date_time = value
     
@@ -75,10 +75,10 @@ class CloudPcOnPremisesConnectionStatusDetails(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "end_date_time": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
-            "health_checks": lambda n : setattr(self, 'health_checks', n.get_collection_of_object_values(cloud_pc_on_premises_connection_health_check.CloudPcOnPremisesConnectionHealthCheck)),
+            "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
+            "healthChecks": lambda n : setattr(self, 'health_checks', n.get_collection_of_object_values(cloud_pc_on_premises_connection_health_check.CloudPcOnPremisesConnectionHealthCheck)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
         }
         return fields
     
@@ -95,7 +95,7 @@ class CloudPcOnPremisesConnectionStatusDetails(AdditionalDataHolder, Parsable):
         """
         Sets the healthChecks property value. All checks that are done on the connection.
         Args:
-            value: Value to set for the healthChecks property.
+            value: Value to set for the health_checks property.
         """
         self._health_checks = value
     
@@ -112,7 +112,7 @@ class CloudPcOnPremisesConnectionStatusDetails(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -143,7 +143,7 @@ class CloudPcOnPremisesConnectionStatusDetails(AdditionalDataHolder, Parsable):
         """
         Sets the startDateTime property value. The start time of the connection health check. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     

@@ -26,7 +26,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the additionalInformation property value. Additional information that is sent to the customer when an appointment is confirmed.
         Args:
-            value: Value to set for the additionalInformation property.
+            value: Value to set for the additional_information property.
         """
         self._additional_information = value
     
@@ -43,7 +43,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the anonymousJoinWebUrl property value. The URL of the meeting to join anonymously.
         Args:
-            value: Value to set for the anonymousJoinWebUrl property.
+            value: Value to set for the anonymous_join_web_url property.
         """
         self._anonymous_join_web_url = value
     
@@ -68,10 +68,10 @@ class BookingAppointment(entity.Entity):
         self._customer_notes: Optional[str] = None
         # The customer's phone number.
         self._customer_phone: Optional[str] = None
-        # A collection of the customer properties for an appointment. An appointment will contain a list of customer information and each unit will indicate the properties of a customer who is part of that appointment. Optional.
-        self._customers: Optional[List[booking_customer_information_base.BookingCustomerInformationBase]] = None
         # The time zone of the customer. For a list of possible values, see dateTimeTimeZone.
         self._customer_time_zone: Optional[str] = None
+        # A collection of the customer properties for an appointment. An appointment will contain a list of customer information and each unit will indicate the properties of a customer who is part of that appointment. Optional.
+        self._customers: Optional[List[booking_customer_information_base.BookingCustomerInformationBase]] = None
         # The length of the appointment, denoted in ISO8601 format.
         self._duration: Optional[Timedelta] = None
         # The end property
@@ -152,7 +152,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the customerEmailAddress property value. The SMTP address of the bookingCustomer who is booking the appointment.
         Args:
-            value: Value to set for the customerEmailAddress property.
+            value: Value to set for the customer_email_address property.
         """
         self._customer_email_address = value
     
@@ -169,7 +169,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the customerId property value. The ID of the bookingCustomer for this appointment. If no ID is specified when an appointment is created, then a new bookingCustomer object is created. Once set, you should consider the customerId immutable.
         Args:
-            value: Value to set for the customerId property.
+            value: Value to set for the customer_id property.
         """
         self._customer_id = value
     
@@ -186,7 +186,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the customerLocation property value. Represents location information for the bookingCustomer who is booking the appointment.
         Args:
-            value: Value to set for the customerLocation property.
+            value: Value to set for the customer_location property.
         """
         self._customer_location = value
     
@@ -203,7 +203,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the customerName property value. The customer's name.
         Args:
-            value: Value to set for the customerName property.
+            value: Value to set for the customer_name property.
         """
         self._customer_name = value
     
@@ -220,7 +220,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the customerNotes property value. Notes from the customer associated with this appointment. You can get the value only when reading this bookingAppointment by its ID.  You can set this property only when initially creating an appointment with a new customer. After that point, the value is computed from the customer represented by customerId.
         Args:
-            value: Value to set for the customerNotes property.
+            value: Value to set for the customer_notes property.
         """
         self._customer_notes = value
     
@@ -237,9 +237,26 @@ class BookingAppointment(entity.Entity):
         """
         Sets the customerPhone property value. The customer's phone number.
         Args:
-            value: Value to set for the customerPhone property.
+            value: Value to set for the customer_phone property.
         """
         self._customer_phone = value
+    
+    @property
+    def customer_time_zone(self,) -> Optional[str]:
+        """
+        Gets the customerTimeZone property value. The time zone of the customer. For a list of possible values, see dateTimeTimeZone.
+        Returns: Optional[str]
+        """
+        return self._customer_time_zone
+    
+    @customer_time_zone.setter
+    def customer_time_zone(self,value: Optional[str] = None) -> None:
+        """
+        Sets the customerTimeZone property value. The time zone of the customer. For a list of possible values, see dateTimeTimeZone.
+        Args:
+            value: Value to set for the customer_time_zone property.
+        """
+        self._customer_time_zone = value
     
     @property
     def customers(self,) -> Optional[List[booking_customer_information_base.BookingCustomerInformationBase]]:
@@ -257,23 +274,6 @@ class BookingAppointment(entity.Entity):
             value: Value to set for the customers property.
         """
         self._customers = value
-    
-    @property
-    def customer_time_zone(self,) -> Optional[str]:
-        """
-        Gets the customerTimeZone property value. The time zone of the customer. For a list of possible values, see dateTimeTimeZone.
-        Returns: Optional[str]
-        """
-        return self._customer_time_zone
-    
-    @customer_time_zone.setter
-    def customer_time_zone(self,value: Optional[str] = None) -> None:
-        """
-        Sets the customerTimeZone property value. The time zone of the customer. For a list of possible values, see dateTimeTimeZone.
-        Args:
-            value: Value to set for the customerTimeZone property.
-        """
-        self._customer_time_zone = value
     
     @property
     def duration(self,) -> Optional[Timedelta]:
@@ -322,7 +322,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the filledAttendeesCount property value. The current number of customers in the appointment.
         Args:
-            value: Value to set for the filledAttendeesCount property.
+            value: Value to set for the filled_attendees_count property.
         """
         self._filled_attendees_count = value
     
@@ -332,41 +332,41 @@ class BookingAppointment(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "additional_information": lambda n : setattr(self, 'additional_information', n.get_str_value()),
-            "anonymous_join_web_url": lambda n : setattr(self, 'anonymous_join_web_url', n.get_str_value()),
-            "customer_email_address": lambda n : setattr(self, 'customer_email_address', n.get_str_value()),
-            "customer_id": lambda n : setattr(self, 'customer_id', n.get_str_value()),
-            "customer_location": lambda n : setattr(self, 'customer_location', n.get_object_value(location.Location)),
-            "customer_name": lambda n : setattr(self, 'customer_name', n.get_str_value()),
-            "customer_notes": lambda n : setattr(self, 'customer_notes', n.get_str_value()),
-            "customer_phone": lambda n : setattr(self, 'customer_phone', n.get_str_value()),
+            "additionalInformation": lambda n : setattr(self, 'additional_information', n.get_str_value()),
+            "anonymousJoinWebUrl": lambda n : setattr(self, 'anonymous_join_web_url', n.get_str_value()),
             "customers": lambda n : setattr(self, 'customers', n.get_collection_of_object_values(booking_customer_information_base.BookingCustomerInformationBase)),
-            "customer_time_zone": lambda n : setattr(self, 'customer_time_zone', n.get_str_value()),
+            "customerEmailAddress": lambda n : setattr(self, 'customer_email_address', n.get_str_value()),
+            "customerId": lambda n : setattr(self, 'customer_id', n.get_str_value()),
+            "customerLocation": lambda n : setattr(self, 'customer_location', n.get_object_value(location.Location)),
+            "customerName": lambda n : setattr(self, 'customer_name', n.get_str_value()),
+            "customerNotes": lambda n : setattr(self, 'customer_notes', n.get_str_value()),
+            "customerPhone": lambda n : setattr(self, 'customer_phone', n.get_str_value()),
+            "customerTimeZone": lambda n : setattr(self, 'customer_time_zone', n.get_str_value()),
             "duration": lambda n : setattr(self, 'duration', n.get_object_value(Timedelta)),
             "end": lambda n : setattr(self, 'end', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
-            "filled_attendees_count": lambda n : setattr(self, 'filled_attendees_count', n.get_int_value()),
-            "invoice_amount": lambda n : setattr(self, 'invoice_amount', n.get_float_value()),
-            "invoice_date": lambda n : setattr(self, 'invoice_date', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
-            "invoice_id": lambda n : setattr(self, 'invoice_id', n.get_str_value()),
-            "invoice_status": lambda n : setattr(self, 'invoice_status', n.get_enum_value(booking_invoice_status.BookingInvoiceStatus)),
-            "invoice_url": lambda n : setattr(self, 'invoice_url', n.get_str_value()),
-            "is_location_online": lambda n : setattr(self, 'is_location_online', n.get_bool_value()),
-            "join_web_url": lambda n : setattr(self, 'join_web_url', n.get_str_value()),
-            "maximum_attendees_count": lambda n : setattr(self, 'maximum_attendees_count', n.get_int_value()),
-            "online_meeting_url": lambda n : setattr(self, 'online_meeting_url', n.get_str_value()),
-            "opt_out_of_customer_email": lambda n : setattr(self, 'opt_out_of_customer_email', n.get_bool_value()),
-            "post_buffer": lambda n : setattr(self, 'post_buffer', n.get_object_value(Timedelta)),
-            "pre_buffer": lambda n : setattr(self, 'pre_buffer', n.get_object_value(Timedelta)),
+            "filledAttendeesCount": lambda n : setattr(self, 'filled_attendees_count', n.get_int_value()),
+            "invoiceAmount": lambda n : setattr(self, 'invoice_amount', n.get_float_value()),
+            "invoiceDate": lambda n : setattr(self, 'invoice_date', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
+            "invoiceId": lambda n : setattr(self, 'invoice_id', n.get_str_value()),
+            "invoiceStatus": lambda n : setattr(self, 'invoice_status', n.get_enum_value(booking_invoice_status.BookingInvoiceStatus)),
+            "invoiceUrl": lambda n : setattr(self, 'invoice_url', n.get_str_value()),
+            "isLocationOnline": lambda n : setattr(self, 'is_location_online', n.get_bool_value()),
+            "joinWebUrl": lambda n : setattr(self, 'join_web_url', n.get_str_value()),
+            "maximumAttendeesCount": lambda n : setattr(self, 'maximum_attendees_count', n.get_int_value()),
+            "onlineMeetingUrl": lambda n : setattr(self, 'online_meeting_url', n.get_str_value()),
+            "optOutOfCustomerEmail": lambda n : setattr(self, 'opt_out_of_customer_email', n.get_bool_value()),
+            "postBuffer": lambda n : setattr(self, 'post_buffer', n.get_object_value(Timedelta)),
+            "preBuffer": lambda n : setattr(self, 'pre_buffer', n.get_object_value(Timedelta)),
             "price": lambda n : setattr(self, 'price', n.get_float_value()),
-            "price_type": lambda n : setattr(self, 'price_type', n.get_enum_value(booking_price_type.BookingPriceType)),
+            "priceType": lambda n : setattr(self, 'price_type', n.get_enum_value(booking_price_type.BookingPriceType)),
             "reminders": lambda n : setattr(self, 'reminders', n.get_collection_of_object_values(booking_reminder.BookingReminder)),
-            "self_service_appointment_id": lambda n : setattr(self, 'self_service_appointment_id', n.get_str_value()),
-            "service_id": lambda n : setattr(self, 'service_id', n.get_str_value()),
-            "service_location": lambda n : setattr(self, 'service_location', n.get_object_value(location.Location)),
-            "service_name": lambda n : setattr(self, 'service_name', n.get_str_value()),
-            "service_notes": lambda n : setattr(self, 'service_notes', n.get_str_value()),
-            "sms_notifications_enabled": lambda n : setattr(self, 'sms_notifications_enabled', n.get_bool_value()),
-            "staff_member_ids": lambda n : setattr(self, 'staff_member_ids', n.get_collection_of_primitive_values(str)),
+            "selfServiceAppointmentId": lambda n : setattr(self, 'self_service_appointment_id', n.get_str_value()),
+            "serviceId": lambda n : setattr(self, 'service_id', n.get_str_value()),
+            "serviceLocation": lambda n : setattr(self, 'service_location', n.get_object_value(location.Location)),
+            "serviceName": lambda n : setattr(self, 'service_name', n.get_str_value()),
+            "serviceNotes": lambda n : setattr(self, 'service_notes', n.get_str_value()),
+            "smsNotificationsEnabled": lambda n : setattr(self, 'sms_notifications_enabled', n.get_bool_value()),
+            "staffMemberIds": lambda n : setattr(self, 'staff_member_ids', n.get_collection_of_primitive_values(str)),
             "start": lambda n : setattr(self, 'start', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
         }
         super_fields = super().get_field_deserializers()
@@ -386,7 +386,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the invoiceAmount property value. The billed amount on the invoice.
         Args:
-            value: Value to set for the invoiceAmount property.
+            value: Value to set for the invoice_amount property.
         """
         self._invoice_amount = value
     
@@ -403,7 +403,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the invoiceDate property value. The date, time, and time zone of the invoice for this appointment.
         Args:
-            value: Value to set for the invoiceDate property.
+            value: Value to set for the invoice_date property.
         """
         self._invoice_date = value
     
@@ -420,7 +420,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the invoiceId property value. The ID of the invoice.
         Args:
-            value: Value to set for the invoiceId property.
+            value: Value to set for the invoice_id property.
         """
         self._invoice_id = value
     
@@ -437,7 +437,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the invoiceStatus property value. The invoiceStatus property
         Args:
-            value: Value to set for the invoiceStatus property.
+            value: Value to set for the invoice_status property.
         """
         self._invoice_status = value
     
@@ -454,7 +454,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the invoiceUrl property value. The URL of the invoice in Microsoft Bookings.
         Args:
-            value: Value to set for the invoiceUrl property.
+            value: Value to set for the invoice_url property.
         """
         self._invoice_url = value
     
@@ -471,7 +471,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the isLocationOnline property value. True indicates that the appointment will be held online. Default value is false.
         Args:
-            value: Value to set for the isLocationOnline property.
+            value: Value to set for the is_location_online property.
         """
         self._is_location_online = value
     
@@ -488,7 +488,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the joinWebUrl property value. The URL of the online meeting for the appointment.
         Args:
-            value: Value to set for the joinWebUrl property.
+            value: Value to set for the join_web_url property.
         """
         self._join_web_url = value
     
@@ -505,7 +505,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the maximumAttendeesCount property value. The maximum number of customers allowed in an appointment. If maximumAttendeesCount of the service is greater than 1, pass valid customer IDs while creating or updating an appointment. To create a customer, use the Create bookingCustomer operation.
         Args:
-            value: Value to set for the maximumAttendeesCount property.
+            value: Value to set for the maximum_attendees_count property.
         """
         self._maximum_attendees_count = value
     
@@ -522,7 +522,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the onlineMeetingUrl property value. The onlineMeetingUrl property
         Args:
-            value: Value to set for the onlineMeetingUrl property.
+            value: Value to set for the online_meeting_url property.
         """
         self._online_meeting_url = value
     
@@ -539,7 +539,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the optOutOfCustomerEmail property value. True indicates that the bookingCustomer for this appointment does not wish to receive a confirmation for this appointment.
         Args:
-            value: Value to set for the optOutOfCustomerEmail property.
+            value: Value to set for the opt_out_of_customer_email property.
         """
         self._opt_out_of_customer_email = value
     
@@ -556,7 +556,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the postBuffer property value. The amount of time to reserve after the appointment ends, for cleaning up, as an example. The value is expressed in ISO8601 format.
         Args:
-            value: Value to set for the postBuffer property.
+            value: Value to set for the post_buffer property.
         """
         self._post_buffer = value
     
@@ -573,7 +573,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the preBuffer property value. The amount of time to reserve before the appointment begins, for preparation, as an example. The value is expressed in ISO8601 format.
         Args:
-            value: Value to set for the preBuffer property.
+            value: Value to set for the pre_buffer property.
         """
         self._pre_buffer = value
     
@@ -607,7 +607,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the priceType property value. Represents the type of pricing of a booking service.
         Args:
-            value: Value to set for the priceType property.
+            value: Value to set for the price_type property.
         """
         self._price_type = value
     
@@ -641,7 +641,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the selfServiceAppointmentId property value. An additional tracking ID for the appointment, if the appointment has been created directly by the customer on the scheduling page, as opposed to by a staff member on the behalf of the customer.
         Args:
-            value: Value to set for the selfServiceAppointmentId property.
+            value: Value to set for the self_service_appointment_id property.
         """
         self._self_service_appointment_id = value
     
@@ -656,13 +656,13 @@ class BookingAppointment(entity.Entity):
         super().serialize(writer)
         writer.write_str_value("additionalInformation", self.additional_information)
         writer.write_str_value("anonymousJoinWebUrl", self.anonymous_join_web_url)
+        writer.write_collection_of_object_values("customers", self.customers)
         writer.write_str_value("customerEmailAddress", self.customer_email_address)
         writer.write_str_value("customerId", self.customer_id)
         writer.write_object_value("customerLocation", self.customer_location)
         writer.write_str_value("customerName", self.customer_name)
         writer.write_str_value("customerNotes", self.customer_notes)
         writer.write_str_value("customerPhone", self.customer_phone)
-        writer.write_collection_of_object_values("customers", self.customers)
         writer.write_str_value("customerTimeZone", self.customer_time_zone)
         writer.write_object_value("end", self.end)
         writer.write_float_value("invoiceAmount", self.invoice_amount)
@@ -702,7 +702,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the serviceId property value. The ID of the bookingService associated with this appointment.
         Args:
-            value: Value to set for the serviceId property.
+            value: Value to set for the service_id property.
         """
         self._service_id = value
     
@@ -719,7 +719,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the serviceLocation property value. The location where the service is delivered.
         Args:
-            value: Value to set for the serviceLocation property.
+            value: Value to set for the service_location property.
         """
         self._service_location = value
     
@@ -736,7 +736,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the serviceName property value. The name of the bookingService associated with this appointment.This property is optional when creating a new appointment. If not specified, it is computed from the service associated with the appointment by the serviceId property.
         Args:
-            value: Value to set for the serviceName property.
+            value: Value to set for the service_name property.
         """
         self._service_name = value
     
@@ -753,7 +753,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the serviceNotes property value. Notes from a bookingStaffMember. The value of this property is available only when reading this bookingAppointment by its ID.
         Args:
-            value: Value to set for the serviceNotes property.
+            value: Value to set for the service_notes property.
         """
         self._service_notes = value
     
@@ -770,7 +770,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the smsNotificationsEnabled property value. True indicates SMS notifications will be sent to the customers for the appointment. Default value is false.
         Args:
-            value: Value to set for the smsNotificationsEnabled property.
+            value: Value to set for the sms_notifications_enabled property.
         """
         self._sms_notifications_enabled = value
     
@@ -787,7 +787,7 @@ class BookingAppointment(entity.Entity):
         """
         Sets the staffMemberIds property value. The ID of each bookingStaffMember who is scheduled in this appointment.
         Args:
-            value: Value to set for the staffMemberIds property.
+            value: Value to set for the staff_member_ids property.
         """
         self._staff_member_ids = value
     

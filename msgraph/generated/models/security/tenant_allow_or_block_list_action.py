@@ -85,7 +85,7 @@ class TenantAllowOrBlockListAction(AdditionalDataHolder, Parsable):
         """
         Sets the expirationDateTime property value. Specifies when the tenant allow-block-list expires in date time.
         Args:
-            value: Value to set for the expirationDateTime property.
+            value: Value to set for the expiration_date_time property.
         """
         self._expiration_date_time = value
     
@@ -96,7 +96,7 @@ class TenantAllowOrBlockListAction(AdditionalDataHolder, Parsable):
         """
         fields = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(tenant_allow_block_list_action.TenantAllowBlockListAction)),
-            "expiration_date_time": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
+            "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "note": lambda n : setattr(self, 'note', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "results": lambda n : setattr(self, 'results', n.get_collection_of_object_values(tenant_allow_block_list_entry_result.TenantAllowBlockListEntryResult)),
@@ -133,7 +133,7 @@ class TenantAllowOrBlockListAction(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

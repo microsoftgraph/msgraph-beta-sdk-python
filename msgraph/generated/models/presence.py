@@ -44,7 +44,7 @@ class Presence(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new presence and sets the default values.
+        Instantiates a new Presence and sets the default values.
         """
         super().__init__()
         # The supplemental information to a user's availability. Possible values are Available, Away, BeRightBack, Busy, DoNotDisturb, InACall, InAConferenceCall, Inactive,InAMeeting, Offline, OffWork,OutOfOffice, PresenceUnknown,Presenting, UrgentInterruptionsOnly.
@@ -78,8 +78,8 @@ class Presence(entity.Entity):
         fields = {
             "activity": lambda n : setattr(self, 'activity', n.get_str_value()),
             "availability": lambda n : setattr(self, 'availability', n.get_str_value()),
-            "out_of_office_settings": lambda n : setattr(self, 'out_of_office_settings', n.get_object_value(out_of_office_settings.OutOfOfficeSettings)),
-            "status_message": lambda n : setattr(self, 'status_message', n.get_object_value(presence_status_message.PresenceStatusMessage)),
+            "outOfOfficeSettings": lambda n : setattr(self, 'out_of_office_settings', n.get_object_value(out_of_office_settings.OutOfOfficeSettings)),
+            "statusMessage": lambda n : setattr(self, 'status_message', n.get_object_value(presence_status_message.PresenceStatusMessage)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -98,7 +98,7 @@ class Presence(entity.Entity):
         """
         Sets the outOfOfficeSettings property value. The out of office settings for a user.
         Args:
-            value: Value to set for the outOfOfficeSettings property.
+            value: Value to set for the out_of_office_settings property.
         """
         self._out_of_office_settings = value
     
@@ -129,7 +129,7 @@ class Presence(entity.Entity):
         """
         Sets the statusMessage property value. The presence status message of a user.
         Args:
-            value: Value to set for the statusMessage property.
+            value: Value to set for the status_message property.
         """
         self._status_message = value
     

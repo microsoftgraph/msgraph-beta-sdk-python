@@ -21,7 +21,7 @@ class WorkloadActionDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the actionId property value. The unique identifier for the workload action. Required. Read-only.
         Args:
-            value: Value to set for the actionId property.
+            value: Value to set for the action_id property.
         """
         self._action_id = value
     
@@ -93,7 +93,7 @@ class WorkloadActionDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the deployedPolicyId property value. The identifier of any policy that was created by applying the workload action. Optional. Read-only.
         Args:
-            value: Value to set for the deployedPolicyId property.
+            value: Value to set for the deployed_policy_id property.
         """
         self._deployed_policy_id = value
     
@@ -127,7 +127,7 @@ class WorkloadActionDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the excludeGroups property value. The excludeGroups property
         Args:
-            value: Value to set for the excludeGroups property.
+            value: Value to set for the exclude_groups property.
         """
         self._exclude_groups = value
     
@@ -137,13 +137,13 @@ class WorkloadActionDeploymentStatus(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "action_id": lambda n : setattr(self, 'action_id', n.get_str_value()),
-            "deployed_policy_id": lambda n : setattr(self, 'deployed_policy_id', n.get_str_value()),
+            "actionId": lambda n : setattr(self, 'action_id', n.get_str_value()),
+            "deployedPolicyId": lambda n : setattr(self, 'deployed_policy_id', n.get_str_value()),
             "error": lambda n : setattr(self, 'error', n.get_object_value(generic_error.GenericError)),
-            "exclude_groups": lambda n : setattr(self, 'exclude_groups', n.get_collection_of_primitive_values(str)),
-            "include_all_users": lambda n : setattr(self, 'include_all_users', n.get_bool_value()),
-            "include_groups": lambda n : setattr(self, 'include_groups', n.get_collection_of_primitive_values(str)),
-            "last_deployment_date_time": lambda n : setattr(self, 'last_deployment_date_time', n.get_datetime_value()),
+            "excludeGroups": lambda n : setattr(self, 'exclude_groups', n.get_collection_of_primitive_values(str)),
+            "includeAllUsers": lambda n : setattr(self, 'include_all_users', n.get_bool_value()),
+            "includeGroups": lambda n : setattr(self, 'include_groups', n.get_collection_of_primitive_values(str)),
+            "lastDeploymentDateTime": lambda n : setattr(self, 'last_deployment_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(workload_action_status.WorkloadActionStatus)),
         }
@@ -162,7 +162,7 @@ class WorkloadActionDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the includeAllUsers property value. The includeAllUsers property
         Args:
-            value: Value to set for the includeAllUsers property.
+            value: Value to set for the include_all_users property.
         """
         self._include_all_users = value
     
@@ -179,7 +179,7 @@ class WorkloadActionDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the includeGroups property value. The includeGroups property
         Args:
-            value: Value to set for the includeGroups property.
+            value: Value to set for the include_groups property.
         """
         self._include_groups = value
     
@@ -196,7 +196,7 @@ class WorkloadActionDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the lastDeploymentDateTime property value. The date and time the workload action was last deployed. Optional.
         Args:
-            value: Value to set for the lastDeploymentDateTime property.
+            value: Value to set for the last_deployment_date_time property.
         """
         self._last_deployment_date_time = value
     
@@ -213,7 +213,7 @@ class WorkloadActionDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

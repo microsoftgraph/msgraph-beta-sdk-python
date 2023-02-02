@@ -34,7 +34,7 @@ class EducationIdentityMatchingConfiguration(education_identity_synchronization_
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "matching_options": lambda n : setattr(self, 'matching_options', n.get_collection_of_object_values(education_identity_matching_options.EducationIdentityMatchingOptions)),
+            "matchingOptions": lambda n : setattr(self, 'matching_options', n.get_collection_of_object_values(education_identity_matching_options.EducationIdentityMatchingOptions)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -53,7 +53,7 @@ class EducationIdentityMatchingConfiguration(education_identity_synchronization_
         """
         Sets the matchingOptions property value. Mapping between the user account and the options to use to uniquely identify the user to update.
         Args:
-            value: Value to set for the matchingOptions property.
+            value: Value to set for the matching_options property.
         """
         self._matching_options = value
     

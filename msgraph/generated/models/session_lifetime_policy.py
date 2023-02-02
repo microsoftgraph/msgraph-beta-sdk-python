@@ -79,7 +79,7 @@ class SessionLifetimePolicy(AdditionalDataHolder, Parsable):
         """
         Sets the expirationRequirement property value. If a conditional access session management policy required the user to authenticate in this sign-in event, this field describes the policy type that required authentication. The possible values are: rememberMultifactorAuthenticationOnTrustedDevices, tenantTokenLifetimePolicy, audienceTokenLifetimePolicy, signInFrequencyPeriodicReauthentication, ngcMfa, signInFrequencyEveryTime, unknownFutureValue.
         Args:
-            value: Value to set for the expirationRequirement property.
+            value: Value to set for the expiration_requirement property.
         """
         self._expiration_requirement = value
     
@@ -90,7 +90,7 @@ class SessionLifetimePolicy(AdditionalDataHolder, Parsable):
         """
         fields = {
             "detail": lambda n : setattr(self, 'detail', n.get_str_value()),
-            "expiration_requirement": lambda n : setattr(self, 'expiration_requirement', n.get_enum_value(expiration_requirement.ExpirationRequirement)),
+            "expirationRequirement": lambda n : setattr(self, 'expiration_requirement', n.get_enum_value(expiration_requirement.ExpirationRequirement)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -108,7 +108,7 @@ class SessionLifetimePolicy(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

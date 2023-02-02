@@ -44,12 +44,11 @@ class JournalsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[JournalsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[journal_collection_response.JournalCollectionResponse]:
+    async def get(self,request_configuration: Optional[JournalsRequestBuilderGetRequestConfiguration] = None) -> Optional[journal_collection_response.JournalCollectionResponse]:
         """
         Get journals from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[journal_collection_response.JournalCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class JournalsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, journal_collection_response.JournalCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, journal_collection_response.JournalCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[journal.Journal] = None, request_configuration: Optional[JournalsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[journal.Journal]:
+    async def post(self,body: Optional[journal.Journal] = None, request_configuration: Optional[JournalsRequestBuilderPostRequestConfiguration] = None) -> Optional[journal.Journal]:
         """
         Create new navigation property to journals for financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[journal.Journal]
         """
         if body is None:
@@ -83,7 +81,7 @@ class JournalsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, journal.Journal, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, journal.Journal, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[JournalsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

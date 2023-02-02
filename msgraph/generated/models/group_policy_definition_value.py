@@ -10,6 +10,9 @@ group_policy_definition = lazy_import('msgraph.generated.models.group_policy_def
 group_policy_presentation_value = lazy_import('msgraph.generated.models.group_policy_presentation_value')
 
 class GroupPolicyDefinitionValue(entity.Entity):
+    """
+    The definition value entity stores the value for a single group policy definition.
+    """
     @property
     def configuration_type(self,) -> Optional[group_policy_configuration_type.GroupPolicyConfigurationType]:
         """
@@ -23,7 +26,7 @@ class GroupPolicyDefinitionValue(entity.Entity):
         """
         Sets the configurationType property value. Group Policy Configuration Type
         Args:
-            value: Value to set for the configurationType property.
+            value: Value to set for the configuration_type property.
         """
         self._configuration_type = value
     
@@ -60,7 +63,7 @@ class GroupPolicyDefinitionValue(entity.Entity):
         """
         Sets the createdDateTime property value. The date and time the object was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -116,12 +119,12 @@ class GroupPolicyDefinitionValue(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "configuration_type": lambda n : setattr(self, 'configuration_type', n.get_enum_value(group_policy_configuration_type.GroupPolicyConfigurationType)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "configurationType": lambda n : setattr(self, 'configuration_type', n.get_enum_value(group_policy_configuration_type.GroupPolicyConfigurationType)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "definition": lambda n : setattr(self, 'definition', n.get_object_value(group_policy_definition.GroupPolicyDefinition)),
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "presentation_values": lambda n : setattr(self, 'presentation_values', n.get_collection_of_object_values(group_policy_presentation_value.GroupPolicyPresentationValue)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "presentationValues": lambda n : setattr(self, 'presentation_values', n.get_collection_of_object_values(group_policy_presentation_value.GroupPolicyPresentationValue)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -140,7 +143,7 @@ class GroupPolicyDefinitionValue(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date and time the entity was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -157,7 +160,7 @@ class GroupPolicyDefinitionValue(entity.Entity):
         """
         Sets the presentationValues property value. The associated group policy presentation values with the definition value.
         Args:
-            value: Value to set for the presentationValues property.
+            value: Value to set for the presentation_values property.
         """
         self._presentation_values = value
     

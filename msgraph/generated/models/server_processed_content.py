@@ -37,7 +37,7 @@ class ServerProcessedContent(AdditionalDataHolder, Parsable):
         """
         Sets the componentDependencies property value. A key-value map where keys are string identifiers and values are component ids. SharePoint servers might decide to use this hint to preload the script for corresponding components for performance boost.
         Args:
-            value: Value to set for the componentDependencies property.
+            value: Value to set for the component_dependencies property.
         """
         self._component_dependencies = value
     
@@ -88,7 +88,7 @@ class ServerProcessedContent(AdditionalDataHolder, Parsable):
         """
         Sets the customMetadata property value. A key-value map where keys are string identifier and values are object of custom key-value pair.
         Args:
-            value: Value to set for the customMetadata property.
+            value: Value to set for the custom_metadata property.
         """
         self._custom_metadata = value
     
@@ -98,13 +98,13 @@ class ServerProcessedContent(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "component_dependencies": lambda n : setattr(self, 'component_dependencies', n.get_collection_of_object_values(meta_data_key_string_pair.MetaDataKeyStringPair)),
-            "custom_metadata": lambda n : setattr(self, 'custom_metadata', n.get_collection_of_object_values(meta_data_key_value_pair.MetaDataKeyValuePair)),
-            "html_strings": lambda n : setattr(self, 'html_strings', n.get_collection_of_object_values(meta_data_key_string_pair.MetaDataKeyStringPair)),
-            "image_sources": lambda n : setattr(self, 'image_sources', n.get_collection_of_object_values(meta_data_key_string_pair.MetaDataKeyStringPair)),
+            "componentDependencies": lambda n : setattr(self, 'component_dependencies', n.get_collection_of_object_values(meta_data_key_string_pair.MetaDataKeyStringPair)),
+            "customMetadata": lambda n : setattr(self, 'custom_metadata', n.get_collection_of_object_values(meta_data_key_value_pair.MetaDataKeyValuePair)),
+            "htmlStrings": lambda n : setattr(self, 'html_strings', n.get_collection_of_object_values(meta_data_key_string_pair.MetaDataKeyStringPair)),
+            "imageSources": lambda n : setattr(self, 'image_sources', n.get_collection_of_object_values(meta_data_key_string_pair.MetaDataKeyStringPair)),
             "links": lambda n : setattr(self, 'links', n.get_collection_of_object_values(meta_data_key_string_pair.MetaDataKeyStringPair)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "searchable_plain_texts": lambda n : setattr(self, 'searchable_plain_texts', n.get_collection_of_object_values(meta_data_key_string_pair.MetaDataKeyStringPair)),
+            "searchablePlainTexts": lambda n : setattr(self, 'searchable_plain_texts', n.get_collection_of_object_values(meta_data_key_string_pair.MetaDataKeyStringPair)),
         }
         return fields
     
@@ -121,7 +121,7 @@ class ServerProcessedContent(AdditionalDataHolder, Parsable):
         """
         Sets the htmlStrings property value. A key-value map where keys are string identifiers and values are rich text with HTML format. SharePoint servers treat the values as HTML content and run services like safety checks, search index and link fixup on them.
         Args:
-            value: Value to set for the htmlStrings property.
+            value: Value to set for the html_strings property.
         """
         self._html_strings = value
     
@@ -138,7 +138,7 @@ class ServerProcessedContent(AdditionalDataHolder, Parsable):
         """
         Sets the imageSources property value. A key-value map where keys are string identifiers and values are image sources. SharePoint servers treat the values as image sources and run services like search index and link fixup on them.
         Args:
-            value: Value to set for the imageSources property.
+            value: Value to set for the image_sources property.
         """
         self._image_sources = value
     
@@ -172,7 +172,7 @@ class ServerProcessedContent(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -189,7 +189,7 @@ class ServerProcessedContent(AdditionalDataHolder, Parsable):
         """
         Sets the searchablePlainTexts property value. A key-value map where keys are string identifiers and values are strings that should be search indexed.
         Args:
-            value: Value to set for the searchablePlainTexts property.
+            value: Value to set for the searchable_plain_texts property.
         """
         self._searchable_plain_texts = value
     

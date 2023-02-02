@@ -53,7 +53,7 @@ class ConditionalAccessExternalTenants(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "membership_kind": lambda n : setattr(self, 'membership_kind', n.get_enum_value(conditional_access_external_tenants_membership_kind.ConditionalAccessExternalTenantsMembershipKind)),
+            "membershipKind": lambda n : setattr(self, 'membership_kind', n.get_enum_value(conditional_access_external_tenants_membership_kind.ConditionalAccessExternalTenantsMembershipKind)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -71,7 +71,7 @@ class ConditionalAccessExternalTenants(AdditionalDataHolder, Parsable):
         """
         Sets the membershipKind property value. Represents the membership kind. The possible values are: all, enumerated, unknownFutureValue. enumerated references an object of conditionalAccessEnumeratedExternalTenants derived type.
         Args:
-            value: Value to set for the membershipKind property.
+            value: Value to set for the membership_kind property.
         """
         self._membership_kind = value
     
@@ -88,7 +88,7 @@ class ConditionalAccessExternalTenants(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

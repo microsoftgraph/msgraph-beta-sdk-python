@@ -83,7 +83,7 @@ class ExpressionEvaluationDetails(AdditionalDataHolder, Parsable):
         """
         Sets the expressionEvaluationDetails property value. Represents the details of the evaluation of the expression.
         Args:
-            value: Value to set for the expressionEvaluationDetails property.
+            value: Value to set for the expression_evaluation_details property.
         """
         self._expression_evaluation_details = value
     
@@ -100,7 +100,7 @@ class ExpressionEvaluationDetails(AdditionalDataHolder, Parsable):
         """
         Sets the expressionResult property value. Represents the value of the result of the current expression.
         Args:
-            value: Value to set for the expressionResult property.
+            value: Value to set for the expression_result property.
         """
         self._expression_result = value
     
@@ -111,10 +111,10 @@ class ExpressionEvaluationDetails(AdditionalDataHolder, Parsable):
         """
         fields = {
             "expression": lambda n : setattr(self, 'expression', n.get_str_value()),
-            "expression_evaluation_details": lambda n : setattr(self, 'expression_evaluation_details', n.get_collection_of_object_values(ExpressionEvaluationDetails)),
-            "expression_result": lambda n : setattr(self, 'expression_result', n.get_bool_value()),
+            "expressionEvaluationDetails": lambda n : setattr(self, 'expression_evaluation_details', n.get_collection_of_object_values(ExpressionEvaluationDetails)),
+            "expressionResult": lambda n : setattr(self, 'expression_result', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "property_to_evaluate": lambda n : setattr(self, 'property_to_evaluate', n.get_object_value(property_to_evaluate.PropertyToEvaluate)),
+            "propertyToEvaluate": lambda n : setattr(self, 'property_to_evaluate', n.get_object_value(property_to_evaluate.PropertyToEvaluate)),
         }
         return fields
     
@@ -131,7 +131,7 @@ class ExpressionEvaluationDetails(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -148,7 +148,7 @@ class ExpressionEvaluationDetails(AdditionalDataHolder, Parsable):
         """
         Sets the propertyToEvaluate property value. Defines the name of the property and the value of that property.
         Args:
-            value: Value to set for the propertyToEvaluate property.
+            value: Value to set for the property_to_evaluate property.
         """
         self._property_to_evaluate = value
     

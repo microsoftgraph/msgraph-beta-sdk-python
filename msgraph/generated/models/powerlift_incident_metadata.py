@@ -55,7 +55,7 @@ class PowerliftIncidentMetadata(AdditionalDataHolder, Parsable):
         """
         Sets the clientVersion property value. The version of the application. Example: 5.2203.1
         Args:
-            value: Value to set for the clientVersion property.
+            value: Value to set for the client_version property.
         """
         self._client_version = value
     
@@ -98,7 +98,7 @@ class PowerliftIncidentMetadata(AdditionalDataHolder, Parsable):
         """
         Sets the createdAtDateTime property value. The time the app diagnostic was created. Example: 2022-04-19T17:24:45.313Z
         Args:
-            value: Value to set for the createdAtDateTime property.
+            value: Value to set for the created_at_date_time property.
         """
         self._created_at_date_time = value
     
@@ -127,7 +127,7 @@ class PowerliftIncidentMetadata(AdditionalDataHolder, Parsable):
         """
         Sets the easyId property value. The unique app diagnostic identifier as a user friendly 8 character hexadecimal string. Example: 8520467A
         Args:
-            value: Value to set for the easyId property.
+            value: Value to set for the easy_id property.
         """
         self._easy_id = value
     
@@ -144,7 +144,7 @@ class PowerliftIncidentMetadata(AdditionalDataHolder, Parsable):
         """
         Sets the fileNames property value. A list of files that are associated with the diagnostic.
         Args:
-            value: Value to set for the fileNames property.
+            value: Value to set for the file_names property.
         """
         self._file_names = value
     
@@ -155,14 +155,14 @@ class PowerliftIncidentMetadata(AdditionalDataHolder, Parsable):
         """
         fields = {
             "application": lambda n : setattr(self, 'application', n.get_str_value()),
-            "client_version": lambda n : setattr(self, 'client_version', n.get_str_value()),
-            "created_at_date_time": lambda n : setattr(self, 'created_at_date_time', n.get_datetime_value()),
-            "easy_id": lambda n : setattr(self, 'easy_id', n.get_str_value()),
-            "file_names": lambda n : setattr(self, 'file_names', n.get_collection_of_primitive_values(str)),
+            "clientVersion": lambda n : setattr(self, 'client_version', n.get_str_value()),
+            "createdAtDateTime": lambda n : setattr(self, 'created_at_date_time', n.get_datetime_value()),
+            "easyId": lambda n : setattr(self, 'easy_id', n.get_str_value()),
+            "fileNames": lambda n : setattr(self, 'file_names', n.get_collection_of_primitive_values(str)),
             "locale": lambda n : setattr(self, 'locale', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "platform": lambda n : setattr(self, 'platform', n.get_str_value()),
-            "powerlift_id": lambda n : setattr(self, 'powerlift_id', n.get_object_value(Guid)),
+            "powerliftId": lambda n : setattr(self, 'powerlift_id', n.get_object_value(Guid)),
         }
         return fields
     
@@ -196,7 +196,7 @@ class PowerliftIncidentMetadata(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -230,7 +230,7 @@ class PowerliftIncidentMetadata(AdditionalDataHolder, Parsable):
         """
         Sets the powerliftId property value. The unique identifier of the app diagnostic. Example: 8520467a-49a9-44a4-8447-8dfb8bec6726
         Args:
-            value: Value to set for the powerliftId property.
+            value: Value to set for the powerlift_id property.
         """
         self._powerlift_id = value
     

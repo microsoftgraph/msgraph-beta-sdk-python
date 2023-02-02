@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-publish_request_builder = lazy_import('msgraph.generated.admin.edge.internet_explorer_mode.site_lists.item.publish.publish_request_builder')
+publish_request_builder = lazy_import('msgraph.generated.admin.edge.internet_explorer_mode.site_lists.item.microsoft_graph_publish.publish_request_builder')
 shared_cookies_request_builder = lazy_import('msgraph.generated.admin.edge.internet_explorer_mode.site_lists.item.shared_cookies.shared_cookies_request_builder')
 browser_shared_cookie_item_request_builder = lazy_import('msgraph.generated.admin.edge.internet_explorer_mode.site_lists.item.shared_cookies.item.browser_shared_cookie_item_request_builder')
 sites_request_builder = lazy_import('msgraph.generated.admin.edge.internet_explorer_mode.site_lists.item.sites.sites_request_builder')
@@ -23,7 +23,7 @@ class BrowserSiteListItemRequestBuilder():
     Provides operations to manage the siteLists property of the microsoft.graph.internetExplorerMode entity.
     """
     @property
-    def publish(self) -> publish_request_builder.PublishRequestBuilder:
+    def microsoft_graph_publish(self) -> publish_request_builder.PublishRequestBuilder:
         """
         Provides operations to call the publish method.
         """
@@ -43,10 +43,11 @@ class BrowserSiteListItemRequestBuilder():
         """
         return sites_request_builder.SitesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, browser_site_list_id: Optional[str] = None) -> None:
         """
         Instantiates a new BrowserSiteListItemRequestBuilder and sets the default values.
         Args:
+            browserSiteListId: key: id of browserSiteList
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -58,15 +59,15 @@ class BrowserSiteListItemRequestBuilder():
         self.url_template: str = "{+baseurl}/admin/edge/internetExplorerMode/siteLists/{browserSiteList%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["browserSiteList%2Did"] = browserSiteListId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[BrowserSiteListItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[BrowserSiteListItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property siteLists for admin
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -77,14 +78,13 @@ class BrowserSiteListItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[BrowserSiteListItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[browser_site_list.BrowserSiteList]:
+    async def get(self,request_configuration: Optional[BrowserSiteListItemRequestBuilderGetRequestConfiguration] = None) -> Optional[browser_site_list.BrowserSiteList]:
         """
         A collection of site lists to support Internet Explorer mode.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[browser_site_list.BrowserSiteList]
         """
         request_info = self.to_get_request_information(
@@ -96,15 +96,14 @@ class BrowserSiteListItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, browser_site_list.BrowserSiteList, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, browser_site_list.BrowserSiteList, error_mapping)
     
-    async def patch(self,body: Optional[browser_site_list.BrowserSiteList] = None, request_configuration: Optional[BrowserSiteListItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[browser_site_list.BrowserSiteList]:
+    async def patch(self,body: Optional[browser_site_list.BrowserSiteList] = None, request_configuration: Optional[BrowserSiteListItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[browser_site_list.BrowserSiteList]:
         """
         Update the navigation property siteLists in admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[browser_site_list.BrowserSiteList]
         """
         if body is None:
@@ -118,7 +117,7 @@ class BrowserSiteListItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, browser_site_list.BrowserSiteList, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, browser_site_list.BrowserSiteList, error_mapping)
     
     def shared_cookies_by_id(self,id: str) -> browser_shared_cookie_item_request_builder.BrowserSharedCookieItemRequestBuilder:
         """

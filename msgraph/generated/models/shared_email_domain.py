@@ -34,7 +34,7 @@ class SharedEmailDomain(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "provisioning_status": lambda n : setattr(self, 'provisioning_status', n.get_str_value()),
+            "provisioningStatus": lambda n : setattr(self, 'provisioning_status', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -53,7 +53,7 @@ class SharedEmailDomain(entity.Entity):
         """
         Sets the provisioningStatus property value. The provisioningStatus property
         Args:
-            value: Value to set for the provisioningStatus property.
+            value: Value to set for the provisioning_status property.
         """
         self._provisioning_status = value
     

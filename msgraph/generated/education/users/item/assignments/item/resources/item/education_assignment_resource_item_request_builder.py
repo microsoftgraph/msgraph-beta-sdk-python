@@ -17,10 +17,11 @@ class EducationAssignmentResourceItemRequestBuilder():
     """
     Provides operations to manage the resources property of the microsoft.graph.educationAssignment entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, education_assignment_resource_id: Optional[str] = None) -> None:
         """
         Instantiates a new EducationAssignmentResourceItemRequestBuilder and sets the default values.
         Args:
+            educationAssignmentResourceId: key: id of educationAssignmentResource
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class EducationAssignmentResourceItemRequestBuilder():
         self.url_template: str = "{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/resources/{educationAssignmentResource%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["educationAssignmentResource%2Did"] = educationAssignmentResourceId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[EducationAssignmentResourceItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[EducationAssignmentResourceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property resources for education
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class EducationAssignmentResourceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[EducationAssignmentResourceItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[education_assignment_resource.EducationAssignmentResource]:
+    async def get(self,request_configuration: Optional[EducationAssignmentResourceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[education_assignment_resource.EducationAssignmentResource]:
         """
         Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[education_assignment_resource.EducationAssignmentResource]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class EducationAssignmentResourceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, education_assignment_resource.EducationAssignmentResource, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, education_assignment_resource.EducationAssignmentResource, error_mapping)
     
-    async def patch(self,body: Optional[education_assignment_resource.EducationAssignmentResource] = None, request_configuration: Optional[EducationAssignmentResourceItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[education_assignment_resource.EducationAssignmentResource]:
+    async def patch(self,body: Optional[education_assignment_resource.EducationAssignmentResource] = None, request_configuration: Optional[EducationAssignmentResourceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[education_assignment_resource.EducationAssignmentResource]:
         """
         Update the navigation property resources in education
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[education_assignment_resource.EducationAssignmentResource]
         """
         if body is None:
@@ -92,7 +91,7 @@ class EducationAssignmentResourceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, education_assignment_resource.EducationAssignmentResource, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, education_assignment_resource.EducationAssignmentResource, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[EducationAssignmentResourceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

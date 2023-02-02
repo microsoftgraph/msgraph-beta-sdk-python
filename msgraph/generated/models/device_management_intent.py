@@ -15,9 +15,6 @@ device_management_setting_instance = lazy_import('msgraph.generated.models.devic
 entity = lazy_import('msgraph.generated.models.entity')
 
 class DeviceManagementIntent(entity.Entity):
-    """
-    Entity that represents an intent to apply settings to a device
-    """
     @property
     def assignments(self,) -> Optional[List[device_management_intent_assignment.DeviceManagementIntentAssignment]]:
         """
@@ -54,7 +51,7 @@ class DeviceManagementIntent(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceManagementIntent and sets the default values.
+        Instantiates a new DeviceManagementIntent and sets the default values.
         """
         super().__init__()
         # Collection of assignments
@@ -65,10 +62,10 @@ class DeviceManagementIntent(entity.Entity):
         self._description: Optional[str] = None
         # Collection of settings and their states and counts of devices that belong to corresponding state for all settings within the intent
         self._device_setting_state_summaries: Optional[List[device_management_intent_device_setting_state_summary.DeviceManagementIntentDeviceSettingStateSummary]] = None
-        # Collection of states of all devices that the intent is applied to
-        self._device_states: Optional[List[device_management_intent_device_state.DeviceManagementIntentDeviceState]] = None
         # A summary of device states and counts of devices that belong to corresponding state for all devices that the intent is applied to
         self._device_state_summary: Optional[device_management_intent_device_state_summary.DeviceManagementIntentDeviceStateSummary] = None
+        # Collection of states of all devices that the intent is applied to
+        self._device_states: Optional[List[device_management_intent_device_state.DeviceManagementIntentDeviceState]] = None
         # The user given display name
         self._display_name: Optional[str] = None
         # Signifies whether or not the intent is assigned to users
@@ -83,10 +80,10 @@ class DeviceManagementIntent(entity.Entity):
         self._settings: Optional[List[device_management_setting_instance.DeviceManagementSettingInstance]] = None
         # The ID of the template this intent was created from (if any)
         self._template_id: Optional[str] = None
-        # Collection of states of all users that the intent is applied to
-        self._user_states: Optional[List[device_management_intent_user_state.DeviceManagementIntentUserState]] = None
         # A summary of user states and counts of users that belong to corresponding state for all users that the intent is applied to
         self._user_state_summary: Optional[device_management_intent_user_state_summary.DeviceManagementIntentUserStateSummary] = None
+        # Collection of states of all users that the intent is applied to
+        self._user_states: Optional[List[device_management_intent_user_state.DeviceManagementIntentUserState]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementIntent:
@@ -130,26 +127,9 @@ class DeviceManagementIntent(entity.Entity):
         """
         Sets the deviceSettingStateSummaries property value. Collection of settings and their states and counts of devices that belong to corresponding state for all settings within the intent
         Args:
-            value: Value to set for the deviceSettingStateSummaries property.
+            value: Value to set for the device_setting_state_summaries property.
         """
         self._device_setting_state_summaries = value
-    
-    @property
-    def device_states(self,) -> Optional[List[device_management_intent_device_state.DeviceManagementIntentDeviceState]]:
-        """
-        Gets the deviceStates property value. Collection of states of all devices that the intent is applied to
-        Returns: Optional[List[device_management_intent_device_state.DeviceManagementIntentDeviceState]]
-        """
-        return self._device_states
-    
-    @device_states.setter
-    def device_states(self,value: Optional[List[device_management_intent_device_state.DeviceManagementIntentDeviceState]] = None) -> None:
-        """
-        Sets the deviceStates property value. Collection of states of all devices that the intent is applied to
-        Args:
-            value: Value to set for the deviceStates property.
-        """
-        self._device_states = value
     
     @property
     def device_state_summary(self,) -> Optional[device_management_intent_device_state_summary.DeviceManagementIntentDeviceStateSummary]:
@@ -164,9 +144,26 @@ class DeviceManagementIntent(entity.Entity):
         """
         Sets the deviceStateSummary property value. A summary of device states and counts of devices that belong to corresponding state for all devices that the intent is applied to
         Args:
-            value: Value to set for the deviceStateSummary property.
+            value: Value to set for the device_state_summary property.
         """
         self._device_state_summary = value
+    
+    @property
+    def device_states(self,) -> Optional[List[device_management_intent_device_state.DeviceManagementIntentDeviceState]]:
+        """
+        Gets the deviceStates property value. Collection of states of all devices that the intent is applied to
+        Returns: Optional[List[device_management_intent_device_state.DeviceManagementIntentDeviceState]]
+        """
+        return self._device_states
+    
+    @device_states.setter
+    def device_states(self,value: Optional[List[device_management_intent_device_state.DeviceManagementIntentDeviceState]] = None) -> None:
+        """
+        Sets the deviceStates property value. Collection of states of all devices that the intent is applied to
+        Args:
+            value: Value to set for the device_states property.
+        """
+        self._device_states = value
     
     @property
     def display_name(self,) -> Optional[str]:
@@ -181,7 +178,7 @@ class DeviceManagementIntent(entity.Entity):
         """
         Sets the displayName property value. The user given display name
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -194,17 +191,17 @@ class DeviceManagementIntent(entity.Entity):
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(device_management_intent_assignment.DeviceManagementIntentAssignment)),
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_object_values(device_management_intent_setting_category.DeviceManagementIntentSettingCategory)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "device_setting_state_summaries": lambda n : setattr(self, 'device_setting_state_summaries', n.get_collection_of_object_values(device_management_intent_device_setting_state_summary.DeviceManagementIntentDeviceSettingStateSummary)),
-            "device_states": lambda n : setattr(self, 'device_states', n.get_collection_of_object_values(device_management_intent_device_state.DeviceManagementIntentDeviceState)),
-            "device_state_summary": lambda n : setattr(self, 'device_state_summary', n.get_object_value(device_management_intent_device_state_summary.DeviceManagementIntentDeviceStateSummary)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "is_assigned": lambda n : setattr(self, 'is_assigned', n.get_bool_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "deviceSettingStateSummaries": lambda n : setattr(self, 'device_setting_state_summaries', n.get_collection_of_object_values(device_management_intent_device_setting_state_summary.DeviceManagementIntentDeviceSettingStateSummary)),
+            "deviceStates": lambda n : setattr(self, 'device_states', n.get_collection_of_object_values(device_management_intent_device_state.DeviceManagementIntentDeviceState)),
+            "deviceStateSummary": lambda n : setattr(self, 'device_state_summary', n.get_object_value(device_management_intent_device_state_summary.DeviceManagementIntentDeviceStateSummary)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "isAssigned": lambda n : setattr(self, 'is_assigned', n.get_bool_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
             "settings": lambda n : setattr(self, 'settings', n.get_collection_of_object_values(device_management_setting_instance.DeviceManagementSettingInstance)),
-            "template_id": lambda n : setattr(self, 'template_id', n.get_str_value()),
-            "user_states": lambda n : setattr(self, 'user_states', n.get_collection_of_object_values(device_management_intent_user_state.DeviceManagementIntentUserState)),
-            "user_state_summary": lambda n : setattr(self, 'user_state_summary', n.get_object_value(device_management_intent_user_state_summary.DeviceManagementIntentUserStateSummary)),
+            "templateId": lambda n : setattr(self, 'template_id', n.get_str_value()),
+            "userStates": lambda n : setattr(self, 'user_states', n.get_collection_of_object_values(device_management_intent_user_state.DeviceManagementIntentUserState)),
+            "userStateSummary": lambda n : setattr(self, 'user_state_summary', n.get_object_value(device_management_intent_user_state_summary.DeviceManagementIntentUserStateSummary)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -223,7 +220,7 @@ class DeviceManagementIntent(entity.Entity):
         """
         Sets the isAssigned property value. Signifies whether or not the intent is assigned to users
         Args:
-            value: Value to set for the isAssigned property.
+            value: Value to set for the is_assigned property.
         """
         self._is_assigned = value
     
@@ -240,7 +237,7 @@ class DeviceManagementIntent(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. When the intent was last modified
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -257,7 +254,7 @@ class DeviceManagementIntent(entity.Entity):
         """
         Sets the roleScopeTagIds property value. List of Scope Tags for this Entity instance.
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     
@@ -315,26 +312,9 @@ class DeviceManagementIntent(entity.Entity):
         """
         Sets the templateId property value. The ID of the template this intent was created from (if any)
         Args:
-            value: Value to set for the templateId property.
+            value: Value to set for the template_id property.
         """
         self._template_id = value
-    
-    @property
-    def user_states(self,) -> Optional[List[device_management_intent_user_state.DeviceManagementIntentUserState]]:
-        """
-        Gets the userStates property value. Collection of states of all users that the intent is applied to
-        Returns: Optional[List[device_management_intent_user_state.DeviceManagementIntentUserState]]
-        """
-        return self._user_states
-    
-    @user_states.setter
-    def user_states(self,value: Optional[List[device_management_intent_user_state.DeviceManagementIntentUserState]] = None) -> None:
-        """
-        Sets the userStates property value. Collection of states of all users that the intent is applied to
-        Args:
-            value: Value to set for the userStates property.
-        """
-        self._user_states = value
     
     @property
     def user_state_summary(self,) -> Optional[device_management_intent_user_state_summary.DeviceManagementIntentUserStateSummary]:
@@ -349,8 +329,25 @@ class DeviceManagementIntent(entity.Entity):
         """
         Sets the userStateSummary property value. A summary of user states and counts of users that belong to corresponding state for all users that the intent is applied to
         Args:
-            value: Value to set for the userStateSummary property.
+            value: Value to set for the user_state_summary property.
         """
         self._user_state_summary = value
+    
+    @property
+    def user_states(self,) -> Optional[List[device_management_intent_user_state.DeviceManagementIntentUserState]]:
+        """
+        Gets the userStates property value. Collection of states of all users that the intent is applied to
+        Returns: Optional[List[device_management_intent_user_state.DeviceManagementIntentUserState]]
+        """
+        return self._user_states
+    
+    @user_states.setter
+    def user_states(self,value: Optional[List[device_management_intent_user_state.DeviceManagementIntentUserState]] = None) -> None:
+        """
+        Sets the userStates property value. Collection of states of all users that the intent is applied to
+        Args:
+            value: Value to set for the user_states property.
+        """
+        self._user_states = value
     
 

@@ -58,7 +58,7 @@ class MembershipOutlierInsight(governance_insight.GovernanceInsight):
         """
         Sets the containerId property value. Indicates the identifier of the container, for example, a group ID.
         Args:
-            value: Value to set for the containerId property.
+            value: Value to set for the container_id property.
         """
         self._container_id = value
     
@@ -81,11 +81,11 @@ class MembershipOutlierInsight(governance_insight.GovernanceInsight):
         """
         fields = {
             "container": lambda n : setattr(self, 'container', n.get_object_value(directory_object.DirectoryObject)),
-            "container_id": lambda n : setattr(self, 'container_id', n.get_str_value()),
+            "containerId": lambda n : setattr(self, 'container_id', n.get_str_value()),
             "member": lambda n : setattr(self, 'member', n.get_object_value(directory_object.DirectoryObject)),
-            "member_id": lambda n : setattr(self, 'member_id', n.get_str_value()),
-            "outlier_container_type": lambda n : setattr(self, 'outlier_container_type', n.get_enum_value(outlier_container_type.OutlierContainerType)),
-            "outlier_member_type": lambda n : setattr(self, 'outlier_member_type', n.get_enum_value(outlier_member_type.OutlierMemberType)),
+            "memberId": lambda n : setattr(self, 'member_id', n.get_str_value()),
+            "outlierContainerType": lambda n : setattr(self, 'outlier_container_type', n.get_enum_value(outlier_container_type.OutlierContainerType)),
+            "outlierMemberType": lambda n : setattr(self, 'outlier_member_type', n.get_enum_value(outlier_member_type.OutlierMemberType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -121,7 +121,7 @@ class MembershipOutlierInsight(governance_insight.GovernanceInsight):
         """
         Sets the memberId property value. Indicates the identifier of the user.
         Args:
-            value: Value to set for the memberId property.
+            value: Value to set for the member_id property.
         """
         self._member_id = value
     
@@ -138,7 +138,7 @@ class MembershipOutlierInsight(governance_insight.GovernanceInsight):
         """
         Sets the outlierContainerType property value. The outlierContainerType property
         Args:
-            value: Value to set for the outlierContainerType property.
+            value: Value to set for the outlier_container_type property.
         """
         self._outlier_container_type = value
     
@@ -155,7 +155,7 @@ class MembershipOutlierInsight(governance_insight.GovernanceInsight):
         """
         Sets the outlierMemberType property value. The outlierMemberType property
         Args:
-            value: Value to set for the outlierMemberType property.
+            value: Value to set for the outlier_member_type property.
         """
         self._outlier_member_type = value
     

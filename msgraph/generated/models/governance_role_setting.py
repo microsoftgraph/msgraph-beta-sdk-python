@@ -23,7 +23,7 @@ class GovernanceRoleSetting(entity.Entity):
         """
         Sets the adminEligibleSettings property value. The rule settings that are evaluated when an administrator tries to add an eligible role assignment.
         Args:
-            value: Value to set for the adminEligibleSettings property.
+            value: Value to set for the admin_eligible_settings property.
         """
         self._admin_eligible_settings = value
     
@@ -40,7 +40,7 @@ class GovernanceRoleSetting(entity.Entity):
         """
         Sets the adminMemberSettings property value. The rule settings that are evaluated when an administrator tries to add a direct member role assignment.
         Args:
-            value: Value to set for the adminMemberSettings property.
+            value: Value to set for the admin_member_settings property.
         """
         self._admin_member_settings = value
     
@@ -92,17 +92,17 @@ class GovernanceRoleSetting(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "admin_eligible_settings": lambda n : setattr(self, 'admin_eligible_settings', n.get_collection_of_object_values(governance_rule_setting.GovernanceRuleSetting)),
-            "admin_member_settings": lambda n : setattr(self, 'admin_member_settings', n.get_collection_of_object_values(governance_rule_setting.GovernanceRuleSetting)),
-            "is_default": lambda n : setattr(self, 'is_default', n.get_bool_value()),
-            "last_updated_by": lambda n : setattr(self, 'last_updated_by', n.get_str_value()),
-            "last_updated_date_time": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
+            "adminEligibleSettings": lambda n : setattr(self, 'admin_eligible_settings', n.get_collection_of_object_values(governance_rule_setting.GovernanceRuleSetting)),
+            "adminMemberSettings": lambda n : setattr(self, 'admin_member_settings', n.get_collection_of_object_values(governance_rule_setting.GovernanceRuleSetting)),
+            "isDefault": lambda n : setattr(self, 'is_default', n.get_bool_value()),
+            "lastUpdatedBy": lambda n : setattr(self, 'last_updated_by', n.get_str_value()),
+            "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
             "resource": lambda n : setattr(self, 'resource', n.get_object_value(governance_resource.GovernanceResource)),
-            "resource_id": lambda n : setattr(self, 'resource_id', n.get_str_value()),
-            "role_definition": lambda n : setattr(self, 'role_definition', n.get_object_value(governance_role_definition.GovernanceRoleDefinition)),
-            "role_definition_id": lambda n : setattr(self, 'role_definition_id', n.get_str_value()),
-            "user_eligible_settings": lambda n : setattr(self, 'user_eligible_settings', n.get_collection_of_object_values(governance_rule_setting.GovernanceRuleSetting)),
-            "user_member_settings": lambda n : setattr(self, 'user_member_settings', n.get_collection_of_object_values(governance_rule_setting.GovernanceRuleSetting)),
+            "resourceId": lambda n : setattr(self, 'resource_id', n.get_str_value()),
+            "roleDefinition": lambda n : setattr(self, 'role_definition', n.get_object_value(governance_role_definition.GovernanceRoleDefinition)),
+            "roleDefinitionId": lambda n : setattr(self, 'role_definition_id', n.get_str_value()),
+            "userEligibleSettings": lambda n : setattr(self, 'user_eligible_settings', n.get_collection_of_object_values(governance_rule_setting.GovernanceRuleSetting)),
+            "userMemberSettings": lambda n : setattr(self, 'user_member_settings', n.get_collection_of_object_values(governance_rule_setting.GovernanceRuleSetting)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -121,7 +121,7 @@ class GovernanceRoleSetting(entity.Entity):
         """
         Sets the isDefault property value. Read-only. Indicate if the roleSetting is a default roleSetting
         Args:
-            value: Value to set for the isDefault property.
+            value: Value to set for the is_default property.
         """
         self._is_default = value
     
@@ -138,7 +138,7 @@ class GovernanceRoleSetting(entity.Entity):
         """
         Sets the lastUpdatedBy property value. Read-only. The display name of the administrator who last updated the roleSetting.
         Args:
-            value: Value to set for the lastUpdatedBy property.
+            value: Value to set for the last_updated_by property.
         """
         self._last_updated_by = value
     
@@ -155,7 +155,7 @@ class GovernanceRoleSetting(entity.Entity):
         """
         Sets the lastUpdatedDateTime property value. Read-only. The time when the role setting was last updated. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the lastUpdatedDateTime property.
+            value: Value to set for the last_updated_date_time property.
         """
         self._last_updated_date_time = value
     
@@ -189,7 +189,7 @@ class GovernanceRoleSetting(entity.Entity):
         """
         Sets the resourceId property value. Required. The id of the resource that the role setting is associated with.
         Args:
-            value: Value to set for the resourceId property.
+            value: Value to set for the resource_id property.
         """
         self._resource_id = value
     
@@ -206,7 +206,7 @@ class GovernanceRoleSetting(entity.Entity):
         """
         Sets the roleDefinition property value. Read-only. The role definition that is enforced with this role setting.
         Args:
-            value: Value to set for the roleDefinition property.
+            value: Value to set for the role_definition property.
         """
         self._role_definition = value
     
@@ -223,7 +223,7 @@ class GovernanceRoleSetting(entity.Entity):
         """
         Sets the roleDefinitionId property value. Required. The id of the role definition that the role setting is associated with.
         Args:
-            value: Value to set for the roleDefinitionId property.
+            value: Value to set for the role_definition_id property.
         """
         self._role_definition_id = value
     
@@ -261,7 +261,7 @@ class GovernanceRoleSetting(entity.Entity):
         """
         Sets the userEligibleSettings property value. The rule settings that are evaluated when a user tries to add an eligible role assignment. The setting is not supported for now.
         Args:
-            value: Value to set for the userEligibleSettings property.
+            value: Value to set for the user_eligible_settings property.
         """
         self._user_eligible_settings = value
     
@@ -278,7 +278,7 @@ class GovernanceRoleSetting(entity.Entity):
         """
         Sets the userMemberSettings property value. The rule settings that are evaluated when a user tries to activate his role assignment.
         Args:
-            value: Value to set for the userMemberSettings property.
+            value: Value to set for the user_member_settings property.
         """
         self._user_member_settings = value
     

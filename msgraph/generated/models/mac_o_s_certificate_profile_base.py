@@ -22,7 +22,7 @@ class MacOSCertificateProfileBase(device_configuration.DeviceConfiguration):
         """
         Sets the certificateValidityPeriodScale property value. Certificate Validity Period Options.
         Args:
-            value: Value to set for the certificateValidityPeriodScale property.
+            value: Value to set for the certificate_validity_period_scale property.
         """
         self._certificate_validity_period_scale = value
     
@@ -39,7 +39,7 @@ class MacOSCertificateProfileBase(device_configuration.DeviceConfiguration):
         """
         Sets the certificateValidityPeriodValue property value. Value for the Certificate Validity Period.
         Args:
-            value: Value to set for the certificateValidityPeriodValue property.
+            value: Value to set for the certificate_validity_period_value property.
         """
         self._certificate_validity_period_value = value
     
@@ -78,11 +78,11 @@ class MacOSCertificateProfileBase(device_configuration.DeviceConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "certificate_validity_period_scale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(certificate_validity_period_scale.CertificateValidityPeriodScale)),
-            "certificate_validity_period_value": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),
-            "renewal_threshold_percentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
-            "subject_alternative_name_type": lambda n : setattr(self, 'subject_alternative_name_type', n.get_enum_value(subject_alternative_name_type.SubjectAlternativeNameType)),
-            "subject_name_format": lambda n : setattr(self, 'subject_name_format', n.get_enum_value(apple_subject_name_format.AppleSubjectNameFormat)),
+            "certificateValidityPeriodScale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(certificate_validity_period_scale.CertificateValidityPeriodScale)),
+            "certificateValidityPeriodValue": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),
+            "renewalThresholdPercentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
+            "subjectAlternativeNameType": lambda n : setattr(self, 'subject_alternative_name_type', n.get_enum_value(subject_alternative_name_type.SubjectAlternativeNameType)),
+            "subjectNameFormat": lambda n : setattr(self, 'subject_name_format', n.get_enum_value(apple_subject_name_format.AppleSubjectNameFormat)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -101,7 +101,7 @@ class MacOSCertificateProfileBase(device_configuration.DeviceConfiguration):
         """
         Sets the renewalThresholdPercentage property value. Certificate renewal threshold percentage.
         Args:
-            value: Value to set for the renewalThresholdPercentage property.
+            value: Value to set for the renewal_threshold_percentage property.
         """
         self._renewal_threshold_percentage = value
     
@@ -133,7 +133,7 @@ class MacOSCertificateProfileBase(device_configuration.DeviceConfiguration):
         """
         Sets the subjectAlternativeNameType property value. Certificate Subject Alternative Name Type. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
         Args:
-            value: Value to set for the subjectAlternativeNameType property.
+            value: Value to set for the subject_alternative_name_type property.
         """
         self._subject_alternative_name_type = value
     
@@ -150,7 +150,7 @@ class MacOSCertificateProfileBase(device_configuration.DeviceConfiguration):
         """
         Sets the subjectNameFormat property value. Subject Name Format Options for Apple devices.
         Args:
-            value: Value to set for the subjectNameFormat property.
+            value: Value to set for the subject_name_format property.
         """
         self._subject_name_format = value
     

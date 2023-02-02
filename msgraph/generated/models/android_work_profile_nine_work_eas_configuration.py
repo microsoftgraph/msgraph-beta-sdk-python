@@ -37,9 +37,9 @@ class AndroidWorkProfileNineWorkEasConfiguration(android_work_profile_eas_email_
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "sync_calendar": lambda n : setattr(self, 'sync_calendar', n.get_bool_value()),
-            "sync_contacts": lambda n : setattr(self, 'sync_contacts', n.get_bool_value()),
-            "sync_tasks": lambda n : setattr(self, 'sync_tasks', n.get_bool_value()),
+            "syncCalendar": lambda n : setattr(self, 'sync_calendar', n.get_bool_value()),
+            "syncContacts": lambda n : setattr(self, 'sync_contacts', n.get_bool_value()),
+            "syncTasks": lambda n : setattr(self, 'sync_tasks', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -71,7 +71,7 @@ class AndroidWorkProfileNineWorkEasConfiguration(android_work_profile_eas_email_
         """
         Sets the syncCalendar property value. Toggles syncing the calendar. If set to false the calendar is turned off on the device.
         Args:
-            value: Value to set for the syncCalendar property.
+            value: Value to set for the sync_calendar property.
         """
         self._sync_calendar = value
     
@@ -88,7 +88,7 @@ class AndroidWorkProfileNineWorkEasConfiguration(android_work_profile_eas_email_
         """
         Sets the syncContacts property value. Toggles syncing contacts. If set to false contacts are turned off on the device.
         Args:
-            value: Value to set for the syncContacts property.
+            value: Value to set for the sync_contacts property.
         """
         self._sync_contacts = value
     
@@ -105,7 +105,7 @@ class AndroidWorkProfileNineWorkEasConfiguration(android_work_profile_eas_email_
         """
         Sets the syncTasks property value. Toggles syncing tasks. If set to false tasks are turned off on the device.
         Args:
-            value: Value to set for the syncTasks property.
+            value: Value to set for the sync_tasks property.
         """
         self._sync_tasks = value
     

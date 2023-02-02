@@ -14,7 +14,7 @@ authentication_strength_policy = lazy_import('msgraph.generated.models.authentic
 authentication_strength_policy_collection_response = lazy_import('msgraph.generated.models.authentication_strength_policy_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.policies.authentication_strength_policies.count.count_request_builder')
-find_by_method_mode_with_authentication_method_modes_request_builder = lazy_import('msgraph.generated.policies.authentication_strength_policies.find_by_method_mode_with_authentication_method_modes.find_by_method_mode_with_authentication_method_modes_request_builder')
+find_by_method_mode_with_authentication_method_modes_request_builder = lazy_import('msgraph.generated.policies.authentication_strength_policies.microsoft_graph_find_by_method_mode_with_authentication_method_modes.find_by_method_mode_with_authentication_method_modes_request_builder')
 
 class AuthenticationStrengthPoliciesRequestBuilder():
     """
@@ -45,23 +45,11 @@ class AuthenticationStrengthPoliciesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def find_by_method_mode_with_authentication_method_modes(self,authentication_method_modes: Optional[str] = None) -> find_by_method_mode_with_authentication_method_modes_request_builder.FindByMethodModeWithAuthenticationMethodModesRequestBuilder:
-        """
-        Provides operations to call the findByMethodMode method.
-        Args:
-            authenticationMethodModes: Usage: authenticationMethodModes={authenticationMethodModes}
-        Returns: find_by_method_mode_with_authentication_method_modes_request_builder.FindByMethodModeWithAuthenticationMethodModesRequestBuilder
-        """
-        if authentication_method_modes is None:
-            raise Exception("authentication_method_modes cannot be undefined")
-        return find_by_method_mode_with_authentication_method_modes_request_builder.FindByMethodModeWithAuthenticationMethodModesRequestBuilder(self.request_adapter, self.path_parameters, authenticationMethodModes)
-    
-    async def get(self,request_configuration: Optional[AuthenticationStrengthPoliciesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_strength_policy_collection_response.AuthenticationStrengthPolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[AuthenticationStrengthPoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication_strength_policy_collection_response.AuthenticationStrengthPolicyCollectionResponse]:
         """
         Get a list of the authenticationStrengthPolicy objects and their properties. This API returns both built-in and custom policies.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_strength_policy_collection_response.AuthenticationStrengthPolicyCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -73,15 +61,25 @@ class AuthenticationStrengthPoliciesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_strength_policy_collection_response.AuthenticationStrengthPolicyCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_strength_policy_collection_response.AuthenticationStrengthPolicyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[authentication_strength_policy.AuthenticationStrengthPolicy] = None, request_configuration: Optional[AuthenticationStrengthPoliciesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_strength_policy.AuthenticationStrengthPolicy]:
+    def microsoft_graph_find_by_method_mode_with_authentication_method_modes(self,authentication_method_modes: Optional[str] = None) -> find_by_method_mode_with_authentication_method_modes_request_builder.FindByMethodModeWithAuthenticationMethodModesRequestBuilder:
+        """
+        Provides operations to call the findByMethodMode method.
+        Args:
+            authenticationMethodModes: Usage: authenticationMethodModes={authenticationMethodModes}
+        Returns: find_by_method_mode_with_authentication_method_modes_request_builder.FindByMethodModeWithAuthenticationMethodModesRequestBuilder
+        """
+        if authentication_method_modes is None:
+            raise Exception("authentication_method_modes cannot be undefined")
+        return find_by_method_mode_with_authentication_method_modes_request_builder.FindByMethodModeWithAuthenticationMethodModesRequestBuilder(self.request_adapter, self.path_parameters, authenticationMethodModes)
+    
+    async def post(self,body: Optional[authentication_strength_policy.AuthenticationStrengthPolicy] = None, request_configuration: Optional[AuthenticationStrengthPoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[authentication_strength_policy.AuthenticationStrengthPolicy]:
         """
         Create a new custom authenticationStrengthPolicy object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_strength_policy.AuthenticationStrengthPolicy]
         """
         if body is None:
@@ -95,7 +93,7 @@ class AuthenticationStrengthPoliciesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_strength_policy.AuthenticationStrengthPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_strength_policy.AuthenticationStrengthPolicy, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AuthenticationStrengthPoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

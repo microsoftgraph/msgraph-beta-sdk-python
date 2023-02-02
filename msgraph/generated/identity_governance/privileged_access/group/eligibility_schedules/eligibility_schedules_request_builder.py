@@ -11,7 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.group.eligibility_schedules.count.count_request_builder')
-filter_by_current_user_with_on_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.group.eligibility_schedules.filter_by_current_user_with_on.filter_by_current_user_with_on_request_builder')
+filter_by_current_user_with_on_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.group.eligibility_schedules.microsoft_graph_filter_by_current_user_with_on.filter_by_current_user_with_on_request_builder')
 privileged_access_group_eligibility_schedule = lazy_import('msgraph.generated.models.privileged_access_group_eligibility_schedule')
 privileged_access_group_eligibility_schedule_collection_response = lazy_import('msgraph.generated.models.privileged_access_group_eligibility_schedule_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -45,23 +45,11 @@ class EligibilitySchedulesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
-        """
-        Provides operations to call the filterByCurrentUser method.
-        Args:
-            on: Usage: on='{on}'
-        Returns: filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder
-        """
-        if on is None:
-            raise Exception("on cannot be undefined")
-        return filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
-    
-    async def get(self,request_configuration: Optional[EligibilitySchedulesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_access_group_eligibility_schedule_collection_response.PrivilegedAccessGroupEligibilityScheduleCollectionResponse]:
+    async def get(self,request_configuration: Optional[EligibilitySchedulesRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access_group_eligibility_schedule_collection_response.PrivilegedAccessGroupEligibilityScheduleCollectionResponse]:
         """
         Get eligibilitySchedules from identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_access_group_eligibility_schedule_collection_response.PrivilegedAccessGroupEligibilityScheduleCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -73,15 +61,25 @@ class EligibilitySchedulesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_access_group_eligibility_schedule_collection_response.PrivilegedAccessGroupEligibilityScheduleCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_access_group_eligibility_schedule_collection_response.PrivilegedAccessGroupEligibilityScheduleCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule] = None, request_configuration: Optional[EligibilitySchedulesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule]:
+    def microsoft_graph_filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
+        """
+        Provides operations to call the filterByCurrentUser method.
+        Args:
+            on: Usage: on='{on}'
+        Returns: filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder
+        """
+        if on is None:
+            raise Exception("on cannot be undefined")
+        return filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
+    
+    async def post(self,body: Optional[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule] = None, request_configuration: Optional[EligibilitySchedulesRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule]:
         """
         Create new navigation property to eligibilitySchedules for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule]
         """
         if body is None:
@@ -95,7 +93,7 @@ class EligibilitySchedulesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[EligibilitySchedulesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

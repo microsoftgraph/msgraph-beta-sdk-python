@@ -43,7 +43,7 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, Parsable):
         """
         Sets the complianceState property value. The complianceState property
         Args:
-            value: Value to set for the complianceState property.
+            value: Value to set for the compliance_state property.
         """
         self._compliance_state = value
     
@@ -104,7 +104,7 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, Parsable):
         """
         Sets the deviceCompliancePolicyId property value. Device Compliance PolicyId
         Args:
-            value: Value to set for the deviceCompliancePolicyId property.
+            value: Value to set for the device_compliance_policy_id property.
         """
         self._device_compliance_policy_id = value
     
@@ -121,7 +121,7 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, Parsable):
         """
         Sets the deviceCompliancePolicyName property value. Device Compliance Policy Name
         Args:
-            value: Value to set for the deviceCompliancePolicyName property.
+            value: Value to set for the device_compliance_policy_name property.
         """
         self._device_compliance_policy_name = value
     
@@ -138,7 +138,7 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, Parsable):
         """
         Sets the deviceType property value. Device type.
         Args:
-            value: Value to set for the deviceType property.
+            value: Value to set for the device_type property.
         """
         self._device_type = value
     
@@ -148,18 +148,18 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "compliance_state": lambda n : setattr(self, 'compliance_state', n.get_enum_value(compliance_status.ComplianceStatus)),
-            "device_compliance_policy_id": lambda n : setattr(self, 'device_compliance_policy_id', n.get_str_value()),
-            "device_compliance_policy_name": lambda n : setattr(self, 'device_compliance_policy_name', n.get_str_value()),
-            "device_type": lambda n : setattr(self, 'device_type', n.get_enum_value(device_type.DeviceType)),
+            "complianceState": lambda n : setattr(self, 'compliance_state', n.get_enum_value(compliance_status.ComplianceStatus)),
+            "deviceCompliancePolicyId": lambda n : setattr(self, 'device_compliance_policy_id', n.get_str_value()),
+            "deviceCompliancePolicyName": lambda n : setattr(self, 'device_compliance_policy_name', n.get_str_value()),
+            "deviceType": lambda n : setattr(self, 'device_type', n.get_enum_value(device_type.DeviceType)),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
-            "managed_device_id": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
-            "managed_device_name": lambda n : setattr(self, 'managed_device_name', n.get_str_value()),
-            "management_agent": lambda n : setattr(self, 'management_agent', n.get_enum_value(management_agent_type.ManagementAgentType)),
+            "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
+            "managedDeviceName": lambda n : setattr(self, 'managed_device_name', n.get_str_value()),
+            "managementAgent": lambda n : setattr(self, 'management_agent', n.get_enum_value(management_agent_type.ManagementAgentType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "owner_type": lambda n : setattr(self, 'owner_type', n.get_enum_value(managed_device_owner_type.ManagedDeviceOwnerType)),
-            "retire_after_date_time": lambda n : setattr(self, 'retire_after_date_time', n.get_datetime_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "ownerType": lambda n : setattr(self, 'owner_type', n.get_enum_value(managed_device_owner_type.ManagedDeviceOwnerType)),
+            "retireAfterDateTime": lambda n : setattr(self, 'retire_after_date_time', n.get_datetime_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -193,7 +193,7 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, Parsable):
         """
         Sets the managedDeviceId property value. Managed DeviceId
         Args:
-            value: Value to set for the managedDeviceId property.
+            value: Value to set for the managed_device_id property.
         """
         self._managed_device_id = value
     
@@ -210,7 +210,7 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, Parsable):
         """
         Sets the managedDeviceName property value. Managed Device Name
         Args:
-            value: Value to set for the managedDeviceName property.
+            value: Value to set for the managed_device_name property.
         """
         self._managed_device_name = value
     
@@ -227,7 +227,7 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, Parsable):
         """
         Sets the managementAgent property value. Management agent type.
         Args:
-            value: Value to set for the managementAgent property.
+            value: Value to set for the management_agent property.
         """
         self._management_agent = value
     
@@ -244,7 +244,7 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -261,7 +261,7 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, Parsable):
         """
         Sets the ownerType property value. Owner type of device.
         Args:
-            value: Value to set for the ownerType property.
+            value: Value to set for the owner_type property.
         """
         self._owner_type = value
     
@@ -278,7 +278,7 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, Parsable):
         """
         Sets the retireAfterDateTime property value. Managed Device Retire After DateTime
         Args:
-            value: Value to set for the retireAfterDateTime property.
+            value: Value to set for the retire_after_date_time property.
         """
         self._retire_after_date_time = value
     
@@ -295,7 +295,7 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, Parsable):
         """
         Sets the roleScopeTagIds property value. List of Scope Tags for this Entity instance.
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     

@@ -14,7 +14,7 @@ unified_role_eligibility_schedule_request = lazy_import('msgraph.generated.model
 unified_role_eligibility_schedule_request_collection_response = lazy_import('msgraph.generated.models.unified_role_eligibility_schedule_request_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.role_management.entitlement_management.role_eligibility_schedule_requests.count.count_request_builder')
-filter_by_current_user_with_on_request_builder = lazy_import('msgraph.generated.role_management.entitlement_management.role_eligibility_schedule_requests.filter_by_current_user_with_on.filter_by_current_user_with_on_request_builder')
+filter_by_current_user_with_on_request_builder = lazy_import('msgraph.generated.role_management.entitlement_management.role_eligibility_schedule_requests.microsoft_graph_filter_by_current_user_with_on.filter_by_current_user_with_on_request_builder')
 
 class RoleEligibilityScheduleRequestsRequestBuilder():
     """
@@ -45,23 +45,11 @@ class RoleEligibilityScheduleRequestsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
-        """
-        Provides operations to call the filterByCurrentUser method.
-        Args:
-            on: Usage: on='{on}'
-        Returns: filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder
-        """
-        if on is None:
-            raise Exception("on cannot be undefined")
-        return filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
-    
-    async def get(self,request_configuration: Optional[RoleEligibilityScheduleRequestsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_role_eligibility_schedule_request_collection_response.UnifiedRoleEligibilityScheduleRequestCollectionResponse]:
+    async def get(self,request_configuration: Optional[RoleEligibilityScheduleRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_eligibility_schedule_request_collection_response.UnifiedRoleEligibilityScheduleRequestCollectionResponse]:
         """
         Get a list of the unifiedRoleEligibilityScheduleRequest objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_role_eligibility_schedule_request_collection_response.UnifiedRoleEligibilityScheduleRequestCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -73,15 +61,25 @@ class RoleEligibilityScheduleRequestsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_role_eligibility_schedule_request_collection_response.UnifiedRoleEligibilityScheduleRequestCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_role_eligibility_schedule_request_collection_response.UnifiedRoleEligibilityScheduleRequestCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[unified_role_eligibility_schedule_request.UnifiedRoleEligibilityScheduleRequest] = None, request_configuration: Optional[RoleEligibilityScheduleRequestsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_role_eligibility_schedule_request.UnifiedRoleEligibilityScheduleRequest]:
+    def microsoft_graph_filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
+        """
+        Provides operations to call the filterByCurrentUser method.
+        Args:
+            on: Usage: on='{on}'
+        Returns: filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder
+        """
+        if on is None:
+            raise Exception("on cannot be undefined")
+        return filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
+    
+    async def post(self,body: Optional[unified_role_eligibility_schedule_request.UnifiedRoleEligibilityScheduleRequest] = None, request_configuration: Optional[RoleEligibilityScheduleRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[unified_role_eligibility_schedule_request.UnifiedRoleEligibilityScheduleRequest]:
         """
         Create a new unifiedRoleEligibilityScheduleRequest object. This operation allows both admins and eligible users to add, revoke, or extend eligible assignments.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_role_eligibility_schedule_request.UnifiedRoleEligibilityScheduleRequest]
         """
         if body is None:
@@ -95,7 +93,7 @@ class RoleEligibilityScheduleRequestsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_role_eligibility_schedule_request.UnifiedRoleEligibilityScheduleRequest, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_role_eligibility_schedule_request.UnifiedRoleEligibilityScheduleRequest, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RoleEligibilityScheduleRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

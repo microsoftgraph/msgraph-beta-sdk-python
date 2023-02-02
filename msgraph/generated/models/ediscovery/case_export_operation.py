@@ -22,7 +22,7 @@ class CaseExportOperation(case_operation.CaseOperation):
         """
         Sets the azureBlobContainer property value. The name of the Azure storage location where the export will be stored. This only applies to exports stored in your own Azure storage location.
         Args:
-            value: Value to set for the azureBlobContainer property.
+            value: Value to set for the azure_blob_container property.
         """
         self._azure_blob_container = value
     
@@ -39,7 +39,7 @@ class CaseExportOperation(case_operation.CaseOperation):
         """
         Sets the azureBlobToken property value. The SAS token for the Azure storage location.  This only applies to exports stored in your own Azure storage location.
         Args:
-            value: Value to set for the azureBlobToken property.
+            value: Value to set for the azure_blob_token property.
         """
         self._azure_blob_token = value
     
@@ -109,7 +109,7 @@ class CaseExportOperation(case_operation.CaseOperation):
         """
         Sets the exportOptions property value. The options provided for the export. For more details, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags.
         Args:
-            value: Value to set for the exportOptions property.
+            value: Value to set for the export_options property.
         """
         self._export_options = value
     
@@ -126,7 +126,7 @@ class CaseExportOperation(case_operation.CaseOperation):
         """
         Sets the exportStructure property value. The options provided that specify the structure of the export. For more details, see reviewSet: export. Possible values are: none, directory, pst.
         Args:
-            value: Value to set for the exportStructure property.
+            value: Value to set for the export_structure property.
         """
         self._export_structure = value
     
@@ -136,14 +136,14 @@ class CaseExportOperation(case_operation.CaseOperation):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "azure_blob_container": lambda n : setattr(self, 'azure_blob_container', n.get_str_value()),
-            "azure_blob_token": lambda n : setattr(self, 'azure_blob_token', n.get_str_value()),
+            "azureBlobContainer": lambda n : setattr(self, 'azure_blob_container', n.get_str_value()),
+            "azureBlobToken": lambda n : setattr(self, 'azure_blob_token', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "export_options": lambda n : setattr(self, 'export_options', n.get_enum_value(export_options.ExportOptions)),
-            "export_structure": lambda n : setattr(self, 'export_structure', n.get_enum_value(export_file_structure.ExportFileStructure)),
-            "output_folder_id": lambda n : setattr(self, 'output_folder_id', n.get_str_value()),
-            "output_name": lambda n : setattr(self, 'output_name', n.get_str_value()),
-            "review_set": lambda n : setattr(self, 'review_set', n.get_object_value(review_set.ReviewSet)),
+            "exportOptions": lambda n : setattr(self, 'export_options', n.get_enum_value(export_options.ExportOptions)),
+            "exportStructure": lambda n : setattr(self, 'export_structure', n.get_enum_value(export_file_structure.ExportFileStructure)),
+            "outputFolderId": lambda n : setattr(self, 'output_folder_id', n.get_str_value()),
+            "outputName": lambda n : setattr(self, 'output_name', n.get_str_value()),
+            "reviewSet": lambda n : setattr(self, 'review_set', n.get_object_value(review_set.ReviewSet)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -162,7 +162,7 @@ class CaseExportOperation(case_operation.CaseOperation):
         """
         Sets the outputFolderId property value. The outputFolderId property
         Args:
-            value: Value to set for the outputFolderId property.
+            value: Value to set for the output_folder_id property.
         """
         self._output_folder_id = value
     
@@ -179,7 +179,7 @@ class CaseExportOperation(case_operation.CaseOperation):
         """
         Sets the outputName property value. The name provided for the export.
         Args:
-            value: Value to set for the outputName property.
+            value: Value to set for the output_name property.
         """
         self._output_name = value
     
@@ -196,7 +196,7 @@ class CaseExportOperation(case_operation.CaseOperation):
         """
         Sets the reviewSet property value. The review set the content is being exported from.
         Args:
-            value: Value to set for the reviewSet property.
+            value: Value to set for the review_set property.
         """
         self._review_set = value
     

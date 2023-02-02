@@ -17,12 +17,13 @@ class ScopedRoleMembershipItemRequestBuilder():
     """
     Provides operations to manage the scopedMembers property of the microsoft.graph.directoryRole entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, scoped_role_membership_id: Optional[str] = None) -> None:
         """
         Instantiates a new ScopedRoleMembershipItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            scopedRoleMembershipId: key: id of scopedRoleMembership
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -32,15 +33,15 @@ class ScopedRoleMembershipItemRequestBuilder():
         self.url_template: str = "{+baseurl}/directoryRoles/{directoryRole%2Did}/scopedMembers/{scopedRoleMembership%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["scopedRoleMembership%2Did"] = scopedRoleMembershipId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ScopedRoleMembershipItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ScopedRoleMembershipItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property scopedMembers for directoryRoles
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class ScopedRoleMembershipItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ScopedRoleMembershipItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[scoped_role_membership.ScopedRoleMembership]:
+    async def get(self,request_configuration: Optional[ScopedRoleMembershipItemRequestBuilderGetRequestConfiguration] = None) -> Optional[scoped_role_membership.ScopedRoleMembership]:
         """
         Members of this directory role that are scoped to administrative units. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[scoped_role_membership.ScopedRoleMembership]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class ScopedRoleMembershipItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, scoped_role_membership.ScopedRoleMembership, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, scoped_role_membership.ScopedRoleMembership, error_mapping)
     
-    async def patch(self,body: Optional[scoped_role_membership.ScopedRoleMembership] = None, request_configuration: Optional[ScopedRoleMembershipItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[scoped_role_membership.ScopedRoleMembership]:
+    async def patch(self,body: Optional[scoped_role_membership.ScopedRoleMembership] = None, request_configuration: Optional[ScopedRoleMembershipItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[scoped_role_membership.ScopedRoleMembership]:
         """
         Update the navigation property scopedMembers in directoryRoles
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[scoped_role_membership.ScopedRoleMembership]
         """
         if body is None:
@@ -92,7 +91,7 @@ class ScopedRoleMembershipItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, scoped_role_membership.ScopedRoleMembership, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, scoped_role_membership.ScopedRoleMembership, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ScopedRoleMembershipItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

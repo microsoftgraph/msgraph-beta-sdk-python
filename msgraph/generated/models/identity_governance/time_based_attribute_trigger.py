@@ -36,8 +36,8 @@ class TimeBasedAttributeTrigger(workflow_execution_trigger.WorkflowExecutionTrig
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "offset_in_days": lambda n : setattr(self, 'offset_in_days', n.get_int_value()),
-            "time_based_attribute": lambda n : setattr(self, 'time_based_attribute', n.get_enum_value(workflow_trigger_time_based_attribute.WorkflowTriggerTimeBasedAttribute)),
+            "offsetInDays": lambda n : setattr(self, 'offset_in_days', n.get_int_value()),
+            "timeBasedAttribute": lambda n : setattr(self, 'time_based_attribute', n.get_enum_value(workflow_trigger_time_based_attribute.WorkflowTriggerTimeBasedAttribute)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -56,7 +56,7 @@ class TimeBasedAttributeTrigger(workflow_execution_trigger.WorkflowExecutionTrig
         """
         Sets the offsetInDays property value. How many days before or after the time-based attribute specified the workflow should trigger. For example, if the attribute is employeeHireDate and offsetInDays is -1, then the workflow should trigger one day before the employee hire date. The value can range between -60 and 60 days.
         Args:
-            value: Value to set for the offsetInDays property.
+            value: Value to set for the offset_in_days property.
         """
         self._offset_in_days = value
     
@@ -85,7 +85,7 @@ class TimeBasedAttributeTrigger(workflow_execution_trigger.WorkflowExecutionTrig
         """
         Sets the timeBasedAttribute property value. The timeBasedAttribute property
         Args:
-            value: Value to set for the timeBasedAttribute property.
+            value: Value to set for the time_based_attribute property.
         """
         self._time_based_attribute = value
     

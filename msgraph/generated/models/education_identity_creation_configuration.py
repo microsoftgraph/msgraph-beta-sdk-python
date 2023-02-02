@@ -34,7 +34,7 @@ class EducationIdentityCreationConfiguration(education_identity_synchronization_
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "user_domains": lambda n : setattr(self, 'user_domains', n.get_collection_of_object_values(education_identity_domain.EducationIdentityDomain)),
+            "userDomains": lambda n : setattr(self, 'user_domains', n.get_collection_of_object_values(education_identity_domain.EducationIdentityDomain)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -64,7 +64,7 @@ class EducationIdentityCreationConfiguration(education_identity_synchronization_
         """
         Sets the userDomains property value. The userDomains property
         Args:
-            value: Value to set for the userDomains property.
+            value: Value to set for the user_domains property.
         """
         self._user_domains = value
     

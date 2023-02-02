@@ -40,7 +40,7 @@ class OpenTypeExtension(extension.Extension):
         """
         Sets the extensionName property value. A unique text identifier for an open type data extension. Required.
         Args:
-            value: Value to set for the extensionName property.
+            value: Value to set for the extension_name property.
         """
         self._extension_name = value
     
@@ -50,7 +50,7 @@ class OpenTypeExtension(extension.Extension):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "extension_name": lambda n : setattr(self, 'extension_name', n.get_str_value()),
+            "extensionName": lambda n : setattr(self, 'extension_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

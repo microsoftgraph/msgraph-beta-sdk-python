@@ -20,7 +20,7 @@ class ProtectSite(label_action_base.LabelActionBase):
         """
         Sets the accessType property value. The accessType property
         Args:
-            value: Value to set for the accessType property.
+            value: Value to set for the access_type property.
         """
         self._access_type = value
     
@@ -37,7 +37,7 @@ class ProtectSite(label_action_base.LabelActionBase):
         """
         Sets the conditionalAccessProtectionLevelId property value. The conditionalAccessProtectionLevelId property
         Args:
-            value: Value to set for the conditionalAccessProtectionLevelId property.
+            value: Value to set for the conditional_access_protection_level_id property.
         """
         self._conditional_access_protection_level_id = value
     
@@ -70,8 +70,8 @@ class ProtectSite(label_action_base.LabelActionBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_type": lambda n : setattr(self, 'access_type', n.get_enum_value(site_access_type.SiteAccessType)),
-            "conditional_access_protection_level_id": lambda n : setattr(self, 'conditional_access_protection_level_id', n.get_str_value()),
+            "accessType": lambda n : setattr(self, 'access_type', n.get_enum_value(site_access_type.SiteAccessType)),
+            "conditionalAccessProtectionLevelId": lambda n : setattr(self, 'conditional_access_protection_level_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

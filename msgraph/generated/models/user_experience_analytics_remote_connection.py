@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class UserExperienceAnalyticsRemoteConnection(entity.Entity):
-    """
-    The user experience analyte remote connection entity.
-    """
     @property
     def cloud_pc_failure_percentage(self,) -> Optional[float]:
         """
@@ -22,7 +19,7 @@ class UserExperienceAnalyticsRemoteConnection(entity.Entity):
         """
         Sets the cloudPcFailurePercentage property value. The sign in failure percentage of Cloud PC Device. Valid values 0 to 100
         Args:
-            value: Value to set for the cloudPcFailurePercentage property.
+            value: Value to set for the cloud_pc_failure_percentage property.
         """
         self._cloud_pc_failure_percentage = value
     
@@ -39,7 +36,7 @@ class UserExperienceAnalyticsRemoteConnection(entity.Entity):
         """
         Sets the cloudPcRoundTripTime property value. The round tip time of Cloud PC Device. Valid values 0 to 1.79769313486232E+308
         Args:
-            value: Value to set for the cloudPcRoundTripTime property.
+            value: Value to set for the cloud_pc_round_trip_time property.
         """
         self._cloud_pc_round_trip_time = value
     
@@ -56,13 +53,13 @@ class UserExperienceAnalyticsRemoteConnection(entity.Entity):
         """
         Sets the cloudPcSignInTime property value. The sign in time of Cloud PC Device. Valid values 0 to 1.79769313486232E+308
         Args:
-            value: Value to set for the cloudPcSignInTime property.
+            value: Value to set for the cloud_pc_sign_in_time property.
         """
         self._cloud_pc_sign_in_time = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsRemoteConnection and sets the default values.
+        Instantiates a new UserExperienceAnalyticsRemoteConnection and sets the default values.
         """
         super().__init__()
         # The sign in failure percentage of Cloud PC Device. Valid values 0 to 100
@@ -107,7 +104,7 @@ class UserExperienceAnalyticsRemoteConnection(entity.Entity):
         """
         Sets the coreBootTime property value. The core boot time of Cloud PC Device. Valid values 0 to 1.79769313486232E+308
         Args:
-            value: Value to set for the coreBootTime property.
+            value: Value to set for the core_boot_time property.
         """
         self._core_boot_time = value
     
@@ -124,7 +121,7 @@ class UserExperienceAnalyticsRemoteConnection(entity.Entity):
         """
         Sets the coreSignInTime property value. The core sign in time of Cloud PC Device. Valid values 0 to 1.79769313486232E+308
         Args:
-            value: Value to set for the coreSignInTime property.
+            value: Value to set for the core_sign_in_time property.
         """
         self._core_sign_in_time = value
     
@@ -153,7 +150,7 @@ class UserExperienceAnalyticsRemoteConnection(entity.Entity):
         """
         Sets the deviceCount property value. The count of remote connection. Valid values 0 to 2147483647
         Args:
-            value: Value to set for the deviceCount property.
+            value: Value to set for the device_count property.
         """
         self._device_count = value
     
@@ -170,7 +167,7 @@ class UserExperienceAnalyticsRemoteConnection(entity.Entity):
         """
         Sets the deviceId property value. The id of the device.
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -187,7 +184,7 @@ class UserExperienceAnalyticsRemoteConnection(entity.Entity):
         """
         Sets the deviceName property value. The name of the device.
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -197,19 +194,19 @@ class UserExperienceAnalyticsRemoteConnection(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "cloud_pc_failure_percentage": lambda n : setattr(self, 'cloud_pc_failure_percentage', n.get_float_value()),
-            "cloud_pc_round_trip_time": lambda n : setattr(self, 'cloud_pc_round_trip_time', n.get_float_value()),
-            "cloud_pc_sign_in_time": lambda n : setattr(self, 'cloud_pc_sign_in_time', n.get_float_value()),
-            "core_boot_time": lambda n : setattr(self, 'core_boot_time', n.get_float_value()),
-            "core_sign_in_time": lambda n : setattr(self, 'core_sign_in_time', n.get_float_value()),
-            "device_count": lambda n : setattr(self, 'device_count', n.get_int_value()),
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "cloudPcFailurePercentage": lambda n : setattr(self, 'cloud_pc_failure_percentage', n.get_float_value()),
+            "cloudPcRoundTripTime": lambda n : setattr(self, 'cloud_pc_round_trip_time', n.get_float_value()),
+            "cloudPcSignInTime": lambda n : setattr(self, 'cloud_pc_sign_in_time', n.get_float_value()),
+            "coreBootTime": lambda n : setattr(self, 'core_boot_time', n.get_float_value()),
+            "coreSignInTime": lambda n : setattr(self, 'core_sign_in_time', n.get_float_value()),
+            "deviceCount": lambda n : setattr(self, 'device_count', n.get_int_value()),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
-            "remote_sign_in_time": lambda n : setattr(self, 'remote_sign_in_time', n.get_float_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
-            "virtual_network": lambda n : setattr(self, 'virtual_network', n.get_str_value()),
+            "remoteSignInTime": lambda n : setattr(self, 'remote_sign_in_time', n.get_float_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "virtualNetwork": lambda n : setattr(self, 'virtual_network', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -262,7 +259,7 @@ class UserExperienceAnalyticsRemoteConnection(entity.Entity):
         """
         Sets the remoteSignInTime property value. The remote sign in time of Cloud PC Device. Valid values 0 to 1.79769313486232E+308
         Args:
-            value: Value to set for the remoteSignInTime property.
+            value: Value to set for the remote_sign_in_time property.
         """
         self._remote_sign_in_time = value
     
@@ -302,7 +299,7 @@ class UserExperienceAnalyticsRemoteConnection(entity.Entity):
         """
         Sets the userPrincipalName property value. The user experience analytics userPrincipalName.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     
@@ -319,7 +316,7 @@ class UserExperienceAnalyticsRemoteConnection(entity.Entity):
         """
         Sets the virtualNetwork property value. The user experience analytics virtual network.
         Args:
-            value: Value to set for the virtualNetwork property.
+            value: Value to set for the virtual_network property.
         """
         self._virtual_network = value
     

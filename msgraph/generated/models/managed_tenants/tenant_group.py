@@ -21,13 +21,13 @@ class TenantGroup(entity.Entity):
         """
         Sets the allTenantsIncluded property value. A flag indicating whether all managed tenant are included in the tenant group. Required. Read-only.
         Args:
-            value: Value to set for the allTenantsIncluded property.
+            value: Value to set for the all_tenants_included property.
         """
         self._all_tenants_included = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new tenantGroup and sets the default values.
+        Instantiates a new TenantGroup and sets the default values.
         """
         super().__init__()
         # A flag indicating whether all managed tenant are included in the tenant group. Required. Read-only.
@@ -68,7 +68,7 @@ class TenantGroup(entity.Entity):
         """
         Sets the displayName property value. The display name for the tenant group. Optional. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -78,11 +78,11 @@ class TenantGroup(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "all_tenants_included": lambda n : setattr(self, 'all_tenants_included', n.get_bool_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "management_actions": lambda n : setattr(self, 'management_actions', n.get_collection_of_object_values(management_action_info.ManagementActionInfo)),
-            "management_intents": lambda n : setattr(self, 'management_intents', n.get_collection_of_object_values(management_intent_info.ManagementIntentInfo)),
-            "tenant_ids": lambda n : setattr(self, 'tenant_ids', n.get_collection_of_primitive_values(str)),
+            "allTenantsIncluded": lambda n : setattr(self, 'all_tenants_included', n.get_bool_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "managementActions": lambda n : setattr(self, 'management_actions', n.get_collection_of_object_values(management_action_info.ManagementActionInfo)),
+            "managementIntents": lambda n : setattr(self, 'management_intents', n.get_collection_of_object_values(management_intent_info.ManagementIntentInfo)),
+            "tenantIds": lambda n : setattr(self, 'tenant_ids', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -101,7 +101,7 @@ class TenantGroup(entity.Entity):
         """
         Sets the managementActions property value. The collection of management action associated with the tenant group. Optional. Read-only.
         Args:
-            value: Value to set for the managementActions property.
+            value: Value to set for the management_actions property.
         """
         self._management_actions = value
     
@@ -118,7 +118,7 @@ class TenantGroup(entity.Entity):
         """
         Sets the managementIntents property value. The collection of management intents associated with the tenant group. Optional. Read-only.
         Args:
-            value: Value to set for the managementIntents property.
+            value: Value to set for the management_intents property.
         """
         self._management_intents = value
     
@@ -150,7 +150,7 @@ class TenantGroup(entity.Entity):
         """
         Sets the tenantIds property value. The collection of managed tenant identifiers include in the tenant group. Optional. Read-only.
         Args:
-            value: Value to set for the tenantIds property.
+            value: Value to set for the tenant_ids property.
         """
         self._tenant_ids = value
     

@@ -42,7 +42,7 @@ class UserExperienceAnalyticsWorkFromAnywhereDevicesSummary(AdditionalDataHolder
         """
         Sets the autopilotDevicesSummary property value. The value of work from anywhere autopilot devices summary.
         Args:
-            value: Value to set for the autopilotDevicesSummary property.
+            value: Value to set for the autopilot_devices_summary property.
         """
         self._autopilot_devices_summary = value
     
@@ -59,7 +59,7 @@ class UserExperienceAnalyticsWorkFromAnywhereDevicesSummary(AdditionalDataHolder
         """
         Sets the cloudIdentityDevicesSummary property value. The user experience analytics work from anywhere Cloud Identity devices summary.
         Args:
-            value: Value to set for the cloudIdentityDevicesSummary property.
+            value: Value to set for the cloud_identity_devices_summary property.
         """
         self._cloud_identity_devices_summary = value
     
@@ -76,7 +76,7 @@ class UserExperienceAnalyticsWorkFromAnywhereDevicesSummary(AdditionalDataHolder
         """
         Sets the cloudManagementDevicesSummary property value. The user experience work from anywhere Cloud management devices summary.
         Args:
-            value: Value to set for the cloudManagementDevicesSummary property.
+            value: Value to set for the cloud_management_devices_summary property.
         """
         self._cloud_management_devices_summary = value
     
@@ -93,7 +93,7 @@ class UserExperienceAnalyticsWorkFromAnywhereDevicesSummary(AdditionalDataHolder
         """
         Sets the coManagedDevices property value. Total number of co-managed devices. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the coManagedDevices property.
+            value: Value to set for the co_managed_devices property.
         """
         self._co_managed_devices = value
     
@@ -160,7 +160,7 @@ class UserExperienceAnalyticsWorkFromAnywhereDevicesSummary(AdditionalDataHolder
         """
         Sets the devicesNotAutopilotRegistered property value. The count of intune devices that are not autopilot registerd. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the devicesNotAutopilotRegistered property.
+            value: Value to set for the devices_not_autopilot_registered property.
         """
         self._devices_not_autopilot_registered = value
     
@@ -177,7 +177,7 @@ class UserExperienceAnalyticsWorkFromAnywhereDevicesSummary(AdditionalDataHolder
         """
         Sets the devicesWithoutAutopilotProfileAssigned property value. The count of intune devices not autopilot profile assigned. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the devicesWithoutAutopilotProfileAssigned property.
+            value: Value to set for the devices_without_autopilot_profile_assigned property.
         """
         self._devices_without_autopilot_profile_assigned = value
     
@@ -194,7 +194,7 @@ class UserExperienceAnalyticsWorkFromAnywhereDevicesSummary(AdditionalDataHolder
         """
         Sets the devicesWithoutCloudIdentity property value. The count of devices that are not cloud identity. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the devicesWithoutCloudIdentity property.
+            value: Value to set for the devices_without_cloud_identity property.
         """
         self._devices_without_cloud_identity = value
     
@@ -204,21 +204,21 @@ class UserExperienceAnalyticsWorkFromAnywhereDevicesSummary(AdditionalDataHolder
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "autopilot_devices_summary": lambda n : setattr(self, 'autopilot_devices_summary', n.get_object_value(user_experience_analytics_autopilot_devices_summary.UserExperienceAnalyticsAutopilotDevicesSummary)),
-            "cloud_identity_devices_summary": lambda n : setattr(self, 'cloud_identity_devices_summary', n.get_object_value(user_experience_analytics_cloud_identity_devices_summary.UserExperienceAnalyticsCloudIdentityDevicesSummary)),
-            "cloud_management_devices_summary": lambda n : setattr(self, 'cloud_management_devices_summary', n.get_object_value(user_experience_analytics_cloud_management_devices_summary.UserExperienceAnalyticsCloudManagementDevicesSummary)),
-            "co_managed_devices": lambda n : setattr(self, 'co_managed_devices', n.get_int_value()),
-            "devices_not_autopilot_registered": lambda n : setattr(self, 'devices_not_autopilot_registered', n.get_int_value()),
-            "devices_without_autopilot_profile_assigned": lambda n : setattr(self, 'devices_without_autopilot_profile_assigned', n.get_int_value()),
-            "devices_without_cloud_identity": lambda n : setattr(self, 'devices_without_cloud_identity', n.get_int_value()),
-            "intune_devices": lambda n : setattr(self, 'intune_devices', n.get_int_value()),
+            "autopilotDevicesSummary": lambda n : setattr(self, 'autopilot_devices_summary', n.get_object_value(user_experience_analytics_autopilot_devices_summary.UserExperienceAnalyticsAutopilotDevicesSummary)),
+            "cloudIdentityDevicesSummary": lambda n : setattr(self, 'cloud_identity_devices_summary', n.get_object_value(user_experience_analytics_cloud_identity_devices_summary.UserExperienceAnalyticsCloudIdentityDevicesSummary)),
+            "cloudManagementDevicesSummary": lambda n : setattr(self, 'cloud_management_devices_summary', n.get_object_value(user_experience_analytics_cloud_management_devices_summary.UserExperienceAnalyticsCloudManagementDevicesSummary)),
+            "coManagedDevices": lambda n : setattr(self, 'co_managed_devices', n.get_int_value()),
+            "devicesNotAutopilotRegistered": lambda n : setattr(self, 'devices_not_autopilot_registered', n.get_int_value()),
+            "devicesWithoutAutopilotProfileAssigned": lambda n : setattr(self, 'devices_without_autopilot_profile_assigned', n.get_int_value()),
+            "devicesWithoutCloudIdentity": lambda n : setattr(self, 'devices_without_cloud_identity', n.get_int_value()),
+            "intuneDevices": lambda n : setattr(self, 'intune_devices', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "tenant_attach_devices": lambda n : setattr(self, 'tenant_attach_devices', n.get_int_value()),
-            "total_devices": lambda n : setattr(self, 'total_devices', n.get_int_value()),
-            "unsupported_o_sversion_devices": lambda n : setattr(self, 'unsupported_o_sversion_devices', n.get_int_value()),
-            "windows10_devices": lambda n : setattr(self, 'windows10_devices', n.get_int_value()),
-            "windows10_devices_summary": lambda n : setattr(self, 'windows10_devices_summary', n.get_object_value(user_experience_analytics_windows10_devices_summary.UserExperienceAnalyticsWindows10DevicesSummary)),
-            "windows10_devices_without_tenant_attach": lambda n : setattr(self, 'windows10_devices_without_tenant_attach', n.get_int_value()),
+            "tenantAttachDevices": lambda n : setattr(self, 'tenant_attach_devices', n.get_int_value()),
+            "totalDevices": lambda n : setattr(self, 'total_devices', n.get_int_value()),
+            "unsupportedOSversionDevices": lambda n : setattr(self, 'unsupported_o_sversion_devices', n.get_int_value()),
+            "windows10Devices": lambda n : setattr(self, 'windows10_devices', n.get_int_value()),
+            "windows10DevicesSummary": lambda n : setattr(self, 'windows10_devices_summary', n.get_object_value(user_experience_analytics_windows10_devices_summary.UserExperienceAnalyticsWindows10DevicesSummary)),
+            "windows10DevicesWithoutTenantAttach": lambda n : setattr(self, 'windows10_devices_without_tenant_attach', n.get_int_value()),
         }
         return fields
     
@@ -235,7 +235,7 @@ class UserExperienceAnalyticsWorkFromAnywhereDevicesSummary(AdditionalDataHolder
         """
         Sets the intuneDevices property value. The count of intune devices that are not autopilot registerd. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the intuneDevices property.
+            value: Value to set for the intune_devices property.
         """
         self._intune_devices = value
     
@@ -252,7 +252,7 @@ class UserExperienceAnalyticsWorkFromAnywhereDevicesSummary(AdditionalDataHolder
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -294,7 +294,7 @@ class UserExperienceAnalyticsWorkFromAnywhereDevicesSummary(AdditionalDataHolder
         """
         Sets the tenantAttachDevices property value. Total count of tenant attach devices. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the tenantAttachDevices property.
+            value: Value to set for the tenant_attach_devices property.
         """
         self._tenant_attach_devices = value
     
@@ -311,7 +311,7 @@ class UserExperienceAnalyticsWorkFromAnywhereDevicesSummary(AdditionalDataHolder
         """
         Sets the totalDevices property value. The total count of devices. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the totalDevices property.
+            value: Value to set for the total_devices property.
         """
         self._total_devices = value
     
@@ -328,7 +328,7 @@ class UserExperienceAnalyticsWorkFromAnywhereDevicesSummary(AdditionalDataHolder
         """
         Sets the unsupportedOSversionDevices property value. The count of Windows 10 devices that have unsupported OS versions. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the unsupportedOSversionDevices property.
+            value: Value to set for the unsupported_o_sversion_devices property.
         """
         self._unsupported_o_sversion_devices = value
     
@@ -345,7 +345,7 @@ class UserExperienceAnalyticsWorkFromAnywhereDevicesSummary(AdditionalDataHolder
         """
         Sets the windows10Devices property value. The count of windows 10 devices. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the windows10Devices property.
+            value: Value to set for the windows10_devices property.
         """
         self._windows10_devices = value
     
@@ -362,7 +362,7 @@ class UserExperienceAnalyticsWorkFromAnywhereDevicesSummary(AdditionalDataHolder
         """
         Sets the windows10DevicesSummary property value. The user experience analytics work from anywhere Windows 10 devices summary.
         Args:
-            value: Value to set for the windows10DevicesSummary property.
+            value: Value to set for the windows10_devices_summary property.
         """
         self._windows10_devices_summary = value
     
@@ -379,7 +379,7 @@ class UserExperienceAnalyticsWorkFromAnywhereDevicesSummary(AdditionalDataHolder
         """
         Sets the windows10DevicesWithoutTenantAttach property value. The count of windows 10 devices that are Intune and Comanaged. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the windows10DevicesWithoutTenantAttach property.
+            value: Value to set for the windows10_devices_without_tenant_attach property.
         """
         self._windows10_devices_without_tenant_attach = value
     

@@ -24,7 +24,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the buyFromAddress property value. The buyFromAddress property
         Args:
-            value: Value to set for the buyFromAddress property.
+            value: Value to set for the buy_from_address property.
         """
         self._buy_from_address = value
     
@@ -136,7 +136,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the currencyCode property value. The currencyCode property
         Args:
-            value: Value to set for the currencyCode property.
+            value: Value to set for the currency_code property.
         """
         self._currency_code = value
     
@@ -153,7 +153,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the currencyId property value. The currencyId property
         Args:
-            value: Value to set for the currencyId property.
+            value: Value to set for the currency_id property.
         """
         self._currency_id = value
     
@@ -170,7 +170,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the discountAmount property value. The discountAmount property
         Args:
-            value: Value to set for the discountAmount property.
+            value: Value to set for the discount_amount property.
         """
         self._discount_amount = value
     
@@ -187,7 +187,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the discountAppliedBeforeTax property value. The discountAppliedBeforeTax property
         Args:
-            value: Value to set for the discountAppliedBeforeTax property.
+            value: Value to set for the discount_applied_before_tax property.
         """
         self._discount_applied_before_tax = value
     
@@ -204,7 +204,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the dueDate property value. The dueDate property
         Args:
-            value: Value to set for the dueDate property.
+            value: Value to set for the due_date property.
         """
         self._due_date = value
     
@@ -214,35 +214,35 @@ class PurchaseInvoice(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "buy_from_address": lambda n : setattr(self, 'buy_from_address', n.get_object_value(postal_address_type.PostalAddressType)),
+            "buyFromAddress": lambda n : setattr(self, 'buy_from_address', n.get_object_value(postal_address_type.PostalAddressType)),
             "currency": lambda n : setattr(self, 'currency', n.get_object_value(currency.Currency)),
-            "currency_code": lambda n : setattr(self, 'currency_code', n.get_str_value()),
-            "currency_id": lambda n : setattr(self, 'currency_id', n.get_object_value(Guid)),
-            "discount_amount": lambda n : setattr(self, 'discount_amount', n.get_float_value()),
-            "discount_applied_before_tax": lambda n : setattr(self, 'discount_applied_before_tax', n.get_bool_value()),
-            "due_date": lambda n : setattr(self, 'due_date', n.get_object_value(Date)),
-            "invoice_date": lambda n : setattr(self, 'invoice_date', n.get_object_value(Date)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "currencyCode": lambda n : setattr(self, 'currency_code', n.get_str_value()),
+            "currencyId": lambda n : setattr(self, 'currency_id', n.get_object_value(Guid)),
+            "discountAmount": lambda n : setattr(self, 'discount_amount', n.get_float_value()),
+            "discountAppliedBeforeTax": lambda n : setattr(self, 'discount_applied_before_tax', n.get_bool_value()),
+            "dueDate": lambda n : setattr(self, 'due_date', n.get_object_value(Date)),
+            "invoiceDate": lambda n : setattr(self, 'invoice_date', n.get_object_value(Date)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "number": lambda n : setattr(self, 'number', n.get_str_value()),
-            "pay_to_address": lambda n : setattr(self, 'pay_to_address', n.get_object_value(postal_address_type.PostalAddressType)),
-            "pay_to_contact": lambda n : setattr(self, 'pay_to_contact', n.get_str_value()),
-            "pay_to_name": lambda n : setattr(self, 'pay_to_name', n.get_str_value()),
-            "pay_to_vendor_id": lambda n : setattr(self, 'pay_to_vendor_id', n.get_object_value(Guid)),
-            "pay_to_vendor_number": lambda n : setattr(self, 'pay_to_vendor_number', n.get_str_value()),
-            "prices_include_tax": lambda n : setattr(self, 'prices_include_tax', n.get_bool_value()),
-            "purchase_invoice_lines": lambda n : setattr(self, 'purchase_invoice_lines', n.get_collection_of_object_values(purchase_invoice_line.PurchaseInvoiceLine)),
-            "ship_to_address": lambda n : setattr(self, 'ship_to_address', n.get_object_value(postal_address_type.PostalAddressType)),
-            "ship_to_contact": lambda n : setattr(self, 'ship_to_contact', n.get_str_value()),
-            "ship_to_name": lambda n : setattr(self, 'ship_to_name', n.get_str_value()),
+            "payToAddress": lambda n : setattr(self, 'pay_to_address', n.get_object_value(postal_address_type.PostalAddressType)),
+            "payToContact": lambda n : setattr(self, 'pay_to_contact', n.get_str_value()),
+            "payToName": lambda n : setattr(self, 'pay_to_name', n.get_str_value()),
+            "payToVendorId": lambda n : setattr(self, 'pay_to_vendor_id', n.get_object_value(Guid)),
+            "payToVendorNumber": lambda n : setattr(self, 'pay_to_vendor_number', n.get_str_value()),
+            "pricesIncludeTax": lambda n : setattr(self, 'prices_include_tax', n.get_bool_value()),
+            "purchaseInvoiceLines": lambda n : setattr(self, 'purchase_invoice_lines', n.get_collection_of_object_values(purchase_invoice_line.PurchaseInvoiceLine)),
+            "shipToAddress": lambda n : setattr(self, 'ship_to_address', n.get_object_value(postal_address_type.PostalAddressType)),
+            "shipToContact": lambda n : setattr(self, 'ship_to_contact', n.get_str_value()),
+            "shipToName": lambda n : setattr(self, 'ship_to_name', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
-            "total_amount_excluding_tax": lambda n : setattr(self, 'total_amount_excluding_tax', n.get_float_value()),
-            "total_amount_including_tax": lambda n : setattr(self, 'total_amount_including_tax', n.get_float_value()),
-            "total_tax_amount": lambda n : setattr(self, 'total_tax_amount', n.get_float_value()),
+            "totalAmountExcludingTax": lambda n : setattr(self, 'total_amount_excluding_tax', n.get_float_value()),
+            "totalAmountIncludingTax": lambda n : setattr(self, 'total_amount_including_tax', n.get_float_value()),
+            "totalTaxAmount": lambda n : setattr(self, 'total_tax_amount', n.get_float_value()),
             "vendor": lambda n : setattr(self, 'vendor', n.get_object_value(vendor.Vendor)),
-            "vendor_id": lambda n : setattr(self, 'vendor_id', n.get_object_value(Guid)),
-            "vendor_invoice_number": lambda n : setattr(self, 'vendor_invoice_number', n.get_str_value()),
-            "vendor_name": lambda n : setattr(self, 'vendor_name', n.get_str_value()),
-            "vendor_number": lambda n : setattr(self, 'vendor_number', n.get_str_value()),
+            "vendorId": lambda n : setattr(self, 'vendor_id', n.get_object_value(Guid)),
+            "vendorInvoiceNumber": lambda n : setattr(self, 'vendor_invoice_number', n.get_str_value()),
+            "vendorName": lambda n : setattr(self, 'vendor_name', n.get_str_value()),
+            "vendorNumber": lambda n : setattr(self, 'vendor_number', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -261,7 +261,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the invoiceDate property value. The invoiceDate property
         Args:
-            value: Value to set for the invoiceDate property.
+            value: Value to set for the invoice_date property.
         """
         self._invoice_date = value
     
@@ -278,7 +278,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -312,7 +312,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the payToAddress property value. The payToAddress property
         Args:
-            value: Value to set for the payToAddress property.
+            value: Value to set for the pay_to_address property.
         """
         self._pay_to_address = value
     
@@ -329,7 +329,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the payToContact property value. The payToContact property
         Args:
-            value: Value to set for the payToContact property.
+            value: Value to set for the pay_to_contact property.
         """
         self._pay_to_contact = value
     
@@ -346,7 +346,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the payToName property value. The payToName property
         Args:
-            value: Value to set for the payToName property.
+            value: Value to set for the pay_to_name property.
         """
         self._pay_to_name = value
     
@@ -363,7 +363,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the payToVendorId property value. The payToVendorId property
         Args:
-            value: Value to set for the payToVendorId property.
+            value: Value to set for the pay_to_vendor_id property.
         """
         self._pay_to_vendor_id = value
     
@@ -380,7 +380,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the payToVendorNumber property value. The payToVendorNumber property
         Args:
-            value: Value to set for the payToVendorNumber property.
+            value: Value to set for the pay_to_vendor_number property.
         """
         self._pay_to_vendor_number = value
     
@@ -397,7 +397,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the pricesIncludeTax property value. The pricesIncludeTax property
         Args:
-            value: Value to set for the pricesIncludeTax property.
+            value: Value to set for the prices_include_tax property.
         """
         self._prices_include_tax = value
     
@@ -414,7 +414,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the purchaseInvoiceLines property value. The purchaseInvoiceLines property
         Args:
-            value: Value to set for the purchaseInvoiceLines property.
+            value: Value to set for the purchase_invoice_lines property.
         """
         self._purchase_invoice_lines = value
     
@@ -470,7 +470,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the shipToAddress property value. The shipToAddress property
         Args:
-            value: Value to set for the shipToAddress property.
+            value: Value to set for the ship_to_address property.
         """
         self._ship_to_address = value
     
@@ -487,7 +487,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the shipToContact property value. The shipToContact property
         Args:
-            value: Value to set for the shipToContact property.
+            value: Value to set for the ship_to_contact property.
         """
         self._ship_to_contact = value
     
@@ -504,7 +504,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the shipToName property value. The shipToName property
         Args:
-            value: Value to set for the shipToName property.
+            value: Value to set for the ship_to_name property.
         """
         self._ship_to_name = value
     
@@ -538,7 +538,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the totalAmountExcludingTax property value. The totalAmountExcludingTax property
         Args:
-            value: Value to set for the totalAmountExcludingTax property.
+            value: Value to set for the total_amount_excluding_tax property.
         """
         self._total_amount_excluding_tax = value
     
@@ -555,7 +555,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the totalAmountIncludingTax property value. The totalAmountIncludingTax property
         Args:
-            value: Value to set for the totalAmountIncludingTax property.
+            value: Value to set for the total_amount_including_tax property.
         """
         self._total_amount_including_tax = value
     
@@ -572,7 +572,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the totalTaxAmount property value. The totalTaxAmount property
         Args:
-            value: Value to set for the totalTaxAmount property.
+            value: Value to set for the total_tax_amount property.
         """
         self._total_tax_amount = value
     
@@ -606,7 +606,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the vendorId property value. The vendorId property
         Args:
-            value: Value to set for the vendorId property.
+            value: Value to set for the vendor_id property.
         """
         self._vendor_id = value
     
@@ -623,7 +623,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the vendorInvoiceNumber property value. The vendorInvoiceNumber property
         Args:
-            value: Value to set for the vendorInvoiceNumber property.
+            value: Value to set for the vendor_invoice_number property.
         """
         self._vendor_invoice_number = value
     
@@ -640,7 +640,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the vendorName property value. The vendorName property
         Args:
-            value: Value to set for the vendorName property.
+            value: Value to set for the vendor_name property.
         """
         self._vendor_name = value
     
@@ -657,7 +657,7 @@ class PurchaseInvoice(entity.Entity):
         """
         Sets the vendorNumber property value. The vendorNumber property
         Args:
-            value: Value to set for the vendorNumber property.
+            value: Value to set for the vendor_number property.
         """
         self._vendor_number = value
     

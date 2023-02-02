@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-connect_request_builder = lazy_import('msgraph.generated.device_management.chrome_o_s_onboarding_settings.connect.connect_request_builder')
 count_request_builder = lazy_import('msgraph.generated.device_management.chrome_o_s_onboarding_settings.count.count_request_builder')
-disconnect_request_builder = lazy_import('msgraph.generated.device_management.chrome_o_s_onboarding_settings.disconnect.disconnect_request_builder')
+connect_request_builder = lazy_import('msgraph.generated.device_management.chrome_o_s_onboarding_settings.microsoft_graph_connect.connect_request_builder')
+disconnect_request_builder = lazy_import('msgraph.generated.device_management.chrome_o_s_onboarding_settings.microsoft_graph_disconnect.disconnect_request_builder')
 chrome_o_s_onboarding_settings = lazy_import('msgraph.generated.models.chrome_o_s_onboarding_settings')
 chrome_o_s_onboarding_settings_collection_response = lazy_import('msgraph.generated.models.chrome_o_s_onboarding_settings_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -22,13 +22,6 @@ class ChromeOSOnboardingSettingsRequestBuilder():
     Provides operations to manage the chromeOSOnboardingSettings property of the microsoft.graph.deviceManagement entity.
     """
     @property
-    def connect(self) -> connect_request_builder.ConnectRequestBuilder:
-        """
-        Provides operations to call the connect method.
-        """
-        return connect_request_builder.ConnectRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
@@ -36,7 +29,14 @@ class ChromeOSOnboardingSettingsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def disconnect(self) -> disconnect_request_builder.DisconnectRequestBuilder:
+    def microsoft_graph_connect(self) -> connect_request_builder.ConnectRequestBuilder:
+        """
+        Provides operations to call the connect method.
+        """
+        return connect_request_builder.ConnectRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_disconnect(self) -> disconnect_request_builder.DisconnectRequestBuilder:
         """
         Provides operations to call the disconnect method.
         """
@@ -60,12 +60,11 @@ class ChromeOSOnboardingSettingsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ChromeOSOnboardingSettingsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[chrome_o_s_onboarding_settings_collection_response.ChromeOSOnboardingSettingsCollectionResponse]:
+    async def get(self,request_configuration: Optional[ChromeOSOnboardingSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[chrome_o_s_onboarding_settings_collection_response.ChromeOSOnboardingSettingsCollectionResponse]:
         """
         Collection of ChromeOSOnboardingSettings settings associated with account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[chrome_o_s_onboarding_settings_collection_response.ChromeOSOnboardingSettingsCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -77,15 +76,14 @@ class ChromeOSOnboardingSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, chrome_o_s_onboarding_settings_collection_response.ChromeOSOnboardingSettingsCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, chrome_o_s_onboarding_settings_collection_response.ChromeOSOnboardingSettingsCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings] = None, request_configuration: Optional[ChromeOSOnboardingSettingsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings]:
+    async def post(self,body: Optional[chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings] = None, request_configuration: Optional[ChromeOSOnboardingSettingsRequestBuilderPostRequestConfiguration] = None) -> Optional[chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings]:
         """
         Create new navigation property to chromeOSOnboardingSettings for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings]
         """
         if body is None:
@@ -99,7 +97,7 @@ class ChromeOSOnboardingSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ChromeOSOnboardingSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

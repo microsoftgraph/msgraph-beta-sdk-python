@@ -10,12 +10,9 @@ group_policy_setting_mapping = lazy_import('msgraph.generated.models.group_polic
 unsupported_group_policy_extension = lazy_import('msgraph.generated.models.unsupported_group_policy_extension')
 
 class GroupPolicyMigrationReport(entity.Entity):
-    """
-    The Group Policy migration report.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new groupPolicyMigrationReport and sets the default values.
+        Instantiates a new GroupPolicyMigrationReport and sets the default values.
         """
         super().__init__()
         # The date and time at which the GroupPolicyMigrationReport was created.
@@ -64,7 +61,7 @@ class GroupPolicyMigrationReport(entity.Entity):
         """
         Sets the createdDateTime property value. The date and time at which the GroupPolicyMigrationReport was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -93,7 +90,7 @@ class GroupPolicyMigrationReport(entity.Entity):
         """
         Sets the displayName property value. The name of Group Policy Object from the GPO Xml Content
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -103,21 +100,21 @@ class GroupPolicyMigrationReport(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "group_policy_created_date_time": lambda n : setattr(self, 'group_policy_created_date_time', n.get_datetime_value()),
-            "group_policy_last_modified_date_time": lambda n : setattr(self, 'group_policy_last_modified_date_time', n.get_datetime_value()),
-            "group_policy_object_id": lambda n : setattr(self, 'group_policy_object_id', n.get_object_value(Guid)),
-            "group_policy_setting_mappings": lambda n : setattr(self, 'group_policy_setting_mappings', n.get_collection_of_object_values(group_policy_setting_mapping.GroupPolicySettingMapping)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "migration_readiness": lambda n : setattr(self, 'migration_readiness', n.get_enum_value(group_policy_migration_readiness.GroupPolicyMigrationReadiness)),
-            "ou_distinguished_name": lambda n : setattr(self, 'ou_distinguished_name', n.get_str_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
-            "supported_settings_count": lambda n : setattr(self, 'supported_settings_count', n.get_int_value()),
-            "supported_settings_percent": lambda n : setattr(self, 'supported_settings_percent', n.get_int_value()),
-            "targeted_in_active_directory": lambda n : setattr(self, 'targeted_in_active_directory', n.get_bool_value()),
-            "total_settings_count": lambda n : setattr(self, 'total_settings_count', n.get_int_value()),
-            "unsupported_group_policy_extensions": lambda n : setattr(self, 'unsupported_group_policy_extensions', n.get_collection_of_object_values(unsupported_group_policy_extension.UnsupportedGroupPolicyExtension)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "groupPolicyCreatedDateTime": lambda n : setattr(self, 'group_policy_created_date_time', n.get_datetime_value()),
+            "groupPolicyLastModifiedDateTime": lambda n : setattr(self, 'group_policy_last_modified_date_time', n.get_datetime_value()),
+            "groupPolicyObjectId": lambda n : setattr(self, 'group_policy_object_id', n.get_object_value(Guid)),
+            "groupPolicySettingMappings": lambda n : setattr(self, 'group_policy_setting_mappings', n.get_collection_of_object_values(group_policy_setting_mapping.GroupPolicySettingMapping)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "migrationReadiness": lambda n : setattr(self, 'migration_readiness', n.get_enum_value(group_policy_migration_readiness.GroupPolicyMigrationReadiness)),
+            "ouDistinguishedName": lambda n : setattr(self, 'ou_distinguished_name', n.get_str_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "supportedSettingsCount": lambda n : setattr(self, 'supported_settings_count', n.get_int_value()),
+            "supportedSettingsPercent": lambda n : setattr(self, 'supported_settings_percent', n.get_int_value()),
+            "targetedInActiveDirectory": lambda n : setattr(self, 'targeted_in_active_directory', n.get_bool_value()),
+            "totalSettingsCount": lambda n : setattr(self, 'total_settings_count', n.get_int_value()),
+            "unsupportedGroupPolicyExtensions": lambda n : setattr(self, 'unsupported_group_policy_extensions', n.get_collection_of_object_values(unsupported_group_policy_extension.UnsupportedGroupPolicyExtension)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -136,7 +133,7 @@ class GroupPolicyMigrationReport(entity.Entity):
         """
         Sets the groupPolicyCreatedDateTime property value. The date and time at which the GroupPolicyMigrationReport was created.
         Args:
-            value: Value to set for the groupPolicyCreatedDateTime property.
+            value: Value to set for the group_policy_created_date_time property.
         """
         self._group_policy_created_date_time = value
     
@@ -153,7 +150,7 @@ class GroupPolicyMigrationReport(entity.Entity):
         """
         Sets the groupPolicyLastModifiedDateTime property value. The date and time at which the GroupPolicyMigrationReport was last modified.
         Args:
-            value: Value to set for the groupPolicyLastModifiedDateTime property.
+            value: Value to set for the group_policy_last_modified_date_time property.
         """
         self._group_policy_last_modified_date_time = value
     
@@ -170,7 +167,7 @@ class GroupPolicyMigrationReport(entity.Entity):
         """
         Sets the groupPolicyObjectId property value. The Group Policy Object GUID from GPO Xml content
         Args:
-            value: Value to set for the groupPolicyObjectId property.
+            value: Value to set for the group_policy_object_id property.
         """
         self._group_policy_object_id = value
     
@@ -187,7 +184,7 @@ class GroupPolicyMigrationReport(entity.Entity):
         """
         Sets the groupPolicySettingMappings property value. A list of group policy settings to MDM/Intune mappings.
         Args:
-            value: Value to set for the groupPolicySettingMappings property.
+            value: Value to set for the group_policy_setting_mappings property.
         """
         self._group_policy_setting_mappings = value
     
@@ -204,7 +201,7 @@ class GroupPolicyMigrationReport(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date and time at which the GroupPolicyMigrationReport was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -221,7 +218,7 @@ class GroupPolicyMigrationReport(entity.Entity):
         """
         Sets the migrationReadiness property value. Indicates if the Group Policy Object file is covered and ready for Intune migration.
         Args:
-            value: Value to set for the migrationReadiness property.
+            value: Value to set for the migration_readiness property.
         """
         self._migration_readiness = value
     
@@ -238,7 +235,7 @@ class GroupPolicyMigrationReport(entity.Entity):
         """
         Sets the ouDistinguishedName property value. The distinguished name of the OU.
         Args:
-            value: Value to set for the ouDistinguishedName property.
+            value: Value to set for the ou_distinguished_name property.
         """
         self._ou_distinguished_name = value
     
@@ -255,7 +252,7 @@ class GroupPolicyMigrationReport(entity.Entity):
         """
         Sets the roleScopeTagIds property value. The list of scope tags for the configuration.
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     
@@ -297,7 +294,7 @@ class GroupPolicyMigrationReport(entity.Entity):
         """
         Sets the supportedSettingsCount property value. The number of Group Policy Settings supported by Intune.
         Args:
-            value: Value to set for the supportedSettingsCount property.
+            value: Value to set for the supported_settings_count property.
         """
         self._supported_settings_count = value
     
@@ -314,7 +311,7 @@ class GroupPolicyMigrationReport(entity.Entity):
         """
         Sets the supportedSettingsPercent property value. The Percentage of Group Policy Settings supported by Intune.
         Args:
-            value: Value to set for the supportedSettingsPercent property.
+            value: Value to set for the supported_settings_percent property.
         """
         self._supported_settings_percent = value
     
@@ -331,7 +328,7 @@ class GroupPolicyMigrationReport(entity.Entity):
         """
         Sets the targetedInActiveDirectory property value. The Targeted in AD property from GPO Xml Content
         Args:
-            value: Value to set for the targetedInActiveDirectory property.
+            value: Value to set for the targeted_in_active_directory property.
         """
         self._targeted_in_active_directory = value
     
@@ -348,7 +345,7 @@ class GroupPolicyMigrationReport(entity.Entity):
         """
         Sets the totalSettingsCount property value. The total number of Group Policy Settings from GPO file.
         Args:
-            value: Value to set for the totalSettingsCount property.
+            value: Value to set for the total_settings_count property.
         """
         self._total_settings_count = value
     
@@ -365,7 +362,7 @@ class GroupPolicyMigrationReport(entity.Entity):
         """
         Sets the unsupportedGroupPolicyExtensions property value. A list of unsupported group policy extensions inside the Group Policy Object.
         Args:
-            value: Value to set for the unsupportedGroupPolicyExtensions property.
+            value: Value to set for the unsupported_group_policy_extensions property.
         """
         self._unsupported_group_policy_extensions = value
     

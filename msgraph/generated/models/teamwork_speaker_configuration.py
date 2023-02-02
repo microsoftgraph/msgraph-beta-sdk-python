@@ -68,7 +68,7 @@ class TeamworkSpeakerConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the defaultCommunicationSpeaker property value. The defaultCommunicationSpeaker property
         Args:
-            value: Value to set for the defaultCommunicationSpeaker property.
+            value: Value to set for the default_communication_speaker property.
         """
         self._default_communication_speaker = value
     
@@ -85,7 +85,7 @@ class TeamworkSpeakerConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the defaultSpeaker property value. The defaultSpeaker property
         Args:
-            value: Value to set for the defaultSpeaker property.
+            value: Value to set for the default_speaker property.
         """
         self._default_speaker = value
     
@@ -95,10 +95,10 @@ class TeamworkSpeakerConfiguration(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_communication_speaker": lambda n : setattr(self, 'default_communication_speaker', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
-            "default_speaker": lambda n : setattr(self, 'default_speaker', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
-            "is_communication_speaker_optional": lambda n : setattr(self, 'is_communication_speaker_optional', n.get_bool_value()),
-            "is_speaker_optional": lambda n : setattr(self, 'is_speaker_optional', n.get_bool_value()),
+            "defaultCommunicationSpeaker": lambda n : setattr(self, 'default_communication_speaker', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
+            "defaultSpeaker": lambda n : setattr(self, 'default_speaker', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
+            "isCommunicationSpeakerOptional": lambda n : setattr(self, 'is_communication_speaker_optional', n.get_bool_value()),
+            "isSpeakerOptional": lambda n : setattr(self, 'is_speaker_optional', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "speakers": lambda n : setattr(self, 'speakers', n.get_collection_of_object_values(teamwork_peripheral.TeamworkPeripheral)),
         }
@@ -117,7 +117,7 @@ class TeamworkSpeakerConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isCommunicationSpeakerOptional property value. True if the communication speaker is optional. Used to compute the health state if the communication speaker is not optional.
         Args:
-            value: Value to set for the isCommunicationSpeakerOptional property.
+            value: Value to set for the is_communication_speaker_optional property.
         """
         self._is_communication_speaker_optional = value
     
@@ -134,7 +134,7 @@ class TeamworkSpeakerConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isSpeakerOptional property value. True if the configured speaker is optional. Used to compute the health state if the speaker is not optional.
         Args:
-            value: Value to set for the isSpeakerOptional property.
+            value: Value to set for the is_speaker_optional property.
         """
         self._is_speaker_optional = value
     
@@ -151,7 +151,7 @@ class TeamworkSpeakerConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

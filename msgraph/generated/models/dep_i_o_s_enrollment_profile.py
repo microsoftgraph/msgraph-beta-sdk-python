@@ -21,7 +21,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the appearanceScreenDisabled property value. Indicates if Apperance screen is disabled
         Args:
-            value: Value to set for the appearanceScreenDisabled property.
+            value: Value to set for the appearance_screen_disabled property.
         """
         self._appearance_screen_disabled = value
     
@@ -38,7 +38,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the awaitDeviceConfiguredConfirmation property value. Indicates if the device will need to wait for configured confirmation
         Args:
-            value: Value to set for the awaitDeviceConfiguredConfirmation property.
+            value: Value to set for the await_device_configured_confirmation property.
         """
         self._await_device_configured_confirmation = value
     
@@ -55,7 +55,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the carrierActivationUrl property value. Carrier URL for activating device eSIM.
         Args:
-            value: Value to set for the carrierActivationUrl property.
+            value: Value to set for the carrier_activation_url property.
         """
         self._carrier_activation_url = value
     
@@ -72,7 +72,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the companyPortalVppTokenId property value. If set, indicates which Vpp token should be used to deploy the Company Portal w/ device licensing. 'enableAuthenticationViaCompanyPortal' must be set in order for this property to be set.
         Args:
-            value: Value to set for the companyPortalVppTokenId property.
+            value: Value to set for the company_portal_vpp_token_id property.
         """
         self._company_portal_vpp_token_id = value
     
@@ -130,10 +130,10 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         self._temporary_session_timeout_in_seconds: Optional[int] = None
         # Indicates if Weclome screen is disabled
         self._update_complete_screen_disabled: Optional[bool] = None
-        # Indicates that this apple device is designated to support 'shared device mode' scenarios. This is distinct from the 'shared iPad' scenario. See https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment-shared-ios
-        self._userless_shared_aad_mode_enabled: Optional[bool] = None
         # Indicates timeout of temporary session
         self._user_session_timeout_in_seconds: Optional[int] = None
+        # Indicates that this apple device is designated to support 'shared device mode' scenarios. This is distinct from the 'shared iPad' scenario. See https://learn.microsoft.com/mem/intune/enrollment/device-enrollment-shared-ios
+        self._userless_shared_aad_mode_enabled: Optional[bool] = None
         # Indicates if the watch migration screen is disabled
         self._watch_migration_screen_disabled: Optional[bool] = None
         # Indicates if Weclome screen is disabled
@@ -166,7 +166,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the deviceToDeviceMigrationDisabled property value. Indicates if Device To Device Migration is disabled
         Args:
-            value: Value to set for the deviceToDeviceMigrationDisabled property.
+            value: Value to set for the device_to_device_migration_disabled property.
         """
         self._device_to_device_migration_disabled = value
     
@@ -183,7 +183,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the enableSharedIPad property value. This indicates whether the device is to be enrolled in a mode which enables multi user scenarios. Only applicable in shared iPads.
         Args:
-            value: Value to set for the enableSharedIPad property.
+            value: Value to set for the enable_shared_i_pad property.
         """
         self._enable_shared_i_pad = value
     
@@ -200,7 +200,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the enableSingleAppEnrollmentMode property value. Tells the device to enable single app mode and apply app-lock during enrollment. Default is false. 'enableAuthenticationViaCompanyPortal' and 'companyPortalVppTokenId' must be set for this property to be set.
         Args:
-            value: Value to set for the enableSingleAppEnrollmentMode property.
+            value: Value to set for the enable_single_app_enrollment_mode property.
         """
         self._enable_single_app_enrollment_mode = value
     
@@ -217,7 +217,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the expressLanguageScreenDisabled property value. Indicates if Express Language screen is disabled
         Args:
-            value: Value to set for the expressLanguageScreenDisabled property.
+            value: Value to set for the express_language_screen_disabled property.
         """
         self._express_language_screen_disabled = value
     
@@ -234,7 +234,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the forceTemporarySession property value. Indicates if temporary sessions is enabled
         Args:
-            value: Value to set for the forceTemporarySession property.
+            value: Value to set for the force_temporary_session property.
         """
         self._force_temporary_session = value
     
@@ -244,35 +244,35 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "appearance_screen_disabled": lambda n : setattr(self, 'appearance_screen_disabled', n.get_bool_value()),
-            "await_device_configured_confirmation": lambda n : setattr(self, 'await_device_configured_confirmation', n.get_bool_value()),
-            "carrier_activation_url": lambda n : setattr(self, 'carrier_activation_url', n.get_str_value()),
-            "company_portal_vpp_token_id": lambda n : setattr(self, 'company_portal_vpp_token_id', n.get_str_value()),
-            "device_to_device_migration_disabled": lambda n : setattr(self, 'device_to_device_migration_disabled', n.get_bool_value()),
-            "enable_shared_i_pad": lambda n : setattr(self, 'enable_shared_i_pad', n.get_bool_value()),
-            "enable_single_app_enrollment_mode": lambda n : setattr(self, 'enable_single_app_enrollment_mode', n.get_bool_value()),
-            "express_language_screen_disabled": lambda n : setattr(self, 'express_language_screen_disabled', n.get_bool_value()),
-            "force_temporary_session": lambda n : setattr(self, 'force_temporary_session', n.get_bool_value()),
-            "home_button_screen_disabled": lambda n : setattr(self, 'home_button_screen_disabled', n.get_bool_value()),
-            "i_message_and_face_time_screen_disabled": lambda n : setattr(self, 'i_message_and_face_time_screen_disabled', n.get_bool_value()),
-            "i_tunes_pairing_mode": lambda n : setattr(self, 'i_tunes_pairing_mode', n.get_enum_value(i_tunes_pairing_mode.ITunesPairingMode)),
-            "management_certificates": lambda n : setattr(self, 'management_certificates', n.get_collection_of_object_values(management_certificate_with_thumbprint.ManagementCertificateWithThumbprint)),
-            "on_boarding_screen_disabled": lambda n : setattr(self, 'on_boarding_screen_disabled', n.get_bool_value()),
-            "pass_code_disabled": lambda n : setattr(self, 'pass_code_disabled', n.get_bool_value()),
-            "passcode_lock_grace_period_in_seconds": lambda n : setattr(self, 'passcode_lock_grace_period_in_seconds', n.get_int_value()),
-            "preferred_language_screen_disabled": lambda n : setattr(self, 'preferred_language_screen_disabled', n.get_bool_value()),
-            "restore_completed_screen_disabled": lambda n : setattr(self, 'restore_completed_screen_disabled', n.get_bool_value()),
-            "restore_from_android_disabled": lambda n : setattr(self, 'restore_from_android_disabled', n.get_bool_value()),
-            "shared_i_pad_maximum_user_count": lambda n : setattr(self, 'shared_i_pad_maximum_user_count', n.get_int_value()),
-            "sim_setup_screen_disabled": lambda n : setattr(self, 'sim_setup_screen_disabled', n.get_bool_value()),
-            "software_update_screen_disabled": lambda n : setattr(self, 'software_update_screen_disabled', n.get_bool_value()),
-            "temporary_session_timeout_in_seconds": lambda n : setattr(self, 'temporary_session_timeout_in_seconds', n.get_int_value()),
-            "update_complete_screen_disabled": lambda n : setattr(self, 'update_complete_screen_disabled', n.get_bool_value()),
-            "userless_shared_aad_mode_enabled": lambda n : setattr(self, 'userless_shared_aad_mode_enabled', n.get_bool_value()),
-            "user_session_timeout_in_seconds": lambda n : setattr(self, 'user_session_timeout_in_seconds', n.get_int_value()),
-            "watch_migration_screen_disabled": lambda n : setattr(self, 'watch_migration_screen_disabled', n.get_bool_value()),
-            "welcome_screen_disabled": lambda n : setattr(self, 'welcome_screen_disabled', n.get_bool_value()),
-            "zoom_disabled": lambda n : setattr(self, 'zoom_disabled', n.get_bool_value()),
+            "appearanceScreenDisabled": lambda n : setattr(self, 'appearance_screen_disabled', n.get_bool_value()),
+            "awaitDeviceConfiguredConfirmation": lambda n : setattr(self, 'await_device_configured_confirmation', n.get_bool_value()),
+            "carrierActivationUrl": lambda n : setattr(self, 'carrier_activation_url', n.get_str_value()),
+            "companyPortalVppTokenId": lambda n : setattr(self, 'company_portal_vpp_token_id', n.get_str_value()),
+            "deviceToDeviceMigrationDisabled": lambda n : setattr(self, 'device_to_device_migration_disabled', n.get_bool_value()),
+            "enableSharedIPad": lambda n : setattr(self, 'enable_shared_i_pad', n.get_bool_value()),
+            "enableSingleAppEnrollmentMode": lambda n : setattr(self, 'enable_single_app_enrollment_mode', n.get_bool_value()),
+            "expressLanguageScreenDisabled": lambda n : setattr(self, 'express_language_screen_disabled', n.get_bool_value()),
+            "forceTemporarySession": lambda n : setattr(self, 'force_temporary_session', n.get_bool_value()),
+            "homeButtonScreenDisabled": lambda n : setattr(self, 'home_button_screen_disabled', n.get_bool_value()),
+            "iMessageAndFaceTimeScreenDisabled": lambda n : setattr(self, 'i_message_and_face_time_screen_disabled', n.get_bool_value()),
+            "iTunesPairingMode": lambda n : setattr(self, 'i_tunes_pairing_mode', n.get_enum_value(i_tunes_pairing_mode.ITunesPairingMode)),
+            "managementCertificates": lambda n : setattr(self, 'management_certificates', n.get_collection_of_object_values(management_certificate_with_thumbprint.ManagementCertificateWithThumbprint)),
+            "onBoardingScreenDisabled": lambda n : setattr(self, 'on_boarding_screen_disabled', n.get_bool_value()),
+            "passcodeLockGracePeriodInSeconds": lambda n : setattr(self, 'passcode_lock_grace_period_in_seconds', n.get_int_value()),
+            "passCodeDisabled": lambda n : setattr(self, 'pass_code_disabled', n.get_bool_value()),
+            "preferredLanguageScreenDisabled": lambda n : setattr(self, 'preferred_language_screen_disabled', n.get_bool_value()),
+            "restoreCompletedScreenDisabled": lambda n : setattr(self, 'restore_completed_screen_disabled', n.get_bool_value()),
+            "restoreFromAndroidDisabled": lambda n : setattr(self, 'restore_from_android_disabled', n.get_bool_value()),
+            "sharedIPadMaximumUserCount": lambda n : setattr(self, 'shared_i_pad_maximum_user_count', n.get_int_value()),
+            "simSetupScreenDisabled": lambda n : setattr(self, 'sim_setup_screen_disabled', n.get_bool_value()),
+            "softwareUpdateScreenDisabled": lambda n : setattr(self, 'software_update_screen_disabled', n.get_bool_value()),
+            "temporarySessionTimeoutInSeconds": lambda n : setattr(self, 'temporary_session_timeout_in_seconds', n.get_int_value()),
+            "updateCompleteScreenDisabled": lambda n : setattr(self, 'update_complete_screen_disabled', n.get_bool_value()),
+            "userlessSharedAadModeEnabled": lambda n : setattr(self, 'userless_shared_aad_mode_enabled', n.get_bool_value()),
+            "userSessionTimeoutInSeconds": lambda n : setattr(self, 'user_session_timeout_in_seconds', n.get_int_value()),
+            "watchMigrationScreenDisabled": lambda n : setattr(self, 'watch_migration_screen_disabled', n.get_bool_value()),
+            "welcomeScreenDisabled": lambda n : setattr(self, 'welcome_screen_disabled', n.get_bool_value()),
+            "zoomDisabled": lambda n : setattr(self, 'zoom_disabled', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -291,7 +291,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the homeButtonScreenDisabled property value. Indicates if home button sensitivity screen is disabled
         Args:
-            value: Value to set for the homeButtonScreenDisabled property.
+            value: Value to set for the home_button_screen_disabled property.
         """
         self._home_button_screen_disabled = value
     
@@ -308,7 +308,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the iMessageAndFaceTimeScreenDisabled property value. Indicates if iMessage and FaceTime screen is disabled
         Args:
-            value: Value to set for the iMessageAndFaceTimeScreenDisabled property.
+            value: Value to set for the i_message_and_face_time_screen_disabled property.
         """
         self._i_message_and_face_time_screen_disabled = value
     
@@ -325,7 +325,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the iTunesPairingMode property value. The iTunesPairingMode property
         Args:
-            value: Value to set for the iTunesPairingMode property.
+            value: Value to set for the i_tunes_pairing_mode property.
         """
         self._i_tunes_pairing_mode = value
     
@@ -342,7 +342,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the managementCertificates property value. Management certificates for Apple Configurator
         Args:
-            value: Value to set for the managementCertificates property.
+            value: Value to set for the management_certificates property.
         """
         self._management_certificates = value
     
@@ -359,7 +359,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the onBoardingScreenDisabled property value. Indicates if onboarding setup screen is disabled
         Args:
-            value: Value to set for the onBoardingScreenDisabled property.
+            value: Value to set for the on_boarding_screen_disabled property.
         """
         self._on_boarding_screen_disabled = value
     
@@ -376,7 +376,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the passCodeDisabled property value. Indicates if Passcode setup pane is disabled
         Args:
-            value: Value to set for the passCodeDisabled property.
+            value: Value to set for the pass_code_disabled property.
         """
         self._pass_code_disabled = value
     
@@ -393,7 +393,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the passcodeLockGracePeriodInSeconds property value. Indicates timeout before locked screen requires the user to enter the device passocde to unlock it
         Args:
-            value: Value to set for the passcodeLockGracePeriodInSeconds property.
+            value: Value to set for the passcode_lock_grace_period_in_seconds property.
         """
         self._passcode_lock_grace_period_in_seconds = value
     
@@ -410,7 +410,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the preferredLanguageScreenDisabled property value. Indicates if Preferred language screen is disabled
         Args:
-            value: Value to set for the preferredLanguageScreenDisabled property.
+            value: Value to set for the preferred_language_screen_disabled property.
         """
         self._preferred_language_screen_disabled = value
     
@@ -427,7 +427,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the restoreCompletedScreenDisabled property value. Indicates if Weclome screen is disabled
         Args:
-            value: Value to set for the restoreCompletedScreenDisabled property.
+            value: Value to set for the restore_completed_screen_disabled property.
         """
         self._restore_completed_screen_disabled = value
     
@@ -444,7 +444,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the restoreFromAndroidDisabled property value. Indicates if Restore from Android is disabled
         Args:
-            value: Value to set for the restoreFromAndroidDisabled property.
+            value: Value to set for the restore_from_android_disabled property.
         """
         self._restore_from_android_disabled = value
     
@@ -471,8 +471,8 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         writer.write_enum_value("iTunesPairingMode", self.i_tunes_pairing_mode)
         writer.write_collection_of_object_values("managementCertificates", self.management_certificates)
         writer.write_bool_value("onBoardingScreenDisabled", self.on_boarding_screen_disabled)
-        writer.write_bool_value("passCodeDisabled", self.pass_code_disabled)
         writer.write_int_value("passcodeLockGracePeriodInSeconds", self.passcode_lock_grace_period_in_seconds)
+        writer.write_bool_value("passCodeDisabled", self.pass_code_disabled)
         writer.write_bool_value("preferredLanguageScreenDisabled", self.preferred_language_screen_disabled)
         writer.write_bool_value("restoreCompletedScreenDisabled", self.restore_completed_screen_disabled)
         writer.write_bool_value("restoreFromAndroidDisabled", self.restore_from_android_disabled)
@@ -500,7 +500,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the sharedIPadMaximumUserCount property value. This specifies the maximum number of users that can use a shared iPad. Only applicable in shared iPad mode.
         Args:
-            value: Value to set for the sharedIPadMaximumUserCount property.
+            value: Value to set for the shared_i_pad_maximum_user_count property.
         """
         self._shared_i_pad_maximum_user_count = value
     
@@ -517,7 +517,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the simSetupScreenDisabled property value. Indicates if the SIMSetup screen is disabled
         Args:
-            value: Value to set for the simSetupScreenDisabled property.
+            value: Value to set for the sim_setup_screen_disabled property.
         """
         self._sim_setup_screen_disabled = value
     
@@ -534,7 +534,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the softwareUpdateScreenDisabled property value. Indicates if the mandatory sofware update screen is disabled
         Args:
-            value: Value to set for the softwareUpdateScreenDisabled property.
+            value: Value to set for the software_update_screen_disabled property.
         """
         self._software_update_screen_disabled = value
     
@@ -551,7 +551,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the temporarySessionTimeoutInSeconds property value. Indicates timeout of temporary session
         Args:
-            value: Value to set for the temporarySessionTimeoutInSeconds property.
+            value: Value to set for the temporary_session_timeout_in_seconds property.
         """
         self._temporary_session_timeout_in_seconds = value
     
@@ -568,26 +568,9 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the updateCompleteScreenDisabled property value. Indicates if Weclome screen is disabled
         Args:
-            value: Value to set for the updateCompleteScreenDisabled property.
+            value: Value to set for the update_complete_screen_disabled property.
         """
         self._update_complete_screen_disabled = value
-    
-    @property
-    def userless_shared_aad_mode_enabled(self,) -> Optional[bool]:
-        """
-        Gets the userlessSharedAadModeEnabled property value. Indicates that this apple device is designated to support 'shared device mode' scenarios. This is distinct from the 'shared iPad' scenario. See https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment-shared-ios
-        Returns: Optional[bool]
-        """
-        return self._userless_shared_aad_mode_enabled
-    
-    @userless_shared_aad_mode_enabled.setter
-    def userless_shared_aad_mode_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the userlessSharedAadModeEnabled property value. Indicates that this apple device is designated to support 'shared device mode' scenarios. This is distinct from the 'shared iPad' scenario. See https://learn.microsoft.com/en-us/mem/intune/enrollment/device-enrollment-shared-ios
-        Args:
-            value: Value to set for the userlessSharedAadModeEnabled property.
-        """
-        self._userless_shared_aad_mode_enabled = value
     
     @property
     def user_session_timeout_in_seconds(self,) -> Optional[int]:
@@ -602,9 +585,26 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the userSessionTimeoutInSeconds property value. Indicates timeout of temporary session
         Args:
-            value: Value to set for the userSessionTimeoutInSeconds property.
+            value: Value to set for the user_session_timeout_in_seconds property.
         """
         self._user_session_timeout_in_seconds = value
+    
+    @property
+    def userless_shared_aad_mode_enabled(self,) -> Optional[bool]:
+        """
+        Gets the userlessSharedAadModeEnabled property value. Indicates that this apple device is designated to support 'shared device mode' scenarios. This is distinct from the 'shared iPad' scenario. See https://learn.microsoft.com/mem/intune/enrollment/device-enrollment-shared-ios
+        Returns: Optional[bool]
+        """
+        return self._userless_shared_aad_mode_enabled
+    
+    @userless_shared_aad_mode_enabled.setter
+    def userless_shared_aad_mode_enabled(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the userlessSharedAadModeEnabled property value. Indicates that this apple device is designated to support 'shared device mode' scenarios. This is distinct from the 'shared iPad' scenario. See https://learn.microsoft.com/mem/intune/enrollment/device-enrollment-shared-ios
+        Args:
+            value: Value to set for the userless_shared_aad_mode_enabled property.
+        """
+        self._userless_shared_aad_mode_enabled = value
     
     @property
     def watch_migration_screen_disabled(self,) -> Optional[bool]:
@@ -619,7 +619,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the watchMigrationScreenDisabled property value. Indicates if the watch migration screen is disabled
         Args:
-            value: Value to set for the watchMigrationScreenDisabled property.
+            value: Value to set for the watch_migration_screen_disabled property.
         """
         self._watch_migration_screen_disabled = value
     
@@ -636,7 +636,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the welcomeScreenDisabled property value. Indicates if Weclome screen is disabled
         Args:
-            value: Value to set for the welcomeScreenDisabled property.
+            value: Value to set for the welcome_screen_disabled property.
         """
         self._welcome_screen_disabled = value
     
@@ -653,7 +653,7 @@ class DepIOSEnrollmentProfile(dep_enrollment_base_profile.DepEnrollmentBaseProfi
         """
         Sets the zoomDisabled property value. Indicates if zoom setup pane is disabled
         Args:
-            value: Value to set for the zoomDisabled property.
+            value: Value to set for the zoom_disabled property.
         """
         self._zoom_disabled = value
     

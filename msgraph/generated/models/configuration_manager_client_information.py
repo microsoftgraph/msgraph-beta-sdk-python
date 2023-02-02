@@ -37,7 +37,7 @@ class ConfigurationManagerClientInformation(AdditionalDataHolder, Parsable):
         """
         Sets the clientIdentifier property value. Configuration Manager Client Id from SCCM
         Args:
-            value: Value to set for the clientIdentifier property.
+            value: Value to set for the client_identifier property.
         """
         self._client_identifier = value
     
@@ -54,7 +54,7 @@ class ConfigurationManagerClientInformation(AdditionalDataHolder, Parsable):
         """
         Sets the clientVersion property value. Configuration Manager Client version from SCCM
         Args:
-            value: Value to set for the clientVersion property.
+            value: Value to set for the client_version property.
         """
         self._client_version = value
     
@@ -92,9 +92,9 @@ class ConfigurationManagerClientInformation(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "client_identifier": lambda n : setattr(self, 'client_identifier', n.get_str_value()),
-            "client_version": lambda n : setattr(self, 'client_version', n.get_str_value()),
-            "is_blocked": lambda n : setattr(self, 'is_blocked', n.get_bool_value()),
+            "clientIdentifier": lambda n : setattr(self, 'client_identifier', n.get_str_value()),
+            "clientVersion": lambda n : setattr(self, 'client_version', n.get_str_value()),
+            "isBlocked": lambda n : setattr(self, 'is_blocked', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -112,7 +112,7 @@ class ConfigurationManagerClientInformation(AdditionalDataHolder, Parsable):
         """
         Sets the isBlocked property value. Configuration Manager Client blocked status from SCCM
         Args:
-            value: Value to set for the isBlocked property.
+            value: Value to set for the is_blocked property.
         """
         self._is_blocked = value
     
@@ -129,7 +129,7 @@ class ConfigurationManagerClientInformation(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

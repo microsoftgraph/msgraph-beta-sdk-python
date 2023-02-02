@@ -24,7 +24,7 @@ class B2cIdentityUserFlow(identity_user_flow.IdentityUserFlow):
         """
         Sets the apiConnectorConfiguration property value. Configuration for enabling an API connector for use as part of the user flow. You can only obtain the value of this object using Get userFlowApiConnectorConfiguration.
         Args:
-            value: Value to set for the apiConnectorConfiguration property.
+            value: Value to set for the api_connector_configuration property.
         """
         self._api_connector_configuration = value
     
@@ -75,7 +75,7 @@ class B2cIdentityUserFlow(identity_user_flow.IdentityUserFlow):
         """
         Sets the defaultLanguageTag property value. Indicates the default language of the b2cIdentityUserFlow that is used when no ui_locale tag is specified in the request. This field is RFC 5646 compliant.
         Args:
-            value: Value to set for the defaultLanguageTag property.
+            value: Value to set for the default_language_tag property.
         """
         self._default_language_tag = value
     
@@ -85,13 +85,13 @@ class B2cIdentityUserFlow(identity_user_flow.IdentityUserFlow):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "api_connector_configuration": lambda n : setattr(self, 'api_connector_configuration', n.get_object_value(user_flow_api_connector_configuration.UserFlowApiConnectorConfiguration)),
-            "default_language_tag": lambda n : setattr(self, 'default_language_tag', n.get_str_value()),
-            "identity_providers": lambda n : setattr(self, 'identity_providers', n.get_collection_of_object_values(identity_provider.IdentityProvider)),
-            "is_language_customization_enabled": lambda n : setattr(self, 'is_language_customization_enabled', n.get_bool_value()),
+            "apiConnectorConfiguration": lambda n : setattr(self, 'api_connector_configuration', n.get_object_value(user_flow_api_connector_configuration.UserFlowApiConnectorConfiguration)),
+            "defaultLanguageTag": lambda n : setattr(self, 'default_language_tag', n.get_str_value()),
+            "identityProviders": lambda n : setattr(self, 'identity_providers', n.get_collection_of_object_values(identity_provider.IdentityProvider)),
+            "isLanguageCustomizationEnabled": lambda n : setattr(self, 'is_language_customization_enabled', n.get_bool_value()),
             "languages": lambda n : setattr(self, 'languages', n.get_collection_of_object_values(user_flow_language_configuration.UserFlowLanguageConfiguration)),
-            "user_attribute_assignments": lambda n : setattr(self, 'user_attribute_assignments', n.get_collection_of_object_values(identity_user_flow_attribute_assignment.IdentityUserFlowAttributeAssignment)),
-            "user_flow_identity_providers": lambda n : setattr(self, 'user_flow_identity_providers', n.get_collection_of_object_values(identity_provider_base.IdentityProviderBase)),
+            "userAttributeAssignments": lambda n : setattr(self, 'user_attribute_assignments', n.get_collection_of_object_values(identity_user_flow_attribute_assignment.IdentityUserFlowAttributeAssignment)),
+            "userFlowIdentityProviders": lambda n : setattr(self, 'user_flow_identity_providers', n.get_collection_of_object_values(identity_provider_base.IdentityProviderBase)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -110,7 +110,7 @@ class B2cIdentityUserFlow(identity_user_flow.IdentityUserFlow):
         """
         Sets the identityProviders property value. The identityProviders property
         Args:
-            value: Value to set for the identityProviders property.
+            value: Value to set for the identity_providers property.
         """
         self._identity_providers = value
     
@@ -127,7 +127,7 @@ class B2cIdentityUserFlow(identity_user_flow.IdentityUserFlow):
         """
         Sets the isLanguageCustomizationEnabled property value. The property that determines whether language customization is enabled within the B2C user flow. Language customization is not enabled by default for B2C user flows.
         Args:
-            value: Value to set for the isLanguageCustomizationEnabled property.
+            value: Value to set for the is_language_customization_enabled property.
         """
         self._is_language_customization_enabled = value
     
@@ -178,7 +178,7 @@ class B2cIdentityUserFlow(identity_user_flow.IdentityUserFlow):
         """
         Sets the userAttributeAssignments property value. The user attribute assignments included in the user flow.
         Args:
-            value: Value to set for the userAttributeAssignments property.
+            value: Value to set for the user_attribute_assignments property.
         """
         self._user_attribute_assignments = value
     
@@ -195,7 +195,7 @@ class B2cIdentityUserFlow(identity_user_flow.IdentityUserFlow):
         """
         Sets the userFlowIdentityProviders property value. The userFlowIdentityProviders property
         Args:
-            value: Value to set for the userFlowIdentityProviders property.
+            value: Value to set for the user_flow_identity_providers property.
         """
         self._user_flow_identity_providers = value
     

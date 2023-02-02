@@ -44,12 +44,11 @@ class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_battery_health_device_runtime_history_collection_response.UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_battery_health_device_runtime_history_collection_response.UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryCollectionResponse]:
         """
         User Experience Analytics Battery Health Device Runtime History
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_battery_health_device_runtime_history_collection_response.UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_device_runtime_history_collection_response.UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_device_runtime_history_collection_response.UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[user_experience_analytics_battery_health_device_runtime_history.UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory] = None, request_configuration: Optional[UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_battery_health_device_runtime_history.UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory]:
+    async def post(self,body: Optional[user_experience_analytics_battery_health_device_runtime_history.UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory] = None, request_configuration: Optional[UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilderPostRequestConfiguration] = None) -> Optional[user_experience_analytics_battery_health_device_runtime_history.UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory]:
         """
         Create new navigation property to userExperienceAnalyticsBatteryHealthDeviceRuntimeHistory for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_battery_health_device_runtime_history.UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory]
         """
         if body is None:
@@ -83,7 +81,7 @@ class UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_device_runtime_history.UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_device_runtime_history.UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -34,7 +34,7 @@ class Contract(directory_object.DirectoryObject):
         """
         Sets the contractType property value. The contractType property
         Args:
-            value: Value to set for the contractType property.
+            value: Value to set for the contract_type property.
         """
         self._contract_type = value
     
@@ -63,7 +63,7 @@ class Contract(directory_object.DirectoryObject):
         """
         Sets the customerId property value. The customerId property
         Args:
-            value: Value to set for the customerId property.
+            value: Value to set for the customer_id property.
         """
         self._customer_id = value
     
@@ -80,7 +80,7 @@ class Contract(directory_object.DirectoryObject):
         """
         Sets the defaultDomainName property value. The defaultDomainName property
         Args:
-            value: Value to set for the defaultDomainName property.
+            value: Value to set for the default_domain_name property.
         """
         self._default_domain_name = value
     
@@ -97,7 +97,7 @@ class Contract(directory_object.DirectoryObject):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -107,10 +107,10 @@ class Contract(directory_object.DirectoryObject):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "contract_type": lambda n : setattr(self, 'contract_type', n.get_str_value()),
-            "customer_id": lambda n : setattr(self, 'customer_id', n.get_object_value(Guid)),
-            "default_domain_name": lambda n : setattr(self, 'default_domain_name', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "contractType": lambda n : setattr(self, 'contract_type', n.get_str_value()),
+            "customerId": lambda n : setattr(self, 'customer_id', n.get_object_value(Guid)),
+            "defaultDomainName": lambda n : setattr(self, 'default_domain_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

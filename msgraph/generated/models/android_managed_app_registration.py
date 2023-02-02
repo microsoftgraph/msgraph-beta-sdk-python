@@ -33,7 +33,7 @@ class AndroidManagedAppRegistration(managed_app_registration.ManagedAppRegistrat
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "patch_version": lambda n : setattr(self, 'patch_version', n.get_str_value()),
+            "patchVersion": lambda n : setattr(self, 'patch_version', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -52,7 +52,7 @@ class AndroidManagedAppRegistration(managed_app_registration.ManagedAppRegistrat
         """
         Sets the patchVersion property value. The patch version for the current android app registration
         Args:
-            value: Value to set for the patchVersion property.
+            value: Value to set for the patch_version property.
         """
         self._patch_version = value
     

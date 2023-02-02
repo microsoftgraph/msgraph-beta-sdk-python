@@ -22,7 +22,7 @@ class RegionalAndLanguageSettings(entity.Entity):
         """
         Sets the authoringLanguages property value. Prioritized list of languages the user reads and authors in.Returned by default. Not nullable.
         Args:
-            value: Value to set for the authoringLanguages property.
+            value: Value to set for the authoring_languages property.
         """
         self._authoring_languages = value
     
@@ -73,7 +73,7 @@ class RegionalAndLanguageSettings(entity.Entity):
         """
         Sets the defaultDisplayLanguage property value. The  user's preferred user interface language (menus, buttons, ribbons, warning messages) for Microsoft web applications.Returned by default. Not nullable.
         Args:
-            value: Value to set for the defaultDisplayLanguage property.
+            value: Value to set for the default_display_language property.
         """
         self._default_display_language = value
     
@@ -90,7 +90,7 @@ class RegionalAndLanguageSettings(entity.Entity):
         """
         Sets the defaultRegionalFormat property value. The locale that drives the default date, time, and calendar formatting.Returned by default.
         Args:
-            value: Value to set for the defaultRegionalFormat property.
+            value: Value to set for the default_regional_format property.
         """
         self._default_regional_format = value
     
@@ -107,7 +107,7 @@ class RegionalAndLanguageSettings(entity.Entity):
         """
         Sets the defaultSpeechInputLanguage property value. The language a user expected to use as input for text to speech scenarios.Returned by default.
         Args:
-            value: Value to set for the defaultSpeechInputLanguage property.
+            value: Value to set for the default_speech_input_language property.
         """
         self._default_speech_input_language = value
     
@@ -124,7 +124,7 @@ class RegionalAndLanguageSettings(entity.Entity):
         """
         Sets the defaultTranslationLanguage property value. The language a user expects to have documents, emails, and messages translated into.Returned by default.
         Args:
-            value: Value to set for the defaultTranslationLanguage property.
+            value: Value to set for the default_translation_language property.
         """
         self._default_translation_language = value
     
@@ -134,13 +134,13 @@ class RegionalAndLanguageSettings(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authoring_languages": lambda n : setattr(self, 'authoring_languages', n.get_collection_of_object_values(locale_info.LocaleInfo)),
-            "default_display_language": lambda n : setattr(self, 'default_display_language', n.get_object_value(locale_info.LocaleInfo)),
-            "default_regional_format": lambda n : setattr(self, 'default_regional_format', n.get_object_value(locale_info.LocaleInfo)),
-            "default_speech_input_language": lambda n : setattr(self, 'default_speech_input_language', n.get_object_value(locale_info.LocaleInfo)),
-            "default_translation_language": lambda n : setattr(self, 'default_translation_language', n.get_object_value(locale_info.LocaleInfo)),
-            "regional_format_overrides": lambda n : setattr(self, 'regional_format_overrides', n.get_object_value(regional_format_overrides.RegionalFormatOverrides)),
-            "translation_preferences": lambda n : setattr(self, 'translation_preferences', n.get_object_value(translation_preferences.TranslationPreferences)),
+            "authoringLanguages": lambda n : setattr(self, 'authoring_languages', n.get_collection_of_object_values(locale_info.LocaleInfo)),
+            "defaultDisplayLanguage": lambda n : setattr(self, 'default_display_language', n.get_object_value(locale_info.LocaleInfo)),
+            "defaultRegionalFormat": lambda n : setattr(self, 'default_regional_format', n.get_object_value(locale_info.LocaleInfo)),
+            "defaultSpeechInputLanguage": lambda n : setattr(self, 'default_speech_input_language', n.get_object_value(locale_info.LocaleInfo)),
+            "defaultTranslationLanguage": lambda n : setattr(self, 'default_translation_language', n.get_object_value(locale_info.LocaleInfo)),
+            "regionalFormatOverrides": lambda n : setattr(self, 'regional_format_overrides', n.get_object_value(regional_format_overrides.RegionalFormatOverrides)),
+            "translationPreferences": lambda n : setattr(self, 'translation_preferences', n.get_object_value(translation_preferences.TranslationPreferences)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -159,7 +159,7 @@ class RegionalAndLanguageSettings(entity.Entity):
         """
         Sets the regionalFormatOverrides property value. Allows a user to override their defaultRegionalFormat with field specific formats.Returned by default.
         Args:
-            value: Value to set for the regionalFormatOverrides property.
+            value: Value to set for the regional_format_overrides property.
         """
         self._regional_format_overrides = value
     
@@ -193,7 +193,7 @@ class RegionalAndLanguageSettings(entity.Entity):
         """
         Sets the translationPreferences property value. The user's preferred settings when consuming translated documents, emails, messages, and websites.Returned by default. Not nullable.
         Args:
-            value: Value to set for the translationPreferences property.
+            value: Value to set for the translation_preferences property.
         """
         self._translation_preferences = value
     

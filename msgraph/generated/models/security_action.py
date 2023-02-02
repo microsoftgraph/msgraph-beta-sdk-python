@@ -25,7 +25,7 @@ class SecurityAction(entity.Entity):
         """
         Sets the actionReason property value. Reason for invoking this action.
         Args:
-            value: Value to set for the actionReason property.
+            value: Value to set for the action_reason property.
         """
         self._action_reason = value
     
@@ -42,7 +42,7 @@ class SecurityAction(entity.Entity):
         """
         Sets the appId property value. The Application ID of the calling application that submitted (POST) the action. The appId should be extracted from the auth token and not entered manually by the calling application.
         Args:
-            value: Value to set for the appId property.
+            value: Value to set for the app_id property.
         """
         self._app_id = value
     
@@ -59,7 +59,7 @@ class SecurityAction(entity.Entity):
         """
         Sets the azureTenantId property value. Azure tenant ID of the entity to determine which tenant the entity belongs to (multi-tenancy support). The azureTenantId should be extracted from the auth token and not entered manually by the calling application.
         Args:
-            value: Value to set for the azureTenantId property.
+            value: Value to set for the azure_tenant_id property.
         """
         self._azure_tenant_id = value
     
@@ -76,7 +76,7 @@ class SecurityAction(entity.Entity):
         """
         Sets the clientContext property value. The clientContext property
         Args:
-            value: Value to set for the clientContext property.
+            value: Value to set for the client_context property.
         """
         self._client_context = value
     
@@ -93,13 +93,13 @@ class SecurityAction(entity.Entity):
         """
         Sets the completedDateTime property value. Timestamp when the action was completed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the completedDateTime property.
+            value: Value to set for the completed_date_time property.
         """
         self._completed_date_time = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new securityAction and sets the default values.
+        Instantiates a new SecurityAction and sets the default values.
         """
         super().__init__()
         # Reason for invoking this action.
@@ -146,7 +146,7 @@ class SecurityAction(entity.Entity):
         """
         Sets the createdDateTime property value. Timestamp when the action is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -175,7 +175,7 @@ class SecurityAction(entity.Entity):
         """
         Sets the errorInfo property value. Error info when the action fails.
         Args:
-            value: Value to set for the errorInfo property.
+            value: Value to set for the error_info property.
         """
         self._error_info = value
     
@@ -185,20 +185,20 @@ class SecurityAction(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "action_reason": lambda n : setattr(self, 'action_reason', n.get_str_value()),
-            "app_id": lambda n : setattr(self, 'app_id', n.get_str_value()),
-            "azure_tenant_id": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
-            "client_context": lambda n : setattr(self, 'client_context', n.get_str_value()),
-            "completed_date_time": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "error_info": lambda n : setattr(self, 'error_info', n.get_object_value(result_info.ResultInfo)),
-            "last_action_date_time": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
+            "actionReason": lambda n : setattr(self, 'action_reason', n.get_str_value()),
+            "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
+            "azureTenantId": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
+            "clientContext": lambda n : setattr(self, 'client_context', n.get_str_value()),
+            "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "errorInfo": lambda n : setattr(self, 'error_info', n.get_object_value(result_info.ResultInfo)),
+            "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "parameters": lambda n : setattr(self, 'parameters', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
             "states": lambda n : setattr(self, 'states', n.get_collection_of_object_values(security_action_state.SecurityActionState)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(operation_status.OperationStatus)),
             "user": lambda n : setattr(self, 'user', n.get_str_value()),
-            "vendor_information": lambda n : setattr(self, 'vendor_information', n.get_object_value(security_vendor_information.SecurityVendorInformation)),
+            "vendorInformation": lambda n : setattr(self, 'vendor_information', n.get_object_value(security_vendor_information.SecurityVendorInformation)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -217,7 +217,7 @@ class SecurityAction(entity.Entity):
         """
         Sets the lastActionDateTime property value. Timestamp when this action was last updated. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the lastActionDateTime property.
+            value: Value to set for the last_action_date_time property.
         """
         self._last_action_date_time = value
     
@@ -343,7 +343,7 @@ class SecurityAction(entity.Entity):
         """
         Sets the vendorInformation property value. Complex Type containing details about the Security product/service vendor, provider, and sub-provider (for example, vendor=Microsoft; provider=Windows Defender ATP; sub-provider=AppLocker).
         Args:
-            value: Value to set for the vendorInformation property.
+            value: Value to set for the vendor_information property.
         """
         self._vendor_information = value
     

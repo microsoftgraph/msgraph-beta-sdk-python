@@ -25,10 +25,11 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder()
         """
         return device_request_builder.DeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, passwordless_microsoft_authenticator_authentication_method_id: Optional[str] = None) -> None:
         """
         Instantiates a new PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder and sets the default values.
         Args:
+            passwordlessMicrosoftAuthenticatorAuthenticationMethodId: key: id of passwordlessMicrosoftAuthenticatorAuthenticationMethod
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -40,15 +41,15 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder()
         self.url_template: str = "{+baseurl}/users/{user%2Did}/authentication/passwordlessMicrosoftAuthenticatorMethods/{passwordlessMicrosoftAuthenticatorAuthenticationMethod%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["passwordlessMicrosoftAuthenticatorAuthenticationMethod%2Did"] = passwordlessMicrosoftAuthenticatorAuthenticationMethodId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property passwordlessMicrosoftAuthenticatorMethods for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +60,13 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder()
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[passwordless_microsoft_authenticator_authentication_method.PasswordlessMicrosoftAuthenticatorAuthenticationMethod]:
+    async def get(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None) -> Optional[passwordless_microsoft_authenticator_authentication_method.PasswordlessMicrosoftAuthenticatorAuthenticationMethod]:
         """
         Represents the Microsoft Authenticator Passwordless Phone Sign-in methods registered to a user for authentication.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[passwordless_microsoft_authenticator_authentication_method.PasswordlessMicrosoftAuthenticatorAuthenticationMethod]
         """
         request_info = self.to_get_request_information(
@@ -78,7 +78,7 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder()
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, passwordless_microsoft_authenticator_authentication_method.PasswordlessMicrosoftAuthenticatorAuthenticationMethod, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, passwordless_microsoft_authenticator_authentication_method.PasswordlessMicrosoftAuthenticatorAuthenticationMethod, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PasswordlessMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

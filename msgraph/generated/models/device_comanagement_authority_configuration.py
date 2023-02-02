@@ -19,7 +19,7 @@ class DeviceComanagementAuthorityConfiguration(device_enrollment_configuration.D
         """
         Sets the configurationManagerAgentCommandLineArgument property value. CoManagement Authority configuration ConfigurationManagerAgentCommandLineArgument
         Args:
-            value: Value to set for the configurationManagerAgentCommandLineArgument property.
+            value: Value to set for the configuration_manager_agent_command_line_argument property.
         """
         self._configuration_manager_agent_command_line_argument = value
     
@@ -54,9 +54,9 @@ class DeviceComanagementAuthorityConfiguration(device_enrollment_configuration.D
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "configuration_manager_agent_command_line_argument": lambda n : setattr(self, 'configuration_manager_agent_command_line_argument', n.get_str_value()),
-            "install_configuration_manager_agent": lambda n : setattr(self, 'install_configuration_manager_agent', n.get_bool_value()),
-            "managed_device_authority": lambda n : setattr(self, 'managed_device_authority', n.get_int_value()),
+            "configurationManagerAgentCommandLineArgument": lambda n : setattr(self, 'configuration_manager_agent_command_line_argument', n.get_str_value()),
+            "installConfigurationManagerAgent": lambda n : setattr(self, 'install_configuration_manager_agent', n.get_bool_value()),
+            "managedDeviceAuthority": lambda n : setattr(self, 'managed_device_authority', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -75,7 +75,7 @@ class DeviceComanagementAuthorityConfiguration(device_enrollment_configuration.D
         """
         Sets the installConfigurationManagerAgent property value. CoManagement Authority configuration InstallConfigurationManagerAgent
         Args:
-            value: Value to set for the installConfigurationManagerAgent property.
+            value: Value to set for the install_configuration_manager_agent property.
         """
         self._install_configuration_manager_agent = value
     
@@ -92,7 +92,7 @@ class DeviceComanagementAuthorityConfiguration(device_enrollment_configuration.D
         """
         Sets the managedDeviceAuthority property value. CoManagement Authority configuration ManagedDeviceAuthority
         Args:
-            value: Value to set for the managedDeviceAuthority property.
+            value: Value to set for the managed_device_authority property.
         """
         self._managed_device_authority = value
     

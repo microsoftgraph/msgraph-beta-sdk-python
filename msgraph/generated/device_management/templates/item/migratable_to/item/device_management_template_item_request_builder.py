@@ -12,8 +12,8 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 categories_request_builder = lazy_import('msgraph.generated.device_management.templates.item.migratable_to.item.categories.categories_request_builder')
 device_management_template_setting_category_item_request_builder = lazy_import('msgraph.generated.device_management.templates.item.migratable_to.item.categories.item.device_management_template_setting_category_item_request_builder')
-compare_with_template_id_request_builder = lazy_import('msgraph.generated.device_management.templates.item.migratable_to.item.compare_with_template_id.compare_with_template_id_request_builder')
-create_instance_request_builder = lazy_import('msgraph.generated.device_management.templates.item.migratable_to.item.create_instance.create_instance_request_builder')
+compare_with_template_id_request_builder = lazy_import('msgraph.generated.device_management.templates.item.migratable_to.item.microsoft_graph_compare_with_template_id.compare_with_template_id_request_builder')
+create_instance_request_builder = lazy_import('msgraph.generated.device_management.templates.item.migratable_to.item.microsoft_graph_create_instance.create_instance_request_builder')
 settings_request_builder = lazy_import('msgraph.generated.device_management.templates.item.migratable_to.item.settings.settings_request_builder')
 device_management_setting_instance_item_request_builder = lazy_import('msgraph.generated.device_management.templates.item.migratable_to.item.settings.item.device_management_setting_instance_item_request_builder')
 device_management_template = lazy_import('msgraph.generated.models.device_management_template')
@@ -31,7 +31,7 @@ class DeviceManagementTemplateItemRequestBuilder():
         return categories_request_builder.CategoriesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def create_instance(self) -> create_instance_request_builder.CreateInstanceRequestBuilder:
+    def microsoft_graph_create_instance(self) -> create_instance_request_builder.CreateInstanceRequestBuilder:
         """
         Provides operations to call the createInstance method.
         """
@@ -57,21 +57,11 @@ class DeviceManagementTemplateItemRequestBuilder():
         url_tpl_params["deviceManagementTemplateSettingCategory%2Did"] = id
         return device_management_template_setting_category_item_request_builder.DeviceManagementTemplateSettingCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def compare_with_template_id(self,template_id: Optional[str] = None) -> compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder:
-        """
-        Provides operations to call the compare method.
-        Args:
-            templateId: Usage: templateId='{templateId}'
-        Returns: compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder
-        """
-        if template_id is None:
-            raise Exception("template_id cannot be undefined")
-        return compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder(self.request_adapter, self.path_parameters, templateId)
-    
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, device_management_template_id1: Optional[str] = None) -> None:
         """
         Instantiates a new DeviceManagementTemplateItemRequestBuilder and sets the default values.
         Args:
+            deviceManagementTemplateId1: key: id of deviceManagementTemplate
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -83,15 +73,15 @@ class DeviceManagementTemplateItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceManagement/templates/{deviceManagementTemplate%2Did}/migratableTo/{deviceManagementTemplate%2Did1}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["deviceManagementTemplate%2Did1"] = deviceManagementTemplateId1
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DeviceManagementTemplateItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceManagementTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property migratableTo for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -102,14 +92,13 @@ class DeviceManagementTemplateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceManagementTemplateItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_template.DeviceManagementTemplate]:
+    async def get(self,request_configuration: Optional[DeviceManagementTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_template.DeviceManagementTemplate]:
         """
         Collection of templates this template can migrate to
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_template.DeviceManagementTemplate]
         """
         request_info = self.to_get_request_information(
@@ -121,15 +110,25 @@ class DeviceManagementTemplateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_template.DeviceManagementTemplate, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_template.DeviceManagementTemplate, error_mapping)
     
-    async def patch(self,body: Optional[device_management_template.DeviceManagementTemplate] = None, request_configuration: Optional[DeviceManagementTemplateItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_template.DeviceManagementTemplate]:
+    def microsoft_graph_compare_with_template_id(self,template_id: Optional[str] = None) -> compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder:
+        """
+        Provides operations to call the compare method.
+        Args:
+            templateId: Usage: templateId='{templateId}'
+        Returns: compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder
+        """
+        if template_id is None:
+            raise Exception("template_id cannot be undefined")
+        return compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder(self.request_adapter, self.path_parameters, templateId)
+    
+    async def patch(self,body: Optional[device_management_template.DeviceManagementTemplate] = None, request_configuration: Optional[DeviceManagementTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management_template.DeviceManagementTemplate]:
         """
         Update the navigation property migratableTo in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_template.DeviceManagementTemplate]
         """
         if body is None:
@@ -143,7 +142,7 @@ class DeviceManagementTemplateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_template.DeviceManagementTemplate, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_template.DeviceManagementTemplate, error_mapping)
     
     def settings_by_id(self,id: str) -> device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder:
         """

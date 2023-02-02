@@ -51,12 +51,11 @@ class RoleDefinitionRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[RoleDefinitionRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[RoleDefinitionRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property roleDefinition for governanceRoleAssignments
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -67,14 +66,13 @@ class RoleDefinitionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RoleDefinitionRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_role_definition.GovernanceRoleDefinition]:
+    async def get(self,request_configuration: Optional[RoleDefinitionRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_role_definition.GovernanceRoleDefinition]:
         """
         Read-only. The role definition associated with the role assignment.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_role_definition.GovernanceRoleDefinition]
         """
         request_info = self.to_get_request_information(
@@ -86,15 +84,14 @@ class RoleDefinitionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_role_definition.GovernanceRoleDefinition, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_role_definition.GovernanceRoleDefinition, error_mapping)
     
-    async def patch(self,body: Optional[governance_role_definition.GovernanceRoleDefinition] = None, request_configuration: Optional[RoleDefinitionRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_role_definition.GovernanceRoleDefinition]:
+    async def patch(self,body: Optional[governance_role_definition.GovernanceRoleDefinition] = None, request_configuration: Optional[RoleDefinitionRequestBuilderPatchRequestConfiguration] = None) -> Optional[governance_role_definition.GovernanceRoleDefinition]:
         """
         Update the navigation property roleDefinition in governanceRoleAssignments
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_role_definition.GovernanceRoleDefinition]
         """
         if body is None:
@@ -108,7 +105,7 @@ class RoleDefinitionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_role_definition.GovernanceRoleDefinition, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_role_definition.GovernanceRoleDefinition, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[RoleDefinitionRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

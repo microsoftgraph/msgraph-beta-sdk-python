@@ -12,8 +12,8 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 subject_rights_request = lazy_import('msgraph.generated.models.subject_rights_request')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-get_final_attachment_request_builder = lazy_import('msgraph.generated.security.subject_rights_requests.item.get_final_attachment.get_final_attachment_request_builder')
-get_final_report_request_builder = lazy_import('msgraph.generated.security.subject_rights_requests.item.get_final_report.get_final_report_request_builder')
+get_final_attachment_request_builder = lazy_import('msgraph.generated.security.subject_rights_requests.item.microsoft_graph_get_final_attachment.get_final_attachment_request_builder')
+get_final_report_request_builder = lazy_import('msgraph.generated.security.subject_rights_requests.item.microsoft_graph_get_final_report.get_final_report_request_builder')
 notes_request_builder = lazy_import('msgraph.generated.security.subject_rights_requests.item.notes.notes_request_builder')
 authored_note_item_request_builder = lazy_import('msgraph.generated.security.subject_rights_requests.item.notes.item.authored_note_item_request_builder')
 team_request_builder = lazy_import('msgraph.generated.security.subject_rights_requests.item.team.team_request_builder')
@@ -22,6 +22,20 @@ class SubjectRightsRequestItemRequestBuilder():
     """
     Provides operations to manage the subjectRightsRequests property of the microsoft.graph.security entity.
     """
+    @property
+    def microsoft_graph_get_final_attachment(self) -> get_final_attachment_request_builder.GetFinalAttachmentRequestBuilder:
+        """
+        Provides operations to call the getFinalAttachment method.
+        """
+        return get_final_attachment_request_builder.GetFinalAttachmentRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_final_report(self) -> get_final_report_request_builder.GetFinalReportRequestBuilder:
+        """
+        Provides operations to call the getFinalReport method.
+        """
+        return get_final_report_request_builder.GetFinalReportRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @property
     def notes(self) -> notes_request_builder.NotesRequestBuilder:
         """
@@ -36,12 +50,13 @@ class SubjectRightsRequestItemRequestBuilder():
         """
         return team_request_builder.TeamRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, subject_rights_request_id: Optional[str] = None) -> None:
         """
         Instantiates a new SubjectRightsRequestItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            subjectRightsRequestId: key: id of subjectRightsRequest
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -51,15 +66,15 @@ class SubjectRightsRequestItemRequestBuilder():
         self.url_template: str = "{+baseurl}/security/subjectRightsRequests/{subjectRightsRequest%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["subjectRightsRequest%2Did"] = subjectRightsRequestId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SubjectRightsRequestItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[SubjectRightsRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property subjectRightsRequests for security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -70,14 +85,13 @@ class SubjectRightsRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SubjectRightsRequestItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[subject_rights_request.SubjectRightsRequest]:
+    async def get(self,request_configuration: Optional[SubjectRightsRequestItemRequestBuilderGetRequestConfiguration] = None) -> Optional[subject_rights_request.SubjectRightsRequest]:
         """
         Get subjectRightsRequests from security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[subject_rights_request.SubjectRightsRequest]
         """
         request_info = self.to_get_request_information(
@@ -89,21 +103,7 @@ class SubjectRightsRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, subject_rights_request.SubjectRightsRequest, response_handler, error_mapping)
-    
-    def get_final_attachment(self,) -> get_final_attachment_request_builder.GetFinalAttachmentRequestBuilder:
-        """
-        Provides operations to call the getFinalAttachment method.
-        Returns: get_final_attachment_request_builder.GetFinalAttachmentRequestBuilder
-        """
-        return get_final_attachment_request_builder.GetFinalAttachmentRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_final_report(self,) -> get_final_report_request_builder.GetFinalReportRequestBuilder:
-        """
-        Provides operations to call the getFinalReport method.
-        Returns: get_final_report_request_builder.GetFinalReportRequestBuilder
-        """
-        return get_final_report_request_builder.GetFinalReportRequestBuilder(self.request_adapter, self.path_parameters)
+        return await self.request_adapter.send_async(request_info, subject_rights_request.SubjectRightsRequest, error_mapping)
     
     def notes_by_id(self,id: str) -> authored_note_item_request_builder.AuthoredNoteItemRequestBuilder:
         """
@@ -118,13 +118,12 @@ class SubjectRightsRequestItemRequestBuilder():
         url_tpl_params["authoredNote%2Did"] = id
         return authored_note_item_request_builder.AuthoredNoteItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[subject_rights_request.SubjectRightsRequest] = None, request_configuration: Optional[SubjectRightsRequestItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[subject_rights_request.SubjectRightsRequest]:
+    async def patch(self,body: Optional[subject_rights_request.SubjectRightsRequest] = None, request_configuration: Optional[SubjectRightsRequestItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[subject_rights_request.SubjectRightsRequest]:
         """
         Update the navigation property subjectRightsRequests in security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[subject_rights_request.SubjectRightsRequest]
         """
         if body is None:
@@ -138,7 +137,7 @@ class SubjectRightsRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, subject_rights_request.SubjectRightsRequest, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, subject_rights_request.SubjectRightsRequest, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SubjectRightsRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

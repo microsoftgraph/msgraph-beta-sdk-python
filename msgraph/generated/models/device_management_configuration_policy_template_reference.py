@@ -63,10 +63,10 @@ class DeviceManagementConfigurationPolicyTemplateReference(AdditionalDataHolder,
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "template_display_name": lambda n : setattr(self, 'template_display_name', n.get_str_value()),
-            "template_display_version": lambda n : setattr(self, 'template_display_version', n.get_str_value()),
-            "template_family": lambda n : setattr(self, 'template_family', n.get_enum_value(device_management_configuration_template_family.DeviceManagementConfigurationTemplateFamily)),
-            "template_id": lambda n : setattr(self, 'template_id', n.get_str_value()),
+            "templateDisplayName": lambda n : setattr(self, 'template_display_name', n.get_str_value()),
+            "templateDisplayVersion": lambda n : setattr(self, 'template_display_version', n.get_str_value()),
+            "templateFamily": lambda n : setattr(self, 'template_family', n.get_enum_value(device_management_configuration_template_family.DeviceManagementConfigurationTemplateFamily)),
+            "templateId": lambda n : setattr(self, 'template_id', n.get_str_value()),
         }
         return fields
     
@@ -83,7 +83,7 @@ class DeviceManagementConfigurationPolicyTemplateReference(AdditionalDataHolder,
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -113,7 +113,7 @@ class DeviceManagementConfigurationPolicyTemplateReference(AdditionalDataHolder,
         """
         Sets the templateDisplayName property value. Template Display Name of the referenced template. This property is read-only.
         Args:
-            value: Value to set for the templateDisplayName property.
+            value: Value to set for the template_display_name property.
         """
         self._template_display_name = value
     
@@ -130,7 +130,7 @@ class DeviceManagementConfigurationPolicyTemplateReference(AdditionalDataHolder,
         """
         Sets the templateDisplayVersion property value. Template Display Version of the referenced Template. This property is read-only.
         Args:
-            value: Value to set for the templateDisplayVersion property.
+            value: Value to set for the template_display_version property.
         """
         self._template_display_version = value
     
@@ -147,7 +147,7 @@ class DeviceManagementConfigurationPolicyTemplateReference(AdditionalDataHolder,
         """
         Sets the templateFamily property value. Describes the TemplateFamily for the Template entity
         Args:
-            value: Value to set for the templateFamily property.
+            value: Value to set for the template_family property.
         """
         self._template_family = value
     
@@ -164,7 +164,7 @@ class DeviceManagementConfigurationPolicyTemplateReference(AdditionalDataHolder,
         """
         Sets the templateId property value. Template id
         Args:
-            value: Value to set for the templateId property.
+            value: Value to set for the template_id property.
         """
         self._template_id = value
     

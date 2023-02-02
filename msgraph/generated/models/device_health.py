@@ -52,7 +52,7 @@ class DeviceHealth(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "last_connection_time": lambda n : setattr(self, 'last_connection_time', n.get_datetime_value()),
+            "lastConnectionTime": lambda n : setattr(self, 'last_connection_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -70,7 +70,7 @@ class DeviceHealth(AdditionalDataHolder, Parsable):
         """
         Sets the lastConnectionTime property value. The last time the device was connected.
         Args:
-            value: Value to set for the lastConnectionTime property.
+            value: Value to set for the last_connection_time property.
         """
         self._last_connection_time = value
     
@@ -87,7 +87,7 @@ class DeviceHealth(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

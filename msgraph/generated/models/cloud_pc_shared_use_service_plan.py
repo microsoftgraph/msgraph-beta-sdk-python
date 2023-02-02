@@ -8,7 +8,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 class CloudPcSharedUseServicePlan(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new cloudPcSharedUseServicePlan and sets the default values.
+        Instantiates a new CloudPcSharedUseServicePlan and sets the default values.
         """
         super().__init__()
         # The displayName property
@@ -45,7 +45,7 @@ class CloudPcSharedUseServicePlan(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -55,9 +55,9 @@ class CloudPcSharedUseServicePlan(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "total_count": lambda n : setattr(self, 'total_count', n.get_int_value()),
-            "used_count": lambda n : setattr(self, 'used_count', n.get_int_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "totalCount": lambda n : setattr(self, 'total_count', n.get_int_value()),
+            "usedCount": lambda n : setattr(self, 'used_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -89,7 +89,7 @@ class CloudPcSharedUseServicePlan(entity.Entity):
         """
         Sets the totalCount property value. The totalCount property
         Args:
-            value: Value to set for the totalCount property.
+            value: Value to set for the total_count property.
         """
         self._total_count = value
     
@@ -106,7 +106,7 @@ class CloudPcSharedUseServicePlan(entity.Entity):
         """
         Sets the usedCount property value. The usedCount property
         Args:
-            value: Value to set for the usedCount property.
+            value: Value to set for the used_count property.
         """
         self._used_count = value
     

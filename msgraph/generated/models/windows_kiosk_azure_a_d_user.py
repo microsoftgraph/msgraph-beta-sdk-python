@@ -35,8 +35,8 @@ class WindowsKioskAzureADUser(windows_kiosk_user.WindowsKioskUser):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -67,7 +67,7 @@ class WindowsKioskAzureADUser(windows_kiosk_user.WindowsKioskUser):
         """
         Sets the userId property value. The ID of the AzureAD user that will be locked to this kiosk configuration
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     
@@ -84,7 +84,7 @@ class WindowsKioskAzureADUser(windows_kiosk_user.WindowsKioskUser):
         """
         Sets the userPrincipalName property value. The user accounts that will be locked to this kiosk configuration
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

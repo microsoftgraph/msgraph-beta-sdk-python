@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-add_to_review_set_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.review_sets.item.add_to_review_set.add_to_review_set_request_builder')
-export_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.review_sets.item.export.export_request_builder')
+add_to_review_set_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.review_sets.item.microsoft_graph_ediscovery_add_to_review_set.add_to_review_set_request_builder')
+export_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.review_sets.item.microsoft_graph_ediscovery_export.export_request_builder')
 queries_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.review_sets.item.queries.queries_request_builder')
 review_set_query_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.review_sets.item.queries.item.review_set_query_item_request_builder')
 review_set = lazy_import('msgraph.generated.models.ediscovery.review_set')
@@ -22,14 +22,14 @@ class ReviewSetItemRequestBuilder():
     Provides operations to manage the reviewSets property of the microsoft.graph.ediscovery.case entity.
     """
     @property
-    def add_to_review_set(self) -> add_to_review_set_request_builder.AddToReviewSetRequestBuilder:
+    def microsoft_graph_ediscovery_add_to_review_set(self) -> add_to_review_set_request_builder.AddToReviewSetRequestBuilder:
         """
         Provides operations to call the addToReviewSet method.
         """
         return add_to_review_set_request_builder.AddToReviewSetRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def export(self) -> export_request_builder.ExportRequestBuilder:
+    def microsoft_graph_ediscovery_export(self) -> export_request_builder.ExportRequestBuilder:
         """
         Provides operations to call the export method.
         """
@@ -42,12 +42,13 @@ class ReviewSetItemRequestBuilder():
         """
         return queries_request_builder.QueriesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, review_set_id: Optional[str] = None) -> None:
         """
         Instantiates a new ReviewSetItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            reviewSetId: key: id of reviewSet
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -57,15 +58,15 @@ class ReviewSetItemRequestBuilder():
         self.url_template: str = "{+baseurl}/compliance/ediscovery/cases/{case%2Did}/reviewSets/{reviewSet%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["reviewSet%2Did"] = reviewSetId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ReviewSetItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ReviewSetItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property reviewSets for compliance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -76,14 +77,13 @@ class ReviewSetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ReviewSetItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[review_set.ReviewSet]:
+    async def get(self,request_configuration: Optional[ReviewSetItemRequestBuilderGetRequestConfiguration] = None) -> Optional[review_set.ReviewSet]:
         """
         Returns a list of reviewSet objects in the case. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[review_set.ReviewSet]
         """
         request_info = self.to_get_request_information(
@@ -95,15 +95,14 @@ class ReviewSetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, review_set.ReviewSet, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, review_set.ReviewSet, error_mapping)
     
-    async def patch(self,body: Optional[review_set.ReviewSet] = None, request_configuration: Optional[ReviewSetItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[review_set.ReviewSet]:
+    async def patch(self,body: Optional[review_set.ReviewSet] = None, request_configuration: Optional[ReviewSetItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[review_set.ReviewSet]:
         """
         Update the navigation property reviewSets in compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[review_set.ReviewSet]
         """
         if body is None:
@@ -117,7 +116,7 @@ class ReviewSetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, review_set.ReviewSet, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, review_set.ReviewSet, error_mapping)
     
     def queries_by_id(self,id: str) -> review_set_query_item_request_builder.ReviewSetQueryItemRequestBuilder:
         """

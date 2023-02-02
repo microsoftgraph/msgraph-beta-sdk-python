@@ -44,12 +44,11 @@ class AggregatedPolicyCompliancesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AggregatedPolicyCompliancesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[aggregated_policy_compliance_collection_response.AggregatedPolicyComplianceCollectionResponse]:
+    async def get(self,request_configuration: Optional[AggregatedPolicyCompliancesRequestBuilderGetRequestConfiguration] = None) -> Optional[aggregated_policy_compliance_collection_response.AggregatedPolicyComplianceCollectionResponse]:
         """
         Get a list of the aggregatedPolicyCompliance objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[aggregated_policy_compliance_collection_response.AggregatedPolicyComplianceCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class AggregatedPolicyCompliancesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, aggregated_policy_compliance_collection_response.AggregatedPolicyComplianceCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, aggregated_policy_compliance_collection_response.AggregatedPolicyComplianceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[aggregated_policy_compliance.AggregatedPolicyCompliance] = None, request_configuration: Optional[AggregatedPolicyCompliancesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[aggregated_policy_compliance.AggregatedPolicyCompliance]:
+    async def post(self,body: Optional[aggregated_policy_compliance.AggregatedPolicyCompliance] = None, request_configuration: Optional[AggregatedPolicyCompliancesRequestBuilderPostRequestConfiguration] = None) -> Optional[aggregated_policy_compliance.AggregatedPolicyCompliance]:
         """
         Create new navigation property to aggregatedPolicyCompliances for tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[aggregated_policy_compliance.AggregatedPolicyCompliance]
         """
         if body is None:
@@ -83,7 +81,7 @@ class AggregatedPolicyCompliancesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, aggregated_policy_compliance.AggregatedPolicyCompliance, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, aggregated_policy_compliance.AggregatedPolicyCompliance, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AggregatedPolicyCompliancesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

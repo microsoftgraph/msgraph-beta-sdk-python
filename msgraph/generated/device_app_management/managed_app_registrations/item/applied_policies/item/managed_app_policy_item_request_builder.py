@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-target_apps_request_builder = lazy_import('msgraph.generated.device_app_management.managed_app_registrations.item.applied_policies.item.target_apps.target_apps_request_builder')
+target_apps_request_builder = lazy_import('msgraph.generated.device_app_management.managed_app_registrations.item.applied_policies.item.microsoft_graph_target_apps.target_apps_request_builder')
 managed_app_policy = lazy_import('msgraph.generated.models.managed_app_policy')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -19,16 +19,17 @@ class ManagedAppPolicyItemRequestBuilder():
     Provides operations to manage the appliedPolicies property of the microsoft.graph.managedAppRegistration entity.
     """
     @property
-    def target_apps(self) -> target_apps_request_builder.TargetAppsRequestBuilder:
+    def microsoft_graph_target_apps(self) -> target_apps_request_builder.TargetAppsRequestBuilder:
         """
         Provides operations to call the targetApps method.
         """
         return target_apps_request_builder.TargetAppsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, managed_app_policy_id: Optional[str] = None) -> None:
         """
         Instantiates a new ManagedAppPolicyItemRequestBuilder and sets the default values.
         Args:
+            managedAppPolicyId: key: id of managedAppPolicy
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -40,15 +41,15 @@ class ManagedAppPolicyItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceAppManagement/managedAppRegistrations/{managedAppRegistration%2Did}/appliedPolicies/{managedAppPolicy%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["managedAppPolicy%2Did"] = managedAppPolicyId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ManagedAppPolicyItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ManagedAppPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property appliedPolicies for deviceAppManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +60,13 @@ class ManagedAppPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ManagedAppPolicyItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_app_policy.ManagedAppPolicy]:
+    async def get(self,request_configuration: Optional[ManagedAppPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_app_policy.ManagedAppPolicy]:
         """
         Zero or more policys already applied on the registered app when it last synchronized with managment service.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_app_policy.ManagedAppPolicy]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +78,14 @@ class ManagedAppPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_app_policy.ManagedAppPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_app_policy.ManagedAppPolicy, error_mapping)
     
-    async def patch(self,body: Optional[managed_app_policy.ManagedAppPolicy] = None, request_configuration: Optional[ManagedAppPolicyItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_app_policy.ManagedAppPolicy]:
+    async def patch(self,body: Optional[managed_app_policy.ManagedAppPolicy] = None, request_configuration: Optional[ManagedAppPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[managed_app_policy.ManagedAppPolicy]:
         """
         Update the navigation property appliedPolicies in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_app_policy.ManagedAppPolicy]
         """
         if body is None:
@@ -100,7 +99,7 @@ class ManagedAppPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_app_policy.ManagedAppPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_app_policy.ManagedAppPolicy, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ManagedAppPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

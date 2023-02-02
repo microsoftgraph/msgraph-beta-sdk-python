@@ -33,7 +33,7 @@ class EntitlementManagement(entity.Entity):
         """
         Sets the accessPackageAssignmentApprovals property value. The accessPackageAssignmentApprovals property
         Args:
-            value: Value to set for the accessPackageAssignmentApprovals property.
+            value: Value to set for the access_package_assignment_approvals property.
         """
         self._access_package_assignment_approvals = value
     
@@ -50,7 +50,7 @@ class EntitlementManagement(entity.Entity):
         """
         Sets the accessPackageAssignmentPolicies property value. Represents the policy that governs which subjects can request or be assigned an access package via an access package assignment.
         Args:
-            value: Value to set for the accessPackageAssignmentPolicies property.
+            value: Value to set for the access_package_assignment_policies property.
         """
         self._access_package_assignment_policies = value
     
@@ -67,7 +67,7 @@ class EntitlementManagement(entity.Entity):
         """
         Sets the accessPackageAssignmentRequests property value. Represents access package assignment requests created by or on behalf of a user.
         Args:
-            value: Value to set for the accessPackageAssignmentRequests property.
+            value: Value to set for the access_package_assignment_requests property.
         """
         self._access_package_assignment_requests = value
     
@@ -84,7 +84,7 @@ class EntitlementManagement(entity.Entity):
         """
         Sets the accessPackageAssignmentResourceRoles property value. Represents the resource-specific role which a subject has been assigned through an access package assignment.
         Args:
-            value: Value to set for the accessPackageAssignmentResourceRoles property.
+            value: Value to set for the access_package_assignment_resource_roles property.
         """
         self._access_package_assignment_resource_roles = value
     
@@ -101,7 +101,7 @@ class EntitlementManagement(entity.Entity):
         """
         Sets the accessPackageAssignments property value. The assignment of an access package to a subject for a period of time.
         Args:
-            value: Value to set for the accessPackageAssignments property.
+            value: Value to set for the access_package_assignments property.
         """
         self._access_package_assignments = value
     
@@ -118,7 +118,7 @@ class EntitlementManagement(entity.Entity):
         """
         Sets the accessPackageCatalogs property value. A container of access packages.
         Args:
-            value: Value to set for the accessPackageCatalogs property.
+            value: Value to set for the access_package_catalogs property.
         """
         self._access_package_catalogs = value
     
@@ -135,7 +135,7 @@ class EntitlementManagement(entity.Entity):
         """
         Sets the accessPackageResourceEnvironments property value. A reference to the geolocation environment in which a resource is located.
         Args:
-            value: Value to set for the accessPackageResourceEnvironments property.
+            value: Value to set for the access_package_resource_environments property.
         """
         self._access_package_resource_environments = value
     
@@ -152,7 +152,7 @@ class EntitlementManagement(entity.Entity):
         """
         Sets the accessPackageResourceRequests property value. Represents a request to add or remove a resource to or from a catalog respectively.
         Args:
-            value: Value to set for the accessPackageResourceRequests property.
+            value: Value to set for the access_package_resource_requests property.
         """
         self._access_package_resource_requests = value
     
@@ -169,7 +169,7 @@ class EntitlementManagement(entity.Entity):
         """
         Sets the accessPackageResourceRoleScopes property value. A reference to both a scope within a resource, and a role in that resource for that scope.
         Args:
-            value: Value to set for the accessPackageResourceRoleScopes property.
+            value: Value to set for the access_package_resource_role_scopes property.
         """
         self._access_package_resource_role_scopes = value
     
@@ -186,7 +186,7 @@ class EntitlementManagement(entity.Entity):
         """
         Sets the accessPackageResources property value. A reference to a resource associated with an access package catalog.
         Args:
-            value: Value to set for the accessPackageResources property.
+            value: Value to set for the access_package_resources property.
         """
         self._access_package_resources = value
     
@@ -203,7 +203,7 @@ class EntitlementManagement(entity.Entity):
         """
         Sets the accessPackages property value. Represents access package objects.
         Args:
-            value: Value to set for the accessPackages property.
+            value: Value to set for the access_packages property.
         """
         self._access_packages = value
     
@@ -220,7 +220,7 @@ class EntitlementManagement(entity.Entity):
         """
         Sets the connectedOrganizations property value. Represents references to a directory or domain of another organization whose users can request access.
         Args:
-            value: Value to set for the connectedOrganizations property.
+            value: Value to set for the connected_organizations property.
         """
         self._connected_organizations = value
     
@@ -278,18 +278,18 @@ class EntitlementManagement(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_package_assignment_approvals": lambda n : setattr(self, 'access_package_assignment_approvals', n.get_collection_of_object_values(approval.Approval)),
-            "access_package_assignment_policies": lambda n : setattr(self, 'access_package_assignment_policies', n.get_collection_of_object_values(access_package_assignment_policy.AccessPackageAssignmentPolicy)),
-            "access_package_assignment_requests": lambda n : setattr(self, 'access_package_assignment_requests', n.get_collection_of_object_values(access_package_assignment_request.AccessPackageAssignmentRequest)),
-            "access_package_assignment_resource_roles": lambda n : setattr(self, 'access_package_assignment_resource_roles', n.get_collection_of_object_values(access_package_assignment_resource_role.AccessPackageAssignmentResourceRole)),
-            "access_package_assignments": lambda n : setattr(self, 'access_package_assignments', n.get_collection_of_object_values(access_package_assignment.AccessPackageAssignment)),
-            "access_package_catalogs": lambda n : setattr(self, 'access_package_catalogs', n.get_collection_of_object_values(access_package_catalog.AccessPackageCatalog)),
-            "access_package_resource_environments": lambda n : setattr(self, 'access_package_resource_environments', n.get_collection_of_object_values(access_package_resource_environment.AccessPackageResourceEnvironment)),
-            "access_package_resource_requests": lambda n : setattr(self, 'access_package_resource_requests', n.get_collection_of_object_values(access_package_resource_request.AccessPackageResourceRequest)),
-            "access_package_resource_role_scopes": lambda n : setattr(self, 'access_package_resource_role_scopes', n.get_collection_of_object_values(access_package_resource_role_scope.AccessPackageResourceRoleScope)),
-            "access_package_resources": lambda n : setattr(self, 'access_package_resources', n.get_collection_of_object_values(access_package_resource.AccessPackageResource)),
-            "access_packages": lambda n : setattr(self, 'access_packages', n.get_collection_of_object_values(access_package.AccessPackage)),
-            "connected_organizations": lambda n : setattr(self, 'connected_organizations', n.get_collection_of_object_values(connected_organization.ConnectedOrganization)),
+            "accessPackages": lambda n : setattr(self, 'access_packages', n.get_collection_of_object_values(access_package.AccessPackage)),
+            "accessPackageAssignments": lambda n : setattr(self, 'access_package_assignments', n.get_collection_of_object_values(access_package_assignment.AccessPackageAssignment)),
+            "accessPackageAssignmentApprovals": lambda n : setattr(self, 'access_package_assignment_approvals', n.get_collection_of_object_values(approval.Approval)),
+            "accessPackageAssignmentPolicies": lambda n : setattr(self, 'access_package_assignment_policies', n.get_collection_of_object_values(access_package_assignment_policy.AccessPackageAssignmentPolicy)),
+            "accessPackageAssignmentRequests": lambda n : setattr(self, 'access_package_assignment_requests', n.get_collection_of_object_values(access_package_assignment_request.AccessPackageAssignmentRequest)),
+            "accessPackageAssignmentResourceRoles": lambda n : setattr(self, 'access_package_assignment_resource_roles', n.get_collection_of_object_values(access_package_assignment_resource_role.AccessPackageAssignmentResourceRole)),
+            "accessPackageCatalogs": lambda n : setattr(self, 'access_package_catalogs', n.get_collection_of_object_values(access_package_catalog.AccessPackageCatalog)),
+            "accessPackageResources": lambda n : setattr(self, 'access_package_resources', n.get_collection_of_object_values(access_package_resource.AccessPackageResource)),
+            "accessPackageResourceEnvironments": lambda n : setattr(self, 'access_package_resource_environments', n.get_collection_of_object_values(access_package_resource_environment.AccessPackageResourceEnvironment)),
+            "accessPackageResourceRequests": lambda n : setattr(self, 'access_package_resource_requests', n.get_collection_of_object_values(access_package_resource_request.AccessPackageResourceRequest)),
+            "accessPackageResourceRoleScopes": lambda n : setattr(self, 'access_package_resource_role_scopes', n.get_collection_of_object_values(access_package_resource_role_scope.AccessPackageResourceRoleScope)),
+            "connectedOrganizations": lambda n : setattr(self, 'connected_organizations', n.get_collection_of_object_values(connected_organization.ConnectedOrganization)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(entitlement_management_settings.EntitlementManagementSettings)),
             "subjects": lambda n : setattr(self, 'subjects', n.get_collection_of_object_values(access_package_subject.AccessPackageSubject)),
         }
@@ -306,17 +306,17 @@ class EntitlementManagement(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
+        writer.write_collection_of_object_values("accessPackages", self.access_packages)
+        writer.write_collection_of_object_values("accessPackageAssignments", self.access_package_assignments)
         writer.write_collection_of_object_values("accessPackageAssignmentApprovals", self.access_package_assignment_approvals)
         writer.write_collection_of_object_values("accessPackageAssignmentPolicies", self.access_package_assignment_policies)
         writer.write_collection_of_object_values("accessPackageAssignmentRequests", self.access_package_assignment_requests)
         writer.write_collection_of_object_values("accessPackageAssignmentResourceRoles", self.access_package_assignment_resource_roles)
-        writer.write_collection_of_object_values("accessPackageAssignments", self.access_package_assignments)
         writer.write_collection_of_object_values("accessPackageCatalogs", self.access_package_catalogs)
+        writer.write_collection_of_object_values("accessPackageResources", self.access_package_resources)
         writer.write_collection_of_object_values("accessPackageResourceEnvironments", self.access_package_resource_environments)
         writer.write_collection_of_object_values("accessPackageResourceRequests", self.access_package_resource_requests)
         writer.write_collection_of_object_values("accessPackageResourceRoleScopes", self.access_package_resource_role_scopes)
-        writer.write_collection_of_object_values("accessPackageResources", self.access_package_resources)
-        writer.write_collection_of_object_values("accessPackages", self.access_packages)
         writer.write_collection_of_object_values("connectedOrganizations", self.connected_organizations)
         writer.write_object_value("settings", self.settings)
         writer.write_collection_of_object_values("subjects", self.subjects)

@@ -9,7 +9,7 @@ inference_classification_override = lazy_import('msgraph.generated.models.infere
 class InferenceClassification(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new inferenceClassification and sets the default values.
+        Instantiates a new InferenceClassification and sets the default values.
         """
         super().__init__()
         # The OdataType property

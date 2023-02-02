@@ -21,7 +21,7 @@ class CloudPcSnapshot(entity.Entity):
         """
         Sets the cloudPcId property value. The unique identifier for the Cloud PC.
         Args:
-            value: Value to set for the cloudPcId property.
+            value: Value to set for the cloud_pc_id property.
         """
         self._cloud_pc_id = value
     
@@ -54,7 +54,7 @@ class CloudPcSnapshot(entity.Entity):
         """
         Sets the createdDateTime property value. The date and time at which the snapshot was taken. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -76,9 +76,9 @@ class CloudPcSnapshot(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "cloud_pc_id": lambda n : setattr(self, 'cloud_pc_id', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "last_restored_date_time": lambda n : setattr(self, 'last_restored_date_time', n.get_datetime_value()),
+            "cloudPcId": lambda n : setattr(self, 'cloud_pc_id', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "lastRestoredDateTime": lambda n : setattr(self, 'last_restored_date_time', n.get_datetime_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(cloud_pc_snapshot_status.CloudPcSnapshotStatus)),
         }
         super_fields = super().get_field_deserializers()
@@ -98,7 +98,7 @@ class CloudPcSnapshot(entity.Entity):
         """
         Sets the lastRestoredDateTime property value. The date and time at which the snapshot was last used to restore the Cloud PC device. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the lastRestoredDateTime property.
+            value: Value to set for the last_restored_date_time property.
         """
         self._last_restored_date_time = value
     

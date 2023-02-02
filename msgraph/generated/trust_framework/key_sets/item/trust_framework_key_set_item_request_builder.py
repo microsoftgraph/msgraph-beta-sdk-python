@@ -12,50 +12,58 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 trust_framework_key_set = lazy_import('msgraph.generated.models.trust_framework_key_set')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-generate_key_request_builder = lazy_import('msgraph.generated.trust_framework.key_sets.item.generate_key.generate_key_request_builder')
-get_active_key_request_builder = lazy_import('msgraph.generated.trust_framework.key_sets.item.get_active_key.get_active_key_request_builder')
-upload_certificate_request_builder = lazy_import('msgraph.generated.trust_framework.key_sets.item.upload_certificate.upload_certificate_request_builder')
-upload_pkcs12_request_builder = lazy_import('msgraph.generated.trust_framework.key_sets.item.upload_pkcs12.upload_pkcs12_request_builder')
-upload_secret_request_builder = lazy_import('msgraph.generated.trust_framework.key_sets.item.upload_secret.upload_secret_request_builder')
+generate_key_request_builder = lazy_import('msgraph.generated.trust_framework.key_sets.item.microsoft_graph_generate_key.generate_key_request_builder')
+get_active_key_request_builder = lazy_import('msgraph.generated.trust_framework.key_sets.item.microsoft_graph_get_active_key.get_active_key_request_builder')
+upload_certificate_request_builder = lazy_import('msgraph.generated.trust_framework.key_sets.item.microsoft_graph_upload_certificate.upload_certificate_request_builder')
+upload_pkcs12_request_builder = lazy_import('msgraph.generated.trust_framework.key_sets.item.microsoft_graph_upload_pkcs12.upload_pkcs12_request_builder')
+upload_secret_request_builder = lazy_import('msgraph.generated.trust_framework.key_sets.item.microsoft_graph_upload_secret.upload_secret_request_builder')
 
 class TrustFrameworkKeySetItemRequestBuilder():
     """
     Provides operations to manage the keySets property of the microsoft.graph.trustFramework entity.
     """
     @property
-    def generate_key(self) -> generate_key_request_builder.GenerateKeyRequestBuilder:
+    def microsoft_graph_generate_key(self) -> generate_key_request_builder.GenerateKeyRequestBuilder:
         """
         Provides operations to call the generateKey method.
         """
         return generate_key_request_builder.GenerateKeyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def upload_certificate(self) -> upload_certificate_request_builder.UploadCertificateRequestBuilder:
+    def microsoft_graph_get_active_key(self) -> get_active_key_request_builder.GetActiveKeyRequestBuilder:
+        """
+        Provides operations to call the getActiveKey method.
+        """
+        return get_active_key_request_builder.GetActiveKeyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_upload_certificate(self) -> upload_certificate_request_builder.UploadCertificateRequestBuilder:
         """
         Provides operations to call the uploadCertificate method.
         """
         return upload_certificate_request_builder.UploadCertificateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def upload_pkcs12(self) -> upload_pkcs12_request_builder.UploadPkcs12RequestBuilder:
+    def microsoft_graph_upload_pkcs12(self) -> upload_pkcs12_request_builder.UploadPkcs12RequestBuilder:
         """
         Provides operations to call the uploadPkcs12 method.
         """
         return upload_pkcs12_request_builder.UploadPkcs12RequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def upload_secret(self) -> upload_secret_request_builder.UploadSecretRequestBuilder:
+    def microsoft_graph_upload_secret(self) -> upload_secret_request_builder.UploadSecretRequestBuilder:
         """
         Provides operations to call the uploadSecret method.
         """
         return upload_secret_request_builder.UploadSecretRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, trust_framework_key_set_id: Optional[str] = None) -> None:
         """
         Instantiates a new TrustFrameworkKeySetItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            trustFrameworkKeySetId: key: id of trustFrameworkKeySet
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -65,15 +73,15 @@ class TrustFrameworkKeySetItemRequestBuilder():
         self.url_template: str = "{+baseurl}/trustFramework/keySets/{trustFrameworkKeySet%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["trustFrameworkKeySet%2Did"] = trustFrameworkKeySetId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property keySets for trustFramework
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -84,14 +92,13 @@ class TrustFrameworkKeySetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[trust_framework_key_set.TrustFrameworkKeySet]:
+    async def get(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderGetRequestConfiguration] = None) -> Optional[trust_framework_key_set.TrustFrameworkKeySet]:
         """
         Get keySets from trustFramework
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[trust_framework_key_set.TrustFrameworkKeySet]
         """
         request_info = self.to_get_request_information(
@@ -103,22 +110,14 @@ class TrustFrameworkKeySetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, trust_framework_key_set.TrustFrameworkKeySet, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, trust_framework_key_set.TrustFrameworkKeySet, error_mapping)
     
-    def get_active_key(self,) -> get_active_key_request_builder.GetActiveKeyRequestBuilder:
-        """
-        Provides operations to call the getActiveKey method.
-        Returns: get_active_key_request_builder.GetActiveKeyRequestBuilder
-        """
-        return get_active_key_request_builder.GetActiveKeyRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def patch(self,body: Optional[trust_framework_key_set.TrustFrameworkKeySet] = None, request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[trust_framework_key_set.TrustFrameworkKeySet]:
+    async def patch(self,body: Optional[trust_framework_key_set.TrustFrameworkKeySet] = None, request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[trust_framework_key_set.TrustFrameworkKeySet]:
         """
         Update the navigation property keySets in trustFramework
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[trust_framework_key_set.TrustFrameworkKeySet]
         """
         if body is None:
@@ -132,7 +131,7 @@ class TrustFrameworkKeySetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, trust_framework_key_set.TrustFrameworkKeySet, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, trust_framework_key_set.TrustFrameworkKeySet, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -34,7 +34,7 @@ class DeviceManagementConfigurationGroupSettingInstanceTemplate(device_managemen
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "group_setting_value_template": lambda n : setattr(self, 'group_setting_value_template', n.get_object_value(device_management_configuration_group_setting_value_template.DeviceManagementConfigurationGroupSettingValueTemplate)),
+            "groupSettingValueTemplate": lambda n : setattr(self, 'group_setting_value_template', n.get_object_value(device_management_configuration_group_setting_value_template.DeviceManagementConfigurationGroupSettingValueTemplate)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -53,7 +53,7 @@ class DeviceManagementConfigurationGroupSettingInstanceTemplate(device_managemen
         """
         Sets the groupSettingValueTemplate property value. Group Setting Value Template
         Args:
-            value: Value to set for the groupSettingValueTemplate property.
+            value: Value to set for the group_setting_value_template property.
         """
         self._group_setting_value_template = value
     

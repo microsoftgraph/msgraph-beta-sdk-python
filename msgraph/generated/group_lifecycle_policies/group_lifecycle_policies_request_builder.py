@@ -11,7 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.group_lifecycle_policies.count.count_request_builder')
-renew_group_request_builder = lazy_import('msgraph.generated.group_lifecycle_policies.renew_group.renew_group_request_builder')
+renew_group_request_builder = lazy_import('msgraph.generated.group_lifecycle_policies.microsoft_graph_renew_group.renew_group_request_builder')
 group_lifecycle_policy = lazy_import('msgraph.generated.models.group_lifecycle_policy')
 group_lifecycle_policy_collection_response = lazy_import('msgraph.generated.models.group_lifecycle_policy_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -28,7 +28,7 @@ class GroupLifecyclePoliciesRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def renew_group(self) -> renew_group_request_builder.RenewGroupRequestBuilder:
+    def microsoft_graph_renew_group(self) -> renew_group_request_builder.RenewGroupRequestBuilder:
         """
         Provides operations to call the renewGroup method.
         """
@@ -52,12 +52,11 @@ class GroupLifecyclePoliciesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[GroupLifecyclePoliciesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group_lifecycle_policy_collection_response.GroupLifecyclePolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[GroupLifecyclePoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[group_lifecycle_policy_collection_response.GroupLifecyclePolicyCollectionResponse]:
         """
         List all the groupLifecyclePolicies.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_lifecycle_policy_collection_response.GroupLifecyclePolicyCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class GroupLifecyclePoliciesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group_lifecycle_policy_collection_response.GroupLifecyclePolicyCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, group_lifecycle_policy_collection_response.GroupLifecyclePolicyCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[group_lifecycle_policy.GroupLifecyclePolicy] = None, request_configuration: Optional[GroupLifecyclePoliciesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group_lifecycle_policy.GroupLifecyclePolicy]:
+    async def post(self,body: Optional[group_lifecycle_policy.GroupLifecyclePolicy] = None, request_configuration: Optional[GroupLifecyclePoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[group_lifecycle_policy.GroupLifecyclePolicy]:
         """
         Creates a new groupLifecyclePolicy.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_lifecycle_policy.GroupLifecyclePolicy]
         """
         if body is None:
@@ -91,7 +89,7 @@ class GroupLifecyclePoliciesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group_lifecycle_policy.GroupLifecyclePolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, group_lifecycle_policy.GroupLifecyclePolicy, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GroupLifecyclePoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

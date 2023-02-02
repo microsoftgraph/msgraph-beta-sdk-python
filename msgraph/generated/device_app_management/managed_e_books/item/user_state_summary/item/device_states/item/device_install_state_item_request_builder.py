@@ -17,10 +17,11 @@ class DeviceInstallStateItemRequestBuilder():
     """
     Provides operations to manage the deviceStates property of the microsoft.graph.userInstallStateSummary entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, device_install_state_id: Optional[str] = None) -> None:
         """
         Instantiates a new DeviceInstallStateItemRequestBuilder and sets the default values.
         Args:
+            deviceInstallStateId: key: id of deviceInstallState
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class DeviceInstallStateItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}/userStateSummary/{userInstallStateSummary%2Did}/deviceStates/{deviceInstallState%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["deviceInstallState%2Did"] = deviceInstallStateId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DeviceInstallStateItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceInstallStateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property deviceStates for deviceAppManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class DeviceInstallStateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceInstallStateItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_install_state.DeviceInstallState]:
+    async def get(self,request_configuration: Optional[DeviceInstallStateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_install_state.DeviceInstallState]:
         """
         The install state of the eBook.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_install_state.DeviceInstallState]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class DeviceInstallStateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_install_state.DeviceInstallState, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_install_state.DeviceInstallState, error_mapping)
     
-    async def patch(self,body: Optional[device_install_state.DeviceInstallState] = None, request_configuration: Optional[DeviceInstallStateItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_install_state.DeviceInstallState]:
+    async def patch(self,body: Optional[device_install_state.DeviceInstallState] = None, request_configuration: Optional[DeviceInstallStateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_install_state.DeviceInstallState]:
         """
         Update the navigation property deviceStates in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_install_state.DeviceInstallState]
         """
         if body is None:
@@ -92,7 +91,7 @@ class DeviceInstallStateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_install_state.DeviceInstallState, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_install_state.DeviceInstallState, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceInstallStateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

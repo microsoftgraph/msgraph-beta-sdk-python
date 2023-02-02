@@ -10,11 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-assign_request_builder = lazy_import('msgraph.generated.device_management.embedded_s_i_m_activation_code_pools.item.assign.assign_request_builder')
 assignments_request_builder = lazy_import('msgraph.generated.device_management.embedded_s_i_m_activation_code_pools.item.assignments.assignments_request_builder')
 embedded_s_i_m_activation_code_pool_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.embedded_s_i_m_activation_code_pools.item.assignments.item.embedded_s_i_m_activation_code_pool_assignment_item_request_builder')
 device_states_request_builder = lazy_import('msgraph.generated.device_management.embedded_s_i_m_activation_code_pools.item.device_states.device_states_request_builder')
 embedded_s_i_m_device_state_item_request_builder = lazy_import('msgraph.generated.device_management.embedded_s_i_m_activation_code_pools.item.device_states.item.embedded_s_i_m_device_state_item_request_builder')
+assign_request_builder = lazy_import('msgraph.generated.device_management.embedded_s_i_m_activation_code_pools.item.microsoft_graph_assign.assign_request_builder')
 embedded_s_i_m_activation_code_pool = lazy_import('msgraph.generated.models.embedded_s_i_m_activation_code_pool')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -22,13 +22,6 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder():
     """
     Provides operations to manage the embeddedSIMActivationCodePools property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
-        """
-        Provides operations to call the assign method.
-        """
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
@@ -43,6 +36,13 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder():
         """
         return device_states_request_builder.DeviceStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def microsoft_graph_assign(self) -> assign_request_builder.AssignRequestBuilder:
+        """
+        Provides operations to call the assign method.
+        """
+        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
+    
     def assignments_by_id(self,id: str) -> embedded_s_i_m_activation_code_pool_assignment_item_request_builder.EmbeddedSIMActivationCodePoolAssignmentItemRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.embeddedSIMActivationCodePool entity.
@@ -56,10 +56,11 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder():
         url_tpl_params["embeddedSIMActivationCodePoolAssignment%2Did"] = id
         return embedded_s_i_m_activation_code_pool_assignment_item_request_builder.EmbeddedSIMActivationCodePoolAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, embedded_s_i_m_activation_code_pool_id: Optional[str] = None) -> None:
         """
         Instantiates a new EmbeddedSIMActivationCodePoolItemRequestBuilder and sets the default values.
         Args:
+            embeddedSIMActivationCodePoolId: key: id of embeddedSIMActivationCodePool
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -71,15 +72,15 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceManagement/embeddedSIMActivationCodePools/{embeddedSIMActivationCodePool%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["embeddedSIMActivationCodePool%2Did"] = embeddedSIMActivationCodePoolId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[EmbeddedSIMActivationCodePoolItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[EmbeddedSIMActivationCodePoolItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property embeddedSIMActivationCodePools for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -90,7 +91,7 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def device_states_by_id(self,id: str) -> embedded_s_i_m_device_state_item_request_builder.EmbeddedSIMDeviceStateItemRequestBuilder:
         """
@@ -105,12 +106,11 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder():
         url_tpl_params["embeddedSIMDeviceState%2Did"] = id
         return embedded_s_i_m_device_state_item_request_builder.EmbeddedSIMDeviceStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[EmbeddedSIMActivationCodePoolItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool]:
+    async def get(self,request_configuration: Optional[EmbeddedSIMActivationCodePoolItemRequestBuilderGetRequestConfiguration] = None) -> Optional[embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool]:
         """
         The embedded SIM activation code pools created by this account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool]
         """
         request_info = self.to_get_request_information(
@@ -122,15 +122,14 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool, error_mapping)
     
-    async def patch(self,body: Optional[embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool] = None, request_configuration: Optional[EmbeddedSIMActivationCodePoolItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool]:
+    async def patch(self,body: Optional[embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool] = None, request_configuration: Optional[EmbeddedSIMActivationCodePoolItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool]:
         """
         Update the navigation property embeddedSIMActivationCodePools in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool]
         """
         if body is None:
@@ -144,7 +143,7 @@ class EmbeddedSIMActivationCodePoolItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, embedded_s_i_m_activation_code_pool.EmbeddedSIMActivationCodePool, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[EmbeddedSIMActivationCodePoolItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

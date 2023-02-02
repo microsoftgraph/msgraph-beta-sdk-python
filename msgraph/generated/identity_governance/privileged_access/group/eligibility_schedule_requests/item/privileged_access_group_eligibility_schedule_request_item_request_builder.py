@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-cancel_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.group.eligibility_schedule_requests.item.cancel.cancel_request_builder')
 group_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.group.eligibility_schedule_requests.item.group.group_request_builder')
+cancel_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.group.eligibility_schedule_requests.item.microsoft_graph_cancel.cancel_request_builder')
 principal_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.group.eligibility_schedule_requests.item.principal.principal_request_builder')
 target_schedule_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.group.eligibility_schedule_requests.item.target_schedule.target_schedule_request_builder')
 privileged_access_group_eligibility_schedule_request = lazy_import('msgraph.generated.models.privileged_access_group_eligibility_schedule_request')
@@ -22,18 +22,18 @@ class PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder():
     Provides operations to manage the eligibilityScheduleRequests property of the microsoft.graph.privilegedAccessGroup entity.
     """
     @property
-    def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
-        """
-        Provides operations to call the cancel method.
-        """
-        return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def group(self) -> group_request_builder.GroupRequestBuilder:
         """
         Provides operations to manage the group property of the microsoft.graph.privilegedAccessGroupEligibilityScheduleRequest entity.
         """
         return group_request_builder.GroupRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_cancel(self) -> cancel_request_builder.CancelRequestBuilder:
+        """
+        Provides operations to call the cancel method.
+        """
+        return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def principal(self) -> principal_request_builder.PrincipalRequestBuilder:
@@ -49,11 +49,12 @@ class PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder():
         """
         return target_schedule_request_builder.TargetScheduleRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, privileged_access_group_eligibility_schedule_request_id: Optional[str] = None) -> None:
         """
         Instantiates a new PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            privilegedAccessGroupEligibilityScheduleRequestId: key: id of privilegedAccessGroupEligibilityScheduleRequest
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -64,15 +65,15 @@ class PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder():
         self.url_template: str = "{+baseurl}/identityGovernance/privilegedAccess/group/eligibilityScheduleRequests/{privilegedAccessGroupEligibilityScheduleRequest%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["privilegedAccessGroupEligibilityScheduleRequest%2Did"] = privilegedAccessGroupEligibilityScheduleRequestId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property eligibilityScheduleRequests for identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -83,14 +84,13 @@ class PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_access_group_eligibility_schedule_request.PrivilegedAccessGroupEligibilityScheduleRequest]:
+    async def get(self,request_configuration: Optional[PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access_group_eligibility_schedule_request.PrivilegedAccessGroupEligibilityScheduleRequest]:
         """
         Get eligibilityScheduleRequests from identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_access_group_eligibility_schedule_request.PrivilegedAccessGroupEligibilityScheduleRequest]
         """
         request_info = self.to_get_request_information(
@@ -102,15 +102,14 @@ class PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_access_group_eligibility_schedule_request.PrivilegedAccessGroupEligibilityScheduleRequest, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_access_group_eligibility_schedule_request.PrivilegedAccessGroupEligibilityScheduleRequest, error_mapping)
     
-    async def patch(self,body: Optional[privileged_access_group_eligibility_schedule_request.PrivilegedAccessGroupEligibilityScheduleRequest] = None, request_configuration: Optional[PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_access_group_eligibility_schedule_request.PrivilegedAccessGroupEligibilityScheduleRequest]:
+    async def patch(self,body: Optional[privileged_access_group_eligibility_schedule_request.PrivilegedAccessGroupEligibilityScheduleRequest] = None, request_configuration: Optional[PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[privileged_access_group_eligibility_schedule_request.PrivilegedAccessGroupEligibilityScheduleRequest]:
         """
         Update the navigation property eligibilityScheduleRequests in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_access_group_eligibility_schedule_request.PrivilegedAccessGroupEligibilityScheduleRequest]
         """
         if body is None:
@@ -124,7 +123,7 @@ class PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_access_group_eligibility_schedule_request.PrivilegedAccessGroupEligibilityScheduleRequest, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_access_group_eligibility_schedule_request.PrivilegedAccessGroupEligibilityScheduleRequest, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

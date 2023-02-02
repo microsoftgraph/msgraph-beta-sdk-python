@@ -12,32 +12,33 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 permission = lazy_import('msgraph.generated.models.permission')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-grant_request_builder = lazy_import('msgraph.generated.sites.item.permissions.item.grant.grant_request_builder')
-revoke_grants_request_builder = lazy_import('msgraph.generated.sites.item.permissions.item.revoke_grants.revoke_grants_request_builder')
+grant_request_builder = lazy_import('msgraph.generated.sites.item.permissions.item.microsoft_graph_grant.grant_request_builder')
+revoke_grants_request_builder = lazy_import('msgraph.generated.sites.item.permissions.item.microsoft_graph_revoke_grants.revoke_grants_request_builder')
 
 class PermissionItemRequestBuilder():
     """
     Provides operations to manage the permissions property of the microsoft.graph.site entity.
     """
     @property
-    def grant(self) -> grant_request_builder.GrantRequestBuilder:
+    def microsoft_graph_grant(self) -> grant_request_builder.GrantRequestBuilder:
         """
         Provides operations to call the grant method.
         """
         return grant_request_builder.GrantRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def revoke_grants(self) -> revoke_grants_request_builder.RevokeGrantsRequestBuilder:
+    def microsoft_graph_revoke_grants(self) -> revoke_grants_request_builder.RevokeGrantsRequestBuilder:
         """
         Provides operations to call the revokeGrants method.
         """
         return revoke_grants_request_builder.RevokeGrantsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, permission_id: Optional[str] = None) -> None:
         """
         Instantiates a new PermissionItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            permissionId: key: id of permission
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -48,15 +49,15 @@ class PermissionItemRequestBuilder():
         self.url_template: str = "{+baseurl}/sites/{site%2Did}/permissions/{permission%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["permission%2Did"] = permissionId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PermissionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PermissionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property permissions for sites
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -67,14 +68,13 @@ class PermissionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PermissionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[permission.Permission]:
+    async def get(self,request_configuration: Optional[PermissionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[permission.Permission]:
         """
         The permissions associated with the site. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[permission.Permission]
         """
         request_info = self.to_get_request_information(
@@ -86,15 +86,14 @@ class PermissionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, permission.Permission, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, permission.Permission, error_mapping)
     
-    async def patch(self,body: Optional[permission.Permission] = None, request_configuration: Optional[PermissionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[permission.Permission]:
+    async def patch(self,body: Optional[permission.Permission] = None, request_configuration: Optional[PermissionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[permission.Permission]:
         """
         Update the navigation property permissions in sites
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[permission.Permission]
         """
         if body is None:
@@ -108,7 +107,7 @@ class PermissionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, permission.Permission, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, permission.Permission, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PermissionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

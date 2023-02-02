@@ -25,7 +25,7 @@ class AccessReview(entity.Entity):
         """
         Sets the businessFlowTemplateId property value. The business flow template identifier. Required on create.  This value is case sensitive.
         Args:
-            value: Value to set for the businessFlowTemplateId property.
+            value: Value to set for the business_flow_template_id property.
         """
         self._business_flow_template_id = value
     
@@ -54,10 +54,10 @@ class AccessReview(entity.Entity):
         self.odata_type: Optional[str] = None
         # The object for which the access reviews is reviewing the access rights assignments. This can be the group for the review of memberships of users in a group, or the app for a review of assignments of users to an application. Required on create.
         self._reviewed_entity: Optional[identity.Identity] = None
-        # The collection of reviewers for an access review, if access review reviewerType is of type delegated.
-        self._reviewers: Optional[List[access_review_reviewer.AccessReviewReviewer]] = None
         # The relationship type of reviewer to the target object, one of self, delegated or entityOwners. Required on create.
         self._reviewer_type: Optional[str] = None
+        # The collection of reviewers for an access review, if access review reviewerType is of type delegated.
+        self._reviewers: Optional[List[access_review_reviewer.AccessReviewReviewer]] = None
         # The settings of an accessReview, see type definition below.
         self._settings: Optional[access_review_settings.AccessReviewSettings] = None
         # The DateTime when the review is scheduled to be start.  This could be a date in the future.  Required on create.
@@ -78,7 +78,7 @@ class AccessReview(entity.Entity):
         """
         Sets the createdBy property value. The user who created this review.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -141,7 +141,7 @@ class AccessReview(entity.Entity):
         """
         Sets the displayName property value. The access review name. Required on create.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -158,7 +158,7 @@ class AccessReview(entity.Entity):
         """
         Sets the endDateTime property value. The DateTime when the review is scheduled to end. This must be at least one day later than the start date.  Required on create.
         Args:
-            value: Value to set for the endDateTime property.
+            value: Value to set for the end_date_time property.
         """
         self._end_date_time = value
     
@@ -168,19 +168,19 @@ class AccessReview(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "business_flow_template_id": lambda n : setattr(self, 'business_flow_template_id', n.get_str_value()),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(user_identity.UserIdentity)),
+            "businessFlowTemplateId": lambda n : setattr(self, 'business_flow_template_id', n.get_str_value()),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(user_identity.UserIdentity)),
             "decisions": lambda n : setattr(self, 'decisions', n.get_collection_of_object_values(access_review_decision.AccessReviewDecision)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "end_date_time": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
             "instances": lambda n : setattr(self, 'instances', n.get_collection_of_object_values(access_review.AccessReview)),
-            "my_decisions": lambda n : setattr(self, 'my_decisions', n.get_collection_of_object_values(access_review_decision.AccessReviewDecision)),
-            "reviewed_entity": lambda n : setattr(self, 'reviewed_entity', n.get_object_value(identity.Identity)),
+            "myDecisions": lambda n : setattr(self, 'my_decisions', n.get_collection_of_object_values(access_review_decision.AccessReviewDecision)),
+            "reviewedEntity": lambda n : setattr(self, 'reviewed_entity', n.get_object_value(identity.Identity)),
             "reviewers": lambda n : setattr(self, 'reviewers', n.get_collection_of_object_values(access_review_reviewer.AccessReviewReviewer)),
-            "reviewer_type": lambda n : setattr(self, 'reviewer_type', n.get_str_value()),
+            "reviewerType": lambda n : setattr(self, 'reviewer_type', n.get_str_value()),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(access_review_settings.AccessReviewSettings)),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -217,7 +217,7 @@ class AccessReview(entity.Entity):
         """
         Sets the myDecisions property value. The collection of decisions for the caller, if the caller is a reviewer.
         Args:
-            value: Value to set for the myDecisions property.
+            value: Value to set for the my_decisions property.
         """
         self._my_decisions = value
     
@@ -234,9 +234,26 @@ class AccessReview(entity.Entity):
         """
         Sets the reviewedEntity property value. The object for which the access reviews is reviewing the access rights assignments. This can be the group for the review of memberships of users in a group, or the app for a review of assignments of users to an application. Required on create.
         Args:
-            value: Value to set for the reviewedEntity property.
+            value: Value to set for the reviewed_entity property.
         """
         self._reviewed_entity = value
+    
+    @property
+    def reviewer_type(self,) -> Optional[str]:
+        """
+        Gets the reviewerType property value. The relationship type of reviewer to the target object, one of self, delegated or entityOwners. Required on create.
+        Returns: Optional[str]
+        """
+        return self._reviewer_type
+    
+    @reviewer_type.setter
+    def reviewer_type(self,value: Optional[str] = None) -> None:
+        """
+        Sets the reviewerType property value. The relationship type of reviewer to the target object, one of self, delegated or entityOwners. Required on create.
+        Args:
+            value: Value to set for the reviewer_type property.
+        """
+        self._reviewer_type = value
     
     @property
     def reviewers(self,) -> Optional[List[access_review_reviewer.AccessReviewReviewer]]:
@@ -254,23 +271,6 @@ class AccessReview(entity.Entity):
             value: Value to set for the reviewers property.
         """
         self._reviewers = value
-    
-    @property
-    def reviewer_type(self,) -> Optional[str]:
-        """
-        Gets the reviewerType property value. The relationship type of reviewer to the target object, one of self, delegated or entityOwners. Required on create.
-        Returns: Optional[str]
-        """
-        return self._reviewer_type
-    
-    @reviewer_type.setter
-    def reviewer_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the reviewerType property value. The relationship type of reviewer to the target object, one of self, delegated or entityOwners. Required on create.
-        Args:
-            value: Value to set for the reviewerType property.
-        """
-        self._reviewer_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -326,7 +326,7 @@ class AccessReview(entity.Entity):
         """
         Sets the startDateTime property value. The DateTime when the review is scheduled to be start.  This could be a date in the future.  Required on create.
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     

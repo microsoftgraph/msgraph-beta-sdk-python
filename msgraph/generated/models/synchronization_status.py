@@ -92,7 +92,7 @@ class SynchronizationStatus(AdditionalDataHolder, Parsable):
         """
         Sets the countSuccessiveCompleteFailures property value. Number of consecutive times this job failed.
         Args:
-            value: Value to set for the countSuccessiveCompleteFailures property.
+            value: Value to set for the count_successive_complete_failures property.
         """
         self._count_successive_complete_failures = value
     
@@ -121,7 +121,7 @@ class SynchronizationStatus(AdditionalDataHolder, Parsable):
         """
         Sets the escrowsPruned property value. true if the job's escrows (object-level errors) were pruned during initial synchronization. Escrows can be pruned if during the initial synchronization, you reach the threshold of errors that would normally put the job in quarantine. Instead of going into quarantine, the synchronization process clears the job's errors and continues until the initial synchronization is completed. When the initial synchronization is completed, the job will pause and wait for the customer to clean up the errors.
         Args:
-            value: Value to set for the escrowsPruned property.
+            value: Value to set for the escrows_pruned property.
         """
         self._escrows_pruned = value
     
@@ -132,18 +132,18 @@ class SynchronizationStatus(AdditionalDataHolder, Parsable):
         """
         fields = {
             "code": lambda n : setattr(self, 'code', n.get_enum_value(synchronization_status_code.SynchronizationStatusCode)),
-            "count_successive_complete_failures": lambda n : setattr(self, 'count_successive_complete_failures', n.get_int_value()),
-            "escrows_pruned": lambda n : setattr(self, 'escrows_pruned', n.get_bool_value()),
-            "last_execution": lambda n : setattr(self, 'last_execution', n.get_object_value(synchronization_task_execution.SynchronizationTaskExecution)),
-            "last_successful_execution": lambda n : setattr(self, 'last_successful_execution', n.get_object_value(synchronization_task_execution.SynchronizationTaskExecution)),
-            "last_successful_execution_with_exports": lambda n : setattr(self, 'last_successful_execution_with_exports', n.get_object_value(synchronization_task_execution.SynchronizationTaskExecution)),
+            "countSuccessiveCompleteFailures": lambda n : setattr(self, 'count_successive_complete_failures', n.get_int_value()),
+            "escrowsPruned": lambda n : setattr(self, 'escrows_pruned', n.get_bool_value()),
+            "lastExecution": lambda n : setattr(self, 'last_execution', n.get_object_value(synchronization_task_execution.SynchronizationTaskExecution)),
+            "lastSuccessfulExecution": lambda n : setattr(self, 'last_successful_execution', n.get_object_value(synchronization_task_execution.SynchronizationTaskExecution)),
+            "lastSuccessfulExecutionWithExports": lambda n : setattr(self, 'last_successful_execution_with_exports', n.get_object_value(synchronization_task_execution.SynchronizationTaskExecution)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "progress": lambda n : setattr(self, 'progress', n.get_collection_of_object_values(synchronization_progress.SynchronizationProgress)),
             "quarantine": lambda n : setattr(self, 'quarantine', n.get_object_value(synchronization_quarantine.SynchronizationQuarantine)),
-            "steady_state_first_achieved_time": lambda n : setattr(self, 'steady_state_first_achieved_time', n.get_datetime_value()),
-            "steady_state_last_achieved_time": lambda n : setattr(self, 'steady_state_last_achieved_time', n.get_datetime_value()),
-            "synchronized_entry_count_by_type": lambda n : setattr(self, 'synchronized_entry_count_by_type', n.get_collection_of_object_values(string_key_long_value_pair.StringKeyLongValuePair)),
-            "troubleshooting_url": lambda n : setattr(self, 'troubleshooting_url', n.get_str_value()),
+            "steadyStateFirstAchievedTime": lambda n : setattr(self, 'steady_state_first_achieved_time', n.get_datetime_value()),
+            "steadyStateLastAchievedTime": lambda n : setattr(self, 'steady_state_last_achieved_time', n.get_datetime_value()),
+            "synchronizedEntryCountByType": lambda n : setattr(self, 'synchronized_entry_count_by_type', n.get_collection_of_object_values(string_key_long_value_pair.StringKeyLongValuePair)),
+            "troubleshootingUrl": lambda n : setattr(self, 'troubleshooting_url', n.get_str_value()),
         }
         return fields
     
@@ -160,7 +160,7 @@ class SynchronizationStatus(AdditionalDataHolder, Parsable):
         """
         Sets the lastExecution property value. Details of the last execution of the job.
         Args:
-            value: Value to set for the lastExecution property.
+            value: Value to set for the last_execution property.
         """
         self._last_execution = value
     
@@ -177,7 +177,7 @@ class SynchronizationStatus(AdditionalDataHolder, Parsable):
         """
         Sets the lastSuccessfulExecution property value. Details of the last execution of this job, which didn't have any errors.
         Args:
-            value: Value to set for the lastSuccessfulExecution property.
+            value: Value to set for the last_successful_execution property.
         """
         self._last_successful_execution = value
     
@@ -194,7 +194,7 @@ class SynchronizationStatus(AdditionalDataHolder, Parsable):
         """
         Sets the lastSuccessfulExecutionWithExports property value. Details of the last execution of the job, which exported objects into the target directory.
         Args:
-            value: Value to set for the lastSuccessfulExecutionWithExports property.
+            value: Value to set for the last_successful_execution_with_exports property.
         """
         self._last_successful_execution_with_exports = value
     
@@ -211,7 +211,7 @@ class SynchronizationStatus(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -285,7 +285,7 @@ class SynchronizationStatus(AdditionalDataHolder, Parsable):
         """
         Sets the steadyStateFirstAchievedTime property value. The time when steady state (no more changes to the process) was first achieved. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the steadyStateFirstAchievedTime property.
+            value: Value to set for the steady_state_first_achieved_time property.
         """
         self._steady_state_first_achieved_time = value
     
@@ -302,7 +302,7 @@ class SynchronizationStatus(AdditionalDataHolder, Parsable):
         """
         Sets the steadyStateLastAchievedTime property value. The time when steady state (no more changes to the process) was last achieved. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the steadyStateLastAchievedTime property.
+            value: Value to set for the steady_state_last_achieved_time property.
         """
         self._steady_state_last_achieved_time = value
     
@@ -319,7 +319,7 @@ class SynchronizationStatus(AdditionalDataHolder, Parsable):
         """
         Sets the synchronizedEntryCountByType property value. Count of synchronized objects, listed by object type.
         Args:
-            value: Value to set for the synchronizedEntryCountByType property.
+            value: Value to set for the synchronized_entry_count_by_type property.
         """
         self._synchronized_entry_count_by_type = value
     
@@ -336,7 +336,7 @@ class SynchronizationStatus(AdditionalDataHolder, Parsable):
         """
         Sets the troubleshootingUrl property value. In the event of an error, the URL with the troubleshooting steps for the issue.
         Args:
-            value: Value to set for the troubleshootingUrl property.
+            value: Value to set for the troubleshooting_url property.
         """
         self._troubleshooting_url = value
     

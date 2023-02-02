@@ -50,12 +50,13 @@ class SalesCreditMemoItemRequestBuilder():
         """
         return sales_credit_memo_lines_request_builder.SalesCreditMemoLinesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, sales_credit_memo_id: Optional[str] = None) -> None:
         """
         Instantiates a new SalesCreditMemoItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            salesCreditMemoId: key: id of salesCreditMemo
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -65,15 +66,15 @@ class SalesCreditMemoItemRequestBuilder():
         self.url_template: str = "{+baseurl}/financials/companies/{company%2Did}/salesCreditMemos/{salesCreditMemo%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["salesCreditMemo%2Did"] = salesCreditMemoId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SalesCreditMemoItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sales_credit_memo.SalesCreditMemo]:
+    async def get(self,request_configuration: Optional[SalesCreditMemoItemRequestBuilderGetRequestConfiguration] = None) -> Optional[sales_credit_memo.SalesCreditMemo]:
         """
         Get salesCreditMemos from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sales_credit_memo.SalesCreditMemo]
         """
         request_info = self.to_get_request_information(
@@ -85,15 +86,14 @@ class SalesCreditMemoItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sales_credit_memo.SalesCreditMemo, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, sales_credit_memo.SalesCreditMemo, error_mapping)
     
-    async def patch(self,body: Optional[sales_credit_memo.SalesCreditMemo] = None, request_configuration: Optional[SalesCreditMemoItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sales_credit_memo.SalesCreditMemo]:
+    async def patch(self,body: Optional[sales_credit_memo.SalesCreditMemo] = None, request_configuration: Optional[SalesCreditMemoItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[sales_credit_memo.SalesCreditMemo]:
         """
         Update the navigation property salesCreditMemos in financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sales_credit_memo.SalesCreditMemo]
         """
         if body is None:
@@ -107,7 +107,7 @@ class SalesCreditMemoItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sales_credit_memo.SalesCreditMemo, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, sales_credit_memo.SalesCreditMemo, error_mapping)
     
     def sales_credit_memo_lines_by_id(self,id: str) -> sales_credit_memo_line_item_request_builder.SalesCreditMemoLineItemRequestBuilder:
         """

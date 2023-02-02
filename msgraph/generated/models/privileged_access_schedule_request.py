@@ -62,10 +62,10 @@ class PrivilegedAccessScheduleRequest(request.Request):
         """
         fields = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(schedule_request_actions.ScheduleRequestActions)),
-            "is_validation_only": lambda n : setattr(self, 'is_validation_only', n.get_bool_value()),
+            "isValidationOnly": lambda n : setattr(self, 'is_validation_only', n.get_bool_value()),
             "justification": lambda n : setattr(self, 'justification', n.get_str_value()),
-            "schedule_info": lambda n : setattr(self, 'schedule_info', n.get_object_value(request_schedule.RequestSchedule)),
-            "ticket_info": lambda n : setattr(self, 'ticket_info', n.get_object_value(ticket_info.TicketInfo)),
+            "scheduleInfo": lambda n : setattr(self, 'schedule_info', n.get_object_value(request_schedule.RequestSchedule)),
+            "ticketInfo": lambda n : setattr(self, 'ticket_info', n.get_object_value(ticket_info.TicketInfo)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -84,7 +84,7 @@ class PrivilegedAccessScheduleRequest(request.Request):
         """
         Sets the isValidationOnly property value. The isValidationOnly property
         Args:
-            value: Value to set for the isValidationOnly property.
+            value: Value to set for the is_validation_only property.
         """
         self._is_validation_only = value
     
@@ -118,7 +118,7 @@ class PrivilegedAccessScheduleRequest(request.Request):
         """
         Sets the scheduleInfo property value. The scheduleInfo property
         Args:
-            value: Value to set for the scheduleInfo property.
+            value: Value to set for the schedule_info property.
         """
         self._schedule_info = value
     
@@ -150,7 +150,7 @@ class PrivilegedAccessScheduleRequest(request.Request):
         """
         Sets the ticketInfo property value. The ticketInfo property
         Args:
-            value: Value to set for the ticketInfo property.
+            value: Value to set for the ticket_info property.
         """
         self._ticket_info = value
     

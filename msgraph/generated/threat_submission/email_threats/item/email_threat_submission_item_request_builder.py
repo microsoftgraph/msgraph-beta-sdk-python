@@ -17,10 +17,11 @@ class EmailThreatSubmissionItemRequestBuilder():
     """
     Provides operations to manage the emailThreats property of the microsoft.graph.security.threatSubmissionRoot entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, email_threat_submission_id: Optional[str] = None) -> None:
         """
         Instantiates a new EmailThreatSubmissionItemRequestBuilder and sets the default values.
         Args:
+            emailThreatSubmissionId: key: id of emailThreatSubmission
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class EmailThreatSubmissionItemRequestBuilder():
         self.url_template: str = "{+baseurl}/threatSubmission/emailThreats/{emailThreatSubmission%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["emailThreatSubmission%2Did"] = emailThreatSubmissionId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[EmailThreatSubmissionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[EmailThreatSubmissionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property emailThreats for threatSubmission
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class EmailThreatSubmissionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[EmailThreatSubmissionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[email_threat_submission.EmailThreatSubmission]:
+    async def get(self,request_configuration: Optional[EmailThreatSubmissionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[email_threat_submission.EmailThreatSubmission]:
         """
         Get emailThreats from threatSubmission
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[email_threat_submission.EmailThreatSubmission]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class EmailThreatSubmissionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, email_threat_submission.EmailThreatSubmission, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, email_threat_submission.EmailThreatSubmission, error_mapping)
     
-    async def patch(self,body: Optional[email_threat_submission.EmailThreatSubmission] = None, request_configuration: Optional[EmailThreatSubmissionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[email_threat_submission.EmailThreatSubmission]:
+    async def patch(self,body: Optional[email_threat_submission.EmailThreatSubmission] = None, request_configuration: Optional[EmailThreatSubmissionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[email_threat_submission.EmailThreatSubmission]:
         """
         Update the navigation property emailThreats in threatSubmission
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[email_threat_submission.EmailThreatSubmission]
         """
         if body is None:
@@ -92,7 +91,7 @@ class EmailThreatSubmissionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, email_threat_submission.EmailThreatSubmission, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, email_threat_submission.EmailThreatSubmission, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[EmailThreatSubmissionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

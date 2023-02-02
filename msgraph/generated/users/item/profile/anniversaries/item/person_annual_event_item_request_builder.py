@@ -17,11 +17,12 @@ class PersonAnnualEventItemRequestBuilder():
     """
     Provides operations to manage the anniversaries property of the microsoft.graph.profile entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, person_annual_event_id: Optional[str] = None) -> None:
         """
         Instantiates a new PersonAnnualEventItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            personAnnualEventId: key: id of personAnnualEvent
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -32,15 +33,15 @@ class PersonAnnualEventItemRequestBuilder():
         self.url_template: str = "{+baseurl}/users/{user%2Did}/profile/anniversaries/{personAnnualEvent%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["personAnnualEvent%2Did"] = personAnnualEventId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PersonAnnualEventItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PersonAnnualEventItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property anniversaries for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class PersonAnnualEventItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PersonAnnualEventItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[person_annual_event.PersonAnnualEvent]:
+    async def get(self,request_configuration: Optional[PersonAnnualEventItemRequestBuilderGetRequestConfiguration] = None) -> Optional[person_annual_event.PersonAnnualEvent]:
         """
         Represents the details of meaningful dates associated with a person.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[person_annual_event.PersonAnnualEvent]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class PersonAnnualEventItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, person_annual_event.PersonAnnualEvent, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, person_annual_event.PersonAnnualEvent, error_mapping)
     
-    async def patch(self,body: Optional[person_annual_event.PersonAnnualEvent] = None, request_configuration: Optional[PersonAnnualEventItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[person_annual_event.PersonAnnualEvent]:
+    async def patch(self,body: Optional[person_annual_event.PersonAnnualEvent] = None, request_configuration: Optional[PersonAnnualEventItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[person_annual_event.PersonAnnualEvent]:
         """
         Update the navigation property anniversaries in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[person_annual_event.PersonAnnualEvent]
         """
         if body is None:
@@ -92,7 +91,7 @@ class PersonAnnualEventItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, person_annual_event.PersonAnnualEvent, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, person_annual_event.PersonAnnualEvent, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PersonAnnualEventItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

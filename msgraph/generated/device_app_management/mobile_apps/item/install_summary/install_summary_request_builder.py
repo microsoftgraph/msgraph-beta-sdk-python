@@ -35,12 +35,11 @@ class InstallSummaryRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[InstallSummaryRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[InstallSummaryRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property installSummary for deviceAppManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class InstallSummaryRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[InstallSummaryRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mobile_app_install_summary.MobileAppInstallSummary]:
+    async def get(self,request_configuration: Optional[InstallSummaryRequestBuilderGetRequestConfiguration] = None) -> Optional[mobile_app_install_summary.MobileAppInstallSummary]:
         """
         Mobile App Install Summary.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mobile_app_install_summary.MobileAppInstallSummary]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class InstallSummaryRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mobile_app_install_summary.MobileAppInstallSummary, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, mobile_app_install_summary.MobileAppInstallSummary, error_mapping)
     
-    async def patch(self,body: Optional[mobile_app_install_summary.MobileAppInstallSummary] = None, request_configuration: Optional[InstallSummaryRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mobile_app_install_summary.MobileAppInstallSummary]:
+    async def patch(self,body: Optional[mobile_app_install_summary.MobileAppInstallSummary] = None, request_configuration: Optional[InstallSummaryRequestBuilderPatchRequestConfiguration] = None) -> Optional[mobile_app_install_summary.MobileAppInstallSummary]:
         """
         Update the navigation property installSummary in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mobile_app_install_summary.MobileAppInstallSummary]
         """
         if body is None:
@@ -92,7 +89,7 @@ class InstallSummaryRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mobile_app_install_summary.MobileAppInstallSummary, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, mobile_app_install_summary.MobileAppInstallSummary, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[InstallSummaryRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

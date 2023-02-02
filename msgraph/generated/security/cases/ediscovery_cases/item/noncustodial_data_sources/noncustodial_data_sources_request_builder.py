@@ -13,21 +13,14 @@ from typing import Any, Callable, Dict, List, Optional, Union
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 ediscovery_noncustodial_data_source = lazy_import('msgraph.generated.models.security.ediscovery_noncustodial_data_source')
 ediscovery_noncustodial_data_source_collection_response = lazy_import('msgraph.generated.models.security.ediscovery_noncustodial_data_source_collection_response')
-apply_hold_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.noncustodial_data_sources.apply_hold.apply_hold_request_builder')
 count_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.noncustodial_data_sources.count.count_request_builder')
-remove_hold_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.noncustodial_data_sources.remove_hold.remove_hold_request_builder')
+apply_hold_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.noncustodial_data_sources.microsoft_graph_security_apply_hold.apply_hold_request_builder')
+remove_hold_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.noncustodial_data_sources.microsoft_graph_security_remove_hold.remove_hold_request_builder')
 
 class NoncustodialDataSourcesRequestBuilder():
     """
     Provides operations to manage the noncustodialDataSources property of the microsoft.graph.security.ediscoveryCase entity.
     """
-    @property
-    def apply_hold(self) -> apply_hold_request_builder.ApplyHoldRequestBuilder:
-        """
-        Provides operations to call the applyHold method.
-        """
-        return apply_hold_request_builder.ApplyHoldRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
@@ -36,7 +29,14 @@ class NoncustodialDataSourcesRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def remove_hold(self) -> remove_hold_request_builder.RemoveHoldRequestBuilder:
+    def microsoft_graph_security_apply_hold(self) -> apply_hold_request_builder.ApplyHoldRequestBuilder:
+        """
+        Provides operations to call the applyHold method.
+        """
+        return apply_hold_request_builder.ApplyHoldRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_security_remove_hold(self) -> remove_hold_request_builder.RemoveHoldRequestBuilder:
         """
         Provides operations to call the removeHold method.
         """
@@ -60,12 +60,11 @@ class NoncustodialDataSourcesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[NoncustodialDataSourcesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ediscovery_noncustodial_data_source_collection_response.EdiscoveryNoncustodialDataSourceCollectionResponse]:
+    async def get(self,request_configuration: Optional[NoncustodialDataSourcesRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_noncustodial_data_source_collection_response.EdiscoveryNoncustodialDataSourceCollectionResponse]:
         """
         Returns a list of case ediscoveryNoncustodialDataSource objects for this case.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscovery_noncustodial_data_source_collection_response.EdiscoveryNoncustodialDataSourceCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -77,15 +76,14 @@ class NoncustodialDataSourcesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ediscovery_noncustodial_data_source_collection_response.EdiscoveryNoncustodialDataSourceCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ediscovery_noncustodial_data_source_collection_response.EdiscoveryNoncustodialDataSourceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ediscovery_noncustodial_data_source.EdiscoveryNoncustodialDataSource] = None, request_configuration: Optional[NoncustodialDataSourcesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ediscovery_noncustodial_data_source.EdiscoveryNoncustodialDataSource]:
+    async def post(self,body: Optional[ediscovery_noncustodial_data_source.EdiscoveryNoncustodialDataSource] = None, request_configuration: Optional[NoncustodialDataSourcesRequestBuilderPostRequestConfiguration] = None) -> Optional[ediscovery_noncustodial_data_source.EdiscoveryNoncustodialDataSource]:
         """
         Create a new ediscoveryNoncustodialDataSource object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscovery_noncustodial_data_source.EdiscoveryNoncustodialDataSource]
         """
         if body is None:
@@ -99,7 +97,7 @@ class NoncustodialDataSourcesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ediscovery_noncustodial_data_source.EdiscoveryNoncustodialDataSource, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ediscovery_noncustodial_data_source.EdiscoveryNoncustodialDataSource, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[NoncustodialDataSourcesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

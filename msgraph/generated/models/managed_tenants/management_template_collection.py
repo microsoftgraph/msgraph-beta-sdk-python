@@ -43,7 +43,7 @@ class ManagementTemplateCollection(entity.Entity):
         """
         Sets the createdByUserId property value. The createdByUserId property
         Args:
-            value: Value to set for the createdByUserId property.
+            value: Value to set for the created_by_user_id property.
         """
         self._created_by_user_id = value
     
@@ -60,7 +60,7 @@ class ManagementTemplateCollection(entity.Entity):
         """
         Sets the createdDateTime property value. The createdDateTime property
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -106,7 +106,7 @@ class ManagementTemplateCollection(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -116,13 +116,13 @@ class ManagementTemplateCollection(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "created_by_user_id": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_action_by_user_id": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
-            "last_action_date_time": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
-            "management_templates": lambda n : setattr(self, 'management_templates', n.get_collection_of_object_values(management_template.ManagementTemplate)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastActionByUserId": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
+            "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
+            "managementTemplates": lambda n : setattr(self, 'management_templates', n.get_collection_of_object_values(management_template.ManagementTemplate)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -141,7 +141,7 @@ class ManagementTemplateCollection(entity.Entity):
         """
         Sets the lastActionByUserId property value. The lastActionByUserId property
         Args:
-            value: Value to set for the lastActionByUserId property.
+            value: Value to set for the last_action_by_user_id property.
         """
         self._last_action_by_user_id = value
     
@@ -158,7 +158,7 @@ class ManagementTemplateCollection(entity.Entity):
         """
         Sets the lastActionDateTime property value. The lastActionDateTime property
         Args:
-            value: Value to set for the lastActionDateTime property.
+            value: Value to set for the last_action_date_time property.
         """
         self._last_action_date_time = value
     
@@ -175,7 +175,7 @@ class ManagementTemplateCollection(entity.Entity):
         """
         Sets the managementTemplates property value. The managementTemplates property
         Args:
-            value: Value to set for the managementTemplates property.
+            value: Value to set for the management_templates property.
         """
         self._management_templates = value
     

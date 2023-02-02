@@ -1,7 +1,7 @@
 from enum import Enum
 
 class AndroidManagedStoreAccountEnrollmentTarget(Enum):
-    None_escaped = "none",
+    None_ = "none",
     All = "all",
     Targeted = "targeted",
     TargetedAsEnrollmentRestrictions = "targetedAsEnrollmentRestrictions",

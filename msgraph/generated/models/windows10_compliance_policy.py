@@ -23,7 +23,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the activeFirewallRequired property value. Require active firewall on Windows devices.
         Args:
-            value: Value to set for the activeFirewallRequired property.
+            value: Value to set for the active_firewall_required property.
         """
         self._active_firewall_required = value
     
@@ -40,7 +40,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the antiSpywareRequired property value. Require any AntiSpyware solution registered with Windows Decurity Center to be on and monitoring (e.g. Symantec, Windows Defender).
         Args:
-            value: Value to set for the antiSpywareRequired property.
+            value: Value to set for the anti_spyware_required property.
         """
         self._anti_spyware_required = value
     
@@ -57,7 +57,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the antivirusRequired property value. Require any Antivirus solution registered with Windows Decurity Center to be on and monitoring (e.g. Symantec, Windows Defender).
         Args:
-            value: Value to set for the antivirusRequired property.
+            value: Value to set for the antivirus_required property.
         """
         self._antivirus_required = value
     
@@ -74,7 +74,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the bitLockerEnabled property value. Require devices to be reported healthy by Windows Device Health Attestation - bit locker is enabled
         Args:
-            value: Value to set for the bitLockerEnabled property.
+            value: Value to set for the bit_locker_enabled property.
         """
         self._bit_locker_enabled = value
     
@@ -91,7 +91,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the codeIntegrityEnabled property value. Require devices to be reported as healthy by Windows Device Health Attestation.
         Args:
-            value: Value to set for the codeIntegrityEnabled property.
+            value: Value to set for the code_integrity_enabled property.
         """
         self._code_integrity_enabled = value
     
@@ -108,7 +108,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the configurationManagerComplianceRequired property value. Require to consider SCCM Compliance state into consideration for Intune Compliance State.
         Args:
-            value: Value to set for the configurationManagerComplianceRequired property.
+            value: Value to set for the configuration_manager_compliance_required property.
         """
         self._configuration_manager_compliance_required = value
     
@@ -208,7 +208,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the defenderEnabled property value. Require Windows Defender Antimalware on Windows devices.
         Args:
-            value: Value to set for the defenderEnabled property.
+            value: Value to set for the defender_enabled property.
         """
         self._defender_enabled = value
     
@@ -225,7 +225,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the defenderVersion property value. Require Windows Defender Antimalware minimum version on Windows devices.
         Args:
-            value: Value to set for the defenderVersion property.
+            value: Value to set for the defender_version property.
         """
         self._defender_version = value
     
@@ -242,7 +242,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the deviceCompliancePolicyScript property value. Not yet documented
         Args:
-            value: Value to set for the deviceCompliancePolicyScript property.
+            value: Value to set for the device_compliance_policy_script property.
         """
         self._device_compliance_policy_script = value
     
@@ -259,7 +259,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the deviceThreatProtectionEnabled property value. Require that devices have enabled device threat protection.
         Args:
-            value: Value to set for the deviceThreatProtectionEnabled property.
+            value: Value to set for the device_threat_protection_enabled property.
         """
         self._device_threat_protection_enabled = value
     
@@ -276,7 +276,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the deviceThreatProtectionRequiredSecurityLevel property value. Device threat protection levels for the Device Threat Protection API.
         Args:
-            value: Value to set for the deviceThreatProtectionRequiredSecurityLevel property.
+            value: Value to set for the device_threat_protection_required_security_level property.
         """
         self._device_threat_protection_required_security_level = value
     
@@ -293,7 +293,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the earlyLaunchAntiMalwareDriverEnabled property value. Require devices to be reported as healthy by Windows Device Health Attestation - early launch antimalware driver is enabled.
         Args:
-            value: Value to set for the earlyLaunchAntiMalwareDriverEnabled property.
+            value: Value to set for the early_launch_anti_malware_driver_enabled property.
         """
         self._early_launch_anti_malware_driver_enabled = value
     
@@ -303,38 +303,38 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "active_firewall_required": lambda n : setattr(self, 'active_firewall_required', n.get_bool_value()),
-            "anti_spyware_required": lambda n : setattr(self, 'anti_spyware_required', n.get_bool_value()),
-            "antivirus_required": lambda n : setattr(self, 'antivirus_required', n.get_bool_value()),
-            "bit_locker_enabled": lambda n : setattr(self, 'bit_locker_enabled', n.get_bool_value()),
-            "code_integrity_enabled": lambda n : setattr(self, 'code_integrity_enabled', n.get_bool_value()),
-            "configuration_manager_compliance_required": lambda n : setattr(self, 'configuration_manager_compliance_required', n.get_bool_value()),
-            "defender_enabled": lambda n : setattr(self, 'defender_enabled', n.get_bool_value()),
-            "defender_version": lambda n : setattr(self, 'defender_version', n.get_str_value()),
-            "device_compliance_policy_script": lambda n : setattr(self, 'device_compliance_policy_script', n.get_object_value(device_compliance_policy_script.DeviceCompliancePolicyScript)),
-            "device_threat_protection_enabled": lambda n : setattr(self, 'device_threat_protection_enabled', n.get_bool_value()),
-            "device_threat_protection_required_security_level": lambda n : setattr(self, 'device_threat_protection_required_security_level', n.get_enum_value(device_threat_protection_level.DeviceThreatProtectionLevel)),
-            "early_launch_anti_malware_driver_enabled": lambda n : setattr(self, 'early_launch_anti_malware_driver_enabled', n.get_bool_value()),
-            "mobile_os_maximum_version": lambda n : setattr(self, 'mobile_os_maximum_version', n.get_str_value()),
-            "mobile_os_minimum_version": lambda n : setattr(self, 'mobile_os_minimum_version', n.get_str_value()),
-            "os_maximum_version": lambda n : setattr(self, 'os_maximum_version', n.get_str_value()),
-            "os_minimum_version": lambda n : setattr(self, 'os_minimum_version', n.get_str_value()),
-            "password_block_simple": lambda n : setattr(self, 'password_block_simple', n.get_bool_value()),
-            "password_expiration_days": lambda n : setattr(self, 'password_expiration_days', n.get_int_value()),
-            "password_minimum_character_set_count": lambda n : setattr(self, 'password_minimum_character_set_count', n.get_int_value()),
-            "password_minimum_length": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
-            "password_minutes_of_inactivity_before_lock": lambda n : setattr(self, 'password_minutes_of_inactivity_before_lock', n.get_int_value()),
-            "password_previous_password_block_count": lambda n : setattr(self, 'password_previous_password_block_count', n.get_int_value()),
-            "password_required": lambda n : setattr(self, 'password_required', n.get_bool_value()),
-            "password_required_to_unlock_from_idle": lambda n : setattr(self, 'password_required_to_unlock_from_idle', n.get_bool_value()),
-            "password_required_type": lambda n : setattr(self, 'password_required_type', n.get_enum_value(required_password_type.RequiredPasswordType)),
-            "require_healthy_device_report": lambda n : setattr(self, 'require_healthy_device_report', n.get_bool_value()),
-            "rtp_enabled": lambda n : setattr(self, 'rtp_enabled', n.get_bool_value()),
-            "secure_boot_enabled": lambda n : setattr(self, 'secure_boot_enabled', n.get_bool_value()),
-            "signature_out_of_date": lambda n : setattr(self, 'signature_out_of_date', n.get_bool_value()),
-            "storage_require_encryption": lambda n : setattr(self, 'storage_require_encryption', n.get_bool_value()),
-            "tpm_required": lambda n : setattr(self, 'tpm_required', n.get_bool_value()),
-            "valid_operating_system_build_ranges": lambda n : setattr(self, 'valid_operating_system_build_ranges', n.get_collection_of_object_values(operating_system_version_range.OperatingSystemVersionRange)),
+            "activeFirewallRequired": lambda n : setattr(self, 'active_firewall_required', n.get_bool_value()),
+            "antivirusRequired": lambda n : setattr(self, 'antivirus_required', n.get_bool_value()),
+            "antiSpywareRequired": lambda n : setattr(self, 'anti_spyware_required', n.get_bool_value()),
+            "bitLockerEnabled": lambda n : setattr(self, 'bit_locker_enabled', n.get_bool_value()),
+            "codeIntegrityEnabled": lambda n : setattr(self, 'code_integrity_enabled', n.get_bool_value()),
+            "configurationManagerComplianceRequired": lambda n : setattr(self, 'configuration_manager_compliance_required', n.get_bool_value()),
+            "defenderEnabled": lambda n : setattr(self, 'defender_enabled', n.get_bool_value()),
+            "defenderVersion": lambda n : setattr(self, 'defender_version', n.get_str_value()),
+            "deviceCompliancePolicyScript": lambda n : setattr(self, 'device_compliance_policy_script', n.get_object_value(device_compliance_policy_script.DeviceCompliancePolicyScript)),
+            "deviceThreatProtectionEnabled": lambda n : setattr(self, 'device_threat_protection_enabled', n.get_bool_value()),
+            "deviceThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'device_threat_protection_required_security_level', n.get_enum_value(device_threat_protection_level.DeviceThreatProtectionLevel)),
+            "earlyLaunchAntiMalwareDriverEnabled": lambda n : setattr(self, 'early_launch_anti_malware_driver_enabled', n.get_bool_value()),
+            "mobileOsMaximumVersion": lambda n : setattr(self, 'mobile_os_maximum_version', n.get_str_value()),
+            "mobileOsMinimumVersion": lambda n : setattr(self, 'mobile_os_minimum_version', n.get_str_value()),
+            "osMaximumVersion": lambda n : setattr(self, 'os_maximum_version', n.get_str_value()),
+            "osMinimumVersion": lambda n : setattr(self, 'os_minimum_version', n.get_str_value()),
+            "passwordBlockSimple": lambda n : setattr(self, 'password_block_simple', n.get_bool_value()),
+            "passwordExpirationDays": lambda n : setattr(self, 'password_expiration_days', n.get_int_value()),
+            "passwordMinimumCharacterSetCount": lambda n : setattr(self, 'password_minimum_character_set_count', n.get_int_value()),
+            "passwordMinimumLength": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
+            "passwordMinutesOfInactivityBeforeLock": lambda n : setattr(self, 'password_minutes_of_inactivity_before_lock', n.get_int_value()),
+            "passwordPreviousPasswordBlockCount": lambda n : setattr(self, 'password_previous_password_block_count', n.get_int_value()),
+            "passwordRequired": lambda n : setattr(self, 'password_required', n.get_bool_value()),
+            "passwordRequiredToUnlockFromIdle": lambda n : setattr(self, 'password_required_to_unlock_from_idle', n.get_bool_value()),
+            "passwordRequiredType": lambda n : setattr(self, 'password_required_type', n.get_enum_value(required_password_type.RequiredPasswordType)),
+            "requireHealthyDeviceReport": lambda n : setattr(self, 'require_healthy_device_report', n.get_bool_value()),
+            "rtpEnabled": lambda n : setattr(self, 'rtp_enabled', n.get_bool_value()),
+            "secureBootEnabled": lambda n : setattr(self, 'secure_boot_enabled', n.get_bool_value()),
+            "signatureOutOfDate": lambda n : setattr(self, 'signature_out_of_date', n.get_bool_value()),
+            "storageRequireEncryption": lambda n : setattr(self, 'storage_require_encryption', n.get_bool_value()),
+            "tpmRequired": lambda n : setattr(self, 'tpm_required', n.get_bool_value()),
+            "validOperatingSystemBuildRanges": lambda n : setattr(self, 'valid_operating_system_build_ranges', n.get_collection_of_object_values(operating_system_version_range.OperatingSystemVersionRange)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -353,7 +353,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the mobileOsMaximumVersion property value. Maximum Windows Phone version.
         Args:
-            value: Value to set for the mobileOsMaximumVersion property.
+            value: Value to set for the mobile_os_maximum_version property.
         """
         self._mobile_os_maximum_version = value
     
@@ -370,7 +370,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the mobileOsMinimumVersion property value. Minimum Windows Phone version.
         Args:
-            value: Value to set for the mobileOsMinimumVersion property.
+            value: Value to set for the mobile_os_minimum_version property.
         """
         self._mobile_os_minimum_version = value
     
@@ -387,7 +387,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the osMaximumVersion property value. Maximum Windows 10 version.
         Args:
-            value: Value to set for the osMaximumVersion property.
+            value: Value to set for the os_maximum_version property.
         """
         self._os_maximum_version = value
     
@@ -404,7 +404,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the osMinimumVersion property value. Minimum Windows 10 version.
         Args:
-            value: Value to set for the osMinimumVersion property.
+            value: Value to set for the os_minimum_version property.
         """
         self._os_minimum_version = value
     
@@ -421,7 +421,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the passwordBlockSimple property value. Indicates whether or not to block simple password.
         Args:
-            value: Value to set for the passwordBlockSimple property.
+            value: Value to set for the password_block_simple property.
         """
         self._password_block_simple = value
     
@@ -438,7 +438,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the passwordExpirationDays property value. The password expiration in days.
         Args:
-            value: Value to set for the passwordExpirationDays property.
+            value: Value to set for the password_expiration_days property.
         """
         self._password_expiration_days = value
     
@@ -455,7 +455,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the passwordMinimumCharacterSetCount property value. The number of character sets required in the password.
         Args:
-            value: Value to set for the passwordMinimumCharacterSetCount property.
+            value: Value to set for the password_minimum_character_set_count property.
         """
         self._password_minimum_character_set_count = value
     
@@ -472,7 +472,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the passwordMinimumLength property value. The minimum password length.
         Args:
-            value: Value to set for the passwordMinimumLength property.
+            value: Value to set for the password_minimum_length property.
         """
         self._password_minimum_length = value
     
@@ -489,7 +489,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the passwordMinutesOfInactivityBeforeLock property value. Minutes of inactivity before a password is required.
         Args:
-            value: Value to set for the passwordMinutesOfInactivityBeforeLock property.
+            value: Value to set for the password_minutes_of_inactivity_before_lock property.
         """
         self._password_minutes_of_inactivity_before_lock = value
     
@@ -506,7 +506,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the passwordPreviousPasswordBlockCount property value. The number of previous passwords to prevent re-use of.
         Args:
-            value: Value to set for the passwordPreviousPasswordBlockCount property.
+            value: Value to set for the password_previous_password_block_count property.
         """
         self._password_previous_password_block_count = value
     
@@ -523,7 +523,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the passwordRequired property value. Require a password to unlock Windows device.
         Args:
-            value: Value to set for the passwordRequired property.
+            value: Value to set for the password_required property.
         """
         self._password_required = value
     
@@ -540,7 +540,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the passwordRequiredToUnlockFromIdle property value. Require a password to unlock an idle device.
         Args:
-            value: Value to set for the passwordRequiredToUnlockFromIdle property.
+            value: Value to set for the password_required_to_unlock_from_idle property.
         """
         self._password_required_to_unlock_from_idle = value
     
@@ -557,7 +557,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the passwordRequiredType property value. Possible values of required passwords.
         Args:
-            value: Value to set for the passwordRequiredType property.
+            value: Value to set for the password_required_type property.
         """
         self._password_required_type = value
     
@@ -574,7 +574,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the requireHealthyDeviceReport property value. Require devices to be reported as healthy by Windows Device Health Attestation.
         Args:
-            value: Value to set for the requireHealthyDeviceReport property.
+            value: Value to set for the require_healthy_device_report property.
         """
         self._require_healthy_device_report = value
     
@@ -591,7 +591,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the rtpEnabled property value. Require Windows Defender Antimalware Real-Time Protection on Windows devices.
         Args:
-            value: Value to set for the rtpEnabled property.
+            value: Value to set for the rtp_enabled property.
         """
         self._rtp_enabled = value
     
@@ -608,7 +608,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the secureBootEnabled property value. Require devices to be reported as healthy by Windows Device Health Attestation - secure boot is enabled.
         Args:
-            value: Value to set for the secureBootEnabled property.
+            value: Value to set for the secure_boot_enabled property.
         """
         self._secure_boot_enabled = value
     
@@ -622,8 +622,8 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_bool_value("activeFirewallRequired", self.active_firewall_required)
-        writer.write_bool_value("antiSpywareRequired", self.anti_spyware_required)
         writer.write_bool_value("antivirusRequired", self.antivirus_required)
+        writer.write_bool_value("antiSpywareRequired", self.anti_spyware_required)
         writer.write_bool_value("bitLockerEnabled", self.bit_locker_enabled)
         writer.write_bool_value("codeIntegrityEnabled", self.code_integrity_enabled)
         writer.write_bool_value("configurationManagerComplianceRequired", self.configuration_manager_compliance_required)
@@ -667,7 +667,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the signatureOutOfDate property value. Require Windows Defender Antimalware Signature to be up to date on Windows devices.
         Args:
-            value: Value to set for the signatureOutOfDate property.
+            value: Value to set for the signature_out_of_date property.
         """
         self._signature_out_of_date = value
     
@@ -684,7 +684,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the storageRequireEncryption property value. Require encryption on windows devices.
         Args:
-            value: Value to set for the storageRequireEncryption property.
+            value: Value to set for the storage_require_encryption property.
         """
         self._storage_require_encryption = value
     
@@ -701,7 +701,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the tpmRequired property value. Require Trusted Platform Module(TPM) to be present.
         Args:
-            value: Value to set for the tpmRequired property.
+            value: Value to set for the tpm_required property.
         """
         self._tpm_required = value
     
@@ -718,7 +718,7 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         """
         Sets the validOperatingSystemBuildRanges property value. The valid operating system build ranges on Windows devices. This collection can contain a maximum of 10000 elements.
         Args:
-            value: Value to set for the validOperatingSystemBuildRanges property.
+            value: Value to set for the valid_operating_system_build_ranges property.
         """
         self._valid_operating_system_build_ranges = value
     

@@ -40,7 +40,7 @@ class FileContentThreatSubmission(file_threat_submission.FileThreatSubmission):
         """
         Sets the fileContent property value. It specifies the file content in base 64 format.
         Args:
-            value: Value to set for the fileContent property.
+            value: Value to set for the file_content property.
         """
         self._file_content = value
     
@@ -50,7 +50,7 @@ class FileContentThreatSubmission(file_threat_submission.FileThreatSubmission):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "file_content": lambda n : setattr(self, 'file_content', n.get_str_value()),
+            "fileContent": lambda n : setattr(self, 'file_content', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

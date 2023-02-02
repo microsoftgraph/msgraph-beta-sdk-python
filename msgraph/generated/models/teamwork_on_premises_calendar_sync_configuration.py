@@ -79,7 +79,7 @@ class TeamworkOnPremisesCalendarSyncConfiguration(AdditionalDataHolder, Parsable
         """
         Sets the domainUserName property value. The domain and username of the console device, for example, Seattle/RanierConf.
         Args:
-            value: Value to set for the domainUserName property.
+            value: Value to set for the domain_user_name property.
         """
         self._domain_user_name = value
     
@@ -90,9 +90,9 @@ class TeamworkOnPremisesCalendarSyncConfiguration(AdditionalDataHolder, Parsable
         """
         fields = {
             "domain": lambda n : setattr(self, 'domain', n.get_str_value()),
-            "domain_user_name": lambda n : setattr(self, 'domain_user_name', n.get_str_value()),
+            "domainUserName": lambda n : setattr(self, 'domain_user_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "smtp_address": lambda n : setattr(self, 'smtp_address', n.get_str_value()),
+            "smtpAddress": lambda n : setattr(self, 'smtp_address', n.get_str_value()),
         }
         return fields
     
@@ -109,7 +109,7 @@ class TeamworkOnPremisesCalendarSyncConfiguration(AdditionalDataHolder, Parsable
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -140,7 +140,7 @@ class TeamworkOnPremisesCalendarSyncConfiguration(AdditionalDataHolder, Parsable
         """
         Sets the smtpAddress property value. The Simple Mail Transfer Protocol (SMTP) address of the user account. This is only required if a different user principal name (UPN) is used to sign in to Exchange other than Microsoft Teams and Skype for Business. This is a common scenario in a hybrid environment where an on-premises Exchange server is used.
         Args:
-            value: Value to set for the smtpAddress property.
+            value: Value to set for the smtp_address property.
         """
         self._smtp_address = value
     

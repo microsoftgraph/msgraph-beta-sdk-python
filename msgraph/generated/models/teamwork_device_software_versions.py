@@ -34,7 +34,7 @@ class TeamworkDeviceSoftwareVersions(AdditionalDataHolder, Parsable):
         """
         Sets the adminAgentSoftwareVersion property value. The software version for the admin agent running on the device.
         Args:
-            value: Value to set for the adminAgentSoftwareVersion property.
+            value: Value to set for the admin_agent_software_version property.
         """
         self._admin_agent_software_version = value
     
@@ -83,7 +83,7 @@ class TeamworkDeviceSoftwareVersions(AdditionalDataHolder, Parsable):
         """
         Sets the firmwareSoftwareVersion property value. The software version for the firmware running on the device.
         Args:
-            value: Value to set for the firmwareSoftwareVersion property.
+            value: Value to set for the firmware_software_version property.
         """
         self._firmware_software_version = value
     
@@ -93,12 +93,12 @@ class TeamworkDeviceSoftwareVersions(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "admin_agent_software_version": lambda n : setattr(self, 'admin_agent_software_version', n.get_str_value()),
-            "firmware_software_version": lambda n : setattr(self, 'firmware_software_version', n.get_str_value()),
+            "adminAgentSoftwareVersion": lambda n : setattr(self, 'admin_agent_software_version', n.get_str_value()),
+            "firmwareSoftwareVersion": lambda n : setattr(self, 'firmware_software_version', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "operating_system_software_version": lambda n : setattr(self, 'operating_system_software_version', n.get_str_value()),
-            "partner_agent_software_version": lambda n : setattr(self, 'partner_agent_software_version', n.get_str_value()),
-            "teams_client_software_version": lambda n : setattr(self, 'teams_client_software_version', n.get_str_value()),
+            "operatingSystemSoftwareVersion": lambda n : setattr(self, 'operating_system_software_version', n.get_str_value()),
+            "partnerAgentSoftwareVersion": lambda n : setattr(self, 'partner_agent_software_version', n.get_str_value()),
+            "teamsClientSoftwareVersion": lambda n : setattr(self, 'teams_client_software_version', n.get_str_value()),
         }
         return fields
     
@@ -115,7 +115,7 @@ class TeamworkDeviceSoftwareVersions(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -132,7 +132,7 @@ class TeamworkDeviceSoftwareVersions(AdditionalDataHolder, Parsable):
         """
         Sets the operatingSystemSoftwareVersion property value. The software version for the operating system on the device.
         Args:
-            value: Value to set for the operatingSystemSoftwareVersion property.
+            value: Value to set for the operating_system_software_version property.
         """
         self._operating_system_software_version = value
     
@@ -149,7 +149,7 @@ class TeamworkDeviceSoftwareVersions(AdditionalDataHolder, Parsable):
         """
         Sets the partnerAgentSoftwareVersion property value. The software version for the partner agent running on the device.
         Args:
-            value: Value to set for the partnerAgentSoftwareVersion property.
+            value: Value to set for the partner_agent_software_version property.
         """
         self._partner_agent_software_version = value
     
@@ -182,7 +182,7 @@ class TeamworkDeviceSoftwareVersions(AdditionalDataHolder, Parsable):
         """
         Sets the teamsClientSoftwareVersion property value. The software version for the Teams client running on the device.
         Args:
-            value: Value to set for the teamsClientSoftwareVersion property.
+            value: Value to set for the teams_client_software_version property.
         """
         self._teams_client_software_version = value
     

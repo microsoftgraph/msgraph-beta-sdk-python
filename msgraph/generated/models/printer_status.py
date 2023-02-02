@@ -102,9 +102,9 @@ class PrinterStatus(AdditionalDataHolder, Parsable):
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "details": lambda n : setattr(self, 'details', n.get_collection_of_enum_values(printer_processing_state_detail.PrinterProcessingStateDetail)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "processing_state": lambda n : setattr(self, 'processing_state', n.get_enum_value(printer_processing_state.PrinterProcessingState)),
-            "processing_state_description": lambda n : setattr(self, 'processing_state_description', n.get_str_value()),
-            "processing_state_reasons": lambda n : setattr(self, 'processing_state_reasons', n.get_collection_of_enum_values(printer_processing_state_reason.PrinterProcessingStateReason)),
+            "processingState": lambda n : setattr(self, 'processing_state', n.get_enum_value(printer_processing_state.PrinterProcessingState)),
+            "processingStateDescription": lambda n : setattr(self, 'processing_state_description', n.get_str_value()),
+            "processingStateReasons": lambda n : setattr(self, 'processing_state_reasons', n.get_collection_of_enum_values(printer_processing_state_reason.PrinterProcessingStateReason)),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(printer_processing_state.PrinterProcessingState)),
         }
         return fields
@@ -122,7 +122,7 @@ class PrinterStatus(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -139,7 +139,7 @@ class PrinterStatus(AdditionalDataHolder, Parsable):
         """
         Sets the processingState property value. The processingState property
         Args:
-            value: Value to set for the processingState property.
+            value: Value to set for the processing_state property.
         """
         self._processing_state = value
     
@@ -156,7 +156,7 @@ class PrinterStatus(AdditionalDataHolder, Parsable):
         """
         Sets the processingStateDescription property value. The processingStateDescription property
         Args:
-            value: Value to set for the processingStateDescription property.
+            value: Value to set for the processing_state_description property.
         """
         self._processing_state_description = value
     
@@ -173,7 +173,7 @@ class PrinterStatus(AdditionalDataHolder, Parsable):
         """
         Sets the processingStateReasons property value. The processingStateReasons property
         Args:
-            value: Value to set for the processingStateReasons property.
+            value: Value to set for the processing_state_reasons property.
         """
         self._processing_state_reasons = value
     

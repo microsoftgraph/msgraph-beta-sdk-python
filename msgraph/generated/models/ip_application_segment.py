@@ -42,7 +42,7 @@ class IpApplicationSegment(application_segment.ApplicationSegment):
         """
         Sets the destinationHost property value. The destinationHost property
         Args:
-            value: Value to set for the destinationHost property.
+            value: Value to set for the destination_host property.
         """
         self._destination_host = value
     
@@ -52,7 +52,7 @@ class IpApplicationSegment(application_segment.ApplicationSegment):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "destination_host": lambda n : setattr(self, 'destination_host', n.get_str_value()),
+            "destinationHost": lambda n : setattr(self, 'destination_host', n.get_str_value()),
             "port": lambda n : setattr(self, 'port', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()

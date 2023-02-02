@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 assignments_request_builder = lazy_import('msgraph.generated.device_management.apple_user_initiated_enrollment_profiles.item.assignments.assignments_request_builder')
 apple_enrollment_profile_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.apple_user_initiated_enrollment_profiles.item.assignments.item.apple_enrollment_profile_assignment_item_request_builder')
-set_priority_request_builder = lazy_import('msgraph.generated.device_management.apple_user_initiated_enrollment_profiles.item.set_priority.set_priority_request_builder')
+set_priority_request_builder = lazy_import('msgraph.generated.device_management.apple_user_initiated_enrollment_profiles.item.microsoft_graph_set_priority.set_priority_request_builder')
 apple_user_initiated_enrollment_profile = lazy_import('msgraph.generated.models.apple_user_initiated_enrollment_profile')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -28,7 +28,7 @@ class AppleUserInitiatedEnrollmentProfileItemRequestBuilder():
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def set_priority(self) -> set_priority_request_builder.SetPriorityRequestBuilder:
+    def microsoft_graph_set_priority(self) -> set_priority_request_builder.SetPriorityRequestBuilder:
         """
         Provides operations to call the setPriority method.
         """
@@ -47,10 +47,11 @@ class AppleUserInitiatedEnrollmentProfileItemRequestBuilder():
         url_tpl_params["appleEnrollmentProfileAssignment%2Did"] = id
         return apple_enrollment_profile_assignment_item_request_builder.AppleEnrollmentProfileAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, apple_user_initiated_enrollment_profile_id: Optional[str] = None) -> None:
         """
         Instantiates a new AppleUserInitiatedEnrollmentProfileItemRequestBuilder and sets the default values.
         Args:
+            appleUserInitiatedEnrollmentProfileId: key: id of appleUserInitiatedEnrollmentProfile
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -62,15 +63,15 @@ class AppleUserInitiatedEnrollmentProfileItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceManagement/appleUserInitiatedEnrollmentProfiles/{appleUserInitiatedEnrollmentProfile%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["appleUserInitiatedEnrollmentProfile%2Did"] = appleUserInitiatedEnrollmentProfileId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AppleUserInitiatedEnrollmentProfileItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AppleUserInitiatedEnrollmentProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property appleUserInitiatedEnrollmentProfiles for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -81,14 +82,13 @@ class AppleUserInitiatedEnrollmentProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AppleUserInitiatedEnrollmentProfileItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[apple_user_initiated_enrollment_profile.AppleUserInitiatedEnrollmentProfile]:
+    async def get(self,request_configuration: Optional[AppleUserInitiatedEnrollmentProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[apple_user_initiated_enrollment_profile.AppleUserInitiatedEnrollmentProfile]:
         """
         Apple user initiated enrollment profiles
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[apple_user_initiated_enrollment_profile.AppleUserInitiatedEnrollmentProfile]
         """
         request_info = self.to_get_request_information(
@@ -100,15 +100,14 @@ class AppleUserInitiatedEnrollmentProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, apple_user_initiated_enrollment_profile.AppleUserInitiatedEnrollmentProfile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, apple_user_initiated_enrollment_profile.AppleUserInitiatedEnrollmentProfile, error_mapping)
     
-    async def patch(self,body: Optional[apple_user_initiated_enrollment_profile.AppleUserInitiatedEnrollmentProfile] = None, request_configuration: Optional[AppleUserInitiatedEnrollmentProfileItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[apple_user_initiated_enrollment_profile.AppleUserInitiatedEnrollmentProfile]:
+    async def patch(self,body: Optional[apple_user_initiated_enrollment_profile.AppleUserInitiatedEnrollmentProfile] = None, request_configuration: Optional[AppleUserInitiatedEnrollmentProfileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[apple_user_initiated_enrollment_profile.AppleUserInitiatedEnrollmentProfile]:
         """
         Update the navigation property appleUserInitiatedEnrollmentProfiles in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[apple_user_initiated_enrollment_profile.AppleUserInitiatedEnrollmentProfile]
         """
         if body is None:
@@ -122,7 +121,7 @@ class AppleUserInitiatedEnrollmentProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, apple_user_initiated_enrollment_profile.AppleUserInitiatedEnrollmentProfile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, apple_user_initiated_enrollment_profile.AppleUserInitiatedEnrollmentProfile, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AppleUserInitiatedEnrollmentProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

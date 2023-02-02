@@ -61,9 +61,9 @@ class Office365GroupsActivityFileCounts(entity.Entity):
         """
         fields = {
             "active": lambda n : setattr(self, 'active', n.get_int_value()),
-            "report_date": lambda n : setattr(self, 'report_date', n.get_object_value(Date)),
-            "report_period": lambda n : setattr(self, 'report_period', n.get_str_value()),
-            "report_refresh_date": lambda n : setattr(self, 'report_refresh_date', n.get_object_value(Date)),
+            "reportDate": lambda n : setattr(self, 'report_date', n.get_object_value(Date)),
+            "reportPeriod": lambda n : setattr(self, 'report_period', n.get_str_value()),
+            "reportRefreshDate": lambda n : setattr(self, 'report_refresh_date', n.get_object_value(Date)),
             "total": lambda n : setattr(self, 'total', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -83,7 +83,7 @@ class Office365GroupsActivityFileCounts(entity.Entity):
         """
         Sets the reportDate property value. The date on which a number of files were active in the group's SharePoint site.
         Args:
-            value: Value to set for the reportDate property.
+            value: Value to set for the report_date property.
         """
         self._report_date = value
     
@@ -100,7 +100,7 @@ class Office365GroupsActivityFileCounts(entity.Entity):
         """
         Sets the reportPeriod property value. The number of days the report covers.
         Args:
-            value: Value to set for the reportPeriod property.
+            value: Value to set for the report_period property.
         """
         self._report_period = value
     
@@ -117,7 +117,7 @@ class Office365GroupsActivityFileCounts(entity.Entity):
         """
         Sets the reportRefreshDate property value. The latest date of the content.
         Args:
-            value: Value to set for the reportRefreshDate property.
+            value: Value to set for the report_refresh_date property.
         """
         self._report_refresh_date = value
     

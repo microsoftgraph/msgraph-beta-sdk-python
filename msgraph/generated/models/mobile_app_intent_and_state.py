@@ -42,9 +42,9 @@ class MobileAppIntentAndState(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "managed_device_identifier": lambda n : setattr(self, 'managed_device_identifier', n.get_str_value()),
-            "mobile_app_list": lambda n : setattr(self, 'mobile_app_list', n.get_collection_of_object_values(mobile_app_intent_and_state_detail.MobileAppIntentAndStateDetail)),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "managedDeviceIdentifier": lambda n : setattr(self, 'managed_device_identifier', n.get_str_value()),
+            "mobileAppList": lambda n : setattr(self, 'mobile_app_list', n.get_collection_of_object_values(mobile_app_intent_and_state_detail.MobileAppIntentAndStateDetail)),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -63,7 +63,7 @@ class MobileAppIntentAndState(entity.Entity):
         """
         Sets the managedDeviceIdentifier property value. Device identifier created or collected by Intune.
         Args:
-            value: Value to set for the managedDeviceIdentifier property.
+            value: Value to set for the managed_device_identifier property.
         """
         self._managed_device_identifier = value
     
@@ -80,7 +80,7 @@ class MobileAppIntentAndState(entity.Entity):
         """
         Sets the mobileAppList property value. The list of payload intents and states for the tenant.
         Args:
-            value: Value to set for the mobileAppList property.
+            value: Value to set for the mobile_app_list property.
         """
         self._mobile_app_list = value
     
@@ -110,7 +110,7 @@ class MobileAppIntentAndState(entity.Entity):
         """
         Sets the userId property value. Identifier for the user that tried to enroll the device.
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     

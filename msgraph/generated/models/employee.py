@@ -39,7 +39,7 @@ class Employee(entity.Entity):
         """
         Sets the birthDate property value. The birthDate property
         Args:
-            value: Value to set for the birthDate property.
+            value: Value to set for the birth_date property.
         """
         self._birth_date = value
     
@@ -112,7 +112,7 @@ class Employee(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -146,7 +146,7 @@ class Employee(entity.Entity):
         """
         Sets the employmentDate property value. The employmentDate property
         Args:
-            value: Value to set for the employmentDate property.
+            value: Value to set for the employment_date property.
         """
         self._employment_date = value
     
@@ -157,23 +157,23 @@ class Employee(entity.Entity):
         """
         fields = {
             "address": lambda n : setattr(self, 'address', n.get_object_value(postal_address_type.PostalAddressType)),
-            "birth_date": lambda n : setattr(self, 'birth_date', n.get_object_value(Date)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "birthDate": lambda n : setattr(self, 'birth_date', n.get_object_value(Date)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
-            "employment_date": lambda n : setattr(self, 'employment_date', n.get_object_value(Date)),
-            "given_name": lambda n : setattr(self, 'given_name', n.get_str_value()),
-            "job_title": lambda n : setattr(self, 'job_title', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "middle_name": lambda n : setattr(self, 'middle_name', n.get_str_value()),
-            "mobile_phone": lambda n : setattr(self, 'mobile_phone', n.get_str_value()),
+            "employmentDate": lambda n : setattr(self, 'employment_date', n.get_object_value(Date)),
+            "givenName": lambda n : setattr(self, 'given_name', n.get_str_value()),
+            "jobTitle": lambda n : setattr(self, 'job_title', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "middleName": lambda n : setattr(self, 'middle_name', n.get_str_value()),
+            "mobilePhone": lambda n : setattr(self, 'mobile_phone', n.get_str_value()),
             "number": lambda n : setattr(self, 'number', n.get_str_value()),
-            "personal_email": lambda n : setattr(self, 'personal_email', n.get_str_value()),
-            "phone_number": lambda n : setattr(self, 'phone_number', n.get_str_value()),
+            "personalEmail": lambda n : setattr(self, 'personal_email', n.get_str_value()),
+            "phoneNumber": lambda n : setattr(self, 'phone_number', n.get_str_value()),
             "picture": lambda n : setattr(self, 'picture', n.get_collection_of_object_values(picture.Picture)),
-            "statistics_group_code": lambda n : setattr(self, 'statistics_group_code', n.get_str_value()),
+            "statisticsGroupCode": lambda n : setattr(self, 'statistics_group_code', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
             "surname": lambda n : setattr(self, 'surname', n.get_str_value()),
-            "termination_date": lambda n : setattr(self, 'termination_date', n.get_object_value(Date)),
+            "terminationDate": lambda n : setattr(self, 'termination_date', n.get_object_value(Date)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -192,7 +192,7 @@ class Employee(entity.Entity):
         """
         Sets the givenName property value. The givenName property
         Args:
-            value: Value to set for the givenName property.
+            value: Value to set for the given_name property.
         """
         self._given_name = value
     
@@ -209,7 +209,7 @@ class Employee(entity.Entity):
         """
         Sets the jobTitle property value. The jobTitle property
         Args:
-            value: Value to set for the jobTitle property.
+            value: Value to set for the job_title property.
         """
         self._job_title = value
     
@@ -226,7 +226,7 @@ class Employee(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -243,7 +243,7 @@ class Employee(entity.Entity):
         """
         Sets the middleName property value. The middleName property
         Args:
-            value: Value to set for the middleName property.
+            value: Value to set for the middle_name property.
         """
         self._middle_name = value
     
@@ -260,7 +260,7 @@ class Employee(entity.Entity):
         """
         Sets the mobilePhone property value. The mobilePhone property
         Args:
-            value: Value to set for the mobilePhone property.
+            value: Value to set for the mobile_phone property.
         """
         self._mobile_phone = value
     
@@ -294,7 +294,7 @@ class Employee(entity.Entity):
         """
         Sets the personalEmail property value. The personalEmail property
         Args:
-            value: Value to set for the personalEmail property.
+            value: Value to set for the personal_email property.
         """
         self._personal_email = value
     
@@ -311,7 +311,7 @@ class Employee(entity.Entity):
         """
         Sets the phoneNumber property value. The phoneNumber property
         Args:
-            value: Value to set for the phoneNumber property.
+            value: Value to set for the phone_number property.
         """
         self._phone_number = value
     
@@ -373,7 +373,7 @@ class Employee(entity.Entity):
         """
         Sets the statisticsGroupCode property value. The statisticsGroupCode property
         Args:
-            value: Value to set for the statisticsGroupCode property.
+            value: Value to set for the statistics_group_code property.
         """
         self._statistics_group_code = value
     
@@ -424,7 +424,7 @@ class Employee(entity.Entity):
         """
         Sets the terminationDate property value. The terminationDate property
         Args:
-            value: Value to set for the terminationDate property.
+            value: Value to set for the termination_date property.
         """
         self._termination_date = value
     

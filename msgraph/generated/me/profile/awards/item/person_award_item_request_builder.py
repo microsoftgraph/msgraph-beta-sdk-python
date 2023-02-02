@@ -17,11 +17,12 @@ class PersonAwardItemRequestBuilder():
     """
     Provides operations to manage the awards property of the microsoft.graph.profile entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, person_award_id: Optional[str] = None) -> None:
         """
         Instantiates a new PersonAwardItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            personAwardId: key: id of personAward
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -32,15 +33,15 @@ class PersonAwardItemRequestBuilder():
         self.url_template: str = "{+baseurl}/me/profile/awards/{personAward%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["personAward%2Did"] = personAwardId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PersonAwardItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PersonAwardItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property awards for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class PersonAwardItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PersonAwardItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[person_award.PersonAward]:
+    async def get(self,request_configuration: Optional[PersonAwardItemRequestBuilderGetRequestConfiguration] = None) -> Optional[person_award.PersonAward]:
         """
         Represents the details of awards or honors associated with a person.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[person_award.PersonAward]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class PersonAwardItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, person_award.PersonAward, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, person_award.PersonAward, error_mapping)
     
-    async def patch(self,body: Optional[person_award.PersonAward] = None, request_configuration: Optional[PersonAwardItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[person_award.PersonAward]:
+    async def patch(self,body: Optional[person_award.PersonAward] = None, request_configuration: Optional[PersonAwardItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[person_award.PersonAward]:
         """
         Update the navigation property awards in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[person_award.PersonAward]
         """
         if body is None:
@@ -92,7 +91,7 @@ class PersonAwardItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, person_award.PersonAward, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, person_award.PersonAward, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PersonAwardItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

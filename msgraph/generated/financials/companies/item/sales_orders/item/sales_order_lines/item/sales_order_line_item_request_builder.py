@@ -33,12 +33,13 @@ class SalesOrderLineItemRequestBuilder():
         """
         return item_request_builder.ItemRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, sales_order_line_id: Optional[str] = None) -> None:
         """
         Instantiates a new SalesOrderLineItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            salesOrderLineId: key: id of salesOrderLine
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -48,15 +49,15 @@ class SalesOrderLineItemRequestBuilder():
         self.url_template: str = "{+baseurl}/financials/companies/{company%2Did}/salesOrders/{salesOrder%2Did}/salesOrderLines/{salesOrderLine%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["salesOrderLine%2Did"] = salesOrderLineId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SalesOrderLineItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sales_order_line.SalesOrderLine]:
+    async def get(self,request_configuration: Optional[SalesOrderLineItemRequestBuilderGetRequestConfiguration] = None) -> Optional[sales_order_line.SalesOrderLine]:
         """
         Get salesOrderLines from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sales_order_line.SalesOrderLine]
         """
         request_info = self.to_get_request_information(
@@ -68,15 +69,14 @@ class SalesOrderLineItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sales_order_line.SalesOrderLine, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, sales_order_line.SalesOrderLine, error_mapping)
     
-    async def patch(self,body: Optional[sales_order_line.SalesOrderLine] = None, request_configuration: Optional[SalesOrderLineItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sales_order_line.SalesOrderLine]:
+    async def patch(self,body: Optional[sales_order_line.SalesOrderLine] = None, request_configuration: Optional[SalesOrderLineItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[sales_order_line.SalesOrderLine]:
         """
         Update the navigation property salesOrderLines in financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sales_order_line.SalesOrderLine]
         """
         if body is None:
@@ -90,7 +90,7 @@ class SalesOrderLineItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sales_order_line.SalesOrderLine, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, sales_order_line.SalesOrderLine, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SalesOrderLineItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

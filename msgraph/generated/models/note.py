@@ -106,10 +106,10 @@ class Note(outlook_item.OutlookItem):
             "attachments": lambda n : setattr(self, 'attachments', n.get_collection_of_object_values(attachment.Attachment)),
             "body": lambda n : setattr(self, 'body', n.get_object_value(item_body.ItemBody)),
             "extensions": lambda n : setattr(self, 'extensions', n.get_collection_of_object_values(extension.Extension)),
-            "has_attachments": lambda n : setattr(self, 'has_attachments', n.get_bool_value()),
-            "is_deleted": lambda n : setattr(self, 'is_deleted', n.get_bool_value()),
-            "multi_value_extended_properties": lambda n : setattr(self, 'multi_value_extended_properties', n.get_collection_of_object_values(multi_value_legacy_extended_property.MultiValueLegacyExtendedProperty)),
-            "single_value_extended_properties": lambda n : setattr(self, 'single_value_extended_properties', n.get_collection_of_object_values(single_value_legacy_extended_property.SingleValueLegacyExtendedProperty)),
+            "hasAttachments": lambda n : setattr(self, 'has_attachments', n.get_bool_value()),
+            "isDeleted": lambda n : setattr(self, 'is_deleted', n.get_bool_value()),
+            "multiValueExtendedProperties": lambda n : setattr(self, 'multi_value_extended_properties', n.get_collection_of_object_values(multi_value_legacy_extended_property.MultiValueLegacyExtendedProperty)),
+            "singleValueExtendedProperties": lambda n : setattr(self, 'single_value_extended_properties', n.get_collection_of_object_values(single_value_legacy_extended_property.SingleValueLegacyExtendedProperty)),
             "subject": lambda n : setattr(self, 'subject', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -129,7 +129,7 @@ class Note(outlook_item.OutlookItem):
         """
         Sets the hasAttachments property value. The hasAttachments property
         Args:
-            value: Value to set for the hasAttachments property.
+            value: Value to set for the has_attachments property.
         """
         self._has_attachments = value
     
@@ -146,7 +146,7 @@ class Note(outlook_item.OutlookItem):
         """
         Sets the isDeleted property value. The isDeleted property
         Args:
-            value: Value to set for the isDeleted property.
+            value: Value to set for the is_deleted property.
         """
         self._is_deleted = value
     
@@ -163,7 +163,7 @@ class Note(outlook_item.OutlookItem):
         """
         Sets the multiValueExtendedProperties property value. The multiValueExtendedProperties property
         Args:
-            value: Value to set for the multiValueExtendedProperties property.
+            value: Value to set for the multi_value_extended_properties property.
         """
         self._multi_value_extended_properties = value
     
@@ -198,7 +198,7 @@ class Note(outlook_item.OutlookItem):
         """
         Sets the singleValueExtendedProperties property value. The singleValueExtendedProperties property
         Args:
-            value: Value to set for the singleValueExtendedProperties property.
+            value: Value to set for the single_value_extended_properties property.
         """
         self._single_value_extended_properties = value
     

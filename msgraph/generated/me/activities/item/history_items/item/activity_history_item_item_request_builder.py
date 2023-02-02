@@ -25,10 +25,11 @@ class ActivityHistoryItemItemRequestBuilder():
         """
         return activity_request_builder.ActivityRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, activity_history_item_id: Optional[str] = None) -> None:
         """
         Instantiates a new ActivityHistoryItemItemRequestBuilder and sets the default values.
         Args:
+            activityHistoryItemId: key: id of activityHistoryItem
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -40,15 +41,15 @@ class ActivityHistoryItemItemRequestBuilder():
         self.url_template: str = "{+baseurl}/me/activities/{userActivity%2Did}/historyItems/{activityHistoryItem%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["activityHistoryItem%2Did"] = activityHistoryItemId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ActivityHistoryItemItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ActivityHistoryItemItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property historyItems for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +60,13 @@ class ActivityHistoryItemItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ActivityHistoryItemItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[activity_history_item.ActivityHistoryItem]:
+    async def get(self,request_configuration: Optional[ActivityHistoryItemItemRequestBuilderGetRequestConfiguration] = None) -> Optional[activity_history_item.ActivityHistoryItem]:
         """
         Get historyItems from me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[activity_history_item.ActivityHistoryItem]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +78,14 @@ class ActivityHistoryItemItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, activity_history_item.ActivityHistoryItem, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, activity_history_item.ActivityHistoryItem, error_mapping)
     
-    async def patch(self,body: Optional[activity_history_item.ActivityHistoryItem] = None, request_configuration: Optional[ActivityHistoryItemItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[activity_history_item.ActivityHistoryItem]:
+    async def patch(self,body: Optional[activity_history_item.ActivityHistoryItem] = None, request_configuration: Optional[ActivityHistoryItemItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[activity_history_item.ActivityHistoryItem]:
         """
         Update the navigation property historyItems in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[activity_history_item.ActivityHistoryItem]
         """
         if body is None:
@@ -100,7 +99,7 @@ class ActivityHistoryItemItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, activity_history_item.ActivityHistoryItem, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, activity_history_item.ActivityHistoryItem, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ActivityHistoryItemItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

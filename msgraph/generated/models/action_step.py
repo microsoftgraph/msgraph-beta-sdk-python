@@ -19,7 +19,7 @@ class ActionStep(AdditionalDataHolder, Parsable):
         """
         Sets the actionUrl property value. The actionUrl property
         Args:
-            value: Value to set for the actionUrl property.
+            value: Value to set for the action_url property.
         """
         self._action_url = value
     
@@ -74,9 +74,9 @@ class ActionStep(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "action_url": lambda n : setattr(self, 'action_url', n.get_object_value(action_url.ActionUrl)),
+            "actionUrl": lambda n : setattr(self, 'action_url', n.get_object_value(action_url.ActionUrl)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "step_number": lambda n : setattr(self, 'step_number', n.get_int_value()),
+            "stepNumber": lambda n : setattr(self, 'step_number', n.get_int_value()),
             "text": lambda n : setattr(self, 'text', n.get_str_value()),
         }
         return fields
@@ -94,7 +94,7 @@ class ActionStep(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -125,7 +125,7 @@ class ActionStep(AdditionalDataHolder, Parsable):
         """
         Sets the stepNumber property value. The stepNumber property
         Args:
-            value: Value to set for the stepNumber property.
+            value: Value to set for the step_number property.
         """
         self._step_number = value
     

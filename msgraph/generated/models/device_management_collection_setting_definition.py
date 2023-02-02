@@ -41,7 +41,7 @@ class DeviceManagementCollectionSettingDefinition(device_management_setting_defi
         """
         Sets the elementDefinitionId property value. The Setting Definition ID that describes what each element of the collection looks like
         Args:
-            value: Value to set for the elementDefinitionId property.
+            value: Value to set for the element_definition_id property.
         """
         self._element_definition_id = value
     
@@ -51,7 +51,7 @@ class DeviceManagementCollectionSettingDefinition(device_management_setting_defi
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "element_definition_id": lambda n : setattr(self, 'element_definition_id', n.get_str_value()),
+            "elementDefinitionId": lambda n : setattr(self, 'element_definition_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

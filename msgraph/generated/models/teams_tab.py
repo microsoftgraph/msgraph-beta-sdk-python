@@ -72,7 +72,7 @@ class TeamsTab(entity.Entity):
         """
         Sets the displayName property value. Name of the tab.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -83,12 +83,12 @@ class TeamsTab(entity.Entity):
         """
         fields = {
             "configuration": lambda n : setattr(self, 'configuration', n.get_object_value(teams_tab_configuration.TeamsTabConfiguration)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "message_id": lambda n : setattr(self, 'message_id', n.get_str_value()),
-            "sort_order_index": lambda n : setattr(self, 'sort_order_index', n.get_str_value()),
-            "teams_app": lambda n : setattr(self, 'teams_app', n.get_object_value(teams_app.TeamsApp)),
-            "teams_app_id": lambda n : setattr(self, 'teams_app_id', n.get_str_value()),
-            "web_url": lambda n : setattr(self, 'web_url', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "messageId": lambda n : setattr(self, 'message_id', n.get_str_value()),
+            "sortOrderIndex": lambda n : setattr(self, 'sort_order_index', n.get_str_value()),
+            "teamsApp": lambda n : setattr(self, 'teams_app', n.get_object_value(teams_app.TeamsApp)),
+            "teamsAppId": lambda n : setattr(self, 'teams_app_id', n.get_str_value()),
+            "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -107,7 +107,7 @@ class TeamsTab(entity.Entity):
         """
         Sets the messageId property value. The messageId property
         Args:
-            value: Value to set for the messageId property.
+            value: Value to set for the message_id property.
         """
         self._message_id = value
     
@@ -141,7 +141,7 @@ class TeamsTab(entity.Entity):
         """
         Sets the sortOrderIndex property value. Index of the order used for sorting tabs.
         Args:
-            value: Value to set for the sortOrderIndex property.
+            value: Value to set for the sort_order_index property.
         """
         self._sort_order_index = value
     
@@ -158,7 +158,7 @@ class TeamsTab(entity.Entity):
         """
         Sets the teamsApp property value. The application that is linked to the tab.
         Args:
-            value: Value to set for the teamsApp property.
+            value: Value to set for the teams_app property.
         """
         self._teams_app = value
     
@@ -175,7 +175,7 @@ class TeamsTab(entity.Entity):
         """
         Sets the teamsAppId property value. The teamsAppId property
         Args:
-            value: Value to set for the teamsAppId property.
+            value: Value to set for the teams_app_id property.
         """
         self._teams_app_id = value
     
@@ -192,7 +192,7 @@ class TeamsTab(entity.Entity):
         """
         Sets the webUrl property value. Deep link URL of the tab instance. Read only.
         Args:
-            value: Value to set for the webUrl property.
+            value: Value to set for the web_url property.
         """
         self._web_url = value
     

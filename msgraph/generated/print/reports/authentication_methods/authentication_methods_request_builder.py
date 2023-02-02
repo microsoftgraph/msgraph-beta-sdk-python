@@ -12,17 +12,31 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 authentication_methods_root = lazy_import('msgraph.generated.models.authentication_methods_root')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+users_registered_by_feature_request_builder = lazy_import('msgraph.generated.print.reports.authentication_methods.microsoft_graph_users_registered_by_feature.users_registered_by_feature_request_builder')
+users_registered_by_feature_with_included_user_types_with_included_user_roles_request_builder = lazy_import('msgraph.generated.print.reports.authentication_methods.microsoft_graph_users_registered_by_feature_with_included_user_types_with_included_user_roles.users_registered_by_feature_with_included_user_types_with_included_user_roles_request_builder')
+users_registered_by_method_request_builder = lazy_import('msgraph.generated.print.reports.authentication_methods.microsoft_graph_users_registered_by_method.users_registered_by_method_request_builder')
+users_registered_by_method_with_included_user_types_with_included_user_roles_request_builder = lazy_import('msgraph.generated.print.reports.authentication_methods.microsoft_graph_users_registered_by_method_with_included_user_types_with_included_user_roles.users_registered_by_method_with_included_user_types_with_included_user_roles_request_builder')
 user_registration_details_request_builder = lazy_import('msgraph.generated.print.reports.authentication_methods.user_registration_details.user_registration_details_request_builder')
 user_registration_details_item_request_builder = lazy_import('msgraph.generated.print.reports.authentication_methods.user_registration_details.item.user_registration_details_item_request_builder')
-users_registered_by_feature_request_builder = lazy_import('msgraph.generated.print.reports.authentication_methods.users_registered_by_feature.users_registered_by_feature_request_builder')
-users_registered_by_feature_with_included_user_types_with_included_user_roles_request_builder = lazy_import('msgraph.generated.print.reports.authentication_methods.users_registered_by_feature_with_included_user_types_with_included_user_roles.users_registered_by_feature_with_included_user_types_with_included_user_roles_request_builder')
-users_registered_by_method_request_builder = lazy_import('msgraph.generated.print.reports.authentication_methods.users_registered_by_method.users_registered_by_method_request_builder')
-users_registered_by_method_with_included_user_types_with_included_user_roles_request_builder = lazy_import('msgraph.generated.print.reports.authentication_methods.users_registered_by_method_with_included_user_types_with_included_user_roles.users_registered_by_method_with_included_user_types_with_included_user_roles_request_builder')
 
 class AuthenticationMethodsRequestBuilder():
     """
     Provides operations to manage the authenticationMethods property of the microsoft.graph.reportRoot entity.
     """
+    @property
+    def microsoft_graph_users_registered_by_feature(self) -> users_registered_by_feature_request_builder.UsersRegisteredByFeatureRequestBuilder:
+        """
+        Provides operations to call the usersRegisteredByFeature method.
+        """
+        return users_registered_by_feature_request_builder.UsersRegisteredByFeatureRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_users_registered_by_method(self) -> users_registered_by_method_request_builder.UsersRegisteredByMethodRequestBuilder:
+        """
+        Provides operations to call the usersRegisteredByMethod method.
+        """
+        return users_registered_by_method_request_builder.UsersRegisteredByMethodRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @property
     def user_registration_details(self) -> user_registration_details_request_builder.UserRegistrationDetailsRequestBuilder:
         """
@@ -48,12 +62,11 @@ class AuthenticationMethodsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AuthenticationMethodsRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AuthenticationMethodsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property authenticationMethods for print
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -64,14 +77,13 @@ class AuthenticationMethodsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AuthenticationMethodsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_methods_root.AuthenticationMethodsRoot]:
+    async def get(self,request_configuration: Optional[AuthenticationMethodsRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication_methods_root.AuthenticationMethodsRoot]:
         """
         Container for navigation properties for Azure AD authentication methods resources.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_methods_root.AuthenticationMethodsRoot]
         """
         request_info = self.to_get_request_information(
@@ -83,15 +95,42 @@ class AuthenticationMethodsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_methods_root.AuthenticationMethodsRoot, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_methods_root.AuthenticationMethodsRoot, error_mapping)
     
-    async def patch(self,body: Optional[authentication_methods_root.AuthenticationMethodsRoot] = None, request_configuration: Optional[AuthenticationMethodsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_methods_root.AuthenticationMethodsRoot]:
+    def microsoft_graph_users_registered_by_feature_with_included_user_types_with_included_user_roles(self,included_user_roles: Optional[str] = None, included_user_types: Optional[str] = None) -> users_registered_by_feature_with_included_user_types_with_included_user_roles_request_builder.UsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRolesRequestBuilder:
+        """
+        Provides operations to call the usersRegisteredByFeature method.
+        Args:
+            includedUserRoles: Usage: includedUserRoles='{includedUserRoles}'
+            includedUserTypes: Usage: includedUserTypes='{includedUserTypes}'
+        Returns: users_registered_by_feature_with_included_user_types_with_included_user_roles_request_builder.UsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRolesRequestBuilder
+        """
+        if included_user_roles is None:
+            raise Exception("included_user_roles cannot be undefined")
+        if included_user_types is None:
+            raise Exception("included_user_types cannot be undefined")
+        return users_registered_by_feature_with_included_user_types_with_included_user_roles_request_builder.UsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRolesRequestBuilder(self.request_adapter, self.path_parameters, includedUserRoles, includedUserTypes)
+    
+    def microsoft_graph_users_registered_by_method_with_included_user_types_with_included_user_roles(self,included_user_roles: Optional[str] = None, included_user_types: Optional[str] = None) -> users_registered_by_method_with_included_user_types_with_included_user_roles_request_builder.UsersRegisteredByMethodWithIncludedUserTypesWithIncludedUserRolesRequestBuilder:
+        """
+        Provides operations to call the usersRegisteredByMethod method.
+        Args:
+            includedUserRoles: Usage: includedUserRoles='{includedUserRoles}'
+            includedUserTypes: Usage: includedUserTypes='{includedUserTypes}'
+        Returns: users_registered_by_method_with_included_user_types_with_included_user_roles_request_builder.UsersRegisteredByMethodWithIncludedUserTypesWithIncludedUserRolesRequestBuilder
+        """
+        if included_user_roles is None:
+            raise Exception("included_user_roles cannot be undefined")
+        if included_user_types is None:
+            raise Exception("included_user_types cannot be undefined")
+        return users_registered_by_method_with_included_user_types_with_included_user_roles_request_builder.UsersRegisteredByMethodWithIncludedUserTypesWithIncludedUserRolesRequestBuilder(self.request_adapter, self.path_parameters, includedUserRoles, includedUserTypes)
+    
+    async def patch(self,body: Optional[authentication_methods_root.AuthenticationMethodsRoot] = None, request_configuration: Optional[AuthenticationMethodsRequestBuilderPatchRequestConfiguration] = None) -> Optional[authentication_methods_root.AuthenticationMethodsRoot]:
         """
         Update the navigation property authenticationMethods in print
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_methods_root.AuthenticationMethodsRoot]
         """
         if body is None:
@@ -105,7 +144,7 @@ class AuthenticationMethodsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_methods_root.AuthenticationMethodsRoot, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_methods_root.AuthenticationMethodsRoot, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AuthenticationMethodsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -174,48 +213,6 @@ class AuthenticationMethodsRequestBuilder():
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["userRegistrationDetails%2Did"] = id
         return user_registration_details_item_request_builder.UserRegistrationDetailsItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def users_registered_by_feature(self,) -> users_registered_by_feature_request_builder.UsersRegisteredByFeatureRequestBuilder:
-        """
-        Provides operations to call the usersRegisteredByFeature method.
-        Returns: users_registered_by_feature_request_builder.UsersRegisteredByFeatureRequestBuilder
-        """
-        return users_registered_by_feature_request_builder.UsersRegisteredByFeatureRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def users_registered_by_feature_with_included_user_types_with_included_user_roles(self,included_user_roles: Optional[str] = None, included_user_types: Optional[str] = None) -> users_registered_by_feature_with_included_user_types_with_included_user_roles_request_builder.UsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRolesRequestBuilder:
-        """
-        Provides operations to call the usersRegisteredByFeature method.
-        Args:
-            includedUserRoles: Usage: includedUserRoles='{includedUserRoles}'
-            includedUserTypes: Usage: includedUserTypes='{includedUserTypes}'
-        Returns: users_registered_by_feature_with_included_user_types_with_included_user_roles_request_builder.UsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRolesRequestBuilder
-        """
-        if included_user_roles is None:
-            raise Exception("included_user_roles cannot be undefined")
-        if included_user_types is None:
-            raise Exception("included_user_types cannot be undefined")
-        return users_registered_by_feature_with_included_user_types_with_included_user_roles_request_builder.UsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRolesRequestBuilder(self.request_adapter, self.path_parameters, includedUserRoles, includedUserTypes)
-    
-    def users_registered_by_method(self,) -> users_registered_by_method_request_builder.UsersRegisteredByMethodRequestBuilder:
-        """
-        Provides operations to call the usersRegisteredByMethod method.
-        Returns: users_registered_by_method_request_builder.UsersRegisteredByMethodRequestBuilder
-        """
-        return users_registered_by_method_request_builder.UsersRegisteredByMethodRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def users_registered_by_method_with_included_user_types_with_included_user_roles(self,included_user_roles: Optional[str] = None, included_user_types: Optional[str] = None) -> users_registered_by_method_with_included_user_types_with_included_user_roles_request_builder.UsersRegisteredByMethodWithIncludedUserTypesWithIncludedUserRolesRequestBuilder:
-        """
-        Provides operations to call the usersRegisteredByMethod method.
-        Args:
-            includedUserRoles: Usage: includedUserRoles='{includedUserRoles}'
-            includedUserTypes: Usage: includedUserTypes='{includedUserTypes}'
-        Returns: users_registered_by_method_with_included_user_types_with_included_user_roles_request_builder.UsersRegisteredByMethodWithIncludedUserTypesWithIncludedUserRolesRequestBuilder
-        """
-        if included_user_roles is None:
-            raise Exception("included_user_roles cannot be undefined")
-        if included_user_types is None:
-            raise Exception("included_user_types cannot be undefined")
-        return users_registered_by_method_with_included_user_types_with_included_user_roles_request_builder.UsersRegisteredByMethodWithIncludedUserTypesWithIncludedUserRolesRequestBuilder(self.request_adapter, self.path_parameters, includedUserRoles, includedUserTypes)
     
     @dataclass
     class AuthenticationMethodsRequestBuilderDeleteRequestConfiguration():

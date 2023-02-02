@@ -22,7 +22,7 @@ class ActivityHistoryItem(entity.Entity):
         """
         Sets the activeDurationSeconds property value. The activeDurationSeconds property
         Args:
-            value: Value to set for the activeDurationSeconds property.
+            value: Value to set for the active_duration_seconds property.
         """
         self._active_duration_seconds = value
     
@@ -82,7 +82,7 @@ class ActivityHistoryItem(entity.Entity):
         """
         Sets the createdDateTime property value. The createdDateTime property
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -111,7 +111,7 @@ class ActivityHistoryItem(entity.Entity):
         """
         Sets the expirationDateTime property value. The expirationDateTime property
         Args:
-            value: Value to set for the expirationDateTime property.
+            value: Value to set for the expiration_date_time property.
         """
         self._expiration_date_time = value
     
@@ -121,15 +121,15 @@ class ActivityHistoryItem(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "active_duration_seconds": lambda n : setattr(self, 'active_duration_seconds', n.get_int_value()),
+            "activeDurationSeconds": lambda n : setattr(self, 'active_duration_seconds', n.get_int_value()),
             "activity": lambda n : setattr(self, 'activity', n.get_object_value(user_activity.UserActivity)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "expiration_date_time": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
-            "last_active_date_time": lambda n : setattr(self, 'last_active_date_time', n.get_datetime_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "started_date_time": lambda n : setattr(self, 'started_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
+            "lastActiveDateTime": lambda n : setattr(self, 'last_active_date_time', n.get_datetime_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "startedDateTime": lambda n : setattr(self, 'started_date_time', n.get_datetime_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(status.Status)),
-            "user_timezone": lambda n : setattr(self, 'user_timezone', n.get_str_value()),
+            "userTimezone": lambda n : setattr(self, 'user_timezone', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -148,7 +148,7 @@ class ActivityHistoryItem(entity.Entity):
         """
         Sets the lastActiveDateTime property value. The lastActiveDateTime property
         Args:
-            value: Value to set for the lastActiveDateTime property.
+            value: Value to set for the last_active_date_time property.
         """
         self._last_active_date_time = value
     
@@ -165,7 +165,7 @@ class ActivityHistoryItem(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -201,7 +201,7 @@ class ActivityHistoryItem(entity.Entity):
         """
         Sets the startedDateTime property value. The startedDateTime property
         Args:
-            value: Value to set for the startedDateTime property.
+            value: Value to set for the started_date_time property.
         """
         self._started_date_time = value
     
@@ -235,7 +235,7 @@ class ActivityHistoryItem(entity.Entity):
         """
         Sets the userTimezone property value. The userTimezone property
         Args:
-            value: Value to set for the userTimezone property.
+            value: Value to set for the user_timezone property.
         """
         self._user_timezone = value
     

@@ -49,7 +49,7 @@ class VulnerableManagedDevice(entity.Entity):
         """
         Sets the displayName property value. The device name.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -59,9 +59,9 @@ class VulnerableManagedDevice(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_sync_date_time": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
-            "managed_device_id": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
+            "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -80,7 +80,7 @@ class VulnerableManagedDevice(entity.Entity):
         """
         Sets the lastSyncDateTime property value. The last sync date.
         Args:
-            value: Value to set for the lastSyncDateTime property.
+            value: Value to set for the last_sync_date_time property.
         """
         self._last_sync_date_time = value
     
@@ -97,7 +97,7 @@ class VulnerableManagedDevice(entity.Entity):
         """
         Sets the managedDeviceId property value. The Intune managed device ID.
         Args:
-            value: Value to set for the managedDeviceId property.
+            value: Value to set for the managed_device_id property.
         """
         self._managed_device_id = value
     

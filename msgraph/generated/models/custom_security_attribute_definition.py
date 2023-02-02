@@ -20,7 +20,7 @@ class CustomSecurityAttributeDefinition(entity.Entity):
         """
         Sets the allowedValues property value. Values that are predefined for this custom security attribute.This navigation property is not returned by default and must be specified in an $expand query. For example, /directory/customSecurityAttributeDefinitions?$expand=allowedValues.
         Args:
-            value: Value to set for the allowedValues property.
+            value: Value to set for the allowed_values property.
         """
         self._allowed_values = value
     
@@ -37,7 +37,7 @@ class CustomSecurityAttributeDefinition(entity.Entity):
         """
         Sets the attributeSet property value. Name of the attribute set. Case insensitive.
         Args:
-            value: Value to set for the attributeSet property.
+            value: Value to set for the attribute_set property.
         """
         self._attribute_set = value
     
@@ -102,15 +102,15 @@ class CustomSecurityAttributeDefinition(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_values": lambda n : setattr(self, 'allowed_values', n.get_collection_of_object_values(allowed_value.AllowedValue)),
-            "attribute_set": lambda n : setattr(self, 'attribute_set', n.get_str_value()),
+            "allowedValues": lambda n : setattr(self, 'allowed_values', n.get_collection_of_object_values(allowed_value.AllowedValue)),
+            "attributeSet": lambda n : setattr(self, 'attribute_set', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "is_collection": lambda n : setattr(self, 'is_collection', n.get_bool_value()),
-            "is_searchable": lambda n : setattr(self, 'is_searchable', n.get_bool_value()),
+            "isCollection": lambda n : setattr(self, 'is_collection', n.get_bool_value()),
+            "isSearchable": lambda n : setattr(self, 'is_searchable', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
-            "use_pre_defined_values_only": lambda n : setattr(self, 'use_pre_defined_values_only', n.get_bool_value()),
+            "usePreDefinedValuesOnly": lambda n : setattr(self, 'use_pre_defined_values_only', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -129,7 +129,7 @@ class CustomSecurityAttributeDefinition(entity.Entity):
         """
         Sets the isCollection property value. Indicates whether multiple values can be assigned to the custom security attribute. Cannot be changed later. If type is set to Boolean, isCollection cannot be set to true.
         Args:
-            value: Value to set for the isCollection property.
+            value: Value to set for the is_collection property.
         """
         self._is_collection = value
     
@@ -146,7 +146,7 @@ class CustomSecurityAttributeDefinition(entity.Entity):
         """
         Sets the isSearchable property value. Indicates whether custom security attribute values will be indexed for searching on objects that are assigned attribute values. Cannot be changed later.
         Args:
-            value: Value to set for the isSearchable property.
+            value: Value to set for the is_searchable property.
         """
         self._is_searchable = value
     
@@ -233,7 +233,7 @@ class CustomSecurityAttributeDefinition(entity.Entity):
         """
         Sets the usePreDefinedValuesOnly property value. Indicates whether only predefined values can be assigned to the custom security attribute. If set to false, free-form values are allowed. Can later be changed from true to false, but cannot be changed from false to true. If type is set to Boolean, usePreDefinedValuesOnly cannot be set to true.
         Args:
-            value: Value to set for the usePreDefinedValuesOnly property.
+            value: Value to set for the use_pre_defined_values_only property.
         """
         self._use_pre_defined_values_only = value
     

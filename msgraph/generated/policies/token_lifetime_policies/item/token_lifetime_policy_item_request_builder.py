@@ -17,12 +17,13 @@ class TokenLifetimePolicyItemRequestBuilder():
     """
     Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.policyRoot entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, token_lifetime_policy_id: Optional[str] = None) -> None:
         """
         Instantiates a new TokenLifetimePolicyItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            tokenLifetimePolicyId: key: id of tokenLifetimePolicy
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -32,15 +33,15 @@ class TokenLifetimePolicyItemRequestBuilder():
         self.url_template: str = "{+baseurl}/policies/tokenLifetimePolicies/{tokenLifetimePolicy%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["tokenLifetimePolicy%2Did"] = tokenLifetimePolicyId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[TokenLifetimePolicyItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[TokenLifetimePolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property tokenLifetimePolicies for policies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class TokenLifetimePolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[TokenLifetimePolicyItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[token_lifetime_policy.TokenLifetimePolicy]:
+    async def get(self,request_configuration: Optional[TokenLifetimePolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[token_lifetime_policy.TokenLifetimePolicy]:
         """
         The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Azure AD.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[token_lifetime_policy.TokenLifetimePolicy]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class TokenLifetimePolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, token_lifetime_policy.TokenLifetimePolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, token_lifetime_policy.TokenLifetimePolicy, error_mapping)
     
-    async def patch(self,body: Optional[token_lifetime_policy.TokenLifetimePolicy] = None, request_configuration: Optional[TokenLifetimePolicyItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[token_lifetime_policy.TokenLifetimePolicy]:
+    async def patch(self,body: Optional[token_lifetime_policy.TokenLifetimePolicy] = None, request_configuration: Optional[TokenLifetimePolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[token_lifetime_policy.TokenLifetimePolicy]:
         """
         Update the navigation property tokenLifetimePolicies in policies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[token_lifetime_policy.TokenLifetimePolicy]
         """
         if body is None:
@@ -92,7 +91,7 @@ class TokenLifetimePolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, token_lifetime_policy.TokenLifetimePolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, token_lifetime_policy.TokenLifetimePolicy, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[TokenLifetimePolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

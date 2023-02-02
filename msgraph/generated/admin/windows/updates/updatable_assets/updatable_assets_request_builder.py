@@ -11,17 +11,17 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.admin.windows.updates.updatable_assets.count.count_request_builder')
-enroll_assets_request_builder = lazy_import('msgraph.generated.admin.windows.updates.updatable_assets.enroll_assets.enroll_assets_request_builder')
-enroll_assets_by_id_request_builder = lazy_import('msgraph.generated.admin.windows.updates.updatable_assets.enroll_assets_by_id.enroll_assets_by_id_request_builder')
-unenroll_assets_request_builder = lazy_import('msgraph.generated.admin.windows.updates.updatable_assets.unenroll_assets.unenroll_assets_request_builder')
-unenroll_assets_by_id_request_builder = lazy_import('msgraph.generated.admin.windows.updates.updatable_assets.unenroll_assets_by_id.unenroll_assets_by_id_request_builder')
+enroll_assets_request_builder = lazy_import('msgraph.generated.admin.windows.updates.updatable_assets.microsoft_graph_windows_updates_enroll_assets.enroll_assets_request_builder')
+enroll_assets_by_id_request_builder = lazy_import('msgraph.generated.admin.windows.updates.updatable_assets.microsoft_graph_windows_updates_enroll_assets_by_id.enroll_assets_by_id_request_builder')
+unenroll_assets_request_builder = lazy_import('msgraph.generated.admin.windows.updates.updatable_assets.microsoft_graph_windows_updates_unenroll_assets.unenroll_assets_request_builder')
+unenroll_assets_by_id_request_builder = lazy_import('msgraph.generated.admin.windows.updates.updatable_assets.microsoft_graph_windows_updates_unenroll_assets_by_id.unenroll_assets_by_id_request_builder')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 updatable_asset = lazy_import('msgraph.generated.models.windows_updates.updatable_asset')
 updatable_asset_collection_response = lazy_import('msgraph.generated.models.windows_updates.updatable_asset_collection_response')
 
 class UpdatableAssetsRequestBuilder():
     """
-    Provides operations to manage the updatableAssets property of the microsoft.graph.windowsUpdates.updates entity.
+    Provides operations to manage the updatableAssets property of the microsoft.graph.adminWindowsUpdates entity.
     """
     @property
     def count(self) -> count_request_builder.CountRequestBuilder:
@@ -31,28 +31,28 @@ class UpdatableAssetsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def enroll_assets(self) -> enroll_assets_request_builder.EnrollAssetsRequestBuilder:
+    def microsoft_graph_windows_updates_enroll_assets(self) -> enroll_assets_request_builder.EnrollAssetsRequestBuilder:
         """
         Provides operations to call the enrollAssets method.
         """
         return enroll_assets_request_builder.EnrollAssetsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def enroll_assets_by_id(self) -> enroll_assets_by_id_request_builder.EnrollAssetsByIdRequestBuilder:
+    def microsoft_graph_windows_updates_enroll_assets_by_id(self) -> enroll_assets_by_id_request_builder.EnrollAssetsByIdRequestBuilder:
         """
         Provides operations to call the enrollAssetsById method.
         """
         return enroll_assets_by_id_request_builder.EnrollAssetsByIdRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def unenroll_assets(self) -> unenroll_assets_request_builder.UnenrollAssetsRequestBuilder:
+    def microsoft_graph_windows_updates_unenroll_assets(self) -> unenroll_assets_request_builder.UnenrollAssetsRequestBuilder:
         """
         Provides operations to call the unenrollAssets method.
         """
         return unenroll_assets_request_builder.UnenrollAssetsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def unenroll_assets_by_id(self) -> unenroll_assets_by_id_request_builder.UnenrollAssetsByIdRequestBuilder:
+    def microsoft_graph_windows_updates_unenroll_assets_by_id(self) -> unenroll_assets_by_id_request_builder.UnenrollAssetsByIdRequestBuilder:
         """
         Provides operations to call the unenrollAssetsById method.
         """
@@ -76,12 +76,11 @@ class UpdatableAssetsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UpdatableAssetsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[updatable_asset_collection_response.UpdatableAssetCollectionResponse]:
+    async def get(self,request_configuration: Optional[UpdatableAssetsRequestBuilderGetRequestConfiguration] = None) -> Optional[updatable_asset_collection_response.UpdatableAssetCollectionResponse]:
         """
-        Get a list of azureADDevice objects and their properties. This operation filters on the fully qualified resource type, `microsoft.graph.windowsUpdates.azureADDevice`, which inherits from updatableAsset.
+        Get a list of updatableAssetGroup objects and their properties. This operation filters on the fully qualified resource type, `microsoft.graph.windowsUpdates.updatableAssetGroup`, which inherits from updatableAsset.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[updatable_asset_collection_response.UpdatableAssetCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -93,15 +92,14 @@ class UpdatableAssetsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, updatable_asset_collection_response.UpdatableAssetCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, updatable_asset_collection_response.UpdatableAssetCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[updatable_asset.UpdatableAsset] = None, request_configuration: Optional[UpdatableAssetsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[updatable_asset.UpdatableAsset]:
+    async def post(self,body: Optional[updatable_asset.UpdatableAsset] = None, request_configuration: Optional[UpdatableAssetsRequestBuilderPostRequestConfiguration] = None) -> Optional[updatable_asset.UpdatableAsset]:
         """
         Create a new updatableAssetGroup object. The **updatableAssetGroup** resource inherits from updatableAsset.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[updatable_asset.UpdatableAsset]
         """
         if body is None:
@@ -115,11 +113,11 @@ class UpdatableAssetsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, updatable_asset.UpdatableAsset, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, updatable_asset.UpdatableAsset, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UpdatableAssetsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of azureADDevice objects and their properties. This operation filters on the fully qualified resource type, `microsoft.graph.windowsUpdates.azureADDevice`, which inherits from updatableAsset.
+        Get a list of updatableAssetGroup objects and their properties. This operation filters on the fully qualified resource type, `microsoft.graph.windowsUpdates.updatableAssetGroup`, which inherits from updatableAsset.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -159,7 +157,7 @@ class UpdatableAssetsRequestBuilder():
     @dataclass
     class UpdatableAssetsRequestBuilderGetQueryParameters():
         """
-        Get a list of azureADDevice objects and their properties. This operation filters on the fully qualified resource type, `microsoft.graph.windowsUpdates.azureADDevice`, which inherits from updatableAsset.
+        Get a list of updatableAssetGroup objects and their properties. This operation filters on the fully qualified resource type, `microsoft.graph.windowsUpdates.updatableAssetGroup`, which inherits from updatableAsset.
         """
         # Include count of items
         count: Optional[bool] = None

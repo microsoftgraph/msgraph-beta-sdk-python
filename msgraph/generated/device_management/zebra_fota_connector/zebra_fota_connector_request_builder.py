@@ -10,10 +10,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-approve_fota_apps_request_builder = lazy_import('msgraph.generated.device_management.zebra_fota_connector.approve_fota_apps.approve_fota_apps_request_builder')
-connect_request_builder = lazy_import('msgraph.generated.device_management.zebra_fota_connector.connect.connect_request_builder')
-disconnect_request_builder = lazy_import('msgraph.generated.device_management.zebra_fota_connector.disconnect.disconnect_request_builder')
-has_active_deployments_request_builder = lazy_import('msgraph.generated.device_management.zebra_fota_connector.has_active_deployments.has_active_deployments_request_builder')
+approve_fota_apps_request_builder = lazy_import('msgraph.generated.device_management.zebra_fota_connector.microsoft_graph_approve_fota_apps.approve_fota_apps_request_builder')
+connect_request_builder = lazy_import('msgraph.generated.device_management.zebra_fota_connector.microsoft_graph_connect.connect_request_builder')
+disconnect_request_builder = lazy_import('msgraph.generated.device_management.zebra_fota_connector.microsoft_graph_disconnect.disconnect_request_builder')
+has_active_deployments_request_builder = lazy_import('msgraph.generated.device_management.zebra_fota_connector.microsoft_graph_has_active_deployments.has_active_deployments_request_builder')
 zebra_fota_connector = lazy_import('msgraph.generated.models.zebra_fota_connector')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -22,28 +22,28 @@ class ZebraFotaConnectorRequestBuilder():
     Provides operations to manage the zebraFotaConnector property of the microsoft.graph.deviceManagement entity.
     """
     @property
-    def approve_fota_apps(self) -> approve_fota_apps_request_builder.ApproveFotaAppsRequestBuilder:
+    def microsoft_graph_approve_fota_apps(self) -> approve_fota_apps_request_builder.ApproveFotaAppsRequestBuilder:
         """
         Provides operations to call the approveFotaApps method.
         """
         return approve_fota_apps_request_builder.ApproveFotaAppsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def connect(self) -> connect_request_builder.ConnectRequestBuilder:
+    def microsoft_graph_connect(self) -> connect_request_builder.ConnectRequestBuilder:
         """
         Provides operations to call the connect method.
         """
         return connect_request_builder.ConnectRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def disconnect(self) -> disconnect_request_builder.DisconnectRequestBuilder:
+    def microsoft_graph_disconnect(self) -> disconnect_request_builder.DisconnectRequestBuilder:
         """
         Provides operations to call the disconnect method.
         """
         return disconnect_request_builder.DisconnectRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def has_active_deployments(self) -> has_active_deployments_request_builder.HasActiveDeploymentsRequestBuilder:
+    def microsoft_graph_has_active_deployments(self) -> has_active_deployments_request_builder.HasActiveDeploymentsRequestBuilder:
         """
         Provides operations to call the hasActiveDeployments method.
         """
@@ -67,12 +67,11 @@ class ZebraFotaConnectorRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ZebraFotaConnectorRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ZebraFotaConnectorRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property zebraFotaConnector for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -83,14 +82,13 @@ class ZebraFotaConnectorRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ZebraFotaConnectorRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[zebra_fota_connector.ZebraFotaConnector]:
+    async def get(self,request_configuration: Optional[ZebraFotaConnectorRequestBuilderGetRequestConfiguration] = None) -> Optional[zebra_fota_connector.ZebraFotaConnector]:
         """
         The singleton ZebraFotaConnector associated with account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[zebra_fota_connector.ZebraFotaConnector]
         """
         request_info = self.to_get_request_information(
@@ -102,15 +100,14 @@ class ZebraFotaConnectorRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, zebra_fota_connector.ZebraFotaConnector, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, zebra_fota_connector.ZebraFotaConnector, error_mapping)
     
-    async def patch(self,body: Optional[zebra_fota_connector.ZebraFotaConnector] = None, request_configuration: Optional[ZebraFotaConnectorRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[zebra_fota_connector.ZebraFotaConnector]:
+    async def patch(self,body: Optional[zebra_fota_connector.ZebraFotaConnector] = None, request_configuration: Optional[ZebraFotaConnectorRequestBuilderPatchRequestConfiguration] = None) -> Optional[zebra_fota_connector.ZebraFotaConnector]:
         """
         Update the navigation property zebraFotaConnector in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[zebra_fota_connector.ZebraFotaConnector]
         """
         if body is None:
@@ -124,7 +121,7 @@ class ZebraFotaConnectorRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, zebra_fota_connector.ZebraFotaConnector, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, zebra_fota_connector.ZebraFotaConnector, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ZebraFotaConnectorRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

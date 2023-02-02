@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-copy_notebook_request_builder = lazy_import('msgraph.generated.groups.item.onenote.notebooks.item.copy_notebook.copy_notebook_request_builder')
+copy_notebook_request_builder = lazy_import('msgraph.generated.groups.item.onenote.notebooks.item.microsoft_graph_copy_notebook.copy_notebook_request_builder')
 section_groups_request_builder = lazy_import('msgraph.generated.groups.item.onenote.notebooks.item.section_groups.section_groups_request_builder')
 section_group_item_request_builder = lazy_import('msgraph.generated.groups.item.onenote.notebooks.item.section_groups.item.section_group_item_request_builder')
 sections_request_builder = lazy_import('msgraph.generated.groups.item.onenote.notebooks.item.sections.sections_request_builder')
@@ -23,7 +23,7 @@ class NotebookItemRequestBuilder():
     Provides operations to manage the notebooks property of the microsoft.graph.onenote entity.
     """
     @property
-    def copy_notebook(self) -> copy_notebook_request_builder.CopyNotebookRequestBuilder:
+    def microsoft_graph_copy_notebook(self) -> copy_notebook_request_builder.CopyNotebookRequestBuilder:
         """
         Provides operations to call the copyNotebook method.
         """
@@ -43,10 +43,11 @@ class NotebookItemRequestBuilder():
         """
         return sections_request_builder.SectionsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, notebook_id: Optional[str] = None) -> None:
         """
         Instantiates a new NotebookItemRequestBuilder and sets the default values.
         Args:
+            notebookId: key: id of notebook
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -58,15 +59,15 @@ class NotebookItemRequestBuilder():
         self.url_template: str = "{+baseurl}/groups/{group%2Did}/onenote/notebooks/{notebook%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["notebook%2Did"] = notebookId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[NotebookItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[NotebookItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property notebooks for groups
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -77,14 +78,13 @@ class NotebookItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[NotebookItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[notebook.Notebook]:
+    async def get(self,request_configuration: Optional[NotebookItemRequestBuilderGetRequestConfiguration] = None) -> Optional[notebook.Notebook]:
         """
         The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[notebook.Notebook]
         """
         request_info = self.to_get_request_information(
@@ -96,15 +96,14 @@ class NotebookItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, notebook.Notebook, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, notebook.Notebook, error_mapping)
     
-    async def patch(self,body: Optional[notebook.Notebook] = None, request_configuration: Optional[NotebookItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[notebook.Notebook]:
+    async def patch(self,body: Optional[notebook.Notebook] = None, request_configuration: Optional[NotebookItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[notebook.Notebook]:
         """
         Update the navigation property notebooks in groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[notebook.Notebook]
         """
         if body is None:
@@ -118,7 +117,7 @@ class NotebookItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, notebook.Notebook, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, notebook.Notebook, error_mapping)
     
     def section_groups_by_id(self,id: str) -> section_group_item_request_builder.SectionGroupItemRequestBuilder:
         """

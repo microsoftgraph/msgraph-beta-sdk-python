@@ -11,8 +11,8 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.me.device_enrollment_configurations.count.count_request_builder')
-create_enrollment_notification_configuration_request_builder = lazy_import('msgraph.generated.me.device_enrollment_configurations.create_enrollment_notification_configuration.create_enrollment_notification_configuration_request_builder')
-has_payload_links_request_builder = lazy_import('msgraph.generated.me.device_enrollment_configurations.has_payload_links.has_payload_links_request_builder')
+create_enrollment_notification_configuration_request_builder = lazy_import('msgraph.generated.me.device_enrollment_configurations.microsoft_graph_create_enrollment_notification_configuration.create_enrollment_notification_configuration_request_builder')
+has_payload_links_request_builder = lazy_import('msgraph.generated.me.device_enrollment_configurations.microsoft_graph_has_payload_links.has_payload_links_request_builder')
 device_enrollment_configuration = lazy_import('msgraph.generated.models.device_enrollment_configuration')
 device_enrollment_configuration_collection_response = lazy_import('msgraph.generated.models.device_enrollment_configuration_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -29,14 +29,14 @@ class DeviceEnrollmentConfigurationsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def create_enrollment_notification_configuration(self) -> create_enrollment_notification_configuration_request_builder.CreateEnrollmentNotificationConfigurationRequestBuilder:
+    def microsoft_graph_create_enrollment_notification_configuration(self) -> create_enrollment_notification_configuration_request_builder.CreateEnrollmentNotificationConfigurationRequestBuilder:
         """
         Provides operations to call the createEnrollmentNotificationConfiguration method.
         """
         return create_enrollment_notification_configuration_request_builder.CreateEnrollmentNotificationConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def has_payload_links(self) -> has_payload_links_request_builder.HasPayloadLinksRequestBuilder:
+    def microsoft_graph_has_payload_links(self) -> has_payload_links_request_builder.HasPayloadLinksRequestBuilder:
         """
         Provides operations to call the hasPayloadLinks method.
         """
@@ -60,12 +60,11 @@ class DeviceEnrollmentConfigurationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DeviceEnrollmentConfigurationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_enrollment_configuration_collection_response.DeviceEnrollmentConfigurationCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceEnrollmentConfigurationsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_enrollment_configuration_collection_response.DeviceEnrollmentConfigurationCollectionResponse]:
         """
         Get enrollment configurations targeted to the user
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_enrollment_configuration_collection_response.DeviceEnrollmentConfigurationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -77,15 +76,14 @@ class DeviceEnrollmentConfigurationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_enrollment_configuration_collection_response.DeviceEnrollmentConfigurationCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_enrollment_configuration_collection_response.DeviceEnrollmentConfigurationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[device_enrollment_configuration.DeviceEnrollmentConfiguration] = None, request_configuration: Optional[DeviceEnrollmentConfigurationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_enrollment_configuration.DeviceEnrollmentConfiguration]:
+    async def post(self,body: Optional[device_enrollment_configuration.DeviceEnrollmentConfiguration] = None, request_configuration: Optional[DeviceEnrollmentConfigurationsRequestBuilderPostRequestConfiguration] = None) -> Optional[device_enrollment_configuration.DeviceEnrollmentConfiguration]:
         """
         Create new navigation property to deviceEnrollmentConfigurations for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_enrollment_configuration.DeviceEnrollmentConfiguration]
         """
         if body is None:
@@ -99,7 +97,7 @@ class DeviceEnrollmentConfigurationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_enrollment_configuration.DeviceEnrollmentConfiguration, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_enrollment_configuration.DeviceEnrollmentConfiguration, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceEnrollmentConfigurationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

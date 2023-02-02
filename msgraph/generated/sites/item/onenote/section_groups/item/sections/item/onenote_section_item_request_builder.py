@@ -12,8 +12,8 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 onenote_section = lazy_import('msgraph.generated.models.onenote_section')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-copy_to_notebook_request_builder = lazy_import('msgraph.generated.sites.item.onenote.section_groups.item.sections.item.copy_to_notebook.copy_to_notebook_request_builder')
-copy_to_section_group_request_builder = lazy_import('msgraph.generated.sites.item.onenote.section_groups.item.sections.item.copy_to_section_group.copy_to_section_group_request_builder')
+copy_to_notebook_request_builder = lazy_import('msgraph.generated.sites.item.onenote.section_groups.item.sections.item.microsoft_graph_copy_to_notebook.copy_to_notebook_request_builder')
+copy_to_section_group_request_builder = lazy_import('msgraph.generated.sites.item.onenote.section_groups.item.sections.item.microsoft_graph_copy_to_section_group.copy_to_section_group_request_builder')
 pages_request_builder = lazy_import('msgraph.generated.sites.item.onenote.section_groups.item.sections.item.pages.pages_request_builder')
 onenote_page_item_request_builder = lazy_import('msgraph.generated.sites.item.onenote.section_groups.item.sections.item.pages.item.onenote_page_item_request_builder')
 parent_notebook_request_builder = lazy_import('msgraph.generated.sites.item.onenote.section_groups.item.sections.item.parent_notebook.parent_notebook_request_builder')
@@ -24,14 +24,14 @@ class OnenoteSectionItemRequestBuilder():
     Provides operations to manage the sections property of the microsoft.graph.sectionGroup entity.
     """
     @property
-    def copy_to_notebook(self) -> copy_to_notebook_request_builder.CopyToNotebookRequestBuilder:
+    def microsoft_graph_copy_to_notebook(self) -> copy_to_notebook_request_builder.CopyToNotebookRequestBuilder:
         """
         Provides operations to call the copyToNotebook method.
         """
         return copy_to_notebook_request_builder.CopyToNotebookRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def copy_to_section_group(self) -> copy_to_section_group_request_builder.CopyToSectionGroupRequestBuilder:
+    def microsoft_graph_copy_to_section_group(self) -> copy_to_section_group_request_builder.CopyToSectionGroupRequestBuilder:
         """
         Provides operations to call the copyToSectionGroup method.
         """
@@ -58,10 +58,11 @@ class OnenoteSectionItemRequestBuilder():
         """
         return parent_section_group_request_builder.ParentSectionGroupRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, onenote_section_id: Optional[str] = None) -> None:
         """
         Instantiates a new OnenoteSectionItemRequestBuilder and sets the default values.
         Args:
+            onenoteSectionId: key: id of onenoteSection
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -73,15 +74,15 @@ class OnenoteSectionItemRequestBuilder():
         self.url_template: str = "{+baseurl}/sites/{site%2Did}/onenote/sectionGroups/{sectionGroup%2Did}/sections/{onenoteSection%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["onenoteSection%2Did"] = onenoteSectionId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[OnenoteSectionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[OnenoteSectionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property sections for sites
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -92,14 +93,13 @@ class OnenoteSectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[OnenoteSectionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[onenote_section.OnenoteSection]:
+    async def get(self,request_configuration: Optional[OnenoteSectionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[onenote_section.OnenoteSection]:
         """
         The sections in the section group. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[onenote_section.OnenoteSection]
         """
         request_info = self.to_get_request_information(
@@ -111,7 +111,7 @@ class OnenoteSectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, onenote_section.OnenoteSection, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, onenote_section.OnenoteSection, error_mapping)
     
     def pages_by_id(self,id: str) -> onenote_page_item_request_builder.OnenotePageItemRequestBuilder:
         """
@@ -126,13 +126,12 @@ class OnenoteSectionItemRequestBuilder():
         url_tpl_params["onenotePage%2Did"] = id
         return onenote_page_item_request_builder.OnenotePageItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[onenote_section.OnenoteSection] = None, request_configuration: Optional[OnenoteSectionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[onenote_section.OnenoteSection]:
+    async def patch(self,body: Optional[onenote_section.OnenoteSection] = None, request_configuration: Optional[OnenoteSectionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[onenote_section.OnenoteSection]:
         """
         Update the navigation property sections in sites
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[onenote_section.OnenoteSection]
         """
         if body is None:
@@ -146,7 +145,7 @@ class OnenoteSectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, onenote_section.OnenoteSection, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, onenote_section.OnenoteSection, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[OnenoteSectionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

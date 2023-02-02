@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-disable_sms_sign_in_request_builder = lazy_import('msgraph.generated.me.authentication.methods.item.disable_sms_sign_in.disable_sms_sign_in_request_builder')
-enable_sms_sign_in_request_builder = lazy_import('msgraph.generated.me.authentication.methods.item.enable_sms_sign_in.enable_sms_sign_in_request_builder')
-reset_password_request_builder = lazy_import('msgraph.generated.me.authentication.methods.item.reset_password.reset_password_request_builder')
+disable_sms_sign_in_request_builder = lazy_import('msgraph.generated.me.authentication.methods.item.microsoft_graph_disable_sms_sign_in.disable_sms_sign_in_request_builder')
+enable_sms_sign_in_request_builder = lazy_import('msgraph.generated.me.authentication.methods.item.microsoft_graph_enable_sms_sign_in.enable_sms_sign_in_request_builder')
+reset_password_request_builder = lazy_import('msgraph.generated.me.authentication.methods.item.microsoft_graph_reset_password.reset_password_request_builder')
 authentication_method = lazy_import('msgraph.generated.models.authentication_method')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -21,30 +21,31 @@ class AuthenticationMethodItemRequestBuilder():
     Provides operations to manage the methods property of the microsoft.graph.authentication entity.
     """
     @property
-    def disable_sms_sign_in(self) -> disable_sms_sign_in_request_builder.DisableSmsSignInRequestBuilder:
+    def microsoft_graph_disable_sms_sign_in(self) -> disable_sms_sign_in_request_builder.DisableSmsSignInRequestBuilder:
         """
         Provides operations to call the disableSmsSignIn method.
         """
         return disable_sms_sign_in_request_builder.DisableSmsSignInRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def enable_sms_sign_in(self) -> enable_sms_sign_in_request_builder.EnableSmsSignInRequestBuilder:
+    def microsoft_graph_enable_sms_sign_in(self) -> enable_sms_sign_in_request_builder.EnableSmsSignInRequestBuilder:
         """
         Provides operations to call the enableSmsSignIn method.
         """
         return enable_sms_sign_in_request_builder.EnableSmsSignInRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reset_password(self) -> reset_password_request_builder.ResetPasswordRequestBuilder:
+    def microsoft_graph_reset_password(self) -> reset_password_request_builder.ResetPasswordRequestBuilder:
         """
         Provides operations to call the resetPassword method.
         """
         return reset_password_request_builder.ResetPasswordRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, authentication_method_id: Optional[str] = None) -> None:
         """
         Instantiates a new AuthenticationMethodItemRequestBuilder and sets the default values.
         Args:
+            authenticationMethodId: key: id of authenticationMethod
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -56,15 +57,15 @@ class AuthenticationMethodItemRequestBuilder():
         self.url_template: str = "{+baseurl}/me/authentication/methods/{authenticationMethod%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["authenticationMethod%2Did"] = authenticationMethodId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_method.AuthenticationMethod]:
+    async def get(self,request_configuration: Optional[AuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication_method.AuthenticationMethod]:
         """
         Represents all authentication methods registered to a user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_method.AuthenticationMethod]
         """
         request_info = self.to_get_request_information(
@@ -76,15 +77,14 @@ class AuthenticationMethodItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_method.AuthenticationMethod, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_method.AuthenticationMethod, error_mapping)
     
-    async def patch(self,body: Optional[authentication_method.AuthenticationMethod] = None, request_configuration: Optional[AuthenticationMethodItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_method.AuthenticationMethod]:
+    async def patch(self,body: Optional[authentication_method.AuthenticationMethod] = None, request_configuration: Optional[AuthenticationMethodItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[authentication_method.AuthenticationMethod]:
         """
         Update the navigation property methods in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_method.AuthenticationMethod]
         """
         if body is None:
@@ -98,7 +98,7 @@ class AuthenticationMethodItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_method.AuthenticationMethod, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_method.AuthenticationMethod, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -23,7 +23,7 @@ class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedul
         """
         Sets the accessId property value. The accessId property
         Args:
-            value: Value to set for the accessId property.
+            value: Value to set for the access_id property.
         """
         self._access_id = value
     
@@ -73,7 +73,7 @@ class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedul
         """
         Sets the eligibilityScheduleId property value. The eligibilityScheduleId property
         Args:
-            value: Value to set for the eligibilityScheduleId property.
+            value: Value to set for the eligibility_schedule_id property.
         """
         self._eligibility_schedule_id = value
     
@@ -83,13 +83,13 @@ class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedul
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_id": lambda n : setattr(self, 'access_id', n.get_enum_value(privileged_access_group_relationships.PrivilegedAccessGroupRelationships)),
-            "eligibility_schedule_id": lambda n : setattr(self, 'eligibility_schedule_id', n.get_str_value()),
+            "accessId": lambda n : setattr(self, 'access_id', n.get_enum_value(privileged_access_group_relationships.PrivilegedAccessGroupRelationships)),
+            "eligibilityScheduleId": lambda n : setattr(self, 'eligibility_schedule_id', n.get_str_value()),
             "group": lambda n : setattr(self, 'group', n.get_object_value(group.Group)),
-            "group_id": lambda n : setattr(self, 'group_id', n.get_str_value()),
-            "member_type": lambda n : setattr(self, 'member_type', n.get_enum_value(privileged_access_group_member_type.PrivilegedAccessGroupMemberType)),
+            "groupId": lambda n : setattr(self, 'group_id', n.get_str_value()),
+            "memberType": lambda n : setattr(self, 'member_type', n.get_enum_value(privileged_access_group_member_type.PrivilegedAccessGroupMemberType)),
             "principal": lambda n : setattr(self, 'principal', n.get_object_value(directory_object.DirectoryObject)),
-            "principal_id": lambda n : setattr(self, 'principal_id', n.get_str_value()),
+            "principalId": lambda n : setattr(self, 'principal_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -125,7 +125,7 @@ class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedul
         """
         Sets the groupId property value. The groupId property
         Args:
-            value: Value to set for the groupId property.
+            value: Value to set for the group_id property.
         """
         self._group_id = value
     
@@ -142,7 +142,7 @@ class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedul
         """
         Sets the memberType property value. The memberType property
         Args:
-            value: Value to set for the memberType property.
+            value: Value to set for the member_type property.
         """
         self._member_type = value
     
@@ -176,7 +176,7 @@ class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedul
         """
         Sets the principalId property value. The principalId property
         Args:
-            value: Value to set for the principalId property.
+            value: Value to set for the principal_id property.
         """
         self._principal_id = value
     

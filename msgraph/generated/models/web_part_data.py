@@ -88,7 +88,7 @@ class WebPartData(AdditionalDataHolder, Parsable):
         """
         Sets the dataVersion property value. Data version of the web part. The value is defined by the web part developer. Different dataVersions usually refers to a different property structure.
         Args:
-            value: Value to set for the dataVersion property.
+            value: Value to set for the data_version property.
         """
         self._data_version = value
     
@@ -116,11 +116,11 @@ class WebPartData(AdditionalDataHolder, Parsable):
         """
         fields = {
             "audiences": lambda n : setattr(self, 'audiences', n.get_collection_of_primitive_values(str)),
-            "data_version": lambda n : setattr(self, 'data_version', n.get_str_value()),
+            "dataVersion": lambda n : setattr(self, 'data_version', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "properties": lambda n : setattr(self, 'properties', n.get_object_value(json.Json)),
-            "server_processed_content": lambda n : setattr(self, 'server_processed_content', n.get_object_value(server_processed_content.ServerProcessedContent)),
+            "serverProcessedContent": lambda n : setattr(self, 'server_processed_content', n.get_object_value(server_processed_content.ServerProcessedContent)),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
         }
         return fields
@@ -138,7 +138,7 @@ class WebPartData(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -189,7 +189,7 @@ class WebPartData(AdditionalDataHolder, Parsable):
         """
         Sets the serverProcessedContent property value. Contains collections of data that can be processed by server side services like search index and link fixup.
         Args:
-            value: Value to set for the serverProcessedContent property.
+            value: Value to set for the server_processed_content property.
         """
         self._server_processed_content = value
     

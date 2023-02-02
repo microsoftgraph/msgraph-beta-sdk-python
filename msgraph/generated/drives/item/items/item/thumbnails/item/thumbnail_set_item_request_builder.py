@@ -17,12 +17,13 @@ class ThumbnailSetItemRequestBuilder():
     """
     Provides operations to manage the thumbnails property of the microsoft.graph.driveItem entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, thumbnail_set_id: Optional[str] = None) -> None:
         """
         Instantiates a new ThumbnailSetItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            thumbnailSetId: key: id of thumbnailSet
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -32,15 +33,15 @@ class ThumbnailSetItemRequestBuilder():
         self.url_template: str = "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/thumbnails/{thumbnailSet%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["thumbnailSet%2Did"] = thumbnailSetId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ThumbnailSetItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ThumbnailSetItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property thumbnails for drives
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class ThumbnailSetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ThumbnailSetItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[thumbnail_set.ThumbnailSet]:
+    async def get(self,request_configuration: Optional[ThumbnailSetItemRequestBuilderGetRequestConfiguration] = None) -> Optional[thumbnail_set.ThumbnailSet]:
         """
         Collection containing [ThumbnailSet][] objects associated with the item. For more info, see [getting thumbnails][]. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[thumbnail_set.ThumbnailSet]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class ThumbnailSetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, thumbnail_set.ThumbnailSet, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, thumbnail_set.ThumbnailSet, error_mapping)
     
-    async def patch(self,body: Optional[thumbnail_set.ThumbnailSet] = None, request_configuration: Optional[ThumbnailSetItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[thumbnail_set.ThumbnailSet]:
+    async def patch(self,body: Optional[thumbnail_set.ThumbnailSet] = None, request_configuration: Optional[ThumbnailSetItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[thumbnail_set.ThumbnailSet]:
         """
         Update the navigation property thumbnails in drives
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[thumbnail_set.ThumbnailSet]
         """
         if body is None:
@@ -92,7 +91,7 @@ class ThumbnailSetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, thumbnail_set.ThumbnailSet, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, thumbnail_set.ThumbnailSet, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ThumbnailSetItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -53,10 +53,10 @@ class PhysicalAddress(AdditionalDataHolder, Parsable):
         self._country_or_region: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The postal code.
-        self._postal_code: Optional[str] = None
         # The post office box number.
         self._post_office_box: Optional[str] = None
+        # The postal code.
+        self._postal_code: Optional[str] = None
         # The state.
         self._state: Optional[str] = None
         # The street.
@@ -77,7 +77,7 @@ class PhysicalAddress(AdditionalDataHolder, Parsable):
         """
         Sets the countryOrRegion property value. The country or region. It's a free-format string value, for example, 'United States'.
         Args:
-            value: Value to set for the countryOrRegion property.
+            value: Value to set for the country_or_region property.
         """
         self._country_or_region = value
     
@@ -100,10 +100,10 @@ class PhysicalAddress(AdditionalDataHolder, Parsable):
         """
         fields = {
             "city": lambda n : setattr(self, 'city', n.get_str_value()),
-            "country_or_region": lambda n : setattr(self, 'country_or_region', n.get_str_value()),
+            "countryOrRegion": lambda n : setattr(self, 'country_or_region', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "postal_code": lambda n : setattr(self, 'postal_code', n.get_str_value()),
-            "post_office_box": lambda n : setattr(self, 'post_office_box', n.get_str_value()),
+            "postalCode": lambda n : setattr(self, 'postal_code', n.get_str_value()),
+            "postOfficeBox": lambda n : setattr(self, 'post_office_box', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_str_value()),
             "street": lambda n : setattr(self, 'street', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(physical_address_type.PhysicalAddressType)),
@@ -123,26 +123,9 @@ class PhysicalAddress(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
-    
-    @property
-    def postal_code(self,) -> Optional[str]:
-        """
-        Gets the postalCode property value. The postal code.
-        Returns: Optional[str]
-        """
-        return self._postal_code
-    
-    @postal_code.setter
-    def postal_code(self,value: Optional[str] = None) -> None:
-        """
-        Sets the postalCode property value. The postal code.
-        Args:
-            value: Value to set for the postalCode property.
-        """
-        self._postal_code = value
     
     @property
     def post_office_box(self,) -> Optional[str]:
@@ -157,9 +140,26 @@ class PhysicalAddress(AdditionalDataHolder, Parsable):
         """
         Sets the postOfficeBox property value. The post office box number.
         Args:
-            value: Value to set for the postOfficeBox property.
+            value: Value to set for the post_office_box property.
         """
         self._post_office_box = value
+    
+    @property
+    def postal_code(self,) -> Optional[str]:
+        """
+        Gets the postalCode property value. The postal code.
+        Returns: Optional[str]
+        """
+        return self._postal_code
+    
+    @postal_code.setter
+    def postal_code(self,value: Optional[str] = None) -> None:
+        """
+        Sets the postalCode property value. The postal code.
+        Args:
+            value: Value to set for the postal_code property.
+        """
+        self._postal_code = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

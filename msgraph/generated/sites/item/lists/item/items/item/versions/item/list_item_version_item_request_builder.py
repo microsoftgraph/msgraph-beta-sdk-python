@@ -13,7 +13,7 @@ from typing import Any, Callable, Dict, List, Optional, Union
 list_item_version = lazy_import('msgraph.generated.models.list_item_version')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 fields_request_builder = lazy_import('msgraph.generated.sites.item.lists.item.items.item.versions.item.fields.fields_request_builder')
-restore_version_request_builder = lazy_import('msgraph.generated.sites.item.lists.item.items.item.versions.item.restore_version.restore_version_request_builder')
+restore_version_request_builder = lazy_import('msgraph.generated.sites.item.lists.item.items.item.versions.item.microsoft_graph_restore_version.restore_version_request_builder')
 
 class ListItemVersionItemRequestBuilder():
     """
@@ -27,16 +27,17 @@ class ListItemVersionItemRequestBuilder():
         return fields_request_builder.FieldsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def restore_version(self) -> restore_version_request_builder.RestoreVersionRequestBuilder:
+    def microsoft_graph_restore_version(self) -> restore_version_request_builder.RestoreVersionRequestBuilder:
         """
         Provides operations to call the restoreVersion method.
         """
         return restore_version_request_builder.RestoreVersionRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, list_item_version_id: Optional[str] = None) -> None:
         """
         Instantiates a new ListItemVersionItemRequestBuilder and sets the default values.
         Args:
+            listItemVersionId: key: id of listItemVersion
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -48,15 +49,15 @@ class ListItemVersionItemRequestBuilder():
         self.url_template: str = "{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/versions/{listItemVersion%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["listItemVersion%2Did"] = listItemVersionId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ListItemVersionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ListItemVersionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property versions for sites
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -67,14 +68,13 @@ class ListItemVersionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ListItemVersionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[list_item_version.ListItemVersion]:
+    async def get(self,request_configuration: Optional[ListItemVersionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[list_item_version.ListItemVersion]:
         """
         The list of previous versions of the list item.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[list_item_version.ListItemVersion]
         """
         request_info = self.to_get_request_information(
@@ -86,15 +86,14 @@ class ListItemVersionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, list_item_version.ListItemVersion, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, list_item_version.ListItemVersion, error_mapping)
     
-    async def patch(self,body: Optional[list_item_version.ListItemVersion] = None, request_configuration: Optional[ListItemVersionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[list_item_version.ListItemVersion]:
+    async def patch(self,body: Optional[list_item_version.ListItemVersion] = None, request_configuration: Optional[ListItemVersionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[list_item_version.ListItemVersion]:
         """
         Update the navigation property versions in sites
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[list_item_version.ListItemVersion]
         """
         if body is None:
@@ -108,7 +107,7 @@ class ListItemVersionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, list_item_version.ListItemVersion, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, list_item_version.ListItemVersion, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ListItemVersionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

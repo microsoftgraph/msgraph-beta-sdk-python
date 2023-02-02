@@ -2,11 +2,11 @@ from enum import Enum
 
 class DeviceComplianceScriptRulOperator(Enum):
     # None operator.
-    None_escaped = "none",
+    None_ = "none",
     # And operator.
-    And_escaped = "and",
+    And_ = "and",
     # Or operator.
-    Or_escaped = "or",
+    Or_ = "or",
     # IsEquals operator.
     IsEquals = "isEquals",
     # NotEquals operator.

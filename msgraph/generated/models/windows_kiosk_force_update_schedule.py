@@ -73,7 +73,7 @@ class WindowsKioskForceUpdateSchedule(AdditionalDataHolder, Parsable):
         """
         Sets the dayofMonth property value. Day of month. Valid values 1 to 31
         Args:
-            value: Value to set for the dayofMonth property.
+            value: Value to set for the dayof_month property.
         """
         self._dayof_month = value
     
@@ -90,7 +90,7 @@ class WindowsKioskForceUpdateSchedule(AdditionalDataHolder, Parsable):
         """
         Sets the dayofWeek property value. The dayofWeek property
         Args:
-            value: Value to set for the dayofWeek property.
+            value: Value to set for the dayof_week property.
         """
         self._dayof_week = value
     
@@ -100,12 +100,12 @@ class WindowsKioskForceUpdateSchedule(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "dayof_month": lambda n : setattr(self, 'dayof_month', n.get_int_value()),
-            "dayof_week": lambda n : setattr(self, 'dayof_week', n.get_enum_value(day_of_week.DayOfWeek)),
+            "dayofMonth": lambda n : setattr(self, 'dayof_month', n.get_int_value()),
+            "dayofWeek": lambda n : setattr(self, 'dayof_week', n.get_enum_value(day_of_week.DayOfWeek)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "recurrence": lambda n : setattr(self, 'recurrence', n.get_enum_value(windows10_apps_update_recurrence.Windows10AppsUpdateRecurrence)),
-            "run_immediately_if_after_start_date_time": lambda n : setattr(self, 'run_immediately_if_after_start_date_time', n.get_bool_value()),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "runImmediatelyIfAfterStartDateTime": lambda n : setattr(self, 'run_immediately_if_after_start_date_time', n.get_bool_value()),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
         }
         return fields
     
@@ -122,7 +122,7 @@ class WindowsKioskForceUpdateSchedule(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -156,7 +156,7 @@ class WindowsKioskForceUpdateSchedule(AdditionalDataHolder, Parsable):
         """
         Sets the runImmediatelyIfAfterStartDateTime property value. If true, runs the task immediately if StartDateTime is in the past, else, runs at the next recurrence.
         Args:
-            value: Value to set for the runImmediatelyIfAfterStartDateTime property.
+            value: Value to set for the run_immediately_if_after_start_date_time property.
         """
         self._run_immediately_if_after_start_date_time = value
     
@@ -189,7 +189,7 @@ class WindowsKioskForceUpdateSchedule(AdditionalDataHolder, Parsable):
         """
         Sets the startDateTime property value. The start time for the force restart.
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     

@@ -49,7 +49,7 @@ class DeviceConfigurationGroupAssignment(entity.Entity):
         """
         Sets the deviceConfiguration property value. The navigation link to the Device Configuration being targeted.
         Args:
-            value: Value to set for the deviceConfiguration property.
+            value: Value to set for the device_configuration property.
         """
         self._device_configuration = value
     
@@ -66,7 +66,7 @@ class DeviceConfigurationGroupAssignment(entity.Entity):
         """
         Sets the excludeGroup property value. Indicates if this group is should be excluded. Defaults that the group should be included
         Args:
-            value: Value to set for the excludeGroup property.
+            value: Value to set for the exclude_group property.
         """
         self._exclude_group = value
     
@@ -76,9 +76,9 @@ class DeviceConfigurationGroupAssignment(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_configuration": lambda n : setattr(self, 'device_configuration', n.get_object_value(device_configuration.DeviceConfiguration)),
-            "exclude_group": lambda n : setattr(self, 'exclude_group', n.get_bool_value()),
-            "target_group_id": lambda n : setattr(self, 'target_group_id', n.get_str_value()),
+            "deviceConfiguration": lambda n : setattr(self, 'device_configuration', n.get_object_value(device_configuration.DeviceConfiguration)),
+            "excludeGroup": lambda n : setattr(self, 'exclude_group', n.get_bool_value()),
+            "targetGroupId": lambda n : setattr(self, 'target_group_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -110,7 +110,7 @@ class DeviceConfigurationGroupAssignment(entity.Entity):
         """
         Sets the targetGroupId property value. The Id of the AAD group we are targeting the device configuration to.
         Args:
-            value: Value to set for the targetGroupId property.
+            value: Value to set for the target_group_id property.
         """
         self._target_group_id = value
     

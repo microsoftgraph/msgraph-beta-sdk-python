@@ -54,7 +54,7 @@ class WindowsManagementAppHealthState(entity.Entity):
         """
         Sets the deviceName property value. Name of the device on which Windows management app is installed.
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -71,7 +71,7 @@ class WindowsManagementAppHealthState(entity.Entity):
         """
         Sets the deviceOSVersion property value. Windows 10 OS version of the device on which Windows management app is installed.
         Args:
-            value: Value to set for the deviceOSVersion property.
+            value: Value to set for the device_o_s_version property.
         """
         self._device_o_s_version = value
     
@@ -81,11 +81,11 @@ class WindowsManagementAppHealthState(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
-            "device_o_s_version": lambda n : setattr(self, 'device_o_s_version', n.get_str_value()),
-            "health_state": lambda n : setattr(self, 'health_state', n.get_enum_value(health_state.HealthState)),
-            "installed_version": lambda n : setattr(self, 'installed_version', n.get_str_value()),
-            "last_check_in_date_time": lambda n : setattr(self, 'last_check_in_date_time', n.get_datetime_value()),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "deviceOSVersion": lambda n : setattr(self, 'device_o_s_version', n.get_str_value()),
+            "healthState": lambda n : setattr(self, 'health_state', n.get_enum_value(health_state.HealthState)),
+            "installedVersion": lambda n : setattr(self, 'installed_version', n.get_str_value()),
+            "lastCheckInDateTime": lambda n : setattr(self, 'last_check_in_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -104,7 +104,7 @@ class WindowsManagementAppHealthState(entity.Entity):
         """
         Sets the healthState property value. Indicates health state of the Windows management app.
         Args:
-            value: Value to set for the healthState property.
+            value: Value to set for the health_state property.
         """
         self._health_state = value
     
@@ -121,7 +121,7 @@ class WindowsManagementAppHealthState(entity.Entity):
         """
         Sets the installedVersion property value. Windows management app installed version.
         Args:
-            value: Value to set for the installedVersion property.
+            value: Value to set for the installed_version property.
         """
         self._installed_version = value
     
@@ -138,7 +138,7 @@ class WindowsManagementAppHealthState(entity.Entity):
         """
         Sets the lastCheckInDateTime property value. Windows management app last check-in time.
         Args:
-            value: Value to set for the lastCheckInDateTime property.
+            value: Value to set for the last_check_in_date_time property.
         """
         self._last_check_in_date_time = value
     

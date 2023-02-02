@@ -11,9 +11,9 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.contracts.count.count_request_builder')
-get_by_ids_request_builder = lazy_import('msgraph.generated.contracts.get_by_ids.get_by_ids_request_builder')
-get_user_owned_objects_request_builder = lazy_import('msgraph.generated.contracts.get_user_owned_objects.get_user_owned_objects_request_builder')
-validate_properties_request_builder = lazy_import('msgraph.generated.contracts.validate_properties.validate_properties_request_builder')
+get_by_ids_request_builder = lazy_import('msgraph.generated.contracts.microsoft_graph_get_by_ids.get_by_ids_request_builder')
+get_user_owned_objects_request_builder = lazy_import('msgraph.generated.contracts.microsoft_graph_get_user_owned_objects.get_user_owned_objects_request_builder')
+validate_properties_request_builder = lazy_import('msgraph.generated.contracts.microsoft_graph_validate_properties.validate_properties_request_builder')
 contract = lazy_import('msgraph.generated.models.contract')
 contract_collection_response = lazy_import('msgraph.generated.models.contract_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -30,21 +30,21 @@ class ContractsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_by_ids(self) -> get_by_ids_request_builder.GetByIdsRequestBuilder:
+    def microsoft_graph_get_by_ids(self) -> get_by_ids_request_builder.GetByIdsRequestBuilder:
         """
         Provides operations to call the getByIds method.
         """
         return get_by_ids_request_builder.GetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_user_owned_objects(self) -> get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder:
+    def microsoft_graph_get_user_owned_objects(self) -> get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder:
         """
         Provides operations to call the getUserOwnedObjects method.
         """
         return get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def validate_properties(self) -> validate_properties_request_builder.ValidatePropertiesRequestBuilder:
+    def microsoft_graph_validate_properties(self) -> validate_properties_request_builder.ValidatePropertiesRequestBuilder:
         """
         Provides operations to call the validateProperties method.
         """
@@ -68,12 +68,11 @@ class ContractsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ContractsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[contract_collection_response.ContractCollectionResponse]:
+    async def get(self,request_configuration: Optional[ContractsRequestBuilderGetRequestConfiguration] = None) -> Optional[contract_collection_response.ContractCollectionResponse]:
         """
         Retrieve a list of contract objects associated to a partner tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[contract_collection_response.ContractCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -85,15 +84,14 @@ class ContractsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, contract_collection_response.ContractCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, contract_collection_response.ContractCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[contract.Contract] = None, request_configuration: Optional[ContractsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[contract.Contract]:
+    async def post(self,body: Optional[contract.Contract] = None, request_configuration: Optional[ContractsRequestBuilderPostRequestConfiguration] = None) -> Optional[contract.Contract]:
         """
         Add new entity to contracts
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[contract.Contract]
         """
         if body is None:
@@ -107,7 +105,7 @@ class ContractsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, contract.Contract, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, contract.Contract, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ContractsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

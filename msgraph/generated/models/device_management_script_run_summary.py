@@ -47,7 +47,7 @@ class DeviceManagementScriptRunSummary(entity.Entity):
         """
         Sets the errorDeviceCount property value. Error device count.
         Args:
-            value: Value to set for the errorDeviceCount property.
+            value: Value to set for the error_device_count property.
         """
         self._error_device_count = value
     
@@ -64,7 +64,7 @@ class DeviceManagementScriptRunSummary(entity.Entity):
         """
         Sets the errorUserCount property value. Error user count.
         Args:
-            value: Value to set for the errorUserCount property.
+            value: Value to set for the error_user_count property.
         """
         self._error_user_count = value
     
@@ -74,10 +74,10 @@ class DeviceManagementScriptRunSummary(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "error_device_count": lambda n : setattr(self, 'error_device_count', n.get_int_value()),
-            "error_user_count": lambda n : setattr(self, 'error_user_count', n.get_int_value()),
-            "success_device_count": lambda n : setattr(self, 'success_device_count', n.get_int_value()),
-            "success_user_count": lambda n : setattr(self, 'success_user_count', n.get_int_value()),
+            "errorDeviceCount": lambda n : setattr(self, 'error_device_count', n.get_int_value()),
+            "errorUserCount": lambda n : setattr(self, 'error_user_count', n.get_int_value()),
+            "successDeviceCount": lambda n : setattr(self, 'success_device_count', n.get_int_value()),
+            "successUserCount": lambda n : setattr(self, 'success_user_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -110,7 +110,7 @@ class DeviceManagementScriptRunSummary(entity.Entity):
         """
         Sets the successDeviceCount property value. Success device count.
         Args:
-            value: Value to set for the successDeviceCount property.
+            value: Value to set for the success_device_count property.
         """
         self._success_device_count = value
     
@@ -127,7 +127,7 @@ class DeviceManagementScriptRunSummary(entity.Entity):
         """
         Sets the successUserCount property value. Success user count.
         Args:
-            value: Value to set for the successUserCount property.
+            value: Value to set for the success_user_count property.
         """
         self._success_user_count = value
     

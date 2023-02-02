@@ -71,7 +71,7 @@ class AdministrativeUnit(directory_object.DirectoryObject):
         """
         Sets the displayName property value. Display name for the administrative unit. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderBy.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -99,11 +99,11 @@ class AdministrativeUnit(directory_object.DirectoryObject):
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "extensions": lambda n : setattr(self, 'extensions', n.get_collection_of_object_values(extension.Extension)),
-            "is_member_management_restricted": lambda n : setattr(self, 'is_member_management_restricted', n.get_bool_value()),
+            "isMemberManagementRestricted": lambda n : setattr(self, 'is_member_management_restricted', n.get_bool_value()),
             "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(directory_object.DirectoryObject)),
-            "scoped_role_members": lambda n : setattr(self, 'scoped_role_members', n.get_collection_of_object_values(scoped_role_membership.ScopedRoleMembership)),
+            "scopedRoleMembers": lambda n : setattr(self, 'scoped_role_members', n.get_collection_of_object_values(scoped_role_membership.ScopedRoleMembership)),
             "visibility": lambda n : setattr(self, 'visibility', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -123,7 +123,7 @@ class AdministrativeUnit(directory_object.DirectoryObject):
         """
         Sets the isMemberManagementRestricted property value. The isMemberManagementRestricted property
         Args:
-            value: Value to set for the isMemberManagementRestricted property.
+            value: Value to set for the is_member_management_restricted property.
         """
         self._is_member_management_restricted = value
     
@@ -157,7 +157,7 @@ class AdministrativeUnit(directory_object.DirectoryObject):
         """
         Sets the scopedRoleMembers property value. Scoped-role members of this administrative unit.
         Args:
-            value: Value to set for the scopedRoleMembers property.
+            value: Value to set for the scoped_role_members property.
         """
         self._scoped_role_members = value
     

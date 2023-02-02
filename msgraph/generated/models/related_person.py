@@ -64,7 +64,7 @@ class RelatedPerson(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. Name of the person.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -74,10 +74,10 @@ class RelatedPerson(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "relationship": lambda n : setattr(self, 'relationship', n.get_enum_value(person_relationship.PersonRelationship)),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         return fields
     
@@ -94,7 +94,7 @@ class RelatedPerson(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -142,7 +142,7 @@ class RelatedPerson(AdditionalDataHolder, Parsable):
         """
         Sets the userPrincipalName property value. Email address or reference to person within organization.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion(entity.Entity):
-    """
-    The user experience analytics application performance entity contains app performance details by OS version.
-    """
     @property
     def active_device_count(self,) -> Optional[int]:
         """
@@ -22,7 +19,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion(entity.Entity):
         """
         Sets the activeDeviceCount property value. The number of devices where the app has been active. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the activeDeviceCount property.
+            value: Value to set for the active_device_count property.
         """
         self._active_device_count = value
     
@@ -39,7 +36,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion(entity.Entity):
         """
         Sets the appCrashCount property value. The number of crashes for the app. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the appCrashCount property.
+            value: Value to set for the app_crash_count property.
         """
         self._app_crash_count = value
     
@@ -56,7 +53,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion(entity.Entity):
         """
         Sets the appDisplayName property value. The friendly name of the application.
         Args:
-            value: Value to set for the appDisplayName property.
+            value: Value to set for the app_display_name property.
         """
         self._app_display_name = value
     
@@ -73,7 +70,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion(entity.Entity):
         """
         Sets the appName property value. The name of the application.
         Args:
-            value: Value to set for the appName property.
+            value: Value to set for the app_name property.
         """
         self._app_name = value
     
@@ -90,7 +87,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion(entity.Entity):
         """
         Sets the appPublisher property value. The publisher of the application.
         Args:
-            value: Value to set for the appPublisher property.
+            value: Value to set for the app_publisher property.
         """
         self._app_publisher = value
     
@@ -107,13 +104,13 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion(entity.Entity):
         """
         Sets the appUsageDuration property value. The total usage time of the application in minutes. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the appUsageDuration property.
+            value: Value to set for the app_usage_duration property.
         """
         self._app_usage_duration = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsAppHealthAppPerformanceByOSVersion and sets the default values.
+        Instantiates a new UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion and sets the default values.
         """
         super().__init__()
         # The number of devices where the app has been active. Valid values -2147483648 to 2147483647
@@ -155,15 +152,15 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "active_device_count": lambda n : setattr(self, 'active_device_count', n.get_int_value()),
-            "app_crash_count": lambda n : setattr(self, 'app_crash_count', n.get_int_value()),
-            "app_display_name": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
-            "app_name": lambda n : setattr(self, 'app_name', n.get_str_value()),
-            "app_publisher": lambda n : setattr(self, 'app_publisher', n.get_str_value()),
-            "app_usage_duration": lambda n : setattr(self, 'app_usage_duration', n.get_int_value()),
-            "mean_time_to_failure_in_minutes": lambda n : setattr(self, 'mean_time_to_failure_in_minutes', n.get_int_value()),
-            "os_build_number": lambda n : setattr(self, 'os_build_number', n.get_str_value()),
-            "os_version": lambda n : setattr(self, 'os_version', n.get_str_value()),
+            "activeDeviceCount": lambda n : setattr(self, 'active_device_count', n.get_int_value()),
+            "appCrashCount": lambda n : setattr(self, 'app_crash_count', n.get_int_value()),
+            "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
+            "appName": lambda n : setattr(self, 'app_name', n.get_str_value()),
+            "appPublisher": lambda n : setattr(self, 'app_publisher', n.get_str_value()),
+            "appUsageDuration": lambda n : setattr(self, 'app_usage_duration', n.get_int_value()),
+            "meanTimeToFailureInMinutes": lambda n : setattr(self, 'mean_time_to_failure_in_minutes', n.get_int_value()),
+            "osBuildNumber": lambda n : setattr(self, 'os_build_number', n.get_str_value()),
+            "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -182,7 +179,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion(entity.Entity):
         """
         Sets the meanTimeToFailureInMinutes property value. The mean time to failure for the app in minutes. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the meanTimeToFailureInMinutes property.
+            value: Value to set for the mean_time_to_failure_in_minutes property.
         """
         self._mean_time_to_failure_in_minutes = value
     
@@ -199,7 +196,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion(entity.Entity):
         """
         Sets the osBuildNumber property value. The os build number of the application.
         Args:
-            value: Value to set for the osBuildNumber property.
+            value: Value to set for the os_build_number property.
         """
         self._os_build_number = value
     
@@ -216,7 +213,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion(entity.Entity):
         """
         Sets the osVersion property value. The os version of the application.
         Args:
-            value: Value to set for the osVersion property.
+            value: Value to set for the os_version property.
         """
         self._os_version = value
     

@@ -63,7 +63,7 @@ class VpnRoute(AdditionalDataHolder, Parsable):
         """
         Sets the destinationPrefix property value. Destination prefix (IPv4/v6 address).
         Args:
-            value: Value to set for the destinationPrefix property.
+            value: Value to set for the destination_prefix property.
         """
         self._destination_prefix = value
     
@@ -73,9 +73,9 @@ class VpnRoute(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "destination_prefix": lambda n : setattr(self, 'destination_prefix', n.get_str_value()),
+            "destinationPrefix": lambda n : setattr(self, 'destination_prefix', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "prefix_size": lambda n : setattr(self, 'prefix_size', n.get_int_value()),
+            "prefixSize": lambda n : setattr(self, 'prefix_size', n.get_int_value()),
         }
         return fields
     
@@ -92,7 +92,7 @@ class VpnRoute(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -109,7 +109,7 @@ class VpnRoute(AdditionalDataHolder, Parsable):
         """
         Sets the prefixSize property value. Prefix size. (1-32). Valid values 1 to 32
         Args:
-            value: Value to set for the prefixSize property.
+            value: Value to set for the prefix_size property.
         """
         self._prefix_size = value
     

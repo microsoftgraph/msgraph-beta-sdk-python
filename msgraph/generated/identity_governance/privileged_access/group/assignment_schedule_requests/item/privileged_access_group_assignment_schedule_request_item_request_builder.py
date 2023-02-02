@@ -11,8 +11,8 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 activated_using_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.group.assignment_schedule_requests.item.activated_using.activated_using_request_builder')
-cancel_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.group.assignment_schedule_requests.item.cancel.cancel_request_builder')
 group_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.group.assignment_schedule_requests.item.group.group_request_builder')
+cancel_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.group.assignment_schedule_requests.item.microsoft_graph_cancel.cancel_request_builder')
 principal_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.group.assignment_schedule_requests.item.principal.principal_request_builder')
 target_schedule_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.group.assignment_schedule_requests.item.target_schedule.target_schedule_request_builder')
 privileged_access_group_assignment_schedule_request = lazy_import('msgraph.generated.models.privileged_access_group_assignment_schedule_request')
@@ -30,18 +30,18 @@ class PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder():
         return activated_using_request_builder.ActivatedUsingRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
-        """
-        Provides operations to call the cancel method.
-        """
-        return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def group(self) -> group_request_builder.GroupRequestBuilder:
         """
         Provides operations to manage the group property of the microsoft.graph.privilegedAccessGroupAssignmentScheduleRequest entity.
         """
         return group_request_builder.GroupRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_cancel(self) -> cancel_request_builder.CancelRequestBuilder:
+        """
+        Provides operations to call the cancel method.
+        """
+        return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def principal(self) -> principal_request_builder.PrincipalRequestBuilder:
@@ -57,11 +57,12 @@ class PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder():
         """
         return target_schedule_request_builder.TargetScheduleRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, privileged_access_group_assignment_schedule_request_id: Optional[str] = None) -> None:
         """
         Instantiates a new PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            privilegedAccessGroupAssignmentScheduleRequestId: key: id of privilegedAccessGroupAssignmentScheduleRequest
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -72,15 +73,15 @@ class PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder():
         self.url_template: str = "{+baseurl}/identityGovernance/privilegedAccess/group/assignmentScheduleRequests/{privilegedAccessGroupAssignmentScheduleRequest%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["privilegedAccessGroupAssignmentScheduleRequest%2Did"] = privilegedAccessGroupAssignmentScheduleRequestId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property assignmentScheduleRequests for identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -91,14 +92,13 @@ class PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest]:
+    async def get(self,request_configuration: Optional[PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest]:
         """
         Get assignmentScheduleRequests from identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest]
         """
         request_info = self.to_get_request_information(
@@ -110,15 +110,14 @@ class PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest, error_mapping)
     
-    async def patch(self,body: Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest] = None, request_configuration: Optional[PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest]:
+    async def patch(self,body: Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest] = None, request_configuration: Optional[PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest]:
         """
         Update the navigation property assignmentScheduleRequests in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest]
         """
         if body is None:
@@ -132,7 +131,7 @@ class PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -30,13 +30,13 @@ class CoachmarkLocation(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The length property
+        # Length of coachmark.
         self._length: Optional[int] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The offset property
+        # Offset of coachmark.
         self._offset: Optional[int] = None
-        # The type property
+        # Type of coachmark location. The possible values are: unknown, fromEmail, subject, externalTag, displayName, messageBody, unknownFutureValue.
         self._type: Optional[coachmark_location_type.CoachmarkLocationType] = None
     
     @staticmethod
@@ -67,7 +67,7 @@ class CoachmarkLocation(AdditionalDataHolder, Parsable):
     @property
     def length(self,) -> Optional[int]:
         """
-        Gets the length property value. The length property
+        Gets the length property value. Length of coachmark.
         Returns: Optional[int]
         """
         return self._length
@@ -75,7 +75,7 @@ class CoachmarkLocation(AdditionalDataHolder, Parsable):
     @length.setter
     def length(self,value: Optional[int] = None) -> None:
         """
-        Sets the length property value. The length property
+        Sets the length property value. Length of coachmark.
         Args:
             value: Value to set for the length property.
         """
@@ -94,14 +94,14 @@ class CoachmarkLocation(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
     @property
     def offset(self,) -> Optional[int]:
         """
-        Gets the offset property value. The offset property
+        Gets the offset property value. Offset of coachmark.
         Returns: Optional[int]
         """
         return self._offset
@@ -109,7 +109,7 @@ class CoachmarkLocation(AdditionalDataHolder, Parsable):
     @offset.setter
     def offset(self,value: Optional[int] = None) -> None:
         """
-        Sets the offset property value. The offset property
+        Sets the offset property value. Offset of coachmark.
         Args:
             value: Value to set for the offset property.
         """
@@ -132,7 +132,7 @@ class CoachmarkLocation(AdditionalDataHolder, Parsable):
     @property
     def type(self,) -> Optional[coachmark_location_type.CoachmarkLocationType]:
         """
-        Gets the type property value. The type property
+        Gets the type property value. Type of coachmark location. The possible values are: unknown, fromEmail, subject, externalTag, displayName, messageBody, unknownFutureValue.
         Returns: Optional[coachmark_location_type.CoachmarkLocationType]
         """
         return self._type
@@ -140,7 +140,7 @@ class CoachmarkLocation(AdditionalDataHolder, Parsable):
     @type.setter
     def type(self,value: Optional[coachmark_location_type.CoachmarkLocationType] = None) -> None:
         """
-        Sets the type property value. The type property
+        Sets the type property value. Type of coachmark location. The possible values are: unknown, fromEmail, subject, externalTag, displayName, messageBody, unknownFutureValue.
         Args:
             value: Value to set for the type property.
         """

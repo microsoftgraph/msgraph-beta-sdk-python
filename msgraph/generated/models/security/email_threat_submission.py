@@ -23,7 +23,7 @@ class EmailThreatSubmission(threat_submission.ThreatSubmission):
         """
         Sets the attackSimulationInfo property value. If the email is phishing simulation, this field will not be null.
         Args:
-            value: Value to set for the attackSimulationInfo property.
+            value: Value to set for the attack_simulation_info property.
         """
         self._attack_simulation_info = value
     
@@ -70,15 +70,15 @@ class EmailThreatSubmission(threat_submission.ThreatSubmission):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "attack_simulation_info": lambda n : setattr(self, 'attack_simulation_info', n.get_object_value(attack_simulation_info.AttackSimulationInfo)),
-            "internet_message_id": lambda n : setattr(self, 'internet_message_id', n.get_str_value()),
-            "original_category": lambda n : setattr(self, 'original_category', n.get_enum_value(submission_category.SubmissionCategory)),
-            "received_date_time": lambda n : setattr(self, 'received_date_time', n.get_datetime_value()),
-            "recipient_email_address": lambda n : setattr(self, 'recipient_email_address', n.get_str_value()),
+            "attackSimulationInfo": lambda n : setattr(self, 'attack_simulation_info', n.get_object_value(attack_simulation_info.AttackSimulationInfo)),
+            "internetMessageId": lambda n : setattr(self, 'internet_message_id', n.get_str_value()),
+            "originalCategory": lambda n : setattr(self, 'original_category', n.get_enum_value(submission_category.SubmissionCategory)),
+            "receivedDateTime": lambda n : setattr(self, 'received_date_time', n.get_datetime_value()),
+            "recipientEmailAddress": lambda n : setattr(self, 'recipient_email_address', n.get_str_value()),
             "sender": lambda n : setattr(self, 'sender', n.get_str_value()),
-            "sender_i_p": lambda n : setattr(self, 'sender_i_p', n.get_str_value()),
+            "senderIP": lambda n : setattr(self, 'sender_i_p', n.get_str_value()),
             "subject": lambda n : setattr(self, 'subject', n.get_str_value()),
-            "tenant_allow_or_block_list_action": lambda n : setattr(self, 'tenant_allow_or_block_list_action', n.get_object_value(tenant_allow_or_block_list_action.TenantAllowOrBlockListAction)),
+            "tenantAllowOrBlockListAction": lambda n : setattr(self, 'tenant_allow_or_block_list_action', n.get_object_value(tenant_allow_or_block_list_action.TenantAllowOrBlockListAction)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -97,7 +97,7 @@ class EmailThreatSubmission(threat_submission.ThreatSubmission):
         """
         Sets the internetMessageId property value. Specifies the internet message id of the email being submitted. This information is present in the email header.
         Args:
-            value: Value to set for the internetMessageId property.
+            value: Value to set for the internet_message_id property.
         """
         self._internet_message_id = value
     
@@ -114,7 +114,7 @@ class EmailThreatSubmission(threat_submission.ThreatSubmission):
         """
         Sets the originalCategory property value. The original category of the submission. The possible values are: notJunk, spam, phishing, malware and unkownFutureValue.
         Args:
-            value: Value to set for the originalCategory property.
+            value: Value to set for the original_category property.
         """
         self._original_category = value
     
@@ -131,7 +131,7 @@ class EmailThreatSubmission(threat_submission.ThreatSubmission):
         """
         Sets the receivedDateTime property value. Specifies the date and time stamp when the email was received.
         Args:
-            value: Value to set for the receivedDateTime property.
+            value: Value to set for the received_date_time property.
         """
         self._received_date_time = value
     
@@ -148,7 +148,7 @@ class EmailThreatSubmission(threat_submission.ThreatSubmission):
         """
         Sets the recipientEmailAddress property value. Specifies the email address (in smtp format) of the recipient who received the email.
         Args:
-            value: Value to set for the recipientEmailAddress property.
+            value: Value to set for the recipient_email_address property.
         """
         self._recipient_email_address = value
     
@@ -182,7 +182,7 @@ class EmailThreatSubmission(threat_submission.ThreatSubmission):
         """
         Sets the senderIP property value. Specifies the IP address of the sender.
         Args:
-            value: Value to set for the senderIP property.
+            value: Value to set for the sender_i_p property.
         """
         self._sender_i_p = value
     
@@ -235,7 +235,7 @@ class EmailThreatSubmission(threat_submission.ThreatSubmission):
         """
         Sets the tenantAllowOrBlockListAction property value. It is used to automatically add allows for the components such as URL, file, sender; which are deemed bad by Microsoft so that similar messages in the future can be allowed.
         Args:
-            value: Value to set for the tenantAllowOrBlockListAction property.
+            value: Value to set for the tenant_allow_or_block_list_action property.
         """
         self._tenant_allow_or_block_list_action = value
     

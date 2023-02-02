@@ -53,8 +53,8 @@ class DowngradeJustification(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_downgrade_justified": lambda n : setattr(self, 'is_downgrade_justified', n.get_bool_value()),
-            "justification_message": lambda n : setattr(self, 'justification_message', n.get_str_value()),
+            "isDowngradeJustified": lambda n : setattr(self, 'is_downgrade_justified', n.get_bool_value()),
+            "justificationMessage": lambda n : setattr(self, 'justification_message', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -72,7 +72,7 @@ class DowngradeJustification(AdditionalDataHolder, Parsable):
         """
         Sets the isDowngradeJustified property value. Indicates whether the downgrade is or is not justified.
         Args:
-            value: Value to set for the isDowngradeJustified property.
+            value: Value to set for the is_downgrade_justified property.
         """
         self._is_downgrade_justified = value
     
@@ -89,7 +89,7 @@ class DowngradeJustification(AdditionalDataHolder, Parsable):
         """
         Sets the justificationMessage property value. Message that indicates why a downgrade is justified. The message will appear in administrative logs.
         Args:
-            value: Value to set for the justificationMessage property.
+            value: Value to set for the justification_message property.
         """
         self._justification_message = value
     
@@ -106,7 +106,7 @@ class DowngradeJustification(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

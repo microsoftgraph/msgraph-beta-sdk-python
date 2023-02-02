@@ -67,7 +67,7 @@ class CustomExtensionHandlerInstance(AdditionalDataHolder, Parsable):
         """
         Sets the customExtensionId property value. Identifier of the customAccessPackageWorkflowExtension triggered at this instance.
         Args:
-            value: Value to set for the customExtensionId property.
+            value: Value to set for the custom_extension_id property.
         """
         self._custom_extension_id = value
     
@@ -84,7 +84,7 @@ class CustomExtensionHandlerInstance(AdditionalDataHolder, Parsable):
         """
         Sets the externalCorrelationId property value. The unique run ID for the logic app.
         Args:
-            value: Value to set for the externalCorrelationId property.
+            value: Value to set for the external_correlation_id property.
         """
         self._external_correlation_id = value
     
@@ -94,8 +94,8 @@ class CustomExtensionHandlerInstance(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "custom_extension_id": lambda n : setattr(self, 'custom_extension_id', n.get_str_value()),
-            "external_correlation_id": lambda n : setattr(self, 'external_correlation_id', n.get_str_value()),
+            "customExtensionId": lambda n : setattr(self, 'custom_extension_id', n.get_str_value()),
+            "externalCorrelationId": lambda n : setattr(self, 'external_correlation_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "stage": lambda n : setattr(self, 'stage', n.get_enum_value(access_package_custom_extension_stage.AccessPackageCustomExtensionStage)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(access_package_custom_extension_handler_status.AccessPackageCustomExtensionHandlerStatus)),
@@ -115,7 +115,7 @@ class CustomExtensionHandlerInstance(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

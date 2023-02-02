@@ -35,7 +35,7 @@ class DeviceManagementTemplateSettingCategory(device_management_setting_category
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "recommended_settings": lambda n : setattr(self, 'recommended_settings', n.get_collection_of_object_values(device_management_setting_instance.DeviceManagementSettingInstance)),
+            "recommendedSettings": lambda n : setattr(self, 'recommended_settings', n.get_collection_of_object_values(device_management_setting_instance.DeviceManagementSettingInstance)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -54,7 +54,7 @@ class DeviceManagementTemplateSettingCategory(device_management_setting_category
         """
         Sets the recommendedSettings property value. The settings this category contains
         Args:
-            value: Value to set for the recommendedSettings property.
+            value: Value to set for the recommended_settings property.
         """
         self._recommended_settings = value
     

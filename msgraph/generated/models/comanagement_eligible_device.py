@@ -12,9 +12,6 @@ management_state = lazy_import('msgraph.generated.models.management_state')
 owner_type = lazy_import('msgraph.generated.models.owner_type')
 
 class ComanagementEligibleDevice(entity.Entity):
-    """
-    Device Co-Management eligibility state
-    """
     @property
     def client_registration_status(self,) -> Optional[device_registration_state.DeviceRegistrationState]:
         """
@@ -28,13 +25,13 @@ class ComanagementEligibleDevice(entity.Entity):
         """
         Sets the clientRegistrationStatus property value. Device registration status.
         Args:
-            value: Value to set for the clientRegistrationStatus property.
+            value: Value to set for the client_registration_status property.
         """
         self._client_registration_status = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new comanagementEligibleDevice and sets the default values.
+        Instantiates a new ComanagementEligibleDevice and sets the default values.
         """
         super().__init__()
         # Device registration status.
@@ -103,7 +100,7 @@ class ComanagementEligibleDevice(entity.Entity):
         """
         Sets the deviceName property value. DeviceName
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -120,7 +117,7 @@ class ComanagementEligibleDevice(entity.Entity):
         """
         Sets the deviceType property value. Device type.
         Args:
-            value: Value to set for the deviceType property.
+            value: Value to set for the device_type property.
         """
         self._device_type = value
     
@@ -137,7 +134,7 @@ class ComanagementEligibleDevice(entity.Entity):
         """
         Sets the entitySource property value. EntitySource
         Args:
-            value: Value to set for the entitySource property.
+            value: Value to set for the entity_source property.
         """
         self._entity_source = value
     
@@ -147,25 +144,25 @@ class ComanagementEligibleDevice(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "client_registration_status": lambda n : setattr(self, 'client_registration_status', n.get_enum_value(device_registration_state.DeviceRegistrationState)),
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
-            "device_type": lambda n : setattr(self, 'device_type', n.get_enum_value(device_type.DeviceType)),
-            "entity_source": lambda n : setattr(self, 'entity_source', n.get_int_value()),
-            "management_agents": lambda n : setattr(self, 'management_agents', n.get_enum_value(management_agent_type.ManagementAgentType)),
-            "management_state": lambda n : setattr(self, 'management_state', n.get_enum_value(management_state.ManagementState)),
+            "clientRegistrationStatus": lambda n : setattr(self, 'client_registration_status', n.get_enum_value(device_registration_state.DeviceRegistrationState)),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "deviceType": lambda n : setattr(self, 'device_type', n.get_enum_value(device_type.DeviceType)),
+            "entitySource": lambda n : setattr(self, 'entity_source', n.get_int_value()),
+            "managementAgents": lambda n : setattr(self, 'management_agents', n.get_enum_value(management_agent_type.ManagementAgentType)),
+            "managementState": lambda n : setattr(self, 'management_state', n.get_enum_value(management_state.ManagementState)),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
-            "mdm_status": lambda n : setattr(self, 'mdm_status', n.get_str_value()),
+            "mdmStatus": lambda n : setattr(self, 'mdm_status', n.get_str_value()),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
-            "os_description": lambda n : setattr(self, 'os_description', n.get_str_value()),
-            "os_version": lambda n : setattr(self, 'os_version', n.get_str_value()),
-            "owner_type": lambda n : setattr(self, 'owner_type', n.get_enum_value(owner_type.OwnerType)),
-            "reference_id": lambda n : setattr(self, 'reference_id', n.get_str_value()),
-            "serial_number": lambda n : setattr(self, 'serial_number', n.get_str_value()),
+            "osDescription": lambda n : setattr(self, 'os_description', n.get_str_value()),
+            "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
+            "ownerType": lambda n : setattr(self, 'owner_type', n.get_enum_value(owner_type.OwnerType)),
+            "referenceId": lambda n : setattr(self, 'reference_id', n.get_str_value()),
+            "serialNumber": lambda n : setattr(self, 'serial_number', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(comanagement_eligible_type.ComanagementEligibleType)),
             "upn": lambda n : setattr(self, 'upn', n.get_str_value()),
-            "user_email": lambda n : setattr(self, 'user_email', n.get_str_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
-            "user_name": lambda n : setattr(self, 'user_name', n.get_str_value()),
+            "userEmail": lambda n : setattr(self, 'user_email', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userName": lambda n : setattr(self, 'user_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -184,7 +181,7 @@ class ComanagementEligibleDevice(entity.Entity):
         """
         Sets the managementAgents property value. Management agent type.
         Args:
-            value: Value to set for the managementAgents property.
+            value: Value to set for the management_agents property.
         """
         self._management_agents = value
     
@@ -201,7 +198,7 @@ class ComanagementEligibleDevice(entity.Entity):
         """
         Sets the managementState property value. Management state of device in Microsoft Intune.
         Args:
-            value: Value to set for the managementState property.
+            value: Value to set for the management_state property.
         """
         self._management_state = value
     
@@ -235,7 +232,7 @@ class ComanagementEligibleDevice(entity.Entity):
         """
         Sets the mdmStatus property value. MDMStatus
         Args:
-            value: Value to set for the mdmStatus property.
+            value: Value to set for the mdm_status property.
         """
         self._mdm_status = value
     
@@ -269,7 +266,7 @@ class ComanagementEligibleDevice(entity.Entity):
         """
         Sets the osDescription property value. OSDescription
         Args:
-            value: Value to set for the osDescription property.
+            value: Value to set for the os_description property.
         """
         self._os_description = value
     
@@ -286,7 +283,7 @@ class ComanagementEligibleDevice(entity.Entity):
         """
         Sets the osVersion property value. OSVersion
         Args:
-            value: Value to set for the osVersion property.
+            value: Value to set for the os_version property.
         """
         self._os_version = value
     
@@ -303,7 +300,7 @@ class ComanagementEligibleDevice(entity.Entity):
         """
         Sets the ownerType property value. Owner type of device.
         Args:
-            value: Value to set for the ownerType property.
+            value: Value to set for the owner_type property.
         """
         self._owner_type = value
     
@@ -320,9 +317,26 @@ class ComanagementEligibleDevice(entity.Entity):
         """
         Sets the referenceId property value. ReferenceId
         Args:
-            value: Value to set for the referenceId property.
+            value: Value to set for the reference_id property.
         """
         self._reference_id = value
+    
+    @property
+    def serial_number(self,) -> Optional[str]:
+        """
+        Gets the serialNumber property value. SerialNumber
+        Returns: Optional[str]
+        """
+        return self._serial_number
+    
+    @serial_number.setter
+    def serial_number(self,value: Optional[str] = None) -> None:
+        """
+        Sets the serialNumber property value. SerialNumber
+        Args:
+            value: Value to set for the serial_number property.
+        """
+        self._serial_number = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -352,23 +366,6 @@ class ComanagementEligibleDevice(entity.Entity):
         writer.write_str_value("userEmail", self.user_email)
         writer.write_str_value("userId", self.user_id)
         writer.write_str_value("userName", self.user_name)
-    
-    @property
-    def serial_number(self,) -> Optional[str]:
-        """
-        Gets the serialNumber property value. SerialNumber
-        Returns: Optional[str]
-        """
-        return self._serial_number
-    
-    @serial_number.setter
-    def serial_number(self,value: Optional[str] = None) -> None:
-        """
-        Sets the serialNumber property value. SerialNumber
-        Args:
-            value: Value to set for the serialNumber property.
-        """
-        self._serial_number = value
     
     @property
     def status(self,) -> Optional[comanagement_eligible_type.ComanagementEligibleType]:
@@ -417,7 +414,7 @@ class ComanagementEligibleDevice(entity.Entity):
         """
         Sets the userEmail property value. UserEmail
         Args:
-            value: Value to set for the userEmail property.
+            value: Value to set for the user_email property.
         """
         self._user_email = value
     
@@ -434,7 +431,7 @@ class ComanagementEligibleDevice(entity.Entity):
         """
         Sets the userId property value. UserId
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     
@@ -451,7 +448,7 @@ class ComanagementEligibleDevice(entity.Entity):
         """
         Sets the userName property value. UserName
         Args:
-            value: Value to set for the userName property.
+            value: Value to set for the user_name property.
         """
         self._user_name = value
     

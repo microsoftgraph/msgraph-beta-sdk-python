@@ -23,7 +23,7 @@ class DomainSecurityProfile(entity.Entity):
         """
         Sets the activityGroupNames property value. The activityGroupNames property
         Args:
-            value: Value to set for the activityGroupNames property.
+            value: Value to set for the activity_group_names property.
         """
         self._activity_group_names = value
     
@@ -40,7 +40,7 @@ class DomainSecurityProfile(entity.Entity):
         """
         Sets the azureSubscriptionId property value. The azureSubscriptionId property
         Args:
-            value: Value to set for the azureSubscriptionId property.
+            value: Value to set for the azure_subscription_id property.
         """
         self._azure_subscription_id = value
     
@@ -57,13 +57,13 @@ class DomainSecurityProfile(entity.Entity):
         """
         Sets the azureTenantId property value. The azureTenantId property
         Args:
-            value: Value to set for the azureTenantId property.
+            value: Value to set for the azure_tenant_id property.
         """
         self._azure_tenant_id = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new domainSecurityProfile and sets the default values.
+        Instantiates a new DomainSecurityProfile and sets the default values.
         """
         super().__init__()
         # The activityGroupNames property
@@ -110,7 +110,7 @@ class DomainSecurityProfile(entity.Entity):
         """
         Sets the countHits property value. The countHits property
         Args:
-            value: Value to set for the countHits property.
+            value: Value to set for the count_hits property.
         """
         self._count_hits = value
     
@@ -127,7 +127,7 @@ class DomainSecurityProfile(entity.Entity):
         """
         Sets the countInOrg property value. The countInOrg property
         Args:
-            value: Value to set for the countInOrg property.
+            value: Value to set for the count_in_org property.
         """
         self._count_in_org = value
     
@@ -156,7 +156,7 @@ class DomainSecurityProfile(entity.Entity):
         """
         Sets the domainCategories property value. The domainCategories property
         Args:
-            value: Value to set for the domainCategories property.
+            value: Value to set for the domain_categories property.
         """
         self._domain_categories = value
     
@@ -173,7 +173,7 @@ class DomainSecurityProfile(entity.Entity):
         """
         Sets the domainRegisteredDateTime property value. The domainRegisteredDateTime property
         Args:
-            value: Value to set for the domainRegisteredDateTime property.
+            value: Value to set for the domain_registered_date_time property.
         """
         self._domain_registered_date_time = value
     
@@ -190,7 +190,7 @@ class DomainSecurityProfile(entity.Entity):
         """
         Sets the firstSeenDateTime property value. The firstSeenDateTime property
         Args:
-            value: Value to set for the firstSeenDateTime property.
+            value: Value to set for the first_seen_date_time property.
         """
         self._first_seen_date_time = value
     
@@ -200,20 +200,20 @@ class DomainSecurityProfile(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "activity_group_names": lambda n : setattr(self, 'activity_group_names', n.get_collection_of_primitive_values(str)),
-            "azure_subscription_id": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
-            "azure_tenant_id": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
-            "count_hits": lambda n : setattr(self, 'count_hits', n.get_int_value()),
-            "count_in_org": lambda n : setattr(self, 'count_in_org', n.get_int_value()),
-            "domain_categories": lambda n : setattr(self, 'domain_categories', n.get_collection_of_object_values(reputation_category.ReputationCategory)),
-            "domain_registered_date_time": lambda n : setattr(self, 'domain_registered_date_time', n.get_datetime_value()),
-            "first_seen_date_time": lambda n : setattr(self, 'first_seen_date_time', n.get_datetime_value()),
-            "last_seen_date_time": lambda n : setattr(self, 'last_seen_date_time', n.get_datetime_value()),
+            "activityGroupNames": lambda n : setattr(self, 'activity_group_names', n.get_collection_of_primitive_values(str)),
+            "azureSubscriptionId": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
+            "azureTenantId": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
+            "countHits": lambda n : setattr(self, 'count_hits', n.get_int_value()),
+            "countInOrg": lambda n : setattr(self, 'count_in_org', n.get_int_value()),
+            "domainCategories": lambda n : setattr(self, 'domain_categories', n.get_collection_of_object_values(reputation_category.ReputationCategory)),
+            "domainRegisteredDateTime": lambda n : setattr(self, 'domain_registered_date_time', n.get_datetime_value()),
+            "firstSeenDateTime": lambda n : setattr(self, 'first_seen_date_time', n.get_datetime_value()),
+            "lastSeenDateTime": lambda n : setattr(self, 'last_seen_date_time', n.get_datetime_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "registrant": lambda n : setattr(self, 'registrant', n.get_object_value(domain_registrant.DomainRegistrant)),
-            "risk_score": lambda n : setattr(self, 'risk_score', n.get_str_value()),
+            "riskScore": lambda n : setattr(self, 'risk_score', n.get_str_value()),
             "tags": lambda n : setattr(self, 'tags', n.get_collection_of_primitive_values(str)),
-            "vendor_information": lambda n : setattr(self, 'vendor_information', n.get_object_value(security_vendor_information.SecurityVendorInformation)),
+            "vendorInformation": lambda n : setattr(self, 'vendor_information', n.get_object_value(security_vendor_information.SecurityVendorInformation)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -232,7 +232,7 @@ class DomainSecurityProfile(entity.Entity):
         """
         Sets the lastSeenDateTime property value. The lastSeenDateTime property
         Args:
-            value: Value to set for the lastSeenDateTime property.
+            value: Value to set for the last_seen_date_time property.
         """
         self._last_seen_date_time = value
     
@@ -283,7 +283,7 @@ class DomainSecurityProfile(entity.Entity):
         """
         Sets the riskScore property value. The riskScore property
         Args:
-            value: Value to set for the riskScore property.
+            value: Value to set for the risk_score property.
         """
         self._risk_score = value
     
@@ -341,7 +341,7 @@ class DomainSecurityProfile(entity.Entity):
         """
         Sets the vendorInformation property value. The vendorInformation property
         Args:
-            value: Value to set for the vendorInformation property.
+            value: Value to set for the vendor_information property.
         """
         self._vendor_information = value
     

@@ -37,7 +37,7 @@ class VppTokenLicenseSummary(AdditionalDataHolder, Parsable):
         """
         Sets the appleId property value. The Apple Id associated with the given Apple Volume Purchase Program Token.
         Args:
-            value: Value to set for the appleId property.
+            value: Value to set for the apple_id property.
         """
         self._apple_id = value
     
@@ -54,7 +54,7 @@ class VppTokenLicenseSummary(AdditionalDataHolder, Parsable):
         """
         Sets the availableLicenseCount property value. The number of VPP licenses available.
         Args:
-            value: Value to set for the availableLicenseCount property.
+            value: Value to set for the available_license_count property.
         """
         self._available_license_count = value
     
@@ -96,12 +96,12 @@ class VppTokenLicenseSummary(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "apple_id": lambda n : setattr(self, 'apple_id', n.get_str_value()),
-            "available_license_count": lambda n : setattr(self, 'available_license_count', n.get_int_value()),
+            "appleId": lambda n : setattr(self, 'apple_id', n.get_str_value()),
+            "availableLicenseCount": lambda n : setattr(self, 'available_license_count', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "organization_name": lambda n : setattr(self, 'organization_name', n.get_str_value()),
-            "used_license_count": lambda n : setattr(self, 'used_license_count', n.get_int_value()),
-            "vpp_token_id": lambda n : setattr(self, 'vpp_token_id', n.get_str_value()),
+            "organizationName": lambda n : setattr(self, 'organization_name', n.get_str_value()),
+            "usedLicenseCount": lambda n : setattr(self, 'used_license_count', n.get_int_value()),
+            "vppTokenId": lambda n : setattr(self, 'vpp_token_id', n.get_str_value()),
         }
         return fields
     
@@ -118,7 +118,7 @@ class VppTokenLicenseSummary(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -135,7 +135,7 @@ class VppTokenLicenseSummary(AdditionalDataHolder, Parsable):
         """
         Sets the organizationName property value. The organization associated with the Apple Volume Purchase Program Token.
         Args:
-            value: Value to set for the organizationName property.
+            value: Value to set for the organization_name property.
         """
         self._organization_name = value
     
@@ -168,7 +168,7 @@ class VppTokenLicenseSummary(AdditionalDataHolder, Parsable):
         """
         Sets the usedLicenseCount property value. The number of VPP licenses in use.
         Args:
-            value: Value to set for the usedLicenseCount property.
+            value: Value to set for the used_license_count property.
         """
         self._used_license_count = value
     
@@ -185,7 +185,7 @@ class VppTokenLicenseSummary(AdditionalDataHolder, Parsable):
         """
         Sets the vppTokenId property value. Identifier of the VPP token.
         Args:
-            value: Value to set for the vppTokenId property.
+            value: Value to set for the vpp_token_id property.
         """
         self._vpp_token_id = value
     

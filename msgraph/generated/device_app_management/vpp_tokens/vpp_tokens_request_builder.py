@@ -11,8 +11,8 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.device_app_management.vpp_tokens.count.count_request_builder')
-get_licenses_for_app_with_bundle_id_request_builder = lazy_import('msgraph.generated.device_app_management.vpp_tokens.get_licenses_for_app_with_bundle_id.get_licenses_for_app_with_bundle_id_request_builder')
-sync_license_counts_request_builder = lazy_import('msgraph.generated.device_app_management.vpp_tokens.sync_license_counts.sync_license_counts_request_builder')
+get_licenses_for_app_with_bundle_id_request_builder = lazy_import('msgraph.generated.device_app_management.vpp_tokens.microsoft_graph_get_licenses_for_app_with_bundle_id.get_licenses_for_app_with_bundle_id_request_builder')
+sync_license_counts_request_builder = lazy_import('msgraph.generated.device_app_management.vpp_tokens.microsoft_graph_sync_license_counts.sync_license_counts_request_builder')
 vpp_token = lazy_import('msgraph.generated.models.vpp_token')
 vpp_token_collection_response = lazy_import('msgraph.generated.models.vpp_token_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -29,7 +29,7 @@ class VppTokensRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sync_license_counts(self) -> sync_license_counts_request_builder.SyncLicenseCountsRequestBuilder:
+    def microsoft_graph_sync_license_counts(self) -> sync_license_counts_request_builder.SyncLicenseCountsRequestBuilder:
         """
         Provides operations to call the syncLicenseCounts method.
         """
@@ -53,12 +53,11 @@ class VppTokensRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[VppTokensRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[vpp_token_collection_response.VppTokenCollectionResponse]:
+    async def get(self,request_configuration: Optional[VppTokensRequestBuilderGetRequestConfiguration] = None) -> Optional[vpp_token_collection_response.VppTokenCollectionResponse]:
         """
         List of Vpp tokens for this organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[vpp_token_collection_response.VppTokenCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -70,9 +69,9 @@ class VppTokensRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, vpp_token_collection_response.VppTokenCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, vpp_token_collection_response.VppTokenCollectionResponse, error_mapping)
     
-    def get_licenses_for_app_with_bundle_id(self,bundle_id: Optional[str] = None) -> get_licenses_for_app_with_bundle_id_request_builder.GetLicensesForAppWithBundleIdRequestBuilder:
+    def microsoft_graph_get_licenses_for_app_with_bundle_id(self,bundle_id: Optional[str] = None) -> get_licenses_for_app_with_bundle_id_request_builder.GetLicensesForAppWithBundleIdRequestBuilder:
         """
         Provides operations to call the getLicensesForApp method.
         Args:
@@ -83,13 +82,12 @@ class VppTokensRequestBuilder():
             raise Exception("bundle_id cannot be undefined")
         return get_licenses_for_app_with_bundle_id_request_builder.GetLicensesForAppWithBundleIdRequestBuilder(self.request_adapter, self.path_parameters, bundleId)
     
-    async def post(self,body: Optional[vpp_token.VppToken] = None, request_configuration: Optional[VppTokensRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[vpp_token.VppToken]:
+    async def post(self,body: Optional[vpp_token.VppToken] = None, request_configuration: Optional[VppTokensRequestBuilderPostRequestConfiguration] = None) -> Optional[vpp_token.VppToken]:
         """
         Create new navigation property to vppTokens for deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[vpp_token.VppToken]
         """
         if body is None:
@@ -103,7 +101,7 @@ class VppTokensRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, vpp_token.VppToken, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, vpp_token.VppToken, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[VppTokensRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

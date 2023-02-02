@@ -41,7 +41,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the activityGroupNames property value. The cyber threat intelligence name(s) for the parties responsible for the malicious activity covered by the threat indicator.
         Args:
-            value: Value to set for the activityGroupNames property.
+            value: Value to set for the activity_group_names property.
         """
         self._activity_group_names = value
     
@@ -58,7 +58,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the additionalInformation property value. A catchall area into which extra data from the indicator not covered by the other tiIndicator properties may be placed. Data placed into additionalInformation will typically not be utilized by the targetProduct security tool.
         Args:
-            value: Value to set for the additionalInformation property.
+            value: Value to set for the additional_information property.
         """
         self._additional_information = value
     
@@ -75,7 +75,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the azureTenantId property value. Stamped by the system when the indicator is ingested. The Azure Active Directory tenant id of submitting client. Required.
         Args:
-            value: Value to set for the azureTenantId property.
+            value: Value to set for the azure_tenant_id property.
         """
         self._azure_tenant_id = value
     
@@ -262,7 +262,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the diamondModel property value. The area of the Diamond Model in which this indicator exists. Possible values are: unknown, adversary, capability, infrastructure, victim.
         Args:
-            value: Value to set for the diamondModel property.
+            value: Value to set for the diamond_model property.
         """
         self._diamond_model = value
     
@@ -279,7 +279,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the domainName property value. The domainName property
         Args:
-            value: Value to set for the domainName property.
+            value: Value to set for the domain_name property.
         """
         self._domain_name = value
     
@@ -296,7 +296,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the emailEncoding property value. The emailEncoding property
         Args:
-            value: Value to set for the emailEncoding property.
+            value: Value to set for the email_encoding property.
         """
         self._email_encoding = value
     
@@ -313,7 +313,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the emailLanguage property value. The emailLanguage property
         Args:
-            value: Value to set for the emailLanguage property.
+            value: Value to set for the email_language property.
         """
         self._email_language = value
     
@@ -330,7 +330,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the emailRecipient property value. The emailRecipient property
         Args:
-            value: Value to set for the emailRecipient property.
+            value: Value to set for the email_recipient property.
         """
         self._email_recipient = value
     
@@ -347,7 +347,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the emailSenderAddress property value. The emailSenderAddress property
         Args:
-            value: Value to set for the emailSenderAddress property.
+            value: Value to set for the email_sender_address property.
         """
         self._email_sender_address = value
     
@@ -364,7 +364,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the emailSenderName property value. The emailSenderName property
         Args:
-            value: Value to set for the emailSenderName property.
+            value: Value to set for the email_sender_name property.
         """
         self._email_sender_name = value
     
@@ -381,7 +381,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the emailSourceDomain property value. The emailSourceDomain property
         Args:
-            value: Value to set for the emailSourceDomain property.
+            value: Value to set for the email_source_domain property.
         """
         self._email_source_domain = value
     
@@ -398,7 +398,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the emailSourceIpAddress property value. The emailSourceIpAddress property
         Args:
-            value: Value to set for the emailSourceIpAddress property.
+            value: Value to set for the email_source_ip_address property.
         """
         self._email_source_ip_address = value
     
@@ -415,7 +415,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the emailSubject property value. The emailSubject property
         Args:
-            value: Value to set for the emailSubject property.
+            value: Value to set for the email_subject property.
         """
         self._email_subject = value
     
@@ -432,7 +432,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the emailXMailer property value. The emailXMailer property
         Args:
-            value: Value to set for the emailXMailer property.
+            value: Value to set for the email_x_mailer property.
         """
         self._email_x_mailer = value
     
@@ -449,7 +449,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the expirationDateTime property value. DateTime string indicating when the Indicator expires. All indicators must have an expiration date to avoid stale indicators persisting in the system. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Required.
         Args:
-            value: Value to set for the expirationDateTime property.
+            value: Value to set for the expiration_date_time property.
         """
         self._expiration_date_time = value
     
@@ -466,7 +466,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the externalId property value. An identification number that ties the indicator back to the indicator provider’s system (e.g. a foreign key).
         Args:
-            value: Value to set for the externalId property.
+            value: Value to set for the external_id property.
         """
         self._external_id = value
     
@@ -483,7 +483,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the fileCompileDateTime property value. The fileCompileDateTime property
         Args:
-            value: Value to set for the fileCompileDateTime property.
+            value: Value to set for the file_compile_date_time property.
         """
         self._file_compile_date_time = value
     
@@ -500,7 +500,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the fileCreatedDateTime property value. The fileCreatedDateTime property
         Args:
-            value: Value to set for the fileCreatedDateTime property.
+            value: Value to set for the file_created_date_time property.
         """
         self._file_created_date_time = value
     
@@ -517,7 +517,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the fileHashType property value. The fileHashType property
         Args:
-            value: Value to set for the fileHashType property.
+            value: Value to set for the file_hash_type property.
         """
         self._file_hash_type = value
     
@@ -534,7 +534,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the fileHashValue property value. The fileHashValue property
         Args:
-            value: Value to set for the fileHashValue property.
+            value: Value to set for the file_hash_value property.
         """
         self._file_hash_value = value
     
@@ -551,7 +551,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the fileMutexName property value. The fileMutexName property
         Args:
-            value: Value to set for the fileMutexName property.
+            value: Value to set for the file_mutex_name property.
         """
         self._file_mutex_name = value
     
@@ -568,7 +568,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the fileName property value. The fileName property
         Args:
-            value: Value to set for the fileName property.
+            value: Value to set for the file_name property.
         """
         self._file_name = value
     
@@ -585,7 +585,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the filePacker property value. The filePacker property
         Args:
-            value: Value to set for the filePacker property.
+            value: Value to set for the file_packer property.
         """
         self._file_packer = value
     
@@ -602,7 +602,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the filePath property value. The filePath property
         Args:
-            value: Value to set for the filePath property.
+            value: Value to set for the file_path property.
         """
         self._file_path = value
     
@@ -619,7 +619,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the fileSize property value. The fileSize property
         Args:
-            value: Value to set for the fileSize property.
+            value: Value to set for the file_size property.
         """
         self._file_size = value
     
@@ -636,7 +636,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the fileType property value. The fileType property
         Args:
-            value: Value to set for the fileType property.
+            value: Value to set for the file_type property.
         """
         self._file_type = value
     
@@ -647,63 +647,63 @@ class TiIndicator(entity.Entity):
         """
         fields = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(ti_action.TiAction)),
-            "activity_group_names": lambda n : setattr(self, 'activity_group_names', n.get_collection_of_primitive_values(str)),
-            "additional_information": lambda n : setattr(self, 'additional_information', n.get_str_value()),
-            "azure_tenant_id": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
+            "activityGroupNames": lambda n : setattr(self, 'activity_group_names', n.get_collection_of_primitive_values(str)),
+            "additionalInformation": lambda n : setattr(self, 'additional_information', n.get_str_value()),
+            "azureTenantId": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
             "confidence": lambda n : setattr(self, 'confidence', n.get_int_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "diamond_model": lambda n : setattr(self, 'diamond_model', n.get_enum_value(diamond_model.DiamondModel)),
-            "domain_name": lambda n : setattr(self, 'domain_name', n.get_str_value()),
-            "email_encoding": lambda n : setattr(self, 'email_encoding', n.get_str_value()),
-            "email_language": lambda n : setattr(self, 'email_language', n.get_str_value()),
-            "email_recipient": lambda n : setattr(self, 'email_recipient', n.get_str_value()),
-            "email_sender_address": lambda n : setattr(self, 'email_sender_address', n.get_str_value()),
-            "email_sender_name": lambda n : setattr(self, 'email_sender_name', n.get_str_value()),
-            "email_source_domain": lambda n : setattr(self, 'email_source_domain', n.get_str_value()),
-            "email_source_ip_address": lambda n : setattr(self, 'email_source_ip_address', n.get_str_value()),
-            "email_subject": lambda n : setattr(self, 'email_subject', n.get_str_value()),
-            "email_x_mailer": lambda n : setattr(self, 'email_x_mailer', n.get_str_value()),
-            "expiration_date_time": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
-            "external_id": lambda n : setattr(self, 'external_id', n.get_str_value()),
-            "file_compile_date_time": lambda n : setattr(self, 'file_compile_date_time', n.get_datetime_value()),
-            "file_created_date_time": lambda n : setattr(self, 'file_created_date_time', n.get_datetime_value()),
-            "file_hash_type": lambda n : setattr(self, 'file_hash_type', n.get_enum_value(file_hash_type.FileHashType)),
-            "file_hash_value": lambda n : setattr(self, 'file_hash_value', n.get_str_value()),
-            "file_mutex_name": lambda n : setattr(self, 'file_mutex_name', n.get_str_value()),
-            "file_name": lambda n : setattr(self, 'file_name', n.get_str_value()),
-            "file_packer": lambda n : setattr(self, 'file_packer', n.get_str_value()),
-            "file_path": lambda n : setattr(self, 'file_path', n.get_str_value()),
-            "file_size": lambda n : setattr(self, 'file_size', n.get_int_value()),
-            "file_type": lambda n : setattr(self, 'file_type', n.get_str_value()),
-            "ingested_date_time": lambda n : setattr(self, 'ingested_date_time', n.get_datetime_value()),
-            "is_active": lambda n : setattr(self, 'is_active', n.get_bool_value()),
-            "kill_chain": lambda n : setattr(self, 'kill_chain', n.get_collection_of_primitive_values(str)),
-            "known_false_positives": lambda n : setattr(self, 'known_false_positives', n.get_str_value()),
-            "last_reported_date_time": lambda n : setattr(self, 'last_reported_date_time', n.get_datetime_value()),
-            "malware_family_names": lambda n : setattr(self, 'malware_family_names', n.get_collection_of_primitive_values(str)),
-            "network_cidr_block": lambda n : setattr(self, 'network_cidr_block', n.get_str_value()),
-            "network_destination_asn": lambda n : setattr(self, 'network_destination_asn', n.get_int_value()),
-            "network_destination_cidr_block": lambda n : setattr(self, 'network_destination_cidr_block', n.get_str_value()),
-            "network_destination_i_pv4": lambda n : setattr(self, 'network_destination_i_pv4', n.get_str_value()),
-            "network_destination_i_pv6": lambda n : setattr(self, 'network_destination_i_pv6', n.get_str_value()),
-            "network_destination_port": lambda n : setattr(self, 'network_destination_port', n.get_int_value()),
-            "network_i_pv4": lambda n : setattr(self, 'network_i_pv4', n.get_str_value()),
-            "network_i_pv6": lambda n : setattr(self, 'network_i_pv6', n.get_str_value()),
-            "network_port": lambda n : setattr(self, 'network_port', n.get_int_value()),
-            "network_protocol": lambda n : setattr(self, 'network_protocol', n.get_int_value()),
-            "network_source_asn": lambda n : setattr(self, 'network_source_asn', n.get_int_value()),
-            "network_source_cidr_block": lambda n : setattr(self, 'network_source_cidr_block', n.get_str_value()),
-            "network_source_i_pv4": lambda n : setattr(self, 'network_source_i_pv4', n.get_str_value()),
-            "network_source_i_pv6": lambda n : setattr(self, 'network_source_i_pv6', n.get_str_value()),
-            "network_source_port": lambda n : setattr(self, 'network_source_port', n.get_int_value()),
-            "passive_only": lambda n : setattr(self, 'passive_only', n.get_bool_value()),
+            "diamondModel": lambda n : setattr(self, 'diamond_model', n.get_enum_value(diamond_model.DiamondModel)),
+            "domainName": lambda n : setattr(self, 'domain_name', n.get_str_value()),
+            "emailEncoding": lambda n : setattr(self, 'email_encoding', n.get_str_value()),
+            "emailLanguage": lambda n : setattr(self, 'email_language', n.get_str_value()),
+            "emailRecipient": lambda n : setattr(self, 'email_recipient', n.get_str_value()),
+            "emailSenderAddress": lambda n : setattr(self, 'email_sender_address', n.get_str_value()),
+            "emailSenderName": lambda n : setattr(self, 'email_sender_name', n.get_str_value()),
+            "emailSourceDomain": lambda n : setattr(self, 'email_source_domain', n.get_str_value()),
+            "emailSourceIpAddress": lambda n : setattr(self, 'email_source_ip_address', n.get_str_value()),
+            "emailSubject": lambda n : setattr(self, 'email_subject', n.get_str_value()),
+            "emailXMailer": lambda n : setattr(self, 'email_x_mailer', n.get_str_value()),
+            "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
+            "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),
+            "fileCompileDateTime": lambda n : setattr(self, 'file_compile_date_time', n.get_datetime_value()),
+            "fileCreatedDateTime": lambda n : setattr(self, 'file_created_date_time', n.get_datetime_value()),
+            "fileHashType": lambda n : setattr(self, 'file_hash_type', n.get_enum_value(file_hash_type.FileHashType)),
+            "fileHashValue": lambda n : setattr(self, 'file_hash_value', n.get_str_value()),
+            "fileMutexName": lambda n : setattr(self, 'file_mutex_name', n.get_str_value()),
+            "fileName": lambda n : setattr(self, 'file_name', n.get_str_value()),
+            "filePacker": lambda n : setattr(self, 'file_packer', n.get_str_value()),
+            "filePath": lambda n : setattr(self, 'file_path', n.get_str_value()),
+            "fileSize": lambda n : setattr(self, 'file_size', n.get_int_value()),
+            "fileType": lambda n : setattr(self, 'file_type', n.get_str_value()),
+            "ingestedDateTime": lambda n : setattr(self, 'ingested_date_time', n.get_datetime_value()),
+            "isActive": lambda n : setattr(self, 'is_active', n.get_bool_value()),
+            "killChain": lambda n : setattr(self, 'kill_chain', n.get_collection_of_primitive_values(str)),
+            "knownFalsePositives": lambda n : setattr(self, 'known_false_positives', n.get_str_value()),
+            "lastReportedDateTime": lambda n : setattr(self, 'last_reported_date_time', n.get_datetime_value()),
+            "malwareFamilyNames": lambda n : setattr(self, 'malware_family_names', n.get_collection_of_primitive_values(str)),
+            "networkCidrBlock": lambda n : setattr(self, 'network_cidr_block', n.get_str_value()),
+            "networkDestinationAsn": lambda n : setattr(self, 'network_destination_asn', n.get_int_value()),
+            "networkDestinationCidrBlock": lambda n : setattr(self, 'network_destination_cidr_block', n.get_str_value()),
+            "networkDestinationIPv4": lambda n : setattr(self, 'network_destination_i_pv4', n.get_str_value()),
+            "networkDestinationIPv6": lambda n : setattr(self, 'network_destination_i_pv6', n.get_str_value()),
+            "networkDestinationPort": lambda n : setattr(self, 'network_destination_port', n.get_int_value()),
+            "networkIPv4": lambda n : setattr(self, 'network_i_pv4', n.get_str_value()),
+            "networkIPv6": lambda n : setattr(self, 'network_i_pv6', n.get_str_value()),
+            "networkPort": lambda n : setattr(self, 'network_port', n.get_int_value()),
+            "networkProtocol": lambda n : setattr(self, 'network_protocol', n.get_int_value()),
+            "networkSourceAsn": lambda n : setattr(self, 'network_source_asn', n.get_int_value()),
+            "networkSourceCidrBlock": lambda n : setattr(self, 'network_source_cidr_block', n.get_str_value()),
+            "networkSourceIPv4": lambda n : setattr(self, 'network_source_i_pv4', n.get_str_value()),
+            "networkSourceIPv6": lambda n : setattr(self, 'network_source_i_pv6', n.get_str_value()),
+            "networkSourcePort": lambda n : setattr(self, 'network_source_port', n.get_int_value()),
+            "passiveOnly": lambda n : setattr(self, 'passive_only', n.get_bool_value()),
             "severity": lambda n : setattr(self, 'severity', n.get_int_value()),
             "tags": lambda n : setattr(self, 'tags', n.get_collection_of_primitive_values(str)),
-            "target_product": lambda n : setattr(self, 'target_product', n.get_str_value()),
-            "threat_type": lambda n : setattr(self, 'threat_type', n.get_str_value()),
-            "tlp_level": lambda n : setattr(self, 'tlp_level', n.get_enum_value(tlp_level.TlpLevel)),
+            "targetProduct": lambda n : setattr(self, 'target_product', n.get_str_value()),
+            "threatType": lambda n : setattr(self, 'threat_type', n.get_str_value()),
+            "tlpLevel": lambda n : setattr(self, 'tlp_level', n.get_enum_value(tlp_level.TlpLevel)),
             "url": lambda n : setattr(self, 'url', n.get_str_value()),
-            "user_agent": lambda n : setattr(self, 'user_agent', n.get_str_value()),
+            "userAgent": lambda n : setattr(self, 'user_agent', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -722,7 +722,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the ingestedDateTime property value. Stamped by the system when the indicator is ingested. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the ingestedDateTime property.
+            value: Value to set for the ingested_date_time property.
         """
         self._ingested_date_time = value
     
@@ -739,7 +739,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the isActive property value. Used to deactivate indicators within system. By default, any indicator submitted is set as active. However, providers may submit existing indicators with this set to ‘False’ to deactivate indicators in the system.
         Args:
-            value: Value to set for the isActive property.
+            value: Value to set for the is_active property.
         """
         self._is_active = value
     
@@ -756,7 +756,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the killChain property value. A JSON array of strings that describes which point or points on the Kill Chain this indicator targets. See ‘killChain values’ below for exact values.
         Args:
-            value: Value to set for the killChain property.
+            value: Value to set for the kill_chain property.
         """
         self._kill_chain = value
     
@@ -773,7 +773,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the knownFalsePositives property value. Scenarios in which the indicator may cause false positives. This should be human-readable text.
         Args:
-            value: Value to set for the knownFalsePositives property.
+            value: Value to set for the known_false_positives property.
         """
         self._known_false_positives = value
     
@@ -790,7 +790,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the lastReportedDateTime property value. The last time the indicator was seen. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the lastReportedDateTime property.
+            value: Value to set for the last_reported_date_time property.
         """
         self._last_reported_date_time = value
     
@@ -807,7 +807,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the malwareFamilyNames property value. The malware family name associated with an indicator if it exists. Microsoft prefers the Microsoft malware family name if at all possible which can be found via the Windows Defender Security Intelligence threat encyclopedia.
         Args:
-            value: Value to set for the malwareFamilyNames property.
+            value: Value to set for the malware_family_names property.
         """
         self._malware_family_names = value
     
@@ -824,7 +824,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the networkCidrBlock property value. The networkCidrBlock property
         Args:
-            value: Value to set for the networkCidrBlock property.
+            value: Value to set for the network_cidr_block property.
         """
         self._network_cidr_block = value
     
@@ -841,7 +841,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the networkDestinationAsn property value. The networkDestinationAsn property
         Args:
-            value: Value to set for the networkDestinationAsn property.
+            value: Value to set for the network_destination_asn property.
         """
         self._network_destination_asn = value
     
@@ -858,7 +858,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the networkDestinationCidrBlock property value. The networkDestinationCidrBlock property
         Args:
-            value: Value to set for the networkDestinationCidrBlock property.
+            value: Value to set for the network_destination_cidr_block property.
         """
         self._network_destination_cidr_block = value
     
@@ -875,7 +875,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the networkDestinationIPv4 property value. The networkDestinationIPv4 property
         Args:
-            value: Value to set for the networkDestinationIPv4 property.
+            value: Value to set for the network_destination_i_pv4 property.
         """
         self._network_destination_i_pv4 = value
     
@@ -892,7 +892,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the networkDestinationIPv6 property value. The networkDestinationIPv6 property
         Args:
-            value: Value to set for the networkDestinationIPv6 property.
+            value: Value to set for the network_destination_i_pv6 property.
         """
         self._network_destination_i_pv6 = value
     
@@ -909,7 +909,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the networkDestinationPort property value. The networkDestinationPort property
         Args:
-            value: Value to set for the networkDestinationPort property.
+            value: Value to set for the network_destination_port property.
         """
         self._network_destination_port = value
     
@@ -926,7 +926,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the networkIPv4 property value. The networkIPv4 property
         Args:
-            value: Value to set for the networkIPv4 property.
+            value: Value to set for the network_i_pv4 property.
         """
         self._network_i_pv4 = value
     
@@ -943,7 +943,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the networkIPv6 property value. The networkIPv6 property
         Args:
-            value: Value to set for the networkIPv6 property.
+            value: Value to set for the network_i_pv6 property.
         """
         self._network_i_pv6 = value
     
@@ -960,7 +960,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the networkPort property value. The networkPort property
         Args:
-            value: Value to set for the networkPort property.
+            value: Value to set for the network_port property.
         """
         self._network_port = value
     
@@ -977,7 +977,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the networkProtocol property value. The networkProtocol property
         Args:
-            value: Value to set for the networkProtocol property.
+            value: Value to set for the network_protocol property.
         """
         self._network_protocol = value
     
@@ -994,7 +994,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the networkSourceAsn property value. The networkSourceAsn property
         Args:
-            value: Value to set for the networkSourceAsn property.
+            value: Value to set for the network_source_asn property.
         """
         self._network_source_asn = value
     
@@ -1011,7 +1011,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the networkSourceCidrBlock property value. The networkSourceCidrBlock property
         Args:
-            value: Value to set for the networkSourceCidrBlock property.
+            value: Value to set for the network_source_cidr_block property.
         """
         self._network_source_cidr_block = value
     
@@ -1028,7 +1028,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the networkSourceIPv4 property value. The networkSourceIPv4 property
         Args:
-            value: Value to set for the networkSourceIPv4 property.
+            value: Value to set for the network_source_i_pv4 property.
         """
         self._network_source_i_pv4 = value
     
@@ -1045,7 +1045,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the networkSourceIPv6 property value. The networkSourceIPv6 property
         Args:
-            value: Value to set for the networkSourceIPv6 property.
+            value: Value to set for the network_source_i_pv6 property.
         """
         self._network_source_i_pv6 = value
     
@@ -1062,7 +1062,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the networkSourcePort property value. The networkSourcePort property
         Args:
-            value: Value to set for the networkSourcePort property.
+            value: Value to set for the network_source_port property.
         """
         self._network_source_port = value
     
@@ -1079,7 +1079,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the passiveOnly property value. Determines if the indicator should trigger an event that is visible to an end-user. When set to ‘true,’ security tools will not notify the end user that a ‘hit’ has occurred. This is most often treated as audit or silent mode by security products where they will simply log that a match occurred but will not perform the action. Default value is false.
         Args:
-            value: Value to set for the passiveOnly property.
+            value: Value to set for the passive_only property.
         """
         self._passive_only = value
     
@@ -1198,7 +1198,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the targetProduct property value. A string value representing a single security product to which the indicator should be applied. Acceptable values are: Azure Sentinel, Microsoft Defender ATP. Required
         Args:
-            value: Value to set for the targetProduct property.
+            value: Value to set for the target_product property.
         """
         self._target_product = value
     
@@ -1215,7 +1215,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the threatType property value. Each indicator must have a valid Indicator Threat Type. Possible values are: Botnet, C2, CryptoMining, Darknet, DDoS, MaliciousUrl, Malware, Phishing, Proxy, PUA, WatchList. Required.
         Args:
-            value: Value to set for the threatType property.
+            value: Value to set for the threat_type property.
         """
         self._threat_type = value
     
@@ -1232,7 +1232,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the tlpLevel property value. Traffic Light Protocol value for the indicator. Possible values are: unknown, white, green, amber, red. Required.
         Args:
-            value: Value to set for the tlpLevel property.
+            value: Value to set for the tlp_level property.
         """
         self._tlp_level = value
     
@@ -1266,7 +1266,7 @@ class TiIndicator(entity.Entity):
         """
         Sets the userAgent property value. The userAgent property
         Args:
-            value: Value to set for the userAgent property.
+            value: Value to set for the user_agent property.
         """
         self._user_agent = value
     

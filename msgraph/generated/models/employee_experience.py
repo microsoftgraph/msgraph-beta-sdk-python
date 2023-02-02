@@ -53,7 +53,7 @@ class EmployeeExperience(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "learning_providers": lambda n : setattr(self, 'learning_providers', n.get_collection_of_object_values(learning_provider.LearningProvider)),
+            "learningProviders": lambda n : setattr(self, 'learning_providers', n.get_collection_of_object_values(learning_provider.LearningProvider)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -71,7 +71,7 @@ class EmployeeExperience(AdditionalDataHolder, Parsable):
         """
         Sets the learningProviders property value. A collection of learning providers.
         Args:
-            value: Value to set for the learningProviders property.
+            value: Value to set for the learning_providers property.
         """
         self._learning_providers = value
     
@@ -88,7 +88,7 @@ class EmployeeExperience(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

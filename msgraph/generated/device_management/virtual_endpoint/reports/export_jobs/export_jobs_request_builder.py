@@ -44,12 +44,11 @@ class ExportJobsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ExportJobsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_export_job_collection_response.CloudPcExportJobCollectionResponse]:
+    async def get(self,request_configuration: Optional[ExportJobsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_export_job_collection_response.CloudPcExportJobCollectionResponse]:
         """
         The export jobs created for downloading reports.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_export_job_collection_response.CloudPcExportJobCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class ExportJobsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_export_job_collection_response.CloudPcExportJobCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_export_job_collection_response.CloudPcExportJobCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[cloud_pc_export_job.CloudPcExportJob] = None, request_configuration: Optional[ExportJobsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_export_job.CloudPcExportJob]:
+    async def post(self,body: Optional[cloud_pc_export_job.CloudPcExportJob] = None, request_configuration: Optional[ExportJobsRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_pc_export_job.CloudPcExportJob]:
         """
-        Create a new cloudPcExportJob object.
+        Create a new cloudPcExportJob resource to initiate downloading the entire or specified portion of a report. Use the GET cloudPcExportJob operation to verify the **exportJobStatus** property of the **cloudPcExportJob** resource. When the property becomes `completed`, the report has finished downloading in the location specified by the **exportUrl** property. 
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_export_job.CloudPcExportJob]
         """
         if body is None:
@@ -83,7 +81,7 @@ class ExportJobsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_export_job.CloudPcExportJob, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_export_job.CloudPcExportJob, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ExportJobsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -105,7 +103,7 @@ class ExportJobsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[cloud_pc_export_job.CloudPcExportJob] = None, request_configuration: Optional[ExportJobsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create a new cloudPcExportJob object.
+        Create a new cloudPcExportJob resource to initiate downloading the entire or specified portion of a report. Use the GET cloudPcExportJob operation to verify the **exportJobStatus** property of the **cloudPcExportJob** resource. When the property becomes `completed`, the report has finished downloading in the location specified by the **exportUrl** property. 
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

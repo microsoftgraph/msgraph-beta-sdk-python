@@ -36,7 +36,7 @@ class DeviceManagementSettings(AdditionalDataHolder, Parsable):
         """
         Sets the androidDeviceAdministratorEnrollmentEnabled property value. The property to determine if Android device administrator enrollment is enabled for this account.
         Args:
-            value: Value to set for the androidDeviceAdministratorEnrollmentEnabled property.
+            value: Value to set for the android_device_administrator_enrollment_enabled property.
         """
         self._android_device_administrator_enrollment_enabled = value
     
@@ -101,7 +101,7 @@ class DeviceManagementSettings(AdditionalDataHolder, Parsable):
         """
         Sets the derivedCredentialProvider property value. Provider type for Derived Credentials.
         Args:
-            value: Value to set for the derivedCredentialProvider property.
+            value: Value to set for the derived_credential_provider property.
         """
         self._derived_credential_provider = value
     
@@ -118,7 +118,7 @@ class DeviceManagementSettings(AdditionalDataHolder, Parsable):
         """
         Sets the derivedCredentialUrl property value. The Derived Credential Provider self-service URI.
         Args:
-            value: Value to set for the derivedCredentialUrl property.
+            value: Value to set for the derived_credential_url property.
         """
         self._derived_credential_url = value
     
@@ -135,7 +135,7 @@ class DeviceManagementSettings(AdditionalDataHolder, Parsable):
         """
         Sets the deviceComplianceCheckinThresholdDays property value. The number of days a device is allowed to go without checking in to remain compliant.
         Args:
-            value: Value to set for the deviceComplianceCheckinThresholdDays property.
+            value: Value to set for the device_compliance_checkin_threshold_days property.
         """
         self._device_compliance_checkin_threshold_days = value
     
@@ -152,7 +152,7 @@ class DeviceManagementSettings(AdditionalDataHolder, Parsable):
         """
         Sets the deviceInactivityBeforeRetirementInDay property value. When the device does not check in for specified number of days, the company data might be removed and the device will not be under management. Valid values 30 to 270
         Args:
-            value: Value to set for the deviceInactivityBeforeRetirementInDay property.
+            value: Value to set for the device_inactivity_before_retirement_in_day property.
         """
         self._device_inactivity_before_retirement_in_day = value
     
@@ -169,7 +169,7 @@ class DeviceManagementSettings(AdditionalDataHolder, Parsable):
         """
         Sets the enableAutopilotDiagnostics property value. Determines whether the autopilot diagnostic feature is enabled or not.
         Args:
-            value: Value to set for the enableAutopilotDiagnostics property.
+            value: Value to set for the enable_autopilot_diagnostics property.
         """
         self._enable_autopilot_diagnostics = value
     
@@ -186,7 +186,7 @@ class DeviceManagementSettings(AdditionalDataHolder, Parsable):
         """
         Sets the enableDeviceGroupMembershipReport property value. Determines whether the device group membership report feature is enabled or not.
         Args:
-            value: Value to set for the enableDeviceGroupMembershipReport property.
+            value: Value to set for the enable_device_group_membership_report property.
         """
         self._enable_device_group_membership_report = value
     
@@ -203,7 +203,7 @@ class DeviceManagementSettings(AdditionalDataHolder, Parsable):
         """
         Sets the enableEnhancedTroubleshootingExperience property value. Determines whether the enhanced troubleshooting UX is enabled or not.
         Args:
-            value: Value to set for the enableEnhancedTroubleshootingExperience property.
+            value: Value to set for the enable_enhanced_troubleshooting_experience property.
         """
         self._enable_enhanced_troubleshooting_experience = value
     
@@ -220,7 +220,7 @@ class DeviceManagementSettings(AdditionalDataHolder, Parsable):
         """
         Sets the enableLogCollection property value. Determines whether the log collection feature should be available for use.
         Args:
-            value: Value to set for the enableLogCollection property.
+            value: Value to set for the enable_log_collection property.
         """
         self._enable_log_collection = value
     
@@ -237,7 +237,7 @@ class DeviceManagementSettings(AdditionalDataHolder, Parsable):
         """
         Sets the enhancedJailBreak property value. Is feature enabled or not for enhanced jailbreak detection.
         Args:
-            value: Value to set for the enhancedJailBreak property.
+            value: Value to set for the enhanced_jail_break property.
         """
         self._enhanced_jail_break = value
     
@@ -247,20 +247,20 @@ class DeviceManagementSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "android_device_administrator_enrollment_enabled": lambda n : setattr(self, 'android_device_administrator_enrollment_enabled', n.get_bool_value()),
-            "derived_credential_provider": lambda n : setattr(self, 'derived_credential_provider', n.get_enum_value(derived_credential_provider_type.DerivedCredentialProviderType)),
-            "derived_credential_url": lambda n : setattr(self, 'derived_credential_url', n.get_str_value()),
-            "device_compliance_checkin_threshold_days": lambda n : setattr(self, 'device_compliance_checkin_threshold_days', n.get_int_value()),
-            "device_inactivity_before_retirement_in_day": lambda n : setattr(self, 'device_inactivity_before_retirement_in_day', n.get_int_value()),
-            "enable_autopilot_diagnostics": lambda n : setattr(self, 'enable_autopilot_diagnostics', n.get_bool_value()),
-            "enable_device_group_membership_report": lambda n : setattr(self, 'enable_device_group_membership_report', n.get_bool_value()),
-            "enable_enhanced_troubleshooting_experience": lambda n : setattr(self, 'enable_enhanced_troubleshooting_experience', n.get_bool_value()),
-            "enable_log_collection": lambda n : setattr(self, 'enable_log_collection', n.get_bool_value()),
-            "enhanced_jail_break": lambda n : setattr(self, 'enhanced_jail_break', n.get_bool_value()),
-            "ignore_devices_for_unsupported_settings_enabled": lambda n : setattr(self, 'ignore_devices_for_unsupported_settings_enabled', n.get_bool_value()),
-            "is_scheduled_action_enabled": lambda n : setattr(self, 'is_scheduled_action_enabled', n.get_bool_value()),
+            "androidDeviceAdministratorEnrollmentEnabled": lambda n : setattr(self, 'android_device_administrator_enrollment_enabled', n.get_bool_value()),
+            "derivedCredentialProvider": lambda n : setattr(self, 'derived_credential_provider', n.get_enum_value(derived_credential_provider_type.DerivedCredentialProviderType)),
+            "derivedCredentialUrl": lambda n : setattr(self, 'derived_credential_url', n.get_str_value()),
+            "deviceComplianceCheckinThresholdDays": lambda n : setattr(self, 'device_compliance_checkin_threshold_days', n.get_int_value()),
+            "deviceInactivityBeforeRetirementInDay": lambda n : setattr(self, 'device_inactivity_before_retirement_in_day', n.get_int_value()),
+            "enableAutopilotDiagnostics": lambda n : setattr(self, 'enable_autopilot_diagnostics', n.get_bool_value()),
+            "enableDeviceGroupMembershipReport": lambda n : setattr(self, 'enable_device_group_membership_report', n.get_bool_value()),
+            "enableEnhancedTroubleshootingExperience": lambda n : setattr(self, 'enable_enhanced_troubleshooting_experience', n.get_bool_value()),
+            "enableLogCollection": lambda n : setattr(self, 'enable_log_collection', n.get_bool_value()),
+            "enhancedJailBreak": lambda n : setattr(self, 'enhanced_jail_break', n.get_bool_value()),
+            "ignoreDevicesForUnsupportedSettingsEnabled": lambda n : setattr(self, 'ignore_devices_for_unsupported_settings_enabled', n.get_bool_value()),
+            "isScheduledActionEnabled": lambda n : setattr(self, 'is_scheduled_action_enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "secure_by_default": lambda n : setattr(self, 'secure_by_default', n.get_bool_value()),
+            "secureByDefault": lambda n : setattr(self, 'secure_by_default', n.get_bool_value()),
         }
         return fields
     
@@ -277,7 +277,7 @@ class DeviceManagementSettings(AdditionalDataHolder, Parsable):
         """
         Sets the ignoreDevicesForUnsupportedSettingsEnabled property value. The property to determine whether to ignore unsupported compliance settings on certian models of devices.
         Args:
-            value: Value to set for the ignoreDevicesForUnsupportedSettingsEnabled property.
+            value: Value to set for the ignore_devices_for_unsupported_settings_enabled property.
         """
         self._ignore_devices_for_unsupported_settings_enabled = value
     
@@ -294,7 +294,7 @@ class DeviceManagementSettings(AdditionalDataHolder, Parsable):
         """
         Sets the isScheduledActionEnabled property value. Is feature enabled or not for scheduled action for rule.
         Args:
-            value: Value to set for the isScheduledActionEnabled property.
+            value: Value to set for the is_scheduled_action_enabled property.
         """
         self._is_scheduled_action_enabled = value
     
@@ -311,7 +311,7 @@ class DeviceManagementSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -328,7 +328,7 @@ class DeviceManagementSettings(AdditionalDataHolder, Parsable):
         """
         Sets the secureByDefault property value. Device should be noncompliant when there is no compliance policy targeted when this is true
         Args:
-            value: Value to set for the secureByDefault property.
+            value: Value to set for the secure_by_default property.
         """
         self._secure_by_default = value
     

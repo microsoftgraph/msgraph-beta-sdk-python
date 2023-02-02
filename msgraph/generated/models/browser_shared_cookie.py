@@ -73,7 +73,7 @@ class BrowserSharedCookie(entity.Entity):
         """
         Sets the createdDateTime property value. The date and time when the shared cookie was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -102,7 +102,7 @@ class BrowserSharedCookie(entity.Entity):
         """
         Sets the deletedDateTime property value. The date and time when the shared cookie was deleted.
         Args:
-            value: Value to set for the deletedDateTime property.
+            value: Value to set for the deleted_date_time property.
         """
         self._deleted_date_time = value
     
@@ -119,7 +119,7 @@ class BrowserSharedCookie(entity.Entity):
         """
         Sets the displayName property value. The name of the cookie.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -130,16 +130,16 @@ class BrowserSharedCookie(entity.Entity):
         """
         fields = {
             "comment": lambda n : setattr(self, 'comment', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "deleted_date_time": lambda n : setattr(self, 'deleted_date_time', n.get_datetime_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "deletedDateTime": lambda n : setattr(self, 'deleted_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "history": lambda n : setattr(self, 'history', n.get_collection_of_object_values(browser_shared_cookie_history.BrowserSharedCookieHistory)),
-            "host_only": lambda n : setattr(self, 'host_only', n.get_bool_value()),
-            "host_or_domain": lambda n : setattr(self, 'host_or_domain', n.get_str_value()),
-            "last_modified_by": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "hostOnly": lambda n : setattr(self, 'host_only', n.get_bool_value()),
+            "hostOrDomain": lambda n : setattr(self, 'host_or_domain', n.get_str_value()),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "path": lambda n : setattr(self, 'path', n.get_str_value()),
-            "source_environment": lambda n : setattr(self, 'source_environment', n.get_enum_value(browser_shared_cookie_source_environment.BrowserSharedCookieSourceEnvironment)),
+            "sourceEnvironment": lambda n : setattr(self, 'source_environment', n.get_enum_value(browser_shared_cookie_source_environment.BrowserSharedCookieSourceEnvironment)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(browser_shared_cookie_status.BrowserSharedCookieStatus)),
         }
         super_fields = super().get_field_deserializers()
@@ -176,7 +176,7 @@ class BrowserSharedCookie(entity.Entity):
         """
         Sets the hostOnly property value. Controls whether a cookie is a host-only or domain cookie.
         Args:
-            value: Value to set for the hostOnly property.
+            value: Value to set for the host_only property.
         """
         self._host_only = value
     
@@ -193,7 +193,7 @@ class BrowserSharedCookie(entity.Entity):
         """
         Sets the hostOrDomain property value. The URL of the cookie.
         Args:
-            value: Value to set for the hostOrDomain property.
+            value: Value to set for the host_or_domain property.
         """
         self._host_or_domain = value
     
@@ -210,7 +210,7 @@ class BrowserSharedCookie(entity.Entity):
         """
         Sets the lastModifiedBy property value. The user who last modified the cookie.
         Args:
-            value: Value to set for the lastModifiedBy property.
+            value: Value to set for the last_modified_by property.
         """
         self._last_modified_by = value
     
@@ -227,7 +227,7 @@ class BrowserSharedCookie(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date and time when the cookie was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -283,7 +283,7 @@ class BrowserSharedCookie(entity.Entity):
         """
         Sets the sourceEnvironment property value. The sourceEnvironment property
         Args:
-            value: Value to set for the sourceEnvironment property.
+            value: Value to set for the source_environment property.
         """
         self._source_environment = value
     

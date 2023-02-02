@@ -20,7 +20,7 @@ class EducationPowerSchoolDataProvider(education_synchronization_data_provider.E
         """
         Sets the allowTeachersInMultipleSchools property value. Indicates whether the source has multiple identifiers for a single student or teacher.
         Args:
-            value: Value to set for the allowTeachersInMultipleSchools property.
+            value: Value to set for the allow_teachers_in_multiple_schools property.
         """
         self._allow_teachers_in_multiple_schools = value
     
@@ -37,7 +37,7 @@ class EducationPowerSchoolDataProvider(education_synchronization_data_provider.E
         """
         Sets the clientId property value. The client ID used to connect to PowerSchool.
         Args:
-            value: Value to set for the clientId property.
+            value: Value to set for the client_id property.
         """
         self._client_id = value
     
@@ -54,7 +54,7 @@ class EducationPowerSchoolDataProvider(education_synchronization_data_provider.E
         """
         Sets the clientSecret property value. The client secret to authenticate the connection to the PowerSchool instance.
         Args:
-            value: Value to set for the clientSecret property.
+            value: Value to set for the client_secret property.
         """
         self._client_secret = value
     
@@ -71,7 +71,7 @@ class EducationPowerSchoolDataProvider(education_synchronization_data_provider.E
         """
         Sets the connectionUrl property value. The connection URL to the PowerSchool instance.
         Args:
-            value: Value to set for the connectionUrl property.
+            value: Value to set for the connection_url property.
         """
         self._connection_url = value
     
@@ -91,10 +91,10 @@ class EducationPowerSchoolDataProvider(education_synchronization_data_provider.E
         self._connection_url: Optional[str] = None
         # Optional customization to be applied to the synchronization profile.
         self._customizations: Optional[education_synchronization_customizations.EducationSynchronizationCustomizations] = None
-        # The list of schools to sync.
-        self._schools_ids: Optional[List[str]] = None
         # The school year to sync.
         self._school_year: Optional[str] = None
+        # The list of schools to sync.
+        self._schools_ids: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EducationPowerSchoolDataProvider:
@@ -131,34 +131,17 @@ class EducationPowerSchoolDataProvider(education_synchronization_data_provider.E
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_teachers_in_multiple_schools": lambda n : setattr(self, 'allow_teachers_in_multiple_schools', n.get_bool_value()),
-            "client_id": lambda n : setattr(self, 'client_id', n.get_str_value()),
-            "client_secret": lambda n : setattr(self, 'client_secret', n.get_str_value()),
-            "connection_url": lambda n : setattr(self, 'connection_url', n.get_str_value()),
+            "allowTeachersInMultipleSchools": lambda n : setattr(self, 'allow_teachers_in_multiple_schools', n.get_bool_value()),
+            "clientId": lambda n : setattr(self, 'client_id', n.get_str_value()),
+            "clientSecret": lambda n : setattr(self, 'client_secret', n.get_str_value()),
+            "connectionUrl": lambda n : setattr(self, 'connection_url', n.get_str_value()),
             "customizations": lambda n : setattr(self, 'customizations', n.get_object_value(education_synchronization_customizations.EducationSynchronizationCustomizations)),
-            "schools_ids": lambda n : setattr(self, 'schools_ids', n.get_collection_of_primitive_values(str)),
-            "school_year": lambda n : setattr(self, 'school_year', n.get_str_value()),
+            "schoolsIds": lambda n : setattr(self, 'schools_ids', n.get_collection_of_primitive_values(str)),
+            "schoolYear": lambda n : setattr(self, 'school_year', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def schools_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the schoolsIds property value. The list of schools to sync.
-        Returns: Optional[List[str]]
-        """
-        return self._schools_ids
-    
-    @schools_ids.setter
-    def schools_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the schoolsIds property value. The list of schools to sync.
-        Args:
-            value: Value to set for the schoolsIds property.
-        """
-        self._schools_ids = value
     
     @property
     def school_year(self,) -> Optional[str]:
@@ -173,9 +156,26 @@ class EducationPowerSchoolDataProvider(education_synchronization_data_provider.E
         """
         Sets the schoolYear property value. The school year to sync.
         Args:
-            value: Value to set for the schoolYear property.
+            value: Value to set for the school_year property.
         """
         self._school_year = value
+    
+    @property
+    def schools_ids(self,) -> Optional[List[str]]:
+        """
+        Gets the schoolsIds property value. The list of schools to sync.
+        Returns: Optional[List[str]]
+        """
+        return self._schools_ids
+    
+    @schools_ids.setter
+    def schools_ids(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the schoolsIds property value. The list of schools to sync.
+        Args:
+            value: Value to set for the schools_ids property.
+        """
+        self._schools_ids = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

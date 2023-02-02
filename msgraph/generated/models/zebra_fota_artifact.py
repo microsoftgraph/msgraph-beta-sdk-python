@@ -22,7 +22,7 @@ class ZebraFotaArtifact(entity.Entity):
         """
         Sets the boardSupportPackageVersion property value. The version of the Board Support Package (BSP. E.g.: 01.18.02.00)
         Args:
-            value: Value to set for the boardSupportPackageVersion property.
+            value: Value to set for the board_support_package_version property.
         """
         self._board_support_package_version = value
     
@@ -88,7 +88,7 @@ class ZebraFotaArtifact(entity.Entity):
         """
         Sets the deviceModel property value. Applicable device model (e.g.: TC8300)
         Args:
-            value: Value to set for the deviceModel property.
+            value: Value to set for the device_model property.
         """
         self._device_model = value
     
@@ -98,12 +98,12 @@ class ZebraFotaArtifact(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "board_support_package_version": lambda n : setattr(self, 'board_support_package_version', n.get_str_value()),
+            "boardSupportPackageVersion": lambda n : setattr(self, 'board_support_package_version', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "device_model": lambda n : setattr(self, 'device_model', n.get_str_value()),
-            "os_version": lambda n : setattr(self, 'os_version', n.get_str_value()),
-            "patch_version": lambda n : setattr(self, 'patch_version', n.get_str_value()),
-            "release_notes_url": lambda n : setattr(self, 'release_notes_url', n.get_str_value()),
+            "deviceModel": lambda n : setattr(self, 'device_model', n.get_str_value()),
+            "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
+            "patchVersion": lambda n : setattr(self, 'patch_version', n.get_str_value()),
+            "releaseNotesUrl": lambda n : setattr(self, 'release_notes_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -122,7 +122,7 @@ class ZebraFotaArtifact(entity.Entity):
         """
         Sets the osVersion property value. Artifact OS version (e.g.: 8.1.0)
         Args:
-            value: Value to set for the osVersion property.
+            value: Value to set for the os_version property.
         """
         self._os_version = value
     
@@ -139,7 +139,7 @@ class ZebraFotaArtifact(entity.Entity):
         """
         Sets the patchVersion property value. Artifact patch version (e.g.: U00)
         Args:
-            value: Value to set for the patchVersion property.
+            value: Value to set for the patch_version property.
         """
         self._patch_version = value
     
@@ -156,7 +156,7 @@ class ZebraFotaArtifact(entity.Entity):
         """
         Sets the releaseNotesUrl property value. Artifact release notes URL (e.g.: https://www.zebra.com/<filename.pdf>)
         Args:
-            value: Value to set for the releaseNotesUrl property.
+            value: Value to set for the release_notes_url property.
         """
         self._release_notes_url = value
     

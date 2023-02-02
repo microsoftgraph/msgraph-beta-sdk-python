@@ -74,7 +74,7 @@ class AttributeMapping(AdditionalDataHolder, Parsable):
         """
         Sets the defaultValue property value. Default value to be used in case the source property was evaluated to null. Optional.
         Args:
-            value: Value to set for the defaultValue property.
+            value: Value to set for the default_value property.
         """
         self._default_value = value
     
@@ -91,7 +91,7 @@ class AttributeMapping(AdditionalDataHolder, Parsable):
         """
         Sets the exportMissingReferences property value. For internal use only.
         Args:
-            value: Value to set for the exportMissingReferences property.
+            value: Value to set for the export_missing_references property.
         """
         self._export_missing_references = value
     
@@ -108,7 +108,7 @@ class AttributeMapping(AdditionalDataHolder, Parsable):
         """
         Sets the flowBehavior property value. The flowBehavior property
         Args:
-            value: Value to set for the flowBehavior property.
+            value: Value to set for the flow_behavior property.
         """
         self._flow_behavior = value
     
@@ -125,7 +125,7 @@ class AttributeMapping(AdditionalDataHolder, Parsable):
         """
         Sets the flowType property value. The flowType property
         Args:
-            value: Value to set for the flowType property.
+            value: Value to set for the flow_type property.
         """
         self._flow_type = value
     
@@ -135,14 +135,14 @@ class AttributeMapping(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_value": lambda n : setattr(self, 'default_value', n.get_str_value()),
-            "export_missing_references": lambda n : setattr(self, 'export_missing_references', n.get_bool_value()),
-            "flow_behavior": lambda n : setattr(self, 'flow_behavior', n.get_enum_value(attribute_flow_behavior.AttributeFlowBehavior)),
-            "flow_type": lambda n : setattr(self, 'flow_type', n.get_enum_value(attribute_flow_type.AttributeFlowType)),
-            "matching_priority": lambda n : setattr(self, 'matching_priority', n.get_int_value()),
+            "defaultValue": lambda n : setattr(self, 'default_value', n.get_str_value()),
+            "exportMissingReferences": lambda n : setattr(self, 'export_missing_references', n.get_bool_value()),
+            "flowBehavior": lambda n : setattr(self, 'flow_behavior', n.get_enum_value(attribute_flow_behavior.AttributeFlowBehavior)),
+            "flowType": lambda n : setattr(self, 'flow_type', n.get_enum_value(attribute_flow_type.AttributeFlowType)),
+            "matchingPriority": lambda n : setattr(self, 'matching_priority', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "source": lambda n : setattr(self, 'source', n.get_object_value(attribute_mapping_source.AttributeMappingSource)),
-            "target_attribute_name": lambda n : setattr(self, 'target_attribute_name', n.get_str_value()),
+            "targetAttributeName": lambda n : setattr(self, 'target_attribute_name', n.get_str_value()),
         }
         return fields
     
@@ -159,7 +159,7 @@ class AttributeMapping(AdditionalDataHolder, Parsable):
         """
         Sets the matchingPriority property value. If higher than 0, this attribute will be used to perform an initial match of the objects between source and target directories. The synchronization engine will try to find the matching object using attribute with lowest value of matching priority first. If not found, the attribute with the next matching priority will be used, and so on a until match is found or no more matching attributes are left. Only attributes that are expected to have unique values, such as email, should be used as matching attributes.
         Args:
-            value: Value to set for the matchingPriority property.
+            value: Value to set for the matching_priority property.
         """
         self._matching_priority = value
     
@@ -176,7 +176,7 @@ class AttributeMapping(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -228,7 +228,7 @@ class AttributeMapping(AdditionalDataHolder, Parsable):
         """
         Sets the targetAttributeName property value. Name of the attribute on the target object.
         Args:
-            value: Value to set for the targetAttributeName property.
+            value: Value to set for the target_attribute_name property.
         """
         self._target_attribute_name = value
     

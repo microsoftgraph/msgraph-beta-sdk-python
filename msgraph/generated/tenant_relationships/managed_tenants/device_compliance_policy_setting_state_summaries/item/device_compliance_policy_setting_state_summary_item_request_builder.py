@@ -17,10 +17,11 @@ class DeviceCompliancePolicySettingStateSummaryItemRequestBuilder():
     """
     Provides operations to manage the deviceCompliancePolicySettingStateSummaries property of the microsoft.graph.managedTenants.managedTenant entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, device_compliance_policy_setting_state_summary_id: Optional[str] = None) -> None:
         """
         Instantiates a new DeviceCompliancePolicySettingStateSummaryItemRequestBuilder and sets the default values.
         Args:
+            deviceCompliancePolicySettingStateSummaryId: key: id of deviceCompliancePolicySettingStateSummary
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class DeviceCompliancePolicySettingStateSummaryItemRequestBuilder():
         self.url_template: str = "{+baseurl}/tenantRelationships/managedTenants/deviceCompliancePolicySettingStateSummaries/{deviceCompliancePolicySettingStateSummary%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["deviceCompliancePolicySettingStateSummary%2Did"] = deviceCompliancePolicySettingStateSummaryId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DeviceCompliancePolicySettingStateSummaryItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceCompliancePolicySettingStateSummaryItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property deviceCompliancePolicySettingStateSummaries for tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class DeviceCompliancePolicySettingStateSummaryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceCompliancePolicySettingStateSummaryItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_compliance_policy_setting_state_summary.DeviceCompliancePolicySettingStateSummary]:
+    async def get(self,request_configuration: Optional[DeviceCompliancePolicySettingStateSummaryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_compliance_policy_setting_state_summary.DeviceCompliancePolicySettingStateSummary]:
         """
         Summary information for device compliance policy setting states across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_compliance_policy_setting_state_summary.DeviceCompliancePolicySettingStateSummary]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class DeviceCompliancePolicySettingStateSummaryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_compliance_policy_setting_state_summary.DeviceCompliancePolicySettingStateSummary, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_compliance_policy_setting_state_summary.DeviceCompliancePolicySettingStateSummary, error_mapping)
     
-    async def patch(self,body: Optional[device_compliance_policy_setting_state_summary.DeviceCompliancePolicySettingStateSummary] = None, request_configuration: Optional[DeviceCompliancePolicySettingStateSummaryItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_compliance_policy_setting_state_summary.DeviceCompliancePolicySettingStateSummary]:
+    async def patch(self,body: Optional[device_compliance_policy_setting_state_summary.DeviceCompliancePolicySettingStateSummary] = None, request_configuration: Optional[DeviceCompliancePolicySettingStateSummaryItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_compliance_policy_setting_state_summary.DeviceCompliancePolicySettingStateSummary]:
         """
         Update the navigation property deviceCompliancePolicySettingStateSummaries in tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_compliance_policy_setting_state_summary.DeviceCompliancePolicySettingStateSummary]
         """
         if body is None:
@@ -92,7 +91,7 @@ class DeviceCompliancePolicySettingStateSummaryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_compliance_policy_setting_state_summary.DeviceCompliancePolicySettingStateSummary, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_compliance_policy_setting_state_summary.DeviceCompliancePolicySettingStateSummary, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceCompliancePolicySettingStateSummaryItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

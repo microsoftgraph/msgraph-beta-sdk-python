@@ -1,7 +1,7 @@
 from enum import Enum
 
 class ActionState(Enum):
-    None_escaped = "none",
+    None_ = "none",
     Pending = "pending",
     Canceled = "canceled",
     Active = "active",

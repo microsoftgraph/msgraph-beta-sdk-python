@@ -11,9 +11,6 @@ managed_app_policy = lazy_import('msgraph.generated.models.managed_app_policy')
 mobile_app_identifier = lazy_import('msgraph.generated.models.mobile_app_identifier')
 
 class ManagedAppRegistration(entity.Entity):
-    """
-    The ManagedAppEntity is the base entity type for all other entity types under app management workflow.
-    """
     @property
     def app_identifier(self,) -> Optional[mobile_app_identifier.MobileAppIdentifier]:
         """
@@ -27,7 +24,7 @@ class ManagedAppRegistration(entity.Entity):
         """
         Sets the appIdentifier property value. The app package Identifier
         Args:
-            value: Value to set for the appIdentifier property.
+            value: Value to set for the app_identifier property.
         """
         self._app_identifier = value
     
@@ -44,7 +41,7 @@ class ManagedAppRegistration(entity.Entity):
         """
         Sets the applicationVersion property value. App version
         Args:
-            value: Value to set for the applicationVersion property.
+            value: Value to set for the application_version property.
         """
         self._application_version = value
     
@@ -61,7 +58,7 @@ class ManagedAppRegistration(entity.Entity):
         """
         Sets the appliedPolicies property value. Zero or more policys already applied on the registered app when it last synchronized with managment service.
         Args:
-            value: Value to set for the appliedPolicies property.
+            value: Value to set for the applied_policies property.
         """
         self._applied_policies = value
     
@@ -78,13 +75,13 @@ class ManagedAppRegistration(entity.Entity):
         """
         Sets the azureADDeviceId property value. The Azure Active Directory Device identifier of the host device. Value could be empty even when the host device is Azure Active Directory registered.
         Args:
-            value: Value to set for the azureADDeviceId property.
+            value: Value to set for the azure_a_d_device_id property.
         """
         self._azure_a_d_device_id = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new managedAppRegistration and sets the default values.
+        Instantiates a new ManagedAppRegistration and sets the default values.
         """
         super().__init__()
         # The app package Identifier
@@ -141,7 +138,7 @@ class ManagedAppRegistration(entity.Entity):
         """
         Sets the createdDateTime property value. Date and time of creation
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -170,7 +167,7 @@ class ManagedAppRegistration(entity.Entity):
         """
         Sets the deviceManufacturer property value. The device manufacturer for the current app registration
         Args:
-            value: Value to set for the deviceManufacturer property.
+            value: Value to set for the device_manufacturer property.
         """
         self._device_manufacturer = value
     
@@ -187,7 +184,7 @@ class ManagedAppRegistration(entity.Entity):
         """
         Sets the deviceModel property value. The device model for the current app registration
         Args:
-            value: Value to set for the deviceModel property.
+            value: Value to set for the device_model property.
         """
         self._device_model = value
     
@@ -204,7 +201,7 @@ class ManagedAppRegistration(entity.Entity):
         """
         Sets the deviceName property value. Host device name
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -221,7 +218,7 @@ class ManagedAppRegistration(entity.Entity):
         """
         Sets the deviceTag property value. App management SDK generated tag, which helps relate apps hosted on the same device. Not guaranteed to relate apps in all conditions.
         Args:
-            value: Value to set for the deviceTag property.
+            value: Value to set for the device_tag property.
         """
         self._device_tag = value
     
@@ -238,7 +235,7 @@ class ManagedAppRegistration(entity.Entity):
         """
         Sets the deviceType property value. Host device type
         Args:
-            value: Value to set for the deviceType property.
+            value: Value to set for the device_type property.
         """
         self._device_type = value
     
@@ -255,7 +252,7 @@ class ManagedAppRegistration(entity.Entity):
         """
         Sets the flaggedReasons property value. Zero or more reasons an app registration is flagged. E.g. app running on rooted device
         Args:
-            value: Value to set for the flaggedReasons property.
+            value: Value to set for the flagged_reasons property.
         """
         self._flagged_reasons = value
     
@@ -265,24 +262,24 @@ class ManagedAppRegistration(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_identifier": lambda n : setattr(self, 'app_identifier', n.get_object_value(mobile_app_identifier.MobileAppIdentifier)),
-            "application_version": lambda n : setattr(self, 'application_version', n.get_str_value()),
-            "applied_policies": lambda n : setattr(self, 'applied_policies', n.get_collection_of_object_values(managed_app_policy.ManagedAppPolicy)),
-            "azure_a_d_device_id": lambda n : setattr(self, 'azure_a_d_device_id', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "device_manufacturer": lambda n : setattr(self, 'device_manufacturer', n.get_str_value()),
-            "device_model": lambda n : setattr(self, 'device_model', n.get_str_value()),
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
-            "device_tag": lambda n : setattr(self, 'device_tag', n.get_str_value()),
-            "device_type": lambda n : setattr(self, 'device_type', n.get_str_value()),
-            "flagged_reasons": lambda n : setattr(self, 'flagged_reasons', n.get_collection_of_enum_values(managed_app_flagged_reason.ManagedAppFlaggedReason)),
-            "intended_policies": lambda n : setattr(self, 'intended_policies', n.get_collection_of_object_values(managed_app_policy.ManagedAppPolicy)),
-            "last_sync_date_time": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
-            "managed_device_id": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
-            "management_sdk_version": lambda n : setattr(self, 'management_sdk_version', n.get_str_value()),
+            "applicationVersion": lambda n : setattr(self, 'application_version', n.get_str_value()),
+            "appliedPolicies": lambda n : setattr(self, 'applied_policies', n.get_collection_of_object_values(managed_app_policy.ManagedAppPolicy)),
+            "appIdentifier": lambda n : setattr(self, 'app_identifier', n.get_object_value(mobile_app_identifier.MobileAppIdentifier)),
+            "azureADDeviceId": lambda n : setattr(self, 'azure_a_d_device_id', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "deviceManufacturer": lambda n : setattr(self, 'device_manufacturer', n.get_str_value()),
+            "deviceModel": lambda n : setattr(self, 'device_model', n.get_str_value()),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "deviceTag": lambda n : setattr(self, 'device_tag', n.get_str_value()),
+            "deviceType": lambda n : setattr(self, 'device_type', n.get_str_value()),
+            "flaggedReasons": lambda n : setattr(self, 'flagged_reasons', n.get_collection_of_enum_values(managed_app_flagged_reason.ManagedAppFlaggedReason)),
+            "intendedPolicies": lambda n : setattr(self, 'intended_policies', n.get_collection_of_object_values(managed_app_policy.ManagedAppPolicy)),
+            "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
+            "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
+            "managementSdkVersion": lambda n : setattr(self, 'management_sdk_version', n.get_str_value()),
             "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(managed_app_operation.ManagedAppOperation)),
-            "platform_version": lambda n : setattr(self, 'platform_version', n.get_str_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "platformVersion": lambda n : setattr(self, 'platform_version', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
             "version": lambda n : setattr(self, 'version', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -302,7 +299,7 @@ class ManagedAppRegistration(entity.Entity):
         """
         Sets the intendedPolicies property value. Zero or more policies admin intended for the app as of now.
         Args:
-            value: Value to set for the intendedPolicies property.
+            value: Value to set for the intended_policies property.
         """
         self._intended_policies = value
     
@@ -319,7 +316,7 @@ class ManagedAppRegistration(entity.Entity):
         """
         Sets the lastSyncDateTime property value. Date and time of last the app synced with management service.
         Args:
-            value: Value to set for the lastSyncDateTime property.
+            value: Value to set for the last_sync_date_time property.
         """
         self._last_sync_date_time = value
     
@@ -336,7 +333,7 @@ class ManagedAppRegistration(entity.Entity):
         """
         Sets the managedDeviceId property value. The Managed Device identifier of the host device. Value could be empty even when the host device is managed.
         Args:
-            value: Value to set for the managedDeviceId property.
+            value: Value to set for the managed_device_id property.
         """
         self._managed_device_id = value
     
@@ -353,7 +350,7 @@ class ManagedAppRegistration(entity.Entity):
         """
         Sets the managementSdkVersion property value. App management SDK version
         Args:
-            value: Value to set for the managementSdkVersion property.
+            value: Value to set for the management_sdk_version property.
         """
         self._management_sdk_version = value
     
@@ -387,7 +384,7 @@ class ManagedAppRegistration(entity.Entity):
         """
         Sets the platformVersion property value. Operating System version
         Args:
-            value: Value to set for the platformVersion property.
+            value: Value to set for the platform_version property.
         """
         self._platform_version = value
     
@@ -400,9 +397,9 @@ class ManagedAppRegistration(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_object_value("appIdentifier", self.app_identifier)
         writer.write_str_value("applicationVersion", self.application_version)
         writer.write_collection_of_object_values("appliedPolicies", self.applied_policies)
+        writer.write_object_value("appIdentifier", self.app_identifier)
         writer.write_str_value("azureADDeviceId", self.azure_a_d_device_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_str_value("deviceManufacturer", self.device_manufacturer)
@@ -433,7 +430,7 @@ class ManagedAppRegistration(entity.Entity):
         """
         Sets the userId property value. The user Id to who this app registration belongs.
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     

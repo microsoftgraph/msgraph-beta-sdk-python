@@ -13,7 +13,7 @@ from typing import Any, Callable, Dict, List, Optional, Union
 event_collection_response = lazy_import('msgraph.generated.models.event_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.users.item.calendars.item.events.item.exception_occurrences.count.count_request_builder')
-delta_request_builder = lazy_import('msgraph.generated.users.item.calendars.item.events.item.exception_occurrences.delta.delta_request_builder')
+delta_request_builder = lazy_import('msgraph.generated.users.item.calendars.item.events.item.exception_occurrences.microsoft_graph_delta.delta_request_builder')
 
 class ExceptionOccurrencesRequestBuilder():
     """
@@ -25,6 +25,13 @@ class ExceptionOccurrencesRequestBuilder():
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_delta(self) -> delta_request_builder.DeltaRequestBuilder:
+        """
+        Provides operations to call the delta method.
+        """
+        return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -44,19 +51,11 @@ class ExceptionOccurrencesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def delta(self,) -> delta_request_builder.DeltaRequestBuilder:
-        """
-        Provides operations to call the delta method.
-        Returns: delta_request_builder.DeltaRequestBuilder
-        """
-        return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def get(self,request_configuration: Optional[ExceptionOccurrencesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[event_collection_response.EventCollectionResponse]:
+    async def get(self,request_configuration: Optional[ExceptionOccurrencesRequestBuilderGetRequestConfiguration] = None) -> Optional[event_collection_response.EventCollectionResponse]:
         """
         Get exceptionOccurrences from users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[event_collection_response.EventCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -68,7 +67,7 @@ class ExceptionOccurrencesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, event_collection_response.EventCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, event_collection_response.EventCollectionResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ExceptionOccurrencesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

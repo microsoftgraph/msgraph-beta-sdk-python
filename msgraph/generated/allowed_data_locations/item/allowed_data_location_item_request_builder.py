@@ -17,10 +17,11 @@ class AllowedDataLocationItemRequestBuilder():
     """
     Provides operations to manage the collection of allowedDataLocation entities.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, allowed_data_location_id: Optional[str] = None) -> None:
         """
         Instantiates a new AllowedDataLocationItemRequestBuilder and sets the default values.
         Args:
+            allowedDataLocationId: key: id of allowedDataLocation
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class AllowedDataLocationItemRequestBuilder():
         self.url_template: str = "{+baseurl}/allowedDataLocations/{allowedDataLocation%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["allowedDataLocation%2Did"] = allowedDataLocationId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AllowedDataLocationItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AllowedDataLocationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete entity from allowedDataLocations
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class AllowedDataLocationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AllowedDataLocationItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[allowed_data_location.AllowedDataLocation]:
+    async def get(self,request_configuration: Optional[AllowedDataLocationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[allowed_data_location.AllowedDataLocation]:
         """
         Get entity from allowedDataLocations by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[allowed_data_location.AllowedDataLocation]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class AllowedDataLocationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, allowed_data_location.AllowedDataLocation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, allowed_data_location.AllowedDataLocation, error_mapping)
     
-    async def patch(self,body: Optional[allowed_data_location.AllowedDataLocation] = None, request_configuration: Optional[AllowedDataLocationItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[allowed_data_location.AllowedDataLocation]:
+    async def patch(self,body: Optional[allowed_data_location.AllowedDataLocation] = None, request_configuration: Optional[AllowedDataLocationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[allowed_data_location.AllowedDataLocation]:
         """
         Update entity in allowedDataLocations
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[allowed_data_location.AllowedDataLocation]
         """
         if body is None:
@@ -92,7 +91,7 @@ class AllowedDataLocationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, allowed_data_location.AllowedDataLocation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, allowed_data_location.AllowedDataLocation, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AllowedDataLocationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

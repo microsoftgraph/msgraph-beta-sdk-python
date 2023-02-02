@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-case_export_operation_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.operations.item.case_export_operation.case_export_operation_request_builder')
+case_export_operation_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.operations.item.microsoft_graph_ediscovery_case_export_operation.case_export_operation_request_builder')
 case_operation = lazy_import('msgraph.generated.models.ediscovery.case_operation')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -19,16 +19,17 @@ class CaseOperationItemRequestBuilder():
     Provides operations to manage the operations property of the microsoft.graph.ediscovery.case entity.
     """
     @property
-    def case_export_operation(self) -> case_export_operation_request_builder.CaseExportOperationRequestBuilder:
+    def microsoft_graph_ediscovery_case_export_operation(self) -> case_export_operation_request_builder.CaseExportOperationRequestBuilder:
         """
         Casts the previous resource to caseExportOperation.
         """
         return case_export_operation_request_builder.CaseExportOperationRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, case_operation_id: Optional[str] = None) -> None:
         """
         Instantiates a new CaseOperationItemRequestBuilder and sets the default values.
         Args:
+            caseOperationId: key: id of caseOperation
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -40,15 +41,15 @@ class CaseOperationItemRequestBuilder():
         self.url_template: str = "{+baseurl}/compliance/ediscovery/cases/{case%2Did}/operations/{caseOperation%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["caseOperation%2Did"] = caseOperationId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CaseOperationItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CaseOperationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property operations for compliance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +60,13 @@ class CaseOperationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CaseOperationItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[case_operation.CaseOperation]:
+    async def get(self,request_configuration: Optional[CaseOperationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[case_operation.CaseOperation]:
         """
         Returns a list of case operation objects for this case. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[case_operation.CaseOperation]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +78,14 @@ class CaseOperationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, case_operation.CaseOperation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, case_operation.CaseOperation, error_mapping)
     
-    async def patch(self,body: Optional[case_operation.CaseOperation] = None, request_configuration: Optional[CaseOperationItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[case_operation.CaseOperation]:
+    async def patch(self,body: Optional[case_operation.CaseOperation] = None, request_configuration: Optional[CaseOperationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[case_operation.CaseOperation]:
         """
         Update the navigation property operations in compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[case_operation.CaseOperation]
         """
         if body is None:
@@ -100,7 +99,7 @@ class CaseOperationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, case_operation.CaseOperation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, case_operation.CaseOperation, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CaseOperationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

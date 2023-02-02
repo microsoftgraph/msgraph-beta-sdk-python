@@ -49,7 +49,7 @@ class PolicySetItem(entity.Entity):
         """
         Sets the createdDateTime property value. Creation time of the PolicySetItem.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -78,7 +78,7 @@ class PolicySetItem(entity.Entity):
         """
         Sets the displayName property value. DisplayName of the PolicySetItem.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -95,7 +95,7 @@ class PolicySetItem(entity.Entity):
         """
         Sets the errorCode property value. The errorCode property
         Args:
-            value: Value to set for the errorCode property.
+            value: Value to set for the error_code property.
         """
         self._error_code = value
     
@@ -105,13 +105,13 @@ class PolicySetItem(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "error_code": lambda n : setattr(self, 'error_code', n.get_enum_value(error_code.ErrorCode)),
-            "guided_deployment_tags": lambda n : setattr(self, 'guided_deployment_tags', n.get_collection_of_primitive_values(str)),
-            "item_type": lambda n : setattr(self, 'item_type', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "payload_id": lambda n : setattr(self, 'payload_id', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_enum_value(error_code.ErrorCode)),
+            "guidedDeploymentTags": lambda n : setattr(self, 'guided_deployment_tags', n.get_collection_of_primitive_values(str)),
+            "itemType": lambda n : setattr(self, 'item_type', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "payloadId": lambda n : setattr(self, 'payload_id', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(policy_set_status.PolicySetStatus)),
         }
         super_fields = super().get_field_deserializers()
@@ -131,7 +131,7 @@ class PolicySetItem(entity.Entity):
         """
         Sets the guidedDeploymentTags property value. Tags of the guided deployment
         Args:
-            value: Value to set for the guidedDeploymentTags property.
+            value: Value to set for the guided_deployment_tags property.
         """
         self._guided_deployment_tags = value
     
@@ -148,7 +148,7 @@ class PolicySetItem(entity.Entity):
         """
         Sets the itemType property value. policySetType of the PolicySetItem.
         Args:
-            value: Value to set for the itemType property.
+            value: Value to set for the item_type property.
         """
         self._item_type = value
     
@@ -165,7 +165,7 @@ class PolicySetItem(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. Last modified time of the PolicySetItem.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -182,7 +182,7 @@ class PolicySetItem(entity.Entity):
         """
         Sets the payloadId property value. PayloadId of the PolicySetItem.
         Args:
-            value: Value to set for the payloadId property.
+            value: Value to set for the payload_id property.
         """
         self._payload_id = value
     

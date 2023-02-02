@@ -62,7 +62,7 @@ class DeviceHealthScriptRunSummary(entity.Entity):
         """
         Sets the detectionScriptErrorDeviceCount property value. Number of devices on which the detection script execution encountered an error and did not complete
         Args:
-            value: Value to set for the detectionScriptErrorDeviceCount property.
+            value: Value to set for the detection_script_error_device_count property.
         """
         self._detection_script_error_device_count = value
     
@@ -79,7 +79,7 @@ class DeviceHealthScriptRunSummary(entity.Entity):
         """
         Sets the detectionScriptNotApplicableDeviceCount property value. Number of devices for which the detection script was not applicable
         Args:
-            value: Value to set for the detectionScriptNotApplicableDeviceCount property.
+            value: Value to set for the detection_script_not_applicable_device_count property.
         """
         self._detection_script_not_applicable_device_count = value
     
@@ -96,7 +96,7 @@ class DeviceHealthScriptRunSummary(entity.Entity):
         """
         Sets the detectionScriptPendingDeviceCount property value. Number of devices which have not yet run the latest version of the device health script
         Args:
-            value: Value to set for the detectionScriptPendingDeviceCount property.
+            value: Value to set for the detection_script_pending_device_count property.
         """
         self._detection_script_pending_device_count = value
     
@@ -106,17 +106,17 @@ class DeviceHealthScriptRunSummary(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "detection_script_error_device_count": lambda n : setattr(self, 'detection_script_error_device_count', n.get_int_value()),
-            "detection_script_not_applicable_device_count": lambda n : setattr(self, 'detection_script_not_applicable_device_count', n.get_int_value()),
-            "detection_script_pending_device_count": lambda n : setattr(self, 'detection_script_pending_device_count', n.get_int_value()),
-            "issue_detected_device_count": lambda n : setattr(self, 'issue_detected_device_count', n.get_int_value()),
-            "issue_remediated_cumulative_device_count": lambda n : setattr(self, 'issue_remediated_cumulative_device_count', n.get_int_value()),
-            "issue_remediated_device_count": lambda n : setattr(self, 'issue_remediated_device_count', n.get_int_value()),
-            "issue_reoccurred_device_count": lambda n : setattr(self, 'issue_reoccurred_device_count', n.get_int_value()),
-            "last_script_run_date_time": lambda n : setattr(self, 'last_script_run_date_time', n.get_datetime_value()),
-            "no_issue_detected_device_count": lambda n : setattr(self, 'no_issue_detected_device_count', n.get_int_value()),
-            "remediation_script_error_device_count": lambda n : setattr(self, 'remediation_script_error_device_count', n.get_int_value()),
-            "remediation_skipped_device_count": lambda n : setattr(self, 'remediation_skipped_device_count', n.get_int_value()),
+            "detectionScriptErrorDeviceCount": lambda n : setattr(self, 'detection_script_error_device_count', n.get_int_value()),
+            "detectionScriptNotApplicableDeviceCount": lambda n : setattr(self, 'detection_script_not_applicable_device_count', n.get_int_value()),
+            "detectionScriptPendingDeviceCount": lambda n : setattr(self, 'detection_script_pending_device_count', n.get_int_value()),
+            "issueDetectedDeviceCount": lambda n : setattr(self, 'issue_detected_device_count', n.get_int_value()),
+            "issueRemediatedCumulativeDeviceCount": lambda n : setattr(self, 'issue_remediated_cumulative_device_count', n.get_int_value()),
+            "issueRemediatedDeviceCount": lambda n : setattr(self, 'issue_remediated_device_count', n.get_int_value()),
+            "issueReoccurredDeviceCount": lambda n : setattr(self, 'issue_reoccurred_device_count', n.get_int_value()),
+            "lastScriptRunDateTime": lambda n : setattr(self, 'last_script_run_date_time', n.get_datetime_value()),
+            "noIssueDetectedDeviceCount": lambda n : setattr(self, 'no_issue_detected_device_count', n.get_int_value()),
+            "remediationScriptErrorDeviceCount": lambda n : setattr(self, 'remediation_script_error_device_count', n.get_int_value()),
+            "remediationSkippedDeviceCount": lambda n : setattr(self, 'remediation_skipped_device_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -135,7 +135,7 @@ class DeviceHealthScriptRunSummary(entity.Entity):
         """
         Sets the issueDetectedDeviceCount property value. Number of devices for which the detection script found an issue
         Args:
-            value: Value to set for the issueDetectedDeviceCount property.
+            value: Value to set for the issue_detected_device_count property.
         """
         self._issue_detected_device_count = value
     
@@ -152,7 +152,7 @@ class DeviceHealthScriptRunSummary(entity.Entity):
         """
         Sets the issueRemediatedCumulativeDeviceCount property value. Number of devices that were remediated over the last 30 days
         Args:
-            value: Value to set for the issueRemediatedCumulativeDeviceCount property.
+            value: Value to set for the issue_remediated_cumulative_device_count property.
         """
         self._issue_remediated_cumulative_device_count = value
     
@@ -169,7 +169,7 @@ class DeviceHealthScriptRunSummary(entity.Entity):
         """
         Sets the issueRemediatedDeviceCount property value. Number of devices for which the remediation script was able to resolve the detected issue
         Args:
-            value: Value to set for the issueRemediatedDeviceCount property.
+            value: Value to set for the issue_remediated_device_count property.
         """
         self._issue_remediated_device_count = value
     
@@ -186,7 +186,7 @@ class DeviceHealthScriptRunSummary(entity.Entity):
         """
         Sets the issueReoccurredDeviceCount property value. Number of devices for which the remediation script executed successfully but failed to resolve the detected issue
         Args:
-            value: Value to set for the issueReoccurredDeviceCount property.
+            value: Value to set for the issue_reoccurred_device_count property.
         """
         self._issue_reoccurred_device_count = value
     
@@ -203,7 +203,7 @@ class DeviceHealthScriptRunSummary(entity.Entity):
         """
         Sets the lastScriptRunDateTime property value. Last run time for the script across all devices
         Args:
-            value: Value to set for the lastScriptRunDateTime property.
+            value: Value to set for the last_script_run_date_time property.
         """
         self._last_script_run_date_time = value
     
@@ -220,7 +220,7 @@ class DeviceHealthScriptRunSummary(entity.Entity):
         """
         Sets the noIssueDetectedDeviceCount property value. Number of devices for which the detection script did not find an issue and the device is healthy
         Args:
-            value: Value to set for the noIssueDetectedDeviceCount property.
+            value: Value to set for the no_issue_detected_device_count property.
         """
         self._no_issue_detected_device_count = value
     
@@ -237,7 +237,7 @@ class DeviceHealthScriptRunSummary(entity.Entity):
         """
         Sets the remediationScriptErrorDeviceCount property value. Number of devices for which the remediation script execution encountered an error and did not complete
         Args:
-            value: Value to set for the remediationScriptErrorDeviceCount property.
+            value: Value to set for the remediation_script_error_device_count property.
         """
         self._remediation_script_error_device_count = value
     
@@ -254,7 +254,7 @@ class DeviceHealthScriptRunSummary(entity.Entity):
         """
         Sets the remediationSkippedDeviceCount property value. Number of devices for which remediation was skipped
         Args:
-            value: Value to set for the remediationSkippedDeviceCount property.
+            value: Value to set for the remediation_skipped_device_count property.
         """
         self._remediation_skipped_device_count = value
     

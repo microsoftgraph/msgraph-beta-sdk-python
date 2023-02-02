@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-consent_to_data_sharing_request_builder = lazy_import('msgraph.generated.device_management.data_sharing_consents.item.consent_to_data_sharing.consent_to_data_sharing_request_builder')
+consent_to_data_sharing_request_builder = lazy_import('msgraph.generated.device_management.data_sharing_consents.item.microsoft_graph_consent_to_data_sharing.consent_to_data_sharing_request_builder')
 data_sharing_consent = lazy_import('msgraph.generated.models.data_sharing_consent')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -19,16 +19,17 @@ class DataSharingConsentItemRequestBuilder():
     Provides operations to manage the dataSharingConsents property of the microsoft.graph.deviceManagement entity.
     """
     @property
-    def consent_to_data_sharing(self) -> consent_to_data_sharing_request_builder.ConsentToDataSharingRequestBuilder:
+    def microsoft_graph_consent_to_data_sharing(self) -> consent_to_data_sharing_request_builder.ConsentToDataSharingRequestBuilder:
         """
         Provides operations to call the consentToDataSharing method.
         """
         return consent_to_data_sharing_request_builder.ConsentToDataSharingRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, data_sharing_consent_id: Optional[str] = None) -> None:
         """
         Instantiates a new DataSharingConsentItemRequestBuilder and sets the default values.
         Args:
+            dataSharingConsentId: key: id of dataSharingConsent
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -40,15 +41,15 @@ class DataSharingConsentItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceManagement/dataSharingConsents/{dataSharingConsent%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["dataSharingConsent%2Did"] = dataSharingConsentId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DataSharingConsentItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DataSharingConsentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property dataSharingConsents for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +60,13 @@ class DataSharingConsentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DataSharingConsentItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[data_sharing_consent.DataSharingConsent]:
+    async def get(self,request_configuration: Optional[DataSharingConsentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[data_sharing_consent.DataSharingConsent]:
         """
         Data sharing consents.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[data_sharing_consent.DataSharingConsent]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +78,14 @@ class DataSharingConsentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, data_sharing_consent.DataSharingConsent, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, data_sharing_consent.DataSharingConsent, error_mapping)
     
-    async def patch(self,body: Optional[data_sharing_consent.DataSharingConsent] = None, request_configuration: Optional[DataSharingConsentItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[data_sharing_consent.DataSharingConsent]:
+    async def patch(self,body: Optional[data_sharing_consent.DataSharingConsent] = None, request_configuration: Optional[DataSharingConsentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[data_sharing_consent.DataSharingConsent]:
         """
         Update the navigation property dataSharingConsents in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[data_sharing_consent.DataSharingConsent]
         """
         if body is None:
@@ -100,7 +99,7 @@ class DataSharingConsentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, data_sharing_consent.DataSharingConsent, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, data_sharing_consent.DataSharingConsent, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DataSharingConsentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

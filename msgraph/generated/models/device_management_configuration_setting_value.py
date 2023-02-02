@@ -57,7 +57,7 @@ class DeviceManagementConfigurationSettingValue(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "setting_value_template_reference": lambda n : setattr(self, 'setting_value_template_reference', n.get_object_value(device_management_configuration_setting_value_template_reference.DeviceManagementConfigurationSettingValueTemplateReference)),
+            "settingValueTemplateReference": lambda n : setattr(self, 'setting_value_template_reference', n.get_object_value(device_management_configuration_setting_value_template_reference.DeviceManagementConfigurationSettingValueTemplateReference)),
         }
         return fields
     
@@ -74,7 +74,7 @@ class DeviceManagementConfigurationSettingValue(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -103,7 +103,7 @@ class DeviceManagementConfigurationSettingValue(AdditionalDataHolder, Parsable):
         """
         Sets the settingValueTemplateReference property value. Setting value template reference
         Args:
-            value: Value to set for the settingValueTemplateReference property.
+            value: Value to set for the setting_value_template_reference property.
         """
         self._setting_value_template_reference = value
     

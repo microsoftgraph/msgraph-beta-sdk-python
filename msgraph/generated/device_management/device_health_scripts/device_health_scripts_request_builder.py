@@ -10,10 +10,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-are_global_scripts_available_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.are_global_scripts_available.are_global_scripts_available_request_builder')
 count_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.count.count_request_builder')
-enable_global_scripts_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.enable_global_scripts.enable_global_scripts_request_builder')
-get_remediation_summary_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.get_remediation_summary.get_remediation_summary_request_builder')
+are_global_scripts_available_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.microsoft_graph_are_global_scripts_available.are_global_scripts_available_request_builder')
+enable_global_scripts_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.microsoft_graph_enable_global_scripts.enable_global_scripts_request_builder')
+get_remediation_summary_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.microsoft_graph_get_remediation_summary.get_remediation_summary_request_builder')
 device_health_script = lazy_import('msgraph.generated.models.device_health_script')
 device_health_script_collection_response = lazy_import('msgraph.generated.models.device_health_script_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -30,18 +30,25 @@ class DeviceHealthScriptsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def enable_global_scripts(self) -> enable_global_scripts_request_builder.EnableGlobalScriptsRequestBuilder:
+    def microsoft_graph_are_global_scripts_available(self) -> are_global_scripts_available_request_builder.AreGlobalScriptsAvailableRequestBuilder:
+        """
+        Provides operations to call the areGlobalScriptsAvailable method.
+        """
+        return are_global_scripts_available_request_builder.AreGlobalScriptsAvailableRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_enable_global_scripts(self) -> enable_global_scripts_request_builder.EnableGlobalScriptsRequestBuilder:
         """
         Provides operations to call the enableGlobalScripts method.
         """
         return enable_global_scripts_request_builder.EnableGlobalScriptsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def are_global_scripts_available(self,) -> are_global_scripts_available_request_builder.AreGlobalScriptsAvailableRequestBuilder:
+    @property
+    def microsoft_graph_get_remediation_summary(self) -> get_remediation_summary_request_builder.GetRemediationSummaryRequestBuilder:
         """
-        Provides operations to call the areGlobalScriptsAvailable method.
-        Returns: are_global_scripts_available_request_builder.AreGlobalScriptsAvailableRequestBuilder
+        Provides operations to call the getRemediationSummary method.
         """
-        return are_global_scripts_available_request_builder.AreGlobalScriptsAvailableRequestBuilder(self.request_adapter, self.path_parameters)
+        return get_remediation_summary_request_builder.GetRemediationSummaryRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -61,12 +68,11 @@ class DeviceHealthScriptsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DeviceHealthScriptsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_health_script_collection_response.DeviceHealthScriptCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceHealthScriptsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_health_script_collection_response.DeviceHealthScriptCollectionResponse]:
         """
         The list of device health scripts associated with the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_health_script_collection_response.DeviceHealthScriptCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -78,22 +84,14 @@ class DeviceHealthScriptsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_health_script_collection_response.DeviceHealthScriptCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_health_script_collection_response.DeviceHealthScriptCollectionResponse, error_mapping)
     
-    def get_remediation_summary(self,) -> get_remediation_summary_request_builder.GetRemediationSummaryRequestBuilder:
-        """
-        Provides operations to call the getRemediationSummary method.
-        Returns: get_remediation_summary_request_builder.GetRemediationSummaryRequestBuilder
-        """
-        return get_remediation_summary_request_builder.GetRemediationSummaryRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def post(self,body: Optional[device_health_script.DeviceHealthScript] = None, request_configuration: Optional[DeviceHealthScriptsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_health_script.DeviceHealthScript]:
+    async def post(self,body: Optional[device_health_script.DeviceHealthScript] = None, request_configuration: Optional[DeviceHealthScriptsRequestBuilderPostRequestConfiguration] = None) -> Optional[device_health_script.DeviceHealthScript]:
         """
         Create new navigation property to deviceHealthScripts for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_health_script.DeviceHealthScript]
         """
         if body is None:
@@ -107,7 +105,7 @@ class DeviceHealthScriptsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_health_script.DeviceHealthScript, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_health_script.DeviceHealthScript, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceHealthScriptsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -10,12 +10,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-complete_request_builder = lazy_import('msgraph.generated.directory.recommendations.item.complete.complete_request_builder')
-dismiss_request_builder = lazy_import('msgraph.generated.directory.recommendations.item.dismiss.dismiss_request_builder')
-impacted_resources_request_builder = lazy_import('msgraph.generated.directory.recommendations.item.impacted_resources.impacted_resources_request_builder')
-recommendation_resource_item_request_builder = lazy_import('msgraph.generated.directory.recommendations.item.impacted_resources.item.recommendation_resource_item_request_builder')
-postpone_request_builder = lazy_import('msgraph.generated.directory.recommendations.item.postpone.postpone_request_builder')
-reactivate_request_builder = lazy_import('msgraph.generated.directory.recommendations.item.reactivate.reactivate_request_builder')
+complete_request_builder = lazy_import('msgraph.generated.directory.recommendations.item.microsoft_graph_complete.complete_request_builder')
+dismiss_request_builder = lazy_import('msgraph.generated.directory.recommendations.item.microsoft_graph_dismiss.dismiss_request_builder')
+postpone_request_builder = lazy_import('msgraph.generated.directory.recommendations.item.microsoft_graph_postpone.postpone_request_builder')
+reactivate_request_builder = lazy_import('msgraph.generated.directory.recommendations.item.microsoft_graph_reactivate.reactivate_request_builder')
 recommendation = lazy_import('msgraph.generated.models.recommendation')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -24,45 +22,39 @@ class RecommendationItemRequestBuilder():
     Provides operations to manage the recommendations property of the microsoft.graph.directory entity.
     """
     @property
-    def complete(self) -> complete_request_builder.CompleteRequestBuilder:
+    def microsoft_graph_complete(self) -> complete_request_builder.CompleteRequestBuilder:
         """
         Provides operations to call the complete method.
         """
         return complete_request_builder.CompleteRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def dismiss(self) -> dismiss_request_builder.DismissRequestBuilder:
+    def microsoft_graph_dismiss(self) -> dismiss_request_builder.DismissRequestBuilder:
         """
         Provides operations to call the dismiss method.
         """
         return dismiss_request_builder.DismissRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def impacted_resources(self) -> impacted_resources_request_builder.ImpactedResourcesRequestBuilder:
-        """
-        Provides operations to manage the impactedResources property of the microsoft.graph.recommendation entity.
-        """
-        return impacted_resources_request_builder.ImpactedResourcesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def postpone(self) -> postpone_request_builder.PostponeRequestBuilder:
+    def microsoft_graph_postpone(self) -> postpone_request_builder.PostponeRequestBuilder:
         """
         Provides operations to call the postpone method.
         """
         return postpone_request_builder.PostponeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reactivate(self) -> reactivate_request_builder.ReactivateRequestBuilder:
+    def microsoft_graph_reactivate(self) -> reactivate_request_builder.ReactivateRequestBuilder:
         """
         Provides operations to call the reactivate method.
         """
         return reactivate_request_builder.ReactivateRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, recommendation_id: Optional[str] = None) -> None:
         """
         Instantiates a new RecommendationItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            recommendationId: key: id of recommendation
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -73,15 +65,15 @@ class RecommendationItemRequestBuilder():
         self.url_template: str = "{+baseurl}/directory/recommendations/{recommendation%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["recommendation%2Did"] = recommendationId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[RecommendationItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[RecommendationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property recommendations for directory
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -92,14 +84,13 @@ class RecommendationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RecommendationItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[recommendation.Recommendation]:
+    async def get(self,request_configuration: Optional[RecommendationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[recommendation.Recommendation]:
         """
         Get recommendations from directory
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[recommendation.Recommendation]
         """
         request_info = self.to_get_request_information(
@@ -111,28 +102,14 @@ class RecommendationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, recommendation.Recommendation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, recommendation.Recommendation, error_mapping)
     
-    def impacted_resources_by_id(self,id: str) -> recommendation_resource_item_request_builder.RecommendationResourceItemRequestBuilder:
-        """
-        Provides operations to manage the impactedResources property of the microsoft.graph.recommendation entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: recommendation_resource_item_request_builder.RecommendationResourceItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["recommendationResource%2Did"] = id
-        return recommendation_resource_item_request_builder.RecommendationResourceItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    async def patch(self,body: Optional[recommendation.Recommendation] = None, request_configuration: Optional[RecommendationItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[recommendation.Recommendation]:
+    async def patch(self,body: Optional[recommendation.Recommendation] = None, request_configuration: Optional[RecommendationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[recommendation.Recommendation]:
         """
         Update the navigation property recommendations in directory
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[recommendation.Recommendation]
         """
         if body is None:
@@ -146,7 +123,7 @@ class RecommendationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, recommendation.Recommendation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, recommendation.Recommendation, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[RecommendationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

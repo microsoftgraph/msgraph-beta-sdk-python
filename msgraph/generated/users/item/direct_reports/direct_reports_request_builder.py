@@ -13,8 +13,8 @@ from typing import Any, Callable, Dict, List, Optional, Union
 directory_object_collection_response = lazy_import('msgraph.generated.models.directory_object_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.users.item.direct_reports.count.count_request_builder')
-org_contact_request_builder = lazy_import('msgraph.generated.users.item.direct_reports.org_contact.org_contact_request_builder')
-user_request_builder = lazy_import('msgraph.generated.users.item.direct_reports.user.user_request_builder')
+org_contact_request_builder = lazy_import('msgraph.generated.users.item.direct_reports.microsoft_graph_org_contact.org_contact_request_builder')
+user_request_builder = lazy_import('msgraph.generated.users.item.direct_reports.microsoft_graph_user.user_request_builder')
 
 class DirectReportsRequestBuilder():
     """
@@ -28,14 +28,14 @@ class DirectReportsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def org_contact(self) -> org_contact_request_builder.OrgContactRequestBuilder:
+    def microsoft_graph_org_contact(self) -> org_contact_request_builder.OrgContactRequestBuilder:
         """
         Casts the previous resource to orgContact.
         """
         return org_contact_request_builder.OrgContactRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user(self) -> user_request_builder.UserRequestBuilder:
+    def microsoft_graph_user(self) -> user_request_builder.UserRequestBuilder:
         """
         Casts the previous resource to user.
         """
@@ -59,12 +59,11 @@ class DirectReportsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DirectReportsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
+    async def get(self,request_configuration: Optional[DirectReportsRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
         """
         The users and contacts that report to the user. (The users and contacts that have their manager property set to this user.) Read-only. Nullable. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -76,7 +75,7 @@ class DirectReportsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_object_collection_response.DirectoryObjectCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_object_collection_response.DirectoryObjectCollectionResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DirectReportsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

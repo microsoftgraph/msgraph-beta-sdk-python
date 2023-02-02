@@ -17,10 +17,11 @@ class AudioRoutingGroupItemRequestBuilder():
     """
     Provides operations to manage the audioRoutingGroups property of the microsoft.graph.call entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, audio_routing_group_id: Optional[str] = None) -> None:
         """
         Instantiates a new AudioRoutingGroupItemRequestBuilder and sets the default values.
         Args:
+            audioRoutingGroupId: key: id of audioRoutingGroup
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class AudioRoutingGroupItemRequestBuilder():
         self.url_template: str = "{+baseurl}/app/calls/{call%2Did}/audioRoutingGroups/{audioRoutingGroup%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["audioRoutingGroup%2Did"] = audioRoutingGroupId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AudioRoutingGroupItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AudioRoutingGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property audioRoutingGroups for app
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class AudioRoutingGroupItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AudioRoutingGroupItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[audio_routing_group.AudioRoutingGroup]:
+    async def get(self,request_configuration: Optional[AudioRoutingGroupItemRequestBuilderGetRequestConfiguration] = None) -> Optional[audio_routing_group.AudioRoutingGroup]:
         """
         Get audioRoutingGroups from app
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[audio_routing_group.AudioRoutingGroup]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class AudioRoutingGroupItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, audio_routing_group.AudioRoutingGroup, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, audio_routing_group.AudioRoutingGroup, error_mapping)
     
-    async def patch(self,body: Optional[audio_routing_group.AudioRoutingGroup] = None, request_configuration: Optional[AudioRoutingGroupItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[audio_routing_group.AudioRoutingGroup]:
+    async def patch(self,body: Optional[audio_routing_group.AudioRoutingGroup] = None, request_configuration: Optional[AudioRoutingGroupItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[audio_routing_group.AudioRoutingGroup]:
         """
         Update the navigation property audioRoutingGroups in app
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[audio_routing_group.AudioRoutingGroup]
         """
         if body is None:
@@ -92,7 +91,7 @@ class AudioRoutingGroupItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, audio_routing_group.AudioRoutingGroup, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, audio_routing_group.AudioRoutingGroup, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AudioRoutingGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -19,7 +19,7 @@ class DeviceManagementConfigurationStringSettingValueConstantDefaultTemplate(dev
         """
         Sets the constantValue property value. Default Constant Value
         Args:
-            value: Value to set for the constantValue property.
+            value: Value to set for the constant_value property.
         """
         self._constant_value = value
     
@@ -50,7 +50,7 @@ class DeviceManagementConfigurationStringSettingValueConstantDefaultTemplate(dev
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "constant_value": lambda n : setattr(self, 'constant_value', n.get_str_value()),
+            "constantValue": lambda n : setattr(self, 'constant_value', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

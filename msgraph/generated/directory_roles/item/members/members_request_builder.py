@@ -10,14 +10,14 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-application_request_builder = lazy_import('msgraph.generated.directory_roles.item.members.application.application_request_builder')
 count_request_builder = lazy_import('msgraph.generated.directory_roles.item.members.count.count_request_builder')
-device_request_builder = lazy_import('msgraph.generated.directory_roles.item.members.device.device_request_builder')
-group_request_builder = lazy_import('msgraph.generated.directory_roles.item.members.group.group_request_builder')
-org_contact_request_builder = lazy_import('msgraph.generated.directory_roles.item.members.org_contact.org_contact_request_builder')
+application_request_builder = lazy_import('msgraph.generated.directory_roles.item.members.microsoft_graph_application.application_request_builder')
+device_request_builder = lazy_import('msgraph.generated.directory_roles.item.members.microsoft_graph_device.device_request_builder')
+group_request_builder = lazy_import('msgraph.generated.directory_roles.item.members.microsoft_graph_group.group_request_builder')
+org_contact_request_builder = lazy_import('msgraph.generated.directory_roles.item.members.microsoft_graph_org_contact.org_contact_request_builder')
+service_principal_request_builder = lazy_import('msgraph.generated.directory_roles.item.members.microsoft_graph_service_principal.service_principal_request_builder')
+user_request_builder = lazy_import('msgraph.generated.directory_roles.item.members.microsoft_graph_user.user_request_builder')
 ref_request_builder = lazy_import('msgraph.generated.directory_roles.item.members.ref.ref_request_builder')
-service_principal_request_builder = lazy_import('msgraph.generated.directory_roles.item.members.service_principal.service_principal_request_builder')
-user_request_builder = lazy_import('msgraph.generated.directory_roles.item.members.user.user_request_builder')
 directory_object_collection_response = lazy_import('msgraph.generated.models.directory_object_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -26,13 +26,6 @@ class MembersRequestBuilder():
     Provides operations to manage the members property of the microsoft.graph.directoryRole entity.
     """
     @property
-    def application(self) -> application_request_builder.ApplicationRequestBuilder:
-        """
-        Casts the previous resource to application.
-        """
-        return application_request_builder.ApplicationRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
@@ -40,25 +33,46 @@ class MembersRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device(self) -> device_request_builder.DeviceRequestBuilder:
+    def microsoft_graph_application(self) -> application_request_builder.ApplicationRequestBuilder:
+        """
+        Casts the previous resource to application.
+        """
+        return application_request_builder.ApplicationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_device(self) -> device_request_builder.DeviceRequestBuilder:
         """
         Casts the previous resource to device.
         """
         return device_request_builder.DeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def group(self) -> group_request_builder.GroupRequestBuilder:
+    def microsoft_graph_group(self) -> group_request_builder.GroupRequestBuilder:
         """
         Casts the previous resource to group.
         """
         return group_request_builder.GroupRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def org_contact(self) -> org_contact_request_builder.OrgContactRequestBuilder:
+    def microsoft_graph_org_contact(self) -> org_contact_request_builder.OrgContactRequestBuilder:
         """
         Casts the previous resource to orgContact.
         """
         return org_contact_request_builder.OrgContactRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_service_principal(self) -> service_principal_request_builder.ServicePrincipalRequestBuilder:
+        """
+        Casts the previous resource to servicePrincipal.
+        """
+        return service_principal_request_builder.ServicePrincipalRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_user(self) -> user_request_builder.UserRequestBuilder:
+        """
+        Casts the previous resource to user.
+        """
+        return user_request_builder.UserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def ref(self) -> ref_request_builder.RefRequestBuilder:
@@ -66,20 +80,6 @@ class MembersRequestBuilder():
         Provides operations to manage the collection of directoryRole entities.
         """
         return ref_request_builder.RefRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def service_principal(self) -> service_principal_request_builder.ServicePrincipalRequestBuilder:
-        """
-        Casts the previous resource to servicePrincipal.
-        """
-        return service_principal_request_builder.ServicePrincipalRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def user(self) -> user_request_builder.UserRequestBuilder:
-        """
-        Casts the previous resource to user.
-        """
-        return user_request_builder.UserRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -99,12 +99,11 @@ class MembersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[MembersRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
+    async def get(self,request_configuration: Optional[MembersRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
         """
         Users that are members of this directory role. HTTP Methods: GET, POST, DELETE. Read-only. Nullable. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -116,7 +115,7 @@ class MembersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_object_collection_response.DirectoryObjectCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_object_collection_response.DirectoryObjectCollectionResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[MembersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

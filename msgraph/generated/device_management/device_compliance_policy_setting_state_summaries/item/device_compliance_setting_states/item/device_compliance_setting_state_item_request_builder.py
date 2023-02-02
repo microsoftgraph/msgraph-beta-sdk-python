@@ -17,10 +17,11 @@ class DeviceComplianceSettingStateItemRequestBuilder():
     """
     Provides operations to manage the deviceComplianceSettingStates property of the microsoft.graph.deviceCompliancePolicySettingStateSummary entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, device_compliance_setting_state_id: Optional[str] = None) -> None:
         """
         Instantiates a new DeviceComplianceSettingStateItemRequestBuilder and sets the default values.
         Args:
+            deviceComplianceSettingStateId: key: id of deviceComplianceSettingState
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class DeviceComplianceSettingStateItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceManagement/deviceCompliancePolicySettingStateSummaries/{deviceCompliancePolicySettingStateSummary%2Did}/deviceComplianceSettingStates/{deviceComplianceSettingState%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["deviceComplianceSettingState%2Did"] = deviceComplianceSettingStateId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DeviceComplianceSettingStateItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceComplianceSettingStateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property deviceComplianceSettingStates for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class DeviceComplianceSettingStateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceComplianceSettingStateItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_compliance_setting_state.DeviceComplianceSettingState]:
+    async def get(self,request_configuration: Optional[DeviceComplianceSettingStateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_compliance_setting_state.DeviceComplianceSettingState]:
         """
         Not yet documented
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_compliance_setting_state.DeviceComplianceSettingState]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class DeviceComplianceSettingStateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_compliance_setting_state.DeviceComplianceSettingState, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_compliance_setting_state.DeviceComplianceSettingState, error_mapping)
     
-    async def patch(self,body: Optional[device_compliance_setting_state.DeviceComplianceSettingState] = None, request_configuration: Optional[DeviceComplianceSettingStateItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_compliance_setting_state.DeviceComplianceSettingState]:
+    async def patch(self,body: Optional[device_compliance_setting_state.DeviceComplianceSettingState] = None, request_configuration: Optional[DeviceComplianceSettingStateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_compliance_setting_state.DeviceComplianceSettingState]:
         """
         Update the navigation property deviceComplianceSettingStates in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_compliance_setting_state.DeviceComplianceSettingState]
         """
         if body is None:
@@ -92,7 +91,7 @@ class DeviceComplianceSettingStateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_compliance_setting_state.DeviceComplianceSettingState, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_compliance_setting_state.DeviceComplianceSettingState, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceComplianceSettingStateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

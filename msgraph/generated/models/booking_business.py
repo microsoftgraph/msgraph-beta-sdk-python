@@ -61,7 +61,7 @@ class BookingBusiness(booking_named_entity.BookingNamedEntity):
         """
         Sets the businessHours property value. The hours of operation for the business.
         Args:
-            value: Value to set for the businessHours property.
+            value: Value to set for the business_hours property.
         """
         self._business_hours = value
     
@@ -78,7 +78,7 @@ class BookingBusiness(booking_named_entity.BookingNamedEntity):
         """
         Sets the businessType property value. The type of business.
         Args:
-            value: Value to set for the businessType property.
+            value: Value to set for the business_type property.
         """
         self._business_type = value
     
@@ -95,7 +95,7 @@ class BookingBusiness(booking_named_entity.BookingNamedEntity):
         """
         Sets the calendarView property value. The set of appointments of this business in a specified date range. Read-only. Nullable.
         Args:
-            value: Value to set for the calendarView property.
+            value: Value to set for the calendar_view property.
         """
         self._calendar_view = value
     
@@ -115,10 +115,10 @@ class BookingBusiness(booking_named_entity.BookingNamedEntity):
         self._business_type: Optional[str] = None
         # The set of appointments of this business in a specified date range. Read-only. Nullable.
         self._calendar_view: Optional[List[booking_appointment.BookingAppointment]] = None
-        # All the customers of this business. Read-only. Nullable.
-        self._customers: Optional[List[booking_customer.BookingCustomer]] = None
         # All the custom questions of this business. Read-only. Nullable.
         self._custom_questions: Optional[List[booking_custom_question.BookingCustomQuestion]] = None
+        # All the customers of this business. Read-only. Nullable.
+        self._customers: Optional[List[booking_customer.BookingCustomer]] = None
         # The code for the currency that the business operates in on Microsoft Bookings.
         self._default_currency_iso: Optional[str] = None
         # The email address for the business.
@@ -153,6 +153,23 @@ class BookingBusiness(booking_named_entity.BookingNamedEntity):
         return BookingBusiness()
     
     @property
+    def custom_questions(self,) -> Optional[List[booking_custom_question.BookingCustomQuestion]]:
+        """
+        Gets the customQuestions property value. All the custom questions of this business. Read-only. Nullable.
+        Returns: Optional[List[booking_custom_question.BookingCustomQuestion]]
+        """
+        return self._custom_questions
+    
+    @custom_questions.setter
+    def custom_questions(self,value: Optional[List[booking_custom_question.BookingCustomQuestion]] = None) -> None:
+        """
+        Sets the customQuestions property value. All the custom questions of this business. Read-only. Nullable.
+        Args:
+            value: Value to set for the custom_questions property.
+        """
+        self._custom_questions = value
+    
+    @property
     def customers(self,) -> Optional[List[booking_customer.BookingCustomer]]:
         """
         Gets the customers property value. All the customers of this business. Read-only. Nullable.
@@ -170,23 +187,6 @@ class BookingBusiness(booking_named_entity.BookingNamedEntity):
         self._customers = value
     
     @property
-    def custom_questions(self,) -> Optional[List[booking_custom_question.BookingCustomQuestion]]:
-        """
-        Gets the customQuestions property value. All the custom questions of this business. Read-only. Nullable.
-        Returns: Optional[List[booking_custom_question.BookingCustomQuestion]]
-        """
-        return self._custom_questions
-    
-    @custom_questions.setter
-    def custom_questions(self,value: Optional[List[booking_custom_question.BookingCustomQuestion]] = None) -> None:
-        """
-        Sets the customQuestions property value. All the custom questions of this business. Read-only. Nullable.
-        Args:
-            value: Value to set for the customQuestions property.
-        """
-        self._custom_questions = value
-    
-    @property
     def default_currency_iso(self,) -> Optional[str]:
         """
         Gets the defaultCurrencyIso property value. The code for the currency that the business operates in on Microsoft Bookings.
@@ -199,7 +199,7 @@ class BookingBusiness(booking_named_entity.BookingNamedEntity):
         """
         Sets the defaultCurrencyIso property value. The code for the currency that the business operates in on Microsoft Bookings.
         Args:
-            value: Value to set for the defaultCurrencyIso property.
+            value: Value to set for the default_currency_iso property.
         """
         self._default_currency_iso = value
     
@@ -228,21 +228,21 @@ class BookingBusiness(booking_named_entity.BookingNamedEntity):
         fields = {
             "address": lambda n : setattr(self, 'address', n.get_object_value(physical_address.PhysicalAddress)),
             "appointments": lambda n : setattr(self, 'appointments', n.get_collection_of_object_values(booking_appointment.BookingAppointment)),
-            "business_hours": lambda n : setattr(self, 'business_hours', n.get_collection_of_object_values(booking_work_hours.BookingWorkHours)),
-            "business_type": lambda n : setattr(self, 'business_type', n.get_str_value()),
-            "calendar_view": lambda n : setattr(self, 'calendar_view', n.get_collection_of_object_values(booking_appointment.BookingAppointment)),
+            "businessHours": lambda n : setattr(self, 'business_hours', n.get_collection_of_object_values(booking_work_hours.BookingWorkHours)),
+            "businessType": lambda n : setattr(self, 'business_type', n.get_str_value()),
+            "calendarView": lambda n : setattr(self, 'calendar_view', n.get_collection_of_object_values(booking_appointment.BookingAppointment)),
             "customers": lambda n : setattr(self, 'customers', n.get_collection_of_object_values(booking_customer.BookingCustomer)),
-            "custom_questions": lambda n : setattr(self, 'custom_questions', n.get_collection_of_object_values(booking_custom_question.BookingCustomQuestion)),
-            "default_currency_iso": lambda n : setattr(self, 'default_currency_iso', n.get_str_value()),
+            "customQuestions": lambda n : setattr(self, 'custom_questions', n.get_collection_of_object_values(booking_custom_question.BookingCustomQuestion)),
+            "defaultCurrencyIso": lambda n : setattr(self, 'default_currency_iso', n.get_str_value()),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
-            "is_published": lambda n : setattr(self, 'is_published', n.get_bool_value()),
-            "language_tag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
+            "isPublished": lambda n : setattr(self, 'is_published', n.get_bool_value()),
+            "languageTag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
             "phone": lambda n : setattr(self, 'phone', n.get_str_value()),
-            "public_url": lambda n : setattr(self, 'public_url', n.get_str_value()),
-            "scheduling_policy": lambda n : setattr(self, 'scheduling_policy', n.get_object_value(booking_scheduling_policy.BookingSchedulingPolicy)),
+            "publicUrl": lambda n : setattr(self, 'public_url', n.get_str_value()),
+            "schedulingPolicy": lambda n : setattr(self, 'scheduling_policy', n.get_object_value(booking_scheduling_policy.BookingSchedulingPolicy)),
             "services": lambda n : setattr(self, 'services', n.get_collection_of_object_values(booking_service.BookingService)),
-            "staff_members": lambda n : setattr(self, 'staff_members', n.get_collection_of_object_values(booking_staff_member.BookingStaffMember)),
-            "web_site_url": lambda n : setattr(self, 'web_site_url', n.get_str_value()),
+            "staffMembers": lambda n : setattr(self, 'staff_members', n.get_collection_of_object_values(booking_staff_member.BookingStaffMember)),
+            "webSiteUrl": lambda n : setattr(self, 'web_site_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -261,7 +261,7 @@ class BookingBusiness(booking_named_entity.BookingNamedEntity):
         """
         Sets the isPublished property value. The scheduling page has been made available to external customers. Use the publish and unpublish actions to set this property. Read-only.
         Args:
-            value: Value to set for the isPublished property.
+            value: Value to set for the is_published property.
         """
         self._is_published = value
     
@@ -278,7 +278,7 @@ class BookingBusiness(booking_named_entity.BookingNamedEntity):
         """
         Sets the languageTag property value. The language of the self service booking page
         Args:
-            value: Value to set for the languageTag property.
+            value: Value to set for the language_tag property.
         """
         self._language_tag = value
     
@@ -312,7 +312,7 @@ class BookingBusiness(booking_named_entity.BookingNamedEntity):
         """
         Sets the publicUrl property value. The URL for the scheduling page, which is set after you publish or unpublish the page. Read-only.
         Args:
-            value: Value to set for the publicUrl property.
+            value: Value to set for the public_url property.
         """
         self._public_url = value
     
@@ -329,7 +329,7 @@ class BookingBusiness(booking_named_entity.BookingNamedEntity):
         """
         Sets the schedulingPolicy property value. Specifies how bookings can be created for this business.
         Args:
-            value: Value to set for the schedulingPolicy property.
+            value: Value to set for the scheduling_policy property.
         """
         self._scheduling_policy = value
     
@@ -388,7 +388,7 @@ class BookingBusiness(booking_named_entity.BookingNamedEntity):
         """
         Sets the staffMembers property value. All the staff members that provide services in this business. Read-only. Nullable.
         Args:
-            value: Value to set for the staffMembers property.
+            value: Value to set for the staff_members property.
         """
         self._staff_members = value
     
@@ -405,7 +405,7 @@ class BookingBusiness(booking_named_entity.BookingNamedEntity):
         """
         Sets the webSiteUrl property value. The URL of the business web site. The webSiteUrl property, together with address, phone, appear in the footer of a business scheduling page.
         Args:
-            value: Value to set for the webSiteUrl property.
+            value: Value to set for the web_site_url property.
         """
         self._web_site_url = value
     

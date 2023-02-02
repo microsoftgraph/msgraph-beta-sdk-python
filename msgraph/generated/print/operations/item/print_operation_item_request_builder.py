@@ -17,11 +17,12 @@ class PrintOperationItemRequestBuilder():
     """
     Provides operations to manage the operations property of the microsoft.graph.print entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, print_operation_id: Optional[str] = None) -> None:
         """
         Instantiates a new PrintOperationItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            printOperationId: key: id of printOperation
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -32,15 +33,15 @@ class PrintOperationItemRequestBuilder():
         self.url_template: str = "{+baseurl}/print/operations/{printOperation%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["printOperation%2Did"] = printOperationId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PrintOperationItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PrintOperationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property operations for print
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class PrintOperationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PrintOperationItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[print_operation.PrintOperation]:
+    async def get(self,request_configuration: Optional[PrintOperationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[print_operation.PrintOperation]:
         """
         Get operations from print
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[print_operation.PrintOperation]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class PrintOperationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, print_operation.PrintOperation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, print_operation.PrintOperation, error_mapping)
     
-    async def patch(self,body: Optional[print_operation.PrintOperation] = None, request_configuration: Optional[PrintOperationItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[print_operation.PrintOperation]:
+    async def patch(self,body: Optional[print_operation.PrintOperation] = None, request_configuration: Optional[PrintOperationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[print_operation.PrintOperation]:
         """
         Update the navigation property operations in print
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[print_operation.PrintOperation]
         """
         if body is None:
@@ -92,7 +91,7 @@ class PrintOperationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, print_operation.PrintOperation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, print_operation.PrintOperation, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PrintOperationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

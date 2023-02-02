@@ -58,7 +58,7 @@ class SynchronizationSchema(entity.Entity):
         """
         fields = {
             "directories": lambda n : setattr(self, 'directories', n.get_collection_of_object_values(directory_definition.DirectoryDefinition)),
-            "synchronization_rules": lambda n : setattr(self, 'synchronization_rules', n.get_collection_of_object_values(synchronization_rule.SynchronizationRule)),
+            "synchronizationRules": lambda n : setattr(self, 'synchronization_rules', n.get_collection_of_object_values(synchronization_rule.SynchronizationRule)),
             "version": lambda n : setattr(self, 'version', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -91,7 +91,7 @@ class SynchronizationSchema(entity.Entity):
         """
         Sets the synchronizationRules property value. A collection of synchronization rules configured for the synchronizationJob or synchronizationTemplate.
         Args:
-            value: Value to set for the synchronizationRules property.
+            value: Value to set for the synchronization_rules property.
         """
         self._synchronization_rules = value
     

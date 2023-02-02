@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-mute_request_builder = lazy_import('msgraph.generated.app.calls.item.participants.item.mute.mute_request_builder')
-start_hold_music_request_builder = lazy_import('msgraph.generated.app.calls.item.participants.item.start_hold_music.start_hold_music_request_builder')
-stop_hold_music_request_builder = lazy_import('msgraph.generated.app.calls.item.participants.item.stop_hold_music.stop_hold_music_request_builder')
+mute_request_builder = lazy_import('msgraph.generated.app.calls.item.participants.item.microsoft_graph_mute.mute_request_builder')
+start_hold_music_request_builder = lazy_import('msgraph.generated.app.calls.item.participants.item.microsoft_graph_start_hold_music.start_hold_music_request_builder')
+stop_hold_music_request_builder = lazy_import('msgraph.generated.app.calls.item.participants.item.microsoft_graph_stop_hold_music.stop_hold_music_request_builder')
 participant = lazy_import('msgraph.generated.models.participant')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -21,30 +21,31 @@ class ParticipantItemRequestBuilder():
     Provides operations to manage the participants property of the microsoft.graph.call entity.
     """
     @property
-    def mute(self) -> mute_request_builder.MuteRequestBuilder:
+    def microsoft_graph_mute(self) -> mute_request_builder.MuteRequestBuilder:
         """
         Provides operations to call the mute method.
         """
         return mute_request_builder.MuteRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def start_hold_music(self) -> start_hold_music_request_builder.StartHoldMusicRequestBuilder:
+    def microsoft_graph_start_hold_music(self) -> start_hold_music_request_builder.StartHoldMusicRequestBuilder:
         """
         Provides operations to call the startHoldMusic method.
         """
         return start_hold_music_request_builder.StartHoldMusicRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def stop_hold_music(self) -> stop_hold_music_request_builder.StopHoldMusicRequestBuilder:
+    def microsoft_graph_stop_hold_music(self) -> stop_hold_music_request_builder.StopHoldMusicRequestBuilder:
         """
         Provides operations to call the stopHoldMusic method.
         """
         return stop_hold_music_request_builder.StopHoldMusicRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, participant_id: Optional[str] = None) -> None:
         """
         Instantiates a new ParticipantItemRequestBuilder and sets the default values.
         Args:
+            participantId: key: id of participant
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -56,15 +57,15 @@ class ParticipantItemRequestBuilder():
         self.url_template: str = "{+baseurl}/app/calls/{call%2Did}/participants/{participant%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["participant%2Did"] = participantId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ParticipantItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ParticipantItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property participants for app
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -75,14 +76,13 @@ class ParticipantItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ParticipantItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[participant.Participant]:
+    async def get(self,request_configuration: Optional[ParticipantItemRequestBuilderGetRequestConfiguration] = None) -> Optional[participant.Participant]:
         """
         Get participants from app
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[participant.Participant]
         """
         request_info = self.to_get_request_information(
@@ -94,15 +94,14 @@ class ParticipantItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, participant.Participant, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, participant.Participant, error_mapping)
     
-    async def patch(self,body: Optional[participant.Participant] = None, request_configuration: Optional[ParticipantItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[participant.Participant]:
+    async def patch(self,body: Optional[participant.Participant] = None, request_configuration: Optional[ParticipantItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[participant.Participant]:
         """
         Update the navigation property participants in app
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[participant.Participant]
         """
         if body is None:
@@ -116,7 +115,7 @@ class ParticipantItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, participant.Participant, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, participant.Participant, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ParticipantItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

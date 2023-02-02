@@ -39,7 +39,7 @@ class DeviceManagementSettingComparison(AdditionalDataHolder, Parsable):
         """
         Sets the comparisonResult property value. Setting comparison result type
         Args:
-            value: Value to set for the comparisonResult property.
+            value: Value to set for the comparison_result property.
         """
         self._comparison_result = value
     
@@ -90,7 +90,7 @@ class DeviceManagementSettingComparison(AdditionalDataHolder, Parsable):
         """
         Sets the currentValueJson property value. JSON representation of current intent (or) template setting's value
         Args:
-            value: Value to set for the currentValueJson property.
+            value: Value to set for the current_value_json property.
         """
         self._current_value_json = value
     
@@ -107,7 +107,7 @@ class DeviceManagementSettingComparison(AdditionalDataHolder, Parsable):
         """
         Sets the definitionId property value. The ID of the setting definition for this instance
         Args:
-            value: Value to set for the definitionId property.
+            value: Value to set for the definition_id property.
         """
         self._definition_id = value
     
@@ -124,7 +124,7 @@ class DeviceManagementSettingComparison(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The setting's display name
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -134,12 +134,12 @@ class DeviceManagementSettingComparison(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "comparison_result": lambda n : setattr(self, 'comparison_result', n.get_enum_value(device_management_comparison_result.DeviceManagementComparisonResult)),
-            "current_value_json": lambda n : setattr(self, 'current_value_json', n.get_str_value()),
-            "definition_id": lambda n : setattr(self, 'definition_id', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "comparisonResult": lambda n : setattr(self, 'comparison_result', n.get_enum_value(device_management_comparison_result.DeviceManagementComparisonResult)),
+            "currentValueJson": lambda n : setattr(self, 'current_value_json', n.get_str_value()),
+            "definitionId": lambda n : setattr(self, 'definition_id', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
-            "new_value_json": lambda n : setattr(self, 'new_value_json', n.get_str_value()),
+            "newValueJson": lambda n : setattr(self, 'new_value_json', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -174,7 +174,7 @@ class DeviceManagementSettingComparison(AdditionalDataHolder, Parsable):
         """
         Sets the newValueJson property value. JSON representation of new template setting's value
         Args:
-            value: Value to set for the newValueJson property.
+            value: Value to set for the new_value_json property.
         """
         self._new_value_json = value
     
@@ -191,7 +191,7 @@ class DeviceManagementSettingComparison(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

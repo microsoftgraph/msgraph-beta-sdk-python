@@ -85,7 +85,7 @@ class RoleScopeTag(entity.Entity):
         """
         Sets the displayName property value. The display or friendly name of the Role Scope Tag.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -97,8 +97,8 @@ class RoleScopeTag(entity.Entity):
         fields = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(role_scope_tag_auto_assignment.RoleScopeTagAutoAssignment)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "is_built_in": lambda n : setattr(self, 'is_built_in', n.get_bool_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "isBuiltIn": lambda n : setattr(self, 'is_built_in', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -117,7 +117,7 @@ class RoleScopeTag(entity.Entity):
         """
         Sets the isBuiltIn property value. Description of the Role Scope Tag. This property is read-only.
         Args:
-            value: Value to set for the isBuiltIn property.
+            value: Value to set for the is_built_in property.
         """
         self._is_built_in = value
     

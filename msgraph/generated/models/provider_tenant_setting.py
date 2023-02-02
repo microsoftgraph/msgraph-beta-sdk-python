@@ -20,13 +20,13 @@ class ProviderTenantSetting(entity.Entity):
         """
         Sets the azureTenantId property value. The azureTenantId property
         Args:
-            value: Value to set for the azureTenantId property.
+            value: Value to set for the azure_tenant_id property.
         """
         self._azure_tenant_id = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new providerTenantSetting and sets the default values.
+        Instantiates a new ProviderTenantSetting and sets the default values.
         """
         super().__init__()
         # The azureTenantId property
@@ -77,9 +77,9 @@ class ProviderTenantSetting(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "azure_tenant_id": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
+            "azureTenantId": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "provider": lambda n : setattr(self, 'provider', n.get_str_value()),
             "vendor": lambda n : setattr(self, 'vendor', n.get_str_value()),
         }
@@ -100,7 +100,7 @@ class ProviderTenantSetting(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     

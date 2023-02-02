@@ -34,7 +34,7 @@ class VirtualAppointmentSettings(AdditionalDataHolder, Parsable):
         """
         Sets the allowClientToJoinUsingBrowser property value. Indicates whether the client can use the browser to join a virtual appointment. If set to false, the client can only use Microsoft Teams to join. Optional.
         Args:
-            value: Value to set for the allowClientToJoinUsingBrowser property.
+            value: Value to set for the allow_client_to_join_using_browser property.
         """
         self._allow_client_to_join_using_browser = value
     
@@ -68,7 +68,7 @@ class VirtualAppointmentSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_client_to_join_using_browser": lambda n : setattr(self, 'allow_client_to_join_using_browser', n.get_bool_value()),
+            "allowClientToJoinUsingBrowser": lambda n : setattr(self, 'allow_client_to_join_using_browser', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -86,7 +86,7 @@ class VirtualAppointmentSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

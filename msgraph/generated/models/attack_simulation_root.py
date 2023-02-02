@@ -12,14 +12,14 @@ simulation_automation = lazy_import('msgraph.generated.models.simulation_automat
 class AttackSimulationRoot(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new attackSimulationRoot and sets the default values.
+        Instantiates a new AttackSimulationRoot and sets the default values.
         """
         super().__init__()
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The operations property
+        # Represents an attack simulation training operation.
         self._operations: Optional[List[attack_simulation_operation.AttackSimulationOperation]] = None
-        # The payloads property
+        # Represents an attack simulation training campaign payload in a tenant.
         self._payloads: Optional[List[payload.Payload]] = None
         # Represents simulation automation created to run on a tenant.
         self._simulation_automations: Optional[List[simulation_automation.SimulationAutomation]] = None
@@ -46,8 +46,8 @@ class AttackSimulationRoot(entity.Entity):
         fields = {
             "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(attack_simulation_operation.AttackSimulationOperation)),
             "payloads": lambda n : setattr(self, 'payloads', n.get_collection_of_object_values(payload.Payload)),
-            "simulation_automations": lambda n : setattr(self, 'simulation_automations', n.get_collection_of_object_values(simulation_automation.SimulationAutomation)),
             "simulations": lambda n : setattr(self, 'simulations', n.get_collection_of_object_values(simulation.Simulation)),
+            "simulationAutomations": lambda n : setattr(self, 'simulation_automations', n.get_collection_of_object_values(simulation_automation.SimulationAutomation)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -56,7 +56,7 @@ class AttackSimulationRoot(entity.Entity):
     @property
     def operations(self,) -> Optional[List[attack_simulation_operation.AttackSimulationOperation]]:
         """
-        Gets the operations property value. The operations property
+        Gets the operations property value. Represents an attack simulation training operation.
         Returns: Optional[List[attack_simulation_operation.AttackSimulationOperation]]
         """
         return self._operations
@@ -64,7 +64,7 @@ class AttackSimulationRoot(entity.Entity):
     @operations.setter
     def operations(self,value: Optional[List[attack_simulation_operation.AttackSimulationOperation]] = None) -> None:
         """
-        Sets the operations property value. The operations property
+        Sets the operations property value. Represents an attack simulation training operation.
         Args:
             value: Value to set for the operations property.
         """
@@ -73,7 +73,7 @@ class AttackSimulationRoot(entity.Entity):
     @property
     def payloads(self,) -> Optional[List[payload.Payload]]:
         """
-        Gets the payloads property value. The payloads property
+        Gets the payloads property value. Represents an attack simulation training campaign payload in a tenant.
         Returns: Optional[List[payload.Payload]]
         """
         return self._payloads
@@ -81,7 +81,7 @@ class AttackSimulationRoot(entity.Entity):
     @payloads.setter
     def payloads(self,value: Optional[List[payload.Payload]] = None) -> None:
         """
-        Sets the payloads property value. The payloads property
+        Sets the payloads property value. Represents an attack simulation training campaign payload in a tenant.
         Args:
             value: Value to set for the payloads property.
         """
@@ -98,8 +98,8 @@ class AttackSimulationRoot(entity.Entity):
         super().serialize(writer)
         writer.write_collection_of_object_values("operations", self.operations)
         writer.write_collection_of_object_values("payloads", self.payloads)
-        writer.write_collection_of_object_values("simulationAutomations", self.simulation_automations)
         writer.write_collection_of_object_values("simulations", self.simulations)
+        writer.write_collection_of_object_values("simulationAutomations", self.simulation_automations)
     
     @property
     def simulation_automations(self,) -> Optional[List[simulation_automation.SimulationAutomation]]:
@@ -114,7 +114,7 @@ class AttackSimulationRoot(entity.Entity):
         """
         Sets the simulationAutomations property value. Represents simulation automation created to run on a tenant.
         Args:
-            value: Value to set for the simulationAutomations property.
+            value: Value to set for the simulation_automations property.
         """
         self._simulation_automations = value
     

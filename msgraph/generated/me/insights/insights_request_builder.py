@@ -35,12 +35,11 @@ class InsightsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[InsightsRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[InsightsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property insights for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class InsightsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[InsightsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[item_insights.ItemInsights]:
+    async def get(self,request_configuration: Optional[InsightsRequestBuilderGetRequestConfiguration] = None) -> Optional[item_insights.ItemInsights]:
         """
         Get insights from me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[item_insights.ItemInsights]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class InsightsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, item_insights.ItemInsights, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, item_insights.ItemInsights, error_mapping)
     
-    async def patch(self,body: Optional[item_insights.ItemInsights] = None, request_configuration: Optional[InsightsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[item_insights.ItemInsights]:
+    async def patch(self,body: Optional[item_insights.ItemInsights] = None, request_configuration: Optional[InsightsRequestBuilderPatchRequestConfiguration] = None) -> Optional[item_insights.ItemInsights]:
         """
         Update the navigation property insights in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[item_insights.ItemInsights]
         """
         if body is None:
@@ -92,7 +89,7 @@ class InsightsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, item_insights.ItemInsights, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, item_insights.ItemInsights, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[InsightsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

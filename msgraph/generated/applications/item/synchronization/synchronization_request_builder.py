@@ -10,10 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-acquire_access_token_request_builder = lazy_import('msgraph.generated.applications.item.synchronization.acquire_access_token.acquire_access_token_request_builder')
 jobs_request_builder = lazy_import('msgraph.generated.applications.item.synchronization.jobs.jobs_request_builder')
 synchronization_job_item_request_builder = lazy_import('msgraph.generated.applications.item.synchronization.jobs.item.synchronization_job_item_request_builder')
-ping_request_builder = lazy_import('msgraph.generated.applications.item.synchronization.ping.ping_request_builder')
+acquire_access_token_request_builder = lazy_import('msgraph.generated.applications.item.synchronization.microsoft_graph_acquire_access_token.acquire_access_token_request_builder')
+ping_request_builder = lazy_import('msgraph.generated.applications.item.synchronization.microsoft_graph_ping.ping_request_builder')
+secrets_request_builder = lazy_import('msgraph.generated.applications.item.synchronization.secrets.secrets_request_builder')
 templates_request_builder = lazy_import('msgraph.generated.applications.item.synchronization.templates.templates_request_builder')
 synchronization_template_item_request_builder = lazy_import('msgraph.generated.applications.item.synchronization.templates.item.synchronization_template_item_request_builder')
 synchronization = lazy_import('msgraph.generated.models.synchronization')
@@ -24,18 +25,32 @@ class SynchronizationRequestBuilder():
     Provides operations to manage the synchronization property of the microsoft.graph.application entity.
     """
     @property
-    def acquire_access_token(self) -> acquire_access_token_request_builder.AcquireAccessTokenRequestBuilder:
+    def jobs(self) -> jobs_request_builder.JobsRequestBuilder:
+        """
+        Provides operations to manage the jobs property of the microsoft.graph.synchronization entity.
+        """
+        return jobs_request_builder.JobsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_acquire_access_token(self) -> acquire_access_token_request_builder.AcquireAccessTokenRequestBuilder:
         """
         Provides operations to call the acquireAccessToken method.
         """
         return acquire_access_token_request_builder.AcquireAccessTokenRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def jobs(self) -> jobs_request_builder.JobsRequestBuilder:
+    def microsoft_graph_ping(self) -> ping_request_builder.PingRequestBuilder:
         """
-        Provides operations to manage the jobs property of the microsoft.graph.synchronization entity.
+        Provides operations to call the Ping method.
         """
-        return jobs_request_builder.JobsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ping_request_builder.PingRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def secrets(self) -> secrets_request_builder.SecretsRequestBuilder:
+        """
+        The secrets property
+        """
+        return secrets_request_builder.SecretsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def templates(self) -> templates_request_builder.TemplatesRequestBuilder:
@@ -62,12 +77,11 @@ class SynchronizationRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SynchronizationRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[SynchronizationRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property synchronization for applications
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -78,14 +92,13 @@ class SynchronizationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SynchronizationRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[synchronization.Synchronization]:
+    async def get(self,request_configuration: Optional[SynchronizationRequestBuilderGetRequestConfiguration] = None) -> Optional[synchronization.Synchronization]:
         """
         Get synchronization from applications
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[synchronization.Synchronization]
         """
         request_info = self.to_get_request_information(
@@ -97,7 +110,7 @@ class SynchronizationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, synchronization.Synchronization, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, synchronization.Synchronization, error_mapping)
     
     def jobs_by_id(self,id: str) -> synchronization_job_item_request_builder.SynchronizationJobItemRequestBuilder:
         """
@@ -112,13 +125,12 @@ class SynchronizationRequestBuilder():
         url_tpl_params["synchronizationJob%2Did"] = id
         return synchronization_job_item_request_builder.SynchronizationJobItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[synchronization.Synchronization] = None, request_configuration: Optional[SynchronizationRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[synchronization.Synchronization]:
+    async def patch(self,body: Optional[synchronization.Synchronization] = None, request_configuration: Optional[SynchronizationRequestBuilderPatchRequestConfiguration] = None) -> Optional[synchronization.Synchronization]:
         """
         Update the navigation property synchronization in applications
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[synchronization.Synchronization]
         """
         if body is None:
@@ -132,14 +144,7 @@ class SynchronizationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, synchronization.Synchronization, response_handler, error_mapping)
-    
-    def ping(self,) -> ping_request_builder.PingRequestBuilder:
-        """
-        Provides operations to call the Ping method.
-        Returns: ping_request_builder.PingRequestBuilder
-        """
-        return ping_request_builder.PingRequestBuilder(self.request_adapter, self.path_parameters)
+        return await self.request_adapter.send_async(request_info, synchronization.Synchronization, error_mapping)
     
     def templates_by_id(self,id: str) -> synchronization_template_item_request_builder.SynchronizationTemplateItemRequestBuilder:
         """

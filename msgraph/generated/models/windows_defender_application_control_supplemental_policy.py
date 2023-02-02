@@ -87,7 +87,7 @@ class WindowsDefenderApplicationControlSupplementalPolicy(entity.Entity):
         """
         Sets the contentFileName property value. The WindowsDefenderApplicationControl supplemental policy content's file name.
         Args:
-            value: Value to set for the contentFileName property.
+            value: Value to set for the content_file_name property.
         """
         self._content_file_name = value
     
@@ -116,7 +116,7 @@ class WindowsDefenderApplicationControlSupplementalPolicy(entity.Entity):
         """
         Sets the creationDateTime property value. The date and time when the WindowsDefenderApplicationControl supplemental policy was uploaded.
         Args:
-            value: Value to set for the creationDateTime property.
+            value: Value to set for the creation_date_time property.
         """
         self._creation_date_time = value
     
@@ -133,7 +133,7 @@ class WindowsDefenderApplicationControlSupplementalPolicy(entity.Entity):
         """
         Sets the deploySummary property value. WindowsDefenderApplicationControl supplemental policy deployment summary.
         Args:
-            value: Value to set for the deploySummary property.
+            value: Value to set for the deploy_summary property.
         """
         self._deploy_summary = value
     
@@ -167,7 +167,7 @@ class WindowsDefenderApplicationControlSupplementalPolicy(entity.Entity):
         """
         Sets the deviceStatuses property value. The list of device deployment states for this WindowsDefenderApplicationControl supplemental policy.
         Args:
-            value: Value to set for the deviceStatuses property.
+            value: Value to set for the device_statuses property.
         """
         self._device_statuses = value
     
@@ -184,7 +184,7 @@ class WindowsDefenderApplicationControlSupplementalPolicy(entity.Entity):
         """
         Sets the displayName property value. The display name of WindowsDefenderApplicationControl supplemental policy.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -196,14 +196,14 @@ class WindowsDefenderApplicationControlSupplementalPolicy(entity.Entity):
         fields = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(windows_defender_application_control_supplemental_policy_assignment.WindowsDefenderApplicationControlSupplementalPolicyAssignment)),
             "content": lambda n : setattr(self, 'content', n.get_bytes_value()),
-            "content_file_name": lambda n : setattr(self, 'content_file_name', n.get_str_value()),
-            "creation_date_time": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
-            "deploy_summary": lambda n : setattr(self, 'deploy_summary', n.get_object_value(windows_defender_application_control_supplemental_policy_deployment_summary.WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary)),
+            "contentFileName": lambda n : setattr(self, 'content_file_name', n.get_str_value()),
+            "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
+            "deploySummary": lambda n : setattr(self, 'deploy_summary', n.get_object_value(windows_defender_application_control_supplemental_policy_deployment_summary.WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "device_statuses": lambda n : setattr(self, 'device_statuses', n.get_collection_of_object_values(windows_defender_application_control_supplemental_policy_deployment_status.WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "deviceStatuses": lambda n : setattr(self, 'device_statuses', n.get_collection_of_object_values(windows_defender_application_control_supplemental_policy_deployment_status.WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
             "version": lambda n : setattr(self, 'version', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -223,7 +223,7 @@ class WindowsDefenderApplicationControlSupplementalPolicy(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date and time when the WindowsDefenderApplicationControl supplemental policy was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -240,7 +240,7 @@ class WindowsDefenderApplicationControlSupplementalPolicy(entity.Entity):
         """
         Sets the roleScopeTagIds property value. List of Scope Tags for this WindowsDefenderApplicationControl supplemental policy entity.
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     

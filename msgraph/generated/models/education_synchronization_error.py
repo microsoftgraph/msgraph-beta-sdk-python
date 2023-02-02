@@ -9,7 +9,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 class EducationSynchronizationError(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new educationSynchronizationError and sets the default values.
+        Instantiates a new EducationSynchronizationError and sets the default values.
         """
         super().__init__()
         # Represents the sync entity (school, section, student, teacher).
@@ -52,7 +52,7 @@ class EducationSynchronizationError(entity.Entity):
         """
         Sets the entryType property value. Represents the sync entity (school, section, student, teacher).
         Args:
-            value: Value to set for the entryType property.
+            value: Value to set for the entry_type property.
         """
         self._entry_type = value
     
@@ -69,7 +69,7 @@ class EducationSynchronizationError(entity.Entity):
         """
         Sets the errorCode property value. Represents the error code for this error.
         Args:
-            value: Value to set for the errorCode property.
+            value: Value to set for the error_code property.
         """
         self._error_code = value
     
@@ -86,7 +86,7 @@ class EducationSynchronizationError(entity.Entity):
         """
         Sets the errorMessage property value. Contains a description of the error.
         Args:
-            value: Value to set for the errorMessage property.
+            value: Value to set for the error_message property.
         """
         self._error_message = value
     
@@ -96,12 +96,12 @@ class EducationSynchronizationError(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "entry_type": lambda n : setattr(self, 'entry_type', n.get_str_value()),
-            "error_code": lambda n : setattr(self, 'error_code', n.get_str_value()),
-            "error_message": lambda n : setattr(self, 'error_message', n.get_str_value()),
-            "joining_value": lambda n : setattr(self, 'joining_value', n.get_str_value()),
-            "recorded_date_time": lambda n : setattr(self, 'recorded_date_time', n.get_datetime_value()),
-            "reportable_identifier": lambda n : setattr(self, 'reportable_identifier', n.get_str_value()),
+            "entryType": lambda n : setattr(self, 'entry_type', n.get_str_value()),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_str_value()),
+            "errorMessage": lambda n : setattr(self, 'error_message', n.get_str_value()),
+            "joiningValue": lambda n : setattr(self, 'joining_value', n.get_str_value()),
+            "recordedDateTime": lambda n : setattr(self, 'recorded_date_time', n.get_datetime_value()),
+            "reportableIdentifier": lambda n : setattr(self, 'reportable_identifier', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -120,7 +120,7 @@ class EducationSynchronizationError(entity.Entity):
         """
         Sets the joiningValue property value. The unique identifier for the entry.
         Args:
-            value: Value to set for the joiningValue property.
+            value: Value to set for the joining_value property.
         """
         self._joining_value = value
     
@@ -137,7 +137,7 @@ class EducationSynchronizationError(entity.Entity):
         """
         Sets the recordedDateTime property value. The time of occurrence of this error.
         Args:
-            value: Value to set for the recordedDateTime property.
+            value: Value to set for the recorded_date_time property.
         """
         self._recorded_date_time = value
     
@@ -154,7 +154,7 @@ class EducationSynchronizationError(entity.Entity):
         """
         Sets the reportableIdentifier property value. The identifier of this error entry.
         Args:
-            value: Value to set for the reportableIdentifier property.
+            value: Value to set for the reportable_identifier property.
         """
         self._reportable_identifier = value
     

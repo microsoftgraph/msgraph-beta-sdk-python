@@ -55,7 +55,7 @@ class CreateRemoteHelpSessionResponse(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "session_key": lambda n : setattr(self, 'session_key', n.get_str_value()),
+            "sessionKey": lambda n : setattr(self, 'session_key', n.get_str_value()),
         }
         return fields
     
@@ -72,7 +72,7 @@ class CreateRemoteHelpSessionResponse(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -101,7 +101,7 @@ class CreateRemoteHelpSessionResponse(AdditionalDataHolder, Parsable):
         """
         Sets the sessionKey property value. The unique identifier for a session
         Args:
-            value: Value to set for the sessionKey property.
+            value: Value to set for the session_key property.
         """
         self._session_key = value
     

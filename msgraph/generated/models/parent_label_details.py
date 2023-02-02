@@ -102,7 +102,7 @@ class ParentLabelDetails(AdditionalDataHolder, Parsable):
             "color": lambda n : setattr(self, 'color', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
-            "is_active": lambda n : setattr(self, 'is_active', n.get_bool_value()),
+            "isActive": lambda n : setattr(self, 'is_active', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "parent": lambda n : setattr(self, 'parent', n.get_object_value(ParentLabelDetails)),
@@ -141,7 +141,7 @@ class ParentLabelDetails(AdditionalDataHolder, Parsable):
         """
         Sets the isActive property value. Indicates whether the label is active or not. Active labels should be hidden or disabled in user interfaces.
         Args:
-            value: Value to set for the isActive property.
+            value: Value to set for the is_active property.
         """
         self._is_active = value
     
@@ -175,7 +175,7 @@ class ParentLabelDetails(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

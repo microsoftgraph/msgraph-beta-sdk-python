@@ -36,7 +36,7 @@ class EducationIdentityDomain(AdditionalDataHolder, Parsable):
         """
         Sets the appliesTo property value. The appliesTo property
         Args:
-            value: Value to set for the appliesTo property.
+            value: Value to set for the applies_to property.
         """
         self._applies_to = value
     
@@ -72,7 +72,7 @@ class EducationIdentityDomain(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "applies_to": lambda n : setattr(self, 'applies_to', n.get_enum_value(education_user_role.EducationUserRole)),
+            "appliesTo": lambda n : setattr(self, 'applies_to', n.get_enum_value(education_user_role.EducationUserRole)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -108,7 +108,7 @@ class EducationIdentityDomain(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

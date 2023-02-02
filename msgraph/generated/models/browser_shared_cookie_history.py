@@ -93,7 +93,7 @@ class BrowserSharedCookieHistory(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The name of the cookie.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -104,14 +104,14 @@ class BrowserSharedCookieHistory(AdditionalDataHolder, Parsable):
         """
         fields = {
             "comment": lambda n : setattr(self, 'comment', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "host_only": lambda n : setattr(self, 'host_only', n.get_bool_value()),
-            "host_or_domain": lambda n : setattr(self, 'host_or_domain', n.get_str_value()),
-            "last_modified_by": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "hostOnly": lambda n : setattr(self, 'host_only', n.get_bool_value()),
+            "hostOrDomain": lambda n : setattr(self, 'host_or_domain', n.get_str_value()),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "path": lambda n : setattr(self, 'path', n.get_str_value()),
-            "published_date_time": lambda n : setattr(self, 'published_date_time', n.get_datetime_value()),
-            "source_environment": lambda n : setattr(self, 'source_environment', n.get_enum_value(browser_shared_cookie_source_environment.BrowserSharedCookieSourceEnvironment)),
+            "publishedDateTime": lambda n : setattr(self, 'published_date_time', n.get_datetime_value()),
+            "sourceEnvironment": lambda n : setattr(self, 'source_environment', n.get_enum_value(browser_shared_cookie_source_environment.BrowserSharedCookieSourceEnvironment)),
         }
         return fields
     
@@ -128,7 +128,7 @@ class BrowserSharedCookieHistory(AdditionalDataHolder, Parsable):
         """
         Sets the hostOnly property value. Controls whether a cookie is a host-only or domain cookie.
         Args:
-            value: Value to set for the hostOnly property.
+            value: Value to set for the host_only property.
         """
         self._host_only = value
     
@@ -145,7 +145,7 @@ class BrowserSharedCookieHistory(AdditionalDataHolder, Parsable):
         """
         Sets the hostOrDomain property value. The URL of the cookie.
         Args:
-            value: Value to set for the hostOrDomain property.
+            value: Value to set for the host_or_domain property.
         """
         self._host_or_domain = value
     
@@ -162,7 +162,7 @@ class BrowserSharedCookieHistory(AdditionalDataHolder, Parsable):
         """
         Sets the lastModifiedBy property value. The lastModifiedBy property
         Args:
-            value: Value to set for the lastModifiedBy property.
+            value: Value to set for the last_modified_by property.
         """
         self._last_modified_by = value
     
@@ -179,7 +179,7 @@ class BrowserSharedCookieHistory(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -213,7 +213,7 @@ class BrowserSharedCookieHistory(AdditionalDataHolder, Parsable):
         """
         Sets the publishedDateTime property value. The date and time when the cookie was last published.
         Args:
-            value: Value to set for the publishedDateTime property.
+            value: Value to set for the published_date_time property.
         """
         self._published_date_time = value
     
@@ -249,7 +249,7 @@ class BrowserSharedCookieHistory(AdditionalDataHolder, Parsable):
         """
         Sets the sourceEnvironment property value. Specifies how the cookies are shared between Microsoft Edge and Internet Explorer. The possible values are: microsoftEdge, internetExplorer11, both, unknownFutureValue.
         Args:
-            value: Value to set for the sourceEnvironment property.
+            value: Value to set for the source_environment property.
         """
         self._source_environment = value
     

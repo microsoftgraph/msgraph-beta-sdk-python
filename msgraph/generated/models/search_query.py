@@ -32,10 +32,10 @@ class SearchQuery(AdditionalDataHolder, Parsable):
 
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The query_string property
-        self._query_string: Optional[search_query_string.SearchQueryString] = None
         # The search query containing the search terms. Required.
         self._query_string: Optional[str] = None
+        # The query_string property
+        self._query_string: Optional[search_query_string.SearchQueryString] = None
         # Provides a way to decorate the query string. Supports both KQL and query variables. Optional.
         self._query_template: Optional[str] = None
     
@@ -58,9 +58,9 @@ class SearchQuery(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "query_string": lambda n : setattr(self, 'query_string', n.get_str_value()),
-            "query_template": lambda n : setattr(self, 'query_template', n.get_str_value()),
+            "queryString": lambda n : setattr(self, 'query_string', n.get_str_value()),
             "query_string": lambda n : setattr(self, 'query_string', n.get_object_value(search_query_string.SearchQueryString)),
+            "queryTemplate": lambda n : setattr(self, 'query_template', n.get_str_value()),
         }
         return fields
     
@@ -77,26 +77,9 @@ class SearchQuery(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
-    
-    @property
-    def query_string(self,) -> Optional[search_query_string.SearchQueryString]:
-        """
-        Gets the query_string property value. The query_string property
-        Returns: Optional[search_query_string.SearchQueryString]
-        """
-        return self._query_string
-    
-    @query_string.setter
-    def query_string(self,value: Optional[search_query_string.SearchQueryString] = None) -> None:
-        """
-        Sets the query_string property value. The query_string property
-        Args:
-            value: Value to set for the query_string property.
-        """
-        self._query_string = value
     
     @property
     def query_string(self,) -> Optional[str]:
@@ -111,7 +94,7 @@ class SearchQuery(AdditionalDataHolder, Parsable):
         """
         Sets the queryString property value. The search query containing the search terms. Required.
         Args:
-            value: Value to set for the queryString property.
+            value: Value to set for the query_string property.
         """
         self._query_string = value
     
@@ -128,7 +111,7 @@ class SearchQuery(AdditionalDataHolder, Parsable):
         """
         Sets the queryTemplate property value. Provides a way to decorate the query string. Supports both KQL and query variables. Optional.
         Args:
-            value: Value to set for the queryTemplate property.
+            value: Value to set for the query_template property.
         """
         self._query_template = value
     
@@ -142,8 +125,8 @@ class SearchQuery(AdditionalDataHolder, Parsable):
             raise Exception("writer cannot be undefined")
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("queryString", self.query_string)
-        writer.write_str_value("queryTemplate", self.query_template)
         writer.write_object_value("query_string", self.query_string)
+        writer.write_str_value("queryTemplate", self.query_template)
         writer.write_additional_data_value(self.additional_data)
     
 

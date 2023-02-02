@@ -23,7 +23,7 @@ class CloudPcOnPremisesConnection(entity.Entity):
         """
         Sets the adDomainName property value. The fully qualified domain name (FQDN) of the Active Directory domain you want to join. Optional.
         Args:
-            value: Value to set for the adDomainName property.
+            value: Value to set for the ad_domain_name property.
         """
         self._ad_domain_name = value
     
@@ -40,7 +40,7 @@ class CloudPcOnPremisesConnection(entity.Entity):
         """
         Sets the adDomainPassword property value. The password associated with adDomainUsername.
         Args:
-            value: Value to set for the adDomainPassword property.
+            value: Value to set for the ad_domain_password property.
         """
         self._ad_domain_password = value
     
@@ -57,7 +57,7 @@ class CloudPcOnPremisesConnection(entity.Entity):
         """
         Sets the adDomainUsername property value. The username of an Active Directory account (user or service account) that has permissions to create computer objects in Active Directory. Required format: admin@contoso.com. Optional.
         Args:
-            value: Value to set for the adDomainUsername property.
+            value: Value to set for the ad_domain_username property.
         """
         self._ad_domain_username = value
     
@@ -74,7 +74,7 @@ class CloudPcOnPremisesConnection(entity.Entity):
         """
         Sets the alternateResourceUrl property value. The interface URL of the partner service's resource that links to this Azure network connection. Returned only on $select.
         Args:
-            value: Value to set for the alternateResourceUrl property.
+            value: Value to set for the alternate_resource_url property.
         """
         self._alternate_resource_url = value
     
@@ -117,7 +117,7 @@ class CloudPcOnPremisesConnection(entity.Entity):
         self._type: Optional[cloud_pc_on_premises_connection_type.CloudPcOnPremisesConnectionType] = None
         # The ID of the target virtual network. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}.
         self._virtual_network_id: Optional[str] = None
-        # The virtualNetworkLocation property
+        # Indicates resource location of the virtual target network. Read-only, computed value.
         self._virtual_network_location: Optional[str] = None
     
     @staticmethod
@@ -145,7 +145,7 @@ class CloudPcOnPremisesConnection(entity.Entity):
         """
         Sets the displayName property value. The display name for the Azure network connection.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -155,23 +155,23 @@ class CloudPcOnPremisesConnection(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "ad_domain_name": lambda n : setattr(self, 'ad_domain_name', n.get_str_value()),
-            "ad_domain_password": lambda n : setattr(self, 'ad_domain_password', n.get_str_value()),
-            "ad_domain_username": lambda n : setattr(self, 'ad_domain_username', n.get_str_value()),
-            "alternate_resource_url": lambda n : setattr(self, 'alternate_resource_url', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "health_check_status": lambda n : setattr(self, 'health_check_status', n.get_enum_value(cloud_pc_on_premises_connection_status.CloudPcOnPremisesConnectionStatus)),
-            "health_check_status_details": lambda n : setattr(self, 'health_check_status_details', n.get_object_value(cloud_pc_on_premises_connection_status_details.CloudPcOnPremisesConnectionStatusDetails)),
-            "in_use": lambda n : setattr(self, 'in_use', n.get_bool_value()),
-            "managed_by": lambda n : setattr(self, 'managed_by', n.get_enum_value(cloud_pc_management_service.CloudPcManagementService)),
-            "organizational_unit": lambda n : setattr(self, 'organizational_unit', n.get_str_value()),
-            "resource_group_id": lambda n : setattr(self, 'resource_group_id', n.get_str_value()),
-            "subnet_id": lambda n : setattr(self, 'subnet_id', n.get_str_value()),
-            "subscription_id": lambda n : setattr(self, 'subscription_id', n.get_str_value()),
-            "subscription_name": lambda n : setattr(self, 'subscription_name', n.get_str_value()),
+            "adDomainName": lambda n : setattr(self, 'ad_domain_name', n.get_str_value()),
+            "adDomainPassword": lambda n : setattr(self, 'ad_domain_password', n.get_str_value()),
+            "adDomainUsername": lambda n : setattr(self, 'ad_domain_username', n.get_str_value()),
+            "alternateResourceUrl": lambda n : setattr(self, 'alternate_resource_url', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "healthCheckStatus": lambda n : setattr(self, 'health_check_status', n.get_enum_value(cloud_pc_on_premises_connection_status.CloudPcOnPremisesConnectionStatus)),
+            "healthCheckStatusDetails": lambda n : setattr(self, 'health_check_status_details', n.get_object_value(cloud_pc_on_premises_connection_status_details.CloudPcOnPremisesConnectionStatusDetails)),
+            "inUse": lambda n : setattr(self, 'in_use', n.get_bool_value()),
+            "managedBy": lambda n : setattr(self, 'managed_by', n.get_enum_value(cloud_pc_management_service.CloudPcManagementService)),
+            "organizationalUnit": lambda n : setattr(self, 'organizational_unit', n.get_str_value()),
+            "resourceGroupId": lambda n : setattr(self, 'resource_group_id', n.get_str_value()),
+            "subnetId": lambda n : setattr(self, 'subnet_id', n.get_str_value()),
+            "subscriptionId": lambda n : setattr(self, 'subscription_id', n.get_str_value()),
+            "subscriptionName": lambda n : setattr(self, 'subscription_name', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(cloud_pc_on_premises_connection_type.CloudPcOnPremisesConnectionType)),
-            "virtual_network_id": lambda n : setattr(self, 'virtual_network_id', n.get_str_value()),
-            "virtual_network_location": lambda n : setattr(self, 'virtual_network_location', n.get_str_value()),
+            "virtualNetworkId": lambda n : setattr(self, 'virtual_network_id', n.get_str_value()),
+            "virtualNetworkLocation": lambda n : setattr(self, 'virtual_network_location', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -190,7 +190,7 @@ class CloudPcOnPremisesConnection(entity.Entity):
         """
         Sets the healthCheckStatus property value. The healthCheckStatus property
         Args:
-            value: Value to set for the healthCheckStatus property.
+            value: Value to set for the health_check_status property.
         """
         self._health_check_status = value
     
@@ -207,7 +207,7 @@ class CloudPcOnPremisesConnection(entity.Entity):
         """
         Sets the healthCheckStatusDetails property value. The details of the connection's health checks and the corresponding results. Returned only on $select. For an example that shows how to get the inUse property, see Example 2: Get the selected properties of an Azure network connection, including healthCheckStatusDetails. Read-only.
         Args:
-            value: Value to set for the healthCheckStatusDetails property.
+            value: Value to set for the health_check_status_details property.
         """
         self._health_check_status_details = value
     
@@ -224,7 +224,7 @@ class CloudPcOnPremisesConnection(entity.Entity):
         """
         Sets the inUse property value. When true, the Azure network connection is in use. When false, the connection is not in use. You cannot delete a connection that’s in use. Returned only on $select. For an example that shows how to get the inUse property, see Example 2: Get the selected properties of an Azure network connection, including healthCheckStatusDetails. Read-only.
         Args:
-            value: Value to set for the inUse property.
+            value: Value to set for the in_use property.
         """
         self._in_use = value
     
@@ -241,7 +241,7 @@ class CloudPcOnPremisesConnection(entity.Entity):
         """
         Sets the managedBy property value. The managedBy property
         Args:
-            value: Value to set for the managedBy property.
+            value: Value to set for the managed_by property.
         """
         self._managed_by = value
     
@@ -258,7 +258,7 @@ class CloudPcOnPremisesConnection(entity.Entity):
         """
         Sets the organizationalUnit property value. The organizational unit (OU) in which the computer account is created. If left null, the OU that’s configured as the default (a well-known computer object container) in your Active Directory domain (OU) is used. Optional.
         Args:
-            value: Value to set for the organizationalUnit property.
+            value: Value to set for the organizational_unit property.
         """
         self._organizational_unit = value
     
@@ -275,7 +275,7 @@ class CloudPcOnPremisesConnection(entity.Entity):
         """
         Sets the resourceGroupId property value. The ID of the target resource group. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}.
         Args:
-            value: Value to set for the resourceGroupId property.
+            value: Value to set for the resource_group_id property.
         """
         self._resource_group_id = value
     
@@ -319,7 +319,7 @@ class CloudPcOnPremisesConnection(entity.Entity):
         """
         Sets the subnetId property value. The ID of the target subnet. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkId}/subnets/{subnetName}.
         Args:
-            value: Value to set for the subnetId property.
+            value: Value to set for the subnet_id property.
         """
         self._subnet_id = value
     
@@ -336,7 +336,7 @@ class CloudPcOnPremisesConnection(entity.Entity):
         """
         Sets the subscriptionId property value. The ID of the target Azure subscription that’s associated with your tenant.
         Args:
-            value: Value to set for the subscriptionId property.
+            value: Value to set for the subscription_id property.
         """
         self._subscription_id = value
     
@@ -353,7 +353,7 @@ class CloudPcOnPremisesConnection(entity.Entity):
         """
         Sets the subscriptionName property value. The name of the target Azure subscription. Read-only.
         Args:
-            value: Value to set for the subscriptionName property.
+            value: Value to set for the subscription_name property.
         """
         self._subscription_name = value
     
@@ -387,14 +387,14 @@ class CloudPcOnPremisesConnection(entity.Entity):
         """
         Sets the virtualNetworkId property value. The ID of the target virtual network. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}.
         Args:
-            value: Value to set for the virtualNetworkId property.
+            value: Value to set for the virtual_network_id property.
         """
         self._virtual_network_id = value
     
     @property
     def virtual_network_location(self,) -> Optional[str]:
         """
-        Gets the virtualNetworkLocation property value. The virtualNetworkLocation property
+        Gets the virtualNetworkLocation property value. Indicates resource location of the virtual target network. Read-only, computed value.
         Returns: Optional[str]
         """
         return self._virtual_network_location
@@ -402,9 +402,9 @@ class CloudPcOnPremisesConnection(entity.Entity):
     @virtual_network_location.setter
     def virtual_network_location(self,value: Optional[str] = None) -> None:
         """
-        Sets the virtualNetworkLocation property value. The virtualNetworkLocation property
+        Sets the virtualNetworkLocation property value. Indicates resource location of the virtual target network. Read-only, computed value.
         Args:
-            value: Value to set for the virtualNetworkLocation property.
+            value: Value to set for the virtual_network_location property.
         """
         self._virtual_network_location = value
     

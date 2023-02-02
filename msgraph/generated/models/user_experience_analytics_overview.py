@@ -9,7 +9,7 @@ user_experience_analytics_insight = lazy_import('msgraph.generated.models.user_e
 class UserExperienceAnalyticsOverview(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsOverview and sets the default values.
+        Instantiates a new UserExperienceAnalyticsOverview and sets the default values.
         """
         super().__init__()
         # The user experience analytics insights.

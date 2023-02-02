@@ -54,7 +54,7 @@ class SecurityBaselineState(entity.Entity):
         """
         Sets the displayName property value. The display name of the security baseline
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -64,11 +64,11 @@ class SecurityBaselineState(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "security_baseline_template_id": lambda n : setattr(self, 'security_baseline_template_id', n.get_str_value()),
-            "setting_states": lambda n : setattr(self, 'setting_states', n.get_collection_of_object_values(security_baseline_setting_state.SecurityBaselineSettingState)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "securityBaselineTemplateId": lambda n : setattr(self, 'security_baseline_template_id', n.get_str_value()),
+            "settingStates": lambda n : setattr(self, 'setting_states', n.get_collection_of_object_values(security_baseline_setting_state.SecurityBaselineSettingState)),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(security_baseline_compliance_state.SecurityBaselineComplianceState)),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -87,7 +87,7 @@ class SecurityBaselineState(entity.Entity):
         """
         Sets the securityBaselineTemplateId property value. The security baseline template id
         Args:
-            value: Value to set for the securityBaselineTemplateId property.
+            value: Value to set for the security_baseline_template_id property.
         """
         self._security_baseline_template_id = value
     
@@ -119,7 +119,7 @@ class SecurityBaselineState(entity.Entity):
         """
         Sets the settingStates property value. The security baseline state for different settings for a device
         Args:
-            value: Value to set for the settingStates property.
+            value: Value to set for the setting_states property.
         """
         self._setting_states = value
     
@@ -153,7 +153,7 @@ class SecurityBaselineState(entity.Entity):
         """
         Sets the userPrincipalName property value. User Principal Name
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

@@ -34,12 +34,13 @@ class UserProcessingResultItemRequestBuilder():
         """
         return task_processing_results_request_builder.TaskProcessingResultsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, user_processing_result_id: Optional[str] = None) -> None:
         """
         Instantiates a new UserProcessingResultItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            userProcessingResultId: key: id of userProcessingResult
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -49,15 +50,15 @@ class UserProcessingResultItemRequestBuilder():
         self.url_template: str = "{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/runs/{run%2Did}/userProcessingResults/{userProcessingResult%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["userProcessingResult%2Did"] = userProcessingResultId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserProcessingResultItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_processing_result.UserProcessingResult]:
+    async def get(self,request_configuration: Optional[UserProcessingResultItemRequestBuilderGetRequestConfiguration] = None) -> Optional[user_processing_result.UserProcessingResult]:
         """
         The associated individual user execution.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_processing_result.UserProcessingResult]
         """
         request_info = self.to_get_request_information(
@@ -69,7 +70,7 @@ class UserProcessingResultItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_processing_result.UserProcessingResult, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_processing_result.UserProcessingResult, error_mapping)
     
     def task_processing_results_by_id(self,id: str) -> task_processing_result_item_request_builder.TaskProcessingResultItemRequestBuilder:
         """

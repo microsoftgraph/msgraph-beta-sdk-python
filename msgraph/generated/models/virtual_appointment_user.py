@@ -62,7 +62,7 @@ class VirtualAppointmentUser(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The display name of the user who participates in a virtual appointment. Optional.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -79,7 +79,7 @@ class VirtualAppointmentUser(AdditionalDataHolder, Parsable):
         """
         Sets the emailAddress property value. The email address of the user who participates in a virtual appointment. Optional.
         Args:
-            value: Value to set for the emailAddress property.
+            value: Value to set for the email_address property.
         """
         self._email_address = value
     
@@ -89,10 +89,10 @@ class VirtualAppointmentUser(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "email_address": lambda n : setattr(self, 'email_address', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "emailAddress": lambda n : setattr(self, 'email_address', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "sms_capable_phone_number": lambda n : setattr(self, 'sms_capable_phone_number', n.get_str_value()),
+            "smsCapablePhoneNumber": lambda n : setattr(self, 'sms_capable_phone_number', n.get_str_value()),
         }
         return fields
     
@@ -109,7 +109,7 @@ class VirtualAppointmentUser(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -140,7 +140,7 @@ class VirtualAppointmentUser(AdditionalDataHolder, Parsable):
         """
         Sets the smsCapablePhoneNumber property value. The phone number for sending SMS texts for the user who participates in a virtual appointment. Optional.
         Args:
-            value: Value to set for the smsCapablePhoneNumber property.
+            value: Value to set for the sms_capable_phone_number property.
         """
         self._sms_capable_phone_number = value
     

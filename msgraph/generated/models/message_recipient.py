@@ -10,7 +10,7 @@ message_status = lazy_import('msgraph.generated.models.message_status')
 class MessageRecipient(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new messageRecipient and sets the default values.
+        Instantiates a new MessageRecipient and sets the default values.
         """
         super().__init__()
         # The deliveryStatus property
@@ -47,7 +47,7 @@ class MessageRecipient(entity.Entity):
         """
         Sets the deliveryStatus property value. The deliveryStatus property
         Args:
-            value: Value to set for the deliveryStatus property.
+            value: Value to set for the delivery_status property.
         """
         self._delivery_status = value
     
@@ -74,9 +74,9 @@ class MessageRecipient(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "delivery_status": lambda n : setattr(self, 'delivery_status', n.get_enum_value(message_status.MessageStatus)),
+            "deliveryStatus": lambda n : setattr(self, 'delivery_status', n.get_enum_value(message_status.MessageStatus)),
             "events": lambda n : setattr(self, 'events', n.get_collection_of_object_values(message_event.MessageEvent)),
-            "recipient_email": lambda n : setattr(self, 'recipient_email', n.get_str_value()),
+            "recipientEmail": lambda n : setattr(self, 'recipient_email', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -95,7 +95,7 @@ class MessageRecipient(entity.Entity):
         """
         Sets the recipientEmail property value. The recipientEmail property
         Args:
-            value: Value to set for the recipientEmail property.
+            value: Value to set for the recipient_email property.
         """
         self._recipient_email = value
     

@@ -20,7 +20,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the antiMalwareVersion property value. The anti-malware version for the managed device. Optional. Read-only.
         Args:
-            value: Value to set for the antiMalwareVersion property.
+            value: Value to set for the anti_malware_version property.
         """
         self._anti_malware_version = value
     
@@ -37,13 +37,13 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the attentionRequired property value. A flag indicating whether attention is required for the managed device. Optional. Read-only.
         Args:
-            value: Value to set for the attentionRequired property.
+            value: Value to set for the attention_required property.
         """
         self._attention_required = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new windowsProtectionState and sets the default values.
+        Instantiates a new WindowsProtectionState and sets the default values.
         """
         super().__init__()
         # The anti-malware version for the managed device. Optional. Read-only.
@@ -124,7 +124,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the deviceDeleted property value. A flag indicating whether the managed device has been deleted. Optional. Read-only.
         Args:
-            value: Value to set for the deviceDeleted property.
+            value: Value to set for the device_deleted property.
         """
         self._device_deleted = value
     
@@ -141,7 +141,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the devicePropertyRefreshDateTime property value. The date and time the device property has been refreshed. Optional. Read-only.
         Args:
-            value: Value to set for the devicePropertyRefreshDateTime property.
+            value: Value to set for the device_property_refresh_date_time property.
         """
         self._device_property_refresh_date_time = value
     
@@ -158,7 +158,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the engineVersion property value. The anti-virus engine version for the managed device. Optional. Read-only.
         Args:
-            value: Value to set for the engineVersion property.
+            value: Value to set for the engine_version property.
         """
         self._engine_version = value
     
@@ -175,7 +175,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the fullScanOverdue property value. A flag indicating whether quick scan is overdue for the managed device. Optional. Read-only.
         Args:
-            value: Value to set for the fullScanOverdue property.
+            value: Value to set for the full_scan_overdue property.
         """
         self._full_scan_overdue = value
     
@@ -192,7 +192,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the fullScanRequired property value. A flag indicating whether full scan is overdue for the managed device. Optional. Read-only.
         Args:
-            value: Value to set for the fullScanRequired property.
+            value: Value to set for the full_scan_required property.
         """
         self._full_scan_required = value
     
@@ -202,31 +202,31 @@ class WindowsProtectionState(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "anti_malware_version": lambda n : setattr(self, 'anti_malware_version', n.get_str_value()),
-            "attention_required": lambda n : setattr(self, 'attention_required', n.get_bool_value()),
-            "device_deleted": lambda n : setattr(self, 'device_deleted', n.get_bool_value()),
-            "device_property_refresh_date_time": lambda n : setattr(self, 'device_property_refresh_date_time', n.get_datetime_value()),
-            "engine_version": lambda n : setattr(self, 'engine_version', n.get_str_value()),
-            "full_scan_overdue": lambda n : setattr(self, 'full_scan_overdue', n.get_bool_value()),
-            "full_scan_required": lambda n : setattr(self, 'full_scan_required', n.get_bool_value()),
-            "last_full_scan_date_time": lambda n : setattr(self, 'last_full_scan_date_time', n.get_datetime_value()),
-            "last_full_scan_signature_version": lambda n : setattr(self, 'last_full_scan_signature_version', n.get_str_value()),
-            "last_quick_scan_date_time": lambda n : setattr(self, 'last_quick_scan_date_time', n.get_datetime_value()),
-            "last_quick_scan_signature_version": lambda n : setattr(self, 'last_quick_scan_signature_version', n.get_str_value()),
-            "last_refreshed_date_time": lambda n : setattr(self, 'last_refreshed_date_time', n.get_datetime_value()),
-            "last_reported_date_time": lambda n : setattr(self, 'last_reported_date_time', n.get_datetime_value()),
-            "malware_protection_enabled": lambda n : setattr(self, 'malware_protection_enabled', n.get_bool_value()),
-            "managed_device_health_state": lambda n : setattr(self, 'managed_device_health_state', n.get_str_value()),
-            "managed_device_id": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
-            "managed_device_name": lambda n : setattr(self, 'managed_device_name', n.get_str_value()),
-            "network_inspection_system_enabled": lambda n : setattr(self, 'network_inspection_system_enabled', n.get_bool_value()),
-            "quick_scan_overdue": lambda n : setattr(self, 'quick_scan_overdue', n.get_bool_value()),
-            "real_time_protection_enabled": lambda n : setattr(self, 'real_time_protection_enabled', n.get_bool_value()),
-            "reboot_required": lambda n : setattr(self, 'reboot_required', n.get_bool_value()),
-            "signature_update_overdue": lambda n : setattr(self, 'signature_update_overdue', n.get_bool_value()),
-            "signature_version": lambda n : setattr(self, 'signature_version', n.get_str_value()),
-            "tenant_display_name": lambda n : setattr(self, 'tenant_display_name', n.get_str_value()),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "antiMalwareVersion": lambda n : setattr(self, 'anti_malware_version', n.get_str_value()),
+            "attentionRequired": lambda n : setattr(self, 'attention_required', n.get_bool_value()),
+            "deviceDeleted": lambda n : setattr(self, 'device_deleted', n.get_bool_value()),
+            "devicePropertyRefreshDateTime": lambda n : setattr(self, 'device_property_refresh_date_time', n.get_datetime_value()),
+            "engineVersion": lambda n : setattr(self, 'engine_version', n.get_str_value()),
+            "fullScanOverdue": lambda n : setattr(self, 'full_scan_overdue', n.get_bool_value()),
+            "fullScanRequired": lambda n : setattr(self, 'full_scan_required', n.get_bool_value()),
+            "lastFullScanDateTime": lambda n : setattr(self, 'last_full_scan_date_time', n.get_datetime_value()),
+            "lastFullScanSignatureVersion": lambda n : setattr(self, 'last_full_scan_signature_version', n.get_str_value()),
+            "lastQuickScanDateTime": lambda n : setattr(self, 'last_quick_scan_date_time', n.get_datetime_value()),
+            "lastQuickScanSignatureVersion": lambda n : setattr(self, 'last_quick_scan_signature_version', n.get_str_value()),
+            "lastRefreshedDateTime": lambda n : setattr(self, 'last_refreshed_date_time', n.get_datetime_value()),
+            "lastReportedDateTime": lambda n : setattr(self, 'last_reported_date_time', n.get_datetime_value()),
+            "malwareProtectionEnabled": lambda n : setattr(self, 'malware_protection_enabled', n.get_bool_value()),
+            "managedDeviceHealthState": lambda n : setattr(self, 'managed_device_health_state', n.get_str_value()),
+            "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
+            "managedDeviceName": lambda n : setattr(self, 'managed_device_name', n.get_str_value()),
+            "networkInspectionSystemEnabled": lambda n : setattr(self, 'network_inspection_system_enabled', n.get_bool_value()),
+            "quickScanOverdue": lambda n : setattr(self, 'quick_scan_overdue', n.get_bool_value()),
+            "realTimeProtectionEnabled": lambda n : setattr(self, 'real_time_protection_enabled', n.get_bool_value()),
+            "rebootRequired": lambda n : setattr(self, 'reboot_required', n.get_bool_value()),
+            "signatureUpdateOverdue": lambda n : setattr(self, 'signature_update_overdue', n.get_bool_value()),
+            "signatureVersion": lambda n : setattr(self, 'signature_version', n.get_str_value()),
+            "tenantDisplayName": lambda n : setattr(self, 'tenant_display_name', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -245,7 +245,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the lastFullScanDateTime property value. The date and time a full scan was completed. Optional. Read-only.
         Args:
-            value: Value to set for the lastFullScanDateTime property.
+            value: Value to set for the last_full_scan_date_time property.
         """
         self._last_full_scan_date_time = value
     
@@ -262,7 +262,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the lastFullScanSignatureVersion property value. The version anti-malware version used to perform the last full scan. Optional. Read-only.
         Args:
-            value: Value to set for the lastFullScanSignatureVersion property.
+            value: Value to set for the last_full_scan_signature_version property.
         """
         self._last_full_scan_signature_version = value
     
@@ -279,7 +279,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the lastQuickScanDateTime property value. The date and time a quick scan was completed. Optional. Read-only.
         Args:
-            value: Value to set for the lastQuickScanDateTime property.
+            value: Value to set for the last_quick_scan_date_time property.
         """
         self._last_quick_scan_date_time = value
     
@@ -296,7 +296,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the lastQuickScanSignatureVersion property value. The version anti-malware version used to perform the last full scan. Optional. Read-only.
         Args:
-            value: Value to set for the lastQuickScanSignatureVersion property.
+            value: Value to set for the last_quick_scan_signature_version property.
         """
         self._last_quick_scan_signature_version = value
     
@@ -313,7 +313,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the lastRefreshedDateTime property value. Date and time the entity was last updated in the multi-tenant management platform. Optional. Read-only.
         Args:
-            value: Value to set for the lastRefreshedDateTime property.
+            value: Value to set for the last_refreshed_date_time property.
         """
         self._last_refreshed_date_time = value
     
@@ -330,7 +330,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the lastReportedDateTime property value. The date and time the protection state was last reported for the managed device. Optional. Read-only.
         Args:
-            value: Value to set for the lastReportedDateTime property.
+            value: Value to set for the last_reported_date_time property.
         """
         self._last_reported_date_time = value
     
@@ -347,7 +347,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the malwareProtectionEnabled property value. A flag indicating whether malware protection is enabled for the managed device. Optional. Read-only.
         Args:
-            value: Value to set for the malwareProtectionEnabled property.
+            value: Value to set for the malware_protection_enabled property.
         """
         self._malware_protection_enabled = value
     
@@ -364,7 +364,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the managedDeviceHealthState property value. The health state for the managed device. Optional. Read-only.
         Args:
-            value: Value to set for the managedDeviceHealthState property.
+            value: Value to set for the managed_device_health_state property.
         """
         self._managed_device_health_state = value
     
@@ -381,7 +381,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the managedDeviceId property value. The unique identifier for the managed device. Optional. Read-only.
         Args:
-            value: Value to set for the managedDeviceId property.
+            value: Value to set for the managed_device_id property.
         """
         self._managed_device_id = value
     
@@ -398,7 +398,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the managedDeviceName property value. The display name for the managed device. Optional. Read-only.
         Args:
-            value: Value to set for the managedDeviceName property.
+            value: Value to set for the managed_device_name property.
         """
         self._managed_device_name = value
     
@@ -415,7 +415,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the networkInspectionSystemEnabled property value. A flag indicating whether the network inspection system is enabled. Optional. Read-only.
         Args:
-            value: Value to set for the networkInspectionSystemEnabled property.
+            value: Value to set for the network_inspection_system_enabled property.
         """
         self._network_inspection_system_enabled = value
     
@@ -432,7 +432,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the quickScanOverdue property value. A flag indicating weather a quick scan is overdue. Optional. Read-only.
         Args:
-            value: Value to set for the quickScanOverdue property.
+            value: Value to set for the quick_scan_overdue property.
         """
         self._quick_scan_overdue = value
     
@@ -449,7 +449,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the realTimeProtectionEnabled property value. A flag indicating whether real time protection is enabled. Optional. Read-only.
         Args:
-            value: Value to set for the realTimeProtectionEnabled property.
+            value: Value to set for the real_time_protection_enabled property.
         """
         self._real_time_protection_enabled = value
     
@@ -466,7 +466,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the rebootRequired property value. A flag indicating whether a reboot is required. Optional. Read-only.
         Args:
-            value: Value to set for the rebootRequired property.
+            value: Value to set for the reboot_required property.
         """
         self._reboot_required = value
     
@@ -518,7 +518,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the signatureUpdateOverdue property value. A flag indicating whether an signature update is overdue. Optional. Read-only.
         Args:
-            value: Value to set for the signatureUpdateOverdue property.
+            value: Value to set for the signature_update_overdue property.
         """
         self._signature_update_overdue = value
     
@@ -535,7 +535,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the signatureVersion property value. The signature version for the managed device. Optional. Read-only.
         Args:
-            value: Value to set for the signatureVersion property.
+            value: Value to set for the signature_version property.
         """
         self._signature_version = value
     
@@ -552,7 +552,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the tenantDisplayName property value. The display name for the managed tenant. Optional. Read-only.
         Args:
-            value: Value to set for the tenantDisplayName property.
+            value: Value to set for the tenant_display_name property.
         """
         self._tenant_display_name = value
     
@@ -569,7 +569,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the tenantId property value. The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     

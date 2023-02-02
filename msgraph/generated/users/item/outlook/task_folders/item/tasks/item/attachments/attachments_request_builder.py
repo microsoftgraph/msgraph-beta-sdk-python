@@ -14,7 +14,7 @@ attachment = lazy_import('msgraph.generated.models.attachment')
 attachment_collection_response = lazy_import('msgraph.generated.models.attachment_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.users.item.outlook.task_folders.item.tasks.item.attachments.count.count_request_builder')
-create_upload_session_request_builder = lazy_import('msgraph.generated.users.item.outlook.task_folders.item.tasks.item.attachments.create_upload_session.create_upload_session_request_builder')
+create_upload_session_request_builder = lazy_import('msgraph.generated.users.item.outlook.task_folders.item.tasks.item.attachments.microsoft_graph_create_upload_session.create_upload_session_request_builder')
 
 class AttachmentsRequestBuilder():
     """
@@ -28,7 +28,7 @@ class AttachmentsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def create_upload_session(self) -> create_upload_session_request_builder.CreateUploadSessionRequestBuilder:
+    def microsoft_graph_create_upload_session(self) -> create_upload_session_request_builder.CreateUploadSessionRequestBuilder:
         """
         Provides operations to call the createUploadSession method.
         """
@@ -52,12 +52,11 @@ class AttachmentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AttachmentsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[attachment_collection_response.AttachmentCollectionResponse]:
+    async def get(self,request_configuration: Optional[AttachmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[attachment_collection_response.AttachmentCollectionResponse]:
         """
         Get a list of attachment objects attached to an Outlook task.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[attachment_collection_response.AttachmentCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class AttachmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, attachment_collection_response.AttachmentCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, attachment_collection_response.AttachmentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[attachment.Attachment] = None, request_configuration: Optional[AttachmentsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[attachment.Attachment]:
+    async def post(self,body: Optional[attachment.Attachment] = None, request_configuration: Optional[AttachmentsRequestBuilderPostRequestConfiguration] = None) -> Optional[attachment.Attachment]:
         """
         Use this API to add an attachment to an outlookTask. The attachment can be a file (of fileAttachment type) or Outlook item (itemAttachment type).
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[attachment.Attachment]
         """
         if body is None:
@@ -91,7 +89,7 @@ class AttachmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, attachment.Attachment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, attachment.Attachment, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AttachmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

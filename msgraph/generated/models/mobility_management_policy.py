@@ -21,7 +21,7 @@ class MobilityManagementPolicy(entity.Entity):
         """
         Sets the appliesTo property value. Indicates the user scope of the mobility management policy. Possible values are: none, all, selected.
         Args:
-            value: Value to set for the appliesTo property.
+            value: Value to set for the applies_to property.
         """
         self._applies_to = value
     
@@ -38,7 +38,7 @@ class MobilityManagementPolicy(entity.Entity):
         """
         Sets the complianceUrl property value. Compliance URL of the mobility management application.
         Args:
-            value: Value to set for the complianceUrl property.
+            value: Value to set for the compliance_url property.
         """
         self._compliance_url = value
     
@@ -108,7 +108,7 @@ class MobilityManagementPolicy(entity.Entity):
         """
         Sets the discoveryUrl property value. Discovery URL of the mobility management application.
         Args:
-            value: Value to set for the discoveryUrl property.
+            value: Value to set for the discovery_url property.
         """
         self._discovery_url = value
     
@@ -125,7 +125,7 @@ class MobilityManagementPolicy(entity.Entity):
         """
         Sets the displayName property value. Display name of the mobility management application.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -135,14 +135,14 @@ class MobilityManagementPolicy(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "applies_to": lambda n : setattr(self, 'applies_to', n.get_enum_value(policy_scope.PolicyScope)),
-            "compliance_url": lambda n : setattr(self, 'compliance_url', n.get_str_value()),
+            "appliesTo": lambda n : setattr(self, 'applies_to', n.get_enum_value(policy_scope.PolicyScope)),
+            "complianceUrl": lambda n : setattr(self, 'compliance_url', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "discovery_url": lambda n : setattr(self, 'discovery_url', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "included_groups": lambda n : setattr(self, 'included_groups', n.get_collection_of_object_values(group.Group)),
-            "is_valid": lambda n : setattr(self, 'is_valid', n.get_bool_value()),
-            "terms_of_use_url": lambda n : setattr(self, 'terms_of_use_url', n.get_str_value()),
+            "discoveryUrl": lambda n : setattr(self, 'discovery_url', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "includedGroups": lambda n : setattr(self, 'included_groups', n.get_collection_of_object_values(group.Group)),
+            "isValid": lambda n : setattr(self, 'is_valid', n.get_bool_value()),
+            "termsOfUseUrl": lambda n : setattr(self, 'terms_of_use_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -161,7 +161,7 @@ class MobilityManagementPolicy(entity.Entity):
         """
         Sets the includedGroups property value. Azure AD groups under the scope of the mobility management application if appliesTo is selected
         Args:
-            value: Value to set for the includedGroups property.
+            value: Value to set for the included_groups property.
         """
         self._included_groups = value
     
@@ -178,7 +178,7 @@ class MobilityManagementPolicy(entity.Entity):
         """
         Sets the isValid property value. Whether policy is valid. Invalid policies may not be updated and should be deleted.
         Args:
-            value: Value to set for the isValid property.
+            value: Value to set for the is_valid property.
         """
         self._is_valid = value
     
@@ -213,7 +213,7 @@ class MobilityManagementPolicy(entity.Entity):
         """
         Sets the termsOfUseUrl property value. Terms of Use URL of the mobility management application.
         Args:
-            value: Value to set for the termsOfUseUrl property.
+            value: Value to set for the terms_of_use_url property.
         """
         self._terms_of_use_url = value
     

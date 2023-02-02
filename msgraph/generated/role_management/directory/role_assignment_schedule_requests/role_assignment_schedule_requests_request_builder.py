@@ -14,7 +14,7 @@ unified_role_assignment_schedule_request = lazy_import('msgraph.generated.models
 unified_role_assignment_schedule_request_collection_response = lazy_import('msgraph.generated.models.unified_role_assignment_schedule_request_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.role_management.directory.role_assignment_schedule_requests.count.count_request_builder')
-filter_by_current_user_with_on_request_builder = lazy_import('msgraph.generated.role_management.directory.role_assignment_schedule_requests.filter_by_current_user_with_on.filter_by_current_user_with_on_request_builder')
+filter_by_current_user_with_on_request_builder = lazy_import('msgraph.generated.role_management.directory.role_assignment_schedule_requests.microsoft_graph_filter_by_current_user_with_on.filter_by_current_user_with_on_request_builder')
 
 class RoleAssignmentScheduleRequestsRequestBuilder():
     """
@@ -45,23 +45,11 @@ class RoleAssignmentScheduleRequestsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
-        """
-        Provides operations to call the filterByCurrentUser method.
-        Args:
-            on: Usage: on='{on}'
-        Returns: filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder
-        """
-        if on is None:
-            raise Exception("on cannot be undefined")
-        return filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
-    
-    async def get(self,request_configuration: Optional[RoleAssignmentScheduleRequestsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_role_assignment_schedule_request_collection_response.UnifiedRoleAssignmentScheduleRequestCollectionResponse]:
+    async def get(self,request_configuration: Optional[RoleAssignmentScheduleRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_assignment_schedule_request_collection_response.UnifiedRoleAssignmentScheduleRequestCollectionResponse]:
         """
         Retrieve the requests for active role assignments to principals. The active assignments include those made through assignments and activation requests, and directly through the role assignments API. The role assignments can be permanently active with or without an expiry date, or temporarily active after user activation of eligible assignments.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_role_assignment_schedule_request_collection_response.UnifiedRoleAssignmentScheduleRequestCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -73,15 +61,25 @@ class RoleAssignmentScheduleRequestsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_role_assignment_schedule_request_collection_response.UnifiedRoleAssignmentScheduleRequestCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_role_assignment_schedule_request_collection_response.UnifiedRoleAssignmentScheduleRequestCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[unified_role_assignment_schedule_request.UnifiedRoleAssignmentScheduleRequest] = None, request_configuration: Optional[RoleAssignmentScheduleRequestsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_role_assignment_schedule_request.UnifiedRoleAssignmentScheduleRequest]:
+    def microsoft_graph_filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
+        """
+        Provides operations to call the filterByCurrentUser method.
+        Args:
+            on: Usage: on='{on}'
+        Returns: filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder
+        """
+        if on is None:
+            raise Exception("on cannot be undefined")
+        return filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
+    
+    async def post(self,body: Optional[unified_role_assignment_schedule_request.UnifiedRoleAssignmentScheduleRequest] = None, request_configuration: Optional[RoleAssignmentScheduleRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[unified_role_assignment_schedule_request.UnifiedRoleAssignmentScheduleRequest]:
         """
         Create a new unifiedRoleAssignmentScheduleRequest object. This operation allows both admins and users to add, remove, extend, or renew assignments. To run this request, the calling user must have multi-factor authentication (MFA) enforced, and running the query in a session in which they were challenged for MFA. See Enable per-user Azure AD Multi-Factor Authentication to secure sign-in events.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_role_assignment_schedule_request.UnifiedRoleAssignmentScheduleRequest]
         """
         if body is None:
@@ -95,7 +93,7 @@ class RoleAssignmentScheduleRequestsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_role_assignment_schedule_request.UnifiedRoleAssignmentScheduleRequest, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_role_assignment_schedule_request.UnifiedRoleAssignmentScheduleRequest, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RoleAssignmentScheduleRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

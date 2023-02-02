@@ -10,12 +10,9 @@ imported_device_identity_type = lazy_import('msgraph.generated.models.imported_d
 platform = lazy_import('msgraph.generated.models.platform')
 
 class ImportedDeviceIdentity(entity.Entity):
-    """
-    The importedDeviceIdentity resource represents a unique hardware identity of a device that has been pre-staged for pre-enrollment configuration.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new importedDeviceIdentity and sets the default values.
+        Instantiates a new ImportedDeviceIdentity and sets the default values.
         """
         super().__init__()
         # Created Date Time of the device
@@ -50,7 +47,7 @@ class ImportedDeviceIdentity(entity.Entity):
         """
         Sets the createdDateTime property value. Created Date Time of the device
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -96,7 +93,7 @@ class ImportedDeviceIdentity(entity.Entity):
         """
         Sets the enrollmentState property value. The enrollmentState property
         Args:
-            value: Value to set for the enrollmentState property.
+            value: Value to set for the enrollment_state property.
         """
         self._enrollment_state = value
     
@@ -106,13 +103,13 @@ class ImportedDeviceIdentity(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "enrollment_state": lambda n : setattr(self, 'enrollment_state', n.get_enum_value(enrollment_state.EnrollmentState)),
-            "imported_device_identifier": lambda n : setattr(self, 'imported_device_identifier', n.get_str_value()),
-            "imported_device_identity_type": lambda n : setattr(self, 'imported_device_identity_type', n.get_enum_value(imported_device_identity_type.ImportedDeviceIdentityType)),
-            "last_contacted_date_time": lambda n : setattr(self, 'last_contacted_date_time', n.get_datetime_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "enrollmentState": lambda n : setattr(self, 'enrollment_state', n.get_enum_value(enrollment_state.EnrollmentState)),
+            "importedDeviceIdentifier": lambda n : setattr(self, 'imported_device_identifier', n.get_str_value()),
+            "importedDeviceIdentityType": lambda n : setattr(self, 'imported_device_identity_type', n.get_enum_value(imported_device_identity_type.ImportedDeviceIdentityType)),
+            "lastContactedDateTime": lambda n : setattr(self, 'last_contacted_date_time', n.get_datetime_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "platform": lambda n : setattr(self, 'platform', n.get_enum_value(platform.Platform)),
         }
         super_fields = super().get_field_deserializers()
@@ -132,7 +129,7 @@ class ImportedDeviceIdentity(entity.Entity):
         """
         Sets the importedDeviceIdentifier property value. Imported Device Identifier
         Args:
-            value: Value to set for the importedDeviceIdentifier property.
+            value: Value to set for the imported_device_identifier property.
         """
         self._imported_device_identifier = value
     
@@ -149,7 +146,7 @@ class ImportedDeviceIdentity(entity.Entity):
         """
         Sets the importedDeviceIdentityType property value. The importedDeviceIdentityType property
         Args:
-            value: Value to set for the importedDeviceIdentityType property.
+            value: Value to set for the imported_device_identity_type property.
         """
         self._imported_device_identity_type = value
     
@@ -166,7 +163,7 @@ class ImportedDeviceIdentity(entity.Entity):
         """
         Sets the lastContactedDateTime property value. Last Contacted Date Time of the device
         Args:
-            value: Value to set for the lastContactedDateTime property.
+            value: Value to set for the last_contacted_date_time property.
         """
         self._last_contacted_date_time = value
     
@@ -183,7 +180,7 @@ class ImportedDeviceIdentity(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. Last Modified DateTime of the description
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     

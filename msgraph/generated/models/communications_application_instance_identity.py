@@ -36,7 +36,7 @@ class CommunicationsApplicationInstanceIdentity(identity.Identity):
         """
         fields = {
             "hidden": lambda n : setattr(self, 'hidden', n.get_bool_value()),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -84,7 +84,7 @@ class CommunicationsApplicationInstanceIdentity(identity.Identity):
         """
         Sets the tenantId property value. The application's tenant ID.
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     

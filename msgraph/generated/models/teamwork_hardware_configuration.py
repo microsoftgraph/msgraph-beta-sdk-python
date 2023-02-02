@@ -75,9 +75,9 @@ class TeamworkHardwareConfiguration(AdditionalDataHolder, Parsable):
         """
         fields = {
             "compute": lambda n : setattr(self, 'compute', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
-            "hdmi_ingest": lambda n : setattr(self, 'hdmi_ingest', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
+            "hdmiIngest": lambda n : setattr(self, 'hdmi_ingest', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "processor_model": lambda n : setattr(self, 'processor_model', n.get_str_value()),
+            "processorModel": lambda n : setattr(self, 'processor_model', n.get_str_value()),
         }
         return fields
     
@@ -94,7 +94,7 @@ class TeamworkHardwareConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the hdmiIngest property value. The hdmiIngest property
         Args:
-            value: Value to set for the hdmiIngest property.
+            value: Value to set for the hdmi_ingest property.
         """
         self._hdmi_ingest = value
     
@@ -111,7 +111,7 @@ class TeamworkHardwareConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -128,7 +128,7 @@ class TeamworkHardwareConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the processorModel property value. The CPU model on the device.
         Args:
-            value: Value to set for the processorModel property.
+            value: Value to set for the processor_model property.
         """
         self._processor_model = value
     

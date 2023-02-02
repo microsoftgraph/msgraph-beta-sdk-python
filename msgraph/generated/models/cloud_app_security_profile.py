@@ -22,7 +22,7 @@ class CloudAppSecurityProfile(entity.Entity):
         """
         Sets the azureSubscriptionId property value. The azureSubscriptionId property
         Args:
-            value: Value to set for the azureSubscriptionId property.
+            value: Value to set for the azure_subscription_id property.
         """
         self._azure_subscription_id = value
     
@@ -39,13 +39,13 @@ class CloudAppSecurityProfile(entity.Entity):
         """
         Sets the azureTenantId property value. The azureTenantId property
         Args:
-            value: Value to set for the azureTenantId property.
+            value: Value to set for the azure_tenant_id property.
         """
         self._azure_tenant_id = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new cloudAppSecurityProfile and sets the default values.
+        Instantiates a new CloudAppSecurityProfile and sets the default values.
         """
         super().__init__()
         # The azureSubscriptionId property
@@ -98,7 +98,7 @@ class CloudAppSecurityProfile(entity.Entity):
         """
         Sets the createdDateTime property value. The createdDateTime property
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -127,7 +127,7 @@ class CloudAppSecurityProfile(entity.Entity):
         """
         Sets the deploymentPackageUrl property value. The deploymentPackageUrl property
         Args:
-            value: Value to set for the deploymentPackageUrl property.
+            value: Value to set for the deployment_package_url property.
         """
         self._deployment_package_url = value
     
@@ -144,7 +144,7 @@ class CloudAppSecurityProfile(entity.Entity):
         """
         Sets the destinationServiceName property value. The destinationServiceName property
         Args:
-            value: Value to set for the destinationServiceName property.
+            value: Value to set for the destination_service_name property.
         """
         self._destination_service_name = value
     
@@ -154,23 +154,23 @@ class CloudAppSecurityProfile(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "azure_subscription_id": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
-            "azure_tenant_id": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "deployment_package_url": lambda n : setattr(self, 'deployment_package_url', n.get_str_value()),
-            "destination_service_name": lambda n : setattr(self, 'destination_service_name', n.get_str_value()),
-            "is_signed": lambda n : setattr(self, 'is_signed', n.get_bool_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "azureSubscriptionId": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
+            "azureTenantId": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "deploymentPackageUrl": lambda n : setattr(self, 'deployment_package_url', n.get_str_value()),
+            "destinationServiceName": lambda n : setattr(self, 'destination_service_name', n.get_str_value()),
+            "isSigned": lambda n : setattr(self, 'is_signed', n.get_bool_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "manifest": lambda n : setattr(self, 'manifest', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "permissions_required": lambda n : setattr(self, 'permissions_required', n.get_enum_value(application_permissions_required.ApplicationPermissionsRequired)),
+            "permissionsRequired": lambda n : setattr(self, 'permissions_required', n.get_enum_value(application_permissions_required.ApplicationPermissionsRequired)),
             "platform": lambda n : setattr(self, 'platform', n.get_str_value()),
-            "policy_name": lambda n : setattr(self, 'policy_name', n.get_str_value()),
+            "policyName": lambda n : setattr(self, 'policy_name', n.get_str_value()),
             "publisher": lambda n : setattr(self, 'publisher', n.get_str_value()),
-            "risk_score": lambda n : setattr(self, 'risk_score', n.get_str_value()),
+            "riskScore": lambda n : setattr(self, 'risk_score', n.get_str_value()),
             "tags": lambda n : setattr(self, 'tags', n.get_collection_of_primitive_values(str)),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
-            "vendor_information": lambda n : setattr(self, 'vendor_information', n.get_object_value(security_vendor_information.SecurityVendorInformation)),
+            "vendorInformation": lambda n : setattr(self, 'vendor_information', n.get_object_value(security_vendor_information.SecurityVendorInformation)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -189,7 +189,7 @@ class CloudAppSecurityProfile(entity.Entity):
         """
         Sets the isSigned property value. The isSigned property
         Args:
-            value: Value to set for the isSigned property.
+            value: Value to set for the is_signed property.
         """
         self._is_signed = value
     
@@ -206,7 +206,7 @@ class CloudAppSecurityProfile(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -257,7 +257,7 @@ class CloudAppSecurityProfile(entity.Entity):
         """
         Sets the permissionsRequired property value. The permissionsRequired property
         Args:
-            value: Value to set for the permissionsRequired property.
+            value: Value to set for the permissions_required property.
         """
         self._permissions_required = value
     
@@ -291,7 +291,7 @@ class CloudAppSecurityProfile(entity.Entity):
         """
         Sets the policyName property value. The policyName property
         Args:
-            value: Value to set for the policyName property.
+            value: Value to set for the policy_name property.
         """
         self._policy_name = value
     
@@ -325,7 +325,7 @@ class CloudAppSecurityProfile(entity.Entity):
         """
         Sets the riskScore property value. The riskScore property
         Args:
-            value: Value to set for the riskScore property.
+            value: Value to set for the risk_score property.
         """
         self._risk_score = value
     
@@ -403,7 +403,7 @@ class CloudAppSecurityProfile(entity.Entity):
         """
         Sets the vendorInformation property value. The vendorInformation property
         Args:
-            value: Value to set for the vendorInformation property.
+            value: Value to set for the vendor_information property.
         """
         self._vendor_information = value
     

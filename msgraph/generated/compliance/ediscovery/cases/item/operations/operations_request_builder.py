@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-case_export_operation_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.operations.case_export_operation.case_export_operation_request_builder')
 count_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.operations.count.count_request_builder')
+case_export_operation_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.operations.microsoft_graph_ediscovery_case_export_operation.case_export_operation_request_builder')
 case_operation = lazy_import('msgraph.generated.models.ediscovery.case_operation')
 case_operation_collection_response = lazy_import('msgraph.generated.models.ediscovery.case_operation_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -21,18 +21,18 @@ class OperationsRequestBuilder():
     Provides operations to manage the operations property of the microsoft.graph.ediscovery.case entity.
     """
     @property
-    def case_export_operation(self) -> case_export_operation_request_builder.CaseExportOperationRequestBuilder:
-        """
-        Casts the previous resource to caseExportOperation.
-        """
-        return case_export_operation_request_builder.CaseExportOperationRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_ediscovery_case_export_operation(self) -> case_export_operation_request_builder.CaseExportOperationRequestBuilder:
+        """
+        Casts the previous resource to caseExportOperation.
+        """
+        return case_export_operation_request_builder.CaseExportOperationRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -52,12 +52,11 @@ class OperationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[case_operation_collection_response.CaseOperationCollectionResponse]:
+    async def get(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None) -> Optional[case_operation_collection_response.CaseOperationCollectionResponse]:
         """
         Returns a list of case operation objects for this case. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[case_operation_collection_response.CaseOperationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class OperationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, case_operation_collection_response.CaseOperationCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, case_operation_collection_response.CaseOperationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[case_operation.CaseOperation] = None, request_configuration: Optional[OperationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[case_operation.CaseOperation]:
+    async def post(self,body: Optional[case_operation.CaseOperation] = None, request_configuration: Optional[OperationsRequestBuilderPostRequestConfiguration] = None) -> Optional[case_operation.CaseOperation]:
         """
         Create new navigation property to operations for compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[case_operation.CaseOperation]
         """
         if body is None:
@@ -91,7 +89,7 @@ class OperationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, case_operation.CaseOperation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, case_operation.CaseOperation, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

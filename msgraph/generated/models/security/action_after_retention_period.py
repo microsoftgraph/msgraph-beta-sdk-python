@@ -1,7 +1,7 @@
 from enum import Enum
 
 class ActionAfterRetentionPeriod(Enum):
-    None_escaped = "none",
+    None_ = "none",
     Delete = "delete",
     StartDispositionReview = "startDispositionReview",
     Relabel = "relabel",

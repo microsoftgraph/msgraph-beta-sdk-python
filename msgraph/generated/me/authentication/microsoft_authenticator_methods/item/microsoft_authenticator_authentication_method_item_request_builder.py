@@ -25,10 +25,11 @@ class MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder():
         """
         return device_request_builder.DeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, microsoft_authenticator_authentication_method_id: Optional[str] = None) -> None:
         """
         Instantiates a new MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder and sets the default values.
         Args:
+            microsoftAuthenticatorAuthenticationMethodId: key: id of microsoftAuthenticatorAuthenticationMethod
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -40,15 +41,15 @@ class MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder():
         self.url_template: str = "{+baseurl}/me/authentication/microsoftAuthenticatorMethods/{microsoftAuthenticatorAuthenticationMethod%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["microsoftAuthenticatorAuthenticationMethod%2Did"] = microsoftAuthenticatorAuthenticationMethodId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property microsoftAuthenticatorMethods for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +60,13 @@ class MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[microsoft_authenticator_authentication_method.MicrosoftAuthenticatorAuthenticationMethod]:
+    async def get(self,request_configuration: Optional[MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None) -> Optional[microsoft_authenticator_authentication_method.MicrosoftAuthenticatorAuthenticationMethod]:
         """
         The details of the Microsoft Authenticator app registered to a user for authentication.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[microsoft_authenticator_authentication_method.MicrosoftAuthenticatorAuthenticationMethod]
         """
         request_info = self.to_get_request_information(
@@ -78,7 +78,7 @@ class MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, microsoft_authenticator_authentication_method.MicrosoftAuthenticatorAuthenticationMethod, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, microsoft_authenticator_authentication_method.MicrosoftAuthenticatorAuthenticationMethod, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

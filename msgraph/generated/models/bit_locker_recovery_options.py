@@ -40,7 +40,7 @@ class BitLockerRecoveryOptions(AdditionalDataHolder, Parsable):
         """
         Sets the blockDataRecoveryAgent property value. Indicates whether to block certificate-based data recovery agent.
         Args:
-            value: Value to set for the blockDataRecoveryAgent property.
+            value: Value to set for the block_data_recovery_agent property.
         """
         self._block_data_recovery_agent = value
     
@@ -93,7 +93,7 @@ class BitLockerRecoveryOptions(AdditionalDataHolder, Parsable):
         """
         Sets the enableBitLockerAfterRecoveryInformationToStore property value. Indicates whether or not to enable BitLocker until recovery information is stored in AD DS.
         Args:
-            value: Value to set for the enableBitLockerAfterRecoveryInformationToStore property.
+            value: Value to set for the enable_bit_locker_after_recovery_information_to_store property.
         """
         self._enable_bit_locker_after_recovery_information_to_store = value
     
@@ -110,7 +110,7 @@ class BitLockerRecoveryOptions(AdditionalDataHolder, Parsable):
         """
         Sets the enableRecoveryInformationSaveToStore property value. Indicates whether or not to allow BitLocker recovery information to store in AD DS.
         Args:
-            value: Value to set for the enableRecoveryInformationSaveToStore property.
+            value: Value to set for the enable_recovery_information_save_to_store property.
         """
         self._enable_recovery_information_save_to_store = value
     
@@ -120,14 +120,14 @@ class BitLockerRecoveryOptions(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "block_data_recovery_agent": lambda n : setattr(self, 'block_data_recovery_agent', n.get_bool_value()),
-            "enable_bit_locker_after_recovery_information_to_store": lambda n : setattr(self, 'enable_bit_locker_after_recovery_information_to_store', n.get_bool_value()),
-            "enable_recovery_information_save_to_store": lambda n : setattr(self, 'enable_recovery_information_save_to_store', n.get_bool_value()),
-            "hide_recovery_options": lambda n : setattr(self, 'hide_recovery_options', n.get_bool_value()),
+            "blockDataRecoveryAgent": lambda n : setattr(self, 'block_data_recovery_agent', n.get_bool_value()),
+            "enableBitLockerAfterRecoveryInformationToStore": lambda n : setattr(self, 'enable_bit_locker_after_recovery_information_to_store', n.get_bool_value()),
+            "enableRecoveryInformationSaveToStore": lambda n : setattr(self, 'enable_recovery_information_save_to_store', n.get_bool_value()),
+            "hideRecoveryOptions": lambda n : setattr(self, 'hide_recovery_options', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "recovery_information_to_store": lambda n : setattr(self, 'recovery_information_to_store', n.get_enum_value(bit_locker_recovery_information_type.BitLockerRecoveryInformationType)),
-            "recovery_key_usage": lambda n : setattr(self, 'recovery_key_usage', n.get_enum_value(configuration_usage.ConfigurationUsage)),
-            "recovery_password_usage": lambda n : setattr(self, 'recovery_password_usage', n.get_enum_value(configuration_usage.ConfigurationUsage)),
+            "recoveryInformationToStore": lambda n : setattr(self, 'recovery_information_to_store', n.get_enum_value(bit_locker_recovery_information_type.BitLockerRecoveryInformationType)),
+            "recoveryKeyUsage": lambda n : setattr(self, 'recovery_key_usage', n.get_enum_value(configuration_usage.ConfigurationUsage)),
+            "recoveryPasswordUsage": lambda n : setattr(self, 'recovery_password_usage', n.get_enum_value(configuration_usage.ConfigurationUsage)),
         }
         return fields
     
@@ -144,7 +144,7 @@ class BitLockerRecoveryOptions(AdditionalDataHolder, Parsable):
         """
         Sets the hideRecoveryOptions property value. Indicates whether or not to allow showing recovery options in BitLocker Setup Wizard for fixed or system disk.
         Args:
-            value: Value to set for the hideRecoveryOptions property.
+            value: Value to set for the hide_recovery_options property.
         """
         self._hide_recovery_options = value
     
@@ -161,7 +161,7 @@ class BitLockerRecoveryOptions(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -178,7 +178,7 @@ class BitLockerRecoveryOptions(AdditionalDataHolder, Parsable):
         """
         Sets the recoveryInformationToStore property value. BitLockerRecoveryInformationType types
         Args:
-            value: Value to set for the recoveryInformationToStore property.
+            value: Value to set for the recovery_information_to_store property.
         """
         self._recovery_information_to_store = value
     
@@ -195,7 +195,7 @@ class BitLockerRecoveryOptions(AdditionalDataHolder, Parsable):
         """
         Sets the recoveryKeyUsage property value. Possible values of the ConfigurationUsage list.
         Args:
-            value: Value to set for the recoveryKeyUsage property.
+            value: Value to set for the recovery_key_usage property.
         """
         self._recovery_key_usage = value
     
@@ -212,7 +212,7 @@ class BitLockerRecoveryOptions(AdditionalDataHolder, Parsable):
         """
         Sets the recoveryPasswordUsage property value. Possible values of the ConfigurationUsage list.
         Args:
-            value: Value to set for the recoveryPasswordUsage property.
+            value: Value to set for the recovery_password_usage property.
         """
         self._recovery_password_usage = value
     

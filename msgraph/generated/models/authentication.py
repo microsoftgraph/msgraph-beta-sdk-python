@@ -19,7 +19,7 @@ windows_hello_for_business_authentication_method = lazy_import('msgraph.generate
 class Authentication(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new authentication and sets the default values.
+        Instantiates a new Authentication and sets the default values.
         """
         super().__init__()
         # Represents the email addresses registered to a user for authentication.
@@ -34,10 +34,10 @@ class Authentication(entity.Entity):
         self.odata_type: Optional[str] = None
         # The operations property
         self._operations: Optional[List[long_running_operation.LongRunningOperation]] = None
-        # Represents the Microsoft Authenticator Passwordless Phone Sign-in methods registered to a user for authentication.
-        self._passwordless_microsoft_authenticator_methods: Optional[List[passwordless_microsoft_authenticator_authentication_method.PasswordlessMicrosoftAuthenticatorAuthenticationMethod]] = None
         # Represents the details of the password authentication method registered to a user for authentication.
         self._password_methods: Optional[List[password_authentication_method.PasswordAuthenticationMethod]] = None
+        # Represents the Microsoft Authenticator Passwordless Phone Sign-in methods registered to a user for authentication.
+        self._passwordless_microsoft_authenticator_methods: Optional[List[passwordless_microsoft_authenticator_authentication_method.PasswordlessMicrosoftAuthenticatorAuthenticationMethod]] = None
         # Represents the phone registered to a user for authentication.
         self._phone_methods: Optional[List[phone_authentication_method.PhoneAuthenticationMethod]] = None
         # The softwareOathMethods property
@@ -72,7 +72,7 @@ class Authentication(entity.Entity):
         """
         Sets the emailMethods property value. Represents the email addresses registered to a user for authentication.
         Args:
-            value: Value to set for the emailMethods property.
+            value: Value to set for the email_methods property.
         """
         self._email_methods = value
     
@@ -89,7 +89,7 @@ class Authentication(entity.Entity):
         """
         Sets the fido2Methods property value. Represents the FIDO2 security keys registered to a user for authentication.
         Args:
-            value: Value to set for the fido2Methods property.
+            value: Value to set for the fido2_methods property.
         """
         self._fido2_methods = value
     
@@ -99,17 +99,17 @@ class Authentication(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "email_methods": lambda n : setattr(self, 'email_methods', n.get_collection_of_object_values(email_authentication_method.EmailAuthenticationMethod)),
-            "fido2_methods": lambda n : setattr(self, 'fido2_methods', n.get_collection_of_object_values(fido2_authentication_method.Fido2AuthenticationMethod)),
+            "emailMethods": lambda n : setattr(self, 'email_methods', n.get_collection_of_object_values(email_authentication_method.EmailAuthenticationMethod)),
+            "fido2Methods": lambda n : setattr(self, 'fido2_methods', n.get_collection_of_object_values(fido2_authentication_method.Fido2AuthenticationMethod)),
             "methods": lambda n : setattr(self, 'methods', n.get_collection_of_object_values(authentication_method.AuthenticationMethod)),
-            "microsoft_authenticator_methods": lambda n : setattr(self, 'microsoft_authenticator_methods', n.get_collection_of_object_values(microsoft_authenticator_authentication_method.MicrosoftAuthenticatorAuthenticationMethod)),
+            "microsoftAuthenticatorMethods": lambda n : setattr(self, 'microsoft_authenticator_methods', n.get_collection_of_object_values(microsoft_authenticator_authentication_method.MicrosoftAuthenticatorAuthenticationMethod)),
             "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(long_running_operation.LongRunningOperation)),
-            "passwordless_microsoft_authenticator_methods": lambda n : setattr(self, 'passwordless_microsoft_authenticator_methods', n.get_collection_of_object_values(passwordless_microsoft_authenticator_authentication_method.PasswordlessMicrosoftAuthenticatorAuthenticationMethod)),
-            "password_methods": lambda n : setattr(self, 'password_methods', n.get_collection_of_object_values(password_authentication_method.PasswordAuthenticationMethod)),
-            "phone_methods": lambda n : setattr(self, 'phone_methods', n.get_collection_of_object_values(phone_authentication_method.PhoneAuthenticationMethod)),
-            "software_oath_methods": lambda n : setattr(self, 'software_oath_methods', n.get_collection_of_object_values(software_oath_authentication_method.SoftwareOathAuthenticationMethod)),
-            "temporary_access_pass_methods": lambda n : setattr(self, 'temporary_access_pass_methods', n.get_collection_of_object_values(temporary_access_pass_authentication_method.TemporaryAccessPassAuthenticationMethod)),
-            "windows_hello_for_business_methods": lambda n : setattr(self, 'windows_hello_for_business_methods', n.get_collection_of_object_values(windows_hello_for_business_authentication_method.WindowsHelloForBusinessAuthenticationMethod)),
+            "passwordlessMicrosoftAuthenticatorMethods": lambda n : setattr(self, 'passwordless_microsoft_authenticator_methods', n.get_collection_of_object_values(passwordless_microsoft_authenticator_authentication_method.PasswordlessMicrosoftAuthenticatorAuthenticationMethod)),
+            "passwordMethods": lambda n : setattr(self, 'password_methods', n.get_collection_of_object_values(password_authentication_method.PasswordAuthenticationMethod)),
+            "phoneMethods": lambda n : setattr(self, 'phone_methods', n.get_collection_of_object_values(phone_authentication_method.PhoneAuthenticationMethod)),
+            "softwareOathMethods": lambda n : setattr(self, 'software_oath_methods', n.get_collection_of_object_values(software_oath_authentication_method.SoftwareOathAuthenticationMethod)),
+            "temporaryAccessPassMethods": lambda n : setattr(self, 'temporary_access_pass_methods', n.get_collection_of_object_values(temporary_access_pass_authentication_method.TemporaryAccessPassAuthenticationMethod)),
+            "windowsHelloForBusinessMethods": lambda n : setattr(self, 'windows_hello_for_business_methods', n.get_collection_of_object_values(windows_hello_for_business_authentication_method.WindowsHelloForBusinessAuthenticationMethod)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -145,7 +145,7 @@ class Authentication(entity.Entity):
         """
         Sets the microsoftAuthenticatorMethods property value. The details of the Microsoft Authenticator app registered to a user for authentication.
         Args:
-            value: Value to set for the microsoftAuthenticatorMethods property.
+            value: Value to set for the microsoft_authenticator_methods property.
         """
         self._microsoft_authenticator_methods = value
     
@@ -167,23 +167,6 @@ class Authentication(entity.Entity):
         self._operations = value
     
     @property
-    def passwordless_microsoft_authenticator_methods(self,) -> Optional[List[passwordless_microsoft_authenticator_authentication_method.PasswordlessMicrosoftAuthenticatorAuthenticationMethod]]:
-        """
-        Gets the passwordlessMicrosoftAuthenticatorMethods property value. Represents the Microsoft Authenticator Passwordless Phone Sign-in methods registered to a user for authentication.
-        Returns: Optional[List[passwordless_microsoft_authenticator_authentication_method.PasswordlessMicrosoftAuthenticatorAuthenticationMethod]]
-        """
-        return self._passwordless_microsoft_authenticator_methods
-    
-    @passwordless_microsoft_authenticator_methods.setter
-    def passwordless_microsoft_authenticator_methods(self,value: Optional[List[passwordless_microsoft_authenticator_authentication_method.PasswordlessMicrosoftAuthenticatorAuthenticationMethod]] = None) -> None:
-        """
-        Sets the passwordlessMicrosoftAuthenticatorMethods property value. Represents the Microsoft Authenticator Passwordless Phone Sign-in methods registered to a user for authentication.
-        Args:
-            value: Value to set for the passwordlessMicrosoftAuthenticatorMethods property.
-        """
-        self._passwordless_microsoft_authenticator_methods = value
-    
-    @property
     def password_methods(self,) -> Optional[List[password_authentication_method.PasswordAuthenticationMethod]]:
         """
         Gets the passwordMethods property value. Represents the details of the password authentication method registered to a user for authentication.
@@ -196,9 +179,26 @@ class Authentication(entity.Entity):
         """
         Sets the passwordMethods property value. Represents the details of the password authentication method registered to a user for authentication.
         Args:
-            value: Value to set for the passwordMethods property.
+            value: Value to set for the password_methods property.
         """
         self._password_methods = value
+    
+    @property
+    def passwordless_microsoft_authenticator_methods(self,) -> Optional[List[passwordless_microsoft_authenticator_authentication_method.PasswordlessMicrosoftAuthenticatorAuthenticationMethod]]:
+        """
+        Gets the passwordlessMicrosoftAuthenticatorMethods property value. Represents the Microsoft Authenticator Passwordless Phone Sign-in methods registered to a user for authentication.
+        Returns: Optional[List[passwordless_microsoft_authenticator_authentication_method.PasswordlessMicrosoftAuthenticatorAuthenticationMethod]]
+        """
+        return self._passwordless_microsoft_authenticator_methods
+    
+    @passwordless_microsoft_authenticator_methods.setter
+    def passwordless_microsoft_authenticator_methods(self,value: Optional[List[passwordless_microsoft_authenticator_authentication_method.PasswordlessMicrosoftAuthenticatorAuthenticationMethod]] = None) -> None:
+        """
+        Sets the passwordlessMicrosoftAuthenticatorMethods property value. Represents the Microsoft Authenticator Passwordless Phone Sign-in methods registered to a user for authentication.
+        Args:
+            value: Value to set for the passwordless_microsoft_authenticator_methods property.
+        """
+        self._passwordless_microsoft_authenticator_methods = value
     
     @property
     def phone_methods(self,) -> Optional[List[phone_authentication_method.PhoneAuthenticationMethod]]:
@@ -213,7 +213,7 @@ class Authentication(entity.Entity):
         """
         Sets the phoneMethods property value. Represents the phone registered to a user for authentication.
         Args:
-            value: Value to set for the phoneMethods property.
+            value: Value to set for the phone_methods property.
         """
         self._phone_methods = value
     
@@ -251,7 +251,7 @@ class Authentication(entity.Entity):
         """
         Sets the softwareOathMethods property value. The softwareOathMethods property
         Args:
-            value: Value to set for the softwareOathMethods property.
+            value: Value to set for the software_oath_methods property.
         """
         self._software_oath_methods = value
     
@@ -268,7 +268,7 @@ class Authentication(entity.Entity):
         """
         Sets the temporaryAccessPassMethods property value. Represents a Temporary Access Pass registered to a user for authentication through time-limited passcodes.
         Args:
-            value: Value to set for the temporaryAccessPassMethods property.
+            value: Value to set for the temporary_access_pass_methods property.
         """
         self._temporary_access_pass_methods = value
     
@@ -285,7 +285,7 @@ class Authentication(entity.Entity):
         """
         Sets the windowsHelloForBusinessMethods property value. Represents the Windows Hello for Business authentication method registered to a user for authentication.
         Args:
-            value: Value to set for the windowsHelloForBusinessMethods property.
+            value: Value to set for the windows_hello_for_business_methods property.
         """
         self._windows_hello_for_business_methods = value
     

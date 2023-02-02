@@ -66,12 +66,11 @@ class AppRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AppRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[comms_application.CommsApplication]:
+    async def get(self,request_configuration: Optional[AppRequestBuilderGetRequestConfiguration] = None) -> Optional[comms_application.CommsApplication]:
         """
         Get app
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[comms_application.CommsApplication]
         """
         request_info = self.to_get_request_information(
@@ -83,7 +82,7 @@ class AppRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, comms_application.CommsApplication, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, comms_application.CommsApplication, error_mapping)
     
     def online_meetings_by_id(self,id: str) -> online_meeting_item_request_builder.OnlineMeetingItemRequestBuilder:
         """
@@ -98,13 +97,12 @@ class AppRequestBuilder():
         url_tpl_params["onlineMeeting%2Did"] = id
         return online_meeting_item_request_builder.OnlineMeetingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[comms_application.CommsApplication] = None, request_configuration: Optional[AppRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[comms_application.CommsApplication]:
+    async def patch(self,body: Optional[comms_application.CommsApplication] = None, request_configuration: Optional[AppRequestBuilderPatchRequestConfiguration] = None) -> Optional[comms_application.CommsApplication]:
         """
         Update app
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[comms_application.CommsApplication]
         """
         if body is None:
@@ -118,7 +116,7 @@ class AppRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, comms_application.CommsApplication, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, comms_application.CommsApplication, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AppRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

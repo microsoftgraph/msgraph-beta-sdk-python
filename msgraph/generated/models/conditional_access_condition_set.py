@@ -49,23 +49,6 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, Parsable):
         self._applications = value
     
     @property
-    def client_applications(self,) -> Optional[conditional_access_client_applications.ConditionalAccessClientApplications]:
-        """
-        Gets the clientApplications property value. Client applications (service principals and workload identities) included in and excluded from the policy. Either users or clientApplications is required.
-        Returns: Optional[conditional_access_client_applications.ConditionalAccessClientApplications]
-        """
-        return self._client_applications
-    
-    @client_applications.setter
-    def client_applications(self,value: Optional[conditional_access_client_applications.ConditionalAccessClientApplications] = None) -> None:
-        """
-        Sets the clientApplications property value. Client applications (service principals and workload identities) included in and excluded from the policy. Either users or clientApplications is required.
-        Args:
-            value: Value to set for the clientApplications property.
-        """
-        self._client_applications = value
-    
-    @property
     def client_app_types(self,) -> Optional[List[conditional_access_client_app.ConditionalAccessClientApp]]:
         """
         Gets the clientAppTypes property value. Client application types included in the policy. Possible values are: all, browser, mobileAppsAndDesktopClients, exchangeActiveSync, easSupported, other. Required.
@@ -78,9 +61,26 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, Parsable):
         """
         Sets the clientAppTypes property value. Client application types included in the policy. Possible values are: all, browser, mobileAppsAndDesktopClients, exchangeActiveSync, easSupported, other. Required.
         Args:
-            value: Value to set for the clientAppTypes property.
+            value: Value to set for the client_app_types property.
         """
         self._client_app_types = value
+    
+    @property
+    def client_applications(self,) -> Optional[conditional_access_client_applications.ConditionalAccessClientApplications]:
+        """
+        Gets the clientApplications property value. Client applications (service principals and workload identities) included in and excluded from the policy. Either users or clientApplications is required.
+        Returns: Optional[conditional_access_client_applications.ConditionalAccessClientApplications]
+        """
+        return self._client_applications
+    
+    @client_applications.setter
+    def client_applications(self,value: Optional[conditional_access_client_applications.ConditionalAccessClientApplications] = None) -> None:
+        """
+        Sets the clientApplications property value. Client applications (service principals and workload identities) included in and excluded from the policy. Either users or clientApplications is required.
+        Args:
+            value: Value to set for the client_applications property.
+        """
+        self._client_applications = value
     
     def __init__(self,) -> None:
         """
@@ -91,14 +91,14 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, Parsable):
 
         # Applications and user actions included in and excluded from the policy. Required.
         self._applications: Optional[conditional_access_applications.ConditionalAccessApplications] = None
-        # Client applications (service principals and workload identities) included in and excluded from the policy. Either users or clientApplications is required.
-        self._client_applications: Optional[conditional_access_client_applications.ConditionalAccessClientApplications] = None
         # Client application types included in the policy. Possible values are: all, browser, mobileAppsAndDesktopClients, exchangeActiveSync, easSupported, other. Required.
         self._client_app_types: Optional[List[conditional_access_client_app.ConditionalAccessClientApp]] = None
-        # Devices in the policy.
-        self._devices: Optional[conditional_access_devices.ConditionalAccessDevices] = None
+        # Client applications (service principals and workload identities) included in and excluded from the policy. Either users or clientApplications is required.
+        self._client_applications: Optional[conditional_access_client_applications.ConditionalAccessClientApplications] = None
         # Device states in the policy.
         self._device_states: Optional[conditional_access_device_states.ConditionalAccessDeviceStates] = None
+        # Devices in the policy.
+        self._devices: Optional[conditional_access_devices.ConditionalAccessDevices] = None
         # Locations included in and excluded from the policy.
         self._locations: Optional[conditional_access_locations.ConditionalAccessLocations] = None
         # The OdataType property
@@ -127,6 +127,23 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, Parsable):
         return ConditionalAccessConditionSet()
     
     @property
+    def device_states(self,) -> Optional[conditional_access_device_states.ConditionalAccessDeviceStates]:
+        """
+        Gets the deviceStates property value. Device states in the policy.
+        Returns: Optional[conditional_access_device_states.ConditionalAccessDeviceStates]
+        """
+        return self._device_states
+    
+    @device_states.setter
+    def device_states(self,value: Optional[conditional_access_device_states.ConditionalAccessDeviceStates] = None) -> None:
+        """
+        Sets the deviceStates property value. Device states in the policy.
+        Args:
+            value: Value to set for the device_states property.
+        """
+        self._device_states = value
+    
+    @property
     def devices(self,) -> Optional[conditional_access_devices.ConditionalAccessDevices]:
         """
         Gets the devices property value. Devices in the policy.
@@ -143,23 +160,6 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, Parsable):
         """
         self._devices = value
     
-    @property
-    def device_states(self,) -> Optional[conditional_access_device_states.ConditionalAccessDeviceStates]:
-        """
-        Gets the deviceStates property value. Device states in the policy.
-        Returns: Optional[conditional_access_device_states.ConditionalAccessDeviceStates]
-        """
-        return self._device_states
-    
-    @device_states.setter
-    def device_states(self,value: Optional[conditional_access_device_states.ConditionalAccessDeviceStates] = None) -> None:
-        """
-        Sets the deviceStates property value. Device states in the policy.
-        Args:
-            value: Value to set for the deviceStates property.
-        """
-        self._device_states = value
-    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -167,17 +167,17 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, Parsable):
         """
         fields = {
             "applications": lambda n : setattr(self, 'applications', n.get_object_value(conditional_access_applications.ConditionalAccessApplications)),
-            "client_applications": lambda n : setattr(self, 'client_applications', n.get_object_value(conditional_access_client_applications.ConditionalAccessClientApplications)),
-            "client_app_types": lambda n : setattr(self, 'client_app_types', n.get_collection_of_enum_values(conditional_access_client_app.ConditionalAccessClientApp)),
+            "clientApplications": lambda n : setattr(self, 'client_applications', n.get_object_value(conditional_access_client_applications.ConditionalAccessClientApplications)),
+            "clientAppTypes": lambda n : setattr(self, 'client_app_types', n.get_collection_of_enum_values(conditional_access_client_app.ConditionalAccessClientApp)),
             "devices": lambda n : setattr(self, 'devices', n.get_object_value(conditional_access_devices.ConditionalAccessDevices)),
-            "device_states": lambda n : setattr(self, 'device_states', n.get_object_value(conditional_access_device_states.ConditionalAccessDeviceStates)),
+            "deviceStates": lambda n : setattr(self, 'device_states', n.get_object_value(conditional_access_device_states.ConditionalAccessDeviceStates)),
             "locations": lambda n : setattr(self, 'locations', n.get_object_value(conditional_access_locations.ConditionalAccessLocations)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "platforms": lambda n : setattr(self, 'platforms', n.get_object_value(conditional_access_platforms.ConditionalAccessPlatforms)),
-            "service_principal_risk_levels": lambda n : setattr(self, 'service_principal_risk_levels', n.get_collection_of_enum_values(risk_level.RiskLevel)),
-            "sign_in_risk_levels": lambda n : setattr(self, 'sign_in_risk_levels', n.get_collection_of_enum_values(risk_level.RiskLevel)),
-            "user_risk_levels": lambda n : setattr(self, 'user_risk_levels', n.get_collection_of_enum_values(risk_level.RiskLevel)),
+            "servicePrincipalRiskLevels": lambda n : setattr(self, 'service_principal_risk_levels', n.get_collection_of_enum_values(risk_level.RiskLevel)),
+            "signInRiskLevels": lambda n : setattr(self, 'sign_in_risk_levels', n.get_collection_of_enum_values(risk_level.RiskLevel)),
             "users": lambda n : setattr(self, 'users', n.get_object_value(conditional_access_users.ConditionalAccessUsers)),
+            "userRiskLevels": lambda n : setattr(self, 'user_risk_levels', n.get_collection_of_enum_values(risk_level.RiskLevel)),
         }
         return fields
     
@@ -211,7 +211,7 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -250,8 +250,8 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, Parsable):
         writer.write_object_value("platforms", self.platforms)
         writer.write_enum_value("servicePrincipalRiskLevels", self.service_principal_risk_levels)
         writer.write_enum_value("signInRiskLevels", self.sign_in_risk_levels)
-        writer.write_enum_value("userRiskLevels", self.user_risk_levels)
         writer.write_object_value("users", self.users)
+        writer.write_enum_value("userRiskLevels", self.user_risk_levels)
         writer.write_additional_data_value(self.additional_data)
     
     @property
@@ -267,7 +267,7 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, Parsable):
         """
         Sets the servicePrincipalRiskLevels property value. Service principal risk levels included in the policy. Possible values are: low, medium, high, none, unknownFutureValue.
         Args:
-            value: Value to set for the servicePrincipalRiskLevels property.
+            value: Value to set for the service_principal_risk_levels property.
         """
         self._service_principal_risk_levels = value
     
@@ -284,7 +284,7 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, Parsable):
         """
         Sets the signInRiskLevels property value. Sign-in risk levels included in the policy. Possible values are: low, medium, high, hidden, none, unknownFutureValue. Required.
         Args:
-            value: Value to set for the signInRiskLevels property.
+            value: Value to set for the sign_in_risk_levels property.
         """
         self._sign_in_risk_levels = value
     
@@ -301,7 +301,7 @@ class ConditionalAccessConditionSet(AdditionalDataHolder, Parsable):
         """
         Sets the userRiskLevels property value. User risk levels included in the policy. Possible values are: low, medium, high, hidden, none, unknownFutureValue. Required.
         Args:
-            value: Value to set for the userRiskLevels property.
+            value: Value to set for the user_risk_levels property.
         """
         self._user_risk_levels = value
     

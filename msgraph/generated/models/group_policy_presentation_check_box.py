@@ -40,7 +40,7 @@ class GroupPolicyPresentationCheckBox(group_policy_uploaded_presentation.GroupPo
         """
         Sets the defaultChecked property value. Default value for the check box. The default value is false.
         Args:
-            value: Value to set for the defaultChecked property.
+            value: Value to set for the default_checked property.
         """
         self._default_checked = value
     
@@ -50,7 +50,7 @@ class GroupPolicyPresentationCheckBox(group_policy_uploaded_presentation.GroupPo
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_checked": lambda n : setattr(self, 'default_checked', n.get_bool_value()),
+            "defaultChecked": lambda n : setattr(self, 'default_checked', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

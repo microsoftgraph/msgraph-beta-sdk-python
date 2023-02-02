@@ -8,21 +8,21 @@ entity = lazy_import('msgraph.generated.models.entity')
 class UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric and sets the default values.
+        Instantiates a new UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric and sets the default values.
         """
         super().__init__()
         # The OdataType property
         self.odata_type: Optional[str] = None
         # The percentage of devices for which OS check has failed. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         self._os_check_failed_percentage: Optional[float] = None
-        # The percentage of devices for which processor hardware 64-bit architecture check has failed. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._processor64_bit_check_failed_percentage: Optional[float] = None
         # The percentage of devices for which processor hardware core count check has failed. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         self._processor_core_count_check_failed_percentage: Optional[float] = None
         # The percentage of devices for which processor hardware family check has failed. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         self._processor_family_check_failed_percentage: Optional[float] = None
         # The percentage of devices for which processor hardware speed check has failed. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         self._processor_speed_check_failed_percentage: Optional[float] = None
+        # The percentage of devices for which processor hardware 64-bit architecture check has failed. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        self._processor64_bit_check_failed_percentage: Optional[float] = None
         # The percentage of devices for which RAM hardware check has failed. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         self._ram_check_failed_percentage: Optional[float] = None
         # The percentage of devices for which secure boot hardware check has failed. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
@@ -54,17 +54,17 @@ class UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric(entity.Enti
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "os_check_failed_percentage": lambda n : setattr(self, 'os_check_failed_percentage', n.get_float_value()),
-            "processor64_bit_check_failed_percentage": lambda n : setattr(self, 'processor64_bit_check_failed_percentage', n.get_float_value()),
-            "processor_core_count_check_failed_percentage": lambda n : setattr(self, 'processor_core_count_check_failed_percentage', n.get_float_value()),
-            "processor_family_check_failed_percentage": lambda n : setattr(self, 'processor_family_check_failed_percentage', n.get_float_value()),
-            "processor_speed_check_failed_percentage": lambda n : setattr(self, 'processor_speed_check_failed_percentage', n.get_float_value()),
-            "ram_check_failed_percentage": lambda n : setattr(self, 'ram_check_failed_percentage', n.get_float_value()),
-            "secure_boot_check_failed_percentage": lambda n : setattr(self, 'secure_boot_check_failed_percentage', n.get_float_value()),
-            "storage_check_failed_percentage": lambda n : setattr(self, 'storage_check_failed_percentage', n.get_float_value()),
-            "total_device_count": lambda n : setattr(self, 'total_device_count', n.get_int_value()),
-            "tpm_check_failed_percentage": lambda n : setattr(self, 'tpm_check_failed_percentage', n.get_float_value()),
-            "upgrade_eligible_device_count": lambda n : setattr(self, 'upgrade_eligible_device_count', n.get_int_value()),
+            "osCheckFailedPercentage": lambda n : setattr(self, 'os_check_failed_percentage', n.get_float_value()),
+            "processor64BitCheckFailedPercentage": lambda n : setattr(self, 'processor64_bit_check_failed_percentage', n.get_float_value()),
+            "processorCoreCountCheckFailedPercentage": lambda n : setattr(self, 'processor_core_count_check_failed_percentage', n.get_float_value()),
+            "processorFamilyCheckFailedPercentage": lambda n : setattr(self, 'processor_family_check_failed_percentage', n.get_float_value()),
+            "processorSpeedCheckFailedPercentage": lambda n : setattr(self, 'processor_speed_check_failed_percentage', n.get_float_value()),
+            "ramCheckFailedPercentage": lambda n : setattr(self, 'ram_check_failed_percentage', n.get_float_value()),
+            "secureBootCheckFailedPercentage": lambda n : setattr(self, 'secure_boot_check_failed_percentage', n.get_float_value()),
+            "storageCheckFailedPercentage": lambda n : setattr(self, 'storage_check_failed_percentage', n.get_float_value()),
+            "totalDeviceCount": lambda n : setattr(self, 'total_device_count', n.get_int_value()),
+            "tpmCheckFailedPercentage": lambda n : setattr(self, 'tpm_check_failed_percentage', n.get_float_value()),
+            "upgradeEligibleDeviceCount": lambda n : setattr(self, 'upgrade_eligible_device_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -83,26 +83,9 @@ class UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric(entity.Enti
         """
         Sets the osCheckFailedPercentage property value. The percentage of devices for which OS check has failed. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         Args:
-            value: Value to set for the osCheckFailedPercentage property.
+            value: Value to set for the os_check_failed_percentage property.
         """
         self._os_check_failed_percentage = value
-    
-    @property
-    def processor64_bit_check_failed_percentage(self,) -> Optional[float]:
-        """
-        Gets the processor64BitCheckFailedPercentage property value. The percentage of devices for which processor hardware 64-bit architecture check has failed. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Returns: Optional[float]
-        """
-        return self._processor64_bit_check_failed_percentage
-    
-    @processor64_bit_check_failed_percentage.setter
-    def processor64_bit_check_failed_percentage(self,value: Optional[float] = None) -> None:
-        """
-        Sets the processor64BitCheckFailedPercentage property value. The percentage of devices for which processor hardware 64-bit architecture check has failed. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        Args:
-            value: Value to set for the processor64BitCheckFailedPercentage property.
-        """
-        self._processor64_bit_check_failed_percentage = value
     
     @property
     def processor_core_count_check_failed_percentage(self,) -> Optional[float]:
@@ -117,7 +100,7 @@ class UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric(entity.Enti
         """
         Sets the processorCoreCountCheckFailedPercentage property value. The percentage of devices for which processor hardware core count check has failed. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         Args:
-            value: Value to set for the processorCoreCountCheckFailedPercentage property.
+            value: Value to set for the processor_core_count_check_failed_percentage property.
         """
         self._processor_core_count_check_failed_percentage = value
     
@@ -134,7 +117,7 @@ class UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric(entity.Enti
         """
         Sets the processorFamilyCheckFailedPercentage property value. The percentage of devices for which processor hardware family check has failed. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         Args:
-            value: Value to set for the processorFamilyCheckFailedPercentage property.
+            value: Value to set for the processor_family_check_failed_percentage property.
         """
         self._processor_family_check_failed_percentage = value
     
@@ -151,9 +134,26 @@ class UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric(entity.Enti
         """
         Sets the processorSpeedCheckFailedPercentage property value. The percentage of devices for which processor hardware speed check has failed. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         Args:
-            value: Value to set for the processorSpeedCheckFailedPercentage property.
+            value: Value to set for the processor_speed_check_failed_percentage property.
         """
         self._processor_speed_check_failed_percentage = value
+    
+    @property
+    def processor64_bit_check_failed_percentage(self,) -> Optional[float]:
+        """
+        Gets the processor64BitCheckFailedPercentage property value. The percentage of devices for which processor hardware 64-bit architecture check has failed. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        Returns: Optional[float]
+        """
+        return self._processor64_bit_check_failed_percentage
+    
+    @processor64_bit_check_failed_percentage.setter
+    def processor64_bit_check_failed_percentage(self,value: Optional[float] = None) -> None:
+        """
+        Sets the processor64BitCheckFailedPercentage property value. The percentage of devices for which processor hardware 64-bit architecture check has failed. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        Args:
+            value: Value to set for the processor64_bit_check_failed_percentage property.
+        """
+        self._processor64_bit_check_failed_percentage = value
     
     @property
     def ram_check_failed_percentage(self,) -> Optional[float]:
@@ -168,7 +168,7 @@ class UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric(entity.Enti
         """
         Sets the ramCheckFailedPercentage property value. The percentage of devices for which RAM hardware check has failed. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         Args:
-            value: Value to set for the ramCheckFailedPercentage property.
+            value: Value to set for the ram_check_failed_percentage property.
         """
         self._ram_check_failed_percentage = value
     
@@ -185,7 +185,7 @@ class UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric(entity.Enti
         """
         Sets the secureBootCheckFailedPercentage property value. The percentage of devices for which secure boot hardware check has failed. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         Args:
-            value: Value to set for the secureBootCheckFailedPercentage property.
+            value: Value to set for the secure_boot_check_failed_percentage property.
         """
         self._secure_boot_check_failed_percentage = value
     
@@ -223,7 +223,7 @@ class UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric(entity.Enti
         """
         Sets the storageCheckFailedPercentage property value. The percentage of devices for which storage hardware check has failed. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         Args:
-            value: Value to set for the storageCheckFailedPercentage property.
+            value: Value to set for the storage_check_failed_percentage property.
         """
         self._storage_check_failed_percentage = value
     
@@ -240,7 +240,7 @@ class UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric(entity.Enti
         """
         Sets the totalDeviceCount property value. The count of total devices in an organization. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the totalDeviceCount property.
+            value: Value to set for the total_device_count property.
         """
         self._total_device_count = value
     
@@ -257,7 +257,7 @@ class UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric(entity.Enti
         """
         Sets the tpmCheckFailedPercentage property value. The percentage of devices for which Trusted Platform Module (TPM) hardware check has failed. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         Args:
-            value: Value to set for the tpmCheckFailedPercentage property.
+            value: Value to set for the tpm_check_failed_percentage property.
         """
         self._tpm_check_failed_percentage = value
     
@@ -274,7 +274,7 @@ class UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric(entity.Enti
         """
         Sets the upgradeEligibleDeviceCount property value. The count of devices in an organization eligible for windows upgrade. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the upgradeEligibleDeviceCount property.
+            value: Value to set for the upgrade_eligible_device_count property.
         """
         self._upgrade_eligible_device_count = value
     

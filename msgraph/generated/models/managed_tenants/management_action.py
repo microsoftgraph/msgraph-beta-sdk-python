@@ -27,7 +27,7 @@ class ManagementAction(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new managementAction and sets the default values.
+        Instantiates a new ManagementAction and sets the default values.
         """
         super().__init__()
         # The category property
@@ -87,7 +87,7 @@ class ManagementAction(entity.Entity):
         """
         Sets the displayName property value. The display name for the management action. Optional. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -99,10 +99,10 @@ class ManagementAction(entity.Entity):
         fields = {
             "category": lambda n : setattr(self, 'category', n.get_enum_value(management_category.ManagementCategory)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "reference_template_id": lambda n : setattr(self, 'reference_template_id', n.get_str_value()),
-            "reference_template_version": lambda n : setattr(self, 'reference_template_version', n.get_int_value()),
-            "workload_actions": lambda n : setattr(self, 'workload_actions', n.get_collection_of_object_values(workload_action.WorkloadAction)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "referenceTemplateId": lambda n : setattr(self, 'reference_template_id', n.get_str_value()),
+            "referenceTemplateVersion": lambda n : setattr(self, 'reference_template_version', n.get_int_value()),
+            "workloadActions": lambda n : setattr(self, 'workload_actions', n.get_collection_of_object_values(workload_action.WorkloadAction)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -121,7 +121,7 @@ class ManagementAction(entity.Entity):
         """
         Sets the referenceTemplateId property value. The reference for the management template used to generate the management action. Required. Read-only.
         Args:
-            value: Value to set for the referenceTemplateId property.
+            value: Value to set for the reference_template_id property.
         """
         self._reference_template_id = value
     
@@ -138,7 +138,7 @@ class ManagementAction(entity.Entity):
         """
         Sets the referenceTemplateVersion property value. The referenceTemplateVersion property
         Args:
-            value: Value to set for the referenceTemplateVersion property.
+            value: Value to set for the reference_template_version property.
         """
         self._reference_template_version = value
     
@@ -171,7 +171,7 @@ class ManagementAction(entity.Entity):
         """
         Sets the workloadActions property value. The collection of workload actions associated with the management action. Required. Read-only.
         Args:
-            value: Value to set for the workloadActions property.
+            value: Value to set for the workload_actions property.
         """
         self._workload_actions = value
     

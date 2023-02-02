@@ -37,7 +37,7 @@ class HybridAgentUpdaterConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the allowUpdateConfigurationOverride property value. Indicates if updater configuration will be skipped and the agent will receive an update when the next version of the agent is available.
         Args:
-            value: Value to set for the allowUpdateConfigurationOverride property.
+            value: Value to set for the allow_update_configuration_override property.
         """
         self._allow_update_configuration_override = value
     
@@ -82,7 +82,7 @@ class HybridAgentUpdaterConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the deferUpdateDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the deferUpdateDateTime property.
+            value: Value to set for the defer_update_date_time property.
         """
         self._defer_update_date_time = value
     
@@ -92,10 +92,10 @@ class HybridAgentUpdaterConfiguration(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_update_configuration_override": lambda n : setattr(self, 'allow_update_configuration_override', n.get_bool_value()),
-            "defer_update_date_time": lambda n : setattr(self, 'defer_update_date_time', n.get_datetime_value()),
+            "allowUpdateConfigurationOverride": lambda n : setattr(self, 'allow_update_configuration_override', n.get_bool_value()),
+            "deferUpdateDateTime": lambda n : setattr(self, 'defer_update_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "update_window": lambda n : setattr(self, 'update_window', n.get_object_value(update_window.UpdateWindow)),
+            "updateWindow": lambda n : setattr(self, 'update_window', n.get_object_value(update_window.UpdateWindow)),
         }
         return fields
     
@@ -112,7 +112,7 @@ class HybridAgentUpdaterConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -143,7 +143,7 @@ class HybridAgentUpdaterConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the updateWindow property value. The updateWindow property
         Args:
-            value: Value to set for the updateWindow property.
+            value: Value to set for the update_window property.
         """
         self._update_window = value
     

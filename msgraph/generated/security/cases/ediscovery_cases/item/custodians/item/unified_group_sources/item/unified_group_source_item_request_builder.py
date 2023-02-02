@@ -25,12 +25,13 @@ class UnifiedGroupSourceItemRequestBuilder():
         """
         return group_request_builder.GroupRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, unified_group_source_id: Optional[str] = None) -> None:
         """
         Instantiates a new UnifiedGroupSourceItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            unifiedGroupSourceId: key: id of unifiedGroupSource
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -40,15 +41,15 @@ class UnifiedGroupSourceItemRequestBuilder():
         self.url_template: str = "{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/custodians/{ediscoveryCustodian%2Did}/unifiedGroupSources/{unifiedGroupSource%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["unifiedGroupSource%2Did"] = unifiedGroupSourceId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[UnifiedGroupSourceItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[UnifiedGroupSourceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property unifiedGroupSources for security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +60,13 @@ class UnifiedGroupSourceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UnifiedGroupSourceItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_group_source.UnifiedGroupSource]:
+    async def get(self,request_configuration: Optional[UnifiedGroupSourceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_group_source.UnifiedGroupSource]:
         """
         Data source entity for groups associated with the custodian.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_group_source.UnifiedGroupSource]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +78,14 @@ class UnifiedGroupSourceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_group_source.UnifiedGroupSource, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_group_source.UnifiedGroupSource, error_mapping)
     
-    async def patch(self,body: Optional[unified_group_source.UnifiedGroupSource] = None, request_configuration: Optional[UnifiedGroupSourceItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_group_source.UnifiedGroupSource]:
+    async def patch(self,body: Optional[unified_group_source.UnifiedGroupSource] = None, request_configuration: Optional[UnifiedGroupSourceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[unified_group_source.UnifiedGroupSource]:
         """
         Update the navigation property unifiedGroupSources in security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_group_source.UnifiedGroupSource]
         """
         if body is None:
@@ -100,7 +99,7 @@ class UnifiedGroupSourceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_group_source.UnifiedGroupSource, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_group_source.UnifiedGroupSource, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UnifiedGroupSourceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

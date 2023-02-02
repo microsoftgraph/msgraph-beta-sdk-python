@@ -39,7 +39,7 @@ class MacOSSystemExtensionTypeMapping(AdditionalDataHolder, Parsable):
         """
         Sets the allowedTypes property value. Flag enum representing the allowed macOS system extension types.
         Args:
-            value: Value to set for the allowedTypes property.
+            value: Value to set for the allowed_types property.
         """
         self._allowed_types = value
     
@@ -75,9 +75,9 @@ class MacOSSystemExtensionTypeMapping(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_types": lambda n : setattr(self, 'allowed_types', n.get_enum_value(mac_o_s_system_extension_type.MacOSSystemExtensionType)),
+            "allowedTypes": lambda n : setattr(self, 'allowed_types', n.get_enum_value(mac_o_s_system_extension_type.MacOSSystemExtensionType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "team_identifier": lambda n : setattr(self, 'team_identifier', n.get_str_value()),
+            "teamIdentifier": lambda n : setattr(self, 'team_identifier', n.get_str_value()),
         }
         return fields
     
@@ -94,7 +94,7 @@ class MacOSSystemExtensionTypeMapping(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -124,7 +124,7 @@ class MacOSSystemExtensionTypeMapping(AdditionalDataHolder, Parsable):
         """
         Sets the teamIdentifier property value. Gets or sets the team identifier used to sign the system extension.
         Args:
-            value: Value to set for the teamIdentifier property.
+            value: Value to set for the team_identifier property.
         """
         self._team_identifier = value
     

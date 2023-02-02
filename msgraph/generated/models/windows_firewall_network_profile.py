@@ -39,7 +39,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the authorizedApplicationRulesFromGroupPolicyMerged property value. Configures the firewall to merge authorized application rules from group policy with those from local store instead of ignoring the local store rules. When AuthorizedApplicationRulesFromGroupPolicyNotMerged and AuthorizedApplicationRulesFromGroupPolicyMerged are both true, AuthorizedApplicationRulesFromGroupPolicyMerged takes priority.
         Args:
-            value: Value to set for the authorizedApplicationRulesFromGroupPolicyMerged property.
+            value: Value to set for the authorized_application_rules_from_group_policy_merged property.
         """
         self._authorized_application_rules_from_group_policy_merged = value
     
@@ -56,7 +56,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the authorizedApplicationRulesFromGroupPolicyNotMerged property value. Configures the firewall to prevent merging authorized application rules from group policy with those from local store instead of ignoring the local store rules. When AuthorizedApplicationRulesFromGroupPolicyNotMerged and AuthorizedApplicationRulesFromGroupPolicyMerged are both true, AuthorizedApplicationRulesFromGroupPolicyMerged takes priority.
         Args:
-            value: Value to set for the authorizedApplicationRulesFromGroupPolicyNotMerged property.
+            value: Value to set for the authorized_application_rules_from_group_policy_not_merged property.
         """
         self._authorized_application_rules_from_group_policy_not_merged = value
     
@@ -73,7 +73,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the connectionSecurityRulesFromGroupPolicyMerged property value. Configures the firewall to merge connection security rules from group policy with those from local store instead of ignoring the local store rules. When ConnectionSecurityRulesFromGroupPolicyNotMerged and ConnectionSecurityRulesFromGroupPolicyMerged are both true, ConnectionSecurityRulesFromGroupPolicyMerged takes priority.
         Args:
-            value: Value to set for the connectionSecurityRulesFromGroupPolicyMerged property.
+            value: Value to set for the connection_security_rules_from_group_policy_merged property.
         """
         self._connection_security_rules_from_group_policy_merged = value
     
@@ -90,7 +90,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the connectionSecurityRulesFromGroupPolicyNotMerged property value. Configures the firewall to prevent merging connection security rules from group policy with those from local store instead of ignoring the local store rules. When ConnectionSecurityRulesFromGroupPolicyNotMerged and ConnectionSecurityRulesFromGroupPolicyMerged are both true, ConnectionSecurityRulesFromGroupPolicyMerged takes priority.
         Args:
-            value: Value to set for the connectionSecurityRulesFromGroupPolicyNotMerged property.
+            value: Value to set for the connection_security_rules_from_group_policy_not_merged property.
         """
         self._connection_security_rules_from_group_policy_not_merged = value
     
@@ -175,7 +175,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the firewallEnabled property value. State Management Setting.
         Args:
-            value: Value to set for the firewallEnabled property.
+            value: Value to set for the firewall_enabled property.
         """
         self._firewall_enabled = value
     
@@ -185,30 +185,30 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authorized_application_rules_from_group_policy_merged": lambda n : setattr(self, 'authorized_application_rules_from_group_policy_merged', n.get_bool_value()),
-            "authorized_application_rules_from_group_policy_not_merged": lambda n : setattr(self, 'authorized_application_rules_from_group_policy_not_merged', n.get_bool_value()),
-            "connection_security_rules_from_group_policy_merged": lambda n : setattr(self, 'connection_security_rules_from_group_policy_merged', n.get_bool_value()),
-            "connection_security_rules_from_group_policy_not_merged": lambda n : setattr(self, 'connection_security_rules_from_group_policy_not_merged', n.get_bool_value()),
-            "firewall_enabled": lambda n : setattr(self, 'firewall_enabled', n.get_enum_value(state_management_setting.StateManagementSetting)),
-            "global_port_rules_from_group_policy_merged": lambda n : setattr(self, 'global_port_rules_from_group_policy_merged', n.get_bool_value()),
-            "global_port_rules_from_group_policy_not_merged": lambda n : setattr(self, 'global_port_rules_from_group_policy_not_merged', n.get_bool_value()),
-            "inbound_connections_blocked": lambda n : setattr(self, 'inbound_connections_blocked', n.get_bool_value()),
-            "inbound_connections_required": lambda n : setattr(self, 'inbound_connections_required', n.get_bool_value()),
-            "inbound_notifications_blocked": lambda n : setattr(self, 'inbound_notifications_blocked', n.get_bool_value()),
-            "inbound_notifications_required": lambda n : setattr(self, 'inbound_notifications_required', n.get_bool_value()),
-            "incoming_traffic_blocked": lambda n : setattr(self, 'incoming_traffic_blocked', n.get_bool_value()),
-            "incoming_traffic_required": lambda n : setattr(self, 'incoming_traffic_required', n.get_bool_value()),
+            "authorizedApplicationRulesFromGroupPolicyMerged": lambda n : setattr(self, 'authorized_application_rules_from_group_policy_merged', n.get_bool_value()),
+            "authorizedApplicationRulesFromGroupPolicyNotMerged": lambda n : setattr(self, 'authorized_application_rules_from_group_policy_not_merged', n.get_bool_value()),
+            "connectionSecurityRulesFromGroupPolicyMerged": lambda n : setattr(self, 'connection_security_rules_from_group_policy_merged', n.get_bool_value()),
+            "connectionSecurityRulesFromGroupPolicyNotMerged": lambda n : setattr(self, 'connection_security_rules_from_group_policy_not_merged', n.get_bool_value()),
+            "firewallEnabled": lambda n : setattr(self, 'firewall_enabled', n.get_enum_value(state_management_setting.StateManagementSetting)),
+            "globalPortRulesFromGroupPolicyMerged": lambda n : setattr(self, 'global_port_rules_from_group_policy_merged', n.get_bool_value()),
+            "globalPortRulesFromGroupPolicyNotMerged": lambda n : setattr(self, 'global_port_rules_from_group_policy_not_merged', n.get_bool_value()),
+            "inboundConnectionsBlocked": lambda n : setattr(self, 'inbound_connections_blocked', n.get_bool_value()),
+            "inboundConnectionsRequired": lambda n : setattr(self, 'inbound_connections_required', n.get_bool_value()),
+            "inboundNotificationsBlocked": lambda n : setattr(self, 'inbound_notifications_blocked', n.get_bool_value()),
+            "inboundNotificationsRequired": lambda n : setattr(self, 'inbound_notifications_required', n.get_bool_value()),
+            "incomingTrafficBlocked": lambda n : setattr(self, 'incoming_traffic_blocked', n.get_bool_value()),
+            "incomingTrafficRequired": lambda n : setattr(self, 'incoming_traffic_required', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "outbound_connections_blocked": lambda n : setattr(self, 'outbound_connections_blocked', n.get_bool_value()),
-            "outbound_connections_required": lambda n : setattr(self, 'outbound_connections_required', n.get_bool_value()),
-            "policy_rules_from_group_policy_merged": lambda n : setattr(self, 'policy_rules_from_group_policy_merged', n.get_bool_value()),
-            "policy_rules_from_group_policy_not_merged": lambda n : setattr(self, 'policy_rules_from_group_policy_not_merged', n.get_bool_value()),
-            "secured_packet_exemption_allowed": lambda n : setattr(self, 'secured_packet_exemption_allowed', n.get_bool_value()),
-            "secured_packet_exemption_blocked": lambda n : setattr(self, 'secured_packet_exemption_blocked', n.get_bool_value()),
-            "stealth_mode_blocked": lambda n : setattr(self, 'stealth_mode_blocked', n.get_bool_value()),
-            "stealth_mode_required": lambda n : setattr(self, 'stealth_mode_required', n.get_bool_value()),
-            "unicast_responses_to_multicast_broadcasts_blocked": lambda n : setattr(self, 'unicast_responses_to_multicast_broadcasts_blocked', n.get_bool_value()),
-            "unicast_responses_to_multicast_broadcasts_required": lambda n : setattr(self, 'unicast_responses_to_multicast_broadcasts_required', n.get_bool_value()),
+            "outboundConnectionsBlocked": lambda n : setattr(self, 'outbound_connections_blocked', n.get_bool_value()),
+            "outboundConnectionsRequired": lambda n : setattr(self, 'outbound_connections_required', n.get_bool_value()),
+            "policyRulesFromGroupPolicyMerged": lambda n : setattr(self, 'policy_rules_from_group_policy_merged', n.get_bool_value()),
+            "policyRulesFromGroupPolicyNotMerged": lambda n : setattr(self, 'policy_rules_from_group_policy_not_merged', n.get_bool_value()),
+            "securedPacketExemptionAllowed": lambda n : setattr(self, 'secured_packet_exemption_allowed', n.get_bool_value()),
+            "securedPacketExemptionBlocked": lambda n : setattr(self, 'secured_packet_exemption_blocked', n.get_bool_value()),
+            "stealthModeBlocked": lambda n : setattr(self, 'stealth_mode_blocked', n.get_bool_value()),
+            "stealthModeRequired": lambda n : setattr(self, 'stealth_mode_required', n.get_bool_value()),
+            "unicastResponsesToMulticastBroadcastsBlocked": lambda n : setattr(self, 'unicast_responses_to_multicast_broadcasts_blocked', n.get_bool_value()),
+            "unicastResponsesToMulticastBroadcastsRequired": lambda n : setattr(self, 'unicast_responses_to_multicast_broadcasts_required', n.get_bool_value()),
         }
         return fields
     
@@ -225,7 +225,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the globalPortRulesFromGroupPolicyMerged property value. Configures the firewall to merge global port rules from group policy with those from local store instead of ignoring the local store rules. When GlobalPortRulesFromGroupPolicyNotMerged and GlobalPortRulesFromGroupPolicyMerged are both true, GlobalPortRulesFromGroupPolicyMerged takes priority.
         Args:
-            value: Value to set for the globalPortRulesFromGroupPolicyMerged property.
+            value: Value to set for the global_port_rules_from_group_policy_merged property.
         """
         self._global_port_rules_from_group_policy_merged = value
     
@@ -242,7 +242,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the globalPortRulesFromGroupPolicyNotMerged property value. Configures the firewall to prevent merging global port rules from group policy with those from local store instead of ignoring the local store rules. When GlobalPortRulesFromGroupPolicyNotMerged and GlobalPortRulesFromGroupPolicyMerged are both true, GlobalPortRulesFromGroupPolicyMerged takes priority.
         Args:
-            value: Value to set for the globalPortRulesFromGroupPolicyNotMerged property.
+            value: Value to set for the global_port_rules_from_group_policy_not_merged property.
         """
         self._global_port_rules_from_group_policy_not_merged = value
     
@@ -259,7 +259,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the inboundConnectionsBlocked property value. Configures the firewall to block all incoming connections by default. When InboundConnectionsRequired and InboundConnectionsBlocked are both true, InboundConnectionsBlocked takes priority.
         Args:
-            value: Value to set for the inboundConnectionsBlocked property.
+            value: Value to set for the inbound_connections_blocked property.
         """
         self._inbound_connections_blocked = value
     
@@ -276,7 +276,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the inboundConnectionsRequired property value. Configures the firewall to allow all incoming connections by default. When InboundConnectionsRequired and InboundConnectionsBlocked are both true, InboundConnectionsBlocked takes priority.
         Args:
-            value: Value to set for the inboundConnectionsRequired property.
+            value: Value to set for the inbound_connections_required property.
         """
         self._inbound_connections_required = value
     
@@ -293,7 +293,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the inboundNotificationsBlocked property value. Prevents the firewall from displaying notifications when an application is blocked from listening on a port. When InboundNotificationsRequired and InboundNotificationsBlocked are both true, InboundNotificationsBlocked takes priority.
         Args:
-            value: Value to set for the inboundNotificationsBlocked property.
+            value: Value to set for the inbound_notifications_blocked property.
         """
         self._inbound_notifications_blocked = value
     
@@ -310,7 +310,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the inboundNotificationsRequired property value. Allows the firewall to display notifications when an application is blocked from listening on a port. When InboundNotificationsRequired and InboundNotificationsBlocked are both true, InboundNotificationsBlocked takes priority.
         Args:
-            value: Value to set for the inboundNotificationsRequired property.
+            value: Value to set for the inbound_notifications_required property.
         """
         self._inbound_notifications_required = value
     
@@ -327,7 +327,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the incomingTrafficBlocked property value. Configures the firewall to block all incoming traffic regardless of other policy settings. When IncomingTrafficRequired and IncomingTrafficBlocked are both true, IncomingTrafficBlocked takes priority.
         Args:
-            value: Value to set for the incomingTrafficBlocked property.
+            value: Value to set for the incoming_traffic_blocked property.
         """
         self._incoming_traffic_blocked = value
     
@@ -344,7 +344,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the incomingTrafficRequired property value. Configures the firewall to allow incoming traffic pursuant to other policy settings. When IncomingTrafficRequired and IncomingTrafficBlocked are both true, IncomingTrafficBlocked takes priority.
         Args:
-            value: Value to set for the incomingTrafficRequired property.
+            value: Value to set for the incoming_traffic_required property.
         """
         self._incoming_traffic_required = value
     
@@ -361,7 +361,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -378,7 +378,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the outboundConnectionsBlocked property value. Configures the firewall to block all outgoing connections by default. When OutboundConnectionsRequired and OutboundConnectionsBlocked are both true, OutboundConnectionsBlocked takes priority. This setting will get applied to Windows releases version 1809 and above.
         Args:
-            value: Value to set for the outboundConnectionsBlocked property.
+            value: Value to set for the outbound_connections_blocked property.
         """
         self._outbound_connections_blocked = value
     
@@ -395,7 +395,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the outboundConnectionsRequired property value. Configures the firewall to allow all outgoing connections by default. When OutboundConnectionsRequired and OutboundConnectionsBlocked are both true, OutboundConnectionsBlocked takes priority. This setting will get applied to Windows releases version 1809 and above.
         Args:
-            value: Value to set for the outboundConnectionsRequired property.
+            value: Value to set for the outbound_connections_required property.
         """
         self._outbound_connections_required = value
     
@@ -412,7 +412,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the policyRulesFromGroupPolicyMerged property value. Configures the firewall to merge Firewall Rule policies from group policy with those from local store instead of ignoring the local store rules. When PolicyRulesFromGroupPolicyNotMerged and PolicyRulesFromGroupPolicyMerged are both true, PolicyRulesFromGroupPolicyMerged takes priority.
         Args:
-            value: Value to set for the policyRulesFromGroupPolicyMerged property.
+            value: Value to set for the policy_rules_from_group_policy_merged property.
         """
         self._policy_rules_from_group_policy_merged = value
     
@@ -429,7 +429,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the policyRulesFromGroupPolicyNotMerged property value. Configures the firewall to prevent merging Firewall Rule policies from group policy with those from local store instead of ignoring the local store rules. When PolicyRulesFromGroupPolicyNotMerged and PolicyRulesFromGroupPolicyMerged are both true, PolicyRulesFromGroupPolicyMerged takes priority.
         Args:
-            value: Value to set for the policyRulesFromGroupPolicyNotMerged property.
+            value: Value to set for the policy_rules_from_group_policy_not_merged property.
         """
         self._policy_rules_from_group_policy_not_merged = value
     
@@ -446,7 +446,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the securedPacketExemptionAllowed property value. Configures the firewall to allow the host computer to respond to unsolicited network traffic of that traffic is secured by IPSec even when stealthModeBlocked is set to true. When SecuredPacketExemptionBlocked and SecuredPacketExemptionAllowed are both true, SecuredPacketExemptionAllowed takes priority.
         Args:
-            value: Value to set for the securedPacketExemptionAllowed property.
+            value: Value to set for the secured_packet_exemption_allowed property.
         """
         self._secured_packet_exemption_allowed = value
     
@@ -463,7 +463,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the securedPacketExemptionBlocked property value. Configures the firewall to block the host computer to respond to unsolicited network traffic of that traffic is secured by IPSec even when stealthModeBlocked is set to true. When SecuredPacketExemptionBlocked and SecuredPacketExemptionAllowed are both true, SecuredPacketExemptionAllowed takes priority.
         Args:
-            value: Value to set for the securedPacketExemptionBlocked property.
+            value: Value to set for the secured_packet_exemption_blocked property.
         """
         self._secured_packet_exemption_blocked = value
     
@@ -514,7 +514,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the stealthModeBlocked property value. Prevent the server from operating in stealth mode. When StealthModeRequired and StealthModeBlocked are both true, StealthModeBlocked takes priority.
         Args:
-            value: Value to set for the stealthModeBlocked property.
+            value: Value to set for the stealth_mode_blocked property.
         """
         self._stealth_mode_blocked = value
     
@@ -531,7 +531,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the stealthModeRequired property value. Allow the server to operate in stealth mode. When StealthModeRequired and StealthModeBlocked are both true, StealthModeBlocked takes priority.
         Args:
-            value: Value to set for the stealthModeRequired property.
+            value: Value to set for the stealth_mode_required property.
         """
         self._stealth_mode_required = value
     
@@ -548,7 +548,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the unicastResponsesToMulticastBroadcastsBlocked property value. Configures the firewall to block unicast responses to multicast broadcast traffic. When UnicastResponsesToMulticastBroadcastsRequired and UnicastResponsesToMulticastBroadcastsBlocked are both true, UnicastResponsesToMulticastBroadcastsBlocked takes priority.
         Args:
-            value: Value to set for the unicastResponsesToMulticastBroadcastsBlocked property.
+            value: Value to set for the unicast_responses_to_multicast_broadcasts_blocked property.
         """
         self._unicast_responses_to_multicast_broadcasts_blocked = value
     
@@ -565,7 +565,7 @@ class WindowsFirewallNetworkProfile(AdditionalDataHolder, Parsable):
         """
         Sets the unicastResponsesToMulticastBroadcastsRequired property value. Configures the firewall to allow unicast responses to multicast broadcast traffic. When UnicastResponsesToMulticastBroadcastsRequired and UnicastResponsesToMulticastBroadcastsBlocked are both true, UnicastResponsesToMulticastBroadcastsBlocked takes priority.
         Args:
-            value: Value to set for the unicastResponsesToMulticastBroadcastsRequired property.
+            value: Value to set for the unicast_responses_to_multicast_broadcasts_required property.
         """
         self._unicast_responses_to_multicast_broadcasts_required = value
     

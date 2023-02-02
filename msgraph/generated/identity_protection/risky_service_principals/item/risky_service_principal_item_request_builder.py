@@ -26,12 +26,13 @@ class RiskyServicePrincipalItemRequestBuilder():
         """
         return history_request_builder.HistoryRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, risky_service_principal_id: Optional[str] = None) -> None:
         """
         Instantiates a new RiskyServicePrincipalItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            riskyServicePrincipalId: key: id of riskyServicePrincipal
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -41,15 +42,15 @@ class RiskyServicePrincipalItemRequestBuilder():
         self.url_template: str = "{+baseurl}/identityProtection/riskyServicePrincipals/{riskyServicePrincipal%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["riskyServicePrincipal%2Did"] = riskyServicePrincipalId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[RiskyServicePrincipalItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[RiskyServicePrincipalItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property riskyServicePrincipals for identityProtection
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,14 +61,13 @@ class RiskyServicePrincipalItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RiskyServicePrincipalItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[risky_service_principal.RiskyServicePrincipal]:
+    async def get(self,request_configuration: Optional[RiskyServicePrincipalItemRequestBuilderGetRequestConfiguration] = None) -> Optional[risky_service_principal.RiskyServicePrincipal]:
         """
         Azure AD service principals that are at risk.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[risky_service_principal.RiskyServicePrincipal]
         """
         request_info = self.to_get_request_information(
@@ -79,7 +79,7 @@ class RiskyServicePrincipalItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, risky_service_principal.RiskyServicePrincipal, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, risky_service_principal.RiskyServicePrincipal, error_mapping)
     
     def history_by_id(self,id: str) -> risky_service_principal_history_item_item_request_builder.RiskyServicePrincipalHistoryItemItemRequestBuilder:
         """
@@ -94,13 +94,12 @@ class RiskyServicePrincipalItemRequestBuilder():
         url_tpl_params["riskyServicePrincipalHistoryItem%2Did"] = id
         return risky_service_principal_history_item_item_request_builder.RiskyServicePrincipalHistoryItemItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[risky_service_principal.RiskyServicePrincipal] = None, request_configuration: Optional[RiskyServicePrincipalItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[risky_service_principal.RiskyServicePrincipal]:
+    async def patch(self,body: Optional[risky_service_principal.RiskyServicePrincipal] = None, request_configuration: Optional[RiskyServicePrincipalItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[risky_service_principal.RiskyServicePrincipal]:
         """
         Update the navigation property riskyServicePrincipals in identityProtection
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[risky_service_principal.RiskyServicePrincipal]
         """
         if body is None:
@@ -114,7 +113,7 @@ class RiskyServicePrincipalItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, risky_service_principal.RiskyServicePrincipal, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, risky_service_principal.RiskyServicePrincipal, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[RiskyServicePrincipalItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

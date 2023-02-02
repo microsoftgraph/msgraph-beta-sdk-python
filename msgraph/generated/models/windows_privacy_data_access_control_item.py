@@ -24,7 +24,7 @@ class WindowsPrivacyDataAccessControlItem(entity.Entity):
         """
         Sets the accessLevel property value. Determine the access level to specific Windows privacy data category.
         Args:
-            value: Value to set for the accessLevel property.
+            value: Value to set for the access_level property.
         """
         self._access_level = value
     
@@ -41,7 +41,7 @@ class WindowsPrivacyDataAccessControlItem(entity.Entity):
         """
         Sets the appDisplayName property value. The Package Family Name of a Windows app. When set, the access level applies to the specified application.
         Args:
-            value: Value to set for the appDisplayName property.
+            value: Value to set for the app_display_name property.
         """
         self._app_display_name = value
     
@@ -58,7 +58,7 @@ class WindowsPrivacyDataAccessControlItem(entity.Entity):
         """
         Sets the appPackageFamilyName property value. The Package Family Name of a Windows app. When set, the access level applies to the specified application.
         Args:
-            value: Value to set for the appPackageFamilyName property.
+            value: Value to set for the app_package_family_name property.
         """
         self._app_package_family_name = value
     
@@ -103,7 +103,7 @@ class WindowsPrivacyDataAccessControlItem(entity.Entity):
         """
         Sets the dataCategory property value. Windows privacy data category specifier for privacy data access.
         Args:
-            value: Value to set for the dataCategory property.
+            value: Value to set for the data_category property.
         """
         self._data_category = value
     
@@ -113,10 +113,10 @@ class WindowsPrivacyDataAccessControlItem(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_level": lambda n : setattr(self, 'access_level', n.get_enum_value(windows_privacy_data_access_level.WindowsPrivacyDataAccessLevel)),
-            "app_display_name": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
-            "app_package_family_name": lambda n : setattr(self, 'app_package_family_name', n.get_str_value()),
-            "data_category": lambda n : setattr(self, 'data_category', n.get_enum_value(windows_privacy_data_category.WindowsPrivacyDataCategory)),
+            "accessLevel": lambda n : setattr(self, 'access_level', n.get_enum_value(windows_privacy_data_access_level.WindowsPrivacyDataAccessLevel)),
+            "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
+            "appPackageFamilyName": lambda n : setattr(self, 'app_package_family_name', n.get_str_value()),
+            "dataCategory": lambda n : setattr(self, 'data_category', n.get_enum_value(windows_privacy_data_category.WindowsPrivacyDataCategory)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

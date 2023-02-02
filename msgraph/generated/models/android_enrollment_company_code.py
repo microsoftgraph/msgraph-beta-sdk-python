@@ -67,7 +67,7 @@ class AndroidEnrollmentCompanyCode(AdditionalDataHolder, Parsable):
         """
         Sets the enrollmentToken property value. Enrollment Token used by the User to enroll their device.
         Args:
-            value: Value to set for the enrollmentToken property.
+            value: Value to set for the enrollment_token property.
         """
         self._enrollment_token = value
     
@@ -77,10 +77,10 @@ class AndroidEnrollmentCompanyCode(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "enrollment_token": lambda n : setattr(self, 'enrollment_token', n.get_str_value()),
+            "enrollmentToken": lambda n : setattr(self, 'enrollment_token', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "qr_code_content": lambda n : setattr(self, 'qr_code_content', n.get_str_value()),
-            "qr_code_image": lambda n : setattr(self, 'qr_code_image', n.get_object_value(mime_content.MimeContent)),
+            "qrCodeContent": lambda n : setattr(self, 'qr_code_content', n.get_str_value()),
+            "qrCodeImage": lambda n : setattr(self, 'qr_code_image', n.get_object_value(mime_content.MimeContent)),
         }
         return fields
     
@@ -97,7 +97,7 @@ class AndroidEnrollmentCompanyCode(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -114,7 +114,7 @@ class AndroidEnrollmentCompanyCode(AdditionalDataHolder, Parsable):
         """
         Sets the qrCodeContent property value. String used to generate a QR code for the token.
         Args:
-            value: Value to set for the qrCodeContent property.
+            value: Value to set for the qr_code_content property.
         """
         self._qr_code_content = value
     
@@ -131,7 +131,7 @@ class AndroidEnrollmentCompanyCode(AdditionalDataHolder, Parsable):
         """
         Sets the qrCodeImage property value. Generated QR code for the token.
         Args:
-            value: Value to set for the qrCodeImage property.
+            value: Value to set for the qr_code_image property.
         """
         self._qr_code_image = value
     

@@ -24,7 +24,7 @@ class TargetedManagedAppConfiguration(managed_app_configuration.ManagedAppConfig
         """
         Sets the appGroupType property value. Indicates a collection of apps to target which can be one of several pre-defined lists of apps or a manually selected list of apps
         Args:
-            value: Value to set for the appGroupType property.
+            value: Value to set for the app_group_type property.
         """
         self._app_group_type = value
     
@@ -108,7 +108,7 @@ class TargetedManagedAppConfiguration(managed_app_configuration.ManagedAppConfig
         """
         Sets the deployedAppCount property value. Count of apps to which the current policy is deployed.
         Args:
-            value: Value to set for the deployedAppCount property.
+            value: Value to set for the deployed_app_count property.
         """
         self._deployed_app_count = value
     
@@ -125,7 +125,7 @@ class TargetedManagedAppConfiguration(managed_app_configuration.ManagedAppConfig
         """
         Sets the deploymentSummary property value. Navigation property to deployment summary of the configuration.
         Args:
-            value: Value to set for the deploymentSummary property.
+            value: Value to set for the deployment_summary property.
         """
         self._deployment_summary = value
     
@@ -135,13 +135,13 @@ class TargetedManagedAppConfiguration(managed_app_configuration.ManagedAppConfig
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_group_type": lambda n : setattr(self, 'app_group_type', n.get_enum_value(targeted_managed_app_group_type.TargetedManagedAppGroupType)),
             "apps": lambda n : setattr(self, 'apps', n.get_collection_of_object_values(managed_mobile_app.ManagedMobileApp)),
+            "appGroupType": lambda n : setattr(self, 'app_group_type', n.get_enum_value(targeted_managed_app_group_type.TargetedManagedAppGroupType)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(targeted_managed_app_policy_assignment.TargetedManagedAppPolicyAssignment)),
-            "deployed_app_count": lambda n : setattr(self, 'deployed_app_count', n.get_int_value()),
-            "deployment_summary": lambda n : setattr(self, 'deployment_summary', n.get_object_value(managed_app_policy_deployment_summary.ManagedAppPolicyDeploymentSummary)),
-            "is_assigned": lambda n : setattr(self, 'is_assigned', n.get_bool_value()),
-            "targeted_app_management_levels": lambda n : setattr(self, 'targeted_app_management_levels', n.get_enum_value(app_management_level.AppManagementLevel)),
+            "deployedAppCount": lambda n : setattr(self, 'deployed_app_count', n.get_int_value()),
+            "deploymentSummary": lambda n : setattr(self, 'deployment_summary', n.get_object_value(managed_app_policy_deployment_summary.ManagedAppPolicyDeploymentSummary)),
+            "isAssigned": lambda n : setattr(self, 'is_assigned', n.get_bool_value()),
+            "targetedAppManagementLevels": lambda n : setattr(self, 'targeted_app_management_levels', n.get_enum_value(app_management_level.AppManagementLevel)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -160,7 +160,7 @@ class TargetedManagedAppConfiguration(managed_app_configuration.ManagedAppConfig
         """
         Sets the isAssigned property value. Indicates if the policy is deployed to any inclusion groups or not.
         Args:
-            value: Value to set for the isAssigned property.
+            value: Value to set for the is_assigned property.
         """
         self._is_assigned = value
     
@@ -173,8 +173,8 @@ class TargetedManagedAppConfiguration(managed_app_configuration.ManagedAppConfig
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_enum_value("appGroupType", self.app_group_type)
         writer.write_collection_of_object_values("apps", self.apps)
+        writer.write_enum_value("appGroupType", self.app_group_type)
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_int_value("deployedAppCount", self.deployed_app_count)
         writer.write_object_value("deploymentSummary", self.deployment_summary)
@@ -194,7 +194,7 @@ class TargetedManagedAppConfiguration(managed_app_configuration.ManagedAppConfig
         """
         Sets the targetedAppManagementLevels property value. Management levels for apps
         Args:
-            value: Value to set for the targetedAppManagementLevels property.
+            value: Value to set for the targeted_app_management_levels property.
         """
         self._targeted_app_management_levels = value
     

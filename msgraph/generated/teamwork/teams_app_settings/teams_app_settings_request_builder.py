@@ -35,12 +35,11 @@ class TeamsAppSettingsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[TeamsAppSettingsRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[TeamsAppSettingsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property teamsAppSettings for teamwork
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class TeamsAppSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[TeamsAppSettingsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[teams_app_settings.TeamsAppSettings]:
+    async def get(self,request_configuration: Optional[TeamsAppSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[teams_app_settings.TeamsAppSettings]:
         """
         Read the properties and relationships of a teamsAppSettings object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[teams_app_settings.TeamsAppSettings]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class TeamsAppSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, teams_app_settings.TeamsAppSettings, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, teams_app_settings.TeamsAppSettings, error_mapping)
     
-    async def patch(self,body: Optional[teams_app_settings.TeamsAppSettings] = None, request_configuration: Optional[TeamsAppSettingsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[teams_app_settings.TeamsAppSettings]:
+    async def patch(self,body: Optional[teams_app_settings.TeamsAppSettings] = None, request_configuration: Optional[TeamsAppSettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[teams_app_settings.TeamsAppSettings]:
         """
         Update the properties of a teamsAppSettings object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[teams_app_settings.TeamsAppSettings]
         """
         if body is None:
@@ -92,7 +89,7 @@ class TeamsAppSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, teams_app_settings.TeamsAppSettings, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, teams_app_settings.TeamsAppSettings, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[TeamsAppSettingsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

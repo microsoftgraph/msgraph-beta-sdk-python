@@ -39,11 +39,12 @@ class PublishedResourceItemRequestBuilder():
         url_tpl_params["onPremisesAgentGroup%2Did1"] = id
         return on_premises_agent_group_item_request_builder.OnPremisesAgentGroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, published_resource_id: Optional[str] = None) -> None:
         """
         Instantiates a new PublishedResourceItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            publishedResourceId: key: id of publishedResource
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -54,15 +55,15 @@ class PublishedResourceItemRequestBuilder():
         self.url_template: str = "{+baseurl}/onPremisesPublishingProfiles/{onPremisesPublishingProfile%2Did}/agentGroups/{onPremisesAgentGroup%2Did}/publishedResources/{publishedResource%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["publishedResource%2Did"] = publishedResourceId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PublishedResourceItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PublishedResourceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property publishedResources for onPremisesPublishingProfiles
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -73,14 +74,13 @@ class PublishedResourceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PublishedResourceItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[published_resource.PublishedResource]:
+    async def get(self,request_configuration: Optional[PublishedResourceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[published_resource.PublishedResource]:
         """
         List of publishedResource that are assigned to an onPremisesAgentGroup. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[published_resource.PublishedResource]
         """
         request_info = self.to_get_request_information(
@@ -92,15 +92,14 @@ class PublishedResourceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, published_resource.PublishedResource, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, published_resource.PublishedResource, error_mapping)
     
-    async def patch(self,body: Optional[published_resource.PublishedResource] = None, request_configuration: Optional[PublishedResourceItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[published_resource.PublishedResource]:
+    async def patch(self,body: Optional[published_resource.PublishedResource] = None, request_configuration: Optional[PublishedResourceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[published_resource.PublishedResource]:
         """
         Update the navigation property publishedResources in onPremisesPublishingProfiles
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[published_resource.PublishedResource]
         """
         if body is None:
@@ -114,7 +113,7 @@ class PublishedResourceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, published_resource.PublishedResource, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, published_resource.PublishedResource, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PublishedResourceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

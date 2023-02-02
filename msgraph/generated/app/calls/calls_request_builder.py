@@ -11,7 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.app.calls.count.count_request_builder')
-log_teleconference_device_quality_request_builder = lazy_import('msgraph.generated.app.calls.log_teleconference_device_quality.log_teleconference_device_quality_request_builder')
+log_teleconference_device_quality_request_builder = lazy_import('msgraph.generated.app.calls.microsoft_graph_log_teleconference_device_quality.log_teleconference_device_quality_request_builder')
 call = lazy_import('msgraph.generated.models.call')
 call_collection_response = lazy_import('msgraph.generated.models.call_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -28,7 +28,7 @@ class CallsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def log_teleconference_device_quality(self) -> log_teleconference_device_quality_request_builder.LogTeleconferenceDeviceQualityRequestBuilder:
+    def microsoft_graph_log_teleconference_device_quality(self) -> log_teleconference_device_quality_request_builder.LogTeleconferenceDeviceQualityRequestBuilder:
         """
         Provides operations to call the logTeleconferenceDeviceQuality method.
         """
@@ -52,12 +52,11 @@ class CallsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CallsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[call_collection_response.CallCollectionResponse]:
+    async def get(self,request_configuration: Optional[CallsRequestBuilderGetRequestConfiguration] = None) -> Optional[call_collection_response.CallCollectionResponse]:
         """
         Get calls from app
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[call_collection_response.CallCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class CallsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, call_collection_response.CallCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, call_collection_response.CallCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[call.Call] = None, request_configuration: Optional[CallsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[call.Call]:
+    async def post(self,body: Optional[call.Call] = None, request_configuration: Optional[CallsRequestBuilderPostRequestConfiguration] = None) -> Optional[call.Call]:
         """
         Create new navigation property to calls for app
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[call.Call]
         """
         if body is None:
@@ -91,7 +89,7 @@ class CallsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, call.Call, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, call.Call, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CallsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

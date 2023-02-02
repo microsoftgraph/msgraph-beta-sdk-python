@@ -9,12 +9,9 @@ entity = lazy_import('msgraph.generated.models.entity')
 payload_by_filter = lazy_import('msgraph.generated.models.payload_by_filter')
 
 class DeviceAndAppManagementAssignmentFilter(entity.Entity):
-    """
-    A class containing the properties used for Assignment Filter.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceAndAppManagementAssignmentFilter and sets the default values.
+        Instantiates a new DeviceAndAppManagementAssignmentFilter and sets the default values.
         """
         super().__init__()
         # Creation time of the Assignment Filter.
@@ -49,7 +46,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
         """
         Sets the createdDateTime property value. Creation time of the Assignment Filter.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -95,7 +92,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
         """
         Sets the displayName property value. DisplayName of the Assignment Filter.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -105,13 +102,13 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "payloads": lambda n : setattr(self, 'payloads', n.get_collection_of_object_values(payload_by_filter.PayloadByFilter)),
             "platform": lambda n : setattr(self, 'platform', n.get_enum_value(device_platform_type.DevicePlatformType)),
-            "role_scope_tags": lambda n : setattr(self, 'role_scope_tags', n.get_collection_of_primitive_values(str)),
+            "roleScopeTags": lambda n : setattr(self, 'role_scope_tags', n.get_collection_of_primitive_values(str)),
             "rule": lambda n : setattr(self, 'rule', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -131,7 +128,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. Last modified time of the Assignment Filter.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -182,7 +179,7 @@ class DeviceAndAppManagementAssignmentFilter(entity.Entity):
         """
         Sets the roleScopeTags property value. RoleScopeTags of the Assignment Filter.
         Args:
-            value: Value to set for the roleScopeTags property.
+            value: Value to set for the role_scope_tags property.
         """
         self._role_scope_tags = value
     

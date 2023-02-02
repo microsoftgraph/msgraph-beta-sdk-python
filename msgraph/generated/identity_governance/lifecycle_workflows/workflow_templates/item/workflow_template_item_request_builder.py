@@ -26,12 +26,13 @@ class WorkflowTemplateItemRequestBuilder():
         """
         return tasks_request_builder.TasksRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, workflow_template_id: Optional[str] = None) -> None:
         """
         Instantiates a new WorkflowTemplateItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            workflowTemplateId: key: id of workflowTemplate
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -41,15 +42,15 @@ class WorkflowTemplateItemRequestBuilder():
         self.url_template: str = "{+baseurl}/identityGovernance/lifecycleWorkflows/workflowTemplates/{workflowTemplate%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["workflowTemplate%2Did"] = workflowTemplateId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[WorkflowTemplateItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[workflow_template.WorkflowTemplate]:
+    async def get(self,request_configuration: Optional[WorkflowTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[workflow_template.WorkflowTemplate]:
         """
         The workflow templates in the lifecycle workflow instance.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[workflow_template.WorkflowTemplate]
         """
         request_info = self.to_get_request_information(
@@ -61,7 +62,7 @@ class WorkflowTemplateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, workflow_template.WorkflowTemplate, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, workflow_template.WorkflowTemplate, error_mapping)
     
     def tasks_by_id(self,id: str) -> task_item_request_builder.TaskItemRequestBuilder:
         """

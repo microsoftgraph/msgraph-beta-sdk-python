@@ -44,7 +44,7 @@ class Windows81CertificateProfileBase(windows_certificate_profile_base.WindowsCe
         """
         Sets the customSubjectAlternativeNames property value. Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the customSubjectAlternativeNames property.
+            value: Value to set for the custom_subject_alternative_names property.
         """
         self._custom_subject_alternative_names = value
     
@@ -61,7 +61,7 @@ class Windows81CertificateProfileBase(windows_certificate_profile_base.WindowsCe
         """
         Sets the extendedKeyUsages property value. Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the extendedKeyUsages property.
+            value: Value to set for the extended_key_usages property.
         """
         self._extended_key_usages = value
     
@@ -71,8 +71,8 @@ class Windows81CertificateProfileBase(windows_certificate_profile_base.WindowsCe
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "custom_subject_alternative_names": lambda n : setattr(self, 'custom_subject_alternative_names', n.get_collection_of_object_values(custom_subject_alternative_name.CustomSubjectAlternativeName)),
-            "extended_key_usages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(extended_key_usage.ExtendedKeyUsage)),
+            "customSubjectAlternativeNames": lambda n : setattr(self, 'custom_subject_alternative_names', n.get_collection_of_object_values(custom_subject_alternative_name.CustomSubjectAlternativeName)),
+            "extendedKeyUsages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(extended_key_usage.ExtendedKeyUsage)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

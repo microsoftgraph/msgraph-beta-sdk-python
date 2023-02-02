@@ -10,11 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-activate_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.activate.activate_request_builder')
-create_new_version_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.create_new_version.create_new_version_request_builder')
 execution_scope_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.execution_scope.execution_scope_request_builder')
 user_item_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.execution_scope.item.user_item_request_builder')
-restore_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.restore.restore_request_builder')
+activate_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.microsoft_graph_identity_governance_activate.activate_request_builder')
+create_new_version_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.microsoft_graph_identity_governance_create_new_version.create_new_version_request_builder')
+restore_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.microsoft_graph_identity_governance_restore.restore_request_builder')
 runs_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.runs.runs_request_builder')
 run_item_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.runs.item.run_item_request_builder')
 task_reports_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.task_reports.task_reports_request_builder')
@@ -31,20 +31,6 @@ class WorkflowItemRequestBuilder():
     Provides operations to manage the workflows property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
     """
     @property
-    def activate(self) -> activate_request_builder.ActivateRequestBuilder:
-        """
-        Provides operations to call the activate method.
-        """
-        return activate_request_builder.ActivateRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def create_new_version(self) -> create_new_version_request_builder.CreateNewVersionRequestBuilder:
-        """
-        Provides operations to call the createNewVersion method.
-        """
-        return create_new_version_request_builder.CreateNewVersionRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def execution_scope(self) -> execution_scope_request_builder.ExecutionScopeRequestBuilder:
         """
         Provides operations to manage the executionScope property of the microsoft.graph.identityGovernance.workflow entity.
@@ -52,7 +38,21 @@ class WorkflowItemRequestBuilder():
         return execution_scope_request_builder.ExecutionScopeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def restore(self) -> restore_request_builder.RestoreRequestBuilder:
+    def microsoft_graph_identity_governance_activate(self) -> activate_request_builder.ActivateRequestBuilder:
+        """
+        Provides operations to call the activate method.
+        """
+        return activate_request_builder.ActivateRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_identity_governance_create_new_version(self) -> create_new_version_request_builder.CreateNewVersionRequestBuilder:
+        """
+        Provides operations to call the createNewVersion method.
+        """
+        return create_new_version_request_builder.CreateNewVersionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_identity_governance_restore(self) -> restore_request_builder.RestoreRequestBuilder:
         """
         Provides operations to call the restore method.
         """
@@ -86,12 +86,13 @@ class WorkflowItemRequestBuilder():
         """
         return versions_request_builder.VersionsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, workflow_id: Optional[str] = None) -> None:
         """
         Instantiates a new WorkflowItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            workflowId: key: id of workflow
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -101,15 +102,15 @@ class WorkflowItemRequestBuilder():
         self.url_template: str = "{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["workflow%2Did"] = workflowId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[WorkflowItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[WorkflowItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property workflows for identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -120,7 +121,7 @@ class WorkflowItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def execution_scope_by_id(self,id: str) -> user_item_request_builder.UserItemRequestBuilder:
         """
@@ -135,12 +136,11 @@ class WorkflowItemRequestBuilder():
         url_tpl_params["user%2Did"] = id
         return user_item_request_builder.UserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[WorkflowItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[workflow.Workflow]:
+    async def get(self,request_configuration: Optional[WorkflowItemRequestBuilderGetRequestConfiguration] = None) -> Optional[workflow.Workflow]:
         """
         The workflows in the lifecycle workflows instance.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[workflow.Workflow]
         """
         request_info = self.to_get_request_information(
@@ -152,15 +152,14 @@ class WorkflowItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, workflow.Workflow, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, workflow.Workflow, error_mapping)
     
-    async def patch(self,body: Optional[workflow.Workflow] = None, request_configuration: Optional[WorkflowItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[workflow.Workflow]:
+    async def patch(self,body: Optional[workflow.Workflow] = None, request_configuration: Optional[WorkflowItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[workflow.Workflow]:
         """
         Update the navigation property workflows in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[workflow.Workflow]
         """
         if body is None:
@@ -174,7 +173,7 @@ class WorkflowItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, workflow.Workflow, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, workflow.Workflow, error_mapping)
     
     def runs_by_id(self,id: str) -> run_item_request_builder.RunItemRequestBuilder:
         """

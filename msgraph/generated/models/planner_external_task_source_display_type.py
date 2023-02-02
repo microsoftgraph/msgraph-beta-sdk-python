@@ -1,7 +1,7 @@
 from enum import Enum
 
 class PlannerExternalTaskSourceDisplayType(Enum):
-    None_escaped = "none",
+    None_ = "none",
     Default = "default",
     UnknownFutureValue = "unknownFutureValue",
 

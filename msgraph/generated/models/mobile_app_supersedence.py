@@ -38,9 +38,9 @@ class MobileAppSupersedence(mobile_app_relationship.MobileAppRelationship):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "superseded_app_count": lambda n : setattr(self, 'superseded_app_count', n.get_int_value()),
-            "supersedence_type": lambda n : setattr(self, 'supersedence_type', n.get_enum_value(mobile_app_supersedence_type.MobileAppSupersedenceType)),
-            "superseding_app_count": lambda n : setattr(self, 'superseding_app_count', n.get_int_value()),
+            "supersededAppCount": lambda n : setattr(self, 'superseded_app_count', n.get_int_value()),
+            "supersedenceType": lambda n : setattr(self, 'supersedence_type', n.get_enum_value(mobile_app_supersedence_type.MobileAppSupersedenceType)),
+            "supersedingAppCount": lambda n : setattr(self, 'superseding_app_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -72,7 +72,7 @@ class MobileAppSupersedence(mobile_app_relationship.MobileAppRelationship):
         """
         Sets the supersededAppCount property value. The total number of apps directly or indirectly superseded by the child app.
         Args:
-            value: Value to set for the supersededAppCount property.
+            value: Value to set for the superseded_app_count property.
         """
         self._superseded_app_count = value
     
@@ -89,7 +89,7 @@ class MobileAppSupersedence(mobile_app_relationship.MobileAppRelationship):
         """
         Sets the supersedenceType property value. Indicates the supersedence type associated with a relationship between two mobile apps.
         Args:
-            value: Value to set for the supersedenceType property.
+            value: Value to set for the supersedence_type property.
         """
         self._supersedence_type = value
     
@@ -106,7 +106,7 @@ class MobileAppSupersedence(mobile_app_relationship.MobileAppRelationship):
         """
         Sets the supersedingAppCount property value. The total number of apps directly or indirectly superseding the parent app.
         Args:
-            value: Value to set for the supersedingAppCount property.
+            value: Value to set for the superseding_app_count property.
         """
         self._superseding_app_count = value
     

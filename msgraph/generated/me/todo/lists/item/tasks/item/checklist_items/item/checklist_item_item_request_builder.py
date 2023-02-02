@@ -17,10 +17,11 @@ class ChecklistItemItemRequestBuilder():
     """
     Provides operations to manage the checklistItems property of the microsoft.graph.todoTask entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, checklist_item_id: Optional[str] = None) -> None:
         """
         Instantiates a new ChecklistItemItemRequestBuilder and sets the default values.
         Args:
+            checklistItemId: key: id of checklistItem
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class ChecklistItemItemRequestBuilder():
         self.url_template: str = "{+baseurl}/me/todo/lists/{todoTaskList%2Did}/tasks/{todoTask%2Did}/checklistItems/{checklistItem%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["checklistItem%2Did"] = checklistItemId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ChecklistItemItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ChecklistItemItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property checklistItems for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class ChecklistItemItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ChecklistItemItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[checklist_item.ChecklistItem]:
+    async def get(self,request_configuration: Optional[ChecklistItemItemRequestBuilderGetRequestConfiguration] = None) -> Optional[checklist_item.ChecklistItem]:
         """
         A collection of smaller subtasks linked to the more complex parent task.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[checklist_item.ChecklistItem]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class ChecklistItemItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, checklist_item.ChecklistItem, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, checklist_item.ChecklistItem, error_mapping)
     
-    async def patch(self,body: Optional[checklist_item.ChecklistItem] = None, request_configuration: Optional[ChecklistItemItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[checklist_item.ChecklistItem]:
+    async def patch(self,body: Optional[checklist_item.ChecklistItem] = None, request_configuration: Optional[ChecklistItemItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[checklist_item.ChecklistItem]:
         """
         Update the navigation property checklistItems in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[checklist_item.ChecklistItem]
         """
         if body is None:
@@ -92,7 +91,7 @@ class ChecklistItemItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, checklist_item.ChecklistItem, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, checklist_item.ChecklistItem, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ChecklistItemItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

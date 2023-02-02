@@ -20,7 +20,7 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
         """
         Sets the completeStepsCount property value. The completeStepsCount property
         Args:
-            value: Value to set for the completeStepsCount property.
+            value: Value to set for the complete_steps_count property.
         """
         self._complete_steps_count = value
     
@@ -37,13 +37,13 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
         """
         Sets the completeUsersCount property value. The completeUsersCount property
         Args:
-            value: Value to set for the completeUsersCount property.
+            value: Value to set for the complete_users_count property.
         """
         self._complete_users_count = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new managementTemplateCollectionTenantSummary and sets the default values.
+        Instantiates a new ManagementTemplateCollectionTenantSummary and sets the default values.
         """
         super().__init__()
         # The completeStepsCount property
@@ -94,7 +94,7 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
         """
         Sets the createdByUserId property value. The createdByUserId property
         Args:
-            value: Value to set for the createdByUserId property.
+            value: Value to set for the created_by_user_id property.
         """
         self._created_by_user_id = value
     
@@ -111,7 +111,7 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
         """
         Sets the createdDateTime property value. The createdDateTime property
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -140,7 +140,7 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
         """
         Sets the dismissedStepsCount property value. The dismissedStepsCount property
         Args:
-            value: Value to set for the dismissedStepsCount property.
+            value: Value to set for the dismissed_steps_count property.
         """
         self._dismissed_steps_count = value
     
@@ -157,7 +157,7 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
         """
         Sets the excludedUsersCount property value. The excludedUsersCount property
         Args:
-            value: Value to set for the excludedUsersCount property.
+            value: Value to set for the excluded_users_count property.
         """
         self._excluded_users_count = value
     
@@ -174,7 +174,7 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
         """
         Sets the excludedUsersDistinctCount property value. The excludedUsersDistinctCount property
         Args:
-            value: Value to set for the excludedUsersDistinctCount property.
+            value: Value to set for the excluded_users_distinct_count property.
         """
         self._excluded_users_distinct_count = value
     
@@ -184,22 +184,22 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "complete_steps_count": lambda n : setattr(self, 'complete_steps_count', n.get_int_value()),
-            "complete_users_count": lambda n : setattr(self, 'complete_users_count', n.get_int_value()),
-            "created_by_user_id": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "dismissed_steps_count": lambda n : setattr(self, 'dismissed_steps_count', n.get_int_value()),
-            "excluded_users_count": lambda n : setattr(self, 'excluded_users_count', n.get_int_value()),
-            "excluded_users_distinct_count": lambda n : setattr(self, 'excluded_users_distinct_count', n.get_int_value()),
-            "incomplete_steps_count": lambda n : setattr(self, 'incomplete_steps_count', n.get_int_value()),
-            "incomplete_users_count": lambda n : setattr(self, 'incomplete_users_count', n.get_int_value()),
-            "ineligible_steps_count": lambda n : setattr(self, 'ineligible_steps_count', n.get_int_value()),
-            "is_complete": lambda n : setattr(self, 'is_complete', n.get_bool_value()),
-            "last_action_by_user_id": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
-            "last_action_date_time": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
-            "management_template_collection_display_name": lambda n : setattr(self, 'management_template_collection_display_name', n.get_str_value()),
-            "management_template_collection_id": lambda n : setattr(self, 'management_template_collection_id', n.get_str_value()),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "completeStepsCount": lambda n : setattr(self, 'complete_steps_count', n.get_int_value()),
+            "completeUsersCount": lambda n : setattr(self, 'complete_users_count', n.get_int_value()),
+            "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "dismissedStepsCount": lambda n : setattr(self, 'dismissed_steps_count', n.get_int_value()),
+            "excludedUsersCount": lambda n : setattr(self, 'excluded_users_count', n.get_int_value()),
+            "excludedUsersDistinctCount": lambda n : setattr(self, 'excluded_users_distinct_count', n.get_int_value()),
+            "incompleteStepsCount": lambda n : setattr(self, 'incomplete_steps_count', n.get_int_value()),
+            "incompleteUsersCount": lambda n : setattr(self, 'incomplete_users_count', n.get_int_value()),
+            "ineligibleStepsCount": lambda n : setattr(self, 'ineligible_steps_count', n.get_int_value()),
+            "isComplete": lambda n : setattr(self, 'is_complete', n.get_bool_value()),
+            "lastActionByUserId": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
+            "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
+            "managementTemplateCollectionDisplayName": lambda n : setattr(self, 'management_template_collection_display_name', n.get_str_value()),
+            "managementTemplateCollectionId": lambda n : setattr(self, 'management_template_collection_id', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -218,7 +218,7 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
         """
         Sets the incompleteStepsCount property value. The incompleteStepsCount property
         Args:
-            value: Value to set for the incompleteStepsCount property.
+            value: Value to set for the incomplete_steps_count property.
         """
         self._incomplete_steps_count = value
     
@@ -235,7 +235,7 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
         """
         Sets the incompleteUsersCount property value. The incompleteUsersCount property
         Args:
-            value: Value to set for the incompleteUsersCount property.
+            value: Value to set for the incomplete_users_count property.
         """
         self._incomplete_users_count = value
     
@@ -252,7 +252,7 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
         """
         Sets the ineligibleStepsCount property value. The ineligibleStepsCount property
         Args:
-            value: Value to set for the ineligibleStepsCount property.
+            value: Value to set for the ineligible_steps_count property.
         """
         self._ineligible_steps_count = value
     
@@ -269,7 +269,7 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
         """
         Sets the isComplete property value. The isComplete property
         Args:
-            value: Value to set for the isComplete property.
+            value: Value to set for the is_complete property.
         """
         self._is_complete = value
     
@@ -286,7 +286,7 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
         """
         Sets the lastActionByUserId property value. The lastActionByUserId property
         Args:
-            value: Value to set for the lastActionByUserId property.
+            value: Value to set for the last_action_by_user_id property.
         """
         self._last_action_by_user_id = value
     
@@ -303,7 +303,7 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
         """
         Sets the lastActionDateTime property value. The lastActionDateTime property
         Args:
-            value: Value to set for the lastActionDateTime property.
+            value: Value to set for the last_action_date_time property.
         """
         self._last_action_date_time = value
     
@@ -320,7 +320,7 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
         """
         Sets the managementTemplateCollectionDisplayName property value. The managementTemplateCollectionDisplayName property
         Args:
-            value: Value to set for the managementTemplateCollectionDisplayName property.
+            value: Value to set for the management_template_collection_display_name property.
         """
         self._management_template_collection_display_name = value
     
@@ -337,7 +337,7 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
         """
         Sets the managementTemplateCollectionId property value. The managementTemplateCollectionId property
         Args:
-            value: Value to set for the managementTemplateCollectionId property.
+            value: Value to set for the management_template_collection_id property.
         """
         self._management_template_collection_id = value
     
@@ -380,7 +380,7 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
         """
         Sets the tenantId property value. The tenantId property
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     

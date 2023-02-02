@@ -44,12 +44,11 @@ class JournalLinesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[JournalLinesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[journal_line_collection_response.JournalLineCollectionResponse]:
+    async def get(self,request_configuration: Optional[JournalLinesRequestBuilderGetRequestConfiguration] = None) -> Optional[journal_line_collection_response.JournalLineCollectionResponse]:
         """
         Get journalLines from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[journal_line_collection_response.JournalLineCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class JournalLinesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, journal_line_collection_response.JournalLineCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, journal_line_collection_response.JournalLineCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[journal_line.JournalLine] = None, request_configuration: Optional[JournalLinesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[journal_line.JournalLine]:
+    async def post(self,body: Optional[journal_line.JournalLine] = None, request_configuration: Optional[JournalLinesRequestBuilderPostRequestConfiguration] = None) -> Optional[journal_line.JournalLine]:
         """
         Create new navigation property to journalLines for financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[journal_line.JournalLine]
         """
         if body is None:
@@ -83,7 +81,7 @@ class JournalLinesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, journal_line.JournalLine, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, journal_line.JournalLine, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[JournalLinesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

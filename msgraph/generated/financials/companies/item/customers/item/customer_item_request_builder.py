@@ -58,10 +58,11 @@ class CustomerItemRequestBuilder():
         """
         return shipment_method_request_builder.ShipmentMethodRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, customer_id: Optional[str] = None) -> None:
         """
         Instantiates a new CustomerItemRequestBuilder and sets the default values.
         Args:
+            customerId: key: id of customer
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -73,15 +74,15 @@ class CustomerItemRequestBuilder():
         self.url_template: str = "{+baseurl}/financials/companies/{company%2Did}/customers/{customer%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["customer%2Did"] = customerId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CustomerItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CustomerItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property customers for financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -92,14 +93,13 @@ class CustomerItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CustomerItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[customer.Customer]:
+    async def get(self,request_configuration: Optional[CustomerItemRequestBuilderGetRequestConfiguration] = None) -> Optional[customer.Customer]:
         """
         Get customers from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[customer.Customer]
         """
         request_info = self.to_get_request_information(
@@ -111,15 +111,14 @@ class CustomerItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, customer.Customer, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, customer.Customer, error_mapping)
     
-    async def patch(self,body: Optional[customer.Customer] = None, request_configuration: Optional[CustomerItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[customer.Customer]:
+    async def patch(self,body: Optional[customer.Customer] = None, request_configuration: Optional[CustomerItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[customer.Customer]:
         """
         Update the navigation property customers in financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[customer.Customer]
         """
         if body is None:
@@ -133,7 +132,7 @@ class CustomerItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, customer.Customer, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, customer.Customer, error_mapping)
     
     def picture_by_id(self,id: str) -> picture_item_request_builder.PictureItemRequestBuilder:
         """

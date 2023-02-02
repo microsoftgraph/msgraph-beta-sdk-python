@@ -44,12 +44,11 @@ class UserExperienceAnalyticsBatteryHealthAppImpactRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthAppImpactRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_battery_health_app_impact_collection_response.UserExperienceAnalyticsBatteryHealthAppImpactCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthAppImpactRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_battery_health_app_impact_collection_response.UserExperienceAnalyticsBatteryHealthAppImpactCollectionResponse]:
         """
         User Experience Analytics Battery Health App Impact
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_battery_health_app_impact_collection_response.UserExperienceAnalyticsBatteryHealthAppImpactCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class UserExperienceAnalyticsBatteryHealthAppImpactRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_app_impact_collection_response.UserExperienceAnalyticsBatteryHealthAppImpactCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_app_impact_collection_response.UserExperienceAnalyticsBatteryHealthAppImpactCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[user_experience_analytics_battery_health_app_impact.UserExperienceAnalyticsBatteryHealthAppImpact] = None, request_configuration: Optional[UserExperienceAnalyticsBatteryHealthAppImpactRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_battery_health_app_impact.UserExperienceAnalyticsBatteryHealthAppImpact]:
+    async def post(self,body: Optional[user_experience_analytics_battery_health_app_impact.UserExperienceAnalyticsBatteryHealthAppImpact] = None, request_configuration: Optional[UserExperienceAnalyticsBatteryHealthAppImpactRequestBuilderPostRequestConfiguration] = None) -> Optional[user_experience_analytics_battery_health_app_impact.UserExperienceAnalyticsBatteryHealthAppImpact]:
         """
         Create new navigation property to userExperienceAnalyticsBatteryHealthAppImpact for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_battery_health_app_impact.UserExperienceAnalyticsBatteryHealthAppImpact]
         """
         if body is None:
@@ -83,7 +81,7 @@ class UserExperienceAnalyticsBatteryHealthAppImpactRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_app_impact.UserExperienceAnalyticsBatteryHealthAppImpact, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_app_impact.UserExperienceAnalyticsBatteryHealthAppImpact, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthAppImpactRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

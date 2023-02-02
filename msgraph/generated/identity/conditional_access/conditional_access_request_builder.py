@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 authentication_context_class_references_request_builder = lazy_import('msgraph.generated.identity.conditional_access.authentication_context_class_references.authentication_context_class_references_request_builder')
 authentication_context_class_reference_item_request_builder = lazy_import('msgraph.generated.identity.conditional_access.authentication_context_class_references.item.authentication_context_class_reference_item_request_builder')
+authentication_strength_request_builder = lazy_import('msgraph.generated.identity.conditional_access.authentication_strength.authentication_strength_request_builder')
 authentication_strengths_request_builder = lazy_import('msgraph.generated.identity.conditional_access.authentication_strengths.authentication_strengths_request_builder')
 named_locations_request_builder = lazy_import('msgraph.generated.identity.conditional_access.named_locations.named_locations_request_builder')
 named_location_item_request_builder = lazy_import('msgraph.generated.identity.conditional_access.named_locations.item.named_location_item_request_builder')
@@ -32,6 +33,13 @@ class ConditionalAccessRequestBuilder():
         Provides operations to manage the authenticationContextClassReferences property of the microsoft.graph.conditionalAccessRoot entity.
         """
         return authentication_context_class_references_request_builder.AuthenticationContextClassReferencesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def authentication_strength(self) -> authentication_strength_request_builder.AuthenticationStrengthRequestBuilder:
+        """
+        Provides operations to manage the authenticationStrength property of the microsoft.graph.conditionalAccessRoot entity.
+        """
+        return authentication_strength_request_builder.AuthenticationStrengthRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def authentication_strengths(self) -> authentication_strengths_request_builder.AuthenticationStrengthsRequestBuilder:
@@ -92,12 +100,11 @@ class ConditionalAccessRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ConditionalAccessRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ConditionalAccessRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property conditionalAccess for identity
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -108,14 +115,13 @@ class ConditionalAccessRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ConditionalAccessRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[conditional_access_root.ConditionalAccessRoot]:
+    async def get(self,request_configuration: Optional[ConditionalAccessRequestBuilderGetRequestConfiguration] = None) -> Optional[conditional_access_root.ConditionalAccessRoot]:
         """
         the entry point for the Conditional Access (CA) object model.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[conditional_access_root.ConditionalAccessRoot]
         """
         request_info = self.to_get_request_information(
@@ -127,7 +133,7 @@ class ConditionalAccessRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, conditional_access_root.ConditionalAccessRoot, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, conditional_access_root.ConditionalAccessRoot, error_mapping)
     
     def named_locations_by_id(self,id: str) -> named_location_item_request_builder.NamedLocationItemRequestBuilder:
         """
@@ -142,13 +148,12 @@ class ConditionalAccessRequestBuilder():
         url_tpl_params["namedLocation%2Did"] = id
         return named_location_item_request_builder.NamedLocationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[conditional_access_root.ConditionalAccessRoot] = None, request_configuration: Optional[ConditionalAccessRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[conditional_access_root.ConditionalAccessRoot]:
+    async def patch(self,body: Optional[conditional_access_root.ConditionalAccessRoot] = None, request_configuration: Optional[ConditionalAccessRequestBuilderPatchRequestConfiguration] = None) -> Optional[conditional_access_root.ConditionalAccessRoot]:
         """
         Update the navigation property conditionalAccess in identity
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[conditional_access_root.ConditionalAccessRoot]
         """
         if body is None:
@@ -162,7 +167,7 @@ class ConditionalAccessRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, conditional_access_root.ConditionalAccessRoot, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, conditional_access_root.ConditionalAccessRoot, error_mapping)
     
     def policies_by_id(self,id: str) -> conditional_access_policy_item_request_builder.ConditionalAccessPolicyItemRequestBuilder:
         """

@@ -41,8 +41,8 @@ class DeviceManagementConfigurationSettingTemplate(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "setting_definitions": lambda n : setattr(self, 'setting_definitions', n.get_collection_of_object_values(device_management_configuration_setting_definition.DeviceManagementConfigurationSettingDefinition)),
-            "setting_instance_template": lambda n : setattr(self, 'setting_instance_template', n.get_object_value(device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate)),
+            "settingDefinitions": lambda n : setattr(self, 'setting_definitions', n.get_collection_of_object_values(device_management_configuration_setting_definition.DeviceManagementConfigurationSettingDefinition)),
+            "settingInstanceTemplate": lambda n : setattr(self, 'setting_instance_template', n.get_object_value(device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -73,7 +73,7 @@ class DeviceManagementConfigurationSettingTemplate(entity.Entity):
         """
         Sets the settingDefinitions property value. List of related Setting Definitions
         Args:
-            value: Value to set for the settingDefinitions property.
+            value: Value to set for the setting_definitions property.
         """
         self._setting_definitions = value
     
@@ -90,7 +90,7 @@ class DeviceManagementConfigurationSettingTemplate(entity.Entity):
         """
         Sets the settingInstanceTemplate property value. Setting Instance Template
         Args:
-            value: Value to set for the settingInstanceTemplate property.
+            value: Value to set for the setting_instance_template property.
         """
         self._setting_instance_template = value
     

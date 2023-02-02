@@ -14,23 +14,6 @@ noncustodial_data_source = lazy_import('msgraph.generated.models.ediscovery.nonc
 
 class SourceCollection(entity.Entity):
     @property
-    def additional_sources(self,) -> Optional[List[data_source.DataSource]]:
-        """
-        Gets the additionalSources property value. Adds an additional source to the sourceCollection.
-        Returns: Optional[List[data_source.DataSource]]
-        """
-        return self._additional_sources
-    
-    @additional_sources.setter
-    def additional_sources(self,value: Optional[List[data_source.DataSource]] = None) -> None:
-        """
-        Sets the additionalSources property value. Adds an additional source to the sourceCollection.
-        Args:
-            value: Value to set for the additionalSources property.
-        """
-        self._additional_sources = value
-    
-    @property
     def add_to_review_set_operation(self,) -> Optional[add_to_review_set_operation.AddToReviewSetOperation]:
         """
         Gets the addToReviewSetOperation property value. Adds the results of the sourceCollection to the specified reviewSet.
@@ -43,19 +26,36 @@ class SourceCollection(entity.Entity):
         """
         Sets the addToReviewSetOperation property value. Adds the results of the sourceCollection to the specified reviewSet.
         Args:
-            value: Value to set for the addToReviewSetOperation property.
+            value: Value to set for the add_to_review_set_operation property.
         """
         self._add_to_review_set_operation = value
+    
+    @property
+    def additional_sources(self,) -> Optional[List[data_source.DataSource]]:
+        """
+        Gets the additionalSources property value. Adds an additional source to the sourceCollection.
+        Returns: Optional[List[data_source.DataSource]]
+        """
+        return self._additional_sources
+    
+    @additional_sources.setter
+    def additional_sources(self,value: Optional[List[data_source.DataSource]] = None) -> None:
+        """
+        Sets the additionalSources property value. Adds an additional source to the sourceCollection.
+        Args:
+            value: Value to set for the additional_sources property.
+        """
+        self._additional_sources = value
     
     def __init__(self,) -> None:
         """
         Instantiates a new sourceCollection and sets the default values.
         """
         super().__init__()
-        # Adds an additional source to the sourceCollection.
-        self._additional_sources: Optional[List[data_source.DataSource]] = None
         # Adds the results of the sourceCollection to the specified reviewSet.
         self._add_to_review_set_operation: Optional[add_to_review_set_operation.AddToReviewSetOperation] = None
+        # Adds an additional source to the sourceCollection.
+        self._additional_sources: Optional[List[data_source.DataSource]] = None
         # The query string in KQL (Keyword Query Language) query. For details, see Keyword queries and search conditions for Content Search and eDiscovery. You can refine searches by using fields paired with values; for example, subject:'Quarterly Financials' AND Date>=06/01/2016 AND Date<=07/01/2016.
         self._content_query: Optional[str] = None
         # The user who created the sourceCollection.
@@ -94,7 +94,7 @@ class SourceCollection(entity.Entity):
         """
         Sets the contentQuery property value. The query string in KQL (Keyword Query Language) query. For details, see Keyword queries and search conditions for Content Search and eDiscovery. You can refine searches by using fields paired with values; for example, subject:'Quarterly Financials' AND Date>=06/01/2016 AND Date<=07/01/2016.
         Args:
-            value: Value to set for the contentQuery property.
+            value: Value to set for the content_query property.
         """
         self._content_query = value
     
@@ -111,7 +111,7 @@ class SourceCollection(entity.Entity):
         """
         Sets the createdBy property value. The user who created the sourceCollection.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -128,7 +128,7 @@ class SourceCollection(entity.Entity):
         """
         Sets the createdDateTime property value. The date and time the sourceCollection was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -157,7 +157,7 @@ class SourceCollection(entity.Entity):
         """
         Sets the custodianSources property value. Custodian sources that are included in the sourceCollection.
         Args:
-            value: Value to set for the custodianSources property.
+            value: Value to set for the custodian_sources property.
         """
         self._custodian_sources = value
     
@@ -174,7 +174,7 @@ class SourceCollection(entity.Entity):
         """
         Sets the dataSourceScopes property value. When specified, the collection will span across a service for an entire workload. Possible values are: none, allTenantMailboxes, allTenantSites, allCaseCustodians, allCaseNoncustodialDataSources.
         Args:
-            value: Value to set for the dataSourceScopes property.
+            value: Value to set for the data_source_scopes property.
         """
         self._data_source_scopes = value
     
@@ -208,7 +208,7 @@ class SourceCollection(entity.Entity):
         """
         Sets the displayName property value. The display name of the sourceCollection.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -218,19 +218,19 @@ class SourceCollection(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "additional_sources": lambda n : setattr(self, 'additional_sources', n.get_collection_of_object_values(data_source.DataSource)),
-            "add_to_review_set_operation": lambda n : setattr(self, 'add_to_review_set_operation', n.get_object_value(add_to_review_set_operation.AddToReviewSetOperation)),
-            "content_query": lambda n : setattr(self, 'content_query', n.get_str_value()),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "custodian_sources": lambda n : setattr(self, 'custodian_sources', n.get_collection_of_object_values(data_source.DataSource)),
-            "data_source_scopes": lambda n : setattr(self, 'data_source_scopes', n.get_enum_value(data_source_scopes.DataSourceScopes)),
+            "additionalSources": lambda n : setattr(self, 'additional_sources', n.get_collection_of_object_values(data_source.DataSource)),
+            "addToReviewSetOperation": lambda n : setattr(self, 'add_to_review_set_operation', n.get_object_value(add_to_review_set_operation.AddToReviewSetOperation)),
+            "contentQuery": lambda n : setattr(self, 'content_query', n.get_str_value()),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "custodianSources": lambda n : setattr(self, 'custodian_sources', n.get_collection_of_object_values(data_source.DataSource)),
+            "dataSourceScopes": lambda n : setattr(self, 'data_source_scopes', n.get_enum_value(data_source_scopes.DataSourceScopes)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_estimate_statistics_operation": lambda n : setattr(self, 'last_estimate_statistics_operation', n.get_object_value(estimate_statistics_operation.EstimateStatisticsOperation)),
-            "last_modified_by": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "noncustodial_sources": lambda n : setattr(self, 'noncustodial_sources', n.get_collection_of_object_values(noncustodial_data_source.NoncustodialDataSource)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastEstimateStatisticsOperation": lambda n : setattr(self, 'last_estimate_statistics_operation', n.get_object_value(estimate_statistics_operation.EstimateStatisticsOperation)),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "noncustodialSources": lambda n : setattr(self, 'noncustodial_sources', n.get_collection_of_object_values(noncustodial_data_source.NoncustodialDataSource)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -249,7 +249,7 @@ class SourceCollection(entity.Entity):
         """
         Sets the lastEstimateStatisticsOperation property value. The last estimate operation associated with the sourceCollection.
         Args:
-            value: Value to set for the lastEstimateStatisticsOperation property.
+            value: Value to set for the last_estimate_statistics_operation property.
         """
         self._last_estimate_statistics_operation = value
     
@@ -266,7 +266,7 @@ class SourceCollection(entity.Entity):
         """
         Sets the lastModifiedBy property value. The last user who modified the sourceCollection.
         Args:
-            value: Value to set for the lastModifiedBy property.
+            value: Value to set for the last_modified_by property.
         """
         self._last_modified_by = value
     
@@ -283,7 +283,7 @@ class SourceCollection(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The last date and time the sourceCollection was modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -300,7 +300,7 @@ class SourceCollection(entity.Entity):
         """
         Sets the noncustodialSources property value. noncustodialDataSource sources that are included in the sourceCollection
         Args:
-            value: Value to set for the noncustodialSources property.
+            value: Value to set for the noncustodial_sources property.
         """
         self._noncustodial_sources = value
     

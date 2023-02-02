@@ -39,7 +39,7 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the authenticationStrength property value. The custom authentication strength enforced in a Conditional Access policy.
         Args:
-            value: Value to set for the authenticationStrength property.
+            value: Value to set for the authentication_strength property.
         """
         self._authentication_strength = value
     
@@ -56,7 +56,7 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the conditionsNotSatisfied property value. Refers to the conditional access policy conditions that are not satisfied. The possible values are: none, application, users, devicePlatform, location, clientType, signInRisk, userRisk, time, deviceState, client,ipAddressSeenByAzureAD,ipAddressSeenByResourceProvider,unknownFutureValue,servicePrincipals,servicePrincipalRisk. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: servicePrincipals,servicePrincipalRisk.
         Args:
-            value: Value to set for the conditionsNotSatisfied property.
+            value: Value to set for the conditions_not_satisfied property.
         """
         self._conditions_not_satisfied = value
     
@@ -73,7 +73,7 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the conditionsSatisfied property value. Refers to the conditional access policy conditions that are satisfied. The possible values are: none, application, users, devicePlatform, location, clientType, signInRisk, userRisk, time, deviceState, client,ipAddressSeenByAzureAD,ipAddressSeenByResourceProvider,unknownFutureValue,servicePrincipals,servicePrincipalRisk. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: servicePrincipals,servicePrincipalRisk.
         Args:
-            value: Value to set for the conditionsSatisfied property.
+            value: Value to set for the conditions_satisfied property.
         """
         self._conditions_satisfied = value
     
@@ -134,7 +134,7 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. Name of the conditional access policy.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -151,7 +151,7 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the enforcedGrantControls property value. Refers to the grant controls enforced by the conditional access policy (example: 'Require multi-factor authentication').
         Args:
-            value: Value to set for the enforcedGrantControls property.
+            value: Value to set for the enforced_grant_controls property.
         """
         self._enforced_grant_controls = value
     
@@ -168,7 +168,7 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the enforcedSessionControls property value. Refers to the session controls enforced by the conditional access policy (example: 'Require app enforced controls').
         Args:
-            value: Value to set for the enforcedSessionControls property.
+            value: Value to set for the enforced_session_controls property.
         """
         self._enforced_session_controls = value
     
@@ -185,7 +185,7 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the excludeRulesSatisfied property value. List of key-value pairs containing each matched exclude condition in the conditional access policy. Example: [{'devicePlatform' : 'DevicePlatform'}] means the policy didn’t apply, because the DevicePlatform condition was a match.
         Args:
-            value: Value to set for the excludeRulesSatisfied property.
+            value: Value to set for the exclude_rules_satisfied property.
         """
         self._exclude_rules_satisfied = value
     
@@ -195,18 +195,18 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authentication_strength": lambda n : setattr(self, 'authentication_strength', n.get_object_value(authentication_strength.AuthenticationStrength)),
-            "conditions_not_satisfied": lambda n : setattr(self, 'conditions_not_satisfied', n.get_enum_value(conditional_access_conditions.ConditionalAccessConditions)),
-            "conditions_satisfied": lambda n : setattr(self, 'conditions_satisfied', n.get_enum_value(conditional_access_conditions.ConditionalAccessConditions)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "enforced_grant_controls": lambda n : setattr(self, 'enforced_grant_controls', n.get_collection_of_primitive_values(str)),
-            "enforced_session_controls": lambda n : setattr(self, 'enforced_session_controls', n.get_collection_of_primitive_values(str)),
-            "exclude_rules_satisfied": lambda n : setattr(self, 'exclude_rules_satisfied', n.get_collection_of_object_values(conditional_access_rule_satisfied.ConditionalAccessRuleSatisfied)),
+            "authenticationStrength": lambda n : setattr(self, 'authentication_strength', n.get_object_value(authentication_strength.AuthenticationStrength)),
+            "conditionsNotSatisfied": lambda n : setattr(self, 'conditions_not_satisfied', n.get_enum_value(conditional_access_conditions.ConditionalAccessConditions)),
+            "conditionsSatisfied": lambda n : setattr(self, 'conditions_satisfied', n.get_enum_value(conditional_access_conditions.ConditionalAccessConditions)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "enforcedGrantControls": lambda n : setattr(self, 'enforced_grant_controls', n.get_collection_of_primitive_values(str)),
+            "enforcedSessionControls": lambda n : setattr(self, 'enforced_session_controls', n.get_collection_of_primitive_values(str)),
+            "excludeRulesSatisfied": lambda n : setattr(self, 'exclude_rules_satisfied', n.get_collection_of_object_values(conditional_access_rule_satisfied.ConditionalAccessRuleSatisfied)),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
-            "include_rules_satisfied": lambda n : setattr(self, 'include_rules_satisfied', n.get_collection_of_object_values(conditional_access_rule_satisfied.ConditionalAccessRuleSatisfied)),
+            "includeRulesSatisfied": lambda n : setattr(self, 'include_rules_satisfied', n.get_collection_of_object_values(conditional_access_rule_satisfied.ConditionalAccessRuleSatisfied)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "result": lambda n : setattr(self, 'result', n.get_enum_value(applied_conditional_access_policy_result.AppliedConditionalAccessPolicyResult)),
-            "session_controls_not_satisfied": lambda n : setattr(self, 'session_controls_not_satisfied', n.get_collection_of_primitive_values(str)),
+            "sessionControlsNotSatisfied": lambda n : setattr(self, 'session_controls_not_satisfied', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -240,7 +240,7 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the includeRulesSatisfied property value. List of key-value pairs containing each matched include condition in the conditional access policy. Example: [{ 'application' : 'AllApps'}, {'users': 'Group'}], meaning Application condition was a match because AllApps are included and Users condition was a match because the user was part of the included Group rule.
         Args:
-            value: Value to set for the includeRulesSatisfied property.
+            value: Value to set for the include_rules_satisfied property.
         """
         self._include_rules_satisfied = value
     
@@ -257,7 +257,7 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -313,7 +313,7 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the sessionControlsNotSatisfied property value. Refers to the session controls that a sign-in activity did not satisfy. (Example: Application enforced Restrictions).
         Args:
-            value: Value to set for the sessionControlsNotSatisfied property.
+            value: Value to set for the session_controls_not_satisfied property.
         """
         self._session_controls_not_satisfied = value
     

@@ -34,7 +34,7 @@ class AuthenticationAppDeviceDetails(AdditionalDataHolder, Parsable):
         """
         Sets the appVersion property value. The version of the client authentication app used during the authentication step.
         Args:
-            value: Value to set for the appVersion property.
+            value: Value to set for the app_version property.
         """
         self._app_version = value
     
@@ -51,7 +51,7 @@ class AuthenticationAppDeviceDetails(AdditionalDataHolder, Parsable):
         """
         Sets the clientApp property value. The name of the client authentication app used during the authentication step.
         Args:
-            value: Value to set for the clientApp property.
+            value: Value to set for the client_app property.
         """
         self._client_app = value
     
@@ -98,7 +98,7 @@ class AuthenticationAppDeviceDetails(AdditionalDataHolder, Parsable):
         """
         Sets the deviceId property value. ID of the device used during the authentication step.
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -108,11 +108,11 @@ class AuthenticationAppDeviceDetails(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_version": lambda n : setattr(self, 'app_version', n.get_str_value()),
-            "client_app": lambda n : setattr(self, 'client_app', n.get_str_value()),
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "appVersion": lambda n : setattr(self, 'app_version', n.get_str_value()),
+            "clientApp": lambda n : setattr(self, 'client_app', n.get_str_value()),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "operating_system": lambda n : setattr(self, 'operating_system', n.get_str_value()),
+            "operatingSystem": lambda n : setattr(self, 'operating_system', n.get_str_value()),
         }
         return fields
     
@@ -129,7 +129,7 @@ class AuthenticationAppDeviceDetails(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -146,7 +146,7 @@ class AuthenticationAppDeviceDetails(AdditionalDataHolder, Parsable):
         """
         Sets the operatingSystem property value. The operating system running on the device used for the authentication step.
         Args:
-            value: Value to set for the operatingSystem property.
+            value: Value to set for the operating_system property.
         """
         self._operating_system = value
     

@@ -21,7 +21,7 @@ class EducationOneRosterApiDataProvider(education_synchronization_data_provider.
         """
         Sets the connectionSettings property value. The connectionSettings property
         Args:
-            value: Value to set for the connectionSettings property.
+            value: Value to set for the connection_settings property.
         """
         self._connection_settings = value
     
@@ -38,7 +38,7 @@ class EducationOneRosterApiDataProvider(education_synchronization_data_provider.
         """
         Sets the connectionUrl property value. The connectionUrl property
         Args:
-            value: Value to set for the connectionUrl property.
+            value: Value to set for the connection_url property.
         """
         self._connection_url = value
     
@@ -96,12 +96,12 @@ class EducationOneRosterApiDataProvider(education_synchronization_data_provider.
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "connection_settings": lambda n : setattr(self, 'connection_settings', n.get_object_value(education_synchronization_connection_settings.EducationSynchronizationConnectionSettings)),
-            "connection_url": lambda n : setattr(self, 'connection_url', n.get_str_value()),
+            "connectionSettings": lambda n : setattr(self, 'connection_settings', n.get_object_value(education_synchronization_connection_settings.EducationSynchronizationConnectionSettings)),
+            "connectionUrl": lambda n : setattr(self, 'connection_url', n.get_str_value()),
             "customizations": lambda n : setattr(self, 'customizations', n.get_object_value(education_synchronization_customizations.EducationSynchronizationCustomizations)),
-            "provider_name": lambda n : setattr(self, 'provider_name', n.get_str_value()),
-            "schools_ids": lambda n : setattr(self, 'schools_ids', n.get_collection_of_primitive_values(str)),
-            "term_ids": lambda n : setattr(self, 'term_ids', n.get_collection_of_primitive_values(str)),
+            "providerName": lambda n : setattr(self, 'provider_name', n.get_str_value()),
+            "schoolsIds": lambda n : setattr(self, 'schools_ids', n.get_collection_of_primitive_values(str)),
+            "termIds": lambda n : setattr(self, 'term_ids', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -120,7 +120,7 @@ class EducationOneRosterApiDataProvider(education_synchronization_data_provider.
         """
         Sets the providerName property value. The providerName property
         Args:
-            value: Value to set for the providerName property.
+            value: Value to set for the provider_name property.
         """
         self._provider_name = value
     
@@ -137,7 +137,7 @@ class EducationOneRosterApiDataProvider(education_synchronization_data_provider.
         """
         Sets the schoolsIds property value. The schoolsIds property
         Args:
-            value: Value to set for the schoolsIds property.
+            value: Value to set for the schools_ids property.
         """
         self._schools_ids = value
     
@@ -170,7 +170,7 @@ class EducationOneRosterApiDataProvider(education_synchronization_data_provider.
         """
         Sets the termIds property value. The termIds property
         Args:
-            value: Value to set for the termIds property.
+            value: Value to set for the term_ids property.
         """
         self._term_ids = value
     

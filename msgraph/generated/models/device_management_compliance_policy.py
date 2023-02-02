@@ -79,7 +79,7 @@ class DeviceManagementCompliancePolicy(entity.Entity):
         """
         Sets the createdDateTime property value. Policy creation date and time. This property is read-only.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -108,7 +108,7 @@ class DeviceManagementCompliancePolicy(entity.Entity):
         """
         Sets the creationSource property value. Policy creation source
         Args:
-            value: Value to set for the creationSource property.
+            value: Value to set for the creation_source property.
         """
         self._creation_source = value
     
@@ -136,17 +136,17 @@ class DeviceManagementCompliancePolicy(entity.Entity):
         """
         fields = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(device_management_configuration_policy_assignment.DeviceManagementConfigurationPolicyAssignment)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "creation_source": lambda n : setattr(self, 'creation_source', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "creationSource": lambda n : setattr(self, 'creation_source', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "is_assigned": lambda n : setattr(self, 'is_assigned', n.get_bool_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "isAssigned": lambda n : setattr(self, 'is_assigned', n.get_bool_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "platforms": lambda n : setattr(self, 'platforms', n.get_enum_value(device_management_configuration_platforms.DeviceManagementConfigurationPlatforms)),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
-            "scheduled_actions_for_rule": lambda n : setattr(self, 'scheduled_actions_for_rule', n.get_collection_of_object_values(device_management_compliance_scheduled_action_for_rule.DeviceManagementComplianceScheduledActionForRule)),
-            "setting_count": lambda n : setattr(self, 'setting_count', n.get_int_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "scheduledActionsForRule": lambda n : setattr(self, 'scheduled_actions_for_rule', n.get_collection_of_object_values(device_management_compliance_scheduled_action_for_rule.DeviceManagementComplianceScheduledActionForRule)),
             "settings": lambda n : setattr(self, 'settings', n.get_collection_of_object_values(device_management_configuration_setting.DeviceManagementConfigurationSetting)),
+            "settingCount": lambda n : setattr(self, 'setting_count', n.get_int_value()),
             "technologies": lambda n : setattr(self, 'technologies', n.get_enum_value(device_management_configuration_technologies.DeviceManagementConfigurationTechnologies)),
         }
         super_fields = super().get_field_deserializers()
@@ -166,7 +166,7 @@ class DeviceManagementCompliancePolicy(entity.Entity):
         """
         Sets the isAssigned property value. Policy assignment status. This property is read-only.
         Args:
-            value: Value to set for the isAssigned property.
+            value: Value to set for the is_assigned property.
         """
         self._is_assigned = value
     
@@ -183,7 +183,7 @@ class DeviceManagementCompliancePolicy(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. Policy last modification date and time. This property is read-only.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -234,7 +234,7 @@ class DeviceManagementCompliancePolicy(entity.Entity):
         """
         Sets the roleScopeTagIds property value. List of Scope Tags for this Entity instance.
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     
@@ -251,7 +251,7 @@ class DeviceManagementCompliancePolicy(entity.Entity):
         """
         Sets the scheduledActionsForRule property value. The list of scheduled action for this rule
         Args:
-            value: Value to set for the scheduledActionsForRule property.
+            value: Value to set for the scheduled_actions_for_rule property.
         """
         self._scheduled_actions_for_rule = value
     
@@ -287,7 +287,7 @@ class DeviceManagementCompliancePolicy(entity.Entity):
         """
         Sets the settingCount property value. Number of settings. This property is read-only.
         Args:
-            value: Value to set for the settingCount property.
+            value: Value to set for the setting_count property.
         """
         self._setting_count = value
     

@@ -28,7 +28,7 @@ class ThreatSubmission(entity.Entity):
         """
         Sets the adminReview property value. Specifies the admin review property which constitutes of who reviewed the user submission, when and what was it identified as.
         Args:
-            value: Value to set for the adminReview property.
+            value: Value to set for the admin_review property.
         """
         self._admin_review = value
     
@@ -62,7 +62,7 @@ class ThreatSubmission(entity.Entity):
         """
         Sets the clientSource property value. Specifies the source of the submission. The possible values are: microsoft,  other and unkownFutureValue.
         Args:
-            value: Value to set for the clientSource property.
+            value: Value to set for the client_source property.
         """
         self._client_source = value
     
@@ -107,7 +107,7 @@ class ThreatSubmission(entity.Entity):
         """
         Sets the contentType property value. Specifies the type of content being submitted. The possible values are: email, url, file, app and unkownFutureValue.
         Args:
-            value: Value to set for the contentType property.
+            value: Value to set for the content_type property.
         """
         self._content_type = value
     
@@ -124,7 +124,7 @@ class ThreatSubmission(entity.Entity):
         """
         Sets the createdBy property value. Specifies who submitted the email as a threat. Supports $filter = createdBy/email eq 'value'.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -141,7 +141,7 @@ class ThreatSubmission(entity.Entity):
         """
         Sets the createdDateTime property value. Specifies when the threat submission was created. Supports $filter = createdDateTime ge 2022-01-01T00:00:00Z and createdDateTime lt 2022-01-02T00:00:00Z.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -163,16 +163,16 @@ class ThreatSubmission(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "admin_review": lambda n : setattr(self, 'admin_review', n.get_object_value(submission_admin_review.SubmissionAdminReview)),
+            "adminReview": lambda n : setattr(self, 'admin_review', n.get_object_value(submission_admin_review.SubmissionAdminReview)),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(submission_category.SubmissionCategory)),
-            "client_source": lambda n : setattr(self, 'client_source', n.get_enum_value(submission_client_source.SubmissionClientSource)),
-            "content_type": lambda n : setattr(self, 'content_type', n.get_enum_value(submission_content_type.SubmissionContentType)),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(submission_user_identity.SubmissionUserIdentity)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "clientSource": lambda n : setattr(self, 'client_source', n.get_enum_value(submission_client_source.SubmissionClientSource)),
+            "contentType": lambda n : setattr(self, 'content_type', n.get_enum_value(submission_content_type.SubmissionContentType)),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(submission_user_identity.SubmissionUserIdentity)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "result": lambda n : setattr(self, 'result', n.get_object_value(submission_result.SubmissionResult)),
             "source": lambda n : setattr(self, 'source', n.get_enum_value(submission_source.SubmissionSource)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(long_running_operation_status.LongRunningOperationStatus)),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -262,7 +262,7 @@ class ThreatSubmission(entity.Entity):
         """
         Sets the tenantId property value. Indicates the tenant id of the submitter. Not required when created using a POST operation. It is extracted from the token of the post API call.
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     

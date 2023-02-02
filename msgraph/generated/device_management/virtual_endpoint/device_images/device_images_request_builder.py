@@ -11,7 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.device_images.count.count_request_builder')
-get_source_images_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.device_images.get_source_images.get_source_images_request_builder')
+get_source_images_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.device_images.microsoft_graph_get_source_images.get_source_images_request_builder')
 cloud_pc_device_image = lazy_import('msgraph.generated.models.cloud_pc_device_image')
 cloud_pc_device_image_collection_response = lazy_import('msgraph.generated.models.cloud_pc_device_image_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -26,6 +26,13 @@ class DeviceImagesRequestBuilder():
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_source_images(self) -> get_source_images_request_builder.GetSourceImagesRequestBuilder:
+        """
+        Provides operations to call the getSourceImages method.
+        """
+        return get_source_images_request_builder.GetSourceImagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -45,12 +52,11 @@ class DeviceImagesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DeviceImagesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_device_image_collection_response.CloudPcDeviceImageCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceImagesRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_device_image_collection_response.CloudPcDeviceImageCollectionResponse]:
         """
         List the properties and relationships of the cloudPcDeviceImage objects (OS images) uploaded to Cloud PC.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_device_image_collection_response.CloudPcDeviceImageCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -62,22 +68,14 @@ class DeviceImagesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_device_image_collection_response.CloudPcDeviceImageCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_device_image_collection_response.CloudPcDeviceImageCollectionResponse, error_mapping)
     
-    def get_source_images(self,) -> get_source_images_request_builder.GetSourceImagesRequestBuilder:
-        """
-        Provides operations to call the getSourceImages method.
-        Returns: get_source_images_request_builder.GetSourceImagesRequestBuilder
-        """
-        return get_source_images_request_builder.GetSourceImagesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def post(self,body: Optional[cloud_pc_device_image.CloudPcDeviceImage] = None, request_configuration: Optional[DeviceImagesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_device_image.CloudPcDeviceImage]:
+    async def post(self,body: Optional[cloud_pc_device_image.CloudPcDeviceImage] = None, request_configuration: Optional[DeviceImagesRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_pc_device_image.CloudPcDeviceImage]:
         """
         Create a new cloudPcDeviceImage object. Upload a custom OS image that you can later provision on Cloud PCs.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_device_image.CloudPcDeviceImage]
         """
         if body is None:
@@ -91,7 +89,7 @@ class DeviceImagesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_device_image.CloudPcDeviceImage, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_device_image.CloudPcDeviceImage, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceImagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -34,7 +34,7 @@ class OnTokenIssuanceStartReturnClaim(AdditionalDataHolder, Parsable):
         """
         Sets the claimIdInApiResponse property value. The claimIdInApiResponse property
         Args:
-            value: Value to set for the claimIdInApiResponse property.
+            value: Value to set for the claim_id_in_api_response property.
         """
         self._claim_id_in_api_response = value
     
@@ -68,7 +68,7 @@ class OnTokenIssuanceStartReturnClaim(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "claim_id_in_api_response": lambda n : setattr(self, 'claim_id_in_api_response', n.get_str_value()),
+            "claimIdInApiResponse": lambda n : setattr(self, 'claim_id_in_api_response', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -86,7 +86,7 @@ class OnTokenIssuanceStartReturnClaim(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

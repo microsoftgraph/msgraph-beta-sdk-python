@@ -26,10 +26,11 @@ class AppConsentRequestItemRequestBuilder():
         """
         return user_consent_requests_request_builder.UserConsentRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, app_consent_request_id: Optional[str] = None) -> None:
         """
         Instantiates a new AppConsentRequestItemRequestBuilder and sets the default values.
         Args:
+            appConsentRequestId: key: id of appConsentRequest
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -41,15 +42,15 @@ class AppConsentRequestItemRequestBuilder():
         self.url_template: str = "{+baseurl}/users/{user%2Did}/appConsentRequestsForApproval/{appConsentRequest%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["appConsentRequest%2Did"] = appConsentRequestId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AppConsentRequestItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AppConsentRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property appConsentRequestsForApproval for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,14 +61,13 @@ class AppConsentRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AppConsentRequestItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[app_consent_request.AppConsentRequest]:
+    async def get(self,request_configuration: Optional[AppConsentRequestItemRequestBuilderGetRequestConfiguration] = None) -> Optional[app_consent_request.AppConsentRequest]:
         """
         Get appConsentRequestsForApproval from users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[app_consent_request.AppConsentRequest]
         """
         request_info = self.to_get_request_information(
@@ -79,15 +79,14 @@ class AppConsentRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, app_consent_request.AppConsentRequest, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, app_consent_request.AppConsentRequest, error_mapping)
     
-    async def patch(self,body: Optional[app_consent_request.AppConsentRequest] = None, request_configuration: Optional[AppConsentRequestItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[app_consent_request.AppConsentRequest]:
+    async def patch(self,body: Optional[app_consent_request.AppConsentRequest] = None, request_configuration: Optional[AppConsentRequestItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[app_consent_request.AppConsentRequest]:
         """
         Update the navigation property appConsentRequestsForApproval in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[app_consent_request.AppConsentRequest]
         """
         if body is None:
@@ -101,7 +100,7 @@ class AppConsentRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, app_consent_request.AppConsentRequest, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, app_consent_request.AppConsentRequest, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AppConsentRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

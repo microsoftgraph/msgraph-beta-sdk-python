@@ -63,7 +63,7 @@ class ManagedDeviceModelsAndManufacturers(AdditionalDataHolder, Parsable):
         """
         Sets the deviceManufacturers property value. List of Manufactures for managed devices in the account
         Args:
-            value: Value to set for the deviceManufacturers property.
+            value: Value to set for the device_manufacturers property.
         """
         self._device_manufacturers = value
     
@@ -80,7 +80,7 @@ class ManagedDeviceModelsAndManufacturers(AdditionalDataHolder, Parsable):
         """
         Sets the deviceModels property value. List of Models for managed devices in the account
         Args:
-            value: Value to set for the deviceModels property.
+            value: Value to set for the device_models property.
         """
         self._device_models = value
     
@@ -90,8 +90,8 @@ class ManagedDeviceModelsAndManufacturers(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_manufacturers": lambda n : setattr(self, 'device_manufacturers', n.get_collection_of_primitive_values(str)),
-            "device_models": lambda n : setattr(self, 'device_models', n.get_collection_of_primitive_values(str)),
+            "deviceManufacturers": lambda n : setattr(self, 'device_manufacturers', n.get_collection_of_primitive_values(str)),
+            "deviceModels": lambda n : setattr(self, 'device_models', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -109,7 +109,7 @@ class ManagedDeviceModelsAndManufacturers(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

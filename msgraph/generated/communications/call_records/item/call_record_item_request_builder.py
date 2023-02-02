@@ -26,10 +26,11 @@ class CallRecordItemRequestBuilder():
         """
         return sessions_request_builder.SessionsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, call_record_id: Optional[str] = None) -> None:
         """
         Instantiates a new CallRecordItemRequestBuilder and sets the default values.
         Args:
+            callRecordId: key: id of callRecord
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -41,15 +42,15 @@ class CallRecordItemRequestBuilder():
         self.url_template: str = "{+baseurl}/communications/callRecords/{callRecord%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["callRecord%2Did"] = callRecordId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CallRecordItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CallRecordItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property callRecords for communications
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,14 +61,13 @@ class CallRecordItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CallRecordItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[call_record.CallRecord]:
+    async def get(self,request_configuration: Optional[CallRecordItemRequestBuilderGetRequestConfiguration] = None) -> Optional[call_record.CallRecord]:
         """
         Get callRecords from communications
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[call_record.CallRecord]
         """
         request_info = self.to_get_request_information(
@@ -79,15 +79,14 @@ class CallRecordItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, call_record.CallRecord, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, call_record.CallRecord, error_mapping)
     
-    async def patch(self,body: Optional[call_record.CallRecord] = None, request_configuration: Optional[CallRecordItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[call_record.CallRecord]:
+    async def patch(self,body: Optional[call_record.CallRecord] = None, request_configuration: Optional[CallRecordItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[call_record.CallRecord]:
         """
         Update the navigation property callRecords in communications
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[call_record.CallRecord]
         """
         if body is None:
@@ -101,7 +100,7 @@ class CallRecordItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, call_record.CallRecord, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, call_record.CallRecord, error_mapping)
     
     def sessions_by_id(self,id: str) -> session_item_request_builder.SessionItemRequestBuilder:
         """

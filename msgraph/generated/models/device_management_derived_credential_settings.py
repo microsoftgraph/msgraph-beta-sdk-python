@@ -51,7 +51,7 @@ class DeviceManagementDerivedCredentialSettings(entity.Entity):
         """
         Sets the displayName property value. The display name for the profile.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -61,11 +61,11 @@ class DeviceManagementDerivedCredentialSettings(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "help_url": lambda n : setattr(self, 'help_url', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "helpUrl": lambda n : setattr(self, 'help_url', n.get_str_value()),
             "issuer": lambda n : setattr(self, 'issuer', n.get_enum_value(device_management_derived_credential_issuer.DeviceManagementDerivedCredentialIssuer)),
-            "notification_type": lambda n : setattr(self, 'notification_type', n.get_enum_value(device_management_derived_credential_notification_type.DeviceManagementDerivedCredentialNotificationType)),
-            "renewal_threshold_percentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
+            "notificationType": lambda n : setattr(self, 'notification_type', n.get_enum_value(device_management_derived_credential_notification_type.DeviceManagementDerivedCredentialNotificationType)),
+            "renewalThresholdPercentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -84,7 +84,7 @@ class DeviceManagementDerivedCredentialSettings(entity.Entity):
         """
         Sets the helpUrl property value. The URL that will be accessible to end users as they retrieve a derived credential using the Company Portal.
         Args:
-            value: Value to set for the helpUrl property.
+            value: Value to set for the help_url property.
         """
         self._help_url = value
     
@@ -118,7 +118,7 @@ class DeviceManagementDerivedCredentialSettings(entity.Entity):
         """
         Sets the notificationType property value. Supported values for the notification type to use.
         Args:
-            value: Value to set for the notificationType property.
+            value: Value to set for the notification_type property.
         """
         self._notification_type = value
     
@@ -135,7 +135,7 @@ class DeviceManagementDerivedCredentialSettings(entity.Entity):
         """
         Sets the renewalThresholdPercentage property value. The nominal percentage of time before certificate renewal is initiated by the client.
         Args:
-            value: Value to set for the renewalThresholdPercentage property.
+            value: Value to set for the renewal_threshold_percentage property.
         """
         self._renewal_threshold_percentage = value
     

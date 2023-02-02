@@ -14,9 +14,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 setting_state_device_summary = lazy_import('msgraph.generated.models.setting_state_device_summary')
 
 class DeviceCompliancePolicy(entity.Entity):
-    """
-    This is the base class for Compliance policy. Compliance policies are platform specific and individual per-platform compliance policies inherit from here. 
-    """
     @property
     def assignments(self,) -> Optional[List[device_compliance_policy_assignment.DeviceCompliancePolicyAssignment]]:
         """
@@ -36,7 +33,7 @@ class DeviceCompliancePolicy(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceCompliancePolicy and sets the default values.
+        Instantiates a new DeviceCompliancePolicy and sets the default values.
         """
         super().__init__()
         # The collection of assignments for this compliance policy.
@@ -47,10 +44,10 @@ class DeviceCompliancePolicy(entity.Entity):
         self._description: Optional[str] = None
         # Compliance Setting State Device Summary
         self._device_setting_state_summaries: Optional[List[setting_state_device_summary.SettingStateDeviceSummary]] = None
-        # List of DeviceComplianceDeviceStatus.
-        self._device_statuses: Optional[List[device_compliance_device_status.DeviceComplianceDeviceStatus]] = None
         # Device compliance devices status overview
         self._device_status_overview: Optional[device_compliance_device_overview.DeviceComplianceDeviceOverview] = None
+        # List of DeviceComplianceDeviceStatus.
+        self._device_statuses: Optional[List[device_compliance_device_status.DeviceComplianceDeviceStatus]] = None
         # Admin provided name of the device configuration.
         self._display_name: Optional[str] = None
         # DateTime the object was last modified.
@@ -61,10 +58,10 @@ class DeviceCompliancePolicy(entity.Entity):
         self._role_scope_tag_ids: Optional[List[str]] = None
         # The list of scheduled action for this rule
         self._scheduled_actions_for_rule: Optional[List[device_compliance_scheduled_action_for_rule.DeviceComplianceScheduledActionForRule]] = None
-        # List of DeviceComplianceUserStatus.
-        self._user_statuses: Optional[List[device_compliance_user_status.DeviceComplianceUserStatus]] = None
         # Device compliance users status overview
         self._user_status_overview: Optional[device_compliance_user_overview.DeviceComplianceUserOverview] = None
+        # List of DeviceComplianceUserStatus.
+        self._user_statuses: Optional[List[device_compliance_user_status.DeviceComplianceUserStatus]] = None
         # Version of the device configuration.
         self._version: Optional[int] = None
     
@@ -81,7 +78,7 @@ class DeviceCompliancePolicy(entity.Entity):
         """
         Sets the createdDateTime property value. DateTime the object was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -127,26 +124,9 @@ class DeviceCompliancePolicy(entity.Entity):
         """
         Sets the deviceSettingStateSummaries property value. Compliance Setting State Device Summary
         Args:
-            value: Value to set for the deviceSettingStateSummaries property.
+            value: Value to set for the device_setting_state_summaries property.
         """
         self._device_setting_state_summaries = value
-    
-    @property
-    def device_statuses(self,) -> Optional[List[device_compliance_device_status.DeviceComplianceDeviceStatus]]:
-        """
-        Gets the deviceStatuses property value. List of DeviceComplianceDeviceStatus.
-        Returns: Optional[List[device_compliance_device_status.DeviceComplianceDeviceStatus]]
-        """
-        return self._device_statuses
-    
-    @device_statuses.setter
-    def device_statuses(self,value: Optional[List[device_compliance_device_status.DeviceComplianceDeviceStatus]] = None) -> None:
-        """
-        Sets the deviceStatuses property value. List of DeviceComplianceDeviceStatus.
-        Args:
-            value: Value to set for the deviceStatuses property.
-        """
-        self._device_statuses = value
     
     @property
     def device_status_overview(self,) -> Optional[device_compliance_device_overview.DeviceComplianceDeviceOverview]:
@@ -161,9 +141,26 @@ class DeviceCompliancePolicy(entity.Entity):
         """
         Sets the deviceStatusOverview property value. Device compliance devices status overview
         Args:
-            value: Value to set for the deviceStatusOverview property.
+            value: Value to set for the device_status_overview property.
         """
         self._device_status_overview = value
+    
+    @property
+    def device_statuses(self,) -> Optional[List[device_compliance_device_status.DeviceComplianceDeviceStatus]]:
+        """
+        Gets the deviceStatuses property value. List of DeviceComplianceDeviceStatus.
+        Returns: Optional[List[device_compliance_device_status.DeviceComplianceDeviceStatus]]
+        """
+        return self._device_statuses
+    
+    @device_statuses.setter
+    def device_statuses(self,value: Optional[List[device_compliance_device_status.DeviceComplianceDeviceStatus]] = None) -> None:
+        """
+        Sets the deviceStatuses property value. List of DeviceComplianceDeviceStatus.
+        Args:
+            value: Value to set for the device_statuses property.
+        """
+        self._device_statuses = value
     
     @property
     def display_name(self,) -> Optional[str]:
@@ -178,7 +175,7 @@ class DeviceCompliancePolicy(entity.Entity):
         """
         Sets the displayName property value. Admin provided name of the device configuration.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -189,17 +186,17 @@ class DeviceCompliancePolicy(entity.Entity):
         """
         fields = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(device_compliance_policy_assignment.DeviceCompliancePolicyAssignment)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "device_setting_state_summaries": lambda n : setattr(self, 'device_setting_state_summaries', n.get_collection_of_object_values(setting_state_device_summary.SettingStateDeviceSummary)),
-            "device_statuses": lambda n : setattr(self, 'device_statuses', n.get_collection_of_object_values(device_compliance_device_status.DeviceComplianceDeviceStatus)),
-            "device_status_overview": lambda n : setattr(self, 'device_status_overview', n.get_object_value(device_compliance_device_overview.DeviceComplianceDeviceOverview)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
-            "scheduled_actions_for_rule": lambda n : setattr(self, 'scheduled_actions_for_rule', n.get_collection_of_object_values(device_compliance_scheduled_action_for_rule.DeviceComplianceScheduledActionForRule)),
-            "user_statuses": lambda n : setattr(self, 'user_statuses', n.get_collection_of_object_values(device_compliance_user_status.DeviceComplianceUserStatus)),
-            "user_status_overview": lambda n : setattr(self, 'user_status_overview', n.get_object_value(device_compliance_user_overview.DeviceComplianceUserOverview)),
+            "deviceSettingStateSummaries": lambda n : setattr(self, 'device_setting_state_summaries', n.get_collection_of_object_values(setting_state_device_summary.SettingStateDeviceSummary)),
+            "deviceStatuses": lambda n : setattr(self, 'device_statuses', n.get_collection_of_object_values(device_compliance_device_status.DeviceComplianceDeviceStatus)),
+            "deviceStatusOverview": lambda n : setattr(self, 'device_status_overview', n.get_object_value(device_compliance_device_overview.DeviceComplianceDeviceOverview)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "scheduledActionsForRule": lambda n : setattr(self, 'scheduled_actions_for_rule', n.get_collection_of_object_values(device_compliance_scheduled_action_for_rule.DeviceComplianceScheduledActionForRule)),
+            "userStatuses": lambda n : setattr(self, 'user_statuses', n.get_collection_of_object_values(device_compliance_user_status.DeviceComplianceUserStatus)),
+            "userStatusOverview": lambda n : setattr(self, 'user_status_overview', n.get_object_value(device_compliance_user_overview.DeviceComplianceUserOverview)),
             "version": lambda n : setattr(self, 'version', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -219,7 +216,7 @@ class DeviceCompliancePolicy(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. DateTime the object was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -236,7 +233,7 @@ class DeviceCompliancePolicy(entity.Entity):
         """
         Sets the roleScopeTagIds property value. List of Scope Tags for this Entity instance.
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     
@@ -253,7 +250,7 @@ class DeviceCompliancePolicy(entity.Entity):
         """
         Sets the scheduledActionsForRule property value. The list of scheduled action for this rule
         Args:
-            value: Value to set for the scheduledActionsForRule property.
+            value: Value to set for the scheduled_actions_for_rule property.
         """
         self._scheduled_actions_for_rule = value
     
@@ -281,23 +278,6 @@ class DeviceCompliancePolicy(entity.Entity):
         writer.write_int_value("version", self.version)
     
     @property
-    def user_statuses(self,) -> Optional[List[device_compliance_user_status.DeviceComplianceUserStatus]]:
-        """
-        Gets the userStatuses property value. List of DeviceComplianceUserStatus.
-        Returns: Optional[List[device_compliance_user_status.DeviceComplianceUserStatus]]
-        """
-        return self._user_statuses
-    
-    @user_statuses.setter
-    def user_statuses(self,value: Optional[List[device_compliance_user_status.DeviceComplianceUserStatus]] = None) -> None:
-        """
-        Sets the userStatuses property value. List of DeviceComplianceUserStatus.
-        Args:
-            value: Value to set for the userStatuses property.
-        """
-        self._user_statuses = value
-    
-    @property
     def user_status_overview(self,) -> Optional[device_compliance_user_overview.DeviceComplianceUserOverview]:
         """
         Gets the userStatusOverview property value. Device compliance users status overview
@@ -310,9 +290,26 @@ class DeviceCompliancePolicy(entity.Entity):
         """
         Sets the userStatusOverview property value. Device compliance users status overview
         Args:
-            value: Value to set for the userStatusOverview property.
+            value: Value to set for the user_status_overview property.
         """
         self._user_status_overview = value
+    
+    @property
+    def user_statuses(self,) -> Optional[List[device_compliance_user_status.DeviceComplianceUserStatus]]:
+        """
+        Gets the userStatuses property value. List of DeviceComplianceUserStatus.
+        Returns: Optional[List[device_compliance_user_status.DeviceComplianceUserStatus]]
+        """
+        return self._user_statuses
+    
+    @user_statuses.setter
+    def user_statuses(self,value: Optional[List[device_compliance_user_status.DeviceComplianceUserStatus]] = None) -> None:
+        """
+        Sets the userStatuses property value. List of DeviceComplianceUserStatus.
+        Args:
+            value: Value to set for the user_statuses property.
+        """
+        self._user_statuses = value
     
     @property
     def version(self,) -> Optional[int]:

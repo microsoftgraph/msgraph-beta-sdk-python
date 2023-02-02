@@ -44,12 +44,11 @@ class ManagementIntentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ManagementIntentsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[management_intent_collection_response.ManagementIntentCollectionResponse]:
+    async def get(self,request_configuration: Optional[ManagementIntentsRequestBuilderGetRequestConfiguration] = None) -> Optional[management_intent_collection_response.ManagementIntentCollectionResponse]:
         """
         Get a list of the managementIntent objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_intent_collection_response.ManagementIntentCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class ManagementIntentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, management_intent_collection_response.ManagementIntentCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, management_intent_collection_response.ManagementIntentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[management_intent.ManagementIntent] = None, request_configuration: Optional[ManagementIntentsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[management_intent.ManagementIntent]:
+    async def post(self,body: Optional[management_intent.ManagementIntent] = None, request_configuration: Optional[ManagementIntentsRequestBuilderPostRequestConfiguration] = None) -> Optional[management_intent.ManagementIntent]:
         """
         Create new navigation property to managementIntents for tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_intent.ManagementIntent]
         """
         if body is None:
@@ -83,7 +81,7 @@ class ManagementIntentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, management_intent.ManagementIntent, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, management_intent.ManagementIntent, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ManagementIntentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

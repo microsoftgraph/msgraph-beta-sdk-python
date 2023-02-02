@@ -35,8 +35,8 @@ class DeliveryOptimizationBandwidthAbsolute(delivery_optimization_bandwidth.Deli
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "maximum_download_bandwidth_in_kilobytes_per_second": lambda n : setattr(self, 'maximum_download_bandwidth_in_kilobytes_per_second', n.get_int_value()),
-            "maximum_upload_bandwidth_in_kilobytes_per_second": lambda n : setattr(self, 'maximum_upload_bandwidth_in_kilobytes_per_second', n.get_int_value()),
+            "maximumDownloadBandwidthInKilobytesPerSecond": lambda n : setattr(self, 'maximum_download_bandwidth_in_kilobytes_per_second', n.get_int_value()),
+            "maximumUploadBandwidthInKilobytesPerSecond": lambda n : setattr(self, 'maximum_upload_bandwidth_in_kilobytes_per_second', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -55,7 +55,7 @@ class DeliveryOptimizationBandwidthAbsolute(delivery_optimization_bandwidth.Deli
         """
         Sets the maximumDownloadBandwidthInKilobytesPerSecond property value. Specifies the maximum download bandwidth in KiloBytes/second that the device can use across all concurrent download activities using Delivery Optimization. Valid values 0 to 4294967295
         Args:
-            value: Value to set for the maximumDownloadBandwidthInKilobytesPerSecond property.
+            value: Value to set for the maximum_download_bandwidth_in_kilobytes_per_second property.
         """
         self._maximum_download_bandwidth_in_kilobytes_per_second = value
     
@@ -72,7 +72,7 @@ class DeliveryOptimizationBandwidthAbsolute(delivery_optimization_bandwidth.Deli
         """
         Sets the maximumUploadBandwidthInKilobytesPerSecond property value. Specifies the maximum upload bandwidth in KiloBytes/second that a device will use across all concurrent upload activity using Delivery Optimization (0-4000000). Valid values 0 to 4000000
         Args:
-            value: Value to set for the maximumUploadBandwidthInKilobytesPerSecond property.
+            value: Value to set for the maximum_upload_bandwidth_in_kilobytes_per_second property.
         """
         self._maximum_upload_bandwidth_in_kilobytes_per_second = value
     

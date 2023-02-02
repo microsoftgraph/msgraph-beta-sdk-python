@@ -57,9 +57,9 @@ class ManagementIntentInfo(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "management_intent_display_name": lambda n : setattr(self, 'management_intent_display_name', n.get_str_value()),
-            "management_intent_id": lambda n : setattr(self, 'management_intent_id', n.get_str_value()),
-            "management_templates": lambda n : setattr(self, 'management_templates', n.get_collection_of_object_values(management_template_detailed_info.ManagementTemplateDetailedInfo)),
+            "managementIntentDisplayName": lambda n : setattr(self, 'management_intent_display_name', n.get_str_value()),
+            "managementIntentId": lambda n : setattr(self, 'management_intent_id', n.get_str_value()),
+            "managementTemplates": lambda n : setattr(self, 'management_templates', n.get_collection_of_object_values(management_template_detailed_info.ManagementTemplateDetailedInfo)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -77,7 +77,7 @@ class ManagementIntentInfo(AdditionalDataHolder, Parsable):
         """
         Sets the managementIntentDisplayName property value. The display name for the management intent. Optional. Read-only.
         Args:
-            value: Value to set for the managementIntentDisplayName property.
+            value: Value to set for the management_intent_display_name property.
         """
         self._management_intent_display_name = value
     
@@ -94,7 +94,7 @@ class ManagementIntentInfo(AdditionalDataHolder, Parsable):
         """
         Sets the managementIntentId property value. The identifier for the management intent. Required. Read-only.
         Args:
-            value: Value to set for the managementIntentId property.
+            value: Value to set for the management_intent_id property.
         """
         self._management_intent_id = value
     
@@ -111,7 +111,7 @@ class ManagementIntentInfo(AdditionalDataHolder, Parsable):
         """
         Sets the managementTemplates property value. The collection of management template information associated with the management intent. Optional. Read-only.
         Args:
-            value: Value to set for the managementTemplates property.
+            value: Value to set for the management_templates property.
         """
         self._management_templates = value
     
@@ -128,7 +128,7 @@ class ManagementIntentInfo(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

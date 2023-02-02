@@ -7,12 +7,9 @@ android_for_work_app_configuration_schema_item = lazy_import('msgraph.generated.
 entity = lazy_import('msgraph.generated.models.entity')
 
 class AndroidForWorkAppConfigurationSchema(entity.Entity):
-    """
-    Schema describing an Android for Work application's custom configurations.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new androidForWorkAppConfigurationSchema and sets the default values.
+        Instantiates a new AndroidForWorkAppConfigurationSchema and sets the default values.
         """
         super().__init__()
         # UTF8 encoded byte array containing example JSON string conforming to this schema that demonstrates how to set the configuration for this app
@@ -47,7 +44,7 @@ class AndroidForWorkAppConfigurationSchema(entity.Entity):
         """
         Sets the exampleJson property value. UTF8 encoded byte array containing example JSON string conforming to this schema that demonstrates how to set the configuration for this app
         Args:
-            value: Value to set for the exampleJson property.
+            value: Value to set for the example_json property.
         """
         self._example_json = value
     
@@ -57,8 +54,8 @@ class AndroidForWorkAppConfigurationSchema(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "example_json": lambda n : setattr(self, 'example_json', n.get_bytes_value()),
-            "schema_items": lambda n : setattr(self, 'schema_items', n.get_collection_of_object_values(android_for_work_app_configuration_schema_item.AndroidForWorkAppConfigurationSchemaItem)),
+            "exampleJson": lambda n : setattr(self, 'example_json', n.get_bytes_value()),
+            "schemaItems": lambda n : setattr(self, 'schema_items', n.get_collection_of_object_values(android_for_work_app_configuration_schema_item.AndroidForWorkAppConfigurationSchemaItem)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -77,7 +74,7 @@ class AndroidForWorkAppConfigurationSchema(entity.Entity):
         """
         Sets the schemaItems property value. Collection of items each representing a named configuration option in the schema
         Args:
-            value: Value to set for the schemaItems property.
+            value: Value to set for the schema_items property.
         """
         self._schema_items = value
     

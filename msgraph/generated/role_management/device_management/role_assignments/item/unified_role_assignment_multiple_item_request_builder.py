@@ -65,12 +65,13 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
         url_tpl_params["appScope%2Did"] = id
         return app_scope_item_request_builder.AppScopeItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, unified_role_assignment_multiple_id: Optional[str] = None) -> None:
         """
         Instantiates a new UnifiedRoleAssignmentMultipleItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            unifiedRoleAssignmentMultipleId: key: id of unifiedRoleAssignmentMultiple
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -80,15 +81,15 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
         self.url_template: str = "{+baseurl}/roleManagement/deviceManagement/roleAssignments/{unifiedRoleAssignmentMultiple%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["unifiedRoleAssignmentMultiple%2Did"] = unifiedRoleAssignmentMultipleId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[UnifiedRoleAssignmentMultipleItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[UnifiedRoleAssignmentMultipleItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property roleAssignments for roleManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -99,7 +100,7 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def directory_scopes_by_id(self,id: str) -> directory_object_item_request_builder.DirectoryObjectItemRequestBuilder:
         """
@@ -114,12 +115,11 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
         url_tpl_params["directoryObject%2Did"] = id
         return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[UnifiedRoleAssignmentMultipleItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple]:
+    async def get(self,request_configuration: Optional[UnifiedRoleAssignmentMultipleItemRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple]:
         """
         Get roleAssignments from roleManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple]
         """
         request_info = self.to_get_request_information(
@@ -131,15 +131,14 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple, error_mapping)
     
-    async def patch(self,body: Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple] = None, request_configuration: Optional[UnifiedRoleAssignmentMultipleItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple]:
+    async def patch(self,body: Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple] = None, request_configuration: Optional[UnifiedRoleAssignmentMultipleItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple]:
         """
         Update the navigation property roleAssignments in roleManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple]
         """
         if body is None:
@@ -153,7 +152,7 @@ class UnifiedRoleAssignmentMultipleItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple, error_mapping)
     
     def principals_by_id(self,id: str) -> directory_object_item_request_builder.DirectoryObjectItemRequestBuilder:
         """

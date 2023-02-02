@@ -33,7 +33,7 @@ class DeviceManagementSettingAppConstraint(device_management_constraint.DeviceMa
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "supported_types": lambda n : setattr(self, 'supported_types', n.get_collection_of_primitive_values(str)),
+            "supportedTypes": lambda n : setattr(self, 'supported_types', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -63,7 +63,7 @@ class DeviceManagementSettingAppConstraint(device_management_constraint.DeviceMa
         """
         Sets the supportedTypes property value. Acceptable app types to allow for this setting
         Args:
-            value: Value to set for the supportedTypes property.
+            value: Value to set for the supported_types property.
         """
         self._supported_types = value
     

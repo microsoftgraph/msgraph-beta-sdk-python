@@ -19,7 +19,7 @@ class AndroidForWorkApp(mobile_app.MobileApp):
         """
         Sets the appIdentifier property value. The Identity Name.
         Args:
-            value: Value to set for the appIdentifier property.
+            value: Value to set for the app_identifier property.
         """
         self._app_identifier = value
     
@@ -36,7 +36,7 @@ class AndroidForWorkApp(mobile_app.MobileApp):
         """
         Sets the appStoreUrl property value. The Play for Work Store app URL.
         Args:
-            value: Value to set for the appStoreUrl property.
+            value: Value to set for the app_store_url property.
         """
         self._app_store_url = value
     
@@ -75,11 +75,11 @@ class AndroidForWorkApp(mobile_app.MobileApp):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_identifier": lambda n : setattr(self, 'app_identifier', n.get_str_value()),
-            "app_store_url": lambda n : setattr(self, 'app_store_url', n.get_str_value()),
-            "package_id": lambda n : setattr(self, 'package_id', n.get_str_value()),
-            "total_license_count": lambda n : setattr(self, 'total_license_count', n.get_int_value()),
-            "used_license_count": lambda n : setattr(self, 'used_license_count', n.get_int_value()),
+            "appIdentifier": lambda n : setattr(self, 'app_identifier', n.get_str_value()),
+            "appStoreUrl": lambda n : setattr(self, 'app_store_url', n.get_str_value()),
+            "packageId": lambda n : setattr(self, 'package_id', n.get_str_value()),
+            "totalLicenseCount": lambda n : setattr(self, 'total_license_count', n.get_int_value()),
+            "usedLicenseCount": lambda n : setattr(self, 'used_license_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -98,7 +98,7 @@ class AndroidForWorkApp(mobile_app.MobileApp):
         """
         Sets the packageId property value. The package identifier.
         Args:
-            value: Value to set for the packageId property.
+            value: Value to set for the package_id property.
         """
         self._package_id = value
     
@@ -130,7 +130,7 @@ class AndroidForWorkApp(mobile_app.MobileApp):
         """
         Sets the totalLicenseCount property value. The total number of VPP licenses.
         Args:
-            value: Value to set for the totalLicenseCount property.
+            value: Value to set for the total_license_count property.
         """
         self._total_license_count = value
     
@@ -147,7 +147,7 @@ class AndroidForWorkApp(mobile_app.MobileApp):
         """
         Sets the usedLicenseCount property value. The number of VPP licenses in use.
         Args:
-            value: Value to set for the usedLicenseCount property.
+            value: Value to set for the used_license_count property.
         """
         self._used_license_count = value
     

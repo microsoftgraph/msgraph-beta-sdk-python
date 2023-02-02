@@ -11,7 +11,7 @@ tenant_status_information = lazy_import('msgraph.generated.models.managed_tenant
 class Tenant(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new tenant and sets the default values.
+        Instantiates a new Tenant and sets the default values.
         """
         super().__init__()
         # The relationship details for the tenant with the managing entity.
@@ -59,7 +59,7 @@ class Tenant(entity.Entity):
         """
         Sets the createdDateTime property value. The date and time the tenant was created in the multi-tenant management platform. Optional. Read-only.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -88,7 +88,7 @@ class Tenant(entity.Entity):
         """
         Sets the displayName property value. The display name for the tenant. Required. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -99,11 +99,11 @@ class Tenant(entity.Entity):
         """
         fields = {
             "contract": lambda n : setattr(self, 'contract', n.get_object_value(tenant_contract.TenantContract)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_updated_date_time": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
-            "tenant_status_information": lambda n : setattr(self, 'tenant_status_information', n.get_object_value(tenant_status_information.TenantStatusInformation)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "tenantStatusInformation": lambda n : setattr(self, 'tenant_status_information', n.get_object_value(tenant_status_information.TenantStatusInformation)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -122,7 +122,7 @@ class Tenant(entity.Entity):
         """
         Sets the lastUpdatedDateTime property value. The date and time the tenant was last updated within the multi-tenant management platform. Optional. Read-only.
         Args:
-            value: Value to set for the lastUpdatedDateTime property.
+            value: Value to set for the last_updated_date_time property.
         """
         self._last_updated_date_time = value
     
@@ -155,7 +155,7 @@ class Tenant(entity.Entity):
         """
         Sets the tenantId property value. The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     
@@ -172,7 +172,7 @@ class Tenant(entity.Entity):
         """
         Sets the tenantStatusInformation property value. The onboarding status information for the tenant. Optional. Read-only.
         Args:
-            value: Value to set for the tenantStatusInformation property.
+            value: Value to set for the tenant_status_information property.
         """
         self._tenant_status_information = value
     

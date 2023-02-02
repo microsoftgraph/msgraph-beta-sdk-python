@@ -70,7 +70,7 @@ class CustomUpdateTimeWindow(AdditionalDataHolder, Parsable):
         """
         Sets the endDay property value. The endDay property
         Args:
-            value: Value to set for the endDay property.
+            value: Value to set for the end_day property.
         """
         self._end_day = value
     
@@ -87,7 +87,7 @@ class CustomUpdateTimeWindow(AdditionalDataHolder, Parsable):
         """
         Sets the endTime property value. End time of the time window
         Args:
-            value: Value to set for the endTime property.
+            value: Value to set for the end_time property.
         """
         self._end_time = value
     
@@ -97,11 +97,11 @@ class CustomUpdateTimeWindow(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "end_day": lambda n : setattr(self, 'end_day', n.get_enum_value(day_of_week.DayOfWeek)),
-            "end_time": lambda n : setattr(self, 'end_time', n.get_object_value(Time)),
+            "endDay": lambda n : setattr(self, 'end_day', n.get_enum_value(day_of_week.DayOfWeek)),
+            "endTime": lambda n : setattr(self, 'end_time', n.get_object_value(Time)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "start_day": lambda n : setattr(self, 'start_day', n.get_enum_value(day_of_week.DayOfWeek)),
-            "start_time": lambda n : setattr(self, 'start_time', n.get_object_value(Time)),
+            "startDay": lambda n : setattr(self, 'start_day', n.get_enum_value(day_of_week.DayOfWeek)),
+            "startTime": lambda n : setattr(self, 'start_time', n.get_object_value(Time)),
         }
         return fields
     
@@ -118,7 +118,7 @@ class CustomUpdateTimeWindow(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -150,7 +150,7 @@ class CustomUpdateTimeWindow(AdditionalDataHolder, Parsable):
         """
         Sets the startDay property value. The startDay property
         Args:
-            value: Value to set for the startDay property.
+            value: Value to set for the start_day property.
         """
         self._start_day = value
     
@@ -167,7 +167,7 @@ class CustomUpdateTimeWindow(AdditionalDataHolder, Parsable):
         """
         Sets the startTime property value. Start time of the time window
         Args:
-            value: Value to set for the startTime property.
+            value: Value to set for the start_time property.
         """
         self._start_time = value
     

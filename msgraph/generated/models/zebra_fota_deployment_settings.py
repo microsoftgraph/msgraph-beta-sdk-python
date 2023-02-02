@@ -42,7 +42,7 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
         """
         Sets the batteryRuleMinimumBatteryLevelPercentage property value. Minimum battery level (%) required for both download and installation. Default: -1 (System defaults). Maximum is 100.
         Args:
-            value: Value to set for the batteryRuleMinimumBatteryLevelPercentage property.
+            value: Value to set for the battery_rule_minimum_battery_level_percentage property.
         """
         self._battery_rule_minimum_battery_level_percentage = value
     
@@ -59,7 +59,7 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
         """
         Sets the batteryRuleRequireCharger property value. Flag indicating if charger is required. When set to false, the client can install updates whether the device is in or out of the charger. Applied only for installation. Defaults to false.
         Args:
-            value: Value to set for the batteryRuleRequireCharger property.
+            value: Value to set for the battery_rule_require_charger property.
         """
         self._battery_rule_require_charger = value
     
@@ -130,7 +130,7 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
         """
         Sets the deviceModel property value. Deploy update for devices with this model only.
         Args:
-            value: Value to set for the deviceModel property.
+            value: Value to set for the device_model property.
         """
         self._device_model = value
     
@@ -147,7 +147,7 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
         """
         Sets the downloadRuleNetworkType property value. Represents various network types for Zebra FOTA deployment.
         Args:
-            value: Value to set for the downloadRuleNetworkType property.
+            value: Value to set for the download_rule_network_type property.
         """
         self._download_rule_network_type = value
     
@@ -164,7 +164,7 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
         """
         Sets the downloadRuleStartDateTime property value. Date and time in the device time zone when the download will start (e.g., 2018-07-25T10:20:32). The default value is UTC now and the maximum is 10 days from deployment creation.
         Args:
-            value: Value to set for the downloadRuleStartDateTime property.
+            value: Value to set for the download_rule_start_date_time property.
         """
         self._download_rule_start_date_time = value
     
@@ -181,7 +181,7 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
         """
         Sets the firmwareTargetArtifactDescription property value. A description provided by Zebra for the the firmware artifact to update the device to (e.g.: LifeGuard Update 120 (released 29-June-2022).
         Args:
-            value: Value to set for the firmwareTargetArtifactDescription property.
+            value: Value to set for the firmware_target_artifact_description property.
         """
         self._firmware_target_artifact_description = value
     
@@ -198,7 +198,7 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
         """
         Sets the firmwareTargetBoardSupportPackageVersion property value. Deployment's Board Support Package (BSP. E.g.: '01.18.02.00'). Required only for custom update type.
         Args:
-            value: Value to set for the firmwareTargetBoardSupportPackageVersion property.
+            value: Value to set for the firmware_target_board_support_package_version property.
         """
         self._firmware_target_board_support_package_version = value
     
@@ -215,7 +215,7 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
         """
         Sets the firmwareTargetOsVersion property value. Target OS Version (e.g.: '8.1.0'). Required only for custom update type.
         Args:
-            value: Value to set for the firmwareTargetOsVersion property.
+            value: Value to set for the firmware_target_os_version property.
         """
         self._firmware_target_os_version = value
     
@@ -232,7 +232,7 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
         """
         Sets the firmwareTargetPatch property value. Target patch name (e.g.: 'U06'). Required only for custom update type.
         Args:
-            value: Value to set for the firmwareTargetPatch property.
+            value: Value to set for the firmware_target_patch property.
         """
         self._firmware_target_patch = value
     
@@ -242,23 +242,23 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "battery_rule_minimum_battery_level_percentage": lambda n : setattr(self, 'battery_rule_minimum_battery_level_percentage', n.get_int_value()),
-            "battery_rule_require_charger": lambda n : setattr(self, 'battery_rule_require_charger', n.get_bool_value()),
-            "device_model": lambda n : setattr(self, 'device_model', n.get_str_value()),
-            "download_rule_network_type": lambda n : setattr(self, 'download_rule_network_type', n.get_enum_value(zebra_fota_network_type.ZebraFotaNetworkType)),
-            "download_rule_start_date_time": lambda n : setattr(self, 'download_rule_start_date_time', n.get_datetime_value()),
-            "firmware_target_artifact_description": lambda n : setattr(self, 'firmware_target_artifact_description', n.get_str_value()),
-            "firmware_target_board_support_package_version": lambda n : setattr(self, 'firmware_target_board_support_package_version', n.get_str_value()),
-            "firmware_target_os_version": lambda n : setattr(self, 'firmware_target_os_version', n.get_str_value()),
-            "firmware_target_patch": lambda n : setattr(self, 'firmware_target_patch', n.get_str_value()),
-            "install_rule_start_date_time": lambda n : setattr(self, 'install_rule_start_date_time', n.get_datetime_value()),
-            "install_rule_window_end_time": lambda n : setattr(self, 'install_rule_window_end_time', n.get_object_value(Time)),
-            "install_rule_window_start_time": lambda n : setattr(self, 'install_rule_window_start_time', n.get_object_value(Time)),
+            "batteryRuleMinimumBatteryLevelPercentage": lambda n : setattr(self, 'battery_rule_minimum_battery_level_percentage', n.get_int_value()),
+            "batteryRuleRequireCharger": lambda n : setattr(self, 'battery_rule_require_charger', n.get_bool_value()),
+            "deviceModel": lambda n : setattr(self, 'device_model', n.get_str_value()),
+            "downloadRuleNetworkType": lambda n : setattr(self, 'download_rule_network_type', n.get_enum_value(zebra_fota_network_type.ZebraFotaNetworkType)),
+            "downloadRuleStartDateTime": lambda n : setattr(self, 'download_rule_start_date_time', n.get_datetime_value()),
+            "firmwareTargetArtifactDescription": lambda n : setattr(self, 'firmware_target_artifact_description', n.get_str_value()),
+            "firmwareTargetBoardSupportPackageVersion": lambda n : setattr(self, 'firmware_target_board_support_package_version', n.get_str_value()),
+            "firmwareTargetOsVersion": lambda n : setattr(self, 'firmware_target_os_version', n.get_str_value()),
+            "firmwareTargetPatch": lambda n : setattr(self, 'firmware_target_patch', n.get_str_value()),
+            "installRuleStartDateTime": lambda n : setattr(self, 'install_rule_start_date_time', n.get_datetime_value()),
+            "installRuleWindowEndTime": lambda n : setattr(self, 'install_rule_window_end_time', n.get_object_value(Time)),
+            "installRuleWindowStartTime": lambda n : setattr(self, 'install_rule_window_start_time', n.get_object_value(Time)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "schedule_duration_in_days": lambda n : setattr(self, 'schedule_duration_in_days', n.get_int_value()),
-            "schedule_mode": lambda n : setattr(self, 'schedule_mode', n.get_enum_value(zebra_fota_schedule_mode.ZebraFotaScheduleMode)),
-            "time_zone_offset_in_minutes": lambda n : setattr(self, 'time_zone_offset_in_minutes', n.get_int_value()),
-            "update_type": lambda n : setattr(self, 'update_type', n.get_enum_value(zebra_fota_update_type.ZebraFotaUpdateType)),
+            "scheduleDurationInDays": lambda n : setattr(self, 'schedule_duration_in_days', n.get_int_value()),
+            "scheduleMode": lambda n : setattr(self, 'schedule_mode', n.get_enum_value(zebra_fota_schedule_mode.ZebraFotaScheduleMode)),
+            "timeZoneOffsetInMinutes": lambda n : setattr(self, 'time_zone_offset_in_minutes', n.get_int_value()),
+            "updateType": lambda n : setattr(self, 'update_type', n.get_enum_value(zebra_fota_update_type.ZebraFotaUpdateType)),
         }
         return fields
     
@@ -275,7 +275,7 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
         """
         Sets the installRuleStartDateTime property value. Date and time in device time zone when the install will start. Default - download startDate if configured, otherwise defaults to NOW. Ignored when deployment update type was set to auto.
         Args:
-            value: Value to set for the installRuleStartDateTime property.
+            value: Value to set for the install_rule_start_date_time property.
         """
         self._install_rule_start_date_time = value
     
@@ -292,7 +292,7 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
         """
         Sets the installRuleWindowEndTime property value. Time of day after which the install cannot start. Possible range is 00:30:00 to 23:59:59. Should be greater than 'installRuleWindowStartTime' by 30 mins. The time is expressed in a 24-hour format, as hh:mm, and is in the device time zone. Default - 23:59:59. Respected for all values of update type, including AUTO.
         Args:
-            value: Value to set for the installRuleWindowEndTime property.
+            value: Value to set for the install_rule_window_end_time property.
         """
         self._install_rule_window_end_time = value
     
@@ -309,7 +309,7 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
         """
         Sets the installRuleWindowStartTime property value. Time of day (00:00:00 - 23:30:00) when installation should begin. The time is expressed in a 24-hour format, as hh:mm, and is in the device time zone. Default - 00:00:00. Respected for all values of update type, including AUTO.
         Args:
-            value: Value to set for the installRuleWindowStartTime property.
+            value: Value to set for the install_rule_window_start_time property.
         """
         self._install_rule_window_start_time = value
     
@@ -326,7 +326,7 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -343,7 +343,7 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
         """
         Sets the scheduleDurationInDays property value. Maximum 28 days. Default is 28 days. Sequence of dates are: 1) Download start date. 2) Install start date. 3) Schedule end date. If any of the values are not provided, the date provided in the preceding step of the sequence is used. If no values are provided, the string value of the current UTC is used.
         Args:
-            value: Value to set for the scheduleDurationInDays property.
+            value: Value to set for the schedule_duration_in_days property.
         """
         self._schedule_duration_in_days = value
     
@@ -360,7 +360,7 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
         """
         Sets the scheduleMode property value. Represents various schedule modes for Zebra FOTA deployment.
         Args:
-            value: Value to set for the scheduleMode property.
+            value: Value to set for the schedule_mode property.
         """
         self._schedule_mode = value
     
@@ -404,7 +404,7 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
         """
         Sets the timeZoneOffsetInMinutes property value. This attribute indicates the deployment time offset (e.g.180 represents an offset of +03:00, and -270 represents an offset of -04:30). The time offset is the time timezone where the devices are located. The deployment start and end data uses this timezone
         Args:
-            value: Value to set for the timeZoneOffsetInMinutes property.
+            value: Value to set for the time_zone_offset_in_minutes property.
         """
         self._time_zone_offset_in_minutes = value
     
@@ -421,7 +421,7 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
         """
         Sets the updateType property value. Represents various update types for Zebra FOTA deployment.
         Args:
-            value: Value to set for the updateType property.
+            value: Value to set for the update_type property.
         """
         self._update_type = value
     

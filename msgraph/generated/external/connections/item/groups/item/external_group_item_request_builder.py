@@ -26,10 +26,11 @@ class ExternalGroupItemRequestBuilder():
         """
         return members_request_builder.MembersRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, external_group_id: Optional[str] = None) -> None:
         """
         Instantiates a new ExternalGroupItemRequestBuilder and sets the default values.
         Args:
+            externalGroupId: key: id of externalGroup
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -41,15 +42,15 @@ class ExternalGroupItemRequestBuilder():
         self.url_template: str = "{+baseurl}/external/connections/{externalConnection%2Did}/groups/{externalGroup%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["externalGroup%2Did"] = externalGroupId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ExternalGroupItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ExternalGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property groups for external
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,14 +61,13 @@ class ExternalGroupItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ExternalGroupItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[external_group.ExternalGroup]:
+    async def get(self,request_configuration: Optional[ExternalGroupItemRequestBuilderGetRequestConfiguration] = None) -> Optional[external_group.ExternalGroup]:
         """
         Get groups from external
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[external_group.ExternalGroup]
         """
         request_info = self.to_get_request_information(
@@ -79,7 +79,7 @@ class ExternalGroupItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, external_group.ExternalGroup, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, external_group.ExternalGroup, error_mapping)
     
     def members_by_id(self,id: str) -> identity_item_request_builder.IdentityItemRequestBuilder:
         """
@@ -94,13 +94,12 @@ class ExternalGroupItemRequestBuilder():
         url_tpl_params["identity%2Did"] = id
         return identity_item_request_builder.IdentityItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[external_group.ExternalGroup] = None, request_configuration: Optional[ExternalGroupItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[external_group.ExternalGroup]:
+    async def patch(self,body: Optional[external_group.ExternalGroup] = None, request_configuration: Optional[ExternalGroupItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[external_group.ExternalGroup]:
         """
         Update the navigation property groups in external
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[external_group.ExternalGroup]
         """
         if body is None:
@@ -114,7 +113,7 @@ class ExternalGroupItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, external_group.ExternalGroup, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, external_group.ExternalGroup, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ExternalGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

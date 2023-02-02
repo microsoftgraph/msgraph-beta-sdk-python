@@ -17,11 +17,12 @@ class ProfileCardPropertyItemRequestBuilder():
     """
     Provides operations to manage the profileCardProperties property of the microsoft.graph.organizationSettings entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, profile_card_property_id: Optional[str] = None) -> None:
         """
         Instantiates a new ProfileCardPropertyItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            profileCardPropertyId: key: id of profileCardProperty
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -32,15 +33,15 @@ class ProfileCardPropertyItemRequestBuilder():
         self.url_template: str = "{+baseurl}/organization/{organization%2Did}/settings/profileCardProperties/{profileCardProperty%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["profileCardProperty%2Did"] = profileCardPropertyId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ProfileCardPropertyItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ProfileCardPropertyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property profileCardProperties for organization
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class ProfileCardPropertyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ProfileCardPropertyItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[profile_card_property.ProfileCardProperty]:
+    async def get(self,request_configuration: Optional[ProfileCardPropertyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[profile_card_property.ProfileCardProperty]:
         """
         Contains a collection of the properties an administrator has defined as visible on the Microsoft 365 profile card. Get organization settings returns the properties configured for profile cards for the organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[profile_card_property.ProfileCardProperty]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class ProfileCardPropertyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, profile_card_property.ProfileCardProperty, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, profile_card_property.ProfileCardProperty, error_mapping)
     
-    async def patch(self,body: Optional[profile_card_property.ProfileCardProperty] = None, request_configuration: Optional[ProfileCardPropertyItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[profile_card_property.ProfileCardProperty]:
+    async def patch(self,body: Optional[profile_card_property.ProfileCardProperty] = None, request_configuration: Optional[ProfileCardPropertyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[profile_card_property.ProfileCardProperty]:
         """
         Update the navigation property profileCardProperties in organization
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[profile_card_property.ProfileCardProperty]
         """
         if body is None:
@@ -92,7 +91,7 @@ class ProfileCardPropertyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, profile_card_property.ProfileCardProperty, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, profile_card_property.ProfileCardProperty, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ProfileCardPropertyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

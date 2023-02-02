@@ -17,10 +17,11 @@ class ConversationMemberItemRequestBuilder():
     """
     Provides operations to manage the members property of the microsoft.graph.team entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, conversation_member_id: Optional[str] = None) -> None:
         """
         Instantiates a new ConversationMemberItemRequestBuilder and sets the default values.
         Args:
+            conversationMemberId: key: id of conversationMember
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class ConversationMemberItemRequestBuilder():
         self.url_template: str = "{+baseurl}/teams/{team%2Did}/members/{conversationMember%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["conversationMember%2Did"] = conversationMemberId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ConversationMemberItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ConversationMemberItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property members for teams
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class ConversationMemberItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ConversationMemberItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[conversation_member.ConversationMember]:
+    async def get(self,request_configuration: Optional[ConversationMemberItemRequestBuilderGetRequestConfiguration] = None) -> Optional[conversation_member.ConversationMember]:
         """
         Members and owners of the team.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[conversation_member.ConversationMember]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class ConversationMemberItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, conversation_member.ConversationMember, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, conversation_member.ConversationMember, error_mapping)
     
-    async def patch(self,body: Optional[conversation_member.ConversationMember] = None, request_configuration: Optional[ConversationMemberItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[conversation_member.ConversationMember]:
+    async def patch(self,body: Optional[conversation_member.ConversationMember] = None, request_configuration: Optional[ConversationMemberItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[conversation_member.ConversationMember]:
         """
         Update the navigation property members in teams
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[conversation_member.ConversationMember]
         """
         if body is None:
@@ -92,7 +91,7 @@ class ConversationMemberItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, conversation_member.ConversationMember, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, conversation_member.ConversationMember, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ConversationMemberItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

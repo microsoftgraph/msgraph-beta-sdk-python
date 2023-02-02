@@ -17,10 +17,11 @@ class MyRoleTenantItemRequestBuilder():
     """
     Provides operations to manage the myRoles property of the microsoft.graph.managedTenants.managedTenant entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, my_role_tenant_id: Optional[str] = None) -> None:
         """
         Instantiates a new MyRoleTenantItemRequestBuilder and sets the default values.
         Args:
+            myRoleTenantId: key: tenantId of myRole
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class MyRoleTenantItemRequestBuilder():
         self.url_template: str = "{+baseurl}/tenantRelationships/managedTenants/myRoles/{myRole%2DtenantId}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["myRole%2DtenantId"] = myRoleTenantId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[MyRoleTenantItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[MyRoleTenantItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property myRoles for tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class MyRoleTenantItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[MyRoleTenantItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[my_role.MyRole]:
+    async def get(self,request_configuration: Optional[MyRoleTenantItemRequestBuilderGetRequestConfiguration] = None) -> Optional[my_role.MyRole]:
         """
         The collection of role assignments to a signed-in user for a managed tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[my_role.MyRole]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class MyRoleTenantItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, my_role.MyRole, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, my_role.MyRole, error_mapping)
     
-    async def patch(self,body: Optional[my_role.MyRole] = None, request_configuration: Optional[MyRoleTenantItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[my_role.MyRole]:
+    async def patch(self,body: Optional[my_role.MyRole] = None, request_configuration: Optional[MyRoleTenantItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[my_role.MyRole]:
         """
         Update the navigation property myRoles in tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[my_role.MyRole]
         """
         if body is None:
@@ -92,7 +91,7 @@ class MyRoleTenantItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, my_role.MyRole, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, my_role.MyRole, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[MyRoleTenantItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

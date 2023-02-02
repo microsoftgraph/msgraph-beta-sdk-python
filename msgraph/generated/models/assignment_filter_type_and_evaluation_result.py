@@ -40,7 +40,7 @@ class AssignmentFilterTypeAndEvaluationResult(AdditionalDataHolder, Parsable):
         """
         Sets the assignmentFilterType property value. Represents type of the assignment filter.
         Args:
-            value: Value to set for the assignmentFilterType property.
+            value: Value to set for the assignment_filter_type property.
         """
         self._assignment_filter_type = value
     
@@ -83,7 +83,7 @@ class AssignmentFilterTypeAndEvaluationResult(AdditionalDataHolder, Parsable):
         """
         Sets the evaluationResult property value. Supported evaluation results for filter.
         Args:
-            value: Value to set for the evaluationResult property.
+            value: Value to set for the evaluation_result property.
         """
         self._evaluation_result = value
     
@@ -93,8 +93,8 @@ class AssignmentFilterTypeAndEvaluationResult(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assignment_filter_type": lambda n : setattr(self, 'assignment_filter_type', n.get_enum_value(device_and_app_management_assignment_filter_type.DeviceAndAppManagementAssignmentFilterType)),
-            "evaluation_result": lambda n : setattr(self, 'evaluation_result', n.get_enum_value(assignment_filter_evaluation_result.AssignmentFilterEvaluationResult)),
+            "assignmentFilterType": lambda n : setattr(self, 'assignment_filter_type', n.get_enum_value(device_and_app_management_assignment_filter_type.DeviceAndAppManagementAssignmentFilterType)),
+            "evaluationResult": lambda n : setattr(self, 'evaluation_result', n.get_enum_value(assignment_filter_evaluation_result.AssignmentFilterEvaluationResult)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -112,7 +112,7 @@ class AssignmentFilterTypeAndEvaluationResult(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -8,12 +8,9 @@ user_experience_analytics_insight = lazy_import('msgraph.generated.models.user_e
 user_experience_analytics_metric = lazy_import('msgraph.generated.models.user_experience_analytics_metric')
 
 class UserExperienceAnalyticsCategory(entity.Entity):
-    """
-    The user experience analytics category entity contains the scores and insights for the various metrics of a category.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsCategory and sets the default values.
+        Instantiates a new UserExperienceAnalyticsCategory and sets the default values.
         """
         super().__init__()
         # The insights for the user experience analytics category.
@@ -42,7 +39,7 @@ class UserExperienceAnalyticsCategory(entity.Entity):
         """
         fields = {
             "insights": lambda n : setattr(self, 'insights', n.get_collection_of_object_values(user_experience_analytics_insight.UserExperienceAnalyticsInsight)),
-            "metric_values": lambda n : setattr(self, 'metric_values', n.get_collection_of_object_values(user_experience_analytics_metric.UserExperienceAnalyticsMetric)),
+            "metricValues": lambda n : setattr(self, 'metric_values', n.get_collection_of_object_values(user_experience_analytics_metric.UserExperienceAnalyticsMetric)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -78,7 +75,7 @@ class UserExperienceAnalyticsCategory(entity.Entity):
         """
         Sets the metricValues property value. The metric values for the user experience analytics category.
         Args:
-            value: Value to set for the metricValues property.
+            value: Value to set for the metric_values property.
         """
         self._metric_values = value
     

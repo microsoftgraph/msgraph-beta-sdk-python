@@ -24,7 +24,7 @@ class AospDeviceOwnerCertificateProfileBase(device_configuration.DeviceConfigura
         """
         Sets the certificateValidityPeriodScale property value. Certificate Validity Period Options.
         Args:
-            value: Value to set for the certificateValidityPeriodScale property.
+            value: Value to set for the certificate_validity_period_scale property.
         """
         self._certificate_validity_period_scale = value
     
@@ -41,7 +41,7 @@ class AospDeviceOwnerCertificateProfileBase(device_configuration.DeviceConfigura
         """
         Sets the certificateValidityPeriodValue property value. Value for the Certificate Validity Period.
         Args:
-            value: Value to set for the certificateValidityPeriodValue property.
+            value: Value to set for the certificate_validity_period_value property.
         """
         self._certificate_validity_period_value = value
     
@@ -91,7 +91,7 @@ class AospDeviceOwnerCertificateProfileBase(device_configuration.DeviceConfigura
         """
         Sets the extendedKeyUsages property value. Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the extendedKeyUsages property.
+            value: Value to set for the extended_key_usages property.
         """
         self._extended_key_usages = value
     
@@ -101,13 +101,13 @@ class AospDeviceOwnerCertificateProfileBase(device_configuration.DeviceConfigura
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "certificate_validity_period_scale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(certificate_validity_period_scale.CertificateValidityPeriodScale)),
-            "certificate_validity_period_value": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),
-            "extended_key_usages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(extended_key_usage.ExtendedKeyUsage)),
-            "renewal_threshold_percentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
-            "root_certificate": lambda n : setattr(self, 'root_certificate', n.get_object_value(aosp_device_owner_trusted_root_certificate.AospDeviceOwnerTrustedRootCertificate)),
-            "subject_alternative_name_type": lambda n : setattr(self, 'subject_alternative_name_type', n.get_enum_value(subject_alternative_name_type.SubjectAlternativeNameType)),
-            "subject_name_format": lambda n : setattr(self, 'subject_name_format', n.get_enum_value(subject_name_format.SubjectNameFormat)),
+            "certificateValidityPeriodScale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(certificate_validity_period_scale.CertificateValidityPeriodScale)),
+            "certificateValidityPeriodValue": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),
+            "extendedKeyUsages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(extended_key_usage.ExtendedKeyUsage)),
+            "renewalThresholdPercentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
+            "rootCertificate": lambda n : setattr(self, 'root_certificate', n.get_object_value(aosp_device_owner_trusted_root_certificate.AospDeviceOwnerTrustedRootCertificate)),
+            "subjectAlternativeNameType": lambda n : setattr(self, 'subject_alternative_name_type', n.get_enum_value(subject_alternative_name_type.SubjectAlternativeNameType)),
+            "subjectNameFormat": lambda n : setattr(self, 'subject_name_format', n.get_enum_value(subject_name_format.SubjectNameFormat)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -126,7 +126,7 @@ class AospDeviceOwnerCertificateProfileBase(device_configuration.DeviceConfigura
         """
         Sets the renewalThresholdPercentage property value. Certificate renewal threshold percentage. Valid values 1 to 99
         Args:
-            value: Value to set for the renewalThresholdPercentage property.
+            value: Value to set for the renewal_threshold_percentage property.
         """
         self._renewal_threshold_percentage = value
     
@@ -143,7 +143,7 @@ class AospDeviceOwnerCertificateProfileBase(device_configuration.DeviceConfigura
         """
         Sets the rootCertificate property value. Trusted Root Certificate.
         Args:
-            value: Value to set for the rootCertificate property.
+            value: Value to set for the root_certificate property.
         """
         self._root_certificate = value
     
@@ -177,7 +177,7 @@ class AospDeviceOwnerCertificateProfileBase(device_configuration.DeviceConfigura
         """
         Sets the subjectAlternativeNameType property value. Certificate Subject Alternative Name Type. This collection can contain a maximum of 500 elements. Possible values are: none, emailAddress, userPrincipalName, customAzureADAttribute, domainNameService, universalResourceIdentifier.
         Args:
-            value: Value to set for the subjectAlternativeNameType property.
+            value: Value to set for the subject_alternative_name_type property.
         """
         self._subject_alternative_name_type = value
     
@@ -194,7 +194,7 @@ class AospDeviceOwnerCertificateProfileBase(device_configuration.DeviceConfigura
         """
         Sets the subjectNameFormat property value. Certificate Subject Name Format. This collection can contain a maximum of 500 elements. Possible values are: commonName, commonNameIncludingEmail, commonNameAsEmail, custom, commonNameAsIMEI, commonNameAsSerialNumber, commonNameAsAadDeviceId, commonNameAsIntuneDeviceId, commonNameAsDurableDeviceId.
         Args:
-            value: Value to set for the subjectNameFormat property.
+            value: Value to set for the subject_name_format property.
         """
         self._subject_name_format = value
     

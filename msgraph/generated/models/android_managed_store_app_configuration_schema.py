@@ -7,12 +7,9 @@ android_managed_store_app_configuration_schema_item = lazy_import('msgraph.gener
 entity = lazy_import('msgraph.generated.models.entity')
 
 class AndroidManagedStoreAppConfigurationSchema(entity.Entity):
-    """
-    Schema describing an Android application's custom configurations.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new androidManagedStoreAppConfigurationSchema and sets the default values.
+        Instantiates a new AndroidManagedStoreAppConfigurationSchema and sets the default values.
         """
         super().__init__()
         # UTF8 encoded byte array containing example JSON string conforming to this schema that demonstrates how to set the configuration for this app
@@ -49,7 +46,7 @@ class AndroidManagedStoreAppConfigurationSchema(entity.Entity):
         """
         Sets the exampleJson property value. UTF8 encoded byte array containing example JSON string conforming to this schema that demonstrates how to set the configuration for this app
         Args:
-            value: Value to set for the exampleJson property.
+            value: Value to set for the example_json property.
         """
         self._example_json = value
     
@@ -59,9 +56,9 @@ class AndroidManagedStoreAppConfigurationSchema(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "example_json": lambda n : setattr(self, 'example_json', n.get_bytes_value()),
-            "nested_schema_items": lambda n : setattr(self, 'nested_schema_items', n.get_collection_of_object_values(android_managed_store_app_configuration_schema_item.AndroidManagedStoreAppConfigurationSchemaItem)),
-            "schema_items": lambda n : setattr(self, 'schema_items', n.get_collection_of_object_values(android_managed_store_app_configuration_schema_item.AndroidManagedStoreAppConfigurationSchemaItem)),
+            "exampleJson": lambda n : setattr(self, 'example_json', n.get_bytes_value()),
+            "nestedSchemaItems": lambda n : setattr(self, 'nested_schema_items', n.get_collection_of_object_values(android_managed_store_app_configuration_schema_item.AndroidManagedStoreAppConfigurationSchemaItem)),
+            "schemaItems": lambda n : setattr(self, 'schema_items', n.get_collection_of_object_values(android_managed_store_app_configuration_schema_item.AndroidManagedStoreAppConfigurationSchemaItem)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -80,7 +77,7 @@ class AndroidManagedStoreAppConfigurationSchema(entity.Entity):
         """
         Sets the nestedSchemaItems property value. Collection of items each representing a named configuration option in the schema. It contains a flat list of all configuration.
         Args:
-            value: Value to set for the nestedSchemaItems property.
+            value: Value to set for the nested_schema_items property.
         """
         self._nested_schema_items = value
     
@@ -97,7 +94,7 @@ class AndroidManagedStoreAppConfigurationSchema(entity.Entity):
         """
         Sets the schemaItems property value. Collection of items each representing a named configuration option in the schema. It only contains the root-level configuration.
         Args:
-            value: Value to set for the schemaItems property.
+            value: Value to set for the schema_items property.
         """
         self._schema_items = value
     

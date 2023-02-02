@@ -37,7 +37,7 @@ class ComanagedDevicesSummary(AdditionalDataHolder, Parsable):
         """
         Sets the compliancePolicyCount property value. Number of devices with CompliancePolicy swung-over. This property is read-only.
         Args:
-            value: Value to set for the compliancePolicyCount property.
+            value: Value to set for the compliance_policy_count property.
         """
         self._compliance_policy_count = value
     
@@ -54,7 +54,7 @@ class ComanagedDevicesSummary(AdditionalDataHolder, Parsable):
         """
         Sets the configurationSettingsCount property value. Number of devices with ConfigurationSettings swung-over. This property is read-only.
         Args:
-            value: Value to set for the configurationSettingsCount property.
+            value: Value to set for the configuration_settings_count property.
         """
         self._configuration_settings_count = value
     
@@ -111,7 +111,7 @@ class ComanagedDevicesSummary(AdditionalDataHolder, Parsable):
         """
         Sets the endpointProtectionCount property value. Number of devices with EndpointProtection swung-over. This property is read-only.
         Args:
-            value: Value to set for the endpointProtectionCount property.
+            value: Value to set for the endpoint_protection_count property.
         """
         self._endpoint_protection_count = value
     
@@ -121,16 +121,16 @@ class ComanagedDevicesSummary(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "compliance_policy_count": lambda n : setattr(self, 'compliance_policy_count', n.get_int_value()),
-            "configuration_settings_count": lambda n : setattr(self, 'configuration_settings_count', n.get_int_value()),
-            "endpoint_protection_count": lambda n : setattr(self, 'endpoint_protection_count', n.get_int_value()),
-            "inventory_count": lambda n : setattr(self, 'inventory_count', n.get_int_value()),
-            "modern_apps_count": lambda n : setattr(self, 'modern_apps_count', n.get_int_value()),
+            "compliancePolicyCount": lambda n : setattr(self, 'compliance_policy_count', n.get_int_value()),
+            "configurationSettingsCount": lambda n : setattr(self, 'configuration_settings_count', n.get_int_value()),
+            "endpointProtectionCount": lambda n : setattr(self, 'endpoint_protection_count', n.get_int_value()),
+            "inventoryCount": lambda n : setattr(self, 'inventory_count', n.get_int_value()),
+            "modernAppsCount": lambda n : setattr(self, 'modern_apps_count', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "office_apps_count": lambda n : setattr(self, 'office_apps_count', n.get_int_value()),
-            "resource_access_count": lambda n : setattr(self, 'resource_access_count', n.get_int_value()),
-            "total_comanaged_count": lambda n : setattr(self, 'total_comanaged_count', n.get_int_value()),
-            "windows_update_for_business_count": lambda n : setattr(self, 'windows_update_for_business_count', n.get_int_value()),
+            "officeAppsCount": lambda n : setattr(self, 'office_apps_count', n.get_int_value()),
+            "resourceAccessCount": lambda n : setattr(self, 'resource_access_count', n.get_int_value()),
+            "totalComanagedCount": lambda n : setattr(self, 'total_comanaged_count', n.get_int_value()),
+            "windowsUpdateForBusinessCount": lambda n : setattr(self, 'windows_update_for_business_count', n.get_int_value()),
         }
         return fields
     
@@ -147,7 +147,7 @@ class ComanagedDevicesSummary(AdditionalDataHolder, Parsable):
         """
         Sets the inventoryCount property value. Number of devices with Inventory swung-over. This property is read-only.
         Args:
-            value: Value to set for the inventoryCount property.
+            value: Value to set for the inventory_count property.
         """
         self._inventory_count = value
     
@@ -164,7 +164,7 @@ class ComanagedDevicesSummary(AdditionalDataHolder, Parsable):
         """
         Sets the modernAppsCount property value. Number of devices with ModernApps swung-over. This property is read-only.
         Args:
-            value: Value to set for the modernAppsCount property.
+            value: Value to set for the modern_apps_count property.
         """
         self._modern_apps_count = value
     
@@ -181,7 +181,7 @@ class ComanagedDevicesSummary(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -198,7 +198,7 @@ class ComanagedDevicesSummary(AdditionalDataHolder, Parsable):
         """
         Sets the officeAppsCount property value. Number of devices with OfficeApps swung-over. This property is read-only.
         Args:
-            value: Value to set for the officeAppsCount property.
+            value: Value to set for the office_apps_count property.
         """
         self._office_apps_count = value
     
@@ -215,7 +215,7 @@ class ComanagedDevicesSummary(AdditionalDataHolder, Parsable):
         """
         Sets the resourceAccessCount property value. Number of devices with ResourceAccess swung-over. This property is read-only.
         Args:
-            value: Value to set for the resourceAccessCount property.
+            value: Value to set for the resource_access_count property.
         """
         self._resource_access_count = value
     
@@ -243,7 +243,7 @@ class ComanagedDevicesSummary(AdditionalDataHolder, Parsable):
         """
         Sets the totalComanagedCount property value. Number of Co-Managed Devices. This property is read-only.
         Args:
-            value: Value to set for the totalComanagedCount property.
+            value: Value to set for the total_comanaged_count property.
         """
         self._total_comanaged_count = value
     
@@ -260,7 +260,7 @@ class ComanagedDevicesSummary(AdditionalDataHolder, Parsable):
         """
         Sets the windowsUpdateForBusinessCount property value. Number of devices with WindowsUpdateForBusiness swung-over. This property is read-only.
         Args:
-            value: Value to set for the windowsUpdateForBusinessCount property.
+            value: Value to set for the windows_update_for_business_count property.
         """
         self._windows_update_for_business_count = value
     

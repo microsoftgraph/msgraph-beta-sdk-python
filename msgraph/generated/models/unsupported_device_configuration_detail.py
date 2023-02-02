@@ -58,7 +58,7 @@ class UnsupportedDeviceConfigurationDetail(AdditionalDataHolder, Parsable):
         fields = {
             "message": lambda n : setattr(self, 'message', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "property_name": lambda n : setattr(self, 'property_name', n.get_str_value()),
+            "propertyName": lambda n : setattr(self, 'property_name', n.get_str_value()),
         }
         return fields
     
@@ -92,7 +92,7 @@ class UnsupportedDeviceConfigurationDetail(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -109,7 +109,7 @@ class UnsupportedDeviceConfigurationDetail(AdditionalDataHolder, Parsable):
         """
         Sets the propertyName property value. If message is related to a specific property in the original entity, then the name of that property.
         Args:
-            value: Value to set for the propertyName property.
+            value: Value to set for the property_name property.
         """
         self._property_name = value
     

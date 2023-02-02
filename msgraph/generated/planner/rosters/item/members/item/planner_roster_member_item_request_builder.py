@@ -17,11 +17,12 @@ class PlannerRosterMemberItemRequestBuilder():
     """
     Provides operations to manage the members property of the microsoft.graph.plannerRoster entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, planner_roster_member_id: Optional[str] = None) -> None:
         """
         Instantiates a new PlannerRosterMemberItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            plannerRosterMemberId: key: id of plannerRosterMember
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -32,15 +33,15 @@ class PlannerRosterMemberItemRequestBuilder():
         self.url_template: str = "{+baseurl}/planner/rosters/{plannerRoster%2Did}/members/{plannerRosterMember%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["plannerRosterMember%2Did"] = plannerRosterMemberId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PlannerRosterMemberItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PlannerRosterMemberItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property members for planner
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class PlannerRosterMemberItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PlannerRosterMemberItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[planner_roster_member.PlannerRosterMember]:
+    async def get(self,request_configuration: Optional[PlannerRosterMemberItemRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_roster_member.PlannerRosterMember]:
         """
         Retrieves the members of the plannerRoster.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[planner_roster_member.PlannerRosterMember]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class PlannerRosterMemberItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, planner_roster_member.PlannerRosterMember, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, planner_roster_member.PlannerRosterMember, error_mapping)
     
-    async def patch(self,body: Optional[planner_roster_member.PlannerRosterMember] = None, request_configuration: Optional[PlannerRosterMemberItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[planner_roster_member.PlannerRosterMember]:
+    async def patch(self,body: Optional[planner_roster_member.PlannerRosterMember] = None, request_configuration: Optional[PlannerRosterMemberItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[planner_roster_member.PlannerRosterMember]:
         """
         Update the navigation property members in planner
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[planner_roster_member.PlannerRosterMember]
         """
         if body is None:
@@ -92,7 +91,7 @@ class PlannerRosterMemberItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, planner_roster_member.PlannerRosterMember, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, planner_roster_member.PlannerRosterMember, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PlannerRosterMemberItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -12,15 +12,24 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 cross_tenant_access_policy_configuration_partner = lazy_import('msgraph.generated.models.cross_tenant_access_policy_configuration_partner')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+identity_synchronization_request_builder = lazy_import('msgraph.generated.policies.cross_tenant_access_policy.partners.item.identity_synchronization.identity_synchronization_request_builder')
 
 class CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder():
     """
     Provides operations to manage the partners property of the microsoft.graph.crossTenantAccessPolicy entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    @property
+    def identity_synchronization(self) -> identity_synchronization_request_builder.IdentitySynchronizationRequestBuilder:
+        """
+        Provides operations to manage the identitySynchronization property of the microsoft.graph.crossTenantAccessPolicyConfigurationPartner entity.
+        """
+        return identity_synchronization_request_builder.IdentitySynchronizationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, cross_tenant_access_policy_configuration_partner_tenant_id: Optional[str] = None) -> None:
         """
         Instantiates a new CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder and sets the default values.
         Args:
+            crossTenantAccessPolicyConfigurationPartnerTenantId: key: tenantId of crossTenantAccessPolicyConfigurationPartner
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +41,15 @@ class CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder():
         self.url_template: str = "{+baseurl}/policies/crossTenantAccessPolicy/partners/{crossTenantAccessPolicyConfigurationPartner%2DtenantId}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["crossTenantAccessPolicyConfigurationPartner%2DtenantId"] = crossTenantAccessPolicyConfigurationPartnerTenantId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property partners for policies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +60,13 @@ class CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner]:
+    async def get(self,request_configuration: Optional[CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilderGetRequestConfiguration] = None) -> Optional[cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner]:
         """
         Defines partner-specific configurations for external Azure Active Directory organizations.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +78,14 @@ class CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner, error_mapping)
     
-    async def patch(self,body: Optional[cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner] = None, request_configuration: Optional[CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner]:
+    async def patch(self,body: Optional[cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner] = None, request_configuration: Optional[CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner]:
         """
         Update the navigation property partners in policies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner]
         """
         if body is None:
@@ -92,7 +99,7 @@ class CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

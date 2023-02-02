@@ -44,12 +44,11 @@ class DomainJoinConnectorsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DomainJoinConnectorsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_domain_join_connector_collection_response.DeviceManagementDomainJoinConnectorCollectionResponse]:
+    async def get(self,request_configuration: Optional[DomainJoinConnectorsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_domain_join_connector_collection_response.DeviceManagementDomainJoinConnectorCollectionResponse]:
         """
         A list of connector objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_domain_join_connector_collection_response.DeviceManagementDomainJoinConnectorCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class DomainJoinConnectorsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_domain_join_connector_collection_response.DeviceManagementDomainJoinConnectorCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_domain_join_connector_collection_response.DeviceManagementDomainJoinConnectorCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[device_management_domain_join_connector.DeviceManagementDomainJoinConnector] = None, request_configuration: Optional[DomainJoinConnectorsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_domain_join_connector.DeviceManagementDomainJoinConnector]:
+    async def post(self,body: Optional[device_management_domain_join_connector.DeviceManagementDomainJoinConnector] = None, request_configuration: Optional[DomainJoinConnectorsRequestBuilderPostRequestConfiguration] = None) -> Optional[device_management_domain_join_connector.DeviceManagementDomainJoinConnector]:
         """
         Create new navigation property to domainJoinConnectors for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_domain_join_connector.DeviceManagementDomainJoinConnector]
         """
         if body is None:
@@ -83,7 +81,7 @@ class DomainJoinConnectorsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_domain_join_connector.DeviceManagementDomainJoinConnector, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_domain_join_connector.DeviceManagementDomainJoinConnector, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DomainJoinConnectorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

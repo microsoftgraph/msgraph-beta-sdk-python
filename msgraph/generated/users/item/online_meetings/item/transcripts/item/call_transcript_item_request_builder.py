@@ -25,10 +25,11 @@ class CallTranscriptItemRequestBuilder():
         """
         return content_request_builder.ContentRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, call_transcript_id: Optional[str] = None) -> None:
         """
         Instantiates a new CallTranscriptItemRequestBuilder and sets the default values.
         Args:
+            callTranscriptId: key: id of callTranscript
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -40,15 +41,15 @@ class CallTranscriptItemRequestBuilder():
         self.url_template: str = "{+baseurl}/users/{user%2Did}/onlineMeetings/{onlineMeeting%2Did}/transcripts/{callTranscript%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["callTranscript%2Did"] = callTranscriptId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CallTranscriptItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CallTranscriptItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property transcripts for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +60,13 @@ class CallTranscriptItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CallTranscriptItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[call_transcript.CallTranscript]:
+    async def get(self,request_configuration: Optional[CallTranscriptItemRequestBuilderGetRequestConfiguration] = None) -> Optional[call_transcript.CallTranscript]:
         """
         The transcripts of an online meeting. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[call_transcript.CallTranscript]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +78,14 @@ class CallTranscriptItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, call_transcript.CallTranscript, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, call_transcript.CallTranscript, error_mapping)
     
-    async def patch(self,body: Optional[call_transcript.CallTranscript] = None, request_configuration: Optional[CallTranscriptItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[call_transcript.CallTranscript]:
+    async def patch(self,body: Optional[call_transcript.CallTranscript] = None, request_configuration: Optional[CallTranscriptItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[call_transcript.CallTranscript]:
         """
         Update the navigation property transcripts in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[call_transcript.CallTranscript]
         """
         if body is None:
@@ -100,7 +99,7 @@ class CallTranscriptItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, call_transcript.CallTranscript, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, call_transcript.CallTranscript, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CallTranscriptItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

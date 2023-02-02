@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class UserExperienceAnalyticsDeviceWithoutCloudIdentity(entity.Entity):
-    """
-    The user experience analytics Device without Cloud Identity.
-    """
     @property
     def azure_ad_device_id(self,) -> Optional[str]:
         """
@@ -22,13 +19,13 @@ class UserExperienceAnalyticsDeviceWithoutCloudIdentity(entity.Entity):
         """
         Sets the azureAdDeviceId property value. Azure Active Directory Device Id
         Args:
-            value: Value to set for the azureAdDeviceId property.
+            value: Value to set for the azure_ad_device_id property.
         """
         self._azure_ad_device_id = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsDeviceWithoutCloudIdentity and sets the default values.
+        Instantiates a new UserExperienceAnalyticsDeviceWithoutCloudIdentity and sets the default values.
         """
         super().__init__()
         # Azure Active Directory Device Id
@@ -63,7 +60,7 @@ class UserExperienceAnalyticsDeviceWithoutCloudIdentity(entity.Entity):
         """
         Sets the deviceName property value. The tenant attach device's name.
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -73,8 +70,8 @@ class UserExperienceAnalyticsDeviceWithoutCloudIdentity(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "azure_ad_device_id": lambda n : setattr(self, 'azure_ad_device_id', n.get_str_value()),
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "azureAdDeviceId": lambda n : setattr(self, 'azure_ad_device_id', n.get_str_value()),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

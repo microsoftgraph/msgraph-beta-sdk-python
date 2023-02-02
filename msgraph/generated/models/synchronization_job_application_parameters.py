@@ -56,7 +56,7 @@ class SynchronizationJobApplicationParameters(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "rule_id": lambda n : setattr(self, 'rule_id', n.get_str_value()),
+            "ruleId": lambda n : setattr(self, 'rule_id', n.get_str_value()),
             "subjects": lambda n : setattr(self, 'subjects', n.get_collection_of_object_values(synchronization_job_subject.SynchronizationJobSubject)),
         }
         return fields
@@ -74,7 +74,7 @@ class SynchronizationJobApplicationParameters(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -91,7 +91,7 @@ class SynchronizationJobApplicationParameters(AdditionalDataHolder, Parsable):
         """
         Sets the ruleId property value. The identifier of the synchronizationRule to be applied. This rule ID is defined in the schema for a given synchronization job or template.
         Args:
-            value: Value to set for the ruleId property.
+            value: Value to set for the rule_id property.
         """
         self._rule_id = value
     

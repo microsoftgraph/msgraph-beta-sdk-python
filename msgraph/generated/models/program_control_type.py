@@ -8,7 +8,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 class ProgramControlType(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new programControlType and sets the default values.
+        Instantiates a new ProgramControlType and sets the default values.
         """
         super().__init__()
         # The controlTypeGroupId property
@@ -31,7 +31,7 @@ class ProgramControlType(entity.Entity):
         """
         Sets the controlTypeGroupId property value. The controlTypeGroupId property
         Args:
-            value: Value to set for the controlTypeGroupId property.
+            value: Value to set for the control_type_group_id property.
         """
         self._control_type_group_id = value
     
@@ -60,7 +60,7 @@ class ProgramControlType(entity.Entity):
         """
         Sets the displayName property value. The name of the program control type
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -70,8 +70,8 @@ class ProgramControlType(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "control_type_group_id": lambda n : setattr(self, 'control_type_group_id', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "controlTypeGroupId": lambda n : setattr(self, 'control_type_group_id', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

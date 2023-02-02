@@ -17,10 +17,11 @@ class ManagedDeviceMobileAppConfigurationAssignmentItemRequestBuilder():
     """
     Provides operations to manage the assignments property of the microsoft.graph.managedDeviceMobileAppConfiguration entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, managed_device_mobile_app_configuration_assignment_id: Optional[str] = None) -> None:
         """
         Instantiates a new ManagedDeviceMobileAppConfigurationAssignmentItemRequestBuilder and sets the default values.
         Args:
+            managedDeviceMobileAppConfigurationAssignmentId: key: id of managedDeviceMobileAppConfigurationAssignment
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class ManagedDeviceMobileAppConfigurationAssignmentItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceAppManagement/mobileAppConfigurations/{managedDeviceMobileAppConfiguration%2Did}/assignments/{managedDeviceMobileAppConfigurationAssignment%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["managedDeviceMobileAppConfigurationAssignment%2Did"] = managedDeviceMobileAppConfigurationAssignmentId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ManagedDeviceMobileAppConfigurationAssignmentItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ManagedDeviceMobileAppConfigurationAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property assignments for deviceAppManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class ManagedDeviceMobileAppConfigurationAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ManagedDeviceMobileAppConfigurationAssignmentItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_device_mobile_app_configuration_assignment.ManagedDeviceMobileAppConfigurationAssignment]:
+    async def get(self,request_configuration: Optional[ManagedDeviceMobileAppConfigurationAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_device_mobile_app_configuration_assignment.ManagedDeviceMobileAppConfigurationAssignment]:
         """
         The list of group assignemenets for app configration.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_device_mobile_app_configuration_assignment.ManagedDeviceMobileAppConfigurationAssignment]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class ManagedDeviceMobileAppConfigurationAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_device_mobile_app_configuration_assignment.ManagedDeviceMobileAppConfigurationAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_device_mobile_app_configuration_assignment.ManagedDeviceMobileAppConfigurationAssignment, error_mapping)
     
-    async def patch(self,body: Optional[managed_device_mobile_app_configuration_assignment.ManagedDeviceMobileAppConfigurationAssignment] = None, request_configuration: Optional[ManagedDeviceMobileAppConfigurationAssignmentItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_device_mobile_app_configuration_assignment.ManagedDeviceMobileAppConfigurationAssignment]:
+    async def patch(self,body: Optional[managed_device_mobile_app_configuration_assignment.ManagedDeviceMobileAppConfigurationAssignment] = None, request_configuration: Optional[ManagedDeviceMobileAppConfigurationAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[managed_device_mobile_app_configuration_assignment.ManagedDeviceMobileAppConfigurationAssignment]:
         """
         Update the navigation property assignments in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_device_mobile_app_configuration_assignment.ManagedDeviceMobileAppConfigurationAssignment]
         """
         if body is None:
@@ -92,7 +91,7 @@ class ManagedDeviceMobileAppConfigurationAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_device_mobile_app_configuration_assignment.ManagedDeviceMobileAppConfigurationAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_device_mobile_app_configuration_assignment.ManagedDeviceMobileAppConfigurationAssignment, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ManagedDeviceMobileAppConfigurationAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

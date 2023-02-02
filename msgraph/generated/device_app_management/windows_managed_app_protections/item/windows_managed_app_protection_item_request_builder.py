@@ -12,10 +12,10 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 apps_request_builder = lazy_import('msgraph.generated.device_app_management.windows_managed_app_protections.item.apps.apps_request_builder')
 managed_mobile_app_item_request_builder = lazy_import('msgraph.generated.device_app_management.windows_managed_app_protections.item.apps.item.managed_mobile_app_item_request_builder')
-assign_request_builder = lazy_import('msgraph.generated.device_app_management.windows_managed_app_protections.item.assign.assign_request_builder')
 assignments_request_builder = lazy_import('msgraph.generated.device_app_management.windows_managed_app_protections.item.assignments.assignments_request_builder')
 targeted_managed_app_policy_assignment_item_request_builder = lazy_import('msgraph.generated.device_app_management.windows_managed_app_protections.item.assignments.item.targeted_managed_app_policy_assignment_item_request_builder')
-target_apps_request_builder = lazy_import('msgraph.generated.device_app_management.windows_managed_app_protections.item.target_apps.target_apps_request_builder')
+assign_request_builder = lazy_import('msgraph.generated.device_app_management.windows_managed_app_protections.item.microsoft_graph_assign.assign_request_builder')
+target_apps_request_builder = lazy_import('msgraph.generated.device_app_management.windows_managed_app_protections.item.microsoft_graph_target_apps.target_apps_request_builder')
 windows_managed_app_protection = lazy_import('msgraph.generated.models.windows_managed_app_protection')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -31,13 +31,6 @@ class WindowsManagedAppProtectionItemRequestBuilder():
         return apps_request_builder.AppsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
-        """
-        Provides operations to call the assign method.
-        """
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.windowsManagedAppProtection entity.
@@ -45,7 +38,14 @@ class WindowsManagedAppProtectionItemRequestBuilder():
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def target_apps(self) -> target_apps_request_builder.TargetAppsRequestBuilder:
+    def microsoft_graph_assign(self) -> assign_request_builder.AssignRequestBuilder:
+        """
+        Provides operations to call the assign method.
+        """
+        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_target_apps(self) -> target_apps_request_builder.TargetAppsRequestBuilder:
         """
         Provides operations to call the targetApps method.
         """
@@ -77,12 +77,13 @@ class WindowsManagedAppProtectionItemRequestBuilder():
         url_tpl_params["targetedManagedAppPolicyAssignment%2Did"] = id
         return targeted_managed_app_policy_assignment_item_request_builder.TargetedManagedAppPolicyAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, windows_managed_app_protection_id: Optional[str] = None) -> None:
         """
         Instantiates a new WindowsManagedAppProtectionItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            windowsManagedAppProtectionId: key: id of windowsManagedAppProtection
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -92,15 +93,15 @@ class WindowsManagedAppProtectionItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceAppManagement/windowsManagedAppProtections/{windowsManagedAppProtection%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["windowsManagedAppProtection%2Did"] = windowsManagedAppProtectionId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[WindowsManagedAppProtectionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[WindowsManagedAppProtectionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property windowsManagedAppProtections for deviceAppManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -111,14 +112,13 @@ class WindowsManagedAppProtectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[WindowsManagedAppProtectionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_managed_app_protection.WindowsManagedAppProtection]:
+    async def get(self,request_configuration: Optional[WindowsManagedAppProtectionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_managed_app_protection.WindowsManagedAppProtection]:
         """
         Windows managed app policies.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_managed_app_protection.WindowsManagedAppProtection]
         """
         request_info = self.to_get_request_information(
@@ -130,15 +130,14 @@ class WindowsManagedAppProtectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_managed_app_protection.WindowsManagedAppProtection, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_managed_app_protection.WindowsManagedAppProtection, error_mapping)
     
-    async def patch(self,body: Optional[windows_managed_app_protection.WindowsManagedAppProtection] = None, request_configuration: Optional[WindowsManagedAppProtectionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_managed_app_protection.WindowsManagedAppProtection]:
+    async def patch(self,body: Optional[windows_managed_app_protection.WindowsManagedAppProtection] = None, request_configuration: Optional[WindowsManagedAppProtectionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[windows_managed_app_protection.WindowsManagedAppProtection]:
         """
         Update the navigation property windowsManagedAppProtections in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_managed_app_protection.WindowsManagedAppProtection]
         """
         if body is None:
@@ -152,7 +151,7 @@ class WindowsManagedAppProtectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_managed_app_protection.WindowsManagedAppProtection, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_managed_app_protection.WindowsManagedAppProtection, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[WindowsManagedAppProtectionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

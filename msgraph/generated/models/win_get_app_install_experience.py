@@ -57,7 +57,7 @@ class WinGetAppInstallExperience(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "run_as_account": lambda n : setattr(self, 'run_as_account', n.get_enum_value(run_as_account_type.RunAsAccountType)),
+            "runAsAccount": lambda n : setattr(self, 'run_as_account', n.get_enum_value(run_as_account_type.RunAsAccountType)),
         }
         return fields
     
@@ -74,7 +74,7 @@ class WinGetAppInstallExperience(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -91,7 +91,7 @@ class WinGetAppInstallExperience(AdditionalDataHolder, Parsable):
         """
         Sets the runAsAccount property value. Indicates the type of execution context the app runs in.
         Args:
-            value: Value to set for the runAsAccount property.
+            value: Value to set for the run_as_account property.
         """
         self._run_as_account = value
     

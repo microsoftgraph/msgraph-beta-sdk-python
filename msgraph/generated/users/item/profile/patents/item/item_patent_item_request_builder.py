@@ -17,10 +17,11 @@ class ItemPatentItemRequestBuilder():
     """
     Provides operations to manage the patents property of the microsoft.graph.profile entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, item_patent_id: Optional[str] = None) -> None:
         """
         Instantiates a new ItemPatentItemRequestBuilder and sets the default values.
         Args:
+            itemPatentId: key: id of itemPatent
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class ItemPatentItemRequestBuilder():
         self.url_template: str = "{+baseurl}/users/{user%2Did}/profile/patents/{itemPatent%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["itemPatent%2Did"] = itemPatentId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ItemPatentItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ItemPatentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property patents for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class ItemPatentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ItemPatentItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[item_patent.ItemPatent]:
+    async def get(self,request_configuration: Optional[ItemPatentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[item_patent.ItemPatent]:
         """
         Represents patents that a user has added to their profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[item_patent.ItemPatent]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class ItemPatentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, item_patent.ItemPatent, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, item_patent.ItemPatent, error_mapping)
     
-    async def patch(self,body: Optional[item_patent.ItemPatent] = None, request_configuration: Optional[ItemPatentItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[item_patent.ItemPatent]:
+    async def patch(self,body: Optional[item_patent.ItemPatent] = None, request_configuration: Optional[ItemPatentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[item_patent.ItemPatent]:
         """
         Update the navigation property patents in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[item_patent.ItemPatent]
         """
         if body is None:
@@ -92,7 +91,7 @@ class ItemPatentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, item_patent.ItemPatent, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, item_patent.ItemPatent, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ItemPatentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

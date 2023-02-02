@@ -20,7 +20,7 @@ class Win32LobAppFileSystemRequirement(win32_lob_app_requirement.Win32LobAppRequ
         """
         Sets the check32BitOn64System property value. A value indicating whether this file or folder is for checking 32-bit app on 64-bit system
         Args:
-            value: Value to set for the check32BitOn64System property.
+            value: Value to set for the check32_bit_on64_system property.
         """
         self._check32_bit_on64_system = value
     
@@ -64,7 +64,7 @@ class Win32LobAppFileSystemRequirement(win32_lob_app_requirement.Win32LobAppRequ
         """
         Sets the detectionType property value. Contains all supported file system detection type.
         Args:
-            value: Value to set for the detectionType property.
+            value: Value to set for the detection_type property.
         """
         self._detection_type = value
     
@@ -81,7 +81,7 @@ class Win32LobAppFileSystemRequirement(win32_lob_app_requirement.Win32LobAppRequ
         """
         Sets the fileOrFolderName property value. The file or folder name to detect Win32 Line of Business (LoB) app
         Args:
-            value: Value to set for the fileOrFolderName property.
+            value: Value to set for the file_or_folder_name property.
         """
         self._file_or_folder_name = value
     
@@ -91,9 +91,9 @@ class Win32LobAppFileSystemRequirement(win32_lob_app_requirement.Win32LobAppRequ
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "check32_bit_on64_system": lambda n : setattr(self, 'check32_bit_on64_system', n.get_bool_value()),
-            "detection_type": lambda n : setattr(self, 'detection_type', n.get_enum_value(win32_lob_app_file_system_detection_type.Win32LobAppFileSystemDetectionType)),
-            "file_or_folder_name": lambda n : setattr(self, 'file_or_folder_name', n.get_str_value()),
+            "check32BitOn64System": lambda n : setattr(self, 'check32_bit_on64_system', n.get_bool_value()),
+            "detectionType": lambda n : setattr(self, 'detection_type', n.get_enum_value(win32_lob_app_file_system_detection_type.Win32LobAppFileSystemDetectionType)),
+            "fileOrFolderName": lambda n : setattr(self, 'file_or_folder_name', n.get_str_value()),
             "path": lambda n : setattr(self, 'path', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

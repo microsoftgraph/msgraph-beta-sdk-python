@@ -33,7 +33,7 @@ class RemoveWatermarkAction(information_protection_action.InformationProtectionA
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "ui_element_names": lambda n : setattr(self, 'ui_element_names', n.get_collection_of_primitive_values(str)),
+            "uiElementNames": lambda n : setattr(self, 'ui_element_names', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -63,7 +63,7 @@ class RemoveWatermarkAction(information_protection_action.InformationProtectionA
         """
         Sets the uiElementNames property value. The name of the UI element of footer to be removed.
         Args:
-            value: Value to set for the uiElementNames property.
+            value: Value to set for the ui_element_names property.
         """
         self._ui_element_names = value
     

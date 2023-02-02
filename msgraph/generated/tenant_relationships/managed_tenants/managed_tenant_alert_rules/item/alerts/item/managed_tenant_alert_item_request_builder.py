@@ -17,10 +17,11 @@ class ManagedTenantAlertItemRequestBuilder():
     """
     Provides operations to manage the alerts property of the microsoft.graph.managedTenants.managedTenantAlertRule entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, managed_tenant_alert_id: Optional[str] = None) -> None:
         """
         Instantiates a new ManagedTenantAlertItemRequestBuilder and sets the default values.
         Args:
+            managedTenantAlertId: key: id of managedTenantAlert
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class ManagedTenantAlertItemRequestBuilder():
         self.url_template: str = "{+baseurl}/tenantRelationships/managedTenants/managedTenantAlertRules/{managedTenantAlertRule%2Did}/alerts/{managedTenantAlert%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["managedTenantAlert%2Did"] = managedTenantAlertId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ManagedTenantAlertItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_tenant_alert.ManagedTenantAlert]:
+    async def get(self,request_configuration: Optional[ManagedTenantAlertItemRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_tenant_alert.ManagedTenantAlert]:
         """
         Get alerts from tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_tenant_alert.ManagedTenantAlert]
         """
         request_info = self.to_get_request_information(
@@ -52,7 +53,7 @@ class ManagedTenantAlertItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_tenant_alert.ManagedTenantAlert, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_tenant_alert.ManagedTenantAlert, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ManagedTenantAlertItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -34,7 +34,7 @@ class CloudPcLaunchInfo(AdditionalDataHolder, Parsable):
         """
         Sets the cloudPcId property value. The unique identifier of the Cloud PC.
         Args:
-            value: Value to set for the cloudPcId property.
+            value: Value to set for the cloud_pc_id property.
         """
         self._cloud_pc_id = value
     
@@ -51,7 +51,7 @@ class CloudPcLaunchInfo(AdditionalDataHolder, Parsable):
         """
         Sets the cloudPcLaunchUrl property value. The connect URL of the Cloud PC.
         Args:
-            value: Value to set for the cloudPcLaunchUrl property.
+            value: Value to set for the cloud_pc_launch_url property.
         """
         self._cloud_pc_launch_url = value
     
@@ -87,8 +87,8 @@ class CloudPcLaunchInfo(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "cloud_pc_id": lambda n : setattr(self, 'cloud_pc_id', n.get_str_value()),
-            "cloud_pc_launch_url": lambda n : setattr(self, 'cloud_pc_launch_url', n.get_str_value()),
+            "cloudPcId": lambda n : setattr(self, 'cloud_pc_id', n.get_str_value()),
+            "cloudPcLaunchUrl": lambda n : setattr(self, 'cloud_pc_launch_url', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -106,7 +106,7 @@ class CloudPcLaunchInfo(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -35,12 +35,13 @@ class ServicePrincipalCreationPolicyItemRequestBuilder():
         """
         return includes_request_builder.IncludesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, service_principal_creation_policy_id: Optional[str] = None) -> None:
         """
         Instantiates a new ServicePrincipalCreationPolicyItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            servicePrincipalCreationPolicyId: key: id of servicePrincipalCreationPolicy
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -50,15 +51,15 @@ class ServicePrincipalCreationPolicyItemRequestBuilder():
         self.url_template: str = "{+baseurl}/policies/servicePrincipalCreationPolicies/{servicePrincipalCreationPolicy%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["servicePrincipalCreationPolicy%2Did"] = servicePrincipalCreationPolicyId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ServicePrincipalCreationPolicyItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ServicePrincipalCreationPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property servicePrincipalCreationPolicies for policies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -69,7 +70,7 @@ class ServicePrincipalCreationPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def excludes_by_id(self,id: str) -> service_principal_creation_condition_set_item_request_builder.ServicePrincipalCreationConditionSetItemRequestBuilder:
         """
@@ -84,12 +85,11 @@ class ServicePrincipalCreationPolicyItemRequestBuilder():
         url_tpl_params["servicePrincipalCreationConditionSet%2Did"] = id
         return service_principal_creation_condition_set_item_request_builder.ServicePrincipalCreationConditionSetItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ServicePrincipalCreationPolicyItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[service_principal_creation_policy.ServicePrincipalCreationPolicy]:
+    async def get(self,request_configuration: Optional[ServicePrincipalCreationPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[service_principal_creation_policy.ServicePrincipalCreationPolicy]:
         """
         Get servicePrincipalCreationPolicies from policies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[service_principal_creation_policy.ServicePrincipalCreationPolicy]
         """
         request_info = self.to_get_request_information(
@@ -101,7 +101,7 @@ class ServicePrincipalCreationPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, service_principal_creation_policy.ServicePrincipalCreationPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, service_principal_creation_policy.ServicePrincipalCreationPolicy, error_mapping)
     
     def includes_by_id(self,id: str) -> service_principal_creation_condition_set_item_request_builder.ServicePrincipalCreationConditionSetItemRequestBuilder:
         """
@@ -116,13 +116,12 @@ class ServicePrincipalCreationPolicyItemRequestBuilder():
         url_tpl_params["servicePrincipalCreationConditionSet%2Did"] = id
         return service_principal_creation_condition_set_item_request_builder.ServicePrincipalCreationConditionSetItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[service_principal_creation_policy.ServicePrincipalCreationPolicy] = None, request_configuration: Optional[ServicePrincipalCreationPolicyItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[service_principal_creation_policy.ServicePrincipalCreationPolicy]:
+    async def patch(self,body: Optional[service_principal_creation_policy.ServicePrincipalCreationPolicy] = None, request_configuration: Optional[ServicePrincipalCreationPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[service_principal_creation_policy.ServicePrincipalCreationPolicy]:
         """
         Update the navigation property servicePrincipalCreationPolicies in policies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[service_principal_creation_policy.ServicePrincipalCreationPolicy]
         """
         if body is None:
@@ -136,7 +135,7 @@ class ServicePrincipalCreationPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, service_principal_creation_policy.ServicePrincipalCreationPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, service_principal_creation_policy.ServicePrincipalCreationPolicy, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ServicePrincipalCreationPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

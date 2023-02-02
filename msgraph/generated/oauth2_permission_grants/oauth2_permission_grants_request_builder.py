@@ -14,7 +14,7 @@ o_auth2_permission_grant = lazy_import('msgraph.generated.models.o_auth2_permiss
 o_auth2_permission_grant_collection_response = lazy_import('msgraph.generated.models.o_auth2_permission_grant_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.oauth2_permission_grants.count.count_request_builder')
-delta_request_builder = lazy_import('msgraph.generated.oauth2_permission_grants.delta.delta_request_builder')
+delta_request_builder = lazy_import('msgraph.generated.oauth2_permission_grants.microsoft_graph_delta.delta_request_builder')
 
 class Oauth2PermissionGrantsRequestBuilder():
     """
@@ -26,6 +26,13 @@ class Oauth2PermissionGrantsRequestBuilder():
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_delta(self) -> delta_request_builder.DeltaRequestBuilder:
+        """
+        Provides operations to call the delta method.
+        """
+        return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -45,19 +52,11 @@ class Oauth2PermissionGrantsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def delta(self,) -> delta_request_builder.DeltaRequestBuilder:
-        """
-        Provides operations to call the delta method.
-        Returns: delta_request_builder.DeltaRequestBuilder
-        """
-        return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def get(self,request_configuration: Optional[Oauth2PermissionGrantsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[o_auth2_permission_grant_collection_response.OAuth2PermissionGrantCollectionResponse]:
+    async def get(self,request_configuration: Optional[Oauth2PermissionGrantsRequestBuilderGetRequestConfiguration] = None) -> Optional[o_auth2_permission_grant_collection_response.OAuth2PermissionGrantCollectionResponse]:
         """
         Retrieve a list of oAuth2PermissionGrant objects, representing delegated permissions which have been granted for client applications to access APIs on behalf of signed-in users.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[o_auth2_permission_grant_collection_response.OAuth2PermissionGrantCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class Oauth2PermissionGrantsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, o_auth2_permission_grant_collection_response.OAuth2PermissionGrantCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, o_auth2_permission_grant_collection_response.OAuth2PermissionGrantCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[o_auth2_permission_grant.OAuth2PermissionGrant] = None, request_configuration: Optional[Oauth2PermissionGrantsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[o_auth2_permission_grant.OAuth2PermissionGrant]:
+    async def post(self,body: Optional[o_auth2_permission_grant.OAuth2PermissionGrant] = None, request_configuration: Optional[Oauth2PermissionGrantsRequestBuilderPostRequestConfiguration] = None) -> Optional[o_auth2_permission_grant.OAuth2PermissionGrant]:
         """
         Create a delegated permission grant, represented by an oAuth2PermissionGrant object. A delegated permission grant authorizes a client service principal (representing a client application) to access a resource service principal (representing an API), on behalf of a signed-in user, for the level of access limited by the delegated permissions which were granted.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[o_auth2_permission_grant.OAuth2PermissionGrant]
         """
         if body is None:
@@ -91,7 +89,7 @@ class Oauth2PermissionGrantsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, o_auth2_permission_grant.OAuth2PermissionGrant, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, o_auth2_permission_grant.OAuth2PermissionGrant, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[Oauth2PermissionGrantsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

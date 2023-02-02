@@ -10,13 +10,14 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-approve_apps_request_builder = lazy_import('msgraph.generated.device_management.android_managed_store_account_enterprise_settings.approve_apps.approve_apps_request_builder')
-complete_signup_request_builder = lazy_import('msgraph.generated.device_management.android_managed_store_account_enterprise_settings.complete_signup.complete_signup_request_builder')
-create_google_play_web_token_request_builder = lazy_import('msgraph.generated.device_management.android_managed_store_account_enterprise_settings.create_google_play_web_token.create_google_play_web_token_request_builder')
-request_signup_url_request_builder = lazy_import('msgraph.generated.device_management.android_managed_store_account_enterprise_settings.request_signup_url.request_signup_url_request_builder')
-set_android_device_owner_fully_managed_enrollment_state_request_builder = lazy_import('msgraph.generated.device_management.android_managed_store_account_enterprise_settings.set_android_device_owner_fully_managed_enrollment_state.set_android_device_owner_fully_managed_enrollment_state_request_builder')
-sync_apps_request_builder = lazy_import('msgraph.generated.device_management.android_managed_store_account_enterprise_settings.sync_apps.sync_apps_request_builder')
-unbind_request_builder = lazy_import('msgraph.generated.device_management.android_managed_store_account_enterprise_settings.unbind.unbind_request_builder')
+add_apps_request_builder = lazy_import('msgraph.generated.device_management.android_managed_store_account_enterprise_settings.microsoft_graph_add_apps.add_apps_request_builder')
+approve_apps_request_builder = lazy_import('msgraph.generated.device_management.android_managed_store_account_enterprise_settings.microsoft_graph_approve_apps.approve_apps_request_builder')
+complete_signup_request_builder = lazy_import('msgraph.generated.device_management.android_managed_store_account_enterprise_settings.microsoft_graph_complete_signup.complete_signup_request_builder')
+create_google_play_web_token_request_builder = lazy_import('msgraph.generated.device_management.android_managed_store_account_enterprise_settings.microsoft_graph_create_google_play_web_token.create_google_play_web_token_request_builder')
+request_signup_url_request_builder = lazy_import('msgraph.generated.device_management.android_managed_store_account_enterprise_settings.microsoft_graph_request_signup_url.request_signup_url_request_builder')
+set_android_device_owner_fully_managed_enrollment_state_request_builder = lazy_import('msgraph.generated.device_management.android_managed_store_account_enterprise_settings.microsoft_graph_set_android_device_owner_fully_managed_enrollment_state.set_android_device_owner_fully_managed_enrollment_state_request_builder')
+sync_apps_request_builder = lazy_import('msgraph.generated.device_management.android_managed_store_account_enterprise_settings.microsoft_graph_sync_apps.sync_apps_request_builder')
+unbind_request_builder = lazy_import('msgraph.generated.device_management.android_managed_store_account_enterprise_settings.microsoft_graph_unbind.unbind_request_builder')
 android_managed_store_account_enterprise_settings = lazy_import('msgraph.generated.models.android_managed_store_account_enterprise_settings')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -25,49 +26,56 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
     Provides operations to manage the androidManagedStoreAccountEnterpriseSettings property of the microsoft.graph.deviceManagement entity.
     """
     @property
-    def approve_apps(self) -> approve_apps_request_builder.ApproveAppsRequestBuilder:
+    def microsoft_graph_add_apps(self) -> add_apps_request_builder.AddAppsRequestBuilder:
+        """
+        Provides operations to call the addApps method.
+        """
+        return add_apps_request_builder.AddAppsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_approve_apps(self) -> approve_apps_request_builder.ApproveAppsRequestBuilder:
         """
         Provides operations to call the approveApps method.
         """
         return approve_apps_request_builder.ApproveAppsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def complete_signup(self) -> complete_signup_request_builder.CompleteSignupRequestBuilder:
+    def microsoft_graph_complete_signup(self) -> complete_signup_request_builder.CompleteSignupRequestBuilder:
         """
         Provides operations to call the completeSignup method.
         """
         return complete_signup_request_builder.CompleteSignupRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def create_google_play_web_token(self) -> create_google_play_web_token_request_builder.CreateGooglePlayWebTokenRequestBuilder:
+    def microsoft_graph_create_google_play_web_token(self) -> create_google_play_web_token_request_builder.CreateGooglePlayWebTokenRequestBuilder:
         """
         Provides operations to call the createGooglePlayWebToken method.
         """
         return create_google_play_web_token_request_builder.CreateGooglePlayWebTokenRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def request_signup_url(self) -> request_signup_url_request_builder.RequestSignupUrlRequestBuilder:
+    def microsoft_graph_request_signup_url(self) -> request_signup_url_request_builder.RequestSignupUrlRequestBuilder:
         """
         Provides operations to call the requestSignupUrl method.
         """
         return request_signup_url_request_builder.RequestSignupUrlRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def set_android_device_owner_fully_managed_enrollment_state(self) -> set_android_device_owner_fully_managed_enrollment_state_request_builder.SetAndroidDeviceOwnerFullyManagedEnrollmentStateRequestBuilder:
+    def microsoft_graph_set_android_device_owner_fully_managed_enrollment_state(self) -> set_android_device_owner_fully_managed_enrollment_state_request_builder.SetAndroidDeviceOwnerFullyManagedEnrollmentStateRequestBuilder:
         """
         Provides operations to call the setAndroidDeviceOwnerFullyManagedEnrollmentState method.
         """
         return set_android_device_owner_fully_managed_enrollment_state_request_builder.SetAndroidDeviceOwnerFullyManagedEnrollmentStateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sync_apps(self) -> sync_apps_request_builder.SyncAppsRequestBuilder:
+    def microsoft_graph_sync_apps(self) -> sync_apps_request_builder.SyncAppsRequestBuilder:
         """
         Provides operations to call the syncApps method.
         """
         return sync_apps_request_builder.SyncAppsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def unbind(self) -> unbind_request_builder.UnbindRequestBuilder:
+    def microsoft_graph_unbind(self) -> unbind_request_builder.UnbindRequestBuilder:
         """
         Provides operations to call the unbind method.
         """
@@ -91,12 +99,11 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property androidManagedStoreAccountEnterpriseSettings for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -107,14 +114,13 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]:
+    async def get(self,request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]:
         """
         The singleton Android managed store account enterprise settings entity.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]
         """
         request_info = self.to_get_request_information(
@@ -126,15 +132,14 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings, error_mapping)
     
-    async def patch(self,body: Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings] = None, request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]:
+    async def patch(self,body: Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings] = None, request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]:
         """
         Update the navigation property androidManagedStoreAccountEnterpriseSettings in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]
         """
         if body is None:
@@ -148,7 +153,7 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

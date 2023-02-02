@@ -17,10 +17,11 @@ class GroupPolicyCategoryItemRequestBuilder():
     """
     Provides operations to manage the children property of the microsoft.graph.groupPolicyCategory entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, group_policy_category_id1: Optional[str] = None) -> None:
         """
         Instantiates a new GroupPolicyCategoryItemRequestBuilder and sets the default values.
         Args:
+            groupPolicyCategoryId1: key: id of groupPolicyCategory
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class GroupPolicyCategoryItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceManagement/groupPolicyCategories/{groupPolicyCategory%2Did}/children/{groupPolicyCategory%2Did1}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["groupPolicyCategory%2Did1"] = groupPolicyCategoryId1
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[GroupPolicyCategoryItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group_policy_category.GroupPolicyCategory]:
+    async def get(self,request_configuration: Optional[GroupPolicyCategoryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[group_policy_category.GroupPolicyCategory]:
         """
         The children categories
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_policy_category.GroupPolicyCategory]
         """
         request_info = self.to_get_request_information(
@@ -52,7 +53,7 @@ class GroupPolicyCategoryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group_policy_category.GroupPolicyCategory, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, group_policy_category.GroupPolicyCategory, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GroupPolicyCategoryItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

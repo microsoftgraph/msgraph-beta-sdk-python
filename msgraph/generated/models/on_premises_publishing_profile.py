@@ -25,7 +25,7 @@ class OnPremisesPublishingProfile(entity.Entity):
         """
         Sets the agentGroups property value. List of existing onPremisesAgentGroup objects. Read-only. Nullable.
         Args:
-            value: Value to set for the agentGroups property.
+            value: Value to set for the agent_groups property.
         """
         self._agent_groups = value
     
@@ -59,7 +59,7 @@ class OnPremisesPublishingProfile(entity.Entity):
         """
         Sets the connectorGroups property value. List of existing connectorGroup objects for applications published through Application Proxy. Read-only. Nullable.
         Args:
-            value: Value to set for the connectorGroups property.
+            value: Value to set for the connector_groups property.
         """
         self._connector_groups = value
     
@@ -82,7 +82,7 @@ class OnPremisesPublishingProfile(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new onPremisesPublishingProfile and sets the default values.
+        Instantiates a new OnPremisesPublishingProfile and sets the default values.
         """
         super().__init__()
         # List of existing onPremisesAgentGroup objects. Read-only. Nullable.
@@ -122,14 +122,14 @@ class OnPremisesPublishingProfile(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "agent_groups": lambda n : setattr(self, 'agent_groups', n.get_collection_of_object_values(on_premises_agent_group.OnPremisesAgentGroup)),
             "agents": lambda n : setattr(self, 'agents', n.get_collection_of_object_values(on_premises_agent.OnPremisesAgent)),
-            "connector_groups": lambda n : setattr(self, 'connector_groups', n.get_collection_of_object_values(connector_group.ConnectorGroup)),
+            "agentGroups": lambda n : setattr(self, 'agent_groups', n.get_collection_of_object_values(on_premises_agent_group.OnPremisesAgentGroup)),
             "connectors": lambda n : setattr(self, 'connectors', n.get_collection_of_object_values(connector.Connector)),
-            "hybrid_agent_updater_configuration": lambda n : setattr(self, 'hybrid_agent_updater_configuration', n.get_object_value(hybrid_agent_updater_configuration.HybridAgentUpdaterConfiguration)),
-            "is_default_access_enabled": lambda n : setattr(self, 'is_default_access_enabled', n.get_bool_value()),
-            "is_enabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
-            "published_resources": lambda n : setattr(self, 'published_resources', n.get_collection_of_object_values(published_resource.PublishedResource)),
+            "connectorGroups": lambda n : setattr(self, 'connector_groups', n.get_collection_of_object_values(connector_group.ConnectorGroup)),
+            "hybridAgentUpdaterConfiguration": lambda n : setattr(self, 'hybrid_agent_updater_configuration', n.get_object_value(hybrid_agent_updater_configuration.HybridAgentUpdaterConfiguration)),
+            "isDefaultAccessEnabled": lambda n : setattr(self, 'is_default_access_enabled', n.get_bool_value()),
+            "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
+            "publishedResources": lambda n : setattr(self, 'published_resources', n.get_collection_of_object_values(published_resource.PublishedResource)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -148,7 +148,7 @@ class OnPremisesPublishingProfile(entity.Entity):
         """
         Sets the hybridAgentUpdaterConfiguration property value. Represents a hybridAgentUpdaterConfiguration object.
         Args:
-            value: Value to set for the hybridAgentUpdaterConfiguration property.
+            value: Value to set for the hybrid_agent_updater_configuration property.
         """
         self._hybrid_agent_updater_configuration = value
     
@@ -165,7 +165,7 @@ class OnPremisesPublishingProfile(entity.Entity):
         """
         Sets the isDefaultAccessEnabled property value. The isDefaultAccessEnabled property
         Args:
-            value: Value to set for the isDefaultAccessEnabled property.
+            value: Value to set for the is_default_access_enabled property.
         """
         self._is_default_access_enabled = value
     
@@ -182,7 +182,7 @@ class OnPremisesPublishingProfile(entity.Entity):
         """
         Sets the isEnabled property value. Represents if Azure AD Application Proxy is enabled for the tenant.
         Args:
-            value: Value to set for the isEnabled property.
+            value: Value to set for the is_enabled property.
         """
         self._is_enabled = value
     
@@ -199,7 +199,7 @@ class OnPremisesPublishingProfile(entity.Entity):
         """
         Sets the publishedResources property value. List of existing publishedResource objects. Read-only. Nullable.
         Args:
-            value: Value to set for the publishedResources property.
+            value: Value to set for the published_resources property.
         """
         self._published_resources = value
     
@@ -212,10 +212,10 @@ class OnPremisesPublishingProfile(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_collection_of_object_values("agentGroups", self.agent_groups)
         writer.write_collection_of_object_values("agents", self.agents)
-        writer.write_collection_of_object_values("connectorGroups", self.connector_groups)
+        writer.write_collection_of_object_values("agentGroups", self.agent_groups)
         writer.write_collection_of_object_values("connectors", self.connectors)
+        writer.write_collection_of_object_values("connectorGroups", self.connector_groups)
         writer.write_object_value("hybridAgentUpdaterConfiguration", self.hybrid_agent_updater_configuration)
         writer.write_bool_value("isDefaultAccessEnabled", self.is_default_access_enabled)
         writer.write_bool_value("isEnabled", self.is_enabled)

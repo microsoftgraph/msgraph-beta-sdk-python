@@ -40,7 +40,7 @@ class ConnectorGroup(entity.Entity):
         """
         Sets the connectorGroupType property value. The connectorGroupType property
         Args:
-            value: Value to set for the connectorGroupType property.
+            value: Value to set for the connector_group_type property.
         """
         self._connector_group_type = value
     
@@ -83,8 +83,8 @@ class ConnectorGroup(entity.Entity):
         """
         fields = {
             "applications": lambda n : setattr(self, 'applications', n.get_collection_of_object_values(application.Application)),
-            "connector_group_type": lambda n : setattr(self, 'connector_group_type', n.get_enum_value(connector_group_type.ConnectorGroupType)),
-            "is_default": lambda n : setattr(self, 'is_default', n.get_bool_value()),
+            "connectorGroupType": lambda n : setattr(self, 'connector_group_type', n.get_enum_value(connector_group_type.ConnectorGroupType)),
+            "isDefault": lambda n : setattr(self, 'is_default', n.get_bool_value()),
             "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(connector.Connector)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "region": lambda n : setattr(self, 'region', n.get_enum_value(connector_group_region.ConnectorGroupRegion)),
@@ -106,7 +106,7 @@ class ConnectorGroup(entity.Entity):
         """
         Sets the isDefault property value. Indicates if the connectorGroup is the default connectorGroup. Only a single connector group can be the default connectorGroup and this is pre-set by the system. Read-only.
         Args:
-            value: Value to set for the isDefault property.
+            value: Value to set for the is_default property.
         """
         self._is_default = value
     

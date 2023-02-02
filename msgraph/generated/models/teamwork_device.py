@@ -47,7 +47,7 @@ class TeamworkDevice(entity.Entity):
         """
         Sets the activityState property value. The activity state of the device. The possible values are: unknown, busy, idle, unavailable, unknownFutureValue.
         Args:
-            value: Value to set for the activityState property.
+            value: Value to set for the activity_state property.
         """
         self._activity_state = value
     
@@ -64,7 +64,7 @@ class TeamworkDevice(entity.Entity):
         """
         Sets the companyAssetTag property value. The company asset tag assigned by the admin on the device.
         Args:
-            value: Value to set for the companyAssetTag property.
+            value: Value to set for the company_asset_tag property.
         """
         self._company_asset_tag = value
     
@@ -136,7 +136,7 @@ class TeamworkDevice(entity.Entity):
         """
         Sets the createdBy property value. Identity of the user who enrolled the device to the tenant.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -153,7 +153,7 @@ class TeamworkDevice(entity.Entity):
         """
         Sets the createdDateTime property value. The UTC date and time when the device was enrolled to the tenant.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -182,7 +182,7 @@ class TeamworkDevice(entity.Entity):
         """
         Sets the currentUser property value. The signed-in user on the device.
         Args:
-            value: Value to set for the currentUser property.
+            value: Value to set for the current_user property.
         """
         self._current_user = value
     
@@ -199,7 +199,7 @@ class TeamworkDevice(entity.Entity):
         """
         Sets the deviceType property value. The deviceType property
         Args:
-            value: Value to set for the deviceType property.
+            value: Value to set for the device_type property.
         """
         self._device_type = value
     
@@ -210,18 +210,18 @@ class TeamworkDevice(entity.Entity):
         """
         fields = {
             "activity": lambda n : setattr(self, 'activity', n.get_object_value(teamwork_device_activity.TeamworkDeviceActivity)),
-            "activity_state": lambda n : setattr(self, 'activity_state', n.get_enum_value(teamwork_device_activity_state.TeamworkDeviceActivityState)),
-            "company_asset_tag": lambda n : setattr(self, 'company_asset_tag', n.get_str_value()),
+            "activityState": lambda n : setattr(self, 'activity_state', n.get_enum_value(teamwork_device_activity_state.TeamworkDeviceActivityState)),
+            "companyAssetTag": lambda n : setattr(self, 'company_asset_tag', n.get_str_value()),
             "configuration": lambda n : setattr(self, 'configuration', n.get_object_value(teamwork_device_configuration.TeamworkDeviceConfiguration)),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "current_user": lambda n : setattr(self, 'current_user', n.get_object_value(teamwork_user_identity.TeamworkUserIdentity)),
-            "device_type": lambda n : setattr(self, 'device_type', n.get_enum_value(teamwork_device_type.TeamworkDeviceType)),
-            "hardware_detail": lambda n : setattr(self, 'hardware_detail', n.get_object_value(teamwork_hardware_detail.TeamworkHardwareDetail)),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "currentUser": lambda n : setattr(self, 'current_user', n.get_object_value(teamwork_user_identity.TeamworkUserIdentity)),
+            "deviceType": lambda n : setattr(self, 'device_type', n.get_enum_value(teamwork_device_type.TeamworkDeviceType)),
+            "hardwareDetail": lambda n : setattr(self, 'hardware_detail', n.get_object_value(teamwork_hardware_detail.TeamworkHardwareDetail)),
             "health": lambda n : setattr(self, 'health', n.get_object_value(teamwork_device_health.TeamworkDeviceHealth)),
-            "health_status": lambda n : setattr(self, 'health_status', n.get_enum_value(teamwork_device_health_status.TeamworkDeviceHealthStatus)),
-            "last_modified_by": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "healthStatus": lambda n : setattr(self, 'health_status', n.get_enum_value(teamwork_device_health_status.TeamworkDeviceHealthStatus)),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "notes": lambda n : setattr(self, 'notes', n.get_str_value()),
             "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(teamwork_device_operation.TeamworkDeviceOperation)),
         }
@@ -242,7 +242,7 @@ class TeamworkDevice(entity.Entity):
         """
         Sets the hardwareDetail property value. The hardwareDetail property
         Args:
-            value: Value to set for the hardwareDetail property.
+            value: Value to set for the hardware_detail property.
         """
         self._hardware_detail = value
     
@@ -276,7 +276,7 @@ class TeamworkDevice(entity.Entity):
         """
         Sets the healthStatus property value. The health status of the device. The possible values are: unknown, offline, critical, nonUrgent, healthy, unknownFutureValue.
         Args:
-            value: Value to set for the healthStatus property.
+            value: Value to set for the health_status property.
         """
         self._health_status = value
     
@@ -293,7 +293,7 @@ class TeamworkDevice(entity.Entity):
         """
         Sets the lastModifiedBy property value. Identity of the user who last modified the device details.
         Args:
-            value: Value to set for the lastModifiedBy property.
+            value: Value to set for the last_modified_by property.
         """
         self._last_modified_by = value
     
@@ -310,7 +310,7 @@ class TeamworkDevice(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The UTC date and time when the device detail was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     

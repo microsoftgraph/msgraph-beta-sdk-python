@@ -12,12 +12,12 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 categories_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.categories.categories_request_builder')
 education_category_item_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.categories.item.education_category_item_request_builder')
-publish_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.publish.publish_request_builder')
+publish_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.microsoft_graph_publish.publish_request_builder')
+set_up_feedback_resources_folder_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.microsoft_graph_set_up_feedback_resources_folder.set_up_feedback_resources_folder_request_builder')
+set_up_resources_folder_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.microsoft_graph_set_up_resources_folder.set_up_resources_folder_request_builder')
 resources_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.resources.resources_request_builder')
 education_assignment_resource_item_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.resources.item.education_assignment_resource_item_request_builder')
 rubric_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.rubric.rubric_request_builder')
-set_up_feedback_resources_folder_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.set_up_feedback_resources_folder.set_up_feedback_resources_folder_request_builder')
-set_up_resources_folder_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.set_up_resources_folder.set_up_resources_folder_request_builder')
 submissions_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.submissions.submissions_request_builder')
 education_submission_item_request_builder = lazy_import('msgraph.generated.education.users.item.assignments.item.submissions.item.education_submission_item_request_builder')
 education_assignment = lazy_import('msgraph.generated.models.education_assignment')
@@ -35,11 +35,25 @@ class EducationAssignmentItemRequestBuilder():
         return categories_request_builder.CategoriesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def publish(self) -> publish_request_builder.PublishRequestBuilder:
+    def microsoft_graph_publish(self) -> publish_request_builder.PublishRequestBuilder:
         """
         Provides operations to call the publish method.
         """
         return publish_request_builder.PublishRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_set_up_feedback_resources_folder(self) -> set_up_feedback_resources_folder_request_builder.SetUpFeedbackResourcesFolderRequestBuilder:
+        """
+        Provides operations to call the setUpFeedbackResourcesFolder method.
+        """
+        return set_up_feedback_resources_folder_request_builder.SetUpFeedbackResourcesFolderRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_set_up_resources_folder(self) -> set_up_resources_folder_request_builder.SetUpResourcesFolderRequestBuilder:
+        """
+        Provides operations to call the setUpResourcesFolder method.
+        """
+        return set_up_resources_folder_request_builder.SetUpResourcesFolderRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def resources(self) -> resources_request_builder.ResourcesRequestBuilder:
@@ -54,20 +68,6 @@ class EducationAssignmentItemRequestBuilder():
         Provides operations to manage the rubric property of the microsoft.graph.educationAssignment entity.
         """
         return rubric_request_builder.RubricRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def set_up_feedback_resources_folder(self) -> set_up_feedback_resources_folder_request_builder.SetUpFeedbackResourcesFolderRequestBuilder:
-        """
-        Provides operations to call the setUpFeedbackResourcesFolder method.
-        """
-        return set_up_feedback_resources_folder_request_builder.SetUpFeedbackResourcesFolderRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def set_up_resources_folder(self) -> set_up_resources_folder_request_builder.SetUpResourcesFolderRequestBuilder:
-        """
-        Provides operations to call the setUpResourcesFolder method.
-        """
-        return set_up_resources_folder_request_builder.SetUpResourcesFolderRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def submissions(self) -> submissions_request_builder.SubmissionsRequestBuilder:
@@ -89,10 +89,11 @@ class EducationAssignmentItemRequestBuilder():
         url_tpl_params["educationCategory%2Did"] = id
         return education_category_item_request_builder.EducationCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, education_assignment_id: Optional[str] = None) -> None:
         """
         Instantiates a new EducationAssignmentItemRequestBuilder and sets the default values.
         Args:
+            educationAssignmentId: key: id of educationAssignment
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -104,15 +105,15 @@ class EducationAssignmentItemRequestBuilder():
         self.url_template: str = "{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["educationAssignment%2Did"] = educationAssignmentId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[EducationAssignmentItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[EducationAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property assignments for education
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -123,14 +124,13 @@ class EducationAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[EducationAssignmentItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[education_assignment.EducationAssignment]:
+    async def get(self,request_configuration: Optional[EducationAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[education_assignment.EducationAssignment]:
         """
         List of assignments for the user. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[education_assignment.EducationAssignment]
         """
         request_info = self.to_get_request_information(
@@ -142,15 +142,14 @@ class EducationAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, education_assignment.EducationAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, education_assignment.EducationAssignment, error_mapping)
     
-    async def patch(self,body: Optional[education_assignment.EducationAssignment] = None, request_configuration: Optional[EducationAssignmentItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[education_assignment.EducationAssignment]:
+    async def patch(self,body: Optional[education_assignment.EducationAssignment] = None, request_configuration: Optional[EducationAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[education_assignment.EducationAssignment]:
         """
         Update the navigation property assignments in education
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[education_assignment.EducationAssignment]
         """
         if body is None:
@@ -164,7 +163,7 @@ class EducationAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, education_assignment.EducationAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, education_assignment.EducationAssignment, error_mapping)
     
     def resources_by_id(self,id: str) -> education_assignment_resource_item_request_builder.EducationAssignmentResourceItemRequestBuilder:
         """

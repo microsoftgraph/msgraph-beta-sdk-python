@@ -107,7 +107,7 @@ class PositionDetail(AdditionalDataHolder, Parsable):
         """
         Sets the endMonthYear property value. When the position ended.
         Args:
-            value: Value to set for the endMonthYear property.
+            value: Value to set for the end_month_year property.
         """
         self._end_month_year = value
     
@@ -119,11 +119,11 @@ class PositionDetail(AdditionalDataHolder, Parsable):
         fields = {
             "company": lambda n : setattr(self, 'company', n.get_object_value(company_detail.CompanyDetail)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "end_month_year": lambda n : setattr(self, 'end_month_year', n.get_object_value(Date)),
-            "job_title": lambda n : setattr(self, 'job_title', n.get_str_value()),
+            "endMonthYear": lambda n : setattr(self, 'end_month_year', n.get_object_value(Date)),
+            "jobTitle": lambda n : setattr(self, 'job_title', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "role": lambda n : setattr(self, 'role', n.get_str_value()),
-            "start_month_year": lambda n : setattr(self, 'start_month_year', n.get_object_value(Date)),
+            "startMonthYear": lambda n : setattr(self, 'start_month_year', n.get_object_value(Date)),
             "summary": lambda n : setattr(self, 'summary', n.get_str_value()),
         }
         return fields
@@ -141,7 +141,7 @@ class PositionDetail(AdditionalDataHolder, Parsable):
         """
         Sets the jobTitle property value. The title held when in that position.
         Args:
-            value: Value to set for the jobTitle property.
+            value: Value to set for the job_title property.
         """
         self._job_title = value
     
@@ -158,7 +158,7 @@ class PositionDetail(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -210,7 +210,7 @@ class PositionDetail(AdditionalDataHolder, Parsable):
         """
         Sets the startMonthYear property value. The start month and year of the position.
         Args:
-            value: Value to set for the startMonthYear property.
+            value: Value to set for the start_month_year property.
         """
         self._start_month_year = value
     

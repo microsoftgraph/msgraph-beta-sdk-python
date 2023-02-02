@@ -20,7 +20,7 @@ class UserExperienceAnalyticsBatteryHealthCapacityDetails(entity.Entity):
         """
         Sets the activeDevices property value. Number of active devices within the tenant. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the activeDevices property.
+            value: Value to set for the active_devices property.
         """
         self._active_devices = value
     
@@ -37,7 +37,7 @@ class UserExperienceAnalyticsBatteryHealthCapacityDetails(entity.Entity):
         """
         Sets the batteryCapacityFair property value. Number of devices whose battery maximum capacity is greater than 50% but lesser than 80%. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the batteryCapacityFair property.
+            value: Value to set for the battery_capacity_fair property.
         """
         self._battery_capacity_fair = value
     
@@ -54,7 +54,7 @@ class UserExperienceAnalyticsBatteryHealthCapacityDetails(entity.Entity):
         """
         Sets the batteryCapacityGood property value. Number of devices whose battery maximum capacity is greater than 80%. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the batteryCapacityGood property.
+            value: Value to set for the battery_capacity_good property.
         """
         self._battery_capacity_good = value
     
@@ -71,7 +71,7 @@ class UserExperienceAnalyticsBatteryHealthCapacityDetails(entity.Entity):
         """
         Sets the batteryCapacityPoor property value. Number of devices whose battery maximum capacity is lesser than 50%. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the batteryCapacityPoor property.
+            value: Value to set for the battery_capacity_poor property.
         """
         self._battery_capacity_poor = value
     
@@ -111,11 +111,11 @@ class UserExperienceAnalyticsBatteryHealthCapacityDetails(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "active_devices": lambda n : setattr(self, 'active_devices', n.get_int_value()),
-            "battery_capacity_fair": lambda n : setattr(self, 'battery_capacity_fair', n.get_int_value()),
-            "battery_capacity_good": lambda n : setattr(self, 'battery_capacity_good', n.get_int_value()),
-            "battery_capacity_poor": lambda n : setattr(self, 'battery_capacity_poor', n.get_int_value()),
-            "last_refreshed_date_time": lambda n : setattr(self, 'last_refreshed_date_time', n.get_datetime_value()),
+            "activeDevices": lambda n : setattr(self, 'active_devices', n.get_int_value()),
+            "batteryCapacityFair": lambda n : setattr(self, 'battery_capacity_fair', n.get_int_value()),
+            "batteryCapacityGood": lambda n : setattr(self, 'battery_capacity_good', n.get_int_value()),
+            "batteryCapacityPoor": lambda n : setattr(self, 'battery_capacity_poor', n.get_int_value()),
+            "lastRefreshedDateTime": lambda n : setattr(self, 'last_refreshed_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -134,7 +134,7 @@ class UserExperienceAnalyticsBatteryHealthCapacityDetails(entity.Entity):
         """
         Sets the lastRefreshedDateTime property value. Recorded date time of this capacity details instance.
         Args:
-            value: Value to set for the lastRefreshedDateTime property.
+            value: Value to set for the last_refreshed_date_time property.
         """
         self._last_refreshed_date_time = value
     

@@ -34,12 +34,13 @@ class RetentionLabelItemRequestBuilder():
         """
         return retention_event_type_request_builder.RetentionEventTypeRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, retention_label_id: Optional[str] = None) -> None:
         """
         Instantiates a new RetentionLabelItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            retentionLabelId: key: id of retentionLabel
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -49,15 +50,15 @@ class RetentionLabelItemRequestBuilder():
         self.url_template: str = "{+baseurl}/security/labels/retentionLabels/{retentionLabel%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["retentionLabel%2Did"] = retentionLabelId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[RetentionLabelItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[RetentionLabelItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property retentionLabels for security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -68,7 +69,7 @@ class RetentionLabelItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def disposition_review_stages_by_id(self,id: str) -> disposition_review_stage_item_request_builder.DispositionReviewStageItemRequestBuilder:
         """
@@ -83,12 +84,11 @@ class RetentionLabelItemRequestBuilder():
         url_tpl_params["dispositionReviewStage%2Did"] = id
         return disposition_review_stage_item_request_builder.DispositionReviewStageItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[RetentionLabelItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[retention_label.RetentionLabel]:
+    async def get(self,request_configuration: Optional[RetentionLabelItemRequestBuilderGetRequestConfiguration] = None) -> Optional[retention_label.RetentionLabel]:
         """
         Get retentionLabels from security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[retention_label.RetentionLabel]
         """
         request_info = self.to_get_request_information(
@@ -100,15 +100,14 @@ class RetentionLabelItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, retention_label.RetentionLabel, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, retention_label.RetentionLabel, error_mapping)
     
-    async def patch(self,body: Optional[retention_label.RetentionLabel] = None, request_configuration: Optional[RetentionLabelItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[retention_label.RetentionLabel]:
+    async def patch(self,body: Optional[retention_label.RetentionLabel] = None, request_configuration: Optional[RetentionLabelItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[retention_label.RetentionLabel]:
         """
         Update the navigation property retentionLabels in security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[retention_label.RetentionLabel]
         """
         if body is None:
@@ -122,7 +121,7 @@ class RetentionLabelItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, retention_label.RetentionLabel, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, retention_label.RetentionLabel, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[RetentionLabelItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -20,7 +20,7 @@ class DeviceManagementConfigurationChoiceSettingInstanceTemplate(device_manageme
         """
         Sets the choiceSettingValueTemplate property value. Choice Setting Value Template
         Args:
-            value: Value to set for the choiceSettingValueTemplate property.
+            value: Value to set for the choice_setting_value_template property.
         """
         self._choice_setting_value_template = value
     
@@ -51,7 +51,7 @@ class DeviceManagementConfigurationChoiceSettingInstanceTemplate(device_manageme
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "choice_setting_value_template": lambda n : setattr(self, 'choice_setting_value_template', n.get_object_value(device_management_configuration_choice_setting_value_template.DeviceManagementConfigurationChoiceSettingValueTemplate)),
+            "choiceSettingValueTemplate": lambda n : setattr(self, 'choice_setting_value_template', n.get_object_value(device_management_configuration_choice_setting_value_template.DeviceManagementConfigurationChoiceSettingValueTemplate)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

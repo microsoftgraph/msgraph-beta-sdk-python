@@ -63,10 +63,10 @@ class WebAccount(item_facet.ItemFacet):
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "service": lambda n : setattr(self, 'service', n.get_object_value(service_information.ServiceInformation)),
-            "status_message": lambda n : setattr(self, 'status_message', n.get_str_value()),
-            "thumbnail_url": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
-            "web_url": lambda n : setattr(self, 'web_url', n.get_str_value()),
+            "statusMessage": lambda n : setattr(self, 'status_message', n.get_str_value()),
+            "thumbnailUrl": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -118,7 +118,7 @@ class WebAccount(item_facet.ItemFacet):
         """
         Sets the statusMessage property value. Contains a status message from the cloud service if provided or synchronized.
         Args:
-            value: Value to set for the statusMessage property.
+            value: Value to set for the status_message property.
         """
         self._status_message = value
     
@@ -135,7 +135,7 @@ class WebAccount(item_facet.ItemFacet):
         """
         Sets the thumbnailUrl property value. The thumbnailUrl property
         Args:
-            value: Value to set for the thumbnailUrl property.
+            value: Value to set for the thumbnail_url property.
         """
         self._thumbnail_url = value
     
@@ -152,7 +152,7 @@ class WebAccount(item_facet.ItemFacet):
         """
         Sets the userId property value. The user name  displayed for the webaccount.
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     
@@ -169,7 +169,7 @@ class WebAccount(item_facet.ItemFacet):
         """
         Sets the webUrl property value. Contains a link to the user's profile on the cloud service if one exists.
         Args:
-            value: Value to set for the webUrl property.
+            value: Value to set for the web_url property.
         """
         self._web_url = value
     

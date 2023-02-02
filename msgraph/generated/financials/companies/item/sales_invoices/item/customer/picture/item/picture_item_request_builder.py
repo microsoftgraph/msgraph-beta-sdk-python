@@ -25,11 +25,12 @@ class PictureItemRequestBuilder():
         """
         return content_request_builder.ContentRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, picture_id: Optional[str] = None) -> None:
         """
         Instantiates a new PictureItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            pictureId: key: id of picture
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -40,15 +41,15 @@ class PictureItemRequestBuilder():
         self.url_template: str = "{+baseurl}/financials/companies/{company%2Did}/salesInvoices/{salesInvoice%2Did}/customer/picture/{picture%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["picture%2Did"] = pictureId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PictureItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PictureItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property picture for financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +60,13 @@ class PictureItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PictureItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[picture.Picture]:
+    async def get(self,request_configuration: Optional[PictureItemRequestBuilderGetRequestConfiguration] = None) -> Optional[picture.Picture]:
         """
         Get picture from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[picture.Picture]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +78,14 @@ class PictureItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, picture.Picture, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, picture.Picture, error_mapping)
     
-    async def patch(self,body: Optional[picture.Picture] = None, request_configuration: Optional[PictureItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[picture.Picture]:
+    async def patch(self,body: Optional[picture.Picture] = None, request_configuration: Optional[PictureItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[picture.Picture]:
         """
         Update the navigation property picture in financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[picture.Picture]
         """
         if body is None:
@@ -100,7 +99,7 @@ class PictureItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, picture.Picture, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, picture.Picture, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PictureItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

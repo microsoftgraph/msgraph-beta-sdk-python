@@ -44,12 +44,11 @@ class WindowsManagedAppProtectionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[WindowsManagedAppProtectionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_managed_app_protection_collection_response.WindowsManagedAppProtectionCollectionResponse]:
+    async def get(self,request_configuration: Optional[WindowsManagedAppProtectionsRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_managed_app_protection_collection_response.WindowsManagedAppProtectionCollectionResponse]:
         """
         Windows managed app policies.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_managed_app_protection_collection_response.WindowsManagedAppProtectionCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class WindowsManagedAppProtectionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_managed_app_protection_collection_response.WindowsManagedAppProtectionCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_managed_app_protection_collection_response.WindowsManagedAppProtectionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[windows_managed_app_protection.WindowsManagedAppProtection] = None, request_configuration: Optional[WindowsManagedAppProtectionsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_managed_app_protection.WindowsManagedAppProtection]:
+    async def post(self,body: Optional[windows_managed_app_protection.WindowsManagedAppProtection] = None, request_configuration: Optional[WindowsManagedAppProtectionsRequestBuilderPostRequestConfiguration] = None) -> Optional[windows_managed_app_protection.WindowsManagedAppProtection]:
         """
         Create new navigation property to windowsManagedAppProtections for deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_managed_app_protection.WindowsManagedAppProtection]
         """
         if body is None:
@@ -83,7 +81,7 @@ class WindowsManagedAppProtectionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_managed_app_protection.WindowsManagedAppProtection, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_managed_app_protection.WindowsManagedAppProtection, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[WindowsManagedAppProtectionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

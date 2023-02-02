@@ -86,7 +86,7 @@ class OmaSetting(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. Display Name.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -97,11 +97,11 @@ class OmaSetting(AdditionalDataHolder, Parsable):
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "is_encrypted": lambda n : setattr(self, 'is_encrypted', n.get_bool_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "isEncrypted": lambda n : setattr(self, 'is_encrypted', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "oma_uri": lambda n : setattr(self, 'oma_uri', n.get_str_value()),
-            "secret_reference_value_id": lambda n : setattr(self, 'secret_reference_value_id', n.get_str_value()),
+            "omaUri": lambda n : setattr(self, 'oma_uri', n.get_str_value()),
+            "secretReferenceValueId": lambda n : setattr(self, 'secret_reference_value_id', n.get_str_value()),
         }
         return fields
     
@@ -118,7 +118,7 @@ class OmaSetting(AdditionalDataHolder, Parsable):
         """
         Sets the isEncrypted property value. Indicates whether the value field is encrypted. This property is read-only.
         Args:
-            value: Value to set for the isEncrypted property.
+            value: Value to set for the is_encrypted property.
         """
         self._is_encrypted = value
     
@@ -135,7 +135,7 @@ class OmaSetting(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -152,7 +152,7 @@ class OmaSetting(AdditionalDataHolder, Parsable):
         """
         Sets the omaUri property value. OMA.
         Args:
-            value: Value to set for the omaUri property.
+            value: Value to set for the oma_uri property.
         """
         self._oma_uri = value
     
@@ -169,7 +169,7 @@ class OmaSetting(AdditionalDataHolder, Parsable):
         """
         Sets the secretReferenceValueId property value. ReferenceId for looking up secret for decryption. This property is read-only.
         Args:
-            value: Value to set for the secretReferenceValueId property.
+            value: Value to set for the secret_reference_value_id property.
         """
         self._secret_reference_value_id = value
     

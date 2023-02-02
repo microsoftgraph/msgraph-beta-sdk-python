@@ -12,32 +12,40 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 ediscovery_review_set_query = lazy_import('msgraph.generated.models.security.ediscovery_review_set_query')
-apply_tags_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.queries.item.apply_tags.apply_tags_request_builder')
-export_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.queries.item.export.export_request_builder')
-run_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.queries.item.run.run_request_builder')
+apply_tags_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.queries.item.microsoft_graph_security_apply_tags.apply_tags_request_builder')
+export_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.queries.item.microsoft_graph_security_export.export_request_builder')
+run_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.queries.item.microsoft_graph_security_run.run_request_builder')
 
 class EdiscoveryReviewSetQueryItemRequestBuilder():
     """
     Provides operations to manage the queries property of the microsoft.graph.security.ediscoveryReviewSet entity.
     """
     @property
-    def apply_tags(self) -> apply_tags_request_builder.ApplyTagsRequestBuilder:
+    def microsoft_graph_security_apply_tags(self) -> apply_tags_request_builder.ApplyTagsRequestBuilder:
         """
         Provides operations to call the applyTags method.
         """
         return apply_tags_request_builder.ApplyTagsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def export(self) -> export_request_builder.ExportRequestBuilder:
+    def microsoft_graph_security_export(self) -> export_request_builder.ExportRequestBuilder:
         """
         Provides operations to call the export method.
         """
         return export_request_builder.ExportRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    @property
+    def microsoft_graph_security_run(self) -> run_request_builder.RunRequestBuilder:
+        """
+        Provides operations to call the run method.
+        """
+        return run_request_builder.RunRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, ediscovery_review_set_query_id: Optional[str] = None) -> None:
         """
         Instantiates a new EdiscoveryReviewSetQueryItemRequestBuilder and sets the default values.
         Args:
+            ediscoveryReviewSetQueryId: key: id of ediscoveryReviewSetQuery
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -49,15 +57,15 @@ class EdiscoveryReviewSetQueryItemRequestBuilder():
         self.url_template: str = "{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/reviewSets/{ediscoveryReviewSet%2Did}/queries/{ediscoveryReviewSetQuery%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["ediscoveryReviewSetQuery%2Did"] = ediscoveryReviewSetQueryId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[EdiscoveryReviewSetQueryItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[EdiscoveryReviewSetQueryItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property queries for security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -68,14 +76,13 @@ class EdiscoveryReviewSetQueryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[EdiscoveryReviewSetQueryItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ediscovery_review_set_query.EdiscoveryReviewSetQuery]:
+    async def get(self,request_configuration: Optional[EdiscoveryReviewSetQueryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_review_set_query.EdiscoveryReviewSetQuery]:
         """
         Represents queries within the review set.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscovery_review_set_query.EdiscoveryReviewSetQuery]
         """
         request_info = self.to_get_request_information(
@@ -87,15 +94,14 @@ class EdiscoveryReviewSetQueryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ediscovery_review_set_query.EdiscoveryReviewSetQuery, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ediscovery_review_set_query.EdiscoveryReviewSetQuery, error_mapping)
     
-    async def patch(self,body: Optional[ediscovery_review_set_query.EdiscoveryReviewSetQuery] = None, request_configuration: Optional[EdiscoveryReviewSetQueryItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ediscovery_review_set_query.EdiscoveryReviewSetQuery]:
+    async def patch(self,body: Optional[ediscovery_review_set_query.EdiscoveryReviewSetQuery] = None, request_configuration: Optional[EdiscoveryReviewSetQueryItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ediscovery_review_set_query.EdiscoveryReviewSetQuery]:
         """
         Update the navigation property queries in security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscovery_review_set_query.EdiscoveryReviewSetQuery]
         """
         if body is None:
@@ -109,14 +115,7 @@ class EdiscoveryReviewSetQueryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ediscovery_review_set_query.EdiscoveryReviewSetQuery, response_handler, error_mapping)
-    
-    def run(self,) -> run_request_builder.RunRequestBuilder:
-        """
-        Provides operations to call the run method.
-        Returns: run_request_builder.RunRequestBuilder
-        """
-        return run_request_builder.RunRequestBuilder(self.request_adapter, self.path_parameters)
+        return await self.request_adapter.send_async(request_info, ediscovery_review_set_query.EdiscoveryReviewSetQuery, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[EdiscoveryReviewSetQueryItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

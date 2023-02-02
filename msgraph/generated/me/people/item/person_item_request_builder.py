@@ -17,11 +17,12 @@ class PersonItemRequestBuilder():
     """
     Provides operations to manage the people property of the microsoft.graph.user entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, person_id: Optional[str] = None) -> None:
         """
         Instantiates a new PersonItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            personId: key: id of person
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -32,15 +33,15 @@ class PersonItemRequestBuilder():
         self.url_template: str = "{+baseurl}/me/people/{person%2Did}{?%24select}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["person%2Did"] = personId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PersonItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[person.Person]:
+    async def get(self,request_configuration: Optional[PersonItemRequestBuilderGetRequestConfiguration] = None) -> Optional[person.Person]:
         """
         Read-only. The most relevant people to the user. The collection is ordered by their relevance to the user, which is determined by the user's communication, collaboration and business relationships. A person is an aggregation of information from across mail, contacts and social networks.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[person.Person]
         """
         request_info = self.to_get_request_information(
@@ -52,7 +53,7 @@ class PersonItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, person.Person, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, person.Person, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PersonItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

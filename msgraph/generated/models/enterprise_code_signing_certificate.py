@@ -74,7 +74,7 @@ class EnterpriseCodeSigningCertificate(entity.Entity):
         """
         Sets the expirationDateTime property value. The Cert Expiration Date.
         Args:
-            value: Value to set for the expirationDateTime property.
+            value: Value to set for the expiration_date_time property.
         """
         self._expiration_date_time = value
     
@@ -85,13 +85,13 @@ class EnterpriseCodeSigningCertificate(entity.Entity):
         """
         fields = {
             "content": lambda n : setattr(self, 'content', n.get_bytes_value()),
-            "expiration_date_time": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
+            "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "issuer": lambda n : setattr(self, 'issuer', n.get_str_value()),
-            "issuer_name": lambda n : setattr(self, 'issuer_name', n.get_str_value()),
+            "issuerName": lambda n : setattr(self, 'issuer_name', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(certificate_status.CertificateStatus)),
             "subject": lambda n : setattr(self, 'subject', n.get_str_value()),
-            "subject_name": lambda n : setattr(self, 'subject_name', n.get_str_value()),
-            "upload_date_time": lambda n : setattr(self, 'upload_date_time', n.get_datetime_value()),
+            "subjectName": lambda n : setattr(self, 'subject_name', n.get_str_value()),
+            "uploadDateTime": lambda n : setattr(self, 'upload_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -127,7 +127,7 @@ class EnterpriseCodeSigningCertificate(entity.Entity):
         """
         Sets the issuerName property value. The Issuer Name for the cert.
         Args:
-            value: Value to set for the issuerName property.
+            value: Value to set for the issuer_name property.
         """
         self._issuer_name = value
     
@@ -196,7 +196,7 @@ class EnterpriseCodeSigningCertificate(entity.Entity):
         """
         Sets the subjectName property value. The Subject Name for the cert.
         Args:
-            value: Value to set for the subjectName property.
+            value: Value to set for the subject_name property.
         """
         self._subject_name = value
     
@@ -213,7 +213,7 @@ class EnterpriseCodeSigningCertificate(entity.Entity):
         """
         Sets the uploadDateTime property value. The date time of CodeSigning Cert when it is uploaded.
         Args:
-            value: Value to set for the uploadDateTime property.
+            value: Value to set for the upload_date_time property.
         """
         self._upload_date_time = value
     

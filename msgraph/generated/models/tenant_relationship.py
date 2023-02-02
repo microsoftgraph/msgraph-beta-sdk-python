@@ -66,7 +66,7 @@ class TenantRelationship(AdditionalDataHolder, Parsable):
         """
         Sets the delegatedAdminCustomers property value. The customer who has a delegated admin relationship with a Microsoft partner.
         Args:
-            value: Value to set for the delegatedAdminCustomers property.
+            value: Value to set for the delegated_admin_customers property.
         """
         self._delegated_admin_customers = value
     
@@ -83,7 +83,7 @@ class TenantRelationship(AdditionalDataHolder, Parsable):
         """
         Sets the delegatedAdminRelationships property value. The details of the delegated administrative privileges that a Microsoft partner has in a customer tenant.
         Args:
-            value: Value to set for the delegatedAdminRelationships property.
+            value: Value to set for the delegated_admin_relationships property.
         """
         self._delegated_admin_relationships = value
     
@@ -93,9 +93,9 @@ class TenantRelationship(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "delegated_admin_customers": lambda n : setattr(self, 'delegated_admin_customers', n.get_collection_of_object_values(delegated_admin_customer.DelegatedAdminCustomer)),
-            "delegated_admin_relationships": lambda n : setattr(self, 'delegated_admin_relationships', n.get_collection_of_object_values(delegated_admin_relationship.DelegatedAdminRelationship)),
-            "managed_tenants": lambda n : setattr(self, 'managed_tenants', n.get_object_value(managed_tenant.ManagedTenant)),
+            "delegatedAdminCustomers": lambda n : setattr(self, 'delegated_admin_customers', n.get_collection_of_object_values(delegated_admin_customer.DelegatedAdminCustomer)),
+            "delegatedAdminRelationships": lambda n : setattr(self, 'delegated_admin_relationships', n.get_collection_of_object_values(delegated_admin_relationship.DelegatedAdminRelationship)),
+            "managedTenants": lambda n : setattr(self, 'managed_tenants', n.get_object_value(managed_tenant.ManagedTenant)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -113,7 +113,7 @@ class TenantRelationship(AdditionalDataHolder, Parsable):
         """
         Sets the managedTenants property value. The operations available to interact with the multi-tenant management platform.
         Args:
-            value: Value to set for the managedTenants property.
+            value: Value to set for the managed_tenants property.
         """
         self._managed_tenants = value
     
@@ -130,7 +130,7 @@ class TenantRelationship(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

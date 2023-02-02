@@ -80,7 +80,7 @@ class Program(entity.Entity):
         """
         Sets the displayName property value. The name of the program.  Required on create.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -92,7 +92,7 @@ class Program(entity.Entity):
         fields = {
             "controls": lambda n : setattr(self, 'controls', n.get_collection_of_object_values(program_control.ProgramControl)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

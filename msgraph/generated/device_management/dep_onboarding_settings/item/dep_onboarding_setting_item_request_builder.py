@@ -14,14 +14,14 @@ default_ios_enrollment_profile_request_builder = lazy_import('msgraph.generated.
 default_mac_os_enrollment_profile_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.default_mac_os_enrollment_profile.default_mac_os_enrollment_profile_request_builder')
 enrollment_profiles_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.enrollment_profiles.enrollment_profiles_request_builder')
 enrollment_profile_item_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.enrollment_profiles.item.enrollment_profile_item_request_builder')
-generate_encryption_public_key_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.generate_encryption_public_key.generate_encryption_public_key_request_builder')
-get_encryption_public_key_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.get_encryption_public_key.get_encryption_public_key_request_builder')
 imported_apple_device_identities_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.imported_apple_device_identities.imported_apple_device_identities_request_builder')
 imported_apple_device_identity_item_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.imported_apple_device_identities.item.imported_apple_device_identity_item_request_builder')
-share_for_school_data_sync_service_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.share_for_school_data_sync_service.share_for_school_data_sync_service_request_builder')
-sync_with_apple_device_enrollment_program_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.sync_with_apple_device_enrollment_program.sync_with_apple_device_enrollment_program_request_builder')
-unshare_for_school_data_sync_service_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.unshare_for_school_data_sync_service.unshare_for_school_data_sync_service_request_builder')
-upload_dep_token_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.upload_dep_token.upload_dep_token_request_builder')
+generate_encryption_public_key_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.microsoft_graph_generate_encryption_public_key.generate_encryption_public_key_request_builder')
+get_encryption_public_key_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.microsoft_graph_get_encryption_public_key.get_encryption_public_key_request_builder')
+share_for_school_data_sync_service_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.microsoft_graph_share_for_school_data_sync_service.share_for_school_data_sync_service_request_builder')
+sync_with_apple_device_enrollment_program_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.microsoft_graph_sync_with_apple_device_enrollment_program.sync_with_apple_device_enrollment_program_request_builder')
+unshare_for_school_data_sync_service_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.microsoft_graph_unshare_for_school_data_sync_service.unshare_for_school_data_sync_service_request_builder')
+upload_dep_token_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.microsoft_graph_upload_dep_token.upload_dep_token_request_builder')
 dep_onboarding_setting = lazy_import('msgraph.generated.models.dep_onboarding_setting')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -51,13 +51,6 @@ class DepOnboardingSettingItemRequestBuilder():
         return enrollment_profiles_request_builder.EnrollmentProfilesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def generate_encryption_public_key(self) -> generate_encryption_public_key_request_builder.GenerateEncryptionPublicKeyRequestBuilder:
-        """
-        Provides operations to call the generateEncryptionPublicKey method.
-        """
-        return generate_encryption_public_key_request_builder.GenerateEncryptionPublicKeyRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def imported_apple_device_identities(self) -> imported_apple_device_identities_request_builder.ImportedAppleDeviceIdentitiesRequestBuilder:
         """
         Provides operations to manage the importedAppleDeviceIdentities property of the microsoft.graph.depOnboardingSetting entity.
@@ -65,37 +58,52 @@ class DepOnboardingSettingItemRequestBuilder():
         return imported_apple_device_identities_request_builder.ImportedAppleDeviceIdentitiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def share_for_school_data_sync_service(self) -> share_for_school_data_sync_service_request_builder.ShareForSchoolDataSyncServiceRequestBuilder:
+    def microsoft_graph_generate_encryption_public_key(self) -> generate_encryption_public_key_request_builder.GenerateEncryptionPublicKeyRequestBuilder:
+        """
+        Provides operations to call the generateEncryptionPublicKey method.
+        """
+        return generate_encryption_public_key_request_builder.GenerateEncryptionPublicKeyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_encryption_public_key(self) -> get_encryption_public_key_request_builder.GetEncryptionPublicKeyRequestBuilder:
+        """
+        Provides operations to call the getEncryptionPublicKey method.
+        """
+        return get_encryption_public_key_request_builder.GetEncryptionPublicKeyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_share_for_school_data_sync_service(self) -> share_for_school_data_sync_service_request_builder.ShareForSchoolDataSyncServiceRequestBuilder:
         """
         Provides operations to call the shareForSchoolDataSyncService method.
         """
         return share_for_school_data_sync_service_request_builder.ShareForSchoolDataSyncServiceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sync_with_apple_device_enrollment_program(self) -> sync_with_apple_device_enrollment_program_request_builder.SyncWithAppleDeviceEnrollmentProgramRequestBuilder:
+    def microsoft_graph_sync_with_apple_device_enrollment_program(self) -> sync_with_apple_device_enrollment_program_request_builder.SyncWithAppleDeviceEnrollmentProgramRequestBuilder:
         """
         Provides operations to call the syncWithAppleDeviceEnrollmentProgram method.
         """
         return sync_with_apple_device_enrollment_program_request_builder.SyncWithAppleDeviceEnrollmentProgramRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def unshare_for_school_data_sync_service(self) -> unshare_for_school_data_sync_service_request_builder.UnshareForSchoolDataSyncServiceRequestBuilder:
+    def microsoft_graph_unshare_for_school_data_sync_service(self) -> unshare_for_school_data_sync_service_request_builder.UnshareForSchoolDataSyncServiceRequestBuilder:
         """
         Provides operations to call the unshareForSchoolDataSyncService method.
         """
         return unshare_for_school_data_sync_service_request_builder.UnshareForSchoolDataSyncServiceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def upload_dep_token(self) -> upload_dep_token_request_builder.UploadDepTokenRequestBuilder:
+    def microsoft_graph_upload_dep_token(self) -> upload_dep_token_request_builder.UploadDepTokenRequestBuilder:
         """
         Provides operations to call the uploadDepToken method.
         """
         return upload_dep_token_request_builder.UploadDepTokenRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, dep_onboarding_setting_id: Optional[str] = None) -> None:
         """
         Instantiates a new DepOnboardingSettingItemRequestBuilder and sets the default values.
         Args:
+            depOnboardingSettingId: key: id of depOnboardingSetting
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -107,15 +115,15 @@ class DepOnboardingSettingItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceManagement/depOnboardingSettings/{depOnboardingSetting%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["depOnboardingSetting%2Did"] = depOnboardingSettingId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DepOnboardingSettingItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DepOnboardingSettingItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property depOnboardingSettings for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -126,7 +134,7 @@ class DepOnboardingSettingItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def enrollment_profiles_by_id(self,id: str) -> enrollment_profile_item_request_builder.EnrollmentProfileItemRequestBuilder:
         """
@@ -141,12 +149,11 @@ class DepOnboardingSettingItemRequestBuilder():
         url_tpl_params["enrollmentProfile%2Did"] = id
         return enrollment_profile_item_request_builder.EnrollmentProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DepOnboardingSettingItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[dep_onboarding_setting.DepOnboardingSetting]:
+    async def get(self,request_configuration: Optional[DepOnboardingSettingItemRequestBuilderGetRequestConfiguration] = None) -> Optional[dep_onboarding_setting.DepOnboardingSetting]:
         """
         This collections of multiple DEP tokens per-tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[dep_onboarding_setting.DepOnboardingSetting]
         """
         request_info = self.to_get_request_information(
@@ -158,14 +165,7 @@ class DepOnboardingSettingItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, dep_onboarding_setting.DepOnboardingSetting, response_handler, error_mapping)
-    
-    def get_encryption_public_key(self,) -> get_encryption_public_key_request_builder.GetEncryptionPublicKeyRequestBuilder:
-        """
-        Provides operations to call the getEncryptionPublicKey method.
-        Returns: get_encryption_public_key_request_builder.GetEncryptionPublicKeyRequestBuilder
-        """
-        return get_encryption_public_key_request_builder.GetEncryptionPublicKeyRequestBuilder(self.request_adapter, self.path_parameters)
+        return await self.request_adapter.send_async(request_info, dep_onboarding_setting.DepOnboardingSetting, error_mapping)
     
     def imported_apple_device_identities_by_id(self,id: str) -> imported_apple_device_identity_item_request_builder.ImportedAppleDeviceIdentityItemRequestBuilder:
         """
@@ -180,13 +180,12 @@ class DepOnboardingSettingItemRequestBuilder():
         url_tpl_params["importedAppleDeviceIdentity%2Did"] = id
         return imported_apple_device_identity_item_request_builder.ImportedAppleDeviceIdentityItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[dep_onboarding_setting.DepOnboardingSetting] = None, request_configuration: Optional[DepOnboardingSettingItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[dep_onboarding_setting.DepOnboardingSetting]:
+    async def patch(self,body: Optional[dep_onboarding_setting.DepOnboardingSetting] = None, request_configuration: Optional[DepOnboardingSettingItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[dep_onboarding_setting.DepOnboardingSetting]:
         """
         Update the navigation property depOnboardingSettings in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[dep_onboarding_setting.DepOnboardingSetting]
         """
         if body is None:
@@ -200,7 +199,7 @@ class DepOnboardingSettingItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, dep_onboarding_setting.DepOnboardingSetting, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, dep_onboarding_setting.DepOnboardingSetting, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DepOnboardingSettingItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

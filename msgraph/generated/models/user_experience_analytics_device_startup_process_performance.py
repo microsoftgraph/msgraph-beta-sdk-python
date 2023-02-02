@@ -6,12 +6,9 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class UserExperienceAnalyticsDeviceStartupProcessPerformance(entity.Entity):
-    """
-    The user experience analytics device startup process performance.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsDeviceStartupProcessPerformance and sets the default values.
+        Instantiates a new UserExperienceAnalyticsDeviceStartupProcessPerformance and sets the default values.
         """
         super().__init__()
         # User experience analytics device startup process summarized count.
@@ -58,7 +55,7 @@ class UserExperienceAnalyticsDeviceStartupProcessPerformance(entity.Entity):
         """
         Sets the deviceCount property value. User experience analytics device startup process summarized count.
         Args:
-            value: Value to set for the deviceCount property.
+            value: Value to set for the device_count property.
         """
         self._device_count = value
     
@@ -68,14 +65,14 @@ class UserExperienceAnalyticsDeviceStartupProcessPerformance(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_count": lambda n : setattr(self, 'device_count', n.get_int_value()),
-            "median_impact_in_ms": lambda n : setattr(self, 'median_impact_in_ms', n.get_int_value()),
-            "median_impact_in_ms2": lambda n : setattr(self, 'median_impact_in_ms2', n.get_int_value()),
-            "process_name": lambda n : setattr(self, 'process_name', n.get_str_value()),
-            "product_name": lambda n : setattr(self, 'product_name', n.get_str_value()),
+            "deviceCount": lambda n : setattr(self, 'device_count', n.get_int_value()),
+            "medianImpactInMs": lambda n : setattr(self, 'median_impact_in_ms', n.get_int_value()),
+            "medianImpactInMs2": lambda n : setattr(self, 'median_impact_in_ms2', n.get_int_value()),
+            "processName": lambda n : setattr(self, 'process_name', n.get_str_value()),
+            "productName": lambda n : setattr(self, 'product_name', n.get_str_value()),
             "publisher": lambda n : setattr(self, 'publisher', n.get_str_value()),
-            "total_impact_in_ms": lambda n : setattr(self, 'total_impact_in_ms', n.get_int_value()),
-            "total_impact_in_ms2": lambda n : setattr(self, 'total_impact_in_ms2', n.get_int_value()),
+            "totalImpactInMs": lambda n : setattr(self, 'total_impact_in_ms', n.get_int_value()),
+            "totalImpactInMs2": lambda n : setattr(self, 'total_impact_in_ms2', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -94,7 +91,7 @@ class UserExperienceAnalyticsDeviceStartupProcessPerformance(entity.Entity):
         """
         Sets the medianImpactInMs property value. User experience analytics device startup process median impact in milliseconds.
         Args:
-            value: Value to set for the medianImpactInMs property.
+            value: Value to set for the median_impact_in_ms property.
         """
         self._median_impact_in_ms = value
     
@@ -111,7 +108,7 @@ class UserExperienceAnalyticsDeviceStartupProcessPerformance(entity.Entity):
         """
         Sets the medianImpactInMs2 property value. User experience analytics device startup process median impact in milliseconds.
         Args:
-            value: Value to set for the medianImpactInMs2 property.
+            value: Value to set for the median_impact_in_ms2 property.
         """
         self._median_impact_in_ms2 = value
     
@@ -128,7 +125,7 @@ class UserExperienceAnalyticsDeviceStartupProcessPerformance(entity.Entity):
         """
         Sets the processName property value. User experience analytics device startup process name.
         Args:
-            value: Value to set for the processName property.
+            value: Value to set for the process_name property.
         """
         self._process_name = value
     
@@ -145,7 +142,7 @@ class UserExperienceAnalyticsDeviceStartupProcessPerformance(entity.Entity):
         """
         Sets the productName property value. The user experience analytics device startup process product name.
         Args:
-            value: Value to set for the productName property.
+            value: Value to set for the product_name property.
         """
         self._product_name = value
     
@@ -197,7 +194,7 @@ class UserExperienceAnalyticsDeviceStartupProcessPerformance(entity.Entity):
         """
         Sets the totalImpactInMs property value. User experience analytics device startup process total impact in milliseconds.
         Args:
-            value: Value to set for the totalImpactInMs property.
+            value: Value to set for the total_impact_in_ms property.
         """
         self._total_impact_in_ms = value
     
@@ -214,7 +211,7 @@ class UserExperienceAnalyticsDeviceStartupProcessPerformance(entity.Entity):
         """
         Sets the totalImpactInMs2 property value. User experience analytics device startup process total impact in milliseconds.
         Args:
-            value: Value to set for the totalImpactInMs2 property.
+            value: Value to set for the total_impact_in_ms2 property.
         """
         self._total_impact_in_ms2 = value
     

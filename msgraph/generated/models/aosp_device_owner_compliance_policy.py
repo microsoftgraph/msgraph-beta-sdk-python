@@ -50,15 +50,15 @@ class AospDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplianceP
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "min_android_security_patch_level": lambda n : setattr(self, 'min_android_security_patch_level', n.get_str_value()),
-            "os_maximum_version": lambda n : setattr(self, 'os_maximum_version', n.get_str_value()),
-            "os_minimum_version": lambda n : setattr(self, 'os_minimum_version', n.get_str_value()),
-            "password_minimum_length": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
-            "password_minutes_of_inactivity_before_lock": lambda n : setattr(self, 'password_minutes_of_inactivity_before_lock', n.get_int_value()),
-            "password_required": lambda n : setattr(self, 'password_required', n.get_bool_value()),
-            "password_required_type": lambda n : setattr(self, 'password_required_type', n.get_enum_value(android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType)),
-            "security_block_jailbroken_devices": lambda n : setattr(self, 'security_block_jailbroken_devices', n.get_bool_value()),
-            "storage_require_encryption": lambda n : setattr(self, 'storage_require_encryption', n.get_bool_value()),
+            "minAndroidSecurityPatchLevel": lambda n : setattr(self, 'min_android_security_patch_level', n.get_str_value()),
+            "osMaximumVersion": lambda n : setattr(self, 'os_maximum_version', n.get_str_value()),
+            "osMinimumVersion": lambda n : setattr(self, 'os_minimum_version', n.get_str_value()),
+            "passwordMinimumLength": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
+            "passwordMinutesOfInactivityBeforeLock": lambda n : setattr(self, 'password_minutes_of_inactivity_before_lock', n.get_int_value()),
+            "passwordRequired": lambda n : setattr(self, 'password_required', n.get_bool_value()),
+            "passwordRequiredType": lambda n : setattr(self, 'password_required_type', n.get_enum_value(android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType)),
+            "securityBlockJailbrokenDevices": lambda n : setattr(self, 'security_block_jailbroken_devices', n.get_bool_value()),
+            "storageRequireEncryption": lambda n : setattr(self, 'storage_require_encryption', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -77,7 +77,7 @@ class AospDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplianceP
         """
         Sets the minAndroidSecurityPatchLevel property value. Minimum Android security patch level.
         Args:
-            value: Value to set for the minAndroidSecurityPatchLevel property.
+            value: Value to set for the min_android_security_patch_level property.
         """
         self._min_android_security_patch_level = value
     
@@ -94,7 +94,7 @@ class AospDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplianceP
         """
         Sets the osMaximumVersion property value. Maximum Android version.
         Args:
-            value: Value to set for the osMaximumVersion property.
+            value: Value to set for the os_maximum_version property.
         """
         self._os_maximum_version = value
     
@@ -111,7 +111,7 @@ class AospDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplianceP
         """
         Sets the osMinimumVersion property value. Minimum Android version.
         Args:
-            value: Value to set for the osMinimumVersion property.
+            value: Value to set for the os_minimum_version property.
         """
         self._os_minimum_version = value
     
@@ -128,7 +128,7 @@ class AospDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplianceP
         """
         Sets the passwordMinimumLength property value. Minimum password length. Valid values 4 to 16
         Args:
-            value: Value to set for the passwordMinimumLength property.
+            value: Value to set for the password_minimum_length property.
         """
         self._password_minimum_length = value
     
@@ -145,7 +145,7 @@ class AospDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplianceP
         """
         Sets the passwordMinutesOfInactivityBeforeLock property value. Minutes of inactivity before a password is required. Valid values 1 to 8640
         Args:
-            value: Value to set for the passwordMinutesOfInactivityBeforeLock property.
+            value: Value to set for the password_minutes_of_inactivity_before_lock property.
         """
         self._password_minutes_of_inactivity_before_lock = value
     
@@ -162,7 +162,7 @@ class AospDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplianceP
         """
         Sets the passwordRequired property value. Require a password to unlock device.
         Args:
-            value: Value to set for the passwordRequired property.
+            value: Value to set for the password_required property.
         """
         self._password_required = value
     
@@ -179,7 +179,7 @@ class AospDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplianceP
         """
         Sets the passwordRequiredType property value. Type of characters in password. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
         Args:
-            value: Value to set for the passwordRequiredType property.
+            value: Value to set for the password_required_type property.
         """
         self._password_required_type = value
     
@@ -196,7 +196,7 @@ class AospDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplianceP
         """
         Sets the securityBlockJailbrokenDevices property value. Devices must not be jailbroken or rooted.
         Args:
-            value: Value to set for the securityBlockJailbrokenDevices property.
+            value: Value to set for the security_block_jailbroken_devices property.
         """
         self._security_block_jailbroken_devices = value
     
@@ -232,7 +232,7 @@ class AospDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplianceP
         """
         Sets the storageRequireEncryption property value. Require encryption on Android devices.
         Args:
-            value: Value to set for the storageRequireEncryption property.
+            value: Value to set for the storage_require_encryption property.
         """
         self._storage_require_encryption = value
     

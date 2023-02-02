@@ -17,11 +17,12 @@ class PrintServiceEndpointItemRequestBuilder():
     """
     Provides operations to manage the endpoints property of the microsoft.graph.printService entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, print_service_endpoint_id: Optional[str] = None) -> None:
         """
         Instantiates a new PrintServiceEndpointItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            printServiceEndpointId: key: id of printServiceEndpoint
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -32,15 +33,15 @@ class PrintServiceEndpointItemRequestBuilder():
         self.url_template: str = "{+baseurl}/print/services/{printService%2Did}/endpoints/{printServiceEndpoint%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["printServiceEndpoint%2Did"] = printServiceEndpointId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PrintServiceEndpointItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PrintServiceEndpointItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property endpoints for print
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class PrintServiceEndpointItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PrintServiceEndpointItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[print_service_endpoint.PrintServiceEndpoint]:
+    async def get(self,request_configuration: Optional[PrintServiceEndpointItemRequestBuilderGetRequestConfiguration] = None) -> Optional[print_service_endpoint.PrintServiceEndpoint]:
         """
         Endpoints that can be used to access the service. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[print_service_endpoint.PrintServiceEndpoint]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class PrintServiceEndpointItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, print_service_endpoint.PrintServiceEndpoint, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, print_service_endpoint.PrintServiceEndpoint, error_mapping)
     
-    async def patch(self,body: Optional[print_service_endpoint.PrintServiceEndpoint] = None, request_configuration: Optional[PrintServiceEndpointItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[print_service_endpoint.PrintServiceEndpoint]:
+    async def patch(self,body: Optional[print_service_endpoint.PrintServiceEndpoint] = None, request_configuration: Optional[PrintServiceEndpointItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[print_service_endpoint.PrintServiceEndpoint]:
         """
         Update the navigation property endpoints in print
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[print_service_endpoint.PrintServiceEndpoint]
         """
         if body is None:
@@ -92,7 +91,7 @@ class PrintServiceEndpointItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, print_service_endpoint.PrintServiceEndpoint, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, print_service_endpoint.PrintServiceEndpoint, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PrintServiceEndpointItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

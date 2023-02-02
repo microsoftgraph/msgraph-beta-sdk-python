@@ -36,8 +36,8 @@ class QualityUpdateCatalogEntry(software_update_catalog_entry.SoftwareUpdateCata
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_expeditable": lambda n : setattr(self, 'is_expeditable', n.get_bool_value()),
-            "quality_update_classification": lambda n : setattr(self, 'quality_update_classification', n.get_enum_value(quality_update_classification.QualityUpdateClassification)),
+            "isExpeditable": lambda n : setattr(self, 'is_expeditable', n.get_bool_value()),
+            "qualityUpdateClassification": lambda n : setattr(self, 'quality_update_classification', n.get_enum_value(quality_update_classification.QualityUpdateClassification)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -56,7 +56,7 @@ class QualityUpdateCatalogEntry(software_update_catalog_entry.SoftwareUpdateCata
         """
         Sets the isExpeditable property value. Indicates whether the content can be deployed as an expedited quality update. Read-only.
         Args:
-            value: Value to set for the isExpeditable property.
+            value: Value to set for the is_expeditable property.
         """
         self._is_expeditable = value
     
@@ -73,7 +73,7 @@ class QualityUpdateCatalogEntry(software_update_catalog_entry.SoftwareUpdateCata
         """
         Sets the qualityUpdateClassification property value. The qualityUpdateClassification property
         Args:
-            value: Value to set for the qualityUpdateClassification property.
+            value: Value to set for the quality_update_classification property.
         """
         self._quality_update_classification = value
     

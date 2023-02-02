@@ -16,7 +16,7 @@ associated_teams_request_builder = lazy_import('msgraph.generated.users.item.tea
 associated_team_info_item_request_builder = lazy_import('msgraph.generated.users.item.teamwork.associated_teams.item.associated_team_info_item_request_builder')
 installed_apps_request_builder = lazy_import('msgraph.generated.users.item.teamwork.installed_apps.installed_apps_request_builder')
 user_scope_teams_app_installation_item_request_builder = lazy_import('msgraph.generated.users.item.teamwork.installed_apps.item.user_scope_teams_app_installation_item_request_builder')
-send_activity_notification_request_builder = lazy_import('msgraph.generated.users.item.teamwork.send_activity_notification.send_activity_notification_request_builder')
+send_activity_notification_request_builder = lazy_import('msgraph.generated.users.item.teamwork.microsoft_graph_send_activity_notification.send_activity_notification_request_builder')
 
 class TeamworkRequestBuilder():
     """
@@ -37,7 +37,7 @@ class TeamworkRequestBuilder():
         return installed_apps_request_builder.InstalledAppsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def send_activity_notification(self) -> send_activity_notification_request_builder.SendActivityNotificationRequestBuilder:
+    def microsoft_graph_send_activity_notification(self) -> send_activity_notification_request_builder.SendActivityNotificationRequestBuilder:
         """
         Provides operations to call the sendActivityNotification method.
         """
@@ -74,12 +74,11 @@ class TeamworkRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[TeamworkRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[TeamworkRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property teamwork for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -90,14 +89,13 @@ class TeamworkRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[TeamworkRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_teamwork.UserTeamwork]:
+    async def get(self,request_configuration: Optional[TeamworkRequestBuilderGetRequestConfiguration] = None) -> Optional[user_teamwork.UserTeamwork]:
         """
         A container for Microsoft Teams features available for the user. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_teamwork.UserTeamwork]
         """
         request_info = self.to_get_request_information(
@@ -109,7 +107,7 @@ class TeamworkRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_teamwork.UserTeamwork, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_teamwork.UserTeamwork, error_mapping)
     
     def installed_apps_by_id(self,id: str) -> user_scope_teams_app_installation_item_request_builder.UserScopeTeamsAppInstallationItemRequestBuilder:
         """
@@ -124,13 +122,12 @@ class TeamworkRequestBuilder():
         url_tpl_params["userScopeTeamsAppInstallation%2Did"] = id
         return user_scope_teams_app_installation_item_request_builder.UserScopeTeamsAppInstallationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[user_teamwork.UserTeamwork] = None, request_configuration: Optional[TeamworkRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_teamwork.UserTeamwork]:
+    async def patch(self,body: Optional[user_teamwork.UserTeamwork] = None, request_configuration: Optional[TeamworkRequestBuilderPatchRequestConfiguration] = None) -> Optional[user_teamwork.UserTeamwork]:
         """
         Update the navigation property teamwork in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_teamwork.UserTeamwork]
         """
         if body is None:
@@ -144,7 +141,7 @@ class TeamworkRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_teamwork.UserTeamwork, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_teamwork.UserTeamwork, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[TeamworkRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -66,7 +66,7 @@ class CloudPcAuditResource(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The resource entity display name.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -76,10 +76,10 @@ class CloudPcAuditResource(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "modified_properties": lambda n : setattr(self, 'modified_properties', n.get_collection_of_object_values(cloud_pc_audit_property.CloudPcAuditProperty)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "modifiedProperties": lambda n : setattr(self, 'modified_properties', n.get_collection_of_object_values(cloud_pc_audit_property.CloudPcAuditProperty)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "resource_id": lambda n : setattr(self, 'resource_id', n.get_str_value()),
+            "resourceId": lambda n : setattr(self, 'resource_id', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
         }
         return fields
@@ -97,7 +97,7 @@ class CloudPcAuditResource(AdditionalDataHolder, Parsable):
         """
         Sets the modifiedProperties property value. A list of modified properties.
         Args:
-            value: Value to set for the modifiedProperties property.
+            value: Value to set for the modified_properties property.
         """
         self._modified_properties = value
     
@@ -114,7 +114,7 @@ class CloudPcAuditResource(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -131,7 +131,7 @@ class CloudPcAuditResource(AdditionalDataHolder, Parsable):
         """
         Sets the resourceId property value. The ID of the audit resource.
         Args:
-            value: Value to set for the resourceId property.
+            value: Value to set for the resource_id property.
         """
         self._resource_id = value
     

@@ -24,7 +24,7 @@ class FileSecurityProfile(entity.Entity):
         """
         Sets the activityGroupNames property value. The activityGroupNames property
         Args:
-            value: Value to set for the activityGroupNames property.
+            value: Value to set for the activity_group_names property.
         """
         self._activity_group_names = value
     
@@ -41,7 +41,7 @@ class FileSecurityProfile(entity.Entity):
         """
         Sets the azureSubscriptionId property value. The azureSubscriptionId property
         Args:
-            value: Value to set for the azureSubscriptionId property.
+            value: Value to set for the azure_subscription_id property.
         """
         self._azure_subscription_id = value
     
@@ -58,7 +58,7 @@ class FileSecurityProfile(entity.Entity):
         """
         Sets the azureTenantId property value. The azureTenantId property
         Args:
-            value: Value to set for the azureTenantId property.
+            value: Value to set for the azure_tenant_id property.
         """
         self._azure_tenant_id = value
     
@@ -75,13 +75,13 @@ class FileSecurityProfile(entity.Entity):
         """
         Sets the certificateThumbprint property value. The certificateThumbprint property
         Args:
-            value: Value to set for the certificateThumbprint property.
+            value: Value to set for the certificate_thumbprint property.
         """
         self._certificate_thumbprint = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new fileSecurityProfile and sets the default values.
+        Instantiates a new FileSecurityProfile and sets the default values.
         """
         super().__init__()
         # The activityGroupNames property
@@ -161,7 +161,7 @@ class FileSecurityProfile(entity.Entity):
         """
         Sets the fileType property value. The fileType property
         Args:
-            value: Value to set for the fileType property.
+            value: Value to set for the file_type property.
         """
         self._file_type = value
     
@@ -178,7 +178,7 @@ class FileSecurityProfile(entity.Entity):
         """
         Sets the firstSeenDateTime property value. The firstSeenDateTime property
         Args:
-            value: Value to set for the firstSeenDateTime property.
+            value: Value to set for the first_seen_date_time property.
         """
         self._first_seen_date_time = value
     
@@ -188,22 +188,22 @@ class FileSecurityProfile(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "activity_group_names": lambda n : setattr(self, 'activity_group_names', n.get_collection_of_primitive_values(str)),
-            "azure_subscription_id": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
-            "azure_tenant_id": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
-            "certificate_thumbprint": lambda n : setattr(self, 'certificate_thumbprint', n.get_str_value()),
+            "activityGroupNames": lambda n : setattr(self, 'activity_group_names', n.get_collection_of_primitive_values(str)),
+            "azureSubscriptionId": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
+            "azureTenantId": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
+            "certificateThumbprint": lambda n : setattr(self, 'certificate_thumbprint', n.get_str_value()),
             "extensions": lambda n : setattr(self, 'extensions', n.get_collection_of_primitive_values(str)),
-            "file_type": lambda n : setattr(self, 'file_type', n.get_str_value()),
-            "first_seen_date_time": lambda n : setattr(self, 'first_seen_date_time', n.get_datetime_value()),
+            "fileType": lambda n : setattr(self, 'file_type', n.get_str_value()),
+            "firstSeenDateTime": lambda n : setattr(self, 'first_seen_date_time', n.get_datetime_value()),
             "hashes": lambda n : setattr(self, 'hashes', n.get_collection_of_object_values(file_hash.FileHash)),
-            "last_seen_date_time": lambda n : setattr(self, 'last_seen_date_time', n.get_datetime_value()),
-            "malware_states": lambda n : setattr(self, 'malware_states', n.get_collection_of_object_values(malware_state.MalwareState)),
+            "lastSeenDateTime": lambda n : setattr(self, 'last_seen_date_time', n.get_datetime_value()),
+            "malwareStates": lambda n : setattr(self, 'malware_states', n.get_collection_of_object_values(malware_state.MalwareState)),
             "names": lambda n : setattr(self, 'names', n.get_collection_of_primitive_values(str)),
-            "risk_score": lambda n : setattr(self, 'risk_score', n.get_str_value()),
+            "riskScore": lambda n : setattr(self, 'risk_score', n.get_str_value()),
             "size": lambda n : setattr(self, 'size', n.get_int_value()),
             "tags": lambda n : setattr(self, 'tags', n.get_collection_of_primitive_values(str)),
-            "vendor_information": lambda n : setattr(self, 'vendor_information', n.get_object_value(security_vendor_information.SecurityVendorInformation)),
-            "vulnerability_states": lambda n : setattr(self, 'vulnerability_states', n.get_collection_of_object_values(vulnerability_state.VulnerabilityState)),
+            "vendorInformation": lambda n : setattr(self, 'vendor_information', n.get_object_value(security_vendor_information.SecurityVendorInformation)),
+            "vulnerabilityStates": lambda n : setattr(self, 'vulnerability_states', n.get_collection_of_object_values(vulnerability_state.VulnerabilityState)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -239,7 +239,7 @@ class FileSecurityProfile(entity.Entity):
         """
         Sets the lastSeenDateTime property value. The lastSeenDateTime property
         Args:
-            value: Value to set for the lastSeenDateTime property.
+            value: Value to set for the last_seen_date_time property.
         """
         self._last_seen_date_time = value
     
@@ -256,7 +256,7 @@ class FileSecurityProfile(entity.Entity):
         """
         Sets the malwareStates property value. The malwareStates property
         Args:
-            value: Value to set for the malwareStates property.
+            value: Value to set for the malware_states property.
         """
         self._malware_states = value
     
@@ -290,7 +290,7 @@ class FileSecurityProfile(entity.Entity):
         """
         Sets the riskScore property value. The riskScore property
         Args:
-            value: Value to set for the riskScore property.
+            value: Value to set for the risk_score property.
         """
         self._risk_score = value
     
@@ -367,7 +367,7 @@ class FileSecurityProfile(entity.Entity):
         """
         Sets the vendorInformation property value. The vendorInformation property
         Args:
-            value: Value to set for the vendorInformation property.
+            value: Value to set for the vendor_information property.
         """
         self._vendor_information = value
     
@@ -384,7 +384,7 @@ class FileSecurityProfile(entity.Entity):
         """
         Sets the vulnerabilityStates property value. The vulnerabilityStates property
         Args:
-            value: Value to set for the vulnerabilityStates property.
+            value: Value to set for the vulnerability_states property.
         """
         self._vulnerability_states = value
     

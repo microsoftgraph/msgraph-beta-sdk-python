@@ -21,7 +21,7 @@ class MeetingRegistrationBase(entity.Entity):
         """
         Sets the allowedRegistrant property value. Specifies who can register for the meeting.
         Args:
-            value: Value to set for the allowedRegistrant property.
+            value: Value to set for the allowed_registrant property.
         """
         self._allowed_registrant = value
     
@@ -55,7 +55,7 @@ class MeetingRegistrationBase(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_registrant": lambda n : setattr(self, 'allowed_registrant', n.get_enum_value(meeting_audience.MeetingAudience)),
+            "allowedRegistrant": lambda n : setattr(self, 'allowed_registrant', n.get_enum_value(meeting_audience.MeetingAudience)),
             "registrants": lambda n : setattr(self, 'registrants', n.get_collection_of_object_values(meeting_registrant_base.MeetingRegistrantBase)),
         }
         super_fields = super().get_field_deserializers()

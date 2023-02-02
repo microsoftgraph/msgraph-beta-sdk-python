@@ -38,7 +38,7 @@ class CloudPcOnPremisesConnectionHealthCheck(AdditionalDataHolder, Parsable):
         """
         Sets the additionalDetails property value. Additional details about the health check or the recommended action.
         Args:
-            value: Value to set for the additionalDetails property.
+            value: Value to set for the additional_details property.
         """
         self._additional_details = value
     
@@ -91,7 +91,7 @@ class CloudPcOnPremisesConnectionHealthCheck(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The display name for this health check item.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -108,7 +108,7 @@ class CloudPcOnPremisesConnectionHealthCheck(AdditionalDataHolder, Parsable):
         """
         Sets the endDateTime property value. The end time of the health check item. Read-only.
         Args:
-            value: Value to set for the endDateTime property.
+            value: Value to set for the end_date_time property.
         """
         self._end_date_time = value
     
@@ -125,7 +125,7 @@ class CloudPcOnPremisesConnectionHealthCheck(AdditionalDataHolder, Parsable):
         """
         Sets the errorType property value. The type of error that occurred during this health check.
         Args:
-            value: Value to set for the errorType property.
+            value: Value to set for the error_type property.
         """
         self._error_type = value
     
@@ -135,13 +135,13 @@ class CloudPcOnPremisesConnectionHealthCheck(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "additional_details": lambda n : setattr(self, 'additional_details', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "end_date_time": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
-            "error_type": lambda n : setattr(self, 'error_type', n.get_enum_value(cloud_pc_on_premises_connection_health_check_error_type.CloudPcOnPremisesConnectionHealthCheckErrorType)),
+            "additionalDetails": lambda n : setattr(self, 'additional_details', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
+            "errorType": lambda n : setattr(self, 'error_type', n.get_enum_value(cloud_pc_on_premises_connection_health_check_error_type.CloudPcOnPremisesConnectionHealthCheckErrorType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "recommended_action": lambda n : setattr(self, 'recommended_action', n.get_str_value()),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "recommendedAction": lambda n : setattr(self, 'recommended_action', n.get_str_value()),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(cloud_pc_on_premises_connection_status.CloudPcOnPremisesConnectionStatus)),
         }
         return fields
@@ -159,7 +159,7 @@ class CloudPcOnPremisesConnectionHealthCheck(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -176,7 +176,7 @@ class CloudPcOnPremisesConnectionHealthCheck(AdditionalDataHolder, Parsable):
         """
         Sets the recommendedAction property value. The recommended action to fix the corresponding error.
         Args:
-            value: Value to set for the recommendedAction property.
+            value: Value to set for the recommended_action property.
         """
         self._recommended_action = value
     
@@ -211,7 +211,7 @@ class CloudPcOnPremisesConnectionHealthCheck(AdditionalDataHolder, Parsable):
         """
         Sets the startDateTime property value. The start time of the health check item. Read-only.
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     

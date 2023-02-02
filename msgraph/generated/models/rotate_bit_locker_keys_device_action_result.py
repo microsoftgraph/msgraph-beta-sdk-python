@@ -41,7 +41,7 @@ class RotateBitLockerKeysDeviceActionResult(device_action_result.DeviceActionRes
         """
         Sets the errorCode property value. RotateBitLockerKeys action error code
         Args:
-            value: Value to set for the errorCode property.
+            value: Value to set for the error_code property.
         """
         self._error_code = value
     
@@ -51,7 +51,7 @@ class RotateBitLockerKeysDeviceActionResult(device_action_result.DeviceActionRes
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "error_code": lambda n : setattr(self, 'error_code', n.get_int_value()),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

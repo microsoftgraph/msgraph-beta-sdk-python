@@ -55,8 +55,8 @@ class AuthenticationConditionsApplications(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "include_all_applications": lambda n : setattr(self, 'include_all_applications', n.get_bool_value()),
-            "include_applications": lambda n : setattr(self, 'include_applications', n.get_collection_of_object_values(authentication_condition_application.AuthenticationConditionApplication)),
+            "includeAllApplications": lambda n : setattr(self, 'include_all_applications', n.get_bool_value()),
+            "includeApplications": lambda n : setattr(self, 'include_applications', n.get_collection_of_object_values(authentication_condition_application.AuthenticationConditionApplication)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -74,7 +74,7 @@ class AuthenticationConditionsApplications(AdditionalDataHolder, Parsable):
         """
         Sets the includeAllApplications property value. The includeAllApplications property
         Args:
-            value: Value to set for the includeAllApplications property.
+            value: Value to set for the include_all_applications property.
         """
         self._include_all_applications = value
     
@@ -91,7 +91,7 @@ class AuthenticationConditionsApplications(AdditionalDataHolder, Parsable):
         """
         Sets the includeApplications property value. The includeApplications property
         Args:
-            value: Value to set for the includeApplications property.
+            value: Value to set for the include_applications property.
         """
         self._include_applications = value
     
@@ -108,7 +108,7 @@ class AuthenticationConditionsApplications(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -65,7 +65,7 @@ class PlannerTaskRoleBasedRule(AdditionalDataHolder, Parsable):
         """
         Sets the defaultRule property value. Default rule that applies when a property or action-specific rule is not provided. Possible values are: Allow, Block
         Args:
-            value: Value to set for the defaultRule property.
+            value: Value to set for the default_rule property.
         """
         self._default_rule = value
     
@@ -75,9 +75,9 @@ class PlannerTaskRoleBasedRule(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_rule": lambda n : setattr(self, 'default_rule', n.get_str_value()),
+            "defaultRule": lambda n : setattr(self, 'default_rule', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "property_rule": lambda n : setattr(self, 'property_rule', n.get_object_value(planner_task_property_rule.PlannerTaskPropertyRule)),
+            "propertyRule": lambda n : setattr(self, 'property_rule', n.get_object_value(planner_task_property_rule.PlannerTaskPropertyRule)),
             "role": lambda n : setattr(self, 'role', n.get_object_value(planner_task_configuration_role_base.PlannerTaskConfigurationRoleBase)),
         }
         return fields
@@ -95,7 +95,7 @@ class PlannerTaskRoleBasedRule(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -112,7 +112,7 @@ class PlannerTaskRoleBasedRule(AdditionalDataHolder, Parsable):
         """
         Sets the propertyRule property value. Rules for specific properties and actions.
         Args:
-            value: Value to set for the propertyRule property.
+            value: Value to set for the property_rule property.
         """
         self._property_rule = value
     

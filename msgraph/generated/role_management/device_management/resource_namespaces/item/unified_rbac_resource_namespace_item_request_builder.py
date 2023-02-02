@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 unified_rbac_resource_namespace = lazy_import('msgraph.generated.models.unified_rbac_resource_namespace')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-import_resource_actions_request_builder = lazy_import('msgraph.generated.role_management.device_management.resource_namespaces.item.import_resource_actions.import_resource_actions_request_builder')
+import_resource_actions_request_builder = lazy_import('msgraph.generated.role_management.device_management.resource_namespaces.item.microsoft_graph_import_resource_actions.import_resource_actions_request_builder')
 resource_actions_request_builder = lazy_import('msgraph.generated.role_management.device_management.resource_namespaces.item.resource_actions.resource_actions_request_builder')
 unified_rbac_resource_action_item_request_builder = lazy_import('msgraph.generated.role_management.device_management.resource_namespaces.item.resource_actions.item.unified_rbac_resource_action_item_request_builder')
 
@@ -21,7 +21,7 @@ class UnifiedRbacResourceNamespaceItemRequestBuilder():
     Provides operations to manage the resourceNamespaces property of the microsoft.graph.rbacApplicationMultiple entity.
     """
     @property
-    def import_resource_actions(self) -> import_resource_actions_request_builder.ImportResourceActionsRequestBuilder:
+    def microsoft_graph_import_resource_actions(self) -> import_resource_actions_request_builder.ImportResourceActionsRequestBuilder:
         """
         Provides operations to call the importResourceActions method.
         """
@@ -34,12 +34,13 @@ class UnifiedRbacResourceNamespaceItemRequestBuilder():
         """
         return resource_actions_request_builder.ResourceActionsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, unified_rbac_resource_namespace_id: Optional[str] = None) -> None:
         """
         Instantiates a new UnifiedRbacResourceNamespaceItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            unifiedRbacResourceNamespaceId: key: id of unifiedRbacResourceNamespace
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -49,15 +50,15 @@ class UnifiedRbacResourceNamespaceItemRequestBuilder():
         self.url_template: str = "{+baseurl}/roleManagement/deviceManagement/resourceNamespaces/{unifiedRbacResourceNamespace%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["unifiedRbacResourceNamespace%2Did"] = unifiedRbacResourceNamespaceId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[UnifiedRbacResourceNamespaceItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[UnifiedRbacResourceNamespaceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property resourceNamespaces for roleManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -68,14 +69,13 @@ class UnifiedRbacResourceNamespaceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UnifiedRbacResourceNamespaceItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_rbac_resource_namespace.UnifiedRbacResourceNamespace]:
+    async def get(self,request_configuration: Optional[UnifiedRbacResourceNamespaceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_rbac_resource_namespace.UnifiedRbacResourceNamespace]:
         """
         Get resourceNamespaces from roleManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_rbac_resource_namespace.UnifiedRbacResourceNamespace]
         """
         request_info = self.to_get_request_information(
@@ -87,15 +87,14 @@ class UnifiedRbacResourceNamespaceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_rbac_resource_namespace.UnifiedRbacResourceNamespace, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_rbac_resource_namespace.UnifiedRbacResourceNamespace, error_mapping)
     
-    async def patch(self,body: Optional[unified_rbac_resource_namespace.UnifiedRbacResourceNamespace] = None, request_configuration: Optional[UnifiedRbacResourceNamespaceItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_rbac_resource_namespace.UnifiedRbacResourceNamespace]:
+    async def patch(self,body: Optional[unified_rbac_resource_namespace.UnifiedRbacResourceNamespace] = None, request_configuration: Optional[UnifiedRbacResourceNamespaceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[unified_rbac_resource_namespace.UnifiedRbacResourceNamespace]:
         """
         Update the navigation property resourceNamespaces in roleManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_rbac_resource_namespace.UnifiedRbacResourceNamespace]
         """
         if body is None:
@@ -109,7 +108,7 @@ class UnifiedRbacResourceNamespaceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_rbac_resource_namespace.UnifiedRbacResourceNamespace, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_rbac_resource_namespace.UnifiedRbacResourceNamespace, error_mapping)
     
     def resource_actions_by_id(self,id: str) -> unified_rbac_resource_action_item_request_builder.UnifiedRbacResourceActionItemRequestBuilder:
         """

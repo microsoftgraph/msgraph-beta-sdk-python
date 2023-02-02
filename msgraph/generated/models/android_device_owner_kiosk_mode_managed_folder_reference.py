@@ -42,7 +42,7 @@ class AndroidDeviceOwnerKioskModeManagedFolderReference(android_device_owner_kio
         """
         Sets the folderIdentifier property value. Unique identifier for the folder
         Args:
-            value: Value to set for the folderIdentifier property.
+            value: Value to set for the folder_identifier property.
         """
         self._folder_identifier = value
     
@@ -59,7 +59,7 @@ class AndroidDeviceOwnerKioskModeManagedFolderReference(android_device_owner_kio
         """
         Sets the folderName property value. Name of the folder
         Args:
-            value: Value to set for the folderName property.
+            value: Value to set for the folder_name property.
         """
         self._folder_name = value
     
@@ -69,8 +69,8 @@ class AndroidDeviceOwnerKioskModeManagedFolderReference(android_device_owner_kio
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "folder_identifier": lambda n : setattr(self, 'folder_identifier', n.get_str_value()),
-            "folder_name": lambda n : setattr(self, 'folder_name', n.get_str_value()),
+            "folderIdentifier": lambda n : setattr(self, 'folder_identifier', n.get_str_value()),
+            "folderName": lambda n : setattr(self, 'folder_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

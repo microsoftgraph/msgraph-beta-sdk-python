@@ -41,10 +41,10 @@ class WebApplication(AdditionalDataHolder, Parsable):
         self._oauth2_allow_implicit_flow: Optional[bool] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # Specifies the URLs where user tokens are sent for sign-in, or the redirect URIs where OAuth 2.0 authorization codes and access tokens are sent.
-        self._redirect_uris: Optional[List[str]] = None
         # Specifies the index of the URLs where user tokens are sent for sign-in. This is only valid for applications using SAML.
         self._redirect_uri_settings: Optional[List[redirect_uri_settings.RedirectUriSettings]] = None
+        # Specifies the URLs where user tokens are sent for sign-in, or the redirect URIs where OAuth 2.0 authorization codes and access tokens are sent.
+        self._redirect_uris: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WebApplication:
@@ -64,13 +64,13 @@ class WebApplication(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "home_page_url": lambda n : setattr(self, 'home_page_url', n.get_str_value()),
-            "implicit_grant_settings": lambda n : setattr(self, 'implicit_grant_settings', n.get_object_value(implicit_grant_settings.ImplicitGrantSettings)),
-            "logout_url": lambda n : setattr(self, 'logout_url', n.get_str_value()),
-            "oauth2_allow_implicit_flow": lambda n : setattr(self, 'oauth2_allow_implicit_flow', n.get_bool_value()),
+            "homePageUrl": lambda n : setattr(self, 'home_page_url', n.get_str_value()),
+            "implicitGrantSettings": lambda n : setattr(self, 'implicit_grant_settings', n.get_object_value(implicit_grant_settings.ImplicitGrantSettings)),
+            "logoutUrl": lambda n : setattr(self, 'logout_url', n.get_str_value()),
+            "oauth2AllowImplicitFlow": lambda n : setattr(self, 'oauth2_allow_implicit_flow', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "redirect_uris": lambda n : setattr(self, 'redirect_uris', n.get_collection_of_primitive_values(str)),
-            "redirect_uri_settings": lambda n : setattr(self, 'redirect_uri_settings', n.get_collection_of_object_values(redirect_uri_settings.RedirectUriSettings)),
+            "redirectUris": lambda n : setattr(self, 'redirect_uris', n.get_collection_of_primitive_values(str)),
+            "redirectUriSettings": lambda n : setattr(self, 'redirect_uri_settings', n.get_collection_of_object_values(redirect_uri_settings.RedirectUriSettings)),
         }
         return fields
     
@@ -87,7 +87,7 @@ class WebApplication(AdditionalDataHolder, Parsable):
         """
         Sets the homePageUrl property value. Home page or landing page of the application.
         Args:
-            value: Value to set for the homePageUrl property.
+            value: Value to set for the home_page_url property.
         """
         self._home_page_url = value
     
@@ -104,7 +104,7 @@ class WebApplication(AdditionalDataHolder, Parsable):
         """
         Sets the implicitGrantSettings property value. Specifies whether this web application can request tokens using the OAuth 2.0 implicit flow.
         Args:
-            value: Value to set for the implicitGrantSettings property.
+            value: Value to set for the implicit_grant_settings property.
         """
         self._implicit_grant_settings = value
     
@@ -121,7 +121,7 @@ class WebApplication(AdditionalDataHolder, Parsable):
         """
         Sets the logoutUrl property value. Specifies the URL that will be used by Microsoft's authorization service to logout an user using front-channel, back-channel or SAML logout protocols.
         Args:
-            value: Value to set for the logoutUrl property.
+            value: Value to set for the logout_url property.
         """
         self._logout_url = value
     
@@ -138,7 +138,7 @@ class WebApplication(AdditionalDataHolder, Parsable):
         """
         Sets the oauth2AllowImplicitFlow property value. The oauth2AllowImplicitFlow property
         Args:
-            value: Value to set for the oauth2AllowImplicitFlow property.
+            value: Value to set for the oauth2_allow_implicit_flow property.
         """
         self._oauth2_allow_implicit_flow = value
     
@@ -155,26 +155,9 @@ class WebApplication(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
-    
-    @property
-    def redirect_uris(self,) -> Optional[List[str]]:
-        """
-        Gets the redirectUris property value. Specifies the URLs where user tokens are sent for sign-in, or the redirect URIs where OAuth 2.0 authorization codes and access tokens are sent.
-        Returns: Optional[List[str]]
-        """
-        return self._redirect_uris
-    
-    @redirect_uris.setter
-    def redirect_uris(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the redirectUris property value. Specifies the URLs where user tokens are sent for sign-in, or the redirect URIs where OAuth 2.0 authorization codes and access tokens are sent.
-        Args:
-            value: Value to set for the redirectUris property.
-        """
-        self._redirect_uris = value
     
     @property
     def redirect_uri_settings(self,) -> Optional[List[redirect_uri_settings.RedirectUriSettings]]:
@@ -189,9 +172,26 @@ class WebApplication(AdditionalDataHolder, Parsable):
         """
         Sets the redirectUriSettings property value. Specifies the index of the URLs where user tokens are sent for sign-in. This is only valid for applications using SAML.
         Args:
-            value: Value to set for the redirectUriSettings property.
+            value: Value to set for the redirect_uri_settings property.
         """
         self._redirect_uri_settings = value
+    
+    @property
+    def redirect_uris(self,) -> Optional[List[str]]:
+        """
+        Gets the redirectUris property value. Specifies the URLs where user tokens are sent for sign-in, or the redirect URIs where OAuth 2.0 authorization codes and access tokens are sent.
+        Returns: Optional[List[str]]
+        """
+        return self._redirect_uris
+    
+    @redirect_uris.setter
+    def redirect_uris(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the redirectUris property value. Specifies the URLs where user tokens are sent for sign-in, or the redirect URIs where OAuth 2.0 authorization codes and access tokens are sent.
+        Args:
+            value: Value to set for the redirect_uris property.
+        """
+        self._redirect_uris = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

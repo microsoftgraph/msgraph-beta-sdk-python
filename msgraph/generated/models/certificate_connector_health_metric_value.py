@@ -66,7 +66,7 @@ class CertificateConnectorHealthMetricValue(AdditionalDataHolder, Parsable):
         """
         Sets the dateTime property value. Timestamp for this metric data-point.
         Args:
-            value: Value to set for the dateTime property.
+            value: Value to set for the date_time property.
         """
         self._date_time = value
     
@@ -83,7 +83,7 @@ class CertificateConnectorHealthMetricValue(AdditionalDataHolder, Parsable):
         """
         Sets the failureCount property value. Count of failed requests/operations.
         Args:
-            value: Value to set for the failureCount property.
+            value: Value to set for the failure_count property.
         """
         self._failure_count = value
     
@@ -93,10 +93,10 @@ class CertificateConnectorHealthMetricValue(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "date_time": lambda n : setattr(self, 'date_time', n.get_datetime_value()),
-            "failure_count": lambda n : setattr(self, 'failure_count', n.get_int_value()),
+            "dateTime": lambda n : setattr(self, 'date_time', n.get_datetime_value()),
+            "failureCount": lambda n : setattr(self, 'failure_count', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "success_count": lambda n : setattr(self, 'success_count', n.get_int_value()),
+            "successCount": lambda n : setattr(self, 'success_count', n.get_int_value()),
         }
         return fields
     
@@ -113,7 +113,7 @@ class CertificateConnectorHealthMetricValue(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -144,7 +144,7 @@ class CertificateConnectorHealthMetricValue(AdditionalDataHolder, Parsable):
         """
         Sets the successCount property value. Count of successful requests/operations.
         Args:
-            value: Value to set for the successCount property.
+            value: Value to set for the success_count property.
         """
         self._success_count = value
     

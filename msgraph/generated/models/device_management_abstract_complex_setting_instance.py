@@ -35,7 +35,7 @@ class DeviceManagementAbstractComplexSettingInstance(device_management_setting_i
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "implementation_id": lambda n : setattr(self, 'implementation_id', n.get_str_value()),
+            "implementationId": lambda n : setattr(self, 'implementation_id', n.get_str_value()),
             "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(device_management_setting_instance.DeviceManagementSettingInstance)),
         }
         super_fields = super().get_field_deserializers()
@@ -55,7 +55,7 @@ class DeviceManagementAbstractComplexSettingInstance(device_management_setting_i
         """
         Sets the implementationId property value. The definition ID for the chosen implementation of this complex setting
         Args:
-            value: Value to set for the implementationId property.
+            value: Value to set for the implementation_id property.
         """
         self._implementation_id = value
     

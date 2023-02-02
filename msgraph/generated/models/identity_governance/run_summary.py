@@ -68,7 +68,7 @@ class RunSummary(AdditionalDataHolder, Parsable):
         """
         Sets the failedRuns property value. The number of failed workflow runs.
         Args:
-            value: Value to set for the failedRuns property.
+            value: Value to set for the failed_runs property.
         """
         self._failed_runs = value
     
@@ -85,7 +85,7 @@ class RunSummary(AdditionalDataHolder, Parsable):
         """
         Sets the failedTasks property value. The number of failed tasks of a workflow.
         Args:
-            value: Value to set for the failedTasks property.
+            value: Value to set for the failed_tasks property.
         """
         self._failed_tasks = value
     
@@ -95,13 +95,13 @@ class RunSummary(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "failed_runs": lambda n : setattr(self, 'failed_runs', n.get_int_value()),
-            "failed_tasks": lambda n : setattr(self, 'failed_tasks', n.get_int_value()),
+            "failedRuns": lambda n : setattr(self, 'failed_runs', n.get_int_value()),
+            "failedTasks": lambda n : setattr(self, 'failed_tasks', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "successful_runs": lambda n : setattr(self, 'successful_runs', n.get_int_value()),
-            "total_runs": lambda n : setattr(self, 'total_runs', n.get_int_value()),
-            "total_tasks": lambda n : setattr(self, 'total_tasks', n.get_int_value()),
-            "total_users": lambda n : setattr(self, 'total_users', n.get_int_value()),
+            "successfulRuns": lambda n : setattr(self, 'successful_runs', n.get_int_value()),
+            "totalRuns": lambda n : setattr(self, 'total_runs', n.get_int_value()),
+            "totalTasks": lambda n : setattr(self, 'total_tasks', n.get_int_value()),
+            "totalUsers": lambda n : setattr(self, 'total_users', n.get_int_value()),
         }
         return fields
     
@@ -118,7 +118,7 @@ class RunSummary(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -152,7 +152,7 @@ class RunSummary(AdditionalDataHolder, Parsable):
         """
         Sets the successfulRuns property value. The number of successful workflow runs.
         Args:
-            value: Value to set for the successfulRuns property.
+            value: Value to set for the successful_runs property.
         """
         self._successful_runs = value
     
@@ -169,7 +169,7 @@ class RunSummary(AdditionalDataHolder, Parsable):
         """
         Sets the totalRuns property value. The total number of runs for a workflow.
         Args:
-            value: Value to set for the totalRuns property.
+            value: Value to set for the total_runs property.
         """
         self._total_runs = value
     
@@ -186,7 +186,7 @@ class RunSummary(AdditionalDataHolder, Parsable):
         """
         Sets the totalTasks property value. The totalTasks property
         Args:
-            value: Value to set for the totalTasks property.
+            value: Value to set for the total_tasks property.
         """
         self._total_tasks = value
     
@@ -203,7 +203,7 @@ class RunSummary(AdditionalDataHolder, Parsable):
         """
         Sets the totalUsers property value. The totalUsers property
         Args:
-            value: Value to set for the totalUsers property.
+            value: Value to set for the total_users property.
         """
         self._total_users = value
     

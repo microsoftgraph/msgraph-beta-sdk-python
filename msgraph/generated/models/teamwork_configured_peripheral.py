@@ -55,7 +55,7 @@ class TeamworkConfiguredPeripheral(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_optional": lambda n : setattr(self, 'is_optional', n.get_bool_value()),
+            "isOptional": lambda n : setattr(self, 'is_optional', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "peripheral": lambda n : setattr(self, 'peripheral', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
         }
@@ -74,7 +74,7 @@ class TeamworkConfiguredPeripheral(AdditionalDataHolder, Parsable):
         """
         Sets the isOptional property value. True if the current peripheral is optional. If set to false, this property is also used as part of the calculation of the health state for the device.
         Args:
-            value: Value to set for the isOptional property.
+            value: Value to set for the is_optional property.
         """
         self._is_optional = value
     
@@ -91,7 +91,7 @@ class TeamworkConfiguredPeripheral(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

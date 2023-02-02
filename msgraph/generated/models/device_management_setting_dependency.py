@@ -82,7 +82,7 @@ class DeviceManagementSettingDependency(AdditionalDataHolder, Parsable):
         """
         Sets the definitionId property value. The setting definition ID of the setting depended on
         Args:
-            value: Value to set for the definitionId property.
+            value: Value to set for the definition_id property.
         """
         self._definition_id = value
     
@@ -93,7 +93,7 @@ class DeviceManagementSettingDependency(AdditionalDataHolder, Parsable):
         """
         fields = {
             "constraints": lambda n : setattr(self, 'constraints', n.get_collection_of_object_values(device_management_constraint.DeviceManagementConstraint)),
-            "definition_id": lambda n : setattr(self, 'definition_id', n.get_str_value()),
+            "definitionId": lambda n : setattr(self, 'definition_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -111,7 +111,7 @@ class DeviceManagementSettingDependency(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -41,8 +41,8 @@ class ExternalActivity(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "performed_by": lambda n : setattr(self, 'performed_by', n.get_object_value(identity.Identity)),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "performedBy": lambda n : setattr(self, 'performed_by', n.get_object_value(identity.Identity)),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(external_activity_type.ExternalActivityType)),
         }
         super_fields = super().get_field_deserializers()
@@ -62,7 +62,7 @@ class ExternalActivity(entity.Entity):
         """
         Sets the performedBy property value. Represents an identity used to identify who is responsible for the activity.
         Args:
-            value: Value to set for the performedBy property.
+            value: Value to set for the performed_by property.
         """
         self._performed_by = value
     
@@ -92,7 +92,7 @@ class ExternalActivity(entity.Entity):
         """
         Sets the startDateTime property value. When the particular activity occurred.
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     

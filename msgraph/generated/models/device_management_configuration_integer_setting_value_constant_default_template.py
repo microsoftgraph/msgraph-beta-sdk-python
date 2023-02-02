@@ -19,7 +19,7 @@ class DeviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate(de
         """
         Sets the constantValue property value. Default Constant Value. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the constantValue property.
+            value: Value to set for the constant_value property.
         """
         self._constant_value = value
     
@@ -50,7 +50,7 @@ class DeviceManagementConfigurationIntegerSettingValueConstantDefaultTemplate(de
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "constant_value": lambda n : setattr(self, 'constant_value', n.get_int_value()),
+            "constantValue": lambda n : setattr(self, 'constant_value', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

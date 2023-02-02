@@ -34,7 +34,7 @@ class AndroidDeviceComplianceLocalActionBase(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "grace_period_in_minutes": lambda n : setattr(self, 'grace_period_in_minutes', n.get_int_value()),
+            "gracePeriodInMinutes": lambda n : setattr(self, 'grace_period_in_minutes', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -53,7 +53,7 @@ class AndroidDeviceComplianceLocalActionBase(entity.Entity):
         """
         Sets the gracePeriodInMinutes property value. Number of minutes to wait till a local action is enforced. Valid values 0 to 2147483647
         Args:
-            value: Value to set for the gracePeriodInMinutes property.
+            value: Value to set for the grace_period_in_minutes property.
         """
         self._grace_period_in_minutes = value
     

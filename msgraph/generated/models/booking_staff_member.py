@@ -22,7 +22,7 @@ class BookingStaffMember(booking_person.BookingPerson):
         """
         Sets the availabilityIsAffectedByPersonalCalendar property value. True means that if the staff member is a Microsoft 365 user, the Bookings API would verify the staff member's availability in their personal calendar in Microsoft 365, before making a booking.
         Args:
-            value: Value to set for the availabilityIsAffectedByPersonalCalendar property.
+            value: Value to set for the availability_is_affected_by_personal_calendar property.
         """
         self._availability_is_affected_by_personal_calendar = value
     
@@ -39,7 +39,7 @@ class BookingStaffMember(booking_person.BookingPerson):
         """
         Sets the colorIndex property value. Identifies a color to represent the staff member. The color corresponds to the color palette in the Staff details page in the Bookings app.
         Args:
-            value: Value to set for the colorIndex property.
+            value: Value to set for the color_index property.
         """
         self._color_index = value
     
@@ -85,14 +85,14 @@ class BookingStaffMember(booking_person.BookingPerson):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "availability_is_affected_by_personal_calendar": lambda n : setattr(self, 'availability_is_affected_by_personal_calendar', n.get_bool_value()),
-            "color_index": lambda n : setattr(self, 'color_index', n.get_int_value()),
-            "is_email_notification_enabled": lambda n : setattr(self, 'is_email_notification_enabled', n.get_bool_value()),
-            "membership_status": lambda n : setattr(self, 'membership_status', n.get_enum_value(booking_staff_membership_status.BookingStaffMembershipStatus)),
+            "availabilityIsAffectedByPersonalCalendar": lambda n : setattr(self, 'availability_is_affected_by_personal_calendar', n.get_bool_value()),
+            "colorIndex": lambda n : setattr(self, 'color_index', n.get_int_value()),
+            "isEmailNotificationEnabled": lambda n : setattr(self, 'is_email_notification_enabled', n.get_bool_value()),
+            "membershipStatus": lambda n : setattr(self, 'membership_status', n.get_enum_value(booking_staff_membership_status.BookingStaffMembershipStatus)),
             "role": lambda n : setattr(self, 'role', n.get_enum_value(booking_staff_role.BookingStaffRole)),
-            "time_zone": lambda n : setattr(self, 'time_zone', n.get_str_value()),
-            "use_business_hours": lambda n : setattr(self, 'use_business_hours', n.get_bool_value()),
-            "working_hours": lambda n : setattr(self, 'working_hours', n.get_collection_of_object_values(booking_work_hours.BookingWorkHours)),
+            "timeZone": lambda n : setattr(self, 'time_zone', n.get_str_value()),
+            "useBusinessHours": lambda n : setattr(self, 'use_business_hours', n.get_bool_value()),
+            "workingHours": lambda n : setattr(self, 'working_hours', n.get_collection_of_object_values(booking_work_hours.BookingWorkHours)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -111,7 +111,7 @@ class BookingStaffMember(booking_person.BookingPerson):
         """
         Sets the isEmailNotificationEnabled property value. True indicates that a staff member will be notified via email when a booking assigned to them is created or changed.
         Args:
-            value: Value to set for the isEmailNotificationEnabled property.
+            value: Value to set for the is_email_notification_enabled property.
         """
         self._is_email_notification_enabled = value
     
@@ -128,7 +128,7 @@ class BookingStaffMember(booking_person.BookingPerson):
         """
         Sets the membershipStatus property value. The membershipStatus property
         Args:
-            value: Value to set for the membershipStatus property.
+            value: Value to set for the membership_status property.
         """
         self._membership_status = value
     
@@ -180,7 +180,7 @@ class BookingStaffMember(booking_person.BookingPerson):
         """
         Sets the timeZone property value. The time zone of the staff member. For a list of possible values, see dateTimeTimeZone.
         Args:
-            value: Value to set for the timeZone property.
+            value: Value to set for the time_zone property.
         """
         self._time_zone = value
     
@@ -197,7 +197,7 @@ class BookingStaffMember(booking_person.BookingPerson):
         """
         Sets the useBusinessHours property value. True means the staff member's availability is as specified in the businessHours property of the business. False means the availability is determined by the staff member's workingHours property setting.
         Args:
-            value: Value to set for the useBusinessHours property.
+            value: Value to set for the use_business_hours property.
         """
         self._use_business_hours = value
     
@@ -214,7 +214,7 @@ class BookingStaffMember(booking_person.BookingPerson):
         """
         Sets the workingHours property value. The range of hours each day of the week that the staff member is available for booking. By default, they are initialized to be the same as the businessHours property of the business.
         Args:
-            value: Value to set for the workingHours property.
+            value: Value to set for the working_hours property.
         """
         self._working_hours = value
     

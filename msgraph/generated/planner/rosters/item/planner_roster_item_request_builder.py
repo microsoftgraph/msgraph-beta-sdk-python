@@ -35,11 +35,12 @@ class PlannerRosterItemRequestBuilder():
         """
         return plans_request_builder.PlansRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, planner_roster_id: Optional[str] = None) -> None:
         """
         Instantiates a new PlannerRosterItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            plannerRosterId: key: id of plannerRoster
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -50,15 +51,15 @@ class PlannerRosterItemRequestBuilder():
         self.url_template: str = "{+baseurl}/planner/rosters/{plannerRoster%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["plannerRoster%2Did"] = plannerRosterId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PlannerRosterItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PlannerRosterItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property rosters for planner
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -69,14 +70,13 @@ class PlannerRosterItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PlannerRosterItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[planner_roster.PlannerRoster]:
+    async def get(self,request_configuration: Optional[PlannerRosterItemRequestBuilderGetRequestConfiguration] = None) -> Optional[planner_roster.PlannerRoster]:
         """
         Read-only. Nullable. Returns a collection of the specified rosters
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[planner_roster.PlannerRoster]
         """
         request_info = self.to_get_request_information(
@@ -88,7 +88,7 @@ class PlannerRosterItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, planner_roster.PlannerRoster, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, planner_roster.PlannerRoster, error_mapping)
     
     def members_by_id(self,id: str) -> planner_roster_member_item_request_builder.PlannerRosterMemberItemRequestBuilder:
         """
@@ -103,13 +103,12 @@ class PlannerRosterItemRequestBuilder():
         url_tpl_params["plannerRosterMember%2Did"] = id
         return planner_roster_member_item_request_builder.PlannerRosterMemberItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[planner_roster.PlannerRoster] = None, request_configuration: Optional[PlannerRosterItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[planner_roster.PlannerRoster]:
+    async def patch(self,body: Optional[planner_roster.PlannerRoster] = None, request_configuration: Optional[PlannerRosterItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[planner_roster.PlannerRoster]:
         """
         Update the navigation property rosters in planner
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[planner_roster.PlannerRoster]
         """
         if body is None:
@@ -123,7 +122,7 @@ class PlannerRosterItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, planner_roster.PlannerRoster, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, planner_roster.PlannerRoster, error_mapping)
     
     def plans_by_id(self,id: str) -> planner_plan_item_request_builder.PlannerPlanItemRequestBuilder:
         """

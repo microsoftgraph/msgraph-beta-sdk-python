@@ -34,7 +34,7 @@ class DefaultUserRolePermissions(AdditionalDataHolder, Parsable):
         """
         Sets the allowedToCreateApps property value. Indicates whether the default user role can create applications.
         Args:
-            value: Value to set for the allowedToCreateApps property.
+            value: Value to set for the allowed_to_create_apps property.
         """
         self._allowed_to_create_apps = value
     
@@ -51,7 +51,7 @@ class DefaultUserRolePermissions(AdditionalDataHolder, Parsable):
         """
         Sets the allowedToCreateSecurityGroups property value. Indicates whether the default user role can create security groups.
         Args:
-            value: Value to set for the allowedToCreateSecurityGroups property.
+            value: Value to set for the allowed_to_create_security_groups property.
         """
         self._allowed_to_create_security_groups = value
     
@@ -68,7 +68,7 @@ class DefaultUserRolePermissions(AdditionalDataHolder, Parsable):
         """
         Sets the allowedToReadBitlockerKeysForOwnedDevice property value. Indicates whether the registered owners of a device can read their own BitLocker recovery keys with default user role.
         Args:
-            value: Value to set for the allowedToReadBitlockerKeysForOwnedDevice property.
+            value: Value to set for the allowed_to_read_bitlocker_keys_for_owned_device property.
         """
         self._allowed_to_read_bitlocker_keys_for_owned_device = value
     
@@ -85,7 +85,7 @@ class DefaultUserRolePermissions(AdditionalDataHolder, Parsable):
         """
         Sets the allowedToReadOtherUsers property value. Indicates whether the default user role can read other users.
         Args:
-            value: Value to set for the allowedToReadOtherUsers property.
+            value: Value to set for the allowed_to_read_other_users property.
         """
         self._allowed_to_read_other_users = value
     
@@ -125,10 +125,10 @@ class DefaultUserRolePermissions(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_to_create_apps": lambda n : setattr(self, 'allowed_to_create_apps', n.get_bool_value()),
-            "allowed_to_create_security_groups": lambda n : setattr(self, 'allowed_to_create_security_groups', n.get_bool_value()),
-            "allowed_to_read_bitlocker_keys_for_owned_device": lambda n : setattr(self, 'allowed_to_read_bitlocker_keys_for_owned_device', n.get_bool_value()),
-            "allowed_to_read_other_users": lambda n : setattr(self, 'allowed_to_read_other_users', n.get_bool_value()),
+            "allowedToCreateApps": lambda n : setattr(self, 'allowed_to_create_apps', n.get_bool_value()),
+            "allowedToCreateSecurityGroups": lambda n : setattr(self, 'allowed_to_create_security_groups', n.get_bool_value()),
+            "allowedToReadBitlockerKeysForOwnedDevice": lambda n : setattr(self, 'allowed_to_read_bitlocker_keys_for_owned_device', n.get_bool_value()),
+            "allowedToReadOtherUsers": lambda n : setattr(self, 'allowed_to_read_other_users', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -146,7 +146,7 @@ class DefaultUserRolePermissions(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

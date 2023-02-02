@@ -46,7 +46,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the androidManagedAppProtections property value. Android managed app policies.
         Args:
-            value: Value to set for the androidManagedAppProtections property.
+            value: Value to set for the android_managed_app_protections property.
         """
         self._android_managed_app_protections = value
     
@@ -143,7 +143,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the defaultManagedAppProtections property value. Default managed app policies.
         Args:
-            value: Value to set for the defaultManagedAppProtections property.
+            value: Value to set for the default_managed_app_protections property.
         """
         self._default_managed_app_protections = value
     
@@ -160,7 +160,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the deviceAppManagementTasks property value. Device app management tasks.
         Args:
-            value: Value to set for the deviceAppManagementTasks property.
+            value: Value to set for the device_app_management_tasks property.
         """
         self._device_app_management_tasks = value
     
@@ -177,7 +177,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the enterpriseCodeSigningCertificates property value. The Windows Enterprise Code Signing Certificate.
         Args:
-            value: Value to set for the enterpriseCodeSigningCertificates property.
+            value: Value to set for the enterprise_code_signing_certificates property.
         """
         self._enterprise_code_signing_certificates = value
     
@@ -187,36 +187,36 @@ class DeviceAppManagement(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "android_managed_app_protections": lambda n : setattr(self, 'android_managed_app_protections', n.get_collection_of_object_values(android_managed_app_protection.AndroidManagedAppProtection)),
-            "default_managed_app_protections": lambda n : setattr(self, 'default_managed_app_protections', n.get_collection_of_object_values(default_managed_app_protection.DefaultManagedAppProtection)),
-            "device_app_management_tasks": lambda n : setattr(self, 'device_app_management_tasks', n.get_collection_of_object_values(device_app_management_task.DeviceAppManagementTask)),
-            "enterprise_code_signing_certificates": lambda n : setattr(self, 'enterprise_code_signing_certificates', n.get_collection_of_object_values(enterprise_code_signing_certificate.EnterpriseCodeSigningCertificate)),
-            "ios_lob_app_provisioning_configurations": lambda n : setattr(self, 'ios_lob_app_provisioning_configurations', n.get_collection_of_object_values(ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration)),
-            "ios_managed_app_protections": lambda n : setattr(self, 'ios_managed_app_protections', n.get_collection_of_object_values(ios_managed_app_protection.IosManagedAppProtection)),
-            "is_enabled_for_microsoft_store_for_business": lambda n : setattr(self, 'is_enabled_for_microsoft_store_for_business', n.get_bool_value()),
-            "managed_app_policies": lambda n : setattr(self, 'managed_app_policies', n.get_collection_of_object_values(managed_app_policy.ManagedAppPolicy)),
-            "managed_app_registrations": lambda n : setattr(self, 'managed_app_registrations', n.get_collection_of_object_values(managed_app_registration.ManagedAppRegistration)),
-            "managed_app_statuses": lambda n : setattr(self, 'managed_app_statuses', n.get_collection_of_object_values(managed_app_status.ManagedAppStatus)),
-            "managed_e_book_categories": lambda n : setattr(self, 'managed_e_book_categories', n.get_collection_of_object_values(managed_e_book_category.ManagedEBookCategory)),
-            "managed_e_books": lambda n : setattr(self, 'managed_e_books', n.get_collection_of_object_values(managed_e_book.ManagedEBook)),
-            "mdm_windows_information_protection_policies": lambda n : setattr(self, 'mdm_windows_information_protection_policies', n.get_collection_of_object_values(mdm_windows_information_protection_policy.MdmWindowsInformationProtectionPolicy)),
-            "microsoft_store_for_business_language": lambda n : setattr(self, 'microsoft_store_for_business_language', n.get_str_value()),
-            "microsoft_store_for_business_last_completed_application_sync_time": lambda n : setattr(self, 'microsoft_store_for_business_last_completed_application_sync_time', n.get_datetime_value()),
-            "microsoft_store_for_business_last_successful_sync_date_time": lambda n : setattr(self, 'microsoft_store_for_business_last_successful_sync_date_time', n.get_datetime_value()),
-            "microsoft_store_for_business_portal_selection": lambda n : setattr(self, 'microsoft_store_for_business_portal_selection', n.get_enum_value(microsoft_store_for_business_portal_selection_options.MicrosoftStoreForBusinessPortalSelectionOptions)),
-            "mobile_app_categories": lambda n : setattr(self, 'mobile_app_categories', n.get_collection_of_object_values(mobile_app_category.MobileAppCategory)),
-            "mobile_app_configurations": lambda n : setattr(self, 'mobile_app_configurations', n.get_collection_of_object_values(managed_device_mobile_app_configuration.ManagedDeviceMobileAppConfiguration)),
-            "mobile_apps": lambda n : setattr(self, 'mobile_apps', n.get_collection_of_object_values(mobile_app.MobileApp)),
-            "policy_sets": lambda n : setattr(self, 'policy_sets', n.get_collection_of_object_values(policy_set.PolicySet)),
-            "symantec_code_signing_certificate": lambda n : setattr(self, 'symantec_code_signing_certificate', n.get_object_value(symantec_code_signing_certificate.SymantecCodeSigningCertificate)),
-            "targeted_managed_app_configurations": lambda n : setattr(self, 'targeted_managed_app_configurations', n.get_collection_of_object_values(targeted_managed_app_configuration.TargetedManagedAppConfiguration)),
-            "vpp_tokens": lambda n : setattr(self, 'vpp_tokens', n.get_collection_of_object_values(vpp_token.VppToken)),
-            "wdac_supplemental_policies": lambda n : setattr(self, 'wdac_supplemental_policies', n.get_collection_of_object_values(windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy)),
-            "windows_information_protection_device_registrations": lambda n : setattr(self, 'windows_information_protection_device_registrations', n.get_collection_of_object_values(windows_information_protection_device_registration.WindowsInformationProtectionDeviceRegistration)),
-            "windows_information_protection_policies": lambda n : setattr(self, 'windows_information_protection_policies', n.get_collection_of_object_values(windows_information_protection_policy.WindowsInformationProtectionPolicy)),
-            "windows_information_protection_wipe_actions": lambda n : setattr(self, 'windows_information_protection_wipe_actions', n.get_collection_of_object_values(windows_information_protection_wipe_action.WindowsInformationProtectionWipeAction)),
-            "windows_managed_app_protections": lambda n : setattr(self, 'windows_managed_app_protections', n.get_collection_of_object_values(windows_managed_app_protection.WindowsManagedAppProtection)),
-            "windows_management_app": lambda n : setattr(self, 'windows_management_app', n.get_object_value(windows_management_app.WindowsManagementApp)),
+            "androidManagedAppProtections": lambda n : setattr(self, 'android_managed_app_protections', n.get_collection_of_object_values(android_managed_app_protection.AndroidManagedAppProtection)),
+            "defaultManagedAppProtections": lambda n : setattr(self, 'default_managed_app_protections', n.get_collection_of_object_values(default_managed_app_protection.DefaultManagedAppProtection)),
+            "deviceAppManagementTasks": lambda n : setattr(self, 'device_app_management_tasks', n.get_collection_of_object_values(device_app_management_task.DeviceAppManagementTask)),
+            "enterpriseCodeSigningCertificates": lambda n : setattr(self, 'enterprise_code_signing_certificates', n.get_collection_of_object_values(enterprise_code_signing_certificate.EnterpriseCodeSigningCertificate)),
+            "iosLobAppProvisioningConfigurations": lambda n : setattr(self, 'ios_lob_app_provisioning_configurations', n.get_collection_of_object_values(ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration)),
+            "iosManagedAppProtections": lambda n : setattr(self, 'ios_managed_app_protections', n.get_collection_of_object_values(ios_managed_app_protection.IosManagedAppProtection)),
+            "isEnabledForMicrosoftStoreForBusiness": lambda n : setattr(self, 'is_enabled_for_microsoft_store_for_business', n.get_bool_value()),
+            "managedAppPolicies": lambda n : setattr(self, 'managed_app_policies', n.get_collection_of_object_values(managed_app_policy.ManagedAppPolicy)),
+            "managedAppRegistrations": lambda n : setattr(self, 'managed_app_registrations', n.get_collection_of_object_values(managed_app_registration.ManagedAppRegistration)),
+            "managedAppStatuses": lambda n : setattr(self, 'managed_app_statuses', n.get_collection_of_object_values(managed_app_status.ManagedAppStatus)),
+            "managedEBooks": lambda n : setattr(self, 'managed_e_books', n.get_collection_of_object_values(managed_e_book.ManagedEBook)),
+            "managedEBookCategories": lambda n : setattr(self, 'managed_e_book_categories', n.get_collection_of_object_values(managed_e_book_category.ManagedEBookCategory)),
+            "mdmWindowsInformationProtectionPolicies": lambda n : setattr(self, 'mdm_windows_information_protection_policies', n.get_collection_of_object_values(mdm_windows_information_protection_policy.MdmWindowsInformationProtectionPolicy)),
+            "microsoftStoreForBusinessLanguage": lambda n : setattr(self, 'microsoft_store_for_business_language', n.get_str_value()),
+            "microsoftStoreForBusinessLastCompletedApplicationSyncTime": lambda n : setattr(self, 'microsoft_store_for_business_last_completed_application_sync_time', n.get_datetime_value()),
+            "microsoftStoreForBusinessLastSuccessfulSyncDateTime": lambda n : setattr(self, 'microsoft_store_for_business_last_successful_sync_date_time', n.get_datetime_value()),
+            "microsoftStoreForBusinessPortalSelection": lambda n : setattr(self, 'microsoft_store_for_business_portal_selection', n.get_enum_value(microsoft_store_for_business_portal_selection_options.MicrosoftStoreForBusinessPortalSelectionOptions)),
+            "mobileApps": lambda n : setattr(self, 'mobile_apps', n.get_collection_of_object_values(mobile_app.MobileApp)),
+            "mobileAppCategories": lambda n : setattr(self, 'mobile_app_categories', n.get_collection_of_object_values(mobile_app_category.MobileAppCategory)),
+            "mobileAppConfigurations": lambda n : setattr(self, 'mobile_app_configurations', n.get_collection_of_object_values(managed_device_mobile_app_configuration.ManagedDeviceMobileAppConfiguration)),
+            "policySets": lambda n : setattr(self, 'policy_sets', n.get_collection_of_object_values(policy_set.PolicySet)),
+            "symantecCodeSigningCertificate": lambda n : setattr(self, 'symantec_code_signing_certificate', n.get_object_value(symantec_code_signing_certificate.SymantecCodeSigningCertificate)),
+            "targetedManagedAppConfigurations": lambda n : setattr(self, 'targeted_managed_app_configurations', n.get_collection_of_object_values(targeted_managed_app_configuration.TargetedManagedAppConfiguration)),
+            "vppTokens": lambda n : setattr(self, 'vpp_tokens', n.get_collection_of_object_values(vpp_token.VppToken)),
+            "wdacSupplementalPolicies": lambda n : setattr(self, 'wdac_supplemental_policies', n.get_collection_of_object_values(windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy)),
+            "windowsInformationProtectionDeviceRegistrations": lambda n : setattr(self, 'windows_information_protection_device_registrations', n.get_collection_of_object_values(windows_information_protection_device_registration.WindowsInformationProtectionDeviceRegistration)),
+            "windowsInformationProtectionPolicies": lambda n : setattr(self, 'windows_information_protection_policies', n.get_collection_of_object_values(windows_information_protection_policy.WindowsInformationProtectionPolicy)),
+            "windowsInformationProtectionWipeActions": lambda n : setattr(self, 'windows_information_protection_wipe_actions', n.get_collection_of_object_values(windows_information_protection_wipe_action.WindowsInformationProtectionWipeAction)),
+            "windowsManagedAppProtections": lambda n : setattr(self, 'windows_managed_app_protections', n.get_collection_of_object_values(windows_managed_app_protection.WindowsManagedAppProtection)),
+            "windowsManagementApp": lambda n : setattr(self, 'windows_management_app', n.get_object_value(windows_management_app.WindowsManagementApp)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -235,7 +235,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the iosLobAppProvisioningConfigurations property value. The IOS Lob App Provisioning Configurations.
         Args:
-            value: Value to set for the iosLobAppProvisioningConfigurations property.
+            value: Value to set for the ios_lob_app_provisioning_configurations property.
         """
         self._ios_lob_app_provisioning_configurations = value
     
@@ -252,7 +252,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the iosManagedAppProtections property value. iOS managed app policies.
         Args:
-            value: Value to set for the iosManagedAppProtections property.
+            value: Value to set for the ios_managed_app_protections property.
         """
         self._ios_managed_app_protections = value
     
@@ -269,7 +269,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the isEnabledForMicrosoftStoreForBusiness property value. Whether the account is enabled for syncing applications from the Microsoft Store for Business.
         Args:
-            value: Value to set for the isEnabledForMicrosoftStoreForBusiness property.
+            value: Value to set for the is_enabled_for_microsoft_store_for_business property.
         """
         self._is_enabled_for_microsoft_store_for_business = value
     
@@ -286,7 +286,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the managedAppPolicies property value. Managed app policies.
         Args:
-            value: Value to set for the managedAppPolicies property.
+            value: Value to set for the managed_app_policies property.
         """
         self._managed_app_policies = value
     
@@ -303,7 +303,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the managedAppRegistrations property value. The managed app registrations.
         Args:
-            value: Value to set for the managedAppRegistrations property.
+            value: Value to set for the managed_app_registrations property.
         """
         self._managed_app_registrations = value
     
@@ -320,7 +320,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the managedAppStatuses property value. The managed app statuses.
         Args:
-            value: Value to set for the managedAppStatuses property.
+            value: Value to set for the managed_app_statuses property.
         """
         self._managed_app_statuses = value
     
@@ -337,7 +337,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the managedEBookCategories property value. The mobile eBook categories.
         Args:
-            value: Value to set for the managedEBookCategories property.
+            value: Value to set for the managed_e_book_categories property.
         """
         self._managed_e_book_categories = value
     
@@ -354,7 +354,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the managedEBooks property value. The Managed eBook.
         Args:
-            value: Value to set for the managedEBooks property.
+            value: Value to set for the managed_e_books property.
         """
         self._managed_e_books = value
     
@@ -371,7 +371,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the mdmWindowsInformationProtectionPolicies property value. Windows information protection for apps running on devices which are MDM enrolled.
         Args:
-            value: Value to set for the mdmWindowsInformationProtectionPolicies property.
+            value: Value to set for the mdm_windows_information_protection_policies property.
         """
         self._mdm_windows_information_protection_policies = value
     
@@ -388,7 +388,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the microsoftStoreForBusinessLanguage property value. The locale information used to sync applications from the Microsoft Store for Business. Cultures that are specific to a country/region. The names of these cultures follow RFC 4646 (Windows Vista and later). The format is -<country/regioncode2>, where  is a lowercase two-letter code derived from ISO 639-1 and <country/regioncode2> is an uppercase two-letter code derived from ISO 3166. For example, en-US for English (United States) is a specific culture.
         Args:
-            value: Value to set for the microsoftStoreForBusinessLanguage property.
+            value: Value to set for the microsoft_store_for_business_language property.
         """
         self._microsoft_store_for_business_language = value
     
@@ -405,7 +405,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the microsoftStoreForBusinessLastCompletedApplicationSyncTime property value. The last time an application sync from the Microsoft Store for Business was completed.
         Args:
-            value: Value to set for the microsoftStoreForBusinessLastCompletedApplicationSyncTime property.
+            value: Value to set for the microsoft_store_for_business_last_completed_application_sync_time property.
         """
         self._microsoft_store_for_business_last_completed_application_sync_time = value
     
@@ -422,7 +422,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the microsoftStoreForBusinessLastSuccessfulSyncDateTime property value. The last time the apps from the Microsoft Store for Business were synced successfully for the account.
         Args:
-            value: Value to set for the microsoftStoreForBusinessLastSuccessfulSyncDateTime property.
+            value: Value to set for the microsoft_store_for_business_last_successful_sync_date_time property.
         """
         self._microsoft_store_for_business_last_successful_sync_date_time = value
     
@@ -439,7 +439,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the microsoftStoreForBusinessPortalSelection property value. Portal to which admin syncs available Microsoft Store for Business apps. This is available in the Intune Admin Console.
         Args:
-            value: Value to set for the microsoftStoreForBusinessPortalSelection property.
+            value: Value to set for the microsoft_store_for_business_portal_selection property.
         """
         self._microsoft_store_for_business_portal_selection = value
     
@@ -456,7 +456,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the mobileAppCategories property value. The mobile app categories.
         Args:
-            value: Value to set for the mobileAppCategories property.
+            value: Value to set for the mobile_app_categories property.
         """
         self._mobile_app_categories = value
     
@@ -473,7 +473,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the mobileAppConfigurations property value. The Managed Device Mobile Application Configurations.
         Args:
-            value: Value to set for the mobileAppConfigurations property.
+            value: Value to set for the mobile_app_configurations property.
         """
         self._mobile_app_configurations = value
     
@@ -490,7 +490,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the mobileApps property value. The mobile apps.
         Args:
-            value: Value to set for the mobileApps property.
+            value: Value to set for the mobile_apps property.
         """
         self._mobile_apps = value
     
@@ -507,7 +507,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the policySets property value. The PolicySet of Policies and Applications
         Args:
-            value: Value to set for the policySets property.
+            value: Value to set for the policy_sets property.
         """
         self._policy_sets = value
     
@@ -530,16 +530,16 @@ class DeviceAppManagement(entity.Entity):
         writer.write_collection_of_object_values("managedAppPolicies", self.managed_app_policies)
         writer.write_collection_of_object_values("managedAppRegistrations", self.managed_app_registrations)
         writer.write_collection_of_object_values("managedAppStatuses", self.managed_app_statuses)
-        writer.write_collection_of_object_values("managedEBookCategories", self.managed_e_book_categories)
         writer.write_collection_of_object_values("managedEBooks", self.managed_e_books)
+        writer.write_collection_of_object_values("managedEBookCategories", self.managed_e_book_categories)
         writer.write_collection_of_object_values("mdmWindowsInformationProtectionPolicies", self.mdm_windows_information_protection_policies)
         writer.write_str_value("microsoftStoreForBusinessLanguage", self.microsoft_store_for_business_language)
         writer.write_datetime_value("microsoftStoreForBusinessLastCompletedApplicationSyncTime", self.microsoft_store_for_business_last_completed_application_sync_time)
         writer.write_datetime_value("microsoftStoreForBusinessLastSuccessfulSyncDateTime", self.microsoft_store_for_business_last_successful_sync_date_time)
         writer.write_enum_value("microsoftStoreForBusinessPortalSelection", self.microsoft_store_for_business_portal_selection)
+        writer.write_collection_of_object_values("mobileApps", self.mobile_apps)
         writer.write_collection_of_object_values("mobileAppCategories", self.mobile_app_categories)
         writer.write_collection_of_object_values("mobileAppConfigurations", self.mobile_app_configurations)
-        writer.write_collection_of_object_values("mobileApps", self.mobile_apps)
         writer.write_collection_of_object_values("policySets", self.policy_sets)
         writer.write_object_value("symantecCodeSigningCertificate", self.symantec_code_signing_certificate)
         writer.write_collection_of_object_values("targetedManagedAppConfigurations", self.targeted_managed_app_configurations)
@@ -564,7 +564,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the symantecCodeSigningCertificate property value. The WinPhone Symantec Code Signing Certificate.
         Args:
-            value: Value to set for the symantecCodeSigningCertificate property.
+            value: Value to set for the symantec_code_signing_certificate property.
         """
         self._symantec_code_signing_certificate = value
     
@@ -581,7 +581,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the targetedManagedAppConfigurations property value. Targeted managed app configurations.
         Args:
-            value: Value to set for the targetedManagedAppConfigurations property.
+            value: Value to set for the targeted_managed_app_configurations property.
         """
         self._targeted_managed_app_configurations = value
     
@@ -598,7 +598,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the vppTokens property value. List of Vpp tokens for this organization.
         Args:
-            value: Value to set for the vppTokens property.
+            value: Value to set for the vpp_tokens property.
         """
         self._vpp_tokens = value
     
@@ -615,7 +615,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the wdacSupplementalPolicies property value. The collection of Windows Defender Application Control Supplemental Policies.
         Args:
-            value: Value to set for the wdacSupplementalPolicies property.
+            value: Value to set for the wdac_supplemental_policies property.
         """
         self._wdac_supplemental_policies = value
     
@@ -632,7 +632,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the windowsInformationProtectionDeviceRegistrations property value. Windows information protection device registrations that are not MDM enrolled.
         Args:
-            value: Value to set for the windowsInformationProtectionDeviceRegistrations property.
+            value: Value to set for the windows_information_protection_device_registrations property.
         """
         self._windows_information_protection_device_registrations = value
     
@@ -649,7 +649,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the windowsInformationProtectionPolicies property value. Windows information protection for apps running on devices which are not MDM enrolled.
         Args:
-            value: Value to set for the windowsInformationProtectionPolicies property.
+            value: Value to set for the windows_information_protection_policies property.
         """
         self._windows_information_protection_policies = value
     
@@ -666,7 +666,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the windowsInformationProtectionWipeActions property value. Windows information protection wipe actions.
         Args:
-            value: Value to set for the windowsInformationProtectionWipeActions property.
+            value: Value to set for the windows_information_protection_wipe_actions property.
         """
         self._windows_information_protection_wipe_actions = value
     
@@ -683,7 +683,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the windowsManagedAppProtections property value. Windows managed app policies.
         Args:
-            value: Value to set for the windowsManagedAppProtections property.
+            value: Value to set for the windows_managed_app_protections property.
         """
         self._windows_managed_app_protections = value
     
@@ -700,7 +700,7 @@ class DeviceAppManagement(entity.Entity):
         """
         Sets the windowsManagementApp property value. Windows management app.
         Args:
-            value: Value to set for the windowsManagementApp property.
+            value: Value to set for the windows_management_app property.
         """
         self._windows_management_app = value
     

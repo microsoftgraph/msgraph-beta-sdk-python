@@ -12,9 +12,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 imported_apple_device_identity = lazy_import('msgraph.generated.models.imported_apple_device_identity')
 
 class DepOnboardingSetting(entity.Entity):
-    """
-    The depOnboardingSetting represents an instance of the Apple DEP service being onboarded to Intune. The onboarded service instance manages an Apple Token used to synchronize data between Apple and Intune.
-    """
     @property
     def apple_identifier(self,) -> Optional[str]:
         """
@@ -28,13 +25,13 @@ class DepOnboardingSetting(entity.Entity):
         """
         Sets the appleIdentifier property value. The Apple ID used to obtain the current token.
         Args:
-            value: Value to set for the appleIdentifier property.
+            value: Value to set for the apple_identifier property.
         """
         self._apple_identifier = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new depOnboardingSetting and sets the default values.
+        Instantiates a new DepOnboardingSetting and sets the default values.
         """
         super().__init__()
         # The Apple ID used to obtain the current token.
@@ -97,7 +94,7 @@ class DepOnboardingSetting(entity.Entity):
         """
         Sets the dataSharingConsentGranted property value. Consent granted for data sharing with Apple Dep Service
         Args:
-            value: Value to set for the dataSharingConsentGranted property.
+            value: Value to set for the data_sharing_consent_granted property.
         """
         self._data_sharing_consent_granted = value
     
@@ -114,7 +111,7 @@ class DepOnboardingSetting(entity.Entity):
         """
         Sets the defaultIosEnrollmentProfile property value. Default iOS Enrollment Profile
         Args:
-            value: Value to set for the defaultIosEnrollmentProfile property.
+            value: Value to set for the default_ios_enrollment_profile property.
         """
         self._default_ios_enrollment_profile = value
     
@@ -131,7 +128,7 @@ class DepOnboardingSetting(entity.Entity):
         """
         Sets the defaultMacOsEnrollmentProfile property value. Default MacOs Enrollment Profile
         Args:
-            value: Value to set for the defaultMacOsEnrollmentProfile property.
+            value: Value to set for the default_mac_os_enrollment_profile property.
         """
         self._default_mac_os_enrollment_profile = value
     
@@ -148,7 +145,7 @@ class DepOnboardingSetting(entity.Entity):
         """
         Sets the enrollmentProfiles property value. The enrollment profiles.
         Args:
-            value: Value to set for the enrollmentProfiles property.
+            value: Value to set for the enrollment_profiles property.
         """
         self._enrollment_profiles = value
     
@@ -158,22 +155,22 @@ class DepOnboardingSetting(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "apple_identifier": lambda n : setattr(self, 'apple_identifier', n.get_str_value()),
-            "data_sharing_consent_granted": lambda n : setattr(self, 'data_sharing_consent_granted', n.get_bool_value()),
-            "default_ios_enrollment_profile": lambda n : setattr(self, 'default_ios_enrollment_profile', n.get_object_value(dep_i_o_s_enrollment_profile.DepIOSEnrollmentProfile)),
-            "default_mac_os_enrollment_profile": lambda n : setattr(self, 'default_mac_os_enrollment_profile', n.get_object_value(dep_mac_o_s_enrollment_profile.DepMacOSEnrollmentProfile)),
-            "enrollment_profiles": lambda n : setattr(self, 'enrollment_profiles', n.get_collection_of_object_values(enrollment_profile.EnrollmentProfile)),
-            "imported_apple_device_identities": lambda n : setattr(self, 'imported_apple_device_identities', n.get_collection_of_object_values(imported_apple_device_identity.ImportedAppleDeviceIdentity)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "last_successful_sync_date_time": lambda n : setattr(self, 'last_successful_sync_date_time', n.get_datetime_value()),
-            "last_sync_error_code": lambda n : setattr(self, 'last_sync_error_code', n.get_int_value()),
-            "last_sync_triggered_date_time": lambda n : setattr(self, 'last_sync_triggered_date_time', n.get_datetime_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
-            "share_token_with_school_data_sync_service": lambda n : setattr(self, 'share_token_with_school_data_sync_service', n.get_bool_value()),
-            "synced_device_count": lambda n : setattr(self, 'synced_device_count', n.get_int_value()),
-            "token_expiration_date_time": lambda n : setattr(self, 'token_expiration_date_time', n.get_datetime_value()),
-            "token_name": lambda n : setattr(self, 'token_name', n.get_str_value()),
-            "token_type": lambda n : setattr(self, 'token_type', n.get_enum_value(dep_token_type.DepTokenType)),
+            "appleIdentifier": lambda n : setattr(self, 'apple_identifier', n.get_str_value()),
+            "dataSharingConsentGranted": lambda n : setattr(self, 'data_sharing_consent_granted', n.get_bool_value()),
+            "defaultIosEnrollmentProfile": lambda n : setattr(self, 'default_ios_enrollment_profile', n.get_object_value(dep_i_o_s_enrollment_profile.DepIOSEnrollmentProfile)),
+            "defaultMacOsEnrollmentProfile": lambda n : setattr(self, 'default_mac_os_enrollment_profile', n.get_object_value(dep_mac_o_s_enrollment_profile.DepMacOSEnrollmentProfile)),
+            "enrollmentProfiles": lambda n : setattr(self, 'enrollment_profiles', n.get_collection_of_object_values(enrollment_profile.EnrollmentProfile)),
+            "importedAppleDeviceIdentities": lambda n : setattr(self, 'imported_apple_device_identities', n.get_collection_of_object_values(imported_apple_device_identity.ImportedAppleDeviceIdentity)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "lastSuccessfulSyncDateTime": lambda n : setattr(self, 'last_successful_sync_date_time', n.get_datetime_value()),
+            "lastSyncErrorCode": lambda n : setattr(self, 'last_sync_error_code', n.get_int_value()),
+            "lastSyncTriggeredDateTime": lambda n : setattr(self, 'last_sync_triggered_date_time', n.get_datetime_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "shareTokenWithSchoolDataSyncService": lambda n : setattr(self, 'share_token_with_school_data_sync_service', n.get_bool_value()),
+            "syncedDeviceCount": lambda n : setattr(self, 'synced_device_count', n.get_int_value()),
+            "tokenExpirationDateTime": lambda n : setattr(self, 'token_expiration_date_time', n.get_datetime_value()),
+            "tokenName": lambda n : setattr(self, 'token_name', n.get_str_value()),
+            "tokenType": lambda n : setattr(self, 'token_type', n.get_enum_value(dep_token_type.DepTokenType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -192,7 +189,7 @@ class DepOnboardingSetting(entity.Entity):
         """
         Sets the importedAppleDeviceIdentities property value. The imported Apple device identities.
         Args:
-            value: Value to set for the importedAppleDeviceIdentities property.
+            value: Value to set for the imported_apple_device_identities property.
         """
         self._imported_apple_device_identities = value
     
@@ -209,7 +206,7 @@ class DepOnboardingSetting(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. When the service was onboarded.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -226,7 +223,7 @@ class DepOnboardingSetting(entity.Entity):
         """
         Sets the lastSuccessfulSyncDateTime property value. When the service last syned with Intune
         Args:
-            value: Value to set for the lastSuccessfulSyncDateTime property.
+            value: Value to set for the last_successful_sync_date_time property.
         """
         self._last_successful_sync_date_time = value
     
@@ -243,7 +240,7 @@ class DepOnboardingSetting(entity.Entity):
         """
         Sets the lastSyncErrorCode property value. Error code reported by Apple during last dep sync.
         Args:
-            value: Value to set for the lastSyncErrorCode property.
+            value: Value to set for the last_sync_error_code property.
         """
         self._last_sync_error_code = value
     
@@ -260,7 +257,7 @@ class DepOnboardingSetting(entity.Entity):
         """
         Sets the lastSyncTriggeredDateTime property value. When Intune last requested a sync.
         Args:
-            value: Value to set for the lastSyncTriggeredDateTime property.
+            value: Value to set for the last_sync_triggered_date_time property.
         """
         self._last_sync_triggered_date_time = value
     
@@ -277,7 +274,7 @@ class DepOnboardingSetting(entity.Entity):
         """
         Sets the roleScopeTagIds property value. List of Scope Tags for this Entity instance.
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     
@@ -320,7 +317,7 @@ class DepOnboardingSetting(entity.Entity):
         """
         Sets the shareTokenWithSchoolDataSyncService property value. Whether or not the Dep token sharing is enabled with the School Data Sync service.
         Args:
-            value: Value to set for the shareTokenWithSchoolDataSyncService property.
+            value: Value to set for the share_token_with_school_data_sync_service property.
         """
         self._share_token_with_school_data_sync_service = value
     
@@ -337,7 +334,7 @@ class DepOnboardingSetting(entity.Entity):
         """
         Sets the syncedDeviceCount property value. Gets synced device count
         Args:
-            value: Value to set for the syncedDeviceCount property.
+            value: Value to set for the synced_device_count property.
         """
         self._synced_device_count = value
     
@@ -354,7 +351,7 @@ class DepOnboardingSetting(entity.Entity):
         """
         Sets the tokenExpirationDateTime property value. When the token will expire.
         Args:
-            value: Value to set for the tokenExpirationDateTime property.
+            value: Value to set for the token_expiration_date_time property.
         """
         self._token_expiration_date_time = value
     
@@ -371,7 +368,7 @@ class DepOnboardingSetting(entity.Entity):
         """
         Sets the tokenName property value. Friendly Name for Dep Token
         Args:
-            value: Value to set for the tokenName property.
+            value: Value to set for the token_name property.
         """
         self._token_name = value
     
@@ -388,7 +385,7 @@ class DepOnboardingSetting(entity.Entity):
         """
         Sets the tokenType property value. The tokenType property
         Args:
-            value: Value to set for the tokenType property.
+            value: Value to set for the token_type property.
         """
         self._token_type = value
     

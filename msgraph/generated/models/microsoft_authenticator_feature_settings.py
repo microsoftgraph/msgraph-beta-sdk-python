@@ -64,7 +64,7 @@ class MicrosoftAuthenticatorFeatureSettings(AdditionalDataHolder, Parsable):
         """
         Sets the displayAppInformationRequiredState property value. Determines whether the user's Authenticator app will show them the client app they are signing into.
         Args:
-            value: Value to set for the displayAppInformationRequiredState property.
+            value: Value to set for the display_app_information_required_state property.
         """
         self._display_app_information_required_state = value
     
@@ -81,7 +81,7 @@ class MicrosoftAuthenticatorFeatureSettings(AdditionalDataHolder, Parsable):
         """
         Sets the displayLocationInformationRequiredState property value. Determines whether the user's Authenticator app will show them the geographic location of where the authentication request originated from.
         Args:
-            value: Value to set for the displayLocationInformationRequiredState property.
+            value: Value to set for the display_location_information_required_state property.
         """
         self._display_location_information_required_state = value
     
@@ -91,9 +91,9 @@ class MicrosoftAuthenticatorFeatureSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_app_information_required_state": lambda n : setattr(self, 'display_app_information_required_state', n.get_object_value(authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration)),
-            "display_location_information_required_state": lambda n : setattr(self, 'display_location_information_required_state', n.get_object_value(authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration)),
-            "number_matching_required_state": lambda n : setattr(self, 'number_matching_required_state', n.get_object_value(authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration)),
+            "displayAppInformationRequiredState": lambda n : setattr(self, 'display_app_information_required_state', n.get_object_value(authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration)),
+            "displayLocationInformationRequiredState": lambda n : setattr(self, 'display_location_information_required_state', n.get_object_value(authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration)),
+            "numberMatchingRequiredState": lambda n : setattr(self, 'number_matching_required_state', n.get_object_value(authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -111,7 +111,7 @@ class MicrosoftAuthenticatorFeatureSettings(AdditionalDataHolder, Parsable):
         """
         Sets the numberMatchingRequiredState property value. Specifies whether the user needs to enter a number in the Authenticator app from the login screen to complete their login. Value is ignored for phone sign-in notifications.
         Args:
-            value: Value to set for the numberMatchingRequiredState property.
+            value: Value to set for the number_matching_required_state property.
         """
         self._number_matching_required_state = value
     
@@ -128,7 +128,7 @@ class MicrosoftAuthenticatorFeatureSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

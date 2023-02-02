@@ -19,7 +19,7 @@ class WindowsDefenderAdvancedThreatProtectionConfiguration(device_configuration.
         """
         Sets the advancedThreatProtectionAutoPopulateOnboardingBlob property value. Auto populate onboarding blob programmatically from Advanced Threat protection service
         Args:
-            value: Value to set for the advancedThreatProtectionAutoPopulateOnboardingBlob property.
+            value: Value to set for the advanced_threat_protection_auto_populate_onboarding_blob property.
         """
         self._advanced_threat_protection_auto_populate_onboarding_blob = value
     
@@ -36,7 +36,7 @@ class WindowsDefenderAdvancedThreatProtectionConfiguration(device_configuration.
         """
         Sets the advancedThreatProtectionOffboardingBlob property value. Windows Defender AdvancedThreatProtection Offboarding Blob.
         Args:
-            value: Value to set for the advancedThreatProtectionOffboardingBlob property.
+            value: Value to set for the advanced_threat_protection_offboarding_blob property.
         """
         self._advanced_threat_protection_offboarding_blob = value
     
@@ -53,7 +53,7 @@ class WindowsDefenderAdvancedThreatProtectionConfiguration(device_configuration.
         """
         Sets the advancedThreatProtectionOffboardingFilename property value. Name of the file from which AdvancedThreatProtectionOffboardingBlob was obtained.
         Args:
-            value: Value to set for the advancedThreatProtectionOffboardingFilename property.
+            value: Value to set for the advanced_threat_protection_offboarding_filename property.
         """
         self._advanced_threat_protection_offboarding_filename = value
     
@@ -70,7 +70,7 @@ class WindowsDefenderAdvancedThreatProtectionConfiguration(device_configuration.
         """
         Sets the advancedThreatProtectionOnboardingBlob property value. Windows Defender AdvancedThreatProtection Onboarding Blob.
         Args:
-            value: Value to set for the advancedThreatProtectionOnboardingBlob property.
+            value: Value to set for the advanced_threat_protection_onboarding_blob property.
         """
         self._advanced_threat_protection_onboarding_blob = value
     
@@ -87,7 +87,7 @@ class WindowsDefenderAdvancedThreatProtectionConfiguration(device_configuration.
         """
         Sets the advancedThreatProtectionOnboardingFilename property value. Name of the file from which AdvancedThreatProtectionOnboardingBlob was obtained.
         Args:
-            value: Value to set for the advancedThreatProtectionOnboardingFilename property.
+            value: Value to set for the advanced_threat_protection_onboarding_filename property.
         """
         self._advanced_threat_protection_onboarding_filename = value
     
@@ -104,7 +104,7 @@ class WindowsDefenderAdvancedThreatProtectionConfiguration(device_configuration.
         """
         Sets the allowSampleSharing property value. Windows Defender AdvancedThreatProtection 'Allow Sample Sharing' Rule
         Args:
-            value: Value to set for the allowSampleSharing property.
+            value: Value to set for the allow_sample_sharing property.
         """
         self._allow_sample_sharing = value
     
@@ -154,7 +154,7 @@ class WindowsDefenderAdvancedThreatProtectionConfiguration(device_configuration.
         """
         Sets the enableExpeditedTelemetryReporting property value. Expedite Windows Defender Advanced Threat Protection telemetry reporting frequency.
         Args:
-            value: Value to set for the enableExpeditedTelemetryReporting property.
+            value: Value to set for the enable_expedited_telemetry_reporting property.
         """
         self._enable_expedited_telemetry_reporting = value
     
@@ -164,13 +164,13 @@ class WindowsDefenderAdvancedThreatProtectionConfiguration(device_configuration.
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "advanced_threat_protection_auto_populate_onboarding_blob": lambda n : setattr(self, 'advanced_threat_protection_auto_populate_onboarding_blob', n.get_bool_value()),
-            "advanced_threat_protection_offboarding_blob": lambda n : setattr(self, 'advanced_threat_protection_offboarding_blob', n.get_str_value()),
-            "advanced_threat_protection_offboarding_filename": lambda n : setattr(self, 'advanced_threat_protection_offboarding_filename', n.get_str_value()),
-            "advanced_threat_protection_onboarding_blob": lambda n : setattr(self, 'advanced_threat_protection_onboarding_blob', n.get_str_value()),
-            "advanced_threat_protection_onboarding_filename": lambda n : setattr(self, 'advanced_threat_protection_onboarding_filename', n.get_str_value()),
-            "allow_sample_sharing": lambda n : setattr(self, 'allow_sample_sharing', n.get_bool_value()),
-            "enable_expedited_telemetry_reporting": lambda n : setattr(self, 'enable_expedited_telemetry_reporting', n.get_bool_value()),
+            "advancedThreatProtectionAutoPopulateOnboardingBlob": lambda n : setattr(self, 'advanced_threat_protection_auto_populate_onboarding_blob', n.get_bool_value()),
+            "advancedThreatProtectionOffboardingBlob": lambda n : setattr(self, 'advanced_threat_protection_offboarding_blob', n.get_str_value()),
+            "advancedThreatProtectionOffboardingFilename": lambda n : setattr(self, 'advanced_threat_protection_offboarding_filename', n.get_str_value()),
+            "advancedThreatProtectionOnboardingBlob": lambda n : setattr(self, 'advanced_threat_protection_onboarding_blob', n.get_str_value()),
+            "advancedThreatProtectionOnboardingFilename": lambda n : setattr(self, 'advanced_threat_protection_onboarding_filename', n.get_str_value()),
+            "allowSampleSharing": lambda n : setattr(self, 'allow_sample_sharing', n.get_bool_value()),
+            "enableExpeditedTelemetryReporting": lambda n : setattr(self, 'enable_expedited_telemetry_reporting', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

@@ -27,7 +27,7 @@ class TaskDefinition(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new taskDefinition and sets the default values.
+        Instantiates a new TaskDefinition and sets the default values.
         """
         super().__init__()
         # The category property
@@ -58,7 +58,7 @@ class TaskDefinition(entity.Entity):
         """
         Sets the continueOnError property value. The continueOnError property
         Args:
-            value: Value to set for the continueOnError property.
+            value: Value to set for the continue_on_error property.
         """
         self._continue_on_error = value
     
@@ -104,7 +104,7 @@ class TaskDefinition(entity.Entity):
         """
         Sets the displayName property value. The display name of the taskDefinition.Supports $filter(eq, ne) and $orderby.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -115,9 +115,9 @@ class TaskDefinition(entity.Entity):
         """
         fields = {
             "category": lambda n : setattr(self, 'category', n.get_enum_value(lifecycle_task_category.LifecycleTaskCategory)),
-            "continue_on_error": lambda n : setattr(self, 'continue_on_error', n.get_bool_value()),
+            "continueOnError": lambda n : setattr(self, 'continue_on_error', n.get_bool_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "parameters": lambda n : setattr(self, 'parameters', n.get_collection_of_object_values(parameter.Parameter)),
             "version": lambda n : setattr(self, 'version', n.get_int_value()),
         }

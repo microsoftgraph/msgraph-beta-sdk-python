@@ -21,7 +21,7 @@ class SynchronizationTaskExecution(AdditionalDataHolder, Parsable):
         """
         Sets the activityIdentifier property value. Identifier of the job run.
         Args:
-            value: Value to set for the activityIdentifier property.
+            value: Value to set for the activity_identifier property.
         """
         self._activity_identifier = value
     
@@ -93,7 +93,7 @@ class SynchronizationTaskExecution(AdditionalDataHolder, Parsable):
         """
         Sets the countEntitled property value. Count of processed entries that were assigned for this application.
         Args:
-            value: Value to set for the countEntitled property.
+            value: Value to set for the count_entitled property.
         """
         self._count_entitled = value
     
@@ -110,7 +110,7 @@ class SynchronizationTaskExecution(AdditionalDataHolder, Parsable):
         """
         Sets the countEntitledForProvisioning property value. Count of processed entries that were assigned for provisioning.
         Args:
-            value: Value to set for the countEntitledForProvisioning property.
+            value: Value to set for the count_entitled_for_provisioning property.
         """
         self._count_entitled_for_provisioning = value
     
@@ -127,7 +127,7 @@ class SynchronizationTaskExecution(AdditionalDataHolder, Parsable):
         """
         Sets the countEscrowed property value. Count of entries that were escrowed (errors).
         Args:
-            value: Value to set for the countEscrowed property.
+            value: Value to set for the count_escrowed property.
         """
         self._count_escrowed = value
     
@@ -144,7 +144,7 @@ class SynchronizationTaskExecution(AdditionalDataHolder, Parsable):
         """
         Sets the countEscrowedRaw property value. Count of entries that were escrowed, including system-generated escrows.
         Args:
-            value: Value to set for the countEscrowedRaw property.
+            value: Value to set for the count_escrowed_raw property.
         """
         self._count_escrowed_raw = value
     
@@ -161,7 +161,7 @@ class SynchronizationTaskExecution(AdditionalDataHolder, Parsable):
         """
         Sets the countExported property value. Count of exported entries.
         Args:
-            value: Value to set for the countExported property.
+            value: Value to set for the count_exported property.
         """
         self._count_exported = value
     
@@ -178,7 +178,7 @@ class SynchronizationTaskExecution(AdditionalDataHolder, Parsable):
         """
         Sets the countExports property value. Count of entries that were expected to be exported.
         Args:
-            value: Value to set for the countExports property.
+            value: Value to set for the count_exports property.
         """
         self._count_exports = value
     
@@ -195,7 +195,7 @@ class SynchronizationTaskExecution(AdditionalDataHolder, Parsable):
         """
         Sets the countImported property value. Count of imported entries.
         Args:
-            value: Value to set for the countImported property.
+            value: Value to set for the count_imported property.
         """
         self._count_imported = value
     
@@ -212,7 +212,7 @@ class SynchronizationTaskExecution(AdditionalDataHolder, Parsable):
         """
         Sets the countImportedDeltas property value. Count of imported delta-changes.
         Args:
-            value: Value to set for the countImportedDeltas property.
+            value: Value to set for the count_imported_deltas property.
         """
         self._count_imported_deltas = value
     
@@ -229,7 +229,7 @@ class SynchronizationTaskExecution(AdditionalDataHolder, Parsable):
         """
         Sets the countImportedReferenceDeltas property value. Count of imported delta-changes pertaining to reference changes.
         Args:
-            value: Value to set for the countImportedReferenceDeltas property.
+            value: Value to set for the count_imported_reference_deltas property.
         """
         self._count_imported_reference_deltas = value
     
@@ -268,21 +268,21 @@ class SynchronizationTaskExecution(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "activity_identifier": lambda n : setattr(self, 'activity_identifier', n.get_str_value()),
-            "count_entitled": lambda n : setattr(self, 'count_entitled', n.get_int_value()),
-            "count_entitled_for_provisioning": lambda n : setattr(self, 'count_entitled_for_provisioning', n.get_int_value()),
-            "count_escrowed": lambda n : setattr(self, 'count_escrowed', n.get_int_value()),
-            "count_escrowed_raw": lambda n : setattr(self, 'count_escrowed_raw', n.get_int_value()),
-            "count_exported": lambda n : setattr(self, 'count_exported', n.get_int_value()),
-            "count_exports": lambda n : setattr(self, 'count_exports', n.get_int_value()),
-            "count_imported": lambda n : setattr(self, 'count_imported', n.get_int_value()),
-            "count_imported_deltas": lambda n : setattr(self, 'count_imported_deltas', n.get_int_value()),
-            "count_imported_reference_deltas": lambda n : setattr(self, 'count_imported_reference_deltas', n.get_int_value()),
+            "activityIdentifier": lambda n : setattr(self, 'activity_identifier', n.get_str_value()),
+            "countEntitled": lambda n : setattr(self, 'count_entitled', n.get_int_value()),
+            "countEntitledForProvisioning": lambda n : setattr(self, 'count_entitled_for_provisioning', n.get_int_value()),
+            "countEscrowed": lambda n : setattr(self, 'count_escrowed', n.get_int_value()),
+            "countEscrowedRaw": lambda n : setattr(self, 'count_escrowed_raw', n.get_int_value()),
+            "countExported": lambda n : setattr(self, 'count_exported', n.get_int_value()),
+            "countExports": lambda n : setattr(self, 'count_exports', n.get_int_value()),
+            "countImported": lambda n : setattr(self, 'count_imported', n.get_int_value()),
+            "countImportedDeltas": lambda n : setattr(self, 'count_imported_deltas', n.get_int_value()),
+            "countImportedReferenceDeltas": lambda n : setattr(self, 'count_imported_reference_deltas', n.get_int_value()),
             "error": lambda n : setattr(self, 'error', n.get_object_value(synchronization_error.SynchronizationError)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(synchronization_task_execution_result.SynchronizationTaskExecutionResult)),
-            "time_began": lambda n : setattr(self, 'time_began', n.get_datetime_value()),
-            "time_ended": lambda n : setattr(self, 'time_ended', n.get_datetime_value()),
+            "timeBegan": lambda n : setattr(self, 'time_began', n.get_datetime_value()),
+            "timeEnded": lambda n : setattr(self, 'time_ended', n.get_datetime_value()),
         }
         return fields
     
@@ -299,7 +299,7 @@ class SynchronizationTaskExecution(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -358,7 +358,7 @@ class SynchronizationTaskExecution(AdditionalDataHolder, Parsable):
         """
         Sets the timeBegan property value. Time when this job run began. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the timeBegan property.
+            value: Value to set for the time_began property.
         """
         self._time_began = value
     
@@ -375,7 +375,7 @@ class SynchronizationTaskExecution(AdditionalDataHolder, Parsable):
         """
         Sets the timeEnded property value. Time when this job run ended. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the timeEnded property.
+            value: Value to set for the time_ended property.
         """
         self._time_ended = value
     

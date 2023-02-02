@@ -25,7 +25,7 @@ class GroupPolicySettingMapping(entity.Entity):
         """
         Sets the admxSettingDefinitionId property value. Admx Group Policy Id
         Args:
-            value: Value to set for the admxSettingDefinitionId property.
+            value: Value to set for the admx_setting_definition_id property.
         """
         self._admx_setting_definition_id = value
     
@@ -42,7 +42,7 @@ class GroupPolicySettingMapping(entity.Entity):
         """
         Sets the childIdList property value. List of Child Ids of the group policy setting.
         Args:
-            value: Value to set for the childIdList property.
+            value: Value to set for the child_id_list property.
         """
         self._child_id_list = value
     
@@ -112,26 +112,26 @@ class GroupPolicySettingMapping(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "admx_setting_definition_id": lambda n : setattr(self, 'admx_setting_definition_id', n.get_str_value()),
-            "child_id_list": lambda n : setattr(self, 'child_id_list', n.get_collection_of_primitive_values(str)),
-            "intune_setting_definition_id": lambda n : setattr(self, 'intune_setting_definition_id', n.get_str_value()),
-            "intune_setting_uri_list": lambda n : setattr(self, 'intune_setting_uri_list', n.get_collection_of_primitive_values(str)),
-            "is_mdm_supported": lambda n : setattr(self, 'is_mdm_supported', n.get_bool_value()),
-            "mdm_csp_name": lambda n : setattr(self, 'mdm_csp_name', n.get_str_value()),
-            "mdm_minimum_o_s_version": lambda n : setattr(self, 'mdm_minimum_o_s_version', n.get_int_value()),
-            "mdm_setting_uri": lambda n : setattr(self, 'mdm_setting_uri', n.get_str_value()),
-            "mdm_supported_state": lambda n : setattr(self, 'mdm_supported_state', n.get_enum_value(mdm_supported_state.MdmSupportedState)),
-            "parent_id": lambda n : setattr(self, 'parent_id', n.get_str_value()),
-            "setting_category": lambda n : setattr(self, 'setting_category', n.get_str_value()),
-            "setting_display_name": lambda n : setattr(self, 'setting_display_name', n.get_str_value()),
-            "setting_display_value": lambda n : setattr(self, 'setting_display_value', n.get_str_value()),
-            "setting_display_value_type": lambda n : setattr(self, 'setting_display_value_type', n.get_str_value()),
-            "setting_name": lambda n : setattr(self, 'setting_name', n.get_str_value()),
-            "setting_scope": lambda n : setattr(self, 'setting_scope', n.get_enum_value(group_policy_setting_scope.GroupPolicySettingScope)),
-            "setting_type": lambda n : setattr(self, 'setting_type', n.get_enum_value(group_policy_setting_type.GroupPolicySettingType)),
-            "setting_value": lambda n : setattr(self, 'setting_value', n.get_str_value()),
-            "setting_value_display_units": lambda n : setattr(self, 'setting_value_display_units', n.get_str_value()),
-            "setting_value_type": lambda n : setattr(self, 'setting_value_type', n.get_str_value()),
+            "admxSettingDefinitionId": lambda n : setattr(self, 'admx_setting_definition_id', n.get_str_value()),
+            "childIdList": lambda n : setattr(self, 'child_id_list', n.get_collection_of_primitive_values(str)),
+            "intuneSettingDefinitionId": lambda n : setattr(self, 'intune_setting_definition_id', n.get_str_value()),
+            "intuneSettingUriList": lambda n : setattr(self, 'intune_setting_uri_list', n.get_collection_of_primitive_values(str)),
+            "isMdmSupported": lambda n : setattr(self, 'is_mdm_supported', n.get_bool_value()),
+            "mdmCspName": lambda n : setattr(self, 'mdm_csp_name', n.get_str_value()),
+            "mdmMinimumOSVersion": lambda n : setattr(self, 'mdm_minimum_o_s_version', n.get_int_value()),
+            "mdmSettingUri": lambda n : setattr(self, 'mdm_setting_uri', n.get_str_value()),
+            "mdmSupportedState": lambda n : setattr(self, 'mdm_supported_state', n.get_enum_value(mdm_supported_state.MdmSupportedState)),
+            "parentId": lambda n : setattr(self, 'parent_id', n.get_str_value()),
+            "settingCategory": lambda n : setattr(self, 'setting_category', n.get_str_value()),
+            "settingDisplayName": lambda n : setattr(self, 'setting_display_name', n.get_str_value()),
+            "settingDisplayValue": lambda n : setattr(self, 'setting_display_value', n.get_str_value()),
+            "settingDisplayValueType": lambda n : setattr(self, 'setting_display_value_type', n.get_str_value()),
+            "settingName": lambda n : setattr(self, 'setting_name', n.get_str_value()),
+            "settingScope": lambda n : setattr(self, 'setting_scope', n.get_enum_value(group_policy_setting_scope.GroupPolicySettingScope)),
+            "settingType": lambda n : setattr(self, 'setting_type', n.get_enum_value(group_policy_setting_type.GroupPolicySettingType)),
+            "settingValue": lambda n : setattr(self, 'setting_value', n.get_str_value()),
+            "settingValueDisplayUnits": lambda n : setattr(self, 'setting_value_display_units', n.get_str_value()),
+            "settingValueType": lambda n : setattr(self, 'setting_value_type', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -150,7 +150,7 @@ class GroupPolicySettingMapping(entity.Entity):
         """
         Sets the intuneSettingDefinitionId property value. The Intune Setting Definition Id
         Args:
-            value: Value to set for the intuneSettingDefinitionId property.
+            value: Value to set for the intune_setting_definition_id property.
         """
         self._intune_setting_definition_id = value
     
@@ -167,7 +167,7 @@ class GroupPolicySettingMapping(entity.Entity):
         """
         Sets the intuneSettingUriList property value. The list of Intune Setting URIs this group policy setting maps to
         Args:
-            value: Value to set for the intuneSettingUriList property.
+            value: Value to set for the intune_setting_uri_list property.
         """
         self._intune_setting_uri_list = value
     
@@ -184,7 +184,7 @@ class GroupPolicySettingMapping(entity.Entity):
         """
         Sets the isMdmSupported property value. Indicates if the setting is supported by Intune or not
         Args:
-            value: Value to set for the isMdmSupported property.
+            value: Value to set for the is_mdm_supported property.
         """
         self._is_mdm_supported = value
     
@@ -201,7 +201,7 @@ class GroupPolicySettingMapping(entity.Entity):
         """
         Sets the mdmCspName property value. The CSP name this group policy setting maps to.
         Args:
-            value: Value to set for the mdmCspName property.
+            value: Value to set for the mdm_csp_name property.
         """
         self._mdm_csp_name = value
     
@@ -218,7 +218,7 @@ class GroupPolicySettingMapping(entity.Entity):
         """
         Sets the mdmMinimumOSVersion property value. The minimum OS version this mdm setting supports.
         Args:
-            value: Value to set for the mdmMinimumOSVersion property.
+            value: Value to set for the mdm_minimum_o_s_version property.
         """
         self._mdm_minimum_o_s_version = value
     
@@ -235,7 +235,7 @@ class GroupPolicySettingMapping(entity.Entity):
         """
         Sets the mdmSettingUri property value. The MDM CSP URI this group policy setting maps to.
         Args:
-            value: Value to set for the mdmSettingUri property.
+            value: Value to set for the mdm_setting_uri property.
         """
         self._mdm_setting_uri = value
     
@@ -252,7 +252,7 @@ class GroupPolicySettingMapping(entity.Entity):
         """
         Sets the mdmSupportedState property value. Mdm Support Status of the setting.
         Args:
-            value: Value to set for the mdmSupportedState property.
+            value: Value to set for the mdm_supported_state property.
         """
         self._mdm_supported_state = value
     
@@ -269,7 +269,7 @@ class GroupPolicySettingMapping(entity.Entity):
         """
         Sets the parentId property value. Parent Id of the group policy setting.
         Args:
-            value: Value to set for the parentId property.
+            value: Value to set for the parent_id property.
         """
         self._parent_id = value
     
@@ -316,7 +316,7 @@ class GroupPolicySettingMapping(entity.Entity):
         """
         Sets the settingCategory property value. The category the group policy setting is in.
         Args:
-            value: Value to set for the settingCategory property.
+            value: Value to set for the setting_category property.
         """
         self._setting_category = value
     
@@ -333,7 +333,7 @@ class GroupPolicySettingMapping(entity.Entity):
         """
         Sets the settingDisplayName property value. The display name of this group policy setting.
         Args:
-            value: Value to set for the settingDisplayName property.
+            value: Value to set for the setting_display_name property.
         """
         self._setting_display_name = value
     
@@ -350,7 +350,7 @@ class GroupPolicySettingMapping(entity.Entity):
         """
         Sets the settingDisplayValue property value. The display value of this group policy setting.
         Args:
-            value: Value to set for the settingDisplayValue property.
+            value: Value to set for the setting_display_value property.
         """
         self._setting_display_value = value
     
@@ -367,7 +367,7 @@ class GroupPolicySettingMapping(entity.Entity):
         """
         Sets the settingDisplayValueType property value. The display value type of this group policy setting.
         Args:
-            value: Value to set for the settingDisplayValueType property.
+            value: Value to set for the setting_display_value_type property.
         """
         self._setting_display_value_type = value
     
@@ -384,7 +384,7 @@ class GroupPolicySettingMapping(entity.Entity):
         """
         Sets the settingName property value. The name of this group policy setting.
         Args:
-            value: Value to set for the settingName property.
+            value: Value to set for the setting_name property.
         """
         self._setting_name = value
     
@@ -401,7 +401,7 @@ class GroupPolicySettingMapping(entity.Entity):
         """
         Sets the settingScope property value. Scope of the group policy setting.
         Args:
-            value: Value to set for the settingScope property.
+            value: Value to set for the setting_scope property.
         """
         self._setting_scope = value
     
@@ -418,7 +418,7 @@ class GroupPolicySettingMapping(entity.Entity):
         """
         Sets the settingType property value. Setting type of the group policy.
         Args:
-            value: Value to set for the settingType property.
+            value: Value to set for the setting_type property.
         """
         self._setting_type = value
     
@@ -435,7 +435,7 @@ class GroupPolicySettingMapping(entity.Entity):
         """
         Sets the settingValue property value. The value of this group policy setting.
         Args:
-            value: Value to set for the settingValue property.
+            value: Value to set for the setting_value property.
         """
         self._setting_value = value
     
@@ -452,7 +452,7 @@ class GroupPolicySettingMapping(entity.Entity):
         """
         Sets the settingValueDisplayUnits property value. The display units of this group policy setting value
         Args:
-            value: Value to set for the settingValueDisplayUnits property.
+            value: Value to set for the setting_value_display_units property.
         """
         self._setting_value_display_units = value
     
@@ -469,7 +469,7 @@ class GroupPolicySettingMapping(entity.Entity):
         """
         Sets the settingValueType property value. The value type of this group policy setting.
         Args:
-            value: Value to set for the settingValueType property.
+            value: Value to set for the setting_value_type property.
         """
         self._setting_value_type = value
     

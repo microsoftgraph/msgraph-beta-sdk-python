@@ -17,12 +17,13 @@ class SecurityBaselineSettingStateItemRequestBuilder():
     """
     Provides operations to manage the settingStates property of the microsoft.graph.securityBaselineState entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, security_baseline_setting_state_id: Optional[str] = None) -> None:
         """
         Instantiates a new SecurityBaselineSettingStateItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            securityBaselineSettingStateId: key: id of securityBaselineSettingState
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -32,15 +33,15 @@ class SecurityBaselineSettingStateItemRequestBuilder():
         self.url_template: str = "{+baseurl}/me/managedDevices/{managedDevice%2Did}/securityBaselineStates/{securityBaselineState%2Did}/settingStates/{securityBaselineSettingState%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["securityBaselineSettingState%2Did"] = securityBaselineSettingStateId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SecurityBaselineSettingStateItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[SecurityBaselineSettingStateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property settingStates for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class SecurityBaselineSettingStateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SecurityBaselineSettingStateItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[security_baseline_setting_state.SecurityBaselineSettingState]:
+    async def get(self,request_configuration: Optional[SecurityBaselineSettingStateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[security_baseline_setting_state.SecurityBaselineSettingState]:
         """
         The security baseline state for different settings for a device
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[security_baseline_setting_state.SecurityBaselineSettingState]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class SecurityBaselineSettingStateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, security_baseline_setting_state.SecurityBaselineSettingState, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, security_baseline_setting_state.SecurityBaselineSettingState, error_mapping)
     
-    async def patch(self,body: Optional[security_baseline_setting_state.SecurityBaselineSettingState] = None, request_configuration: Optional[SecurityBaselineSettingStateItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[security_baseline_setting_state.SecurityBaselineSettingState]:
+    async def patch(self,body: Optional[security_baseline_setting_state.SecurityBaselineSettingState] = None, request_configuration: Optional[SecurityBaselineSettingStateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[security_baseline_setting_state.SecurityBaselineSettingState]:
         """
         Update the navigation property settingStates in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[security_baseline_setting_state.SecurityBaselineSettingState]
         """
         if body is None:
@@ -92,7 +91,7 @@ class SecurityBaselineSettingStateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, security_baseline_setting_state.SecurityBaselineSettingState, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, security_baseline_setting_state.SecurityBaselineSettingState, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SecurityBaselineSettingStateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

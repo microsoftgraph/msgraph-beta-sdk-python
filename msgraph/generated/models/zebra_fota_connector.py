@@ -51,7 +51,7 @@ class ZebraFotaConnector(entity.Entity):
         """
         Sets the enrollmentAuthorizationUrl property value. Complete account enrollment authorization URL. This corresponds to verification_uri_complete in the Zebra API documentations.
         Args:
-            value: Value to set for the enrollmentAuthorizationUrl property.
+            value: Value to set for the enrollment_authorization_url property.
         """
         self._enrollment_authorization_url = value
     
@@ -68,7 +68,7 @@ class ZebraFotaConnector(entity.Entity):
         """
         Sets the enrollmentToken property value. Tenant enrollment token from Zebra. The token is used to enroll Zebra devices in the FOTA Service via app config.
         Args:
-            value: Value to set for the enrollmentToken property.
+            value: Value to set for the enrollment_token property.
         """
         self._enrollment_token = value
     
@@ -85,7 +85,7 @@ class ZebraFotaConnector(entity.Entity):
         """
         Sets the fotaAppsApproved property value. Flag indicating if required Firmware Over-the-Air (FOTA) Apps have been approved.
         Args:
-            value: Value to set for the fotaAppsApproved property.
+            value: Value to set for the fota_apps_approved property.
         """
         self._fota_apps_approved = value
     
@@ -95,10 +95,10 @@ class ZebraFotaConnector(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "enrollment_authorization_url": lambda n : setattr(self, 'enrollment_authorization_url', n.get_str_value()),
-            "enrollment_token": lambda n : setattr(self, 'enrollment_token', n.get_str_value()),
-            "fota_apps_approved": lambda n : setattr(self, 'fota_apps_approved', n.get_bool_value()),
-            "last_sync_date_time": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
+            "enrollmentAuthorizationUrl": lambda n : setattr(self, 'enrollment_authorization_url', n.get_str_value()),
+            "enrollmentToken": lambda n : setattr(self, 'enrollment_token', n.get_str_value()),
+            "fotaAppsApproved": lambda n : setattr(self, 'fota_apps_approved', n.get_bool_value()),
+            "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(zebra_fota_connector_state.ZebraFotaConnectorState)),
         }
         super_fields = super().get_field_deserializers()
@@ -118,7 +118,7 @@ class ZebraFotaConnector(entity.Entity):
         """
         Sets the lastSyncDateTime property value. Date and time when the account was last synched with Zebra
         Args:
-            value: Value to set for the lastSyncDateTime property.
+            value: Value to set for the last_sync_date_time property.
         """
         self._last_sync_date_time = value
     

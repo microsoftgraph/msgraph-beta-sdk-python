@@ -17,10 +17,11 @@ class EndpointItemRequestBuilder():
     """
     Provides operations to manage the endpoints property of the microsoft.graph.servicePrincipal entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, endpoint_id: Optional[str] = None) -> None:
         """
         Instantiates a new EndpointItemRequestBuilder and sets the default values.
         Args:
+            endpointId: key: id of endpoint
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class EndpointItemRequestBuilder():
         self.url_template: str = "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/endpoints/{endpoint%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["endpoint%2Did"] = endpointId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[EndpointItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[EndpointItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property endpoints for servicePrincipals
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class EndpointItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[EndpointItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[endpoint.Endpoint]:
+    async def get(self,request_configuration: Optional[EndpointItemRequestBuilderGetRequestConfiguration] = None) -> Optional[endpoint.Endpoint]:
         """
         Endpoints available for discovery. Services like Sharepoint populate this property with a tenant specific SharePoint endpoints that other applications can discover and use in their experiences.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[endpoint.Endpoint]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class EndpointItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, endpoint.Endpoint, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, endpoint.Endpoint, error_mapping)
     
-    async def patch(self,body: Optional[endpoint.Endpoint] = None, request_configuration: Optional[EndpointItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[endpoint.Endpoint]:
+    async def patch(self,body: Optional[endpoint.Endpoint] = None, request_configuration: Optional[EndpointItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[endpoint.Endpoint]:
         """
         Update the navigation property endpoints in servicePrincipals
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[endpoint.Endpoint]
         """
         if body is None:
@@ -92,7 +91,7 @@ class EndpointItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, endpoint.Endpoint, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, endpoint.Endpoint, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[EndpointItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

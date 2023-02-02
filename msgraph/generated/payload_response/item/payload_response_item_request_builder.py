@@ -17,11 +17,12 @@ class PayloadResponseItemRequestBuilder():
     """
     Provides operations to manage the collection of payloadResponse entities.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, payload_response_id: Optional[str] = None) -> None:
         """
         Instantiates a new PayloadResponseItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            payloadResponseId: key: id of payloadResponse
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -32,15 +33,15 @@ class PayloadResponseItemRequestBuilder():
         self.url_template: str = "{+baseurl}/payloadResponse/{payloadResponse%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["payloadResponse%2Did"] = payloadResponseId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PayloadResponseItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PayloadResponseItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete entity from payloadResponse
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class PayloadResponseItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PayloadResponseItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[payload_response.PayloadResponse]:
+    async def get(self,request_configuration: Optional[PayloadResponseItemRequestBuilderGetRequestConfiguration] = None) -> Optional[payload_response.PayloadResponse]:
         """
         Get entity from payloadResponse by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[payload_response.PayloadResponse]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class PayloadResponseItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, payload_response.PayloadResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, payload_response.PayloadResponse, error_mapping)
     
-    async def patch(self,body: Optional[payload_response.PayloadResponse] = None, request_configuration: Optional[PayloadResponseItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[payload_response.PayloadResponse]:
+    async def patch(self,body: Optional[payload_response.PayloadResponse] = None, request_configuration: Optional[PayloadResponseItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[payload_response.PayloadResponse]:
         """
         Update entity in payloadResponse
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[payload_response.PayloadResponse]
         """
         if body is None:
@@ -92,7 +91,7 @@ class PayloadResponseItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, payload_response.PayloadResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, payload_response.PayloadResponse, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PayloadResponseItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

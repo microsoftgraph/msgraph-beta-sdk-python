@@ -46,7 +46,7 @@ class BusinessScenario(entity.Entity):
         """
         Sets the createdBy property value. The identity of the user who created the scenario.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -63,7 +63,7 @@ class BusinessScenario(entity.Entity):
         """
         Sets the createdDateTime property value. The date and time when the scenario was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -92,7 +92,7 @@ class BusinessScenario(entity.Entity):
         """
         Sets the displayName property value. Display name of the scenario.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -102,14 +102,14 @@ class BusinessScenario(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_modified_by": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "owner_app_ids": lambda n : setattr(self, 'owner_app_ids', n.get_collection_of_primitive_values(str)),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "ownerAppIds": lambda n : setattr(self, 'owner_app_ids', n.get_collection_of_primitive_values(str)),
             "planner": lambda n : setattr(self, 'planner', n.get_object_value(business_scenario_planner.BusinessScenarioPlanner)),
-            "unique_name": lambda n : setattr(self, 'unique_name', n.get_str_value()),
+            "uniqueName": lambda n : setattr(self, 'unique_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -128,7 +128,7 @@ class BusinessScenario(entity.Entity):
         """
         Sets the lastModifiedBy property value. The identity of the user who last modified the scenario.
         Args:
-            value: Value to set for the lastModifiedBy property.
+            value: Value to set for the last_modified_by property.
         """
         self._last_modified_by = value
     
@@ -145,7 +145,7 @@ class BusinessScenario(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date and time when the scenario was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -162,7 +162,7 @@ class BusinessScenario(entity.Entity):
         """
         Sets the ownerAppIds property value. Identifiers of applications that are authorized to work with this scenario.
         Args:
-            value: Value to set for the ownerAppIds property.
+            value: Value to set for the owner_app_ids property.
         """
         self._owner_app_ids = value
     
@@ -214,7 +214,7 @@ class BusinessScenario(entity.Entity):
         """
         Sets the uniqueName property value. Unique name of the scenario. To avoid conflicts, the recommended value for the unique name is a reverse domain name format, owned by the author of the scenario. For example, a scenario authored by Contoso.com would have a unique name that starts with com.contoso.
         Args:
-            value: Value to set for the uniqueName property.
+            value: Value to set for the unique_name property.
         """
         self._unique_name = value
     

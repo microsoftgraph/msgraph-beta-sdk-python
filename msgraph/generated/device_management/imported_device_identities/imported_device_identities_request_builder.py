@@ -11,8 +11,8 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.device_management.imported_device_identities.count.count_request_builder')
-import_device_identity_list_request_builder = lazy_import('msgraph.generated.device_management.imported_device_identities.import_device_identity_list.import_device_identity_list_request_builder')
-search_existing_identities_request_builder = lazy_import('msgraph.generated.device_management.imported_device_identities.search_existing_identities.search_existing_identities_request_builder')
+import_device_identity_list_request_builder = lazy_import('msgraph.generated.device_management.imported_device_identities.microsoft_graph_import_device_identity_list.import_device_identity_list_request_builder')
+search_existing_identities_request_builder = lazy_import('msgraph.generated.device_management.imported_device_identities.microsoft_graph_search_existing_identities.search_existing_identities_request_builder')
 imported_device_identity = lazy_import('msgraph.generated.models.imported_device_identity')
 imported_device_identity_collection_response = lazy_import('msgraph.generated.models.imported_device_identity_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -29,14 +29,14 @@ class ImportedDeviceIdentitiesRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def import_device_identity_list(self) -> import_device_identity_list_request_builder.ImportDeviceIdentityListRequestBuilder:
+    def microsoft_graph_import_device_identity_list(self) -> import_device_identity_list_request_builder.ImportDeviceIdentityListRequestBuilder:
         """
         Provides operations to call the importDeviceIdentityList method.
         """
         return import_device_identity_list_request_builder.ImportDeviceIdentityListRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def search_existing_identities(self) -> search_existing_identities_request_builder.SearchExistingIdentitiesRequestBuilder:
+    def microsoft_graph_search_existing_identities(self) -> search_existing_identities_request_builder.SearchExistingIdentitiesRequestBuilder:
         """
         Provides operations to call the searchExistingIdentities method.
         """
@@ -60,12 +60,11 @@ class ImportedDeviceIdentitiesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ImportedDeviceIdentitiesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[imported_device_identity_collection_response.ImportedDeviceIdentityCollectionResponse]:
+    async def get(self,request_configuration: Optional[ImportedDeviceIdentitiesRequestBuilderGetRequestConfiguration] = None) -> Optional[imported_device_identity_collection_response.ImportedDeviceIdentityCollectionResponse]:
         """
         The imported device identities.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[imported_device_identity_collection_response.ImportedDeviceIdentityCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -77,15 +76,14 @@ class ImportedDeviceIdentitiesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, imported_device_identity_collection_response.ImportedDeviceIdentityCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, imported_device_identity_collection_response.ImportedDeviceIdentityCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[imported_device_identity.ImportedDeviceIdentity] = None, request_configuration: Optional[ImportedDeviceIdentitiesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[imported_device_identity.ImportedDeviceIdentity]:
+    async def post(self,body: Optional[imported_device_identity.ImportedDeviceIdentity] = None, request_configuration: Optional[ImportedDeviceIdentitiesRequestBuilderPostRequestConfiguration] = None) -> Optional[imported_device_identity.ImportedDeviceIdentity]:
         """
         Create new navigation property to importedDeviceIdentities for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[imported_device_identity.ImportedDeviceIdentity]
         """
         if body is None:
@@ -99,7 +97,7 @@ class ImportedDeviceIdentitiesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, imported_device_identity.ImportedDeviceIdentity, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, imported_device_identity.ImportedDeviceIdentity, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ImportedDeviceIdentitiesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

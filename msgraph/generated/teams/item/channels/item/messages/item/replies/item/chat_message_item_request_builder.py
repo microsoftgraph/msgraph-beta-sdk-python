@@ -14,10 +14,10 @@ chat_message = lazy_import('msgraph.generated.models.chat_message')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 hosted_contents_request_builder = lazy_import('msgraph.generated.teams.item.channels.item.messages.item.replies.item.hosted_contents.hosted_contents_request_builder')
 chat_message_hosted_content_item_request_builder = lazy_import('msgraph.generated.teams.item.channels.item.messages.item.replies.item.hosted_contents.item.chat_message_hosted_content_item_request_builder')
-set_reaction_request_builder = lazy_import('msgraph.generated.teams.item.channels.item.messages.item.replies.item.set_reaction.set_reaction_request_builder')
-soft_delete_request_builder = lazy_import('msgraph.generated.teams.item.channels.item.messages.item.replies.item.soft_delete.soft_delete_request_builder')
-undo_soft_delete_request_builder = lazy_import('msgraph.generated.teams.item.channels.item.messages.item.replies.item.undo_soft_delete.undo_soft_delete_request_builder')
-unset_reaction_request_builder = lazy_import('msgraph.generated.teams.item.channels.item.messages.item.replies.item.unset_reaction.unset_reaction_request_builder')
+set_reaction_request_builder = lazy_import('msgraph.generated.teams.item.channels.item.messages.item.replies.item.microsoft_graph_set_reaction.set_reaction_request_builder')
+soft_delete_request_builder = lazy_import('msgraph.generated.teams.item.channels.item.messages.item.replies.item.microsoft_graph_soft_delete.soft_delete_request_builder')
+undo_soft_delete_request_builder = lazy_import('msgraph.generated.teams.item.channels.item.messages.item.replies.item.microsoft_graph_undo_soft_delete.undo_soft_delete_request_builder')
+unset_reaction_request_builder = lazy_import('msgraph.generated.teams.item.channels.item.messages.item.replies.item.microsoft_graph_unset_reaction.unset_reaction_request_builder')
 
 class ChatMessageItemRequestBuilder():
     """
@@ -31,37 +31,38 @@ class ChatMessageItemRequestBuilder():
         return hosted_contents_request_builder.HostedContentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def set_reaction(self) -> set_reaction_request_builder.SetReactionRequestBuilder:
+    def microsoft_graph_set_reaction(self) -> set_reaction_request_builder.SetReactionRequestBuilder:
         """
         Provides operations to call the setReaction method.
         """
         return set_reaction_request_builder.SetReactionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def soft_delete(self) -> soft_delete_request_builder.SoftDeleteRequestBuilder:
+    def microsoft_graph_soft_delete(self) -> soft_delete_request_builder.SoftDeleteRequestBuilder:
         """
         Provides operations to call the softDelete method.
         """
         return soft_delete_request_builder.SoftDeleteRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def undo_soft_delete(self) -> undo_soft_delete_request_builder.UndoSoftDeleteRequestBuilder:
+    def microsoft_graph_undo_soft_delete(self) -> undo_soft_delete_request_builder.UndoSoftDeleteRequestBuilder:
         """
         Provides operations to call the undoSoftDelete method.
         """
         return undo_soft_delete_request_builder.UndoSoftDeleteRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def unset_reaction(self) -> unset_reaction_request_builder.UnsetReactionRequestBuilder:
+    def microsoft_graph_unset_reaction(self) -> unset_reaction_request_builder.UnsetReactionRequestBuilder:
         """
         Provides operations to call the unsetReaction method.
         """
         return unset_reaction_request_builder.UnsetReactionRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, chat_message_id1: Optional[str] = None) -> None:
         """
         Instantiates a new ChatMessageItemRequestBuilder and sets the default values.
         Args:
+            chatMessageId1: key: id of chatMessage
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -73,15 +74,15 @@ class ChatMessageItemRequestBuilder():
         self.url_template: str = "{+baseurl}/teams/{team%2Did}/channels/{channel%2Did}/messages/{chatMessage%2Did}/replies/{chatMessage%2Did1}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["chatMessage%2Did1"] = chatMessageId1
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ChatMessageItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ChatMessageItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property replies for teams
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -92,14 +93,13 @@ class ChatMessageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ChatMessageItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[chat_message.ChatMessage]:
+    async def get(self,request_configuration: Optional[ChatMessageItemRequestBuilderGetRequestConfiguration] = None) -> Optional[chat_message.ChatMessage]:
         """
         Replies for a specified message. Supports $expand for channel messages.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[chat_message.ChatMessage]
         """
         request_info = self.to_get_request_information(
@@ -111,7 +111,7 @@ class ChatMessageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, chat_message.ChatMessage, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, chat_message.ChatMessage, error_mapping)
     
     def hosted_contents_by_id(self,id: str) -> chat_message_hosted_content_item_request_builder.ChatMessageHostedContentItemRequestBuilder:
         """
@@ -126,13 +126,12 @@ class ChatMessageItemRequestBuilder():
         url_tpl_params["chatMessageHostedContent%2Did"] = id
         return chat_message_hosted_content_item_request_builder.ChatMessageHostedContentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[chat_message.ChatMessage] = None, request_configuration: Optional[ChatMessageItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[chat_message.ChatMessage]:
+    async def patch(self,body: Optional[chat_message.ChatMessage] = None, request_configuration: Optional[ChatMessageItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[chat_message.ChatMessage]:
         """
         Update the navigation property replies in teams
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[chat_message.ChatMessage]
         """
         if body is None:
@@ -146,7 +145,7 @@ class ChatMessageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, chat_message.ChatMessage, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, chat_message.ChatMessage, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ChatMessageItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

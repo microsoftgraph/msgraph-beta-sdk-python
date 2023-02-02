@@ -46,10 +46,10 @@ class GroupPolicyOperation(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "operation_status": lambda n : setattr(self, 'operation_status', n.get_enum_value(group_policy_operation_status.GroupPolicyOperationStatus)),
-            "operation_type": lambda n : setattr(self, 'operation_type', n.get_enum_value(group_policy_operation_type.GroupPolicyOperationType)),
-            "status_details": lambda n : setattr(self, 'status_details', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "operationStatus": lambda n : setattr(self, 'operation_status', n.get_enum_value(group_policy_operation_status.GroupPolicyOperationStatus)),
+            "operationType": lambda n : setattr(self, 'operation_type', n.get_enum_value(group_policy_operation_type.GroupPolicyOperationType)),
+            "statusDetails": lambda n : setattr(self, 'status_details', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -68,7 +68,7 @@ class GroupPolicyOperation(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date and time the entity was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -85,7 +85,7 @@ class GroupPolicyOperation(entity.Entity):
         """
         Sets the operationStatus property value. Type of Group Policy operation status.
         Args:
-            value: Value to set for the operationStatus property.
+            value: Value to set for the operation_status property.
         """
         self._operation_status = value
     
@@ -102,7 +102,7 @@ class GroupPolicyOperation(entity.Entity):
         """
         Sets the operationType property value. Type of Group Policy operation.
         Args:
-            value: Value to set for the operationType property.
+            value: Value to set for the operation_type property.
         """
         self._operation_type = value
     
@@ -133,7 +133,7 @@ class GroupPolicyOperation(entity.Entity):
         """
         Sets the statusDetails property value. The group policy operation status detail.
         Args:
-            value: Value to set for the statusDetails property.
+            value: Value to set for the status_details property.
         """
         self._status_details = value
     

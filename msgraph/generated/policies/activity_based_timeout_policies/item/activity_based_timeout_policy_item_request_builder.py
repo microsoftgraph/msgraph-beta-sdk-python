@@ -17,10 +17,11 @@ class ActivityBasedTimeoutPolicyItemRequestBuilder():
     """
     Provides operations to manage the activityBasedTimeoutPolicies property of the microsoft.graph.policyRoot entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, activity_based_timeout_policy_id: Optional[str] = None) -> None:
         """
         Instantiates a new ActivityBasedTimeoutPolicyItemRequestBuilder and sets the default values.
         Args:
+            activityBasedTimeoutPolicyId: key: id of activityBasedTimeoutPolicy
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class ActivityBasedTimeoutPolicyItemRequestBuilder():
         self.url_template: str = "{+baseurl}/policies/activityBasedTimeoutPolicies/{activityBasedTimeoutPolicy%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["activityBasedTimeoutPolicy%2Did"] = activityBasedTimeoutPolicyId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ActivityBasedTimeoutPolicyItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ActivityBasedTimeoutPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property activityBasedTimeoutPolicies for policies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class ActivityBasedTimeoutPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ActivityBasedTimeoutPolicyItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[activity_based_timeout_policy.ActivityBasedTimeoutPolicy]:
+    async def get(self,request_configuration: Optional[ActivityBasedTimeoutPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[activity_based_timeout_policy.ActivityBasedTimeoutPolicy]:
         """
         The policy that controls the idle time out for web sessions for applications.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[activity_based_timeout_policy.ActivityBasedTimeoutPolicy]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class ActivityBasedTimeoutPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, activity_based_timeout_policy.ActivityBasedTimeoutPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, activity_based_timeout_policy.ActivityBasedTimeoutPolicy, error_mapping)
     
-    async def patch(self,body: Optional[activity_based_timeout_policy.ActivityBasedTimeoutPolicy] = None, request_configuration: Optional[ActivityBasedTimeoutPolicyItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[activity_based_timeout_policy.ActivityBasedTimeoutPolicy]:
+    async def patch(self,body: Optional[activity_based_timeout_policy.ActivityBasedTimeoutPolicy] = None, request_configuration: Optional[ActivityBasedTimeoutPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[activity_based_timeout_policy.ActivityBasedTimeoutPolicy]:
         """
         Update the navigation property activityBasedTimeoutPolicies in policies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[activity_based_timeout_policy.ActivityBasedTimeoutPolicy]
         """
         if body is None:
@@ -92,7 +91,7 @@ class ActivityBasedTimeoutPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, activity_based_timeout_policy.ActivityBasedTimeoutPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, activity_based_timeout_policy.ActivityBasedTimeoutPolicy, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ActivityBasedTimeoutPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-get_supported_properties_request_builder = lazy_import('msgraph.generated.device_management.assignment_filters.item.get_supported_properties.get_supported_properties_request_builder')
+get_supported_properties_request_builder = lazy_import('msgraph.generated.device_management.assignment_filters.item.microsoft_graph_get_supported_properties.get_supported_properties_request_builder')
 device_and_app_management_assignment_filter = lazy_import('msgraph.generated.models.device_and_app_management_assignment_filter')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -18,10 +18,18 @@ class DeviceAndAppManagementAssignmentFilterItemRequestBuilder():
     """
     Provides operations to manage the assignmentFilters property of the microsoft.graph.deviceManagement entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    @property
+    def microsoft_graph_get_supported_properties(self) -> get_supported_properties_request_builder.GetSupportedPropertiesRequestBuilder:
+        """
+        Provides operations to call the getSupportedProperties method.
+        """
+        return get_supported_properties_request_builder.GetSupportedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, device_and_app_management_assignment_filter_id: Optional[str] = None) -> None:
         """
         Instantiates a new DeviceAndAppManagementAssignmentFilterItemRequestBuilder and sets the default values.
         Args:
+            deviceAndAppManagementAssignmentFilterId: key: id of deviceAndAppManagementAssignmentFilter
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -33,15 +41,15 @@ class DeviceAndAppManagementAssignmentFilterItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceManagement/assignmentFilters/{deviceAndAppManagementAssignmentFilter%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["deviceAndAppManagementAssignmentFilter%2Did"] = deviceAndAppManagementAssignmentFilterId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DeviceAndAppManagementAssignmentFilterItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceAndAppManagementAssignmentFilterItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property assignmentFilters for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -52,14 +60,13 @@ class DeviceAndAppManagementAssignmentFilterItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceAndAppManagementAssignmentFilterItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]:
+    async def get(self,request_configuration: Optional[DeviceAndAppManagementAssignmentFilterItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]:
         """
         The list of assignment filters
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]
         """
         request_info = self.to_get_request_information(
@@ -71,22 +78,14 @@ class DeviceAndAppManagementAssignmentFilterItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter, error_mapping)
     
-    def get_supported_properties(self,) -> get_supported_properties_request_builder.GetSupportedPropertiesRequestBuilder:
-        """
-        Provides operations to call the getSupportedProperties method.
-        Returns: get_supported_properties_request_builder.GetSupportedPropertiesRequestBuilder
-        """
-        return get_supported_properties_request_builder.GetSupportedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def patch(self,body: Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter] = None, request_configuration: Optional[DeviceAndAppManagementAssignmentFilterItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]:
+    async def patch(self,body: Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter] = None, request_configuration: Optional[DeviceAndAppManagementAssignmentFilterItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]:
         """
         Update the navigation property assignmentFilters in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]
         """
         if body is None:
@@ -100,7 +99,7 @@ class DeviceAndAppManagementAssignmentFilterItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceAndAppManagementAssignmentFilterItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

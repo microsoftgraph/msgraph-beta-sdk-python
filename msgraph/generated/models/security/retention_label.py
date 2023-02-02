@@ -28,7 +28,7 @@ class RetentionLabel(entity.Entity):
         """
         Sets the actionAfterRetentionPeriod property value. Specifies the action to take on a document with this label applied during the retention period. The possible values are: none, delete, startDispositionReview, unknownFutureValue.
         Args:
-            value: Value to set for the actionAfterRetentionPeriod property.
+            value: Value to set for the action_after_retention_period property.
         """
         self._action_after_retention_period = value
     
@@ -45,7 +45,7 @@ class RetentionLabel(entity.Entity):
         """
         Sets the behaviorDuringRetentionPeriod property value. Specifies how the behavior of a document with this label should be during the retention period. The possible values are: doNotRetain, retain, retainAsRecord, retainAsRegulatoryRecord, unknownFutureValue.
         Args:
-            value: Value to set for the behaviorDuringRetentionPeriod property.
+            value: Value to set for the behavior_during_retention_period property.
         """
         self._behavior_during_retention_period = value
     
@@ -102,7 +102,7 @@ class RetentionLabel(entity.Entity):
         """
         Sets the createdBy property value. Represents the user who created the retentionLabel.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -119,7 +119,7 @@ class RetentionLabel(entity.Entity):
         """
         Sets the createdDateTime property value. Represents the date and time in which the retentionLabel is created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -148,7 +148,7 @@ class RetentionLabel(entity.Entity):
         """
         Sets the defaultRecordBehavior property value. Specifies the locked or unlocked state of a record label when it is created.The possible values are: startLocked, startUnlocked, unknownFutureValue.
         Args:
-            value: Value to set for the defaultRecordBehavior property.
+            value: Value to set for the default_record_behavior property.
         """
         self._default_record_behavior = value
     
@@ -165,7 +165,7 @@ class RetentionLabel(entity.Entity):
         """
         Sets the descriptionForAdmins property value. Provides label information for the admin. Optional.
         Args:
-            value: Value to set for the descriptionForAdmins property.
+            value: Value to set for the description_for_admins property.
         """
         self._description_for_admins = value
     
@@ -182,7 +182,7 @@ class RetentionLabel(entity.Entity):
         """
         Sets the descriptionForUsers property value. Provides the label information for the user. Optional.
         Args:
-            value: Value to set for the descriptionForUsers property.
+            value: Value to set for the description_for_users property.
         """
         self._description_for_users = value
     
@@ -199,7 +199,7 @@ class RetentionLabel(entity.Entity):
         """
         Sets the displayName property value. Unique string that defines a label name.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -216,7 +216,7 @@ class RetentionLabel(entity.Entity):
         """
         Sets the dispositionReviewStages property value. Review stages during which reviewers are notified to determine whether a document must be deleted or retained.
         Args:
-            value: Value to set for the dispositionReviewStages property.
+            value: Value to set for the disposition_review_stages property.
         """
         self._disposition_review_stages = value
     
@@ -226,22 +226,22 @@ class RetentionLabel(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "action_after_retention_period": lambda n : setattr(self, 'action_after_retention_period', n.get_enum_value(action_after_retention_period.ActionAfterRetentionPeriod)),
-            "behavior_during_retention_period": lambda n : setattr(self, 'behavior_during_retention_period', n.get_enum_value(behavior_during_retention_period.BehaviorDuringRetentionPeriod)),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "default_record_behavior": lambda n : setattr(self, 'default_record_behavior', n.get_enum_value(default_record_behavior.DefaultRecordBehavior)),
-            "description_for_admins": lambda n : setattr(self, 'description_for_admins', n.get_str_value()),
-            "description_for_users": lambda n : setattr(self, 'description_for_users', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "disposition_review_stages": lambda n : setattr(self, 'disposition_review_stages', n.get_collection_of_object_values(disposition_review_stage.DispositionReviewStage)),
-            "is_in_use": lambda n : setattr(self, 'is_in_use', n.get_bool_value()),
-            "label_to_be_applied": lambda n : setattr(self, 'label_to_be_applied', n.get_str_value()),
-            "last_modified_by": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "retention_duration": lambda n : setattr(self, 'retention_duration', n.get_object_value(retention_duration.RetentionDuration)),
-            "retention_event_type": lambda n : setattr(self, 'retention_event_type', n.get_object_value(retention_event_type.RetentionEventType)),
-            "retention_trigger": lambda n : setattr(self, 'retention_trigger', n.get_enum_value(retention_trigger.RetentionTrigger)),
+            "actionAfterRetentionPeriod": lambda n : setattr(self, 'action_after_retention_period', n.get_enum_value(action_after_retention_period.ActionAfterRetentionPeriod)),
+            "behaviorDuringRetentionPeriod": lambda n : setattr(self, 'behavior_during_retention_period', n.get_enum_value(behavior_during_retention_period.BehaviorDuringRetentionPeriod)),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "defaultRecordBehavior": lambda n : setattr(self, 'default_record_behavior', n.get_enum_value(default_record_behavior.DefaultRecordBehavior)),
+            "descriptionForAdmins": lambda n : setattr(self, 'description_for_admins', n.get_str_value()),
+            "descriptionForUsers": lambda n : setattr(self, 'description_for_users', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "dispositionReviewStages": lambda n : setattr(self, 'disposition_review_stages', n.get_collection_of_object_values(disposition_review_stage.DispositionReviewStage)),
+            "isInUse": lambda n : setattr(self, 'is_in_use', n.get_bool_value()),
+            "labelToBeApplied": lambda n : setattr(self, 'label_to_be_applied', n.get_str_value()),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "retentionDuration": lambda n : setattr(self, 'retention_duration', n.get_object_value(retention_duration.RetentionDuration)),
+            "retentionEventType": lambda n : setattr(self, 'retention_event_type', n.get_object_value(retention_event_type.RetentionEventType)),
+            "retentionTrigger": lambda n : setattr(self, 'retention_trigger', n.get_enum_value(retention_trigger.RetentionTrigger)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -260,7 +260,7 @@ class RetentionLabel(entity.Entity):
         """
         Sets the isInUse property value. Specifies whether the label is currently being used.
         Args:
-            value: Value to set for the isInUse property.
+            value: Value to set for the is_in_use property.
         """
         self._is_in_use = value
     
@@ -277,7 +277,7 @@ class RetentionLabel(entity.Entity):
         """
         Sets the labelToBeApplied property value. Specifies the replacement label to be applied automatically after the retention period of the current label ends.
         Args:
-            value: Value to set for the labelToBeApplied property.
+            value: Value to set for the label_to_be_applied property.
         """
         self._label_to_be_applied = value
     
@@ -294,7 +294,7 @@ class RetentionLabel(entity.Entity):
         """
         Sets the lastModifiedBy property value. The user who last modified the retentionLabel.
         Args:
-            value: Value to set for the lastModifiedBy property.
+            value: Value to set for the last_modified_by property.
         """
         self._last_modified_by = value
     
@@ -311,7 +311,7 @@ class RetentionLabel(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The latest date time when the retentionLabel was modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -328,7 +328,7 @@ class RetentionLabel(entity.Entity):
         """
         Sets the retentionDuration property value. Specifies the number of days to retain the content.
         Args:
-            value: Value to set for the retentionDuration property.
+            value: Value to set for the retention_duration property.
         """
         self._retention_duration = value
     
@@ -345,7 +345,7 @@ class RetentionLabel(entity.Entity):
         """
         Sets the retentionEventType property value. The retentionEventType property
         Args:
-            value: Value to set for the retentionEventType property.
+            value: Value to set for the retention_event_type property.
         """
         self._retention_event_type = value
     
@@ -362,7 +362,7 @@ class RetentionLabel(entity.Entity):
         """
         Sets the retentionTrigger property value. Specifies whether the retention duration is calculated from the content creation date, labeled date, or last modification date. The possible values are: dateLabeled, dateCreated, dateModified, dateOfEvent, unknownFutureValue.
         Args:
-            value: Value to set for the retentionTrigger property.
+            value: Value to set for the retention_trigger property.
         """
         self._retention_trigger = value
     

@@ -44,12 +44,11 @@ class RetentionEventTypesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[RetentionEventTypesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[retention_event_type_collection_response.RetentionEventTypeCollectionResponse]:
+    async def get(self,request_configuration: Optional[RetentionEventTypesRequestBuilderGetRequestConfiguration] = None) -> Optional[retention_event_type_collection_response.RetentionEventTypeCollectionResponse]:
         """
         Get a list of the retentionEventType objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[retention_event_type_collection_response.RetentionEventTypeCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class RetentionEventTypesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, retention_event_type_collection_response.RetentionEventTypeCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, retention_event_type_collection_response.RetentionEventTypeCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[retention_event_type.RetentionEventType] = None, request_configuration: Optional[RetentionEventTypesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[retention_event_type.RetentionEventType]:
+    async def post(self,body: Optional[retention_event_type.RetentionEventType] = None, request_configuration: Optional[RetentionEventTypesRequestBuilderPostRequestConfiguration] = None) -> Optional[retention_event_type.RetentionEventType]:
         """
         Create a new retentionEventType object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[retention_event_type.RetentionEventType]
         """
         if body is None:
@@ -83,7 +81,7 @@ class RetentionEventTypesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, retention_event_type.RetentionEventType, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, retention_event_type.RetentionEventType, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RetentionEventTypesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

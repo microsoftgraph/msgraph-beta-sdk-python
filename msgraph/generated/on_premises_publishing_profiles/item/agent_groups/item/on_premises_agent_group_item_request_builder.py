@@ -48,10 +48,11 @@ class OnPremisesAgentGroupItemRequestBuilder():
         url_tpl_params["onPremisesAgent%2Did"] = id
         return on_premises_agent_item_request_builder.OnPremisesAgentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, on_premises_agent_group_id: Optional[str] = None) -> None:
         """
         Instantiates a new OnPremisesAgentGroupItemRequestBuilder and sets the default values.
         Args:
+            onPremisesAgentGroupId: key: id of onPremisesAgentGroup
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -63,15 +64,15 @@ class OnPremisesAgentGroupItemRequestBuilder():
         self.url_template: str = "{+baseurl}/onPremisesPublishingProfiles/{onPremisesPublishingProfile%2Did}/agentGroups/{onPremisesAgentGroup%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["onPremisesAgentGroup%2Did"] = onPremisesAgentGroupId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[OnPremisesAgentGroupItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[OnPremisesAgentGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property agentGroups for onPremisesPublishingProfiles
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -82,14 +83,13 @@ class OnPremisesAgentGroupItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[OnPremisesAgentGroupItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[on_premises_agent_group.OnPremisesAgentGroup]:
+    async def get(self,request_configuration: Optional[OnPremisesAgentGroupItemRequestBuilderGetRequestConfiguration] = None) -> Optional[on_premises_agent_group.OnPremisesAgentGroup]:
         """
         List of existing onPremisesAgentGroup objects. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[on_premises_agent_group.OnPremisesAgentGroup]
         """
         request_info = self.to_get_request_information(
@@ -101,15 +101,14 @@ class OnPremisesAgentGroupItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, on_premises_agent_group.OnPremisesAgentGroup, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, on_premises_agent_group.OnPremisesAgentGroup, error_mapping)
     
-    async def patch(self,body: Optional[on_premises_agent_group.OnPremisesAgentGroup] = None, request_configuration: Optional[OnPremisesAgentGroupItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[on_premises_agent_group.OnPremisesAgentGroup]:
+    async def patch(self,body: Optional[on_premises_agent_group.OnPremisesAgentGroup] = None, request_configuration: Optional[OnPremisesAgentGroupItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[on_premises_agent_group.OnPremisesAgentGroup]:
         """
         Update the navigation property agentGroups in onPremisesPublishingProfiles
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[on_premises_agent_group.OnPremisesAgentGroup]
         """
         if body is None:
@@ -123,7 +122,7 @@ class OnPremisesAgentGroupItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, on_premises_agent_group.OnPremisesAgentGroup, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, on_premises_agent_group.OnPremisesAgentGroup, error_mapping)
     
     def published_resources_by_id(self,id: str) -> published_resource_item_request_builder.PublishedResourceItemRequestBuilder:
         """

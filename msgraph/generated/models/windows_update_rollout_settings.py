@@ -60,9 +60,9 @@ class WindowsUpdateRolloutSettings(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "offer_end_date_time_in_u_t_c": lambda n : setattr(self, 'offer_end_date_time_in_u_t_c', n.get_datetime_value()),
-            "offer_interval_in_days": lambda n : setattr(self, 'offer_interval_in_days', n.get_int_value()),
-            "offer_start_date_time_in_u_t_c": lambda n : setattr(self, 'offer_start_date_time_in_u_t_c', n.get_datetime_value()),
+            "offerEndDateTimeInUTC": lambda n : setattr(self, 'offer_end_date_time_in_u_t_c', n.get_datetime_value()),
+            "offerIntervalInDays": lambda n : setattr(self, 'offer_interval_in_days', n.get_int_value()),
+            "offerStartDateTimeInUTC": lambda n : setattr(self, 'offer_start_date_time_in_u_t_c', n.get_datetime_value()),
         }
         return fields
     
@@ -79,7 +79,7 @@ class WindowsUpdateRolloutSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -96,7 +96,7 @@ class WindowsUpdateRolloutSettings(AdditionalDataHolder, Parsable):
         """
         Sets the offerEndDateTimeInUTC property value. The feature update's ending  of release date and time to be set, update, and displayed for a feature Update profile for example: 2020-06-09T10:00:00Z.
         Args:
-            value: Value to set for the offerEndDateTimeInUTC property.
+            value: Value to set for the offer_end_date_time_in_u_t_c property.
         """
         self._offer_end_date_time_in_u_t_c = value
     
@@ -113,7 +113,7 @@ class WindowsUpdateRolloutSettings(AdditionalDataHolder, Parsable):
         """
         Sets the offerIntervalInDays property value. The number of day(s) between each set of offers to be set, updated, and displayed for a feature update profile, for example: if OfferStartDateTimeInUTC is 2020-06-09T10:00:00Z, and OfferIntervalInDays is 1, then the next two sets of offers will be made consecutively on 2020-06-10T10:00:00Z (next day at the same specified time) and 2020-06-11T10:00:00Z (next next day at the same specified time) with 1 day in between each set of offers.
         Args:
-            value: Value to set for the offerIntervalInDays property.
+            value: Value to set for the offer_interval_in_days property.
         """
         self._offer_interval_in_days = value
     
@@ -130,7 +130,7 @@ class WindowsUpdateRolloutSettings(AdditionalDataHolder, Parsable):
         """
         Sets the offerStartDateTimeInUTC property value. The feature update's starting date and time to be set, update, and displayed for a feature Update profile for example: 2020-06-09T10:00:00Z.
         Args:
-            value: Value to set for the offerStartDateTimeInUTC property.
+            value: Value to set for the offer_start_date_time_in_u_t_c property.
         """
         self._offer_start_date_time_in_u_t_c = value
     

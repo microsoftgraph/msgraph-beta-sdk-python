@@ -51,7 +51,7 @@ class SupportedClaimConfiguration(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "name_id_policy_format": lambda n : setattr(self, 'name_id_policy_format', n.get_str_value()),
+            "nameIdPolicyFormat": lambda n : setattr(self, 'name_id_policy_format', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -69,7 +69,7 @@ class SupportedClaimConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the nameIdPolicyFormat property value. The nameIdPolicyFormat property
         Args:
-            value: Value to set for the nameIdPolicyFormat property.
+            value: Value to set for the name_id_policy_format property.
         """
         self._name_id_policy_format = value
     
@@ -86,7 +86,7 @@ class SupportedClaimConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

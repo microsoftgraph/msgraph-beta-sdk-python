@@ -19,7 +19,7 @@ class ExternalIdentitiesPolicy(policy_base.PolicyBase):
         """
         Sets the allowDeletedIdentitiesDataRemoval property value. Reserved for future use.
         Args:
-            value: Value to set for the allowDeletedIdentitiesDataRemoval property.
+            value: Value to set for the allow_deleted_identities_data_removal property.
         """
         self._allow_deleted_identities_data_removal = value
     
@@ -36,7 +36,7 @@ class ExternalIdentitiesPolicy(policy_base.PolicyBase):
         """
         Sets the allowExternalIdentitiesToLeave property value. Defines whether external users can leave the guest tenant. If set to false, self-service controls are disabled, and the admin of the guest tenant must manually remove the external user from the guest tenant. When the external user leaves the tenant, their data in the guest tenant is first soft-deleted then permanently deleted in 30 days.
         Args:
-            value: Value to set for the allowExternalIdentitiesToLeave property.
+            value: Value to set for the allow_external_identities_to_leave property.
         """
         self._allow_external_identities_to_leave = value
     
@@ -69,8 +69,8 @@ class ExternalIdentitiesPolicy(policy_base.PolicyBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_deleted_identities_data_removal": lambda n : setattr(self, 'allow_deleted_identities_data_removal', n.get_bool_value()),
-            "allow_external_identities_to_leave": lambda n : setattr(self, 'allow_external_identities_to_leave', n.get_bool_value()),
+            "allowDeletedIdentitiesDataRemoval": lambda n : setattr(self, 'allow_deleted_identities_data_removal', n.get_bool_value()),
+            "allowExternalIdentitiesToLeave": lambda n : setattr(self, 'allow_external_identities_to_leave', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

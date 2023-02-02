@@ -17,12 +17,13 @@ class TeamsTemplateItemRequestBuilder():
     """
     Provides operations to manage the collection of teamsTemplate entities.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, teams_template_id: Optional[str] = None) -> None:
         """
         Instantiates a new TeamsTemplateItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            teamsTemplateId: key: id of teamsTemplate
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -32,15 +33,15 @@ class TeamsTemplateItemRequestBuilder():
         self.url_template: str = "{+baseurl}/teamsTemplates/{teamsTemplate%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["teamsTemplate%2Did"] = teamsTemplateId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[TeamsTemplateItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[TeamsTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete entity from teamsTemplates
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class TeamsTemplateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[TeamsTemplateItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[teams_template.TeamsTemplate]:
+    async def get(self,request_configuration: Optional[TeamsTemplateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[teams_template.TeamsTemplate]:
         """
         Get entity from teamsTemplates by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[teams_template.TeamsTemplate]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class TeamsTemplateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, teams_template.TeamsTemplate, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, teams_template.TeamsTemplate, error_mapping)
     
-    async def patch(self,body: Optional[teams_template.TeamsTemplate] = None, request_configuration: Optional[TeamsTemplateItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[teams_template.TeamsTemplate]:
+    async def patch(self,body: Optional[teams_template.TeamsTemplate] = None, request_configuration: Optional[TeamsTemplateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[teams_template.TeamsTemplate]:
         """
         Update entity in teamsTemplates
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[teams_template.TeamsTemplate]
         """
         if body is None:
@@ -92,7 +91,7 @@ class TeamsTemplateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, teams_template.TeamsTemplate, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, teams_template.TeamsTemplate, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[TeamsTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

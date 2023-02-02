@@ -17,10 +17,11 @@ class InferenceClassificationOverrideItemRequestBuilder():
     """
     Provides operations to manage the overrides property of the microsoft.graph.inferenceClassification entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, inference_classification_override_id: Optional[str] = None) -> None:
         """
         Instantiates a new InferenceClassificationOverrideItemRequestBuilder and sets the default values.
         Args:
+            inferenceClassificationOverrideId: key: id of inferenceClassificationOverride
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class InferenceClassificationOverrideItemRequestBuilder():
         self.url_template: str = "{+baseurl}/me/inferenceClassification/overrides/{inferenceClassificationOverride%2Did}{?%24select}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["inferenceClassificationOverride%2Did"] = inferenceClassificationOverrideId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[InferenceClassificationOverrideItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[InferenceClassificationOverrideItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property overrides for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class InferenceClassificationOverrideItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[InferenceClassificationOverrideItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[inference_classification_override.InferenceClassificationOverride]:
+    async def get(self,request_configuration: Optional[InferenceClassificationOverrideItemRequestBuilderGetRequestConfiguration] = None) -> Optional[inference_classification_override.InferenceClassificationOverride]:
         """
         A set of overrides for a user to always classify messages from specific senders in certain ways: focused, or other. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[inference_classification_override.InferenceClassificationOverride]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class InferenceClassificationOverrideItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, inference_classification_override.InferenceClassificationOverride, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, inference_classification_override.InferenceClassificationOverride, error_mapping)
     
-    async def patch(self,body: Optional[inference_classification_override.InferenceClassificationOverride] = None, request_configuration: Optional[InferenceClassificationOverrideItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[inference_classification_override.InferenceClassificationOverride]:
+    async def patch(self,body: Optional[inference_classification_override.InferenceClassificationOverride] = None, request_configuration: Optional[InferenceClassificationOverrideItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[inference_classification_override.InferenceClassificationOverride]:
         """
         Update the navigation property overrides in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[inference_classification_override.InferenceClassificationOverride]
         """
         if body is None:
@@ -92,7 +91,7 @@ class InferenceClassificationOverrideItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, inference_classification_override.InferenceClassificationOverride, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, inference_classification_override.InferenceClassificationOverride, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[InferenceClassificationOverrideItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

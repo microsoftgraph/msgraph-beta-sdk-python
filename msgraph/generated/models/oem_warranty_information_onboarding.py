@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class OemWarrantyInformationOnboarding(entity.Entity):
-    """
-    Warranty status entity for a given OEM
-    """
     @property
     def available(self,) -> Optional[bool]:
         """
@@ -28,7 +25,7 @@ class OemWarrantyInformationOnboarding(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new oemWarrantyInformationOnboarding and sets the default values.
+        Instantiates a new OemWarrantyInformationOnboarding and sets the default values.
         """
         super().__init__()
         # Specifies whether warranty API is available. This property is read-only.
@@ -77,7 +74,7 @@ class OemWarrantyInformationOnboarding(entity.Entity):
         fields = {
             "available": lambda n : setattr(self, 'available', n.get_bool_value()),
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
-            "oem_name": lambda n : setattr(self, 'oem_name', n.get_str_value()),
+            "oemName": lambda n : setattr(self, 'oem_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -96,7 +93,7 @@ class OemWarrantyInformationOnboarding(entity.Entity):
         """
         Sets the oemName property value. OEM name. This property is read-only.
         Args:
-            value: Value to set for the oemName property.
+            value: Value to set for the oem_name property.
         """
         self._oem_name = value
     

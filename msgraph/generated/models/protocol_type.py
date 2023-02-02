@@ -1,7 +1,7 @@
 from enum import Enum
 
 class ProtocolType(Enum):
-    None_escaped = "none",
+    None_ = "none",
     OAuth2 = "oAuth2",
     Ropc = "ropc",
     WsFederation = "wsFederation",

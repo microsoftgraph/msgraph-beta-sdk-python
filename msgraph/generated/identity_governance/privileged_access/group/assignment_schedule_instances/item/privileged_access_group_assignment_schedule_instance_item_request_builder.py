@@ -41,11 +41,12 @@ class PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder():
         """
         return principal_request_builder.PrincipalRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, privileged_access_group_assignment_schedule_instance_id: Optional[str] = None) -> None:
         """
         Instantiates a new PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            privilegedAccessGroupAssignmentScheduleInstanceId: key: id of privilegedAccessGroupAssignmentScheduleInstance
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -56,15 +57,15 @@ class PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder():
         self.url_template: str = "{+baseurl}/identityGovernance/privilegedAccess/group/assignmentScheduleInstances/{privilegedAccessGroupAssignmentScheduleInstance%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["privilegedAccessGroupAssignmentScheduleInstance%2Did"] = privilegedAccessGroupAssignmentScheduleInstanceId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property assignmentScheduleInstances for identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -75,14 +76,13 @@ class PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance]:
+    async def get(self,request_configuration: Optional[PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance]:
         """
         Get assignmentScheduleInstances from identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance]
         """
         request_info = self.to_get_request_information(
@@ -94,15 +94,14 @@ class PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance, error_mapping)
     
-    async def patch(self,body: Optional[privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance] = None, request_configuration: Optional[PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance]:
+    async def patch(self,body: Optional[privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance] = None, request_configuration: Optional[PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance]:
         """
         Update the navigation property assignmentScheduleInstances in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance]
         """
         if body is None:
@@ -116,7 +115,7 @@ class PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

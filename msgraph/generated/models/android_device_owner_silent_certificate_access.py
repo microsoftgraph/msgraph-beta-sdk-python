@@ -55,7 +55,7 @@ class AndroidDeviceOwnerSilentCertificateAccess(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "package_id": lambda n : setattr(self, 'package_id', n.get_str_value()),
+            "packageId": lambda n : setattr(self, 'package_id', n.get_str_value()),
         }
         return fields
     
@@ -72,7 +72,7 @@ class AndroidDeviceOwnerSilentCertificateAccess(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -89,7 +89,7 @@ class AndroidDeviceOwnerSilentCertificateAccess(AdditionalDataHolder, Parsable):
         """
         Sets the packageId property value. Package ID that has the pre-granted access to the certificate.
         Args:
-            value: Value to set for the packageId property.
+            value: Value to set for the package_id property.
         """
         self._package_id = value
     

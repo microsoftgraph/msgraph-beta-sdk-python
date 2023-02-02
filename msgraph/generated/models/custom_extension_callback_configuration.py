@@ -53,7 +53,7 @@ class CustomExtensionCallbackConfiguration(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "timeout_duration": lambda n : setattr(self, 'timeout_duration', n.get_object_value(Timedelta)),
+            "timeoutDuration": lambda n : setattr(self, 'timeout_duration', n.get_object_value(Timedelta)),
         }
         return fields
     
@@ -70,7 +70,7 @@ class CustomExtensionCallbackConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -99,7 +99,7 @@ class CustomExtensionCallbackConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the timeoutDuration property value. Callback time out in ISO 8601 time duration. Accepted time durations are between five minutes to three hours. For example, PT5M for five minutes and PT3H for three hours.
         Args:
-            value: Value to set for the timeoutDuration property.
+            value: Value to set for the timeout_duration property.
         """
         self._timeout_duration = value
     

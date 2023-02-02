@@ -17,10 +17,11 @@ class PasswordAuthenticationMethodItemRequestBuilder():
     """
     Provides operations to manage the passwordMethods property of the microsoft.graph.authentication entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, password_authentication_method_id: Optional[str] = None) -> None:
         """
         Instantiates a new PasswordAuthenticationMethodItemRequestBuilder and sets the default values.
         Args:
+            passwordAuthenticationMethodId: key: id of passwordAuthenticationMethod
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class PasswordAuthenticationMethodItemRequestBuilder():
         self.url_template: str = "{+baseurl}/me/authentication/passwordMethods/{passwordAuthenticationMethod%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["passwordAuthenticationMethod%2Did"] = passwordAuthenticationMethodId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PasswordAuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[password_authentication_method.PasswordAuthenticationMethod]:
+    async def get(self,request_configuration: Optional[PasswordAuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None) -> Optional[password_authentication_method.PasswordAuthenticationMethod]:
         """
         Represents the details of the password authentication method registered to a user for authentication.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[password_authentication_method.PasswordAuthenticationMethod]
         """
         request_info = self.to_get_request_information(
@@ -52,7 +53,7 @@ class PasswordAuthenticationMethodItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, password_authentication_method.PasswordAuthenticationMethod, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, password_authentication_method.PasswordAuthenticationMethod, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PasswordAuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

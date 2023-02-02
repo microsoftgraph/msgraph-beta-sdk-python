@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-lookup_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.lookup.lookup_request_builder')
+lookup_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.microsoft_graph_lookup.lookup_request_builder')
 sessions_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.sessions.sessions_request_builder')
 exact_match_session_item_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.sessions.item.exact_match_session_item_request_builder')
 exact_match_data_store = lazy_import('msgraph.generated.models.exact_match_data_store')
@@ -21,7 +21,7 @@ class ExactMatchDataStoreItemRequestBuilder():
     Provides operations to manage the exactMatchDataStores property of the microsoft.graph.dataClassificationService entity.
     """
     @property
-    def lookup(self) -> lookup_request_builder.LookupRequestBuilder:
+    def microsoft_graph_lookup(self) -> lookup_request_builder.LookupRequestBuilder:
         """
         Provides operations to call the lookup method.
         """
@@ -34,10 +34,11 @@ class ExactMatchDataStoreItemRequestBuilder():
         """
         return sessions_request_builder.SessionsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, exact_match_data_store_id: Optional[str] = None) -> None:
         """
         Instantiates a new ExactMatchDataStoreItemRequestBuilder and sets the default values.
         Args:
+            exactMatchDataStoreId: key: id of exactMatchDataStore
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -49,15 +50,15 @@ class ExactMatchDataStoreItemRequestBuilder():
         self.url_template: str = "{+baseurl}/dataClassification/exactMatchDataStores/{exactMatchDataStore%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["exactMatchDataStore%2Did"] = exactMatchDataStoreId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ExactMatchDataStoreItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ExactMatchDataStoreItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property exactMatchDataStores for dataClassification
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -68,14 +69,13 @@ class ExactMatchDataStoreItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ExactMatchDataStoreItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[exact_match_data_store.ExactMatchDataStore]:
+    async def get(self,request_configuration: Optional[ExactMatchDataStoreItemRequestBuilderGetRequestConfiguration] = None) -> Optional[exact_match_data_store.ExactMatchDataStore]:
         """
         Get exactMatchDataStores from dataClassification
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[exact_match_data_store.ExactMatchDataStore]
         """
         request_info = self.to_get_request_information(
@@ -87,15 +87,14 @@ class ExactMatchDataStoreItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, exact_match_data_store.ExactMatchDataStore, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, exact_match_data_store.ExactMatchDataStore, error_mapping)
     
-    async def patch(self,body: Optional[exact_match_data_store.ExactMatchDataStore] = None, request_configuration: Optional[ExactMatchDataStoreItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[exact_match_data_store.ExactMatchDataStore]:
+    async def patch(self,body: Optional[exact_match_data_store.ExactMatchDataStore] = None, request_configuration: Optional[ExactMatchDataStoreItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[exact_match_data_store.ExactMatchDataStore]:
         """
         Update the navigation property exactMatchDataStores in dataClassification
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[exact_match_data_store.ExactMatchDataStore]
         """
         if body is None:
@@ -109,7 +108,7 @@ class ExactMatchDataStoreItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, exact_match_data_store.ExactMatchDataStore, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, exact_match_data_store.ExactMatchDataStore, error_mapping)
     
     def sessions_by_id(self,id: str) -> exact_match_session_item_request_builder.ExactMatchSessionItemRequestBuilder:
         """

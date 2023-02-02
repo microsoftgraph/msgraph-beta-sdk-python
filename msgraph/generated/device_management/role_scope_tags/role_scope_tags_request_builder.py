@@ -11,8 +11,8 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.device_management.role_scope_tags.count.count_request_builder')
-get_role_scope_tags_by_id_request_builder = lazy_import('msgraph.generated.device_management.role_scope_tags.get_role_scope_tags_by_id.get_role_scope_tags_by_id_request_builder')
-has_custom_role_scope_tag_request_builder = lazy_import('msgraph.generated.device_management.role_scope_tags.has_custom_role_scope_tag.has_custom_role_scope_tag_request_builder')
+get_role_scope_tags_by_id_request_builder = lazy_import('msgraph.generated.device_management.role_scope_tags.microsoft_graph_get_role_scope_tags_by_id.get_role_scope_tags_by_id_request_builder')
+has_custom_role_scope_tag_request_builder = lazy_import('msgraph.generated.device_management.role_scope_tags.microsoft_graph_has_custom_role_scope_tag.has_custom_role_scope_tag_request_builder')
 role_scope_tag = lazy_import('msgraph.generated.models.role_scope_tag')
 role_scope_tag_collection_response = lazy_import('msgraph.generated.models.role_scope_tag_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -29,11 +29,18 @@ class RoleScopeTagsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_role_scope_tags_by_id(self) -> get_role_scope_tags_by_id_request_builder.GetRoleScopeTagsByIdRequestBuilder:
+    def microsoft_graph_get_role_scope_tags_by_id(self) -> get_role_scope_tags_by_id_request_builder.GetRoleScopeTagsByIdRequestBuilder:
         """
         Provides operations to call the getRoleScopeTagsById method.
         """
         return get_role_scope_tags_by_id_request_builder.GetRoleScopeTagsByIdRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_has_custom_role_scope_tag(self) -> has_custom_role_scope_tag_request_builder.HasCustomRoleScopeTagRequestBuilder:
+        """
+        Provides operations to call the hasCustomRoleScopeTag method.
+        """
+        return has_custom_role_scope_tag_request_builder.HasCustomRoleScopeTagRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -53,12 +60,11 @@ class RoleScopeTagsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[RoleScopeTagsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[role_scope_tag_collection_response.RoleScopeTagCollectionResponse]:
+    async def get(self,request_configuration: Optional[RoleScopeTagsRequestBuilderGetRequestConfiguration] = None) -> Optional[role_scope_tag_collection_response.RoleScopeTagCollectionResponse]:
         """
         The Role Scope Tags.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[role_scope_tag_collection_response.RoleScopeTagCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -70,22 +76,14 @@ class RoleScopeTagsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, role_scope_tag_collection_response.RoleScopeTagCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, role_scope_tag_collection_response.RoleScopeTagCollectionResponse, error_mapping)
     
-    def has_custom_role_scope_tag(self,) -> has_custom_role_scope_tag_request_builder.HasCustomRoleScopeTagRequestBuilder:
-        """
-        Provides operations to call the hasCustomRoleScopeTag method.
-        Returns: has_custom_role_scope_tag_request_builder.HasCustomRoleScopeTagRequestBuilder
-        """
-        return has_custom_role_scope_tag_request_builder.HasCustomRoleScopeTagRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def post(self,body: Optional[role_scope_tag.RoleScopeTag] = None, request_configuration: Optional[RoleScopeTagsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[role_scope_tag.RoleScopeTag]:
+    async def post(self,body: Optional[role_scope_tag.RoleScopeTag] = None, request_configuration: Optional[RoleScopeTagsRequestBuilderPostRequestConfiguration] = None) -> Optional[role_scope_tag.RoleScopeTag]:
         """
         Create new navigation property to roleScopeTags for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[role_scope_tag.RoleScopeTag]
         """
         if body is None:
@@ -99,7 +97,7 @@ class RoleScopeTagsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, role_scope_tag.RoleScopeTag, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, role_scope_tag.RoleScopeTag, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RoleScopeTagsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

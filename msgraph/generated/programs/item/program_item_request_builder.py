@@ -26,11 +26,12 @@ class ProgramItemRequestBuilder():
         """
         return controls_request_builder.ControlsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, program_id: Optional[str] = None) -> None:
         """
         Instantiates a new ProgramItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            programId: key: id of program
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -41,6 +42,7 @@ class ProgramItemRequestBuilder():
         self.url_template: str = "{+baseurl}/programs/{program%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["program%2Did"] = programId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
@@ -57,12 +59,11 @@ class ProgramItemRequestBuilder():
         url_tpl_params["programControl%2Did"] = id
         return program_control_item_request_builder.ProgramControlItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[ProgramItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ProgramItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         In the Azure AD access reviews feature, delete a program object. Do not delete a program which still has `programControl` linked to it, those access reviews should first be deleted or unlinked from the program and linked to a different program.  Also, please note that the built-in default program cannot be deleted.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -73,14 +74,13 @@ class ProgramItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ProgramItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[program.Program]:
+    async def get(self,request_configuration: Optional[ProgramItemRequestBuilderGetRequestConfiguration] = None) -> Optional[program.Program]:
         """
         Get entity from programs by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[program.Program]
         """
         request_info = self.to_get_request_information(
@@ -92,15 +92,14 @@ class ProgramItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, program.Program, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, program.Program, error_mapping)
     
-    async def patch(self,body: Optional[program.Program] = None, request_configuration: Optional[ProgramItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[program.Program]:
+    async def patch(self,body: Optional[program.Program] = None, request_configuration: Optional[ProgramItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[program.Program]:
         """
         In the Azure AD access reviews feature, update an existing program object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[program.Program]
         """
         if body is None:
@@ -114,7 +113,7 @@ class ProgramItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, program.Program, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, program.Program, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ProgramItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

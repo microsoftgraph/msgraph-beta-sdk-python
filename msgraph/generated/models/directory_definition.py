@@ -71,7 +71,7 @@ class DirectoryDefinition(entity.Entity):
         """
         Sets the discoveryDateTime property value. Represents the discovery date and time using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the discoveryDateTime property.
+            value: Value to set for the discovery_date_time property.
         """
         self._discovery_date_time = value
     
@@ -82,10 +82,10 @@ class DirectoryDefinition(entity.Entity):
         """
         fields = {
             "discoverabilities": lambda n : setattr(self, 'discoverabilities', n.get_enum_value(directory_definition_discoverabilities.DirectoryDefinitionDiscoverabilities)),
-            "discovery_date_time": lambda n : setattr(self, 'discovery_date_time', n.get_datetime_value()),
+            "discoveryDateTime": lambda n : setattr(self, 'discovery_date_time', n.get_datetime_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "objects": lambda n : setattr(self, 'objects', n.get_collection_of_object_values(object_definition.ObjectDefinition)),
-            "read_only": lambda n : setattr(self, 'read_only', n.get_bool_value()),
+            "readOnly": lambda n : setattr(self, 'read_only', n.get_bool_value()),
             "version": lambda n : setattr(self, 'version', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -139,7 +139,7 @@ class DirectoryDefinition(entity.Entity):
         """
         Sets the readOnly property value. The readOnly property
         Args:
-            value: Value to set for the readOnly property.
+            value: Value to set for the read_only property.
         """
         self._read_only = value
     

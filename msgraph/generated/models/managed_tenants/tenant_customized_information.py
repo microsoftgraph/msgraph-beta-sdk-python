@@ -9,7 +9,7 @@ tenant_contact_information = lazy_import('msgraph.generated.models.managed_tenan
 class TenantCustomizedInformation(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new tenantCustomizedInformation and sets the default values.
+        Instantiates a new TenantCustomizedInformation and sets the default values.
         """
         super().__init__()
         # The collection of contacts for the managed tenant. Optional.
@@ -65,7 +65,7 @@ class TenantCustomizedInformation(entity.Entity):
         """
         Sets the displayName property value. The display name for the managed tenant. Required. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -76,8 +76,8 @@ class TenantCustomizedInformation(entity.Entity):
         """
         fields = {
             "contacts": lambda n : setattr(self, 'contacts', n.get_collection_of_object_values(tenant_contact_information.TenantContactInformation)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
             "website": lambda n : setattr(self, 'website', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -111,7 +111,7 @@ class TenantCustomizedInformation(entity.Entity):
         """
         Sets the tenantId property value. The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     

@@ -10,15 +10,15 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-activate_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.activate.activate_request_builder')
-apply_hold_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.apply_hold.apply_hold_request_builder')
-release_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.release.release_request_builder')
-remove_hold_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.remove_hold.remove_hold_request_builder')
+activate_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.microsoft_graph_ediscovery_activate.activate_request_builder')
+apply_hold_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.microsoft_graph_ediscovery_apply_hold.apply_hold_request_builder')
+release_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.microsoft_graph_ediscovery_release.release_request_builder')
+remove_hold_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.microsoft_graph_ediscovery_remove_hold.remove_hold_request_builder')
+update_index_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.microsoft_graph_ediscovery_update_index.update_index_request_builder')
 site_sources_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.site_sources.site_sources_request_builder')
 site_source_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.site_sources.item.site_source_item_request_builder')
 unified_group_sources_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.unified_group_sources.unified_group_sources_request_builder')
 unified_group_source_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.unified_group_sources.item.unified_group_source_item_request_builder')
-update_index_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.update_index.update_index_request_builder')
 user_sources_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.user_sources.user_sources_request_builder')
 user_source_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.user_sources.item.user_source_item_request_builder')
 custodian = lazy_import('msgraph.generated.models.ediscovery.custodian')
@@ -29,32 +29,39 @@ class CustodianItemRequestBuilder():
     Provides operations to manage the custodians property of the microsoft.graph.ediscovery.case entity.
     """
     @property
-    def activate(self) -> activate_request_builder.ActivateRequestBuilder:
+    def microsoft_graph_ediscovery_activate(self) -> activate_request_builder.ActivateRequestBuilder:
         """
         Provides operations to call the activate method.
         """
         return activate_request_builder.ActivateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def apply_hold(self) -> apply_hold_request_builder.ApplyHoldRequestBuilder:
+    def microsoft_graph_ediscovery_apply_hold(self) -> apply_hold_request_builder.ApplyHoldRequestBuilder:
         """
         Provides operations to call the applyHold method.
         """
         return apply_hold_request_builder.ApplyHoldRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def release(self) -> release_request_builder.ReleaseRequestBuilder:
+    def microsoft_graph_ediscovery_release(self) -> release_request_builder.ReleaseRequestBuilder:
         """
         Provides operations to call the release method.
         """
         return release_request_builder.ReleaseRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def remove_hold(self) -> remove_hold_request_builder.RemoveHoldRequestBuilder:
+    def microsoft_graph_ediscovery_remove_hold(self) -> remove_hold_request_builder.RemoveHoldRequestBuilder:
         """
         Provides operations to call the removeHold method.
         """
         return remove_hold_request_builder.RemoveHoldRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_ediscovery_update_index(self) -> update_index_request_builder.UpdateIndexRequestBuilder:
+        """
+        Provides operations to call the updateIndex method.
+        """
+        return update_index_request_builder.UpdateIndexRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def site_sources(self) -> site_sources_request_builder.SiteSourcesRequestBuilder:
@@ -71,23 +78,17 @@ class CustodianItemRequestBuilder():
         return unified_group_sources_request_builder.UnifiedGroupSourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_index(self) -> update_index_request_builder.UpdateIndexRequestBuilder:
-        """
-        Provides operations to call the updateIndex method.
-        """
-        return update_index_request_builder.UpdateIndexRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def user_sources(self) -> user_sources_request_builder.UserSourcesRequestBuilder:
         """
         Provides operations to manage the userSources property of the microsoft.graph.ediscovery.custodian entity.
         """
         return user_sources_request_builder.UserSourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, custodian_id: Optional[str] = None) -> None:
         """
         Instantiates a new CustodianItemRequestBuilder and sets the default values.
         Args:
+            custodianId: key: id of custodian
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -99,15 +100,15 @@ class CustodianItemRequestBuilder():
         self.url_template: str = "{+baseurl}/compliance/ediscovery/cases/{case%2Did}/custodians/{custodian%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["custodian%2Did"] = custodianId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CustodianItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CustodianItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property custodians for compliance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -118,14 +119,13 @@ class CustodianItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CustodianItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[custodian.Custodian]:
+    async def get(self,request_configuration: Optional[CustodianItemRequestBuilderGetRequestConfiguration] = None) -> Optional[custodian.Custodian]:
         """
         Returns a list of case custodian objects for this case.  Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[custodian.Custodian]
         """
         request_info = self.to_get_request_information(
@@ -137,15 +137,14 @@ class CustodianItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, custodian.Custodian, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, custodian.Custodian, error_mapping)
     
-    async def patch(self,body: Optional[custodian.Custodian] = None, request_configuration: Optional[CustodianItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[custodian.Custodian]:
+    async def patch(self,body: Optional[custodian.Custodian] = None, request_configuration: Optional[CustodianItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[custodian.Custodian]:
         """
         Update the navigation property custodians in compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[custodian.Custodian]
         """
         if body is None:
@@ -159,7 +158,7 @@ class CustodianItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, custodian.Custodian, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, custodian.Custodian, error_mapping)
     
     def site_sources_by_id(self,id: str) -> site_source_item_request_builder.SiteSourceItemRequestBuilder:
         """

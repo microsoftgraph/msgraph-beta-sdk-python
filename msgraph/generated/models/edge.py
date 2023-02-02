@@ -35,7 +35,7 @@ class Edge(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "internet_explorer_mode": lambda n : setattr(self, 'internet_explorer_mode', n.get_object_value(internet_explorer_mode.InternetExplorerMode)),
+            "internetExplorerMode": lambda n : setattr(self, 'internet_explorer_mode', n.get_object_value(internet_explorer_mode.InternetExplorerMode)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -54,7 +54,7 @@ class Edge(entity.Entity):
         """
         Sets the internetExplorerMode property value. A container for Internet Explorer mode resources.
         Args:
-            value: Value to set for the internetExplorerMode property.
+            value: Value to set for the internet_explorer_mode property.
         """
         self._internet_explorer_mode = value
     

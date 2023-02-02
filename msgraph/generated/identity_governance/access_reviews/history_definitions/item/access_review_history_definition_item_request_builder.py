@@ -26,10 +26,11 @@ class AccessReviewHistoryDefinitionItemRequestBuilder():
         """
         return instances_request_builder.InstancesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, access_review_history_definition_id: Optional[str] = None) -> None:
         """
         Instantiates a new AccessReviewHistoryDefinitionItemRequestBuilder and sets the default values.
         Args:
+            accessReviewHistoryDefinitionId: key: id of accessReviewHistoryDefinition
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -41,15 +42,15 @@ class AccessReviewHistoryDefinitionItemRequestBuilder():
         self.url_template: str = "{+baseurl}/identityGovernance/accessReviews/historyDefinitions/{accessReviewHistoryDefinition%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["accessReviewHistoryDefinition%2Did"] = accessReviewHistoryDefinitionId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AccessReviewHistoryDefinitionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AccessReviewHistoryDefinitionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property historyDefinitions for identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,14 +61,13 @@ class AccessReviewHistoryDefinitionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AccessReviewHistoryDefinitionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_history_definition.AccessReviewHistoryDefinition]:
+    async def get(self,request_configuration: Optional[AccessReviewHistoryDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_history_definition.AccessReviewHistoryDefinition]:
         """
         Represents a collection of access review history data and the scopes used to collect that data.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_history_definition.AccessReviewHistoryDefinition]
         """
         request_info = self.to_get_request_information(
@@ -79,7 +79,7 @@ class AccessReviewHistoryDefinitionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_history_definition.AccessReviewHistoryDefinition, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_history_definition.AccessReviewHistoryDefinition, error_mapping)
     
     def instances_by_id(self,id: str) -> access_review_history_instance_item_request_builder.AccessReviewHistoryInstanceItemRequestBuilder:
         """
@@ -94,13 +94,12 @@ class AccessReviewHistoryDefinitionItemRequestBuilder():
         url_tpl_params["accessReviewHistoryInstance%2Did"] = id
         return access_review_history_instance_item_request_builder.AccessReviewHistoryInstanceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[access_review_history_definition.AccessReviewHistoryDefinition] = None, request_configuration: Optional[AccessReviewHistoryDefinitionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_history_definition.AccessReviewHistoryDefinition]:
+    async def patch(self,body: Optional[access_review_history_definition.AccessReviewHistoryDefinition] = None, request_configuration: Optional[AccessReviewHistoryDefinitionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_review_history_definition.AccessReviewHistoryDefinition]:
         """
         Update the navigation property historyDefinitions in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_history_definition.AccessReviewHistoryDefinition]
         """
         if body is None:
@@ -114,7 +113,7 @@ class AccessReviewHistoryDefinitionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_history_definition.AccessReviewHistoryDefinition, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_history_definition.AccessReviewHistoryDefinition, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AccessReviewHistoryDefinitionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

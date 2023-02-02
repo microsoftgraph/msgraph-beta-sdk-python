@@ -25,11 +25,12 @@ class ProfilePhotoItemRequestBuilder():
         """
         return content_request_builder.ContentRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, profile_photo_id: Optional[str] = None) -> None:
         """
         Instantiates a new ProfilePhotoItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            profilePhotoId: key: id of profilePhoto
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -40,15 +41,15 @@ class ProfilePhotoItemRequestBuilder():
         self.url_template: str = "{+baseurl}/groups/{group%2Did}/photos/{profilePhoto%2Did}{?%24select}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["profilePhoto%2Did"] = profilePhotoId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ProfilePhotoItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[profile_photo.ProfilePhoto]:
+    async def get(self,request_configuration: Optional[ProfilePhotoItemRequestBuilderGetRequestConfiguration] = None) -> Optional[profile_photo.ProfilePhoto]:
         """
         The profile photos owned by the group. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[profile_photo.ProfilePhoto]
         """
         request_info = self.to_get_request_information(
@@ -60,7 +61,7 @@ class ProfilePhotoItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, profile_photo.ProfilePhoto, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, profile_photo.ProfilePhoto, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ProfilePhotoItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

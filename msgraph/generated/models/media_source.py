@@ -48,7 +48,7 @@ class MediaSource(AdditionalDataHolder, Parsable):
         """
         Sets the contentCategory property value. Enumeration value that indicates the media content category.
         Args:
-            value: Value to set for the contentCategory property.
+            value: Value to set for the content_category property.
         """
         self._content_category = value
     
@@ -70,7 +70,7 @@ class MediaSource(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "content_category": lambda n : setattr(self, 'content_category', n.get_enum_value(media_source_content_category.MediaSourceContentCategory)),
+            "contentCategory": lambda n : setattr(self, 'content_category', n.get_enum_value(media_source_content_category.MediaSourceContentCategory)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -88,7 +88,7 @@ class MediaSource(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

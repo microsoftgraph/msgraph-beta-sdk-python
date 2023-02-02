@@ -40,7 +40,7 @@ class DeviceHealthScriptBooleanParameter(device_health_script_parameter.DeviceHe
         """
         Sets the defaultValue property value. The default value of boolean param
         Args:
-            value: Value to set for the defaultValue property.
+            value: Value to set for the default_value property.
         """
         self._default_value = value
     
@@ -50,7 +50,7 @@ class DeviceHealthScriptBooleanParameter(device_health_script_parameter.DeviceHe
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_value": lambda n : setattr(self, 'default_value', n.get_bool_value()),
+            "defaultValue": lambda n : setattr(self, 'default_value', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

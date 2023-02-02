@@ -7,12 +7,9 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class UserExperienceAnalyticsScoreHistory(entity.Entity):
-    """
-    The user experience analytics device startup score history.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsScoreHistory and sets the default values.
+        Instantiates a new UserExperienceAnalyticsScoreHistory and sets the default values.
         """
         super().__init__()
         # The OdataType property
@@ -38,7 +35,7 @@ class UserExperienceAnalyticsScoreHistory(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "startup_date_time": lambda n : setattr(self, 'startup_date_time', n.get_datetime_value()),
+            "startupDateTime": lambda n : setattr(self, 'startup_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -68,7 +65,7 @@ class UserExperienceAnalyticsScoreHistory(entity.Entity):
         """
         Sets the startupDateTime property value. The user experience analytics device startup date time.
         Args:
-            value: Value to set for the startupDateTime property.
+            value: Value to set for the startup_date_time property.
         """
         self._startup_date_time = value
     

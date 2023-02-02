@@ -17,10 +17,11 @@ class AcronymItemRequestBuilder():
     """
     Provides operations to manage the acronyms property of the microsoft.graph.searchEntity entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, acronym_id: Optional[str] = None) -> None:
         """
         Instantiates a new AcronymItemRequestBuilder and sets the default values.
         Args:
+            acronymId: key: id of acronym
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class AcronymItemRequestBuilder():
         self.url_template: str = "{+baseurl}/search/acronyms/{acronym%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["acronym%2Did"] = acronymId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AcronymItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AcronymItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property acronyms for search
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class AcronymItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AcronymItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[acronym.Acronym]:
+    async def get(self,request_configuration: Optional[AcronymItemRequestBuilderGetRequestConfiguration] = None) -> Optional[acronym.Acronym]:
         """
         Administrative answer in Microsoft Search results to define common acronyms in a organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[acronym.Acronym]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class AcronymItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, acronym.Acronym, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, acronym.Acronym, error_mapping)
     
-    async def patch(self,body: Optional[acronym.Acronym] = None, request_configuration: Optional[AcronymItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[acronym.Acronym]:
+    async def patch(self,body: Optional[acronym.Acronym] = None, request_configuration: Optional[AcronymItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[acronym.Acronym]:
         """
         Update the navigation property acronyms in search
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[acronym.Acronym]
         """
         if body is None:
@@ -92,7 +91,7 @@ class AcronymItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, acronym.Acronym, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, acronym.Acronym, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AcronymItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

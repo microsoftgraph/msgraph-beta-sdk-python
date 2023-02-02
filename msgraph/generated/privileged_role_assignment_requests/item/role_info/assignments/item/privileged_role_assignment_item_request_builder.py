@@ -17,11 +17,12 @@ class PrivilegedRoleAssignmentItemRequestBuilder():
     """
     Provides operations to manage the assignments property of the microsoft.graph.privilegedRole entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, privileged_role_assignment_id: Optional[str] = None) -> None:
         """
         Instantiates a new PrivilegedRoleAssignmentItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            privilegedRoleAssignmentId: key: id of privilegedRoleAssignment
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -32,15 +33,15 @@ class PrivilegedRoleAssignmentItemRequestBuilder():
         self.url_template: str = "{+baseurl}/privilegedRoleAssignmentRequests/{privilegedRoleAssignmentRequest%2Did}/roleInfo/assignments/{privilegedRoleAssignment%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["privilegedRoleAssignment%2Did"] = privilegedRoleAssignmentId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PrivilegedRoleAssignmentItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_role_assignment.PrivilegedRoleAssignment]:
+    async def get(self,request_configuration: Optional[PrivilegedRoleAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_role_assignment.PrivilegedRoleAssignment]:
         """
         The assignments for this role. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_role_assignment.PrivilegedRoleAssignment]
         """
         request_info = self.to_get_request_information(
@@ -52,7 +53,7 @@ class PrivilegedRoleAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_role_assignment.PrivilegedRoleAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_role_assignment.PrivilegedRoleAssignment, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedRoleAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

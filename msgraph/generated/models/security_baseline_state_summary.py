@@ -22,7 +22,7 @@ class SecurityBaselineStateSummary(entity.Entity):
         """
         Sets the conflictCount property value. Number of conflict devices
         Args:
-            value: Value to set for the conflictCount property.
+            value: Value to set for the conflict_count property.
         """
         self._conflict_count = value
     
@@ -71,7 +71,7 @@ class SecurityBaselineStateSummary(entity.Entity):
         """
         Sets the errorCount property value. Number of error devices
         Args:
-            value: Value to set for the errorCount property.
+            value: Value to set for the error_count property.
         """
         self._error_count = value
     
@@ -81,12 +81,12 @@ class SecurityBaselineStateSummary(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "conflict_count": lambda n : setattr(self, 'conflict_count', n.get_int_value()),
-            "error_count": lambda n : setattr(self, 'error_count', n.get_int_value()),
-            "not_applicable_count": lambda n : setattr(self, 'not_applicable_count', n.get_int_value()),
-            "not_secure_count": lambda n : setattr(self, 'not_secure_count', n.get_int_value()),
-            "secure_count": lambda n : setattr(self, 'secure_count', n.get_int_value()),
-            "unknown_count": lambda n : setattr(self, 'unknown_count', n.get_int_value()),
+            "conflictCount": lambda n : setattr(self, 'conflict_count', n.get_int_value()),
+            "errorCount": lambda n : setattr(self, 'error_count', n.get_int_value()),
+            "notApplicableCount": lambda n : setattr(self, 'not_applicable_count', n.get_int_value()),
+            "notSecureCount": lambda n : setattr(self, 'not_secure_count', n.get_int_value()),
+            "secureCount": lambda n : setattr(self, 'secure_count', n.get_int_value()),
+            "unknownCount": lambda n : setattr(self, 'unknown_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -105,7 +105,7 @@ class SecurityBaselineStateSummary(entity.Entity):
         """
         Sets the notApplicableCount property value. Number of not applicable devices
         Args:
-            value: Value to set for the notApplicableCount property.
+            value: Value to set for the not_applicable_count property.
         """
         self._not_applicable_count = value
     
@@ -122,7 +122,7 @@ class SecurityBaselineStateSummary(entity.Entity):
         """
         Sets the notSecureCount property value. Number of not secure devices
         Args:
-            value: Value to set for the notSecureCount property.
+            value: Value to set for the not_secure_count property.
         """
         self._not_secure_count = value
     
@@ -139,7 +139,7 @@ class SecurityBaselineStateSummary(entity.Entity):
         """
         Sets the secureCount property value. Number of secure devices
         Args:
-            value: Value to set for the secureCount property.
+            value: Value to set for the secure_count property.
         """
         self._secure_count = value
     
@@ -172,7 +172,7 @@ class SecurityBaselineStateSummary(entity.Entity):
         """
         Sets the unknownCount property value. Number of unknown devices
         Args:
-            value: Value to set for the unknownCount property.
+            value: Value to set for the unknown_count property.
         """
         self._unknown_count = value
     

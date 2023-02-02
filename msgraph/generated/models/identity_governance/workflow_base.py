@@ -89,7 +89,7 @@ class WorkflowBase(AdditionalDataHolder, Parsable):
         """
         Sets the createdBy property value. The user who created the workflow.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -106,7 +106,7 @@ class WorkflowBase(AdditionalDataHolder, Parsable):
         """
         Sets the createdDateTime property value. When a workflow was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -152,7 +152,7 @@ class WorkflowBase(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. A string to identify the workflow.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -169,7 +169,7 @@ class WorkflowBase(AdditionalDataHolder, Parsable):
         """
         Sets the executionConditions property value. Defines when and for who the workflow will run.
         Args:
-            value: Value to set for the executionConditions property.
+            value: Value to set for the execution_conditions property.
         """
         self._execution_conditions = value
     
@@ -180,15 +180,15 @@ class WorkflowBase(AdditionalDataHolder, Parsable):
         """
         fields = {
             "category": lambda n : setattr(self, 'category', n.get_enum_value(lifecycle_workflow_category.LifecycleWorkflowCategory)),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(user.User)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(user.User)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "execution_conditions": lambda n : setattr(self, 'execution_conditions', n.get_object_value(workflow_execution_conditions.WorkflowExecutionConditions)),
-            "is_enabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
-            "is_scheduling_enabled": lambda n : setattr(self, 'is_scheduling_enabled', n.get_bool_value()),
-            "last_modified_by": lambda n : setattr(self, 'last_modified_by', n.get_object_value(user.User)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "executionConditions": lambda n : setattr(self, 'execution_conditions', n.get_object_value(workflow_execution_conditions.WorkflowExecutionConditions)),
+            "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
+            "isSchedulingEnabled": lambda n : setattr(self, 'is_scheduling_enabled', n.get_bool_value()),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(user.User)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "tasks": lambda n : setattr(self, 'tasks', n.get_collection_of_object_values(task.Task)),
         }
@@ -207,7 +207,7 @@ class WorkflowBase(AdditionalDataHolder, Parsable):
         """
         Sets the isEnabled property value. Whether the workflow is enabled or disabled. If this setting is true, the workflow can be run on demand or on schedule when isSchedulingEnabled is true.
         Args:
-            value: Value to set for the isEnabled property.
+            value: Value to set for the is_enabled property.
         """
         self._is_enabled = value
     
@@ -224,7 +224,7 @@ class WorkflowBase(AdditionalDataHolder, Parsable):
         """
         Sets the isSchedulingEnabled property value. If true, the Lifecycle Workflow engine executes the workflow based on the schedule defined by tenant settings. Cannot be true for a disabled workflow (where isEnabled is false).
         Args:
-            value: Value to set for the isSchedulingEnabled property.
+            value: Value to set for the is_scheduling_enabled property.
         """
         self._is_scheduling_enabled = value
     
@@ -241,7 +241,7 @@ class WorkflowBase(AdditionalDataHolder, Parsable):
         """
         Sets the lastModifiedBy property value. The user who last modified the workflow.
         Args:
-            value: Value to set for the lastModifiedBy property.
+            value: Value to set for the last_modified_by property.
         """
         self._last_modified_by = value
     
@@ -258,7 +258,7 @@ class WorkflowBase(AdditionalDataHolder, Parsable):
         """
         Sets the lastModifiedDateTime property value. When the workflow was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -275,7 +275,7 @@ class WorkflowBase(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -25,10 +25,11 @@ class AttachmentBaseItemRequestBuilder():
         """
         return content_request_builder.ContentRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, attachment_base_id: Optional[str] = None) -> None:
         """
         Instantiates a new AttachmentBaseItemRequestBuilder and sets the default values.
         Args:
+            attachmentBaseId: key: id of attachmentBase
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -40,15 +41,15 @@ class AttachmentBaseItemRequestBuilder():
         self.url_template: str = "{+baseurl}/me/todo/lists/{todoTaskList%2Did}/tasks/{todoTask%2Did}/attachments/{attachmentBase%2Did}{?%24select}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["attachmentBase%2Did"] = attachmentBaseId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AttachmentBaseItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AttachmentBaseItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property attachments for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +60,13 @@ class AttachmentBaseItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AttachmentBaseItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[attachment_base.AttachmentBase]:
+    async def get(self,request_configuration: Optional[AttachmentBaseItemRequestBuilderGetRequestConfiguration] = None) -> Optional[attachment_base.AttachmentBase]:
         """
         A collection of file attachments for the task.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[attachment_base.AttachmentBase]
         """
         request_info = self.to_get_request_information(
@@ -78,7 +78,7 @@ class AttachmentBaseItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, attachment_base.AttachmentBase, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, attachment_base.AttachmentBase, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AttachmentBaseItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

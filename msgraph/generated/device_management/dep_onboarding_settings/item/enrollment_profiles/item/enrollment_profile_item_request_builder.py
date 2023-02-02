@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-export_mobile_config_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.enrollment_profiles.item.export_mobile_config.export_mobile_config_request_builder')
-set_default_profile_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.enrollment_profiles.item.set_default_profile.set_default_profile_request_builder')
-update_device_profile_assignment_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.enrollment_profiles.item.update_device_profile_assignment.update_device_profile_assignment_request_builder')
+export_mobile_config_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.enrollment_profiles.item.microsoft_graph_export_mobile_config.export_mobile_config_request_builder')
+set_default_profile_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.enrollment_profiles.item.microsoft_graph_set_default_profile.set_default_profile_request_builder')
+update_device_profile_assignment_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.enrollment_profiles.item.microsoft_graph_update_device_profile_assignment.update_device_profile_assignment_request_builder')
 enrollment_profile = lazy_import('msgraph.generated.models.enrollment_profile')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -21,23 +21,31 @@ class EnrollmentProfileItemRequestBuilder():
     Provides operations to manage the enrollmentProfiles property of the microsoft.graph.depOnboardingSetting entity.
     """
     @property
-    def set_default_profile(self) -> set_default_profile_request_builder.SetDefaultProfileRequestBuilder:
+    def microsoft_graph_export_mobile_config(self) -> export_mobile_config_request_builder.ExportMobileConfigRequestBuilder:
+        """
+        Provides operations to call the exportMobileConfig method.
+        """
+        return export_mobile_config_request_builder.ExportMobileConfigRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_set_default_profile(self) -> set_default_profile_request_builder.SetDefaultProfileRequestBuilder:
         """
         Provides operations to call the setDefaultProfile method.
         """
         return set_default_profile_request_builder.SetDefaultProfileRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_device_profile_assignment(self) -> update_device_profile_assignment_request_builder.UpdateDeviceProfileAssignmentRequestBuilder:
+    def microsoft_graph_update_device_profile_assignment(self) -> update_device_profile_assignment_request_builder.UpdateDeviceProfileAssignmentRequestBuilder:
         """
         Provides operations to call the updateDeviceProfileAssignment method.
         """
         return update_device_profile_assignment_request_builder.UpdateDeviceProfileAssignmentRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, enrollment_profile_id: Optional[str] = None) -> None:
         """
         Instantiates a new EnrollmentProfileItemRequestBuilder and sets the default values.
         Args:
+            enrollmentProfileId: key: id of enrollmentProfile
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -49,15 +57,15 @@ class EnrollmentProfileItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceManagement/depOnboardingSettings/{depOnboardingSetting%2Did}/enrollmentProfiles/{enrollmentProfile%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["enrollmentProfile%2Did"] = enrollmentProfileId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[EnrollmentProfileItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[EnrollmentProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property enrollmentProfiles for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -68,21 +76,13 @@ class EnrollmentProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    def export_mobile_config(self,) -> export_mobile_config_request_builder.ExportMobileConfigRequestBuilder:
-        """
-        Provides operations to call the exportMobileConfig method.
-        Returns: export_mobile_config_request_builder.ExportMobileConfigRequestBuilder
-        """
-        return export_mobile_config_request_builder.ExportMobileConfigRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def get(self,request_configuration: Optional[EnrollmentProfileItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[enrollment_profile.EnrollmentProfile]:
+    async def get(self,request_configuration: Optional[EnrollmentProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[enrollment_profile.EnrollmentProfile]:
         """
         The enrollment profiles.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[enrollment_profile.EnrollmentProfile]
         """
         request_info = self.to_get_request_information(
@@ -94,15 +94,14 @@ class EnrollmentProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, enrollment_profile.EnrollmentProfile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, enrollment_profile.EnrollmentProfile, error_mapping)
     
-    async def patch(self,body: Optional[enrollment_profile.EnrollmentProfile] = None, request_configuration: Optional[EnrollmentProfileItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[enrollment_profile.EnrollmentProfile]:
+    async def patch(self,body: Optional[enrollment_profile.EnrollmentProfile] = None, request_configuration: Optional[EnrollmentProfileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[enrollment_profile.EnrollmentProfile]:
         """
         Update the navigation property enrollmentProfiles in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[enrollment_profile.EnrollmentProfile]
         """
         if body is None:
@@ -116,7 +115,7 @@ class EnrollmentProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, enrollment_profile.EnrollmentProfile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, enrollment_profile.EnrollmentProfile, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[EnrollmentProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

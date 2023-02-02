@@ -39,13 +39,13 @@ class OfficeClientConfiguration(entity.Entity):
         """
         Sets the checkinStatuses property value. List of office Client check-in status.
         Args:
-            value: Value to set for the checkinStatuses property.
+            value: Value to set for the checkin_statuses property.
         """
         self._checkin_statuses = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new officeClientConfiguration and sets the default values.
+        Instantiates a new OfficeClientConfiguration and sets the default values.
         """
         super().__init__()
         # The list of group assignments for the policy.
@@ -109,7 +109,7 @@ class OfficeClientConfiguration(entity.Entity):
         """
         Sets the displayName property value. Admin provided description of the office client configuration policy.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -120,13 +120,13 @@ class OfficeClientConfiguration(entity.Entity):
         """
         fields = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(office_client_configuration_assignment.OfficeClientConfigurationAssignment)),
-            "checkin_statuses": lambda n : setattr(self, 'checkin_statuses', n.get_collection_of_object_values(office_client_checkin_status.OfficeClientCheckinStatus)),
+            "checkinStatuses": lambda n : setattr(self, 'checkin_statuses', n.get_collection_of_object_values(office_client_checkin_status.OfficeClientCheckinStatus)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "policy_payload": lambda n : setattr(self, 'policy_payload', n.get_bytes_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "policyPayload": lambda n : setattr(self, 'policy_payload', n.get_bytes_value()),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
-            "user_checkin_summary": lambda n : setattr(self, 'user_checkin_summary', n.get_object_value(office_user_checkin_summary.OfficeUserCheckinSummary)),
-            "user_preference_payload": lambda n : setattr(self, 'user_preference_payload', n.get_bytes_value()),
+            "userCheckinSummary": lambda n : setattr(self, 'user_checkin_summary', n.get_object_value(office_user_checkin_summary.OfficeUserCheckinSummary)),
+            "userPreferencePayload": lambda n : setattr(self, 'user_preference_payload', n.get_bytes_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -145,7 +145,7 @@ class OfficeClientConfiguration(entity.Entity):
         """
         Sets the policyPayload property value. Policy settings JSON string in binary format, these values cannot be changed by the user.
         Args:
-            value: Value to set for the policyPayload property.
+            value: Value to set for the policy_payload property.
         """
         self._policy_payload = value
     
@@ -197,7 +197,7 @@ class OfficeClientConfiguration(entity.Entity):
         """
         Sets the userCheckinSummary property value. User check-in summary for the policy.
         Args:
-            value: Value to set for the userCheckinSummary property.
+            value: Value to set for the user_checkin_summary property.
         """
         self._user_checkin_summary = value
     
@@ -214,7 +214,7 @@ class OfficeClientConfiguration(entity.Entity):
         """
         Sets the userPreferencePayload property value. Preference settings JSON string in binary format, these values can be overridden by the user.
         Args:
-            value: Value to set for the userPreferencePayload property.
+            value: Value to set for the user_preference_payload property.
         """
         self._user_preference_payload = value
     

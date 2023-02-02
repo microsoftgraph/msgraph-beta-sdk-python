@@ -105,7 +105,7 @@ class DeviceManagementTroubleshootingErrorDetails(AdditionalDataHolder, Parsable
         """
         Sets the failureDetails property value. The detailed description of what went wrong.
         Args:
-            value: Value to set for the failureDetails property.
+            value: Value to set for the failure_details property.
         """
         self._failure_details = value
     
@@ -117,7 +117,7 @@ class DeviceManagementTroubleshootingErrorDetails(AdditionalDataHolder, Parsable
         fields = {
             "context": lambda n : setattr(self, 'context', n.get_str_value()),
             "failure": lambda n : setattr(self, 'failure', n.get_str_value()),
-            "failure_details": lambda n : setattr(self, 'failure_details', n.get_str_value()),
+            "failureDetails": lambda n : setattr(self, 'failure_details', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "remediation": lambda n : setattr(self, 'remediation', n.get_str_value()),
             "resources": lambda n : setattr(self, 'resources', n.get_collection_of_object_values(device_management_troubleshooting_error_resource.DeviceManagementTroubleshootingErrorResource)),
@@ -137,7 +137,7 @@ class DeviceManagementTroubleshootingErrorDetails(AdditionalDataHolder, Parsable
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

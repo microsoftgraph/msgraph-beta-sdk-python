@@ -61,7 +61,7 @@ class ManagedDeviceCleanupSettings(AdditionalDataHolder, Parsable):
         """
         Sets the deviceInactivityBeforeRetirementInDays property value. Number of days when the device has not contacted Intune.
         Args:
-            value: Value to set for the deviceInactivityBeforeRetirementInDays property.
+            value: Value to set for the device_inactivity_before_retirement_in_days property.
         """
         self._device_inactivity_before_retirement_in_days = value
     
@@ -71,7 +71,7 @@ class ManagedDeviceCleanupSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_inactivity_before_retirement_in_days": lambda n : setattr(self, 'device_inactivity_before_retirement_in_days', n.get_str_value()),
+            "deviceInactivityBeforeRetirementInDays": lambda n : setattr(self, 'device_inactivity_before_retirement_in_days', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -89,7 +89,7 @@ class ManagedDeviceCleanupSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

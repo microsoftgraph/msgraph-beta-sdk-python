@@ -21,7 +21,7 @@ class MacOSWiFiConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the connectAutomatically property value. Connect automatically when this network is in range. Setting this to true will skip the user prompt and automatically connect the device to Wi-Fi network.
         Args:
-            value: Value to set for the connectAutomatically property.
+            value: Value to set for the connect_automatically property.
         """
         self._connect_automatically = value
     
@@ -38,7 +38,7 @@ class MacOSWiFiConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the connectWhenNetworkNameIsHidden property value. Connect when the network is not broadcasting its name (SSID). When set to true, this profile forces the device to connect to a network that doesn't broadcast its SSID to all devices.
         Args:
-            value: Value to set for the connectWhenNetworkNameIsHidden property.
+            value: Value to set for the connect_when_network_name_is_hidden property.
         """
         self._connect_when_network_name_is_hidden = value
     
@@ -87,16 +87,16 @@ class MacOSWiFiConfiguration(device_configuration.DeviceConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "connect_automatically": lambda n : setattr(self, 'connect_automatically', n.get_bool_value()),
-            "connect_when_network_name_is_hidden": lambda n : setattr(self, 'connect_when_network_name_is_hidden', n.get_bool_value()),
-            "network_name": lambda n : setattr(self, 'network_name', n.get_str_value()),
-            "pre_shared_key": lambda n : setattr(self, 'pre_shared_key', n.get_str_value()),
-            "proxy_automatic_configuration_url": lambda n : setattr(self, 'proxy_automatic_configuration_url', n.get_str_value()),
-            "proxy_manual_address": lambda n : setattr(self, 'proxy_manual_address', n.get_str_value()),
-            "proxy_manual_port": lambda n : setattr(self, 'proxy_manual_port', n.get_int_value()),
-            "proxy_settings": lambda n : setattr(self, 'proxy_settings', n.get_enum_value(wi_fi_proxy_setting.WiFiProxySetting)),
+            "connectAutomatically": lambda n : setattr(self, 'connect_automatically', n.get_bool_value()),
+            "connectWhenNetworkNameIsHidden": lambda n : setattr(self, 'connect_when_network_name_is_hidden', n.get_bool_value()),
+            "networkName": lambda n : setattr(self, 'network_name', n.get_str_value()),
+            "preSharedKey": lambda n : setattr(self, 'pre_shared_key', n.get_str_value()),
+            "proxyAutomaticConfigurationUrl": lambda n : setattr(self, 'proxy_automatic_configuration_url', n.get_str_value()),
+            "proxyManualAddress": lambda n : setattr(self, 'proxy_manual_address', n.get_str_value()),
+            "proxyManualPort": lambda n : setattr(self, 'proxy_manual_port', n.get_int_value()),
+            "proxySettings": lambda n : setattr(self, 'proxy_settings', n.get_enum_value(wi_fi_proxy_setting.WiFiProxySetting)),
             "ssid": lambda n : setattr(self, 'ssid', n.get_str_value()),
-            "wi_fi_security_type": lambda n : setattr(self, 'wi_fi_security_type', n.get_enum_value(wi_fi_security_type.WiFiSecurityType)),
+            "wiFiSecurityType": lambda n : setattr(self, 'wi_fi_security_type', n.get_enum_value(wi_fi_security_type.WiFiSecurityType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -115,7 +115,7 @@ class MacOSWiFiConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the networkName property value. Network Name
         Args:
-            value: Value to set for the networkName property.
+            value: Value to set for the network_name property.
         """
         self._network_name = value
     
@@ -132,7 +132,7 @@ class MacOSWiFiConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the preSharedKey property value. This is the pre-shared key for WPA Personal Wi-Fi network.
         Args:
-            value: Value to set for the preSharedKey property.
+            value: Value to set for the pre_shared_key property.
         """
         self._pre_shared_key = value
     
@@ -149,7 +149,7 @@ class MacOSWiFiConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the proxyAutomaticConfigurationUrl property value. URL of the proxy server automatic configuration script when automatic configuration is selected. This URL is typically the location of PAC (Proxy Auto Configuration) file.
         Args:
-            value: Value to set for the proxyAutomaticConfigurationUrl property.
+            value: Value to set for the proxy_automatic_configuration_url property.
         """
         self._proxy_automatic_configuration_url = value
     
@@ -166,7 +166,7 @@ class MacOSWiFiConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the proxyManualAddress property value. IP Address or DNS hostname of the proxy server when manual configuration is selected.
         Args:
-            value: Value to set for the proxyManualAddress property.
+            value: Value to set for the proxy_manual_address property.
         """
         self._proxy_manual_address = value
     
@@ -183,7 +183,7 @@ class MacOSWiFiConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the proxyManualPort property value. Port of the proxy server when manual configuration is selected.
         Args:
-            value: Value to set for the proxyManualPort property.
+            value: Value to set for the proxy_manual_port property.
         """
         self._proxy_manual_port = value
     
@@ -200,7 +200,7 @@ class MacOSWiFiConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the proxySettings property value. Wi-Fi Proxy Settings.
         Args:
-            value: Value to set for the proxySettings property.
+            value: Value to set for the proxy_settings property.
         """
         self._proxy_settings = value
     
@@ -254,7 +254,7 @@ class MacOSWiFiConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the wiFiSecurityType property value. Wi-Fi Security Types.
         Args:
-            value: Value to set for the wiFiSecurityType property.
+            value: Value to set for the wi_fi_security_type property.
         """
         self._wi_fi_security_type = value
     

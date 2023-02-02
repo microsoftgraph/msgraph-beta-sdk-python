@@ -35,12 +35,13 @@ class TodoTaskListItemRequestBuilder():
         """
         return tasks_request_builder.TasksRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, todo_task_list_id: Optional[str] = None) -> None:
         """
         Instantiates a new TodoTaskListItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            todoTaskListId: key: id of todoTaskList
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -50,15 +51,15 @@ class TodoTaskListItemRequestBuilder():
         self.url_template: str = "{+baseurl}/me/todo/lists/{todoTaskList%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["todoTaskList%2Did"] = todoTaskListId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[TodoTaskListItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[TodoTaskListItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property lists for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -69,7 +70,7 @@ class TodoTaskListItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def extensions_by_id(self,id: str) -> extension_item_request_builder.ExtensionItemRequestBuilder:
         """
@@ -84,12 +85,11 @@ class TodoTaskListItemRequestBuilder():
         url_tpl_params["extension%2Did"] = id
         return extension_item_request_builder.ExtensionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[TodoTaskListItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[todo_task_list.TodoTaskList]:
+    async def get(self,request_configuration: Optional[TodoTaskListItemRequestBuilderGetRequestConfiguration] = None) -> Optional[todo_task_list.TodoTaskList]:
         """
         The task lists in the users mailbox.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[todo_task_list.TodoTaskList]
         """
         request_info = self.to_get_request_information(
@@ -101,15 +101,14 @@ class TodoTaskListItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, todo_task_list.TodoTaskList, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, todo_task_list.TodoTaskList, error_mapping)
     
-    async def patch(self,body: Optional[todo_task_list.TodoTaskList] = None, request_configuration: Optional[TodoTaskListItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[todo_task_list.TodoTaskList]:
+    async def patch(self,body: Optional[todo_task_list.TodoTaskList] = None, request_configuration: Optional[TodoTaskListItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[todo_task_list.TodoTaskList]:
         """
         Update the navigation property lists in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[todo_task_list.TodoTaskList]
         """
         if body is None:
@@ -123,7 +122,7 @@ class TodoTaskListItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, todo_task_list.TodoTaskList, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, todo_task_list.TodoTaskList, error_mapping)
     
     def tasks_by_id(self,id: str) -> todo_task_item_request_builder.TodoTaskItemRequestBuilder:
         """

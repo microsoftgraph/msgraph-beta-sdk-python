@@ -37,7 +37,7 @@ class CloudPcHealthCheckItem(AdditionalDataHolder, Parsable):
         """
         Sets the additionalDetails property value. Additional message for this health check.
         Args:
-            value: Value to set for the additionalDetails property.
+            value: Value to set for the additional_details property.
         """
         self._additional_details = value
     
@@ -84,7 +84,7 @@ class CloudPcHealthCheckItem(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The connectivity health check item name.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -94,9 +94,9 @@ class CloudPcHealthCheckItem(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "additional_details": lambda n : setattr(self, 'additional_details', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_health_check_date_time": lambda n : setattr(self, 'last_health_check_date_time', n.get_datetime_value()),
+            "additionalDetails": lambda n : setattr(self, 'additional_details', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastHealthCheckDateTime": lambda n : setattr(self, 'last_health_check_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "result": lambda n : setattr(self, 'result', n.get_enum_value(cloud_pc_connectivity_event_result.CloudPcConnectivityEventResult)),
         }
@@ -115,7 +115,7 @@ class CloudPcHealthCheckItem(AdditionalDataHolder, Parsable):
         """
         Sets the lastHealthCheckDateTime property value. Timestamp when the last check occurs. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the lastHealthCheckDateTime property.
+            value: Value to set for the last_health_check_date_time property.
         """
         self._last_health_check_date_time = value
     
@@ -132,7 +132,7 @@ class CloudPcHealthCheckItem(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

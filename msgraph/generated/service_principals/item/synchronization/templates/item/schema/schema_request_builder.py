@@ -14,9 +14,9 @@ synchronization_schema = lazy_import('msgraph.generated.models.synchronization_s
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 directories_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.templates.item.schema.directories.directories_request_builder')
 directory_definition_item_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.templates.item.schema.directories.item.directory_definition_item_request_builder')
-filter_operators_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.templates.item.schema.filter_operators.filter_operators_request_builder')
-functions_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.templates.item.schema.functions.functions_request_builder')
-parse_expression_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.templates.item.schema.parse_expression.parse_expression_request_builder')
+filter_operators_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.templates.item.schema.microsoft_graph_filter_operators.filter_operators_request_builder')
+functions_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.templates.item.schema.microsoft_graph_functions.functions_request_builder')
+parse_expression_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.templates.item.schema.microsoft_graph_parse_expression.parse_expression_request_builder')
 
 class SchemaRequestBuilder():
     """
@@ -30,7 +30,21 @@ class SchemaRequestBuilder():
         return directories_request_builder.DirectoriesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def parse_expression(self) -> parse_expression_request_builder.ParseExpressionRequestBuilder:
+    def microsoft_graph_filter_operators(self) -> filter_operators_request_builder.FilterOperatorsRequestBuilder:
+        """
+        Provides operations to call the filterOperators method.
+        """
+        return filter_operators_request_builder.FilterOperatorsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_functions(self) -> functions_request_builder.FunctionsRequestBuilder:
+        """
+        Provides operations to call the functions method.
+        """
+        return functions_request_builder.FunctionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_parse_expression(self) -> parse_expression_request_builder.ParseExpressionRequestBuilder:
         """
         Provides operations to call the parseExpression method.
         """
@@ -54,12 +68,11 @@ class SchemaRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SchemaRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[SchemaRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property schema for servicePrincipals
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -70,7 +83,7 @@ class SchemaRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def directories_by_id(self,id: str) -> directory_definition_item_request_builder.DirectoryDefinitionItemRequestBuilder:
         """
@@ -85,26 +98,11 @@ class SchemaRequestBuilder():
         url_tpl_params["directoryDefinition%2Did"] = id
         return directory_definition_item_request_builder.DirectoryDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def filter_operators(self,) -> filter_operators_request_builder.FilterOperatorsRequestBuilder:
-        """
-        Provides operations to call the filterOperators method.
-        Returns: filter_operators_request_builder.FilterOperatorsRequestBuilder
-        """
-        return filter_operators_request_builder.FilterOperatorsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def functions(self,) -> functions_request_builder.FunctionsRequestBuilder:
-        """
-        Provides operations to call the functions method.
-        Returns: functions_request_builder.FunctionsRequestBuilder
-        """
-        return functions_request_builder.FunctionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def get(self,request_configuration: Optional[SchemaRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[synchronization_schema.SynchronizationSchema]:
+    async def get(self,request_configuration: Optional[SchemaRequestBuilderGetRequestConfiguration] = None) -> Optional[synchronization_schema.SynchronizationSchema]:
         """
         Default synchronization schema for the jobs based on this template.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[synchronization_schema.SynchronizationSchema]
         """
         request_info = self.to_get_request_information(
@@ -116,15 +114,14 @@ class SchemaRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, synchronization_schema.SynchronizationSchema, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, synchronization_schema.SynchronizationSchema, error_mapping)
     
-    async def patch(self,body: Optional[synchronization_schema.SynchronizationSchema] = None, request_configuration: Optional[SchemaRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[synchronization_schema.SynchronizationSchema]:
+    async def patch(self,body: Optional[synchronization_schema.SynchronizationSchema] = None, request_configuration: Optional[SchemaRequestBuilderPatchRequestConfiguration] = None) -> Optional[synchronization_schema.SynchronizationSchema]:
         """
         Update the navigation property schema in servicePrincipals
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[synchronization_schema.SynchronizationSchema]
         """
         if body is None:
@@ -138,7 +135,7 @@ class SchemaRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, synchronization_schema.SynchronizationSchema, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, synchronization_schema.SynchronizationSchema, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SchemaRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

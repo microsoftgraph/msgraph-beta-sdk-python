@@ -35,12 +35,11 @@ class CrossCloudGovernmentOrganizationMappingRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CrossCloudGovernmentOrganizationMappingRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CrossCloudGovernmentOrganizationMappingRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property crossCloudGovernmentOrganizationMapping for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class CrossCloudGovernmentOrganizationMappingRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CrossCloudGovernmentOrganizationMappingRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_cross_cloud_government_organization_mapping.CloudPcCrossCloudGovernmentOrganizationMapping]:
+    async def get(self,request_configuration: Optional[CrossCloudGovernmentOrganizationMappingRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_cross_cloud_government_organization_mapping.CloudPcCrossCloudGovernmentOrganizationMapping]:
         """
         Read the properties and relationships of a cloudPcCrossCloudGovernmentOrganizationMapping object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_cross_cloud_government_organization_mapping.CloudPcCrossCloudGovernmentOrganizationMapping]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class CrossCloudGovernmentOrganizationMappingRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_cross_cloud_government_organization_mapping.CloudPcCrossCloudGovernmentOrganizationMapping, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_cross_cloud_government_organization_mapping.CloudPcCrossCloudGovernmentOrganizationMapping, error_mapping)
     
-    async def patch(self,body: Optional[cloud_pc_cross_cloud_government_organization_mapping.CloudPcCrossCloudGovernmentOrganizationMapping] = None, request_configuration: Optional[CrossCloudGovernmentOrganizationMappingRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_cross_cloud_government_organization_mapping.CloudPcCrossCloudGovernmentOrganizationMapping]:
+    async def patch(self,body: Optional[cloud_pc_cross_cloud_government_organization_mapping.CloudPcCrossCloudGovernmentOrganizationMapping] = None, request_configuration: Optional[CrossCloudGovernmentOrganizationMappingRequestBuilderPatchRequestConfiguration] = None) -> Optional[cloud_pc_cross_cloud_government_organization_mapping.CloudPcCrossCloudGovernmentOrganizationMapping]:
         """
         Update the navigation property crossCloudGovernmentOrganizationMapping in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_cross_cloud_government_organization_mapping.CloudPcCrossCloudGovernmentOrganizationMapping]
         """
         if body is None:
@@ -92,7 +89,7 @@ class CrossCloudGovernmentOrganizationMappingRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_cross_cloud_government_organization_mapping.CloudPcCrossCloudGovernmentOrganizationMapping, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_cross_cloud_government_organization_mapping.CloudPcCrossCloudGovernmentOrganizationMapping, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CrossCloudGovernmentOrganizationMappingRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

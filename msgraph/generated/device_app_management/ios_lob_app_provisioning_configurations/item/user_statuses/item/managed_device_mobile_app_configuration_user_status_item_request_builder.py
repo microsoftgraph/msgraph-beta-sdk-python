@@ -17,10 +17,11 @@ class ManagedDeviceMobileAppConfigurationUserStatusItemRequestBuilder():
     """
     Provides operations to manage the userStatuses property of the microsoft.graph.iosLobAppProvisioningConfiguration entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, managed_device_mobile_app_configuration_user_status_id: Optional[str] = None) -> None:
         """
         Instantiates a new ManagedDeviceMobileAppConfigurationUserStatusItemRequestBuilder and sets the default values.
         Args:
+            managedDeviceMobileAppConfigurationUserStatusId: key: id of managedDeviceMobileAppConfigurationUserStatus
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class ManagedDeviceMobileAppConfigurationUserStatusItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceAppManagement/iosLobAppProvisioningConfigurations/{iosLobAppProvisioningConfiguration%2Did}/userStatuses/{managedDeviceMobileAppConfigurationUserStatus%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["managedDeviceMobileAppConfigurationUserStatus%2Did"] = managedDeviceMobileAppConfigurationUserStatusId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ManagedDeviceMobileAppConfigurationUserStatusItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ManagedDeviceMobileAppConfigurationUserStatusItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property userStatuses for deviceAppManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class ManagedDeviceMobileAppConfigurationUserStatusItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ManagedDeviceMobileAppConfigurationUserStatusItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_device_mobile_app_configuration_user_status.ManagedDeviceMobileAppConfigurationUserStatus]:
+    async def get(self,request_configuration: Optional[ManagedDeviceMobileAppConfigurationUserStatusItemRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_device_mobile_app_configuration_user_status.ManagedDeviceMobileAppConfigurationUserStatus]:
         """
         The list of user installation states for this mobile app configuration.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_device_mobile_app_configuration_user_status.ManagedDeviceMobileAppConfigurationUserStatus]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class ManagedDeviceMobileAppConfigurationUserStatusItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_device_mobile_app_configuration_user_status.ManagedDeviceMobileAppConfigurationUserStatus, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_device_mobile_app_configuration_user_status.ManagedDeviceMobileAppConfigurationUserStatus, error_mapping)
     
-    async def patch(self,body: Optional[managed_device_mobile_app_configuration_user_status.ManagedDeviceMobileAppConfigurationUserStatus] = None, request_configuration: Optional[ManagedDeviceMobileAppConfigurationUserStatusItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_device_mobile_app_configuration_user_status.ManagedDeviceMobileAppConfigurationUserStatus]:
+    async def patch(self,body: Optional[managed_device_mobile_app_configuration_user_status.ManagedDeviceMobileAppConfigurationUserStatus] = None, request_configuration: Optional[ManagedDeviceMobileAppConfigurationUserStatusItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[managed_device_mobile_app_configuration_user_status.ManagedDeviceMobileAppConfigurationUserStatus]:
         """
         Update the navigation property userStatuses in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_device_mobile_app_configuration_user_status.ManagedDeviceMobileAppConfigurationUserStatus]
         """
         if body is None:
@@ -92,7 +91,7 @@ class ManagedDeviceMobileAppConfigurationUserStatusItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_device_mobile_app_configuration_user_status.ManagedDeviceMobileAppConfigurationUserStatus, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_device_mobile_app_configuration_user_status.ManagedDeviceMobileAppConfigurationUserStatus, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ManagedDeviceMobileAppConfigurationUserStatusItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

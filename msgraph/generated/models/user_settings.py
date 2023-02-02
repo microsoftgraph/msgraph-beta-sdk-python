@@ -43,7 +43,7 @@ class UserSettings(entity.Entity):
         """
         Sets the contactMergeSuggestions property value. The user's settings for the visibility of merge suggestion for the duplicate contacts in the user's contact list.
         Args:
-            value: Value to set for the contactMergeSuggestions property.
+            value: Value to set for the contact_merge_suggestions property.
         """
         self._contact_merge_suggestions = value
     
@@ -60,7 +60,7 @@ class UserSettings(entity.Entity):
         """
         Sets the contributionToContentDiscoveryAsOrganizationDisabled property value. Reflects the Office Delve organization level setting. When set to true, the organization doesn't have access to Office Delve. This setting is read-only and can only be changed by administrators in the SharePoint admin center.
         Args:
-            value: Value to set for the contributionToContentDiscoveryAsOrganizationDisabled property.
+            value: Value to set for the contribution_to_content_discovery_as_organization_disabled property.
         """
         self._contribution_to_content_discovery_as_organization_disabled = value
     
@@ -77,7 +77,7 @@ class UserSettings(entity.Entity):
         """
         Sets the contributionToContentDiscoveryDisabled property value. When set to true, documents in the user's Office Delve are disabled. Users can control this setting in Office Delve.
         Args:
-            value: Value to set for the contributionToContentDiscoveryDisabled property.
+            value: Value to set for the contribution_to_content_discovery_disabled property.
         """
         self._contribution_to_content_discovery_disabled = value
     
@@ -99,12 +99,12 @@ class UserSettings(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "contact_merge_suggestions": lambda n : setattr(self, 'contact_merge_suggestions', n.get_object_value(contact_merge_suggestions.ContactMergeSuggestions)),
-            "contribution_to_content_discovery_as_organization_disabled": lambda n : setattr(self, 'contribution_to_content_discovery_as_organization_disabled', n.get_bool_value()),
-            "contribution_to_content_discovery_disabled": lambda n : setattr(self, 'contribution_to_content_discovery_disabled', n.get_bool_value()),
-            "item_insights": lambda n : setattr(self, 'item_insights', n.get_object_value(user_insights_settings.UserInsightsSettings)),
-            "regional_and_language_settings": lambda n : setattr(self, 'regional_and_language_settings', n.get_object_value(regional_and_language_settings.RegionalAndLanguageSettings)),
-            "shift_preferences": lambda n : setattr(self, 'shift_preferences', n.get_object_value(shift_preferences.ShiftPreferences)),
+            "contactMergeSuggestions": lambda n : setattr(self, 'contact_merge_suggestions', n.get_object_value(contact_merge_suggestions.ContactMergeSuggestions)),
+            "contributionToContentDiscoveryAsOrganizationDisabled": lambda n : setattr(self, 'contribution_to_content_discovery_as_organization_disabled', n.get_bool_value()),
+            "contributionToContentDiscoveryDisabled": lambda n : setattr(self, 'contribution_to_content_discovery_disabled', n.get_bool_value()),
+            "itemInsights": lambda n : setattr(self, 'item_insights', n.get_object_value(user_insights_settings.UserInsightsSettings)),
+            "regionalAndLanguageSettings": lambda n : setattr(self, 'regional_and_language_settings', n.get_object_value(regional_and_language_settings.RegionalAndLanguageSettings)),
+            "shiftPreferences": lambda n : setattr(self, 'shift_preferences', n.get_object_value(shift_preferences.ShiftPreferences)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -123,7 +123,7 @@ class UserSettings(entity.Entity):
         """
         Sets the itemInsights property value. The user's settings for the visibility of meeting hour insights, and insights derived between a user and other items in Microsoft 365, such as documents or sites. Get userInsightsSettings through this navigation property.
         Args:
-            value: Value to set for the itemInsights property.
+            value: Value to set for the item_insights property.
         """
         self._item_insights = value
     
@@ -140,7 +140,7 @@ class UserSettings(entity.Entity):
         """
         Sets the regionalAndLanguageSettings property value. The user's preferences for languages, regional locale and date/time formatting.
         Args:
-            value: Value to set for the regionalAndLanguageSettings property.
+            value: Value to set for the regional_and_language_settings property.
         """
         self._regional_and_language_settings = value
     
@@ -173,7 +173,7 @@ class UserSettings(entity.Entity):
         """
         Sets the shiftPreferences property value. The shift preferences for the user.
         Args:
-            value: Value to set for the shiftPreferences property.
+            value: Value to set for the shift_preferences property.
         """
         self._shift_preferences = value
     

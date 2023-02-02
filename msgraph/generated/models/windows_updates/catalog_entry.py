@@ -46,7 +46,7 @@ class CatalogEntry(entity.Entity):
         """
         Sets the deployableUntilDateTime property value. The date on which the content is no longer available to deploy using the service. Read-only.
         Args:
-            value: Value to set for the deployableUntilDateTime property.
+            value: Value to set for the deployable_until_date_time property.
         """
         self._deployable_until_date_time = value
     
@@ -63,7 +63,7 @@ class CatalogEntry(entity.Entity):
         """
         Sets the displayName property value. The display name of the content. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -73,9 +73,9 @@ class CatalogEntry(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "deployable_until_date_time": lambda n : setattr(self, 'deployable_until_date_time', n.get_datetime_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "release_date_time": lambda n : setattr(self, 'release_date_time', n.get_datetime_value()),
+            "deployableUntilDateTime": lambda n : setattr(self, 'deployable_until_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "releaseDateTime": lambda n : setattr(self, 'release_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -94,7 +94,7 @@ class CatalogEntry(entity.Entity):
         """
         Sets the releaseDateTime property value. The release date for the content. Read-only.
         Args:
-            value: Value to set for the releaseDateTime property.
+            value: Value to set for the release_date_time property.
         """
         self._release_date_time = value
     

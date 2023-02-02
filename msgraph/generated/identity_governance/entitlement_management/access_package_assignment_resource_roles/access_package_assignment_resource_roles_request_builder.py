@@ -11,7 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignment_resource_roles.count.count_request_builder')
-my_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignment_resource_roles.my.my_request_builder')
+my_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignment_resource_roles.microsoft_graph_my.my_request_builder')
 access_package_assignment_resource_role = lazy_import('msgraph.generated.models.access_package_assignment_resource_role')
 access_package_assignment_resource_role_collection_response = lazy_import('msgraph.generated.models.access_package_assignment_resource_role_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -26,6 +26,13 @@ class AccessPackageAssignmentResourceRolesRequestBuilder():
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_my(self) -> my_request_builder.MyRequestBuilder:
+        """
+        Provides operations to call the My method.
+        """
+        return my_request_builder.MyRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -45,12 +52,11 @@ class AccessPackageAssignmentResourceRolesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AccessPackageAssignmentResourceRolesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_assignment_resource_role_collection_response.AccessPackageAssignmentResourceRoleCollectionResponse]:
+    async def get(self,request_configuration: Optional[AccessPackageAssignmentResourceRolesRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_assignment_resource_role_collection_response.AccessPackageAssignmentResourceRoleCollectionResponse]:
         """
         Retrieve a list of accessPackageAssignmentResourceRole objects.  The resulting list includes all the resource roles of all assignments that the caller has access to read, across all catalogs and access packages.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_assignment_resource_role_collection_response.AccessPackageAssignmentResourceRoleCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -62,22 +68,14 @@ class AccessPackageAssignmentResourceRolesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_assignment_resource_role_collection_response.AccessPackageAssignmentResourceRoleCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_assignment_resource_role_collection_response.AccessPackageAssignmentResourceRoleCollectionResponse, error_mapping)
     
-    def my(self,) -> my_request_builder.MyRequestBuilder:
-        """
-        Provides operations to call the My method.
-        Returns: my_request_builder.MyRequestBuilder
-        """
-        return my_request_builder.MyRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def post(self,body: Optional[access_package_assignment_resource_role.AccessPackageAssignmentResourceRole] = None, request_configuration: Optional[AccessPackageAssignmentResourceRolesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_assignment_resource_role.AccessPackageAssignmentResourceRole]:
+    async def post(self,body: Optional[access_package_assignment_resource_role.AccessPackageAssignmentResourceRole] = None, request_configuration: Optional[AccessPackageAssignmentResourceRolesRequestBuilderPostRequestConfiguration] = None) -> Optional[access_package_assignment_resource_role.AccessPackageAssignmentResourceRole]:
         """
         Create new navigation property to accessPackageAssignmentResourceRoles for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_assignment_resource_role.AccessPackageAssignmentResourceRole]
         """
         if body is None:
@@ -91,7 +89,7 @@ class AccessPackageAssignmentResourceRolesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_assignment_resource_role.AccessPackageAssignmentResourceRole, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_assignment_resource_role.AccessPackageAssignmentResourceRole, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageAssignmentResourceRolesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

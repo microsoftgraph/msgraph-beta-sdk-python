@@ -20,7 +20,7 @@ class AndroidStoreApp(mobile_app.MobileApp):
         """
         Sets the appIdentifier property value. The Identity Name.
         Args:
-            value: Value to set for the appIdentifier property.
+            value: Value to set for the app_identifier property.
         """
         self._app_identifier = value
     
@@ -37,7 +37,7 @@ class AndroidStoreApp(mobile_app.MobileApp):
         """
         Sets the appStoreUrl property value. The Android app store URL.
         Args:
-            value: Value to set for the appStoreUrl property.
+            value: Value to set for the app_store_url property.
         """
         self._app_store_url = value
     
@@ -74,10 +74,10 @@ class AndroidStoreApp(mobile_app.MobileApp):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_identifier": lambda n : setattr(self, 'app_identifier', n.get_str_value()),
-            "app_store_url": lambda n : setattr(self, 'app_store_url', n.get_str_value()),
-            "minimum_supported_operating_system": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(android_minimum_operating_system.AndroidMinimumOperatingSystem)),
-            "package_id": lambda n : setattr(self, 'package_id', n.get_str_value()),
+            "appIdentifier": lambda n : setattr(self, 'app_identifier', n.get_str_value()),
+            "appStoreUrl": lambda n : setattr(self, 'app_store_url', n.get_str_value()),
+            "minimumSupportedOperatingSystem": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(android_minimum_operating_system.AndroidMinimumOperatingSystem)),
+            "packageId": lambda n : setattr(self, 'package_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -96,7 +96,7 @@ class AndroidStoreApp(mobile_app.MobileApp):
         """
         Sets the minimumSupportedOperatingSystem property value. The value for the minimum applicable operating system.
         Args:
-            value: Value to set for the minimumSupportedOperatingSystem property.
+            value: Value to set for the minimum_supported_operating_system property.
         """
         self._minimum_supported_operating_system = value
     
@@ -113,7 +113,7 @@ class AndroidStoreApp(mobile_app.MobileApp):
         """
         Sets the packageId property value. The package identifier.
         Args:
-            value: Value to set for the packageId property.
+            value: Value to set for the package_id property.
         """
         self._package_id = value
     

@@ -59,8 +59,8 @@ class GovernanceRoleAssignmentRequestStatus(AdditionalDataHolder, Parsable):
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
-            "status_details": lambda n : setattr(self, 'status_details', n.get_collection_of_object_values(key_value.KeyValue)),
-            "sub_status": lambda n : setattr(self, 'sub_status', n.get_str_value()),
+            "statusDetails": lambda n : setattr(self, 'status_details', n.get_collection_of_object_values(key_value.KeyValue)),
+            "subStatus": lambda n : setattr(self, 'sub_status', n.get_str_value()),
         }
         return fields
     
@@ -77,7 +77,7 @@ class GovernanceRoleAssignmentRequestStatus(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -125,7 +125,7 @@ class GovernanceRoleAssignmentRequestStatus(AdditionalDataHolder, Parsable):
         """
         Sets the statusDetails property value. The details of the status of the role assignment request. It represents the evaluation results of different rules.
         Args:
-            value: Value to set for the statusDetails property.
+            value: Value to set for the status_details property.
         """
         self._status_details = value
     
@@ -142,7 +142,7 @@ class GovernanceRoleAssignmentRequestStatus(AdditionalDataHolder, Parsable):
         """
         Sets the subStatus property value. The sub status of the role assignment request. The values can be Accepted, PendingEvaluation, Granted, Denied, PendingProvisioning, Provisioned, PendingRevocation, Revoked, Canceled, Failed, PendingApprovalProvisioning, PendingApproval, FailedAsResourceIsLocked, PendingAdminDecision, AdminApproved, AdminDenied, TimedOut, and ProvisioningStarted.
         Args:
-            value: Value to set for the subStatus property.
+            value: Value to set for the sub_status property.
         """
         self._sub_status = value
     

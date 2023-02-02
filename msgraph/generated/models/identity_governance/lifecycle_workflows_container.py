@@ -27,10 +27,10 @@ class LifecycleWorkflowsContainer(entity.Entity):
         self._settings: Optional[lifecycle_management_settings.LifecycleManagementSettings] = None
         # The definition of tasks within the lifecycle workflows instance.
         self._task_definitions: Optional[List[task_definition.TaskDefinition]] = None
-        # The workflows in the lifecycle workflows instance.
-        self._workflows: Optional[List[workflow.Workflow]] = None
         # The workflow templates in the lifecycle workflow instance.
         self._workflow_templates: Optional[List[workflow_template.WorkflowTemplate]] = None
+        # The workflows in the lifecycle workflows instance.
+        self._workflows: Optional[List[workflow.Workflow]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> LifecycleWorkflowsContainer:
@@ -57,7 +57,7 @@ class LifecycleWorkflowsContainer(entity.Entity):
         """
         Sets the customTaskExtensions property value. The customTaskExtension instance.
         Args:
-            value: Value to set for the customTaskExtensions property.
+            value: Value to set for the custom_task_extensions property.
         """
         self._custom_task_extensions = value
     
@@ -74,7 +74,7 @@ class LifecycleWorkflowsContainer(entity.Entity):
         """
         Sets the deletedItems property value. Deleted workflows in your lifecycle workflows instance.
         Args:
-            value: Value to set for the deletedItems property.
+            value: Value to set for the deleted_items property.
         """
         self._deleted_items = value
     
@@ -84,12 +84,12 @@ class LifecycleWorkflowsContainer(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "custom_task_extensions": lambda n : setattr(self, 'custom_task_extensions', n.get_collection_of_object_values(custom_task_extension.CustomTaskExtension)),
-            "deleted_items": lambda n : setattr(self, 'deleted_items', n.get_object_value(deleted_item_container.DeletedItemContainer)),
+            "customTaskExtensions": lambda n : setattr(self, 'custom_task_extensions', n.get_collection_of_object_values(custom_task_extension.CustomTaskExtension)),
+            "deletedItems": lambda n : setattr(self, 'deleted_items', n.get_object_value(deleted_item_container.DeletedItemContainer)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(lifecycle_management_settings.LifecycleManagementSettings)),
-            "task_definitions": lambda n : setattr(self, 'task_definitions', n.get_collection_of_object_values(task_definition.TaskDefinition)),
+            "taskDefinitions": lambda n : setattr(self, 'task_definitions', n.get_collection_of_object_values(task_definition.TaskDefinition)),
             "workflows": lambda n : setattr(self, 'workflows', n.get_collection_of_object_values(workflow.Workflow)),
-            "workflow_templates": lambda n : setattr(self, 'workflow_templates', n.get_collection_of_object_values(workflow_template.WorkflowTemplate)),
+            "workflowTemplates": lambda n : setattr(self, 'workflow_templates', n.get_collection_of_object_values(workflow_template.WorkflowTemplate)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -141,9 +141,26 @@ class LifecycleWorkflowsContainer(entity.Entity):
         """
         Sets the taskDefinitions property value. The definition of tasks within the lifecycle workflows instance.
         Args:
-            value: Value to set for the taskDefinitions property.
+            value: Value to set for the task_definitions property.
         """
         self._task_definitions = value
+    
+    @property
+    def workflow_templates(self,) -> Optional[List[workflow_template.WorkflowTemplate]]:
+        """
+        Gets the workflowTemplates property value. The workflow templates in the lifecycle workflow instance.
+        Returns: Optional[List[workflow_template.WorkflowTemplate]]
+        """
+        return self._workflow_templates
+    
+    @workflow_templates.setter
+    def workflow_templates(self,value: Optional[List[workflow_template.WorkflowTemplate]] = None) -> None:
+        """
+        Sets the workflowTemplates property value. The workflow templates in the lifecycle workflow instance.
+        Args:
+            value: Value to set for the workflow_templates property.
+        """
+        self._workflow_templates = value
     
     @property
     def workflows(self,) -> Optional[List[workflow.Workflow]]:
@@ -161,22 +178,5 @@ class LifecycleWorkflowsContainer(entity.Entity):
             value: Value to set for the workflows property.
         """
         self._workflows = value
-    
-    @property
-    def workflow_templates(self,) -> Optional[List[workflow_template.WorkflowTemplate]]:
-        """
-        Gets the workflowTemplates property value. The workflow templates in the lifecycle workflow instance.
-        Returns: Optional[List[workflow_template.WorkflowTemplate]]
-        """
-        return self._workflow_templates
-    
-    @workflow_templates.setter
-    def workflow_templates(self,value: Optional[List[workflow_template.WorkflowTemplate]] = None) -> None:
-        """
-        Sets the workflowTemplates property value. The workflow templates in the lifecycle workflow instance.
-        Args:
-            value: Value to set for the workflowTemplates property.
-        """
-        self._workflow_templates = value
     
 

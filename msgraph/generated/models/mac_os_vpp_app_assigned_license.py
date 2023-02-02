@@ -43,10 +43,10 @@ class MacOsVppAppAssignedLicense(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "user_email_address": lambda n : setattr(self, 'user_email_address', n.get_str_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
-            "user_name": lambda n : setattr(self, 'user_name', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "userEmailAddress": lambda n : setattr(self, 'user_email_address', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userName": lambda n : setattr(self, 'user_name', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -79,7 +79,7 @@ class MacOsVppAppAssignedLicense(entity.Entity):
         """
         Sets the userEmailAddress property value. The user email address.
         Args:
-            value: Value to set for the userEmailAddress property.
+            value: Value to set for the user_email_address property.
         """
         self._user_email_address = value
     
@@ -96,7 +96,7 @@ class MacOsVppAppAssignedLicense(entity.Entity):
         """
         Sets the userId property value. The user ID.
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     
@@ -113,7 +113,7 @@ class MacOsVppAppAssignedLicense(entity.Entity):
         """
         Sets the userName property value. The user name.
         Args:
-            value: Value to set for the userName property.
+            value: Value to set for the user_name property.
         """
         self._user_name = value
     
@@ -130,7 +130,7 @@ class MacOsVppAppAssignedLicense(entity.Entity):
         """
         Sets the userPrincipalName property value. The user principal name.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

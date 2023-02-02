@@ -25,12 +25,13 @@ class UnifiedRbacResourceActionItemRequestBuilder():
         """
         return resource_scope_request_builder.ResourceScopeRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, unified_rbac_resource_action_id: Optional[str] = None) -> None:
         """
         Instantiates a new UnifiedRbacResourceActionItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            unifiedRbacResourceActionId: key: id of unifiedRbacResourceAction
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -40,15 +41,15 @@ class UnifiedRbacResourceActionItemRequestBuilder():
         self.url_template: str = "{+baseurl}/roleManagement/cloudPC/resourceNamespaces/{unifiedRbacResourceNamespace%2Did}/resourceActions/{unifiedRbacResourceAction%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["unifiedRbacResourceAction%2Did"] = unifiedRbacResourceActionId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[UnifiedRbacResourceActionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[UnifiedRbacResourceActionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property resourceActions for roleManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +60,13 @@ class UnifiedRbacResourceActionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UnifiedRbacResourceActionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_rbac_resource_action.UnifiedRbacResourceAction]:
+    async def get(self,request_configuration: Optional[UnifiedRbacResourceActionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_rbac_resource_action.UnifiedRbacResourceAction]:
         """
         Operations that an authorized principal are allowed to perform.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_rbac_resource_action.UnifiedRbacResourceAction]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +78,14 @@ class UnifiedRbacResourceActionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_rbac_resource_action.UnifiedRbacResourceAction, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_rbac_resource_action.UnifiedRbacResourceAction, error_mapping)
     
-    async def patch(self,body: Optional[unified_rbac_resource_action.UnifiedRbacResourceAction] = None, request_configuration: Optional[UnifiedRbacResourceActionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_rbac_resource_action.UnifiedRbacResourceAction]:
+    async def patch(self,body: Optional[unified_rbac_resource_action.UnifiedRbacResourceAction] = None, request_configuration: Optional[UnifiedRbacResourceActionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[unified_rbac_resource_action.UnifiedRbacResourceAction]:
         """
         Update the navigation property resourceActions in roleManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_rbac_resource_action.UnifiedRbacResourceAction]
         """
         if body is None:
@@ -100,7 +99,7 @@ class UnifiedRbacResourceActionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_rbac_resource_action.UnifiedRbacResourceAction, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_rbac_resource_action.UnifiedRbacResourceAction, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UnifiedRbacResourceActionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

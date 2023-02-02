@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-resume_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.runs.item.user_processing_results.item.task_processing_results.item.resume.resume_request_builder')
+resume_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.runs.item.user_processing_results.item.task_processing_results.item.microsoft_graph_identity_governance_resume.resume_request_builder')
 subject_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.runs.item.user_processing_results.item.task_processing_results.item.subject.subject_request_builder')
 task_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.runs.item.user_processing_results.item.task_processing_results.item.task.task_request_builder')
 task_processing_result = lazy_import('msgraph.generated.models.identity_governance.task_processing_result')
@@ -21,7 +21,7 @@ class TaskProcessingResultItemRequestBuilder():
     Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.userProcessingResult entity.
     """
     @property
-    def resume(self) -> resume_request_builder.ResumeRequestBuilder:
+    def microsoft_graph_identity_governance_resume(self) -> resume_request_builder.ResumeRequestBuilder:
         """
         Provides operations to call the resume method.
         """
@@ -41,12 +41,13 @@ class TaskProcessingResultItemRequestBuilder():
         """
         return task_request_builder.TaskRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, task_processing_result_id: Optional[str] = None) -> None:
         """
         Instantiates a new TaskProcessingResultItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            taskProcessingResultId: key: id of taskProcessingResult
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -56,15 +57,15 @@ class TaskProcessingResultItemRequestBuilder():
         self.url_template: str = "{+baseurl}/identityGovernance/lifecycleWorkflows/deletedItems/workflows/{workflow%2Did}/runs/{run%2Did}/userProcessingResults/{userProcessingResult%2Did}/taskProcessingResults/{taskProcessingResult%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["taskProcessingResult%2Did"] = taskProcessingResultId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[TaskProcessingResultItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[task_processing_result.TaskProcessingResult]:
+    async def get(self,request_configuration: Optional[TaskProcessingResultItemRequestBuilderGetRequestConfiguration] = None) -> Optional[task_processing_result.TaskProcessingResult]:
         """
         The associated individual task execution.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[task_processing_result.TaskProcessingResult]
         """
         request_info = self.to_get_request_information(
@@ -76,7 +77,7 @@ class TaskProcessingResultItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, task_processing_result.TaskProcessingResult, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, task_processing_result.TaskProcessingResult, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TaskProcessingResultItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

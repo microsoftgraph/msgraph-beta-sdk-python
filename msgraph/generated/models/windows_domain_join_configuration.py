@@ -19,7 +19,7 @@ class WindowsDomainJoinConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the activeDirectoryDomainName property value. Active Directory domain name to join.
         Args:
-            value: Value to set for the activeDirectoryDomainName property.
+            value: Value to set for the active_directory_domain_name property.
         """
         self._active_directory_domain_name = value
     
@@ -36,7 +36,7 @@ class WindowsDomainJoinConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the computerNameStaticPrefix property value. Fixed prefix to be used for computer name.
         Args:
-            value: Value to set for the computerNameStaticPrefix property.
+            value: Value to set for the computer_name_static_prefix property.
         """
         self._computer_name_static_prefix = value
     
@@ -53,7 +53,7 @@ class WindowsDomainJoinConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the computerNameSuffixRandomCharCount property value. Dynamically generated characters used as suffix for computer name. Valid values 3 to 14
         Args:
-            value: Value to set for the computerNameSuffixRandomCharCount property.
+            value: Value to set for the computer_name_suffix_random_char_count property.
         """
         self._computer_name_suffix_random_char_count = value
     
@@ -92,11 +92,11 @@ class WindowsDomainJoinConfiguration(device_configuration.DeviceConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "active_directory_domain_name": lambda n : setattr(self, 'active_directory_domain_name', n.get_str_value()),
-            "computer_name_static_prefix": lambda n : setattr(self, 'computer_name_static_prefix', n.get_str_value()),
-            "computer_name_suffix_random_char_count": lambda n : setattr(self, 'computer_name_suffix_random_char_count', n.get_int_value()),
-            "network_access_configurations": lambda n : setattr(self, 'network_access_configurations', n.get_collection_of_object_values(device_configuration.DeviceConfiguration)),
-            "organizational_unit": lambda n : setattr(self, 'organizational_unit', n.get_str_value()),
+            "activeDirectoryDomainName": lambda n : setattr(self, 'active_directory_domain_name', n.get_str_value()),
+            "computerNameStaticPrefix": lambda n : setattr(self, 'computer_name_static_prefix', n.get_str_value()),
+            "computerNameSuffixRandomCharCount": lambda n : setattr(self, 'computer_name_suffix_random_char_count', n.get_int_value()),
+            "networkAccessConfigurations": lambda n : setattr(self, 'network_access_configurations', n.get_collection_of_object_values(device_configuration.DeviceConfiguration)),
+            "organizationalUnit": lambda n : setattr(self, 'organizational_unit', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -115,7 +115,7 @@ class WindowsDomainJoinConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the networkAccessConfigurations property value. Reference to device configurations required for network connectivity
         Args:
-            value: Value to set for the networkAccessConfigurations property.
+            value: Value to set for the network_access_configurations property.
         """
         self._network_access_configurations = value
     
@@ -132,7 +132,7 @@ class WindowsDomainJoinConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the organizationalUnit property value. Organizational unit (OU) where the computer account will be created. If this parameter is NULL, the well known computer object container will be used as published in the domain.
         Args:
-            value: Value to set for the organizationalUnit property.
+            value: Value to set for the organizational_unit property.
         """
         self._organizational_unit = value
     

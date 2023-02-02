@@ -21,7 +21,7 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         """
         Sets the advancedThreatProtectionRequiredSecurityLevel property value. MDATP Require Mobile Threat Protection minimum risk level to report noncompliance. Possible values are: unavailable, secured, low, medium, high, notSet.
         Args:
-            value: Value to set for the advancedThreatProtectionRequiredSecurityLevel property.
+            value: Value to set for the advanced_threat_protection_required_security_level property.
         """
         self._advanced_threat_protection_required_security_level = value
     
@@ -101,7 +101,7 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         """
         Sets the deviceThreatProtectionEnabled property value. Require that devices have enabled device threat protection.
         Args:
-            value: Value to set for the deviceThreatProtectionEnabled property.
+            value: Value to set for the device_threat_protection_enabled property.
         """
         self._device_threat_protection_enabled = value
     
@@ -118,7 +118,7 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         """
         Sets the deviceThreatProtectionRequiredSecurityLevel property value. Require Mobile Threat Protection minimum risk level to report noncompliance. Possible values are: unavailable, secured, low, medium, high, notSet.
         Args:
-            value: Value to set for the deviceThreatProtectionRequiredSecurityLevel property.
+            value: Value to set for the device_threat_protection_required_security_level property.
         """
         self._device_threat_protection_required_security_level = value
     
@@ -128,28 +128,28 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "advanced_threat_protection_required_security_level": lambda n : setattr(self, 'advanced_threat_protection_required_security_level', n.get_enum_value(device_threat_protection_level.DeviceThreatProtectionLevel)),
-            "device_threat_protection_enabled": lambda n : setattr(self, 'device_threat_protection_enabled', n.get_bool_value()),
-            "device_threat_protection_required_security_level": lambda n : setattr(self, 'device_threat_protection_required_security_level', n.get_enum_value(device_threat_protection_level.DeviceThreatProtectionLevel)),
-            "min_android_security_patch_level": lambda n : setattr(self, 'min_android_security_patch_level', n.get_str_value()),
-            "os_maximum_version": lambda n : setattr(self, 'os_maximum_version', n.get_str_value()),
-            "os_minimum_version": lambda n : setattr(self, 'os_minimum_version', n.get_str_value()),
-            "password_expiration_days": lambda n : setattr(self, 'password_expiration_days', n.get_int_value()),
-            "password_minimum_length": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
-            "password_minimum_letter_characters": lambda n : setattr(self, 'password_minimum_letter_characters', n.get_int_value()),
-            "password_minimum_lower_case_characters": lambda n : setattr(self, 'password_minimum_lower_case_characters', n.get_int_value()),
-            "password_minimum_non_letter_characters": lambda n : setattr(self, 'password_minimum_non_letter_characters', n.get_int_value()),
-            "password_minimum_numeric_characters": lambda n : setattr(self, 'password_minimum_numeric_characters', n.get_int_value()),
-            "password_minimum_symbol_characters": lambda n : setattr(self, 'password_minimum_symbol_characters', n.get_int_value()),
-            "password_minimum_upper_case_characters": lambda n : setattr(self, 'password_minimum_upper_case_characters', n.get_int_value()),
-            "password_minutes_of_inactivity_before_lock": lambda n : setattr(self, 'password_minutes_of_inactivity_before_lock', n.get_int_value()),
-            "password_previous_password_count_to_block": lambda n : setattr(self, 'password_previous_password_count_to_block', n.get_int_value()),
-            "password_required": lambda n : setattr(self, 'password_required', n.get_bool_value()),
-            "password_required_type": lambda n : setattr(self, 'password_required_type', n.get_enum_value(android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType)),
-            "security_require_intune_app_integrity": lambda n : setattr(self, 'security_require_intune_app_integrity', n.get_bool_value()),
-            "security_require_safety_net_attestation_basic_integrity": lambda n : setattr(self, 'security_require_safety_net_attestation_basic_integrity', n.get_bool_value()),
-            "security_require_safety_net_attestation_certified_device": lambda n : setattr(self, 'security_require_safety_net_attestation_certified_device', n.get_bool_value()),
-            "storage_require_encryption": lambda n : setattr(self, 'storage_require_encryption', n.get_bool_value()),
+            "advancedThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'advanced_threat_protection_required_security_level', n.get_enum_value(device_threat_protection_level.DeviceThreatProtectionLevel)),
+            "deviceThreatProtectionEnabled": lambda n : setattr(self, 'device_threat_protection_enabled', n.get_bool_value()),
+            "deviceThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'device_threat_protection_required_security_level', n.get_enum_value(device_threat_protection_level.DeviceThreatProtectionLevel)),
+            "minAndroidSecurityPatchLevel": lambda n : setattr(self, 'min_android_security_patch_level', n.get_str_value()),
+            "osMaximumVersion": lambda n : setattr(self, 'os_maximum_version', n.get_str_value()),
+            "osMinimumVersion": lambda n : setattr(self, 'os_minimum_version', n.get_str_value()),
+            "passwordExpirationDays": lambda n : setattr(self, 'password_expiration_days', n.get_int_value()),
+            "passwordMinimumLength": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
+            "passwordMinimumLetterCharacters": lambda n : setattr(self, 'password_minimum_letter_characters', n.get_int_value()),
+            "passwordMinimumLowerCaseCharacters": lambda n : setattr(self, 'password_minimum_lower_case_characters', n.get_int_value()),
+            "passwordMinimumNonLetterCharacters": lambda n : setattr(self, 'password_minimum_non_letter_characters', n.get_int_value()),
+            "passwordMinimumNumericCharacters": lambda n : setattr(self, 'password_minimum_numeric_characters', n.get_int_value()),
+            "passwordMinimumSymbolCharacters": lambda n : setattr(self, 'password_minimum_symbol_characters', n.get_int_value()),
+            "passwordMinimumUpperCaseCharacters": lambda n : setattr(self, 'password_minimum_upper_case_characters', n.get_int_value()),
+            "passwordMinutesOfInactivityBeforeLock": lambda n : setattr(self, 'password_minutes_of_inactivity_before_lock', n.get_int_value()),
+            "passwordPreviousPasswordCountToBlock": lambda n : setattr(self, 'password_previous_password_count_to_block', n.get_int_value()),
+            "passwordRequired": lambda n : setattr(self, 'password_required', n.get_bool_value()),
+            "passwordRequiredType": lambda n : setattr(self, 'password_required_type', n.get_enum_value(android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType)),
+            "securityRequireIntuneAppIntegrity": lambda n : setattr(self, 'security_require_intune_app_integrity', n.get_bool_value()),
+            "securityRequireSafetyNetAttestationBasicIntegrity": lambda n : setattr(self, 'security_require_safety_net_attestation_basic_integrity', n.get_bool_value()),
+            "securityRequireSafetyNetAttestationCertifiedDevice": lambda n : setattr(self, 'security_require_safety_net_attestation_certified_device', n.get_bool_value()),
+            "storageRequireEncryption": lambda n : setattr(self, 'storage_require_encryption', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -168,7 +168,7 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         """
         Sets the minAndroidSecurityPatchLevel property value. Minimum Android security patch level.
         Args:
-            value: Value to set for the minAndroidSecurityPatchLevel property.
+            value: Value to set for the min_android_security_patch_level property.
         """
         self._min_android_security_patch_level = value
     
@@ -185,7 +185,7 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         """
         Sets the osMaximumVersion property value. Maximum Android version.
         Args:
-            value: Value to set for the osMaximumVersion property.
+            value: Value to set for the os_maximum_version property.
         """
         self._os_maximum_version = value
     
@@ -202,7 +202,7 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         """
         Sets the osMinimumVersion property value. Minimum Android version.
         Args:
-            value: Value to set for the osMinimumVersion property.
+            value: Value to set for the os_minimum_version property.
         """
         self._os_minimum_version = value
     
@@ -219,7 +219,7 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         """
         Sets the passwordExpirationDays property value. Number of days before the password expires. Valid values 1 to 365
         Args:
-            value: Value to set for the passwordExpirationDays property.
+            value: Value to set for the password_expiration_days property.
         """
         self._password_expiration_days = value
     
@@ -236,7 +236,7 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         """
         Sets the passwordMinimumLength property value. Minimum password length. Valid values 4 to 16
         Args:
-            value: Value to set for the passwordMinimumLength property.
+            value: Value to set for the password_minimum_length property.
         """
         self._password_minimum_length = value
     
@@ -253,7 +253,7 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         """
         Sets the passwordMinimumLetterCharacters property value. Indicates the minimum number of letter characters required for device password. Valid values 1 to 16
         Args:
-            value: Value to set for the passwordMinimumLetterCharacters property.
+            value: Value to set for the password_minimum_letter_characters property.
         """
         self._password_minimum_letter_characters = value
     
@@ -270,7 +270,7 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         """
         Sets the passwordMinimumLowerCaseCharacters property value. Indicates the minimum number of lower case characters required for device password. Valid values 1 to 16
         Args:
-            value: Value to set for the passwordMinimumLowerCaseCharacters property.
+            value: Value to set for the password_minimum_lower_case_characters property.
         """
         self._password_minimum_lower_case_characters = value
     
@@ -287,7 +287,7 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         """
         Sets the passwordMinimumNonLetterCharacters property value. Indicates the minimum number of non-letter characters required for device password. Valid values 1 to 16
         Args:
-            value: Value to set for the passwordMinimumNonLetterCharacters property.
+            value: Value to set for the password_minimum_non_letter_characters property.
         """
         self._password_minimum_non_letter_characters = value
     
@@ -304,7 +304,7 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         """
         Sets the passwordMinimumNumericCharacters property value. Indicates the minimum number of numeric characters required for device password. Valid values 1 to 16
         Args:
-            value: Value to set for the passwordMinimumNumericCharacters property.
+            value: Value to set for the password_minimum_numeric_characters property.
         """
         self._password_minimum_numeric_characters = value
     
@@ -321,7 +321,7 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         """
         Sets the passwordMinimumSymbolCharacters property value. Indicates the minimum number of symbol characters required for device password. Valid values 1 to 16
         Args:
-            value: Value to set for the passwordMinimumSymbolCharacters property.
+            value: Value to set for the password_minimum_symbol_characters property.
         """
         self._password_minimum_symbol_characters = value
     
@@ -338,7 +338,7 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         """
         Sets the passwordMinimumUpperCaseCharacters property value. Indicates the minimum number of upper case letter characters required for device password. Valid values 1 to 16
         Args:
-            value: Value to set for the passwordMinimumUpperCaseCharacters property.
+            value: Value to set for the password_minimum_upper_case_characters property.
         """
         self._password_minimum_upper_case_characters = value
     
@@ -355,7 +355,7 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         """
         Sets the passwordMinutesOfInactivityBeforeLock property value. Minutes of inactivity before a password is required.
         Args:
-            value: Value to set for the passwordMinutesOfInactivityBeforeLock property.
+            value: Value to set for the password_minutes_of_inactivity_before_lock property.
         """
         self._password_minutes_of_inactivity_before_lock = value
     
@@ -372,7 +372,7 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         """
         Sets the passwordPreviousPasswordCountToBlock property value. Number of previous passwords to block. Valid values 1 to 24
         Args:
-            value: Value to set for the passwordPreviousPasswordCountToBlock property.
+            value: Value to set for the password_previous_password_count_to_block property.
         """
         self._password_previous_password_count_to_block = value
     
@@ -389,7 +389,7 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         """
         Sets the passwordRequired property value. Require a password to unlock device.
         Args:
-            value: Value to set for the passwordRequired property.
+            value: Value to set for the password_required property.
         """
         self._password_required = value
     
@@ -406,7 +406,7 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         """
         Sets the passwordRequiredType property value. Type of characters in password. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
         Args:
-            value: Value to set for the passwordRequiredType property.
+            value: Value to set for the password_required_type property.
         """
         self._password_required_type = value
     
@@ -423,7 +423,7 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         """
         Sets the securityRequireIntuneAppIntegrity property value. If setting is set to true, checks that the Intune app installed on fully managed, dedicated, or corporate-owned work profile Android Enterprise enrolled devices, is the one provided by Microsoft from the Managed Google Playstore. If the check fails, the device will be reported as non-compliant.
         Args:
-            value: Value to set for the securityRequireIntuneAppIntegrity property.
+            value: Value to set for the security_require_intune_app_integrity property.
         """
         self._security_require_intune_app_integrity = value
     
@@ -440,7 +440,7 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         """
         Sets the securityRequireSafetyNetAttestationBasicIntegrity property value. Require the device to pass the SafetyNet basic integrity check.
         Args:
-            value: Value to set for the securityRequireSafetyNetAttestationBasicIntegrity property.
+            value: Value to set for the security_require_safety_net_attestation_basic_integrity property.
         """
         self._security_require_safety_net_attestation_basic_integrity = value
     
@@ -457,7 +457,7 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         """
         Sets the securityRequireSafetyNetAttestationCertifiedDevice property value. Require the device to pass the SafetyNet certified device check.
         Args:
-            value: Value to set for the securityRequireSafetyNetAttestationCertifiedDevice property.
+            value: Value to set for the security_require_safety_net_attestation_certified_device property.
         """
         self._security_require_safety_net_attestation_certified_device = value
     
@@ -506,7 +506,7 @@ class AndroidDeviceOwnerCompliancePolicy(device_compliance_policy.DeviceComplian
         """
         Sets the storageRequireEncryption property value. Require encryption on Android devices.
         Args:
-            value: Value to set for the storageRequireEncryption property.
+            value: Value to set for the storage_require_encryption property.
         """
         self._storage_require_encryption = value
     

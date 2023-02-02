@@ -8,7 +8,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 class LifecycleManagementSettings(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new lifecycleManagementSettings and sets the default values.
+        Instantiates a new LifecycleManagementSettings and sets the default values.
         """
         super().__init__()
         # The OdataType property
@@ -34,7 +34,7 @@ class LifecycleManagementSettings(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "workflow_schedule_interval_in_hours": lambda n : setattr(self, 'workflow_schedule_interval_in_hours', n.get_int_value()),
+            "workflowScheduleIntervalInHours": lambda n : setattr(self, 'workflow_schedule_interval_in_hours', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -64,7 +64,7 @@ class LifecycleManagementSettings(entity.Entity):
         """
         Sets the workflowScheduleIntervalInHours property value. The interval in hours at which all workflows running in the tenant should be scheduled for execution. This interval has a minimum value of 1 and a maximum value of 24. The default value is 3 hours.
         Args:
-            value: Value to set for the workflowScheduleIntervalInHours property.
+            value: Value to set for the workflow_schedule_interval_in_hours property.
         """
         self._workflow_schedule_interval_in_hours = value
     

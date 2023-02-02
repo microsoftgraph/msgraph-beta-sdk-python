@@ -30,7 +30,7 @@ class Case(entity.Entity):
         """
         Sets the closedBy property value. The user who closed the case.
         Args:
-            value: Value to set for the closedBy property.
+            value: Value to set for the closed_by property.
         """
         self._closed_by = value
     
@@ -47,7 +47,7 @@ class Case(entity.Entity):
         """
         Sets the closedDateTime property value. The date and time when the case was closed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the closedDateTime property.
+            value: Value to set for the closed_date_time property.
         """
         self._closed_date_time = value
     
@@ -106,7 +106,7 @@ class Case(entity.Entity):
         """
         Sets the createdDateTime property value. The date and time when the entity was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -169,7 +169,7 @@ class Case(entity.Entity):
         """
         Sets the displayName property value. The case name.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -186,7 +186,7 @@ class Case(entity.Entity):
         """
         Sets the externalId property value. The external case number for customer reference.
         Args:
-            value: Value to set for the externalId property.
+            value: Value to set for the external_id property.
         """
         self._external_id = value
     
@@ -196,21 +196,21 @@ class Case(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "closed_by": lambda n : setattr(self, 'closed_by', n.get_object_value(identity_set.IdentitySet)),
-            "closed_date_time": lambda n : setattr(self, 'closed_date_time', n.get_datetime_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "closedBy": lambda n : setattr(self, 'closed_by', n.get_object_value(identity_set.IdentitySet)),
+            "closedDateTime": lambda n : setattr(self, 'closed_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "custodians": lambda n : setattr(self, 'custodians', n.get_collection_of_object_values(custodian.Custodian)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "external_id": lambda n : setattr(self, 'external_id', n.get_str_value()),
-            "last_modified_by": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "legal_holds": lambda n : setattr(self, 'legal_holds', n.get_collection_of_object_values(legal_hold.LegalHold)),
-            "noncustodial_data_sources": lambda n : setattr(self, 'noncustodial_data_sources', n.get_collection_of_object_values(noncustodial_data_source.NoncustodialDataSource)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "legalHolds": lambda n : setattr(self, 'legal_holds', n.get_collection_of_object_values(legal_hold.LegalHold)),
+            "noncustodialDataSources": lambda n : setattr(self, 'noncustodial_data_sources', n.get_collection_of_object_values(noncustodial_data_source.NoncustodialDataSource)),
             "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(case_operation.CaseOperation)),
-            "review_sets": lambda n : setattr(self, 'review_sets', n.get_collection_of_object_values(review_set.ReviewSet)),
+            "reviewSets": lambda n : setattr(self, 'review_sets', n.get_collection_of_object_values(review_set.ReviewSet)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(case_settings.CaseSettings)),
-            "source_collections": lambda n : setattr(self, 'source_collections', n.get_collection_of_object_values(source_collection.SourceCollection)),
+            "sourceCollections": lambda n : setattr(self, 'source_collections', n.get_collection_of_object_values(source_collection.SourceCollection)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(case_status.CaseStatus)),
             "tags": lambda n : setattr(self, 'tags', n.get_collection_of_object_values(tag.Tag)),
         }
@@ -231,7 +231,7 @@ class Case(entity.Entity):
         """
         Sets the lastModifiedBy property value. The last user who modified the entity.
         Args:
-            value: Value to set for the lastModifiedBy property.
+            value: Value to set for the last_modified_by property.
         """
         self._last_modified_by = value
     
@@ -248,7 +248,7 @@ class Case(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The latest date and time when the case was modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -265,7 +265,7 @@ class Case(entity.Entity):
         """
         Sets the legalHolds property value. Returns a list of case legalHold objects for this case.  Nullable.
         Args:
-            value: Value to set for the legalHolds property.
+            value: Value to set for the legal_holds property.
         """
         self._legal_holds = value
     
@@ -282,7 +282,7 @@ class Case(entity.Entity):
         """
         Sets the noncustodialDataSources property value. Returns a list of case noncustodialDataSource objects for this case.  Nullable.
         Args:
-            value: Value to set for the noncustodialDataSources property.
+            value: Value to set for the noncustodial_data_sources property.
         """
         self._noncustodial_data_sources = value
     
@@ -316,7 +316,7 @@ class Case(entity.Entity):
         """
         Sets the reviewSets property value. Returns a list of reviewSet objects in the case. Read-only. Nullable.
         Args:
-            value: Value to set for the reviewSets property.
+            value: Value to set for the review_sets property.
         """
         self._review_sets = value
     
@@ -377,7 +377,7 @@ class Case(entity.Entity):
         """
         Sets the sourceCollections property value. Returns a list of sourceCollection objects associated with this case.
         Args:
-            value: Value to set for the sourceCollections property.
+            value: Value to set for the source_collections property.
         """
         self._source_collections = value
     

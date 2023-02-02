@@ -12,8 +12,8 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 combination_configurations_request_builder = lazy_import('msgraph.generated.identity.conditional_access.authentication_strengths.policies.item.combination_configurations.combination_configurations_request_builder')
 authentication_combination_configuration_item_request_builder = lazy_import('msgraph.generated.identity.conditional_access.authentication_strengths.policies.item.combination_configurations.item.authentication_combination_configuration_item_request_builder')
-update_allowed_combinations_request_builder = lazy_import('msgraph.generated.identity.conditional_access.authentication_strengths.policies.item.update_allowed_combinations.update_allowed_combinations_request_builder')
-usage_request_builder = lazy_import('msgraph.generated.identity.conditional_access.authentication_strengths.policies.item.usage.usage_request_builder')
+update_allowed_combinations_request_builder = lazy_import('msgraph.generated.identity.conditional_access.authentication_strengths.policies.item.microsoft_graph_update_allowed_combinations.update_allowed_combinations_request_builder')
+usage_request_builder = lazy_import('msgraph.generated.identity.conditional_access.authentication_strengths.policies.item.microsoft_graph_usage.usage_request_builder')
 authentication_strength_policy = lazy_import('msgraph.generated.models.authentication_strength_policy')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -29,11 +29,18 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
         return combination_configurations_request_builder.CombinationConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_allowed_combinations(self) -> update_allowed_combinations_request_builder.UpdateAllowedCombinationsRequestBuilder:
+    def microsoft_graph_update_allowed_combinations(self) -> update_allowed_combinations_request_builder.UpdateAllowedCombinationsRequestBuilder:
         """
         Provides operations to call the updateAllowedCombinations method.
         """
         return update_allowed_combinations_request_builder.UpdateAllowedCombinationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_usage(self) -> usage_request_builder.UsageRequestBuilder:
+        """
+        Provides operations to call the usage method.
+        """
+        return usage_request_builder.UsageRequestBuilder(self.request_adapter, self.path_parameters)
     
     def combination_configurations_by_id(self,id: str) -> authentication_combination_configuration_item_request_builder.AuthenticationCombinationConfigurationItemRequestBuilder:
         """
@@ -48,10 +55,11 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
         url_tpl_params["authenticationCombinationConfiguration%2Did"] = id
         return authentication_combination_configuration_item_request_builder.AuthenticationCombinationConfigurationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, authentication_strength_policy_id: Optional[str] = None) -> None:
         """
         Instantiates a new AuthenticationStrengthPolicyItemRequestBuilder and sets the default values.
         Args:
+            authenticationStrengthPolicyId: key: id of authenticationStrengthPolicy
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -63,15 +71,15 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
         self.url_template: str = "{+baseurl}/identity/conditionalAccess/authenticationStrengths/policies/{authenticationStrengthPolicy%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["authenticationStrengthPolicy%2Did"] = authenticationStrengthPolicyId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AuthenticationStrengthPolicyItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AuthenticationStrengthPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property policies for identity
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -82,14 +90,13 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AuthenticationStrengthPolicyItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_strength_policy.AuthenticationStrengthPolicy]:
+    async def get(self,request_configuration: Optional[AuthenticationStrengthPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication_strength_policy.AuthenticationStrengthPolicy]:
         """
         A collection of authentication strength policies that exist for this tenant, including both built-in and custom policies.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_strength_policy.AuthenticationStrengthPolicy]
         """
         request_info = self.to_get_request_information(
@@ -101,15 +108,14 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_strength_policy.AuthenticationStrengthPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_strength_policy.AuthenticationStrengthPolicy, error_mapping)
     
-    async def patch(self,body: Optional[authentication_strength_policy.AuthenticationStrengthPolicy] = None, request_configuration: Optional[AuthenticationStrengthPolicyItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_strength_policy.AuthenticationStrengthPolicy]:
+    async def patch(self,body: Optional[authentication_strength_policy.AuthenticationStrengthPolicy] = None, request_configuration: Optional[AuthenticationStrengthPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[authentication_strength_policy.AuthenticationStrengthPolicy]:
         """
         Update the navigation property policies in identity
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_strength_policy.AuthenticationStrengthPolicy]
         """
         if body is None:
@@ -123,7 +129,7 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_strength_policy.AuthenticationStrengthPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_strength_policy.AuthenticationStrengthPolicy, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AuthenticationStrengthPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -179,13 +185,6 @@ class AuthenticationStrengthPolicyItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
-    
-    def usage(self,) -> usage_request_builder.UsageRequestBuilder:
-        """
-        Provides operations to call the usage method.
-        Returns: usage_request_builder.UsageRequestBuilder
-        """
-        return usage_request_builder.UsageRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class AuthenticationStrengthPolicyItemRequestBuilderDeleteRequestConfiguration():

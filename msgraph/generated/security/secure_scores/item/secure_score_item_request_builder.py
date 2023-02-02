@@ -17,12 +17,13 @@ class SecureScoreItemRequestBuilder():
     """
     Provides operations to manage the secureScores property of the microsoft.graph.security entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, secure_score_id: Optional[str] = None) -> None:
         """
         Instantiates a new SecureScoreItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            secureScoreId: key: id of secureScore
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -32,15 +33,15 @@ class SecureScoreItemRequestBuilder():
         self.url_template: str = "{+baseurl}/security/secureScores/{secureScore%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["secureScore%2Did"] = secureScoreId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SecureScoreItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[SecureScoreItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property secureScores for security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class SecureScoreItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SecureScoreItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[secure_score.SecureScore]:
+    async def get(self,request_configuration: Optional[SecureScoreItemRequestBuilderGetRequestConfiguration] = None) -> Optional[secure_score.SecureScore]:
         """
         Measurements of tenants’ security posture to help protect them from threats.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[secure_score.SecureScore]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class SecureScoreItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, secure_score.SecureScore, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, secure_score.SecureScore, error_mapping)
     
-    async def patch(self,body: Optional[secure_score.SecureScore] = None, request_configuration: Optional[SecureScoreItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[secure_score.SecureScore]:
+    async def patch(self,body: Optional[secure_score.SecureScore] = None, request_configuration: Optional[SecureScoreItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[secure_score.SecureScore]:
         """
         Update the navigation property secureScores in security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[secure_score.SecureScore]
         """
         if body is None:
@@ -92,7 +91,7 @@ class SecureScoreItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, secure_score.SecureScore, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, secure_score.SecureScore, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SecureScoreItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

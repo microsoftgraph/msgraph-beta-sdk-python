@@ -19,7 +19,7 @@ class WindowsMobileMSI(mobile_lob_app.MobileLobApp):
         """
         Sets the commandLine property value. The command line.
         Args:
-            value: Value to set for the commandLine property.
+            value: Value to set for the command_line property.
         """
         self._command_line = value
     
@@ -60,12 +60,12 @@ class WindowsMobileMSI(mobile_lob_app.MobileLobApp):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "command_line": lambda n : setattr(self, 'command_line', n.get_str_value()),
-            "identity_version": lambda n : setattr(self, 'identity_version', n.get_str_value()),
-            "ignore_version_detection": lambda n : setattr(self, 'ignore_version_detection', n.get_bool_value()),
-            "product_code": lambda n : setattr(self, 'product_code', n.get_str_value()),
-            "product_version": lambda n : setattr(self, 'product_version', n.get_str_value()),
-            "use_device_context": lambda n : setattr(self, 'use_device_context', n.get_bool_value()),
+            "commandLine": lambda n : setattr(self, 'command_line', n.get_str_value()),
+            "identityVersion": lambda n : setattr(self, 'identity_version', n.get_str_value()),
+            "ignoreVersionDetection": lambda n : setattr(self, 'ignore_version_detection', n.get_bool_value()),
+            "productCode": lambda n : setattr(self, 'product_code', n.get_str_value()),
+            "productVersion": lambda n : setattr(self, 'product_version', n.get_str_value()),
+            "useDeviceContext": lambda n : setattr(self, 'use_device_context', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -84,7 +84,7 @@ class WindowsMobileMSI(mobile_lob_app.MobileLobApp):
         """
         Sets the identityVersion property value. The identity version.
         Args:
-            value: Value to set for the identityVersion property.
+            value: Value to set for the identity_version property.
         """
         self._identity_version = value
     
@@ -101,7 +101,7 @@ class WindowsMobileMSI(mobile_lob_app.MobileLobApp):
         """
         Sets the ignoreVersionDetection property value. A boolean to control whether the app's version will be used to detect the app after it is installed on a device. Set this to true for Windows Mobile MSI Line of Business (LoB) apps that use a self update feature.
         Args:
-            value: Value to set for the ignoreVersionDetection property.
+            value: Value to set for the ignore_version_detection property.
         """
         self._ignore_version_detection = value
     
@@ -118,7 +118,7 @@ class WindowsMobileMSI(mobile_lob_app.MobileLobApp):
         """
         Sets the productCode property value. The product code.
         Args:
-            value: Value to set for the productCode property.
+            value: Value to set for the product_code property.
         """
         self._product_code = value
     
@@ -135,7 +135,7 @@ class WindowsMobileMSI(mobile_lob_app.MobileLobApp):
         """
         Sets the productVersion property value. The product version of Windows Mobile MSI Line of Business (LoB) app.
         Args:
-            value: Value to set for the productVersion property.
+            value: Value to set for the product_version property.
         """
         self._product_version = value
     
@@ -168,7 +168,7 @@ class WindowsMobileMSI(mobile_lob_app.MobileLobApp):
         """
         Sets the useDeviceContext property value. Indicates whether to install a dual-mode MSI in the device context. If true, app will be installed for all users. If false, app will be installed per-user. If null, service will use the MSI package's default install context. In case of dual-mode MSI, this default will be per-user.  Cannot be set for non-dual-mode apps.  Cannot be changed after initial creation of the application.
         Args:
-            value: Value to set for the useDeviceContext property.
+            value: Value to set for the use_device_context property.
         """
         self._use_device_context = value
     

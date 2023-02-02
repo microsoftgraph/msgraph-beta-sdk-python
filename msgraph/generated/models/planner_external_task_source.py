@@ -41,7 +41,7 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
         """
         Sets the contextScenarioId property value. Nullable. An identifier for the scenario associated with this external source. This should be in reverse DNS format. For example, Contoso company owned application for customer support would have a value like 'com.constoso.customerSupport'.
         Args:
-            value: Value to set for the contextScenarioId property.
+            value: Value to set for the context_scenario_id property.
         """
         self._context_scenario_id = value
     
@@ -70,7 +70,7 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
         """
         Sets the displayLinkType property value. Specifies how an application should display the link to the associated plannerExternalTaskSource. The possible values are: none, default.
         Args:
-            value: Value to set for the displayLinkType property.
+            value: Value to set for the display_link_type property.
         """
         self._display_link_type = value
     
@@ -87,7 +87,7 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
         """
         Sets the displayNameSegments property value. The segments of the name of the external experience. Segments represent a hierarchical structure that allows other apps to display the relationship.
         Args:
-            value: Value to set for the displayNameSegments property.
+            value: Value to set for the display_name_segments property.
         """
         self._display_name_segments = value
     
@@ -104,7 +104,7 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
         """
         Sets the externalContextId property value. Nullable. The id of the external entity's containing entity or context.
         Args:
-            value: Value to set for the externalContextId property.
+            value: Value to set for the external_context_id property.
         """
         self._external_context_id = value
     
@@ -121,7 +121,7 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
         """
         Sets the externalObjectId property value. Nullable. The id of the entity that an external service associates with a task.
         Args:
-            value: Value to set for the externalObjectId property.
+            value: Value to set for the external_object_id property.
         """
         self._external_object_id = value
     
@@ -138,7 +138,7 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
         """
         Sets the externalObjectVersion property value. Nullable. The external Item Version for the object specified by the externalObjectId.
         Args:
-            value: Value to set for the externalObjectVersion property.
+            value: Value to set for the external_object_version property.
         """
         self._external_object_version = value
     
@@ -148,13 +148,13 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "context_scenario_id": lambda n : setattr(self, 'context_scenario_id', n.get_str_value()),
-            "display_link_type": lambda n : setattr(self, 'display_link_type', n.get_enum_value(planner_external_task_source_display_type.PlannerExternalTaskSourceDisplayType)),
-            "display_name_segments": lambda n : setattr(self, 'display_name_segments', n.get_collection_of_primitive_values(str)),
-            "external_context_id": lambda n : setattr(self, 'external_context_id', n.get_str_value()),
-            "external_object_id": lambda n : setattr(self, 'external_object_id', n.get_str_value()),
-            "external_object_version": lambda n : setattr(self, 'external_object_version', n.get_str_value()),
-            "web_url": lambda n : setattr(self, 'web_url', n.get_str_value()),
+            "contextScenarioId": lambda n : setattr(self, 'context_scenario_id', n.get_str_value()),
+            "displayLinkType": lambda n : setattr(self, 'display_link_type', n.get_enum_value(planner_external_task_source_display_type.PlannerExternalTaskSourceDisplayType)),
+            "displayNameSegments": lambda n : setattr(self, 'display_name_segments', n.get_collection_of_primitive_values(str)),
+            "externalContextId": lambda n : setattr(self, 'external_context_id', n.get_str_value()),
+            "externalObjectId": lambda n : setattr(self, 'external_object_id', n.get_str_value()),
+            "externalObjectVersion": lambda n : setattr(self, 'external_object_version', n.get_str_value()),
+            "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -190,7 +190,7 @@ class PlannerExternalTaskSource(planner_task_creation.PlannerTaskCreation):
         """
         Sets the webUrl property value. Nullable. URL of the user experience represented by the associated plannerExternalTaskSource.
         Args:
-            value: Value to set for the webUrl property.
+            value: Value to set for the web_url property.
         """
         self._web_url = value
     

@@ -20,7 +20,7 @@ class AndroidForWorkPkcsCertificateProfile(android_for_work_certificate_profile_
         """
         Sets the certificateTemplateName property value. PKCS Certificate Template Name
         Args:
-            value: Value to set for the certificateTemplateName property.
+            value: Value to set for the certificate_template_name property.
         """
         self._certificate_template_name = value
     
@@ -37,7 +37,7 @@ class AndroidForWorkPkcsCertificateProfile(android_for_work_certificate_profile_
         """
         Sets the certificationAuthority property value. PKCS Certification Authority
         Args:
-            value: Value to set for the certificationAuthority property.
+            value: Value to set for the certification_authority property.
         """
         self._certification_authority = value
     
@@ -54,7 +54,7 @@ class AndroidForWorkPkcsCertificateProfile(android_for_work_certificate_profile_
         """
         Sets the certificationAuthorityName property value. PKCS Certification Authority Name
         Args:
-            value: Value to set for the certificationAuthorityName property.
+            value: Value to set for the certification_authority_name property.
         """
         self._certification_authority_name = value
     
@@ -93,11 +93,11 @@ class AndroidForWorkPkcsCertificateProfile(android_for_work_certificate_profile_
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "certificate_template_name": lambda n : setattr(self, 'certificate_template_name', n.get_str_value()),
-            "certification_authority": lambda n : setattr(self, 'certification_authority', n.get_str_value()),
-            "certification_authority_name": lambda n : setattr(self, 'certification_authority_name', n.get_str_value()),
-            "managed_device_certificate_states": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(managed_device_certificate_state.ManagedDeviceCertificateState)),
-            "subject_alternative_name_format_string": lambda n : setattr(self, 'subject_alternative_name_format_string', n.get_str_value()),
+            "certificateTemplateName": lambda n : setattr(self, 'certificate_template_name', n.get_str_value()),
+            "certificationAuthority": lambda n : setattr(self, 'certification_authority', n.get_str_value()),
+            "certificationAuthorityName": lambda n : setattr(self, 'certification_authority_name', n.get_str_value()),
+            "managedDeviceCertificateStates": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(managed_device_certificate_state.ManagedDeviceCertificateState)),
+            "subjectAlternativeNameFormatString": lambda n : setattr(self, 'subject_alternative_name_format_string', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -116,7 +116,7 @@ class AndroidForWorkPkcsCertificateProfile(android_for_work_certificate_profile_
         """
         Sets the managedDeviceCertificateStates property value. Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
         Args:
-            value: Value to set for the managedDeviceCertificateStates property.
+            value: Value to set for the managed_device_certificate_states property.
         """
         self._managed_device_certificate_states = value
     
@@ -148,7 +148,7 @@ class AndroidForWorkPkcsCertificateProfile(android_for_work_certificate_profile_
         """
         Sets the subjectAlternativeNameFormatString property value. Custom String that defines the AAD Attribute.
         Args:
-            value: Value to set for the subjectAlternativeNameFormatString property.
+            value: Value to set for the subject_alternative_name_format_string property.
         """
         self._subject_alternative_name_format_string = value
     

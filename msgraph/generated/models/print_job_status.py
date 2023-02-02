@@ -20,7 +20,7 @@ class PrintJobStatus(AdditionalDataHolder, Parsable):
         """
         Sets the acquiredByPrinter property value. The acquiredByPrinter property
         Args:
-            value: Value to set for the acquiredByPrinter property.
+            value: Value to set for the acquired_by_printer property.
         """
         self._acquired_by_printer = value
     
@@ -117,13 +117,13 @@ class PrintJobStatus(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "acquired_by_printer": lambda n : setattr(self, 'acquired_by_printer', n.get_bool_value()),
+            "acquiredByPrinter": lambda n : setattr(self, 'acquired_by_printer', n.get_bool_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "details": lambda n : setattr(self, 'details', n.get_collection_of_enum_values(print_job_state_detail.PrintJobStateDetail)),
-            "is_acquired_by_printer": lambda n : setattr(self, 'is_acquired_by_printer', n.get_bool_value()),
+            "isAcquiredByPrinter": lambda n : setattr(self, 'is_acquired_by_printer', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "processing_state": lambda n : setattr(self, 'processing_state', n.get_enum_value(print_job_processing_state.PrintJobProcessingState)),
-            "processing_state_description": lambda n : setattr(self, 'processing_state_description', n.get_str_value()),
+            "processingState": lambda n : setattr(self, 'processing_state', n.get_enum_value(print_job_processing_state.PrintJobProcessingState)),
+            "processingStateDescription": lambda n : setattr(self, 'processing_state_description', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(print_job_processing_state.PrintJobProcessingState)),
         }
         return fields
@@ -141,7 +141,7 @@ class PrintJobStatus(AdditionalDataHolder, Parsable):
         """
         Sets the isAcquiredByPrinter property value. True if the job was acknowledged by a printer; false otherwise. Read-only.
         Args:
-            value: Value to set for the isAcquiredByPrinter property.
+            value: Value to set for the is_acquired_by_printer property.
         """
         self._is_acquired_by_printer = value
     
@@ -158,7 +158,7 @@ class PrintJobStatus(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -175,7 +175,7 @@ class PrintJobStatus(AdditionalDataHolder, Parsable):
         """
         Sets the processingState property value. The processingState property
         Args:
-            value: Value to set for the processingState property.
+            value: Value to set for the processing_state property.
         """
         self._processing_state = value
     
@@ -192,7 +192,7 @@ class PrintJobStatus(AdditionalDataHolder, Parsable):
         """
         Sets the processingStateDescription property value. The processingStateDescription property
         Args:
-            value: Value to set for the processingStateDescription property.
+            value: Value to set for the processing_state_description property.
         """
         self._processing_state_description = value
     

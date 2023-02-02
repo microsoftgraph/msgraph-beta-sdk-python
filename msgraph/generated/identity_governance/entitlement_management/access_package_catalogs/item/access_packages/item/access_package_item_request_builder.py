@@ -17,12 +17,12 @@ access_package_resource_role_scopes_request_builder = lazy_import('msgraph.gener
 access_package_resource_role_scope_item_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_packages.item.access_package_resource_role_scopes.item.access_package_resource_role_scope_item_request_builder')
 access_packages_incompatible_with_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_packages.item.access_packages_incompatible_with.access_packages_incompatible_with_request_builder')
 access_package_item_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_packages.item.access_packages_incompatible_with.item.access_package_item_request_builder')
-get_applicable_policy_requirements_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_packages.item.get_applicable_policy_requirements.get_applicable_policy_requirements_request_builder')
 incompatible_access_packages_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_packages.item.incompatible_access_packages.incompatible_access_packages_request_builder')
 access_package_item_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_packages.item.incompatible_access_packages.item.access_package_item_request_builder')
 incompatible_groups_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_packages.item.incompatible_groups.incompatible_groups_request_builder')
 group_item_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_packages.item.incompatible_groups.item.group_item_request_builder')
-move_to_catalog_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_packages.item.move_to_catalog.move_to_catalog_request_builder')
+get_applicable_policy_requirements_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_packages.item.microsoft_graph_get_applicable_policy_requirements.get_applicable_policy_requirements_request_builder')
+move_to_catalog_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_packages.item.microsoft_graph_move_to_catalog.move_to_catalog_request_builder')
 access_package = lazy_import('msgraph.generated.models.access_package')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -59,13 +59,6 @@ class AccessPackageItemRequestBuilder():
         return access_packages_incompatible_with_request_builder.AccessPackagesIncompatibleWithRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_applicable_policy_requirements(self) -> get_applicable_policy_requirements_request_builder.GetApplicablePolicyRequirementsRequestBuilder:
-        """
-        Provides operations to call the getApplicablePolicyRequirements method.
-        """
-        return get_applicable_policy_requirements_request_builder.GetApplicablePolicyRequirementsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def incompatible_access_packages(self) -> incompatible_access_packages_request_builder.IncompatibleAccessPackagesRequestBuilder:
         """
         Provides operations to manage the incompatibleAccessPackages property of the microsoft.graph.accessPackage entity.
@@ -80,7 +73,14 @@ class AccessPackageItemRequestBuilder():
         return incompatible_groups_request_builder.IncompatibleGroupsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def move_to_catalog(self) -> move_to_catalog_request_builder.MoveToCatalogRequestBuilder:
+    def microsoft_graph_get_applicable_policy_requirements(self) -> get_applicable_policy_requirements_request_builder.GetApplicablePolicyRequirementsRequestBuilder:
+        """
+        Provides operations to call the getApplicablePolicyRequirements method.
+        """
+        return get_applicable_policy_requirements_request_builder.GetApplicablePolicyRequirementsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_move_to_catalog(self) -> move_to_catalog_request_builder.MoveToCatalogRequestBuilder:
         """
         Provides operations to call the moveToCatalog method.
         """
@@ -125,10 +125,11 @@ class AccessPackageItemRequestBuilder():
         url_tpl_params["accessPackage%2Did1"] = id
         return AccessPackageItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, access_package_id: Optional[str] = None) -> None:
         """
         Instantiates a new AccessPackageItemRequestBuilder and sets the default values.
         Args:
+            accessPackageId: key: id of accessPackage
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -140,15 +141,15 @@ class AccessPackageItemRequestBuilder():
         self.url_template: str = "{+baseurl}/identityGovernance/entitlementManagement/accessPackageCatalogs/{accessPackageCatalog%2Did}/accessPackages/{accessPackage%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["accessPackage%2Did"] = accessPackageId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AccessPackageItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AccessPackageItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property accessPackages for identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -159,14 +160,13 @@ class AccessPackageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AccessPackageItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package.AccessPackage]:
+    async def get(self,request_configuration: Optional[AccessPackageItemRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package.AccessPackage]:
         """
         The access packages in this catalog. Read-only. Nullable. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package.AccessPackage]
         """
         request_info = self.to_get_request_information(
@@ -178,7 +178,7 @@ class AccessPackageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package.AccessPackage, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package.AccessPackage, error_mapping)
     
     def incompatible_access_packages_by_id(self,id: str) -> AccessPackageItemRequestBuilder:
         """
@@ -206,13 +206,12 @@ class AccessPackageItemRequestBuilder():
         url_tpl_params["group%2Did"] = id
         return group_item_request_builder.GroupItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[access_package.AccessPackage] = None, request_configuration: Optional[AccessPackageItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package.AccessPackage]:
+    async def patch(self,body: Optional[access_package.AccessPackage] = None, request_configuration: Optional[AccessPackageItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_package.AccessPackage]:
         """
         Update the navigation property accessPackages in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package.AccessPackage]
         """
         if body is None:
@@ -226,7 +225,7 @@ class AccessPackageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package.AccessPackage, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package.AccessPackage, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AccessPackageItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

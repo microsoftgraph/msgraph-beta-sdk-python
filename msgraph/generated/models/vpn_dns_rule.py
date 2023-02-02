@@ -37,7 +37,7 @@ class VpnDnsRule(AdditionalDataHolder, Parsable):
         """
         Sets the autoTrigger property value. Automatically connect to the VPN when the device connects to this domain: Default False.
         Args:
-            value: Value to set for the autoTrigger property.
+            value: Value to set for the auto_trigger property.
         """
         self._auto_trigger = value
     
@@ -79,11 +79,11 @@ class VpnDnsRule(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "auto_trigger": lambda n : setattr(self, 'auto_trigger', n.get_bool_value()),
+            "autoTrigger": lambda n : setattr(self, 'auto_trigger', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "persistent": lambda n : setattr(self, 'persistent', n.get_bool_value()),
-            "proxy_server_uri": lambda n : setattr(self, 'proxy_server_uri', n.get_str_value()),
+            "proxyServerUri": lambda n : setattr(self, 'proxy_server_uri', n.get_str_value()),
             "servers": lambda n : setattr(self, 'servers', n.get_collection_of_primitive_values(str)),
         }
         return fields
@@ -118,7 +118,7 @@ class VpnDnsRule(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -152,7 +152,7 @@ class VpnDnsRule(AdditionalDataHolder, Parsable):
         """
         Sets the proxyServerUri property value. Proxy Server Uri.
         Args:
-            value: Value to set for the proxyServerUri property.
+            value: Value to set for the proxy_server_uri property.
         """
         self._proxy_server_uri = value
     

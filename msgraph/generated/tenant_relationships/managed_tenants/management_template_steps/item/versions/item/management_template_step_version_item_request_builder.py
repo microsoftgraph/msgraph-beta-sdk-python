@@ -17,10 +17,11 @@ class ManagementTemplateStepVersionItemRequestBuilder():
     """
     Provides operations to manage the versions property of the microsoft.graph.managedTenants.managementTemplateStep entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, management_template_step_version_id: Optional[str] = None) -> None:
         """
         Instantiates a new ManagementTemplateStepVersionItemRequestBuilder and sets the default values.
         Args:
+            managementTemplateStepVersionId: key: id of managementTemplateStepVersion
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class ManagementTemplateStepVersionItemRequestBuilder():
         self.url_template: str = "{+baseurl}/tenantRelationships/managedTenants/managementTemplateSteps/{managementTemplateStep%2Did}/versions/{managementTemplateStepVersion%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["managementTemplateStepVersion%2Did"] = managementTemplateStepVersionId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ManagementTemplateStepVersionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[management_template_step_version.ManagementTemplateStepVersion]:
+    async def get(self,request_configuration: Optional[ManagementTemplateStepVersionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[management_template_step_version.ManagementTemplateStepVersion]:
         """
         Get versions from tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_template_step_version.ManagementTemplateStepVersion]
         """
         request_info = self.to_get_request_information(
@@ -52,7 +53,7 @@ class ManagementTemplateStepVersionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, management_template_step_version.ManagementTemplateStepVersion, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, management_template_step_version.ManagementTemplateStepVersion, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ManagementTemplateStepVersionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

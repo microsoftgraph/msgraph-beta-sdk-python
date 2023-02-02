@@ -12,7 +12,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.runs.item.user_processing_results.count.count_request_builder')
-summary_with_start_date_time_with_end_date_time_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.runs.item.user_processing_results.summary_with_start_date_time_with_end_date_time.summary_with_start_date_time_with_end_date_time_request_builder')
+summary_with_start_date_time_with_end_date_time_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.runs.item.user_processing_results.microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time.summary_with_start_date_time_with_end_date_time_request_builder')
 user_processing_result_collection_response = lazy_import('msgraph.generated.models.identity_governance.user_processing_result_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -45,12 +45,11 @@ class UserProcessingResultsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserProcessingResultsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_processing_result_collection_response.UserProcessingResultCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserProcessingResultsRequestBuilderGetRequestConfiguration] = None) -> Optional[user_processing_result_collection_response.UserProcessingResultCollectionResponse]:
         """
         Get user processing results of a workflow run object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_processing_result_collection_response.UserProcessingResultCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -62,9 +61,9 @@ class UserProcessingResultsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_processing_result_collection_response.UserProcessingResultCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_processing_result_collection_response.UserProcessingResultCollectionResponse, error_mapping)
     
-    def summary_with_start_date_time_with_end_date_time(self,end_date_time: Optional[datetime] = None, start_date_time: Optional[datetime] = None) -> summary_with_start_date_time_with_end_date_time_request_builder.SummaryWithStartDateTimeWithEndDateTimeRequestBuilder:
+    def microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time(self,end_date_time: Optional[datetime] = None, start_date_time: Optional[datetime] = None) -> summary_with_start_date_time_with_end_date_time_request_builder.SummaryWithStartDateTimeWithEndDateTimeRequestBuilder:
         """
         Provides operations to call the summary method.
         Args:

@@ -44,7 +44,7 @@ class WindowsKioskDesktopApp(windows_kiosk_app_base.WindowsKioskAppBase):
         """
         Sets the desktopApplicationId property value. Define the DesktopApplicationID of the app
         Args:
-            value: Value to set for the desktopApplicationId property.
+            value: Value to set for the desktop_application_id property.
         """
         self._desktop_application_id = value
     
@@ -61,7 +61,7 @@ class WindowsKioskDesktopApp(windows_kiosk_app_base.WindowsKioskAppBase):
         """
         Sets the desktopApplicationLinkPath property value. Define the DesktopApplicationLinkPath of the app
         Args:
-            value: Value to set for the desktopApplicationLinkPath property.
+            value: Value to set for the desktop_application_link_path property.
         """
         self._desktop_application_link_path = value
     
@@ -71,8 +71,8 @@ class WindowsKioskDesktopApp(windows_kiosk_app_base.WindowsKioskAppBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "desktop_application_id": lambda n : setattr(self, 'desktop_application_id', n.get_str_value()),
-            "desktop_application_link_path": lambda n : setattr(self, 'desktop_application_link_path', n.get_str_value()),
+            "desktopApplicationId": lambda n : setattr(self, 'desktop_application_id', n.get_str_value()),
+            "desktopApplicationLinkPath": lambda n : setattr(self, 'desktop_application_link_path', n.get_str_value()),
             "path": lambda n : setattr(self, 'path', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

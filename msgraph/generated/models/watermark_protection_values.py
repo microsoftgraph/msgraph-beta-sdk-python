@@ -53,8 +53,8 @@ class WatermarkProtectionValues(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_enabled_for_content_sharing": lambda n : setattr(self, 'is_enabled_for_content_sharing', n.get_bool_value()),
-            "is_enabled_for_video": lambda n : setattr(self, 'is_enabled_for_video', n.get_bool_value()),
+            "isEnabledForContentSharing": lambda n : setattr(self, 'is_enabled_for_content_sharing', n.get_bool_value()),
+            "isEnabledForVideo": lambda n : setattr(self, 'is_enabled_for_video', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -72,7 +72,7 @@ class WatermarkProtectionValues(AdditionalDataHolder, Parsable):
         """
         Sets the isEnabledForContentSharing property value. The isEnabledForContentSharing property
         Args:
-            value: Value to set for the isEnabledForContentSharing property.
+            value: Value to set for the is_enabled_for_content_sharing property.
         """
         self._is_enabled_for_content_sharing = value
     
@@ -89,7 +89,7 @@ class WatermarkProtectionValues(AdditionalDataHolder, Parsable):
         """
         Sets the isEnabledForVideo property value. The isEnabledForVideo property
         Args:
-            value: Value to set for the isEnabledForVideo property.
+            value: Value to set for the is_enabled_for_video property.
         """
         self._is_enabled_for_video = value
     
@@ -106,7 +106,7 @@ class WatermarkProtectionValues(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

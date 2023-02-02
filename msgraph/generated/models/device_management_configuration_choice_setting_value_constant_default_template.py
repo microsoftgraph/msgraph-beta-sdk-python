@@ -54,7 +54,7 @@ class DeviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate(dev
         """
         fields = {
             "children": lambda n : setattr(self, 'children', n.get_collection_of_object_values(device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate)),
-            "setting_definition_option_id": lambda n : setattr(self, 'setting_definition_option_id', n.get_str_value()),
+            "settingDefinitionOptionId": lambda n : setattr(self, 'setting_definition_option_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -85,7 +85,7 @@ class DeviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate(dev
         """
         Sets the settingDefinitionOptionId property value. Default Constant Value
         Args:
-            value: Value to set for the settingDefinitionOptionId property.
+            value: Value to set for the setting_definition_option_id property.
         """
         self._setting_definition_option_id = value
     

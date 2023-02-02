@@ -17,10 +17,11 @@ class LicenseDetailsItemRequestBuilder():
     """
     Provides operations to manage the licenseDetails property of the microsoft.graph.user entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, license_details_id: Optional[str] = None) -> None:
         """
         Instantiates a new LicenseDetailsItemRequestBuilder and sets the default values.
         Args:
+            licenseDetailsId: key: id of licenseDetails
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class LicenseDetailsItemRequestBuilder():
         self.url_template: str = "{+baseurl}/me/licenseDetails/{licenseDetails%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["licenseDetails%2Did"] = licenseDetailsId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[LicenseDetailsItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[LicenseDetailsItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property licenseDetails for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class LicenseDetailsItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[LicenseDetailsItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[license_details.LicenseDetails]:
+    async def get(self,request_configuration: Optional[LicenseDetailsItemRequestBuilderGetRequestConfiguration] = None) -> Optional[license_details.LicenseDetails]:
         """
         Get licenseDetails from me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[license_details.LicenseDetails]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class LicenseDetailsItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, license_details.LicenseDetails, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, license_details.LicenseDetails, error_mapping)
     
-    async def patch(self,body: Optional[license_details.LicenseDetails] = None, request_configuration: Optional[LicenseDetailsItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[license_details.LicenseDetails]:
+    async def patch(self,body: Optional[license_details.LicenseDetails] = None, request_configuration: Optional[LicenseDetailsItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[license_details.LicenseDetails]:
         """
         Update the navigation property licenseDetails in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[license_details.LicenseDetails]
         """
         if body is None:
@@ -92,7 +91,7 @@ class LicenseDetailsItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, license_details.LicenseDetails, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, license_details.LicenseDetails, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[LicenseDetailsItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

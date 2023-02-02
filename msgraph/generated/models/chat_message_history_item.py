@@ -77,7 +77,7 @@ class ChatMessageHistoryItem(AdditionalDataHolder, Parsable):
         """
         fields = {
             "actions": lambda n : setattr(self, 'actions', n.get_enum_value(chat_message_actions.ChatMessageActions)),
-            "modified_date_time": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
+            "modifiedDateTime": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "reaction": lambda n : setattr(self, 'reaction', n.get_object_value(chat_message_reaction.ChatMessageReaction)),
         }
@@ -96,7 +96,7 @@ class ChatMessageHistoryItem(AdditionalDataHolder, Parsable):
         """
         Sets the modifiedDateTime property value. The date and time when the message was modified.
         Args:
-            value: Value to set for the modifiedDateTime property.
+            value: Value to set for the modified_date_time property.
         """
         self._modified_date_time = value
     
@@ -113,7 +113,7 @@ class ChatMessageHistoryItem(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

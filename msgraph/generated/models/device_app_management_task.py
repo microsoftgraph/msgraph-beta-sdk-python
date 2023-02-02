@@ -10,9 +10,6 @@ device_app_management_task_status = lazy_import('msgraph.generated.models.device
 entity = lazy_import('msgraph.generated.models.entity')
 
 class DeviceAppManagementTask(entity.Entity):
-    """
-    A device app management task.
-    """
     @property
     def assigned_to(self,) -> Optional[str]:
         """
@@ -26,7 +23,7 @@ class DeviceAppManagementTask(entity.Entity):
         """
         Sets the assignedTo property value. The name or email of the admin this task is assigned to.
         Args:
-            value: Value to set for the assignedTo property.
+            value: Value to set for the assigned_to property.
         """
         self._assigned_to = value
     
@@ -49,7 +46,7 @@ class DeviceAppManagementTask(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceAppManagementTask and sets the default values.
+        Instantiates a new DeviceAppManagementTask and sets the default values.
         """
         super().__init__()
         # The name or email of the admin this task is assigned to.
@@ -88,7 +85,7 @@ class DeviceAppManagementTask(entity.Entity):
         """
         Sets the createdDateTime property value. The created date.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -134,7 +131,7 @@ class DeviceAppManagementTask(entity.Entity):
         """
         Sets the creatorNotes property value. Notes from the creator.
         Args:
-            value: Value to set for the creatorNotes property.
+            value: Value to set for the creator_notes property.
         """
         self._creator_notes = value
     
@@ -168,7 +165,7 @@ class DeviceAppManagementTask(entity.Entity):
         """
         Sets the displayName property value. The name.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -185,7 +182,7 @@ class DeviceAppManagementTask(entity.Entity):
         """
         Sets the dueDateTime property value. The due date.
         Args:
-            value: Value to set for the dueDateTime property.
+            value: Value to set for the due_date_time property.
         """
         self._due_date_time = value
     
@@ -195,14 +192,14 @@ class DeviceAppManagementTask(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assigned_to": lambda n : setattr(self, 'assigned_to', n.get_str_value()),
+            "assignedTo": lambda n : setattr(self, 'assigned_to', n.get_str_value()),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(device_app_management_task_category.DeviceAppManagementTaskCategory)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "creator": lambda n : setattr(self, 'creator', n.get_str_value()),
-            "creator_notes": lambda n : setattr(self, 'creator_notes', n.get_str_value()),
+            "creatorNotes": lambda n : setattr(self, 'creator_notes', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "due_date_time": lambda n : setattr(self, 'due_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "dueDateTime": lambda n : setattr(self, 'due_date_time', n.get_datetime_value()),
             "priority": lambda n : setattr(self, 'priority', n.get_enum_value(device_app_management_task_priority.DeviceAppManagementTaskPriority)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(device_app_management_task_status.DeviceAppManagementTaskStatus)),
         }

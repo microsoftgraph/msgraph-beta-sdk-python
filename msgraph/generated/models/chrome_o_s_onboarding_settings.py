@@ -8,12 +8,9 @@ entity = lazy_import('msgraph.generated.models.entity')
 onboarding_status = lazy_import('msgraph.generated.models.onboarding_status')
 
 class ChromeOSOnboardingSettings(entity.Entity):
-    """
-    Entity that represents a Chromebook tenant settings
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new chromeOSOnboardingSettings and sets the default values.
+        Instantiates a new ChromeOSOnboardingSettings and sets the default values.
         """
         super().__init__()
         # The ChromebookTenant's LastDirectorySyncDateTime
@@ -45,10 +42,10 @@ class ChromeOSOnboardingSettings(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "last_directory_sync_date_time": lambda n : setattr(self, 'last_directory_sync_date_time', n.get_datetime_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "onboarding_status": lambda n : setattr(self, 'onboarding_status', n.get_enum_value(onboarding_status.OnboardingStatus)),
-            "owner_user_principal_name": lambda n : setattr(self, 'owner_user_principal_name', n.get_str_value()),
+            "lastDirectorySyncDateTime": lambda n : setattr(self, 'last_directory_sync_date_time', n.get_datetime_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "onboardingStatus": lambda n : setattr(self, 'onboarding_status', n.get_enum_value(onboarding_status.OnboardingStatus)),
+            "ownerUserPrincipalName": lambda n : setattr(self, 'owner_user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -67,7 +64,7 @@ class ChromeOSOnboardingSettings(entity.Entity):
         """
         Sets the lastDirectorySyncDateTime property value. The ChromebookTenant's LastDirectorySyncDateTime
         Args:
-            value: Value to set for the lastDirectorySyncDateTime property.
+            value: Value to set for the last_directory_sync_date_time property.
         """
         self._last_directory_sync_date_time = value
     
@@ -84,7 +81,7 @@ class ChromeOSOnboardingSettings(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The ChromebookTenant's LastModifiedDateTime
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -101,7 +98,7 @@ class ChromeOSOnboardingSettings(entity.Entity):
         """
         Sets the onboardingStatus property value. The onboarding status of the tenant.
         Args:
-            value: Value to set for the onboardingStatus property.
+            value: Value to set for the onboarding_status property.
         """
         self._onboarding_status = value
     
@@ -118,7 +115,7 @@ class ChromeOSOnboardingSettings(entity.Entity):
         """
         Sets the ownerUserPrincipalName property value. The ChromebookTenant's OwnerUserPrincipalName
         Args:
-            value: Value to set for the ownerUserPrincipalName property.
+            value: Value to set for the owner_user_principal_name property.
         """
         self._owner_user_principal_name = value
     

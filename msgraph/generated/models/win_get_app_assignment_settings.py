@@ -40,9 +40,9 @@ class WinGetAppAssignmentSettings(mobile_app_assignment_settings.MobileAppAssign
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "install_time_settings": lambda n : setattr(self, 'install_time_settings', n.get_object_value(win_get_app_install_time_settings.WinGetAppInstallTimeSettings)),
+            "installTimeSettings": lambda n : setattr(self, 'install_time_settings', n.get_object_value(win_get_app_install_time_settings.WinGetAppInstallTimeSettings)),
             "notifications": lambda n : setattr(self, 'notifications', n.get_enum_value(win_get_app_notification.WinGetAppNotification)),
-            "restart_settings": lambda n : setattr(self, 'restart_settings', n.get_object_value(win_get_app_restart_settings.WinGetAppRestartSettings)),
+            "restartSettings": lambda n : setattr(self, 'restart_settings', n.get_object_value(win_get_app_restart_settings.WinGetAppRestartSettings)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -61,7 +61,7 @@ class WinGetAppAssignmentSettings(mobile_app_assignment_settings.MobileAppAssign
         """
         Sets the installTimeSettings property value. The install time settings to apply for this app assignment.
         Args:
-            value: Value to set for the installTimeSettings property.
+            value: Value to set for the install_time_settings property.
         """
         self._install_time_settings = value
     
@@ -95,7 +95,7 @@ class WinGetAppAssignmentSettings(mobile_app_assignment_settings.MobileAppAssign
         """
         Sets the restartSettings property value. The reboot settings to apply for this app assignment.
         Args:
-            value: Value to set for the restartSettings property.
+            value: Value to set for the restart_settings property.
         """
         self._restart_settings = value
     

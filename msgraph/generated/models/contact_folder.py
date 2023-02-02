@@ -10,29 +10,29 @@ single_value_legacy_extended_property = lazy_import('msgraph.generated.models.si
 
 class ContactFolder(entity.Entity):
     @property
-    def child_folders(self,) -> Optional[List[ContactFolder]]:
+    def child_folders(self,) -> Optional[List[contact_folder.ContactFolder]]:
         """
         Gets the childFolders property value. The collection of child folders in the folder. Navigation property. Read-only. Nullable.
-        Returns: Optional[List[ContactFolder]]
+        Returns: Optional[List[contact_folder.ContactFolder]]
         """
         return self._child_folders
     
     @child_folders.setter
-    def child_folders(self,value: Optional[List[ContactFolder]] = None) -> None:
+    def child_folders(self,value: Optional[List[contact_folder.ContactFolder]] = None) -> None:
         """
         Sets the childFolders property value. The collection of child folders in the folder. Navigation property. Read-only. Nullable.
         Args:
-            value: Value to set for the childFolders property.
+            value: Value to set for the child_folders property.
         """
         self._child_folders = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new contactFolder and sets the default values.
+        Instantiates a new ContactFolder and sets the default values.
         """
         super().__init__()
         # The collection of child folders in the folder. Navigation property. Read-only. Nullable.
-        self._child_folders: Optional[List[ContactFolder]] = None
+        self._child_folders: Optional[List[contact_folder.ContactFolder]] = None
         # The contacts in the folder. Navigation property. Read-only. Nullable.
         self._contacts: Optional[List[contact.Contact]] = None
         # The folder's display name.
@@ -90,7 +90,7 @@ class ContactFolder(entity.Entity):
         """
         Sets the displayName property value. The folder's display name.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -100,13 +100,13 @@ class ContactFolder(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "child_folders": lambda n : setattr(self, 'child_folders', n.get_collection_of_object_values(ContactFolder)),
+            "childFolders": lambda n : setattr(self, 'child_folders', n.get_collection_of_object_values(contact_folder.ContactFolder)),
             "contacts": lambda n : setattr(self, 'contacts', n.get_collection_of_object_values(contact.Contact)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "multi_value_extended_properties": lambda n : setattr(self, 'multi_value_extended_properties', n.get_collection_of_object_values(multi_value_legacy_extended_property.MultiValueLegacyExtendedProperty)),
-            "parent_folder_id": lambda n : setattr(self, 'parent_folder_id', n.get_str_value()),
-            "single_value_extended_properties": lambda n : setattr(self, 'single_value_extended_properties', n.get_collection_of_object_values(single_value_legacy_extended_property.SingleValueLegacyExtendedProperty)),
-            "well_known_name": lambda n : setattr(self, 'well_known_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "multiValueExtendedProperties": lambda n : setattr(self, 'multi_value_extended_properties', n.get_collection_of_object_values(multi_value_legacy_extended_property.MultiValueLegacyExtendedProperty)),
+            "parentFolderId": lambda n : setattr(self, 'parent_folder_id', n.get_str_value()),
+            "singleValueExtendedProperties": lambda n : setattr(self, 'single_value_extended_properties', n.get_collection_of_object_values(single_value_legacy_extended_property.SingleValueLegacyExtendedProperty)),
+            "wellKnownName": lambda n : setattr(self, 'well_known_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -125,7 +125,7 @@ class ContactFolder(entity.Entity):
         """
         Sets the multiValueExtendedProperties property value. The collection of multi-value extended properties defined for the contactFolder. Read-only. Nullable.
         Args:
-            value: Value to set for the multiValueExtendedProperties property.
+            value: Value to set for the multi_value_extended_properties property.
         """
         self._multi_value_extended_properties = value
     
@@ -142,7 +142,7 @@ class ContactFolder(entity.Entity):
         """
         Sets the parentFolderId property value. The ID of the folder's parent folder.
         Args:
-            value: Value to set for the parentFolderId property.
+            value: Value to set for the parent_folder_id property.
         """
         self._parent_folder_id = value
     
@@ -176,7 +176,7 @@ class ContactFolder(entity.Entity):
         """
         Sets the singleValueExtendedProperties property value. The collection of single-value extended properties defined for the contactFolder. Read-only. Nullable.
         Args:
-            value: Value to set for the singleValueExtendedProperties property.
+            value: Value to set for the single_value_extended_properties property.
         """
         self._single_value_extended_properties = value
     
@@ -193,7 +193,7 @@ class ContactFolder(entity.Entity):
         """
         Sets the wellKnownName property value. The name of the folder if the folder is a recognized folder. Currently contacts is the only recognized contacts folder.
         Args:
-            value: Value to set for the wellKnownName property.
+            value: Value to set for the well_known_name property.
         """
         self._well_known_name = value
     

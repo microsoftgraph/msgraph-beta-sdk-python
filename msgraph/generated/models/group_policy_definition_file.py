@@ -96,7 +96,7 @@ class GroupPolicyDefinitionFile(entity.Entity):
         """
         Sets the displayName property value. The localized friendly name of the ADMX file.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -113,7 +113,7 @@ class GroupPolicyDefinitionFile(entity.Entity):
         """
         Sets the fileName property value. The file name of the ADMX file without the path. For example: edge.admx
         Args:
-            value: Value to set for the fileName property.
+            value: Value to set for the file_name property.
         """
         self._file_name = value
     
@@ -125,14 +125,14 @@ class GroupPolicyDefinitionFile(entity.Entity):
         fields = {
             "definitions": lambda n : setattr(self, 'definitions', n.get_collection_of_object_values(group_policy_definition.GroupPolicyDefinition)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "file_name": lambda n : setattr(self, 'file_name', n.get_str_value()),
-            "language_codes": lambda n : setattr(self, 'language_codes', n.get_collection_of_primitive_values(str)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "policy_type": lambda n : setattr(self, 'policy_type', n.get_enum_value(group_policy_type.GroupPolicyType)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "fileName": lambda n : setattr(self, 'file_name', n.get_str_value()),
+            "languageCodes": lambda n : setattr(self, 'language_codes', n.get_collection_of_primitive_values(str)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "policyType": lambda n : setattr(self, 'policy_type', n.get_enum_value(group_policy_type.GroupPolicyType)),
             "revision": lambda n : setattr(self, 'revision', n.get_str_value()),
-            "target_namespace": lambda n : setattr(self, 'target_namespace', n.get_str_value()),
-            "target_prefix": lambda n : setattr(self, 'target_prefix', n.get_str_value()),
+            "targetNamespace": lambda n : setattr(self, 'target_namespace', n.get_str_value()),
+            "targetPrefix": lambda n : setattr(self, 'target_prefix', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -151,7 +151,7 @@ class GroupPolicyDefinitionFile(entity.Entity):
         """
         Sets the languageCodes property value. The supported language codes for the ADMX file.
         Args:
-            value: Value to set for the languageCodes property.
+            value: Value to set for the language_codes property.
         """
         self._language_codes = value
     
@@ -168,7 +168,7 @@ class GroupPolicyDefinitionFile(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date and time the entity was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -185,7 +185,7 @@ class GroupPolicyDefinitionFile(entity.Entity):
         """
         Sets the policyType property value. Type of Group Policy File or Definition.
         Args:
-            value: Value to set for the policyType property.
+            value: Value to set for the policy_type property.
         """
         self._policy_type = value
     
@@ -239,7 +239,7 @@ class GroupPolicyDefinitionFile(entity.Entity):
         """
         Sets the targetNamespace property value. Specifies the URI used to identify the namespace within the ADMX file.
         Args:
-            value: Value to set for the targetNamespace property.
+            value: Value to set for the target_namespace property.
         """
         self._target_namespace = value
     
@@ -256,7 +256,7 @@ class GroupPolicyDefinitionFile(entity.Entity):
         """
         Sets the targetPrefix property value. Specifies the logical name that refers to the namespace within the ADMX file.
         Args:
-            value: Value to set for the targetPrefix property.
+            value: Value to set for the target_prefix property.
         """
         self._target_prefix = value
     

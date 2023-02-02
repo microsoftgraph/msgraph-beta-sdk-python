@@ -15,7 +15,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 class EducationSynchronizationProfile(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new educationSynchronizationProfile and sets the default values.
+        Instantiates a new EducationSynchronizationProfile and sets the default values.
         """
         super().__init__()
         # The dataProvider property
@@ -64,7 +64,7 @@ class EducationSynchronizationProfile(entity.Entity):
         """
         Sets the dataProvider property value. The dataProvider property
         Args:
-            value: Value to set for the dataProvider property.
+            value: Value to set for the data_provider property.
         """
         self._data_provider = value
     
@@ -81,7 +81,7 @@ class EducationSynchronizationProfile(entity.Entity):
         """
         Sets the displayName property value. Name of the configuration profile for syncing identities.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -115,7 +115,7 @@ class EducationSynchronizationProfile(entity.Entity):
         """
         Sets the expirationDate property value. The date the profile should be considered expired and cease syncing. Provide the date in YYYY-MM-DD format, following ISO 8601. Maximum value is 18 months from profile creation.  (optional)
         Args:
-            value: Value to set for the expirationDate property.
+            value: Value to set for the expiration_date property.
         """
         self._expiration_date = value
     
@@ -125,14 +125,14 @@ class EducationSynchronizationProfile(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "data_provider": lambda n : setattr(self, 'data_provider', n.get_object_value(education_synchronization_data_provider.EducationSynchronizationDataProvider)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "dataProvider": lambda n : setattr(self, 'data_provider', n.get_object_value(education_synchronization_data_provider.EducationSynchronizationDataProvider)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "errors": lambda n : setattr(self, 'errors', n.get_collection_of_object_values(education_synchronization_error.EducationSynchronizationError)),
-            "expiration_date": lambda n : setattr(self, 'expiration_date', n.get_object_value(Date)),
-            "handle_special_character_constraint": lambda n : setattr(self, 'handle_special_character_constraint', n.get_bool_value()),
-            "identity_synchronization_configuration": lambda n : setattr(self, 'identity_synchronization_configuration', n.get_object_value(education_identity_synchronization_configuration.EducationIdentitySynchronizationConfiguration)),
-            "licenses_to_assign": lambda n : setattr(self, 'licenses_to_assign', n.get_collection_of_object_values(education_synchronization_license_assignment.EducationSynchronizationLicenseAssignment)),
-            "profile_status": lambda n : setattr(self, 'profile_status', n.get_object_value(education_synchronization_profile_status.EducationSynchronizationProfileStatus)),
+            "expirationDate": lambda n : setattr(self, 'expiration_date', n.get_object_value(Date)),
+            "handleSpecialCharacterConstraint": lambda n : setattr(self, 'handle_special_character_constraint', n.get_bool_value()),
+            "identitySynchronizationConfiguration": lambda n : setattr(self, 'identity_synchronization_configuration', n.get_object_value(education_identity_synchronization_configuration.EducationIdentitySynchronizationConfiguration)),
+            "licensesToAssign": lambda n : setattr(self, 'licenses_to_assign', n.get_collection_of_object_values(education_synchronization_license_assignment.EducationSynchronizationLicenseAssignment)),
+            "profileStatus": lambda n : setattr(self, 'profile_status', n.get_object_value(education_synchronization_profile_status.EducationSynchronizationProfileStatus)),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(education_synchronization_profile_state.EducationSynchronizationProfileState)),
         }
         super_fields = super().get_field_deserializers()
@@ -152,7 +152,7 @@ class EducationSynchronizationProfile(entity.Entity):
         """
         Sets the handleSpecialCharacterConstraint property value. Determines if School Data Sync should automatically replace unsupported special characters while syncing from source.
         Args:
-            value: Value to set for the handleSpecialCharacterConstraint property.
+            value: Value to set for the handle_special_character_constraint property.
         """
         self._handle_special_character_constraint = value
     
@@ -169,7 +169,7 @@ class EducationSynchronizationProfile(entity.Entity):
         """
         Sets the identitySynchronizationConfiguration property value. The identitySynchronizationConfiguration property
         Args:
-            value: Value to set for the identitySynchronizationConfiguration property.
+            value: Value to set for the identity_synchronization_configuration property.
         """
         self._identity_synchronization_configuration = value
     
@@ -186,7 +186,7 @@ class EducationSynchronizationProfile(entity.Entity):
         """
         Sets the licensesToAssign property value. License setup configuration.
         Args:
-            value: Value to set for the licensesToAssign property.
+            value: Value to set for the licenses_to_assign property.
         """
         self._licenses_to_assign = value
     
@@ -203,7 +203,7 @@ class EducationSynchronizationProfile(entity.Entity):
         """
         Sets the profileStatus property value. The synchronization status.
         Args:
-            value: Value to set for the profileStatus property.
+            value: Value to set for the profile_status property.
         """
         self._profile_status = value
     

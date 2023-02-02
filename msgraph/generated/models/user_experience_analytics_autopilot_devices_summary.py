@@ -65,7 +65,7 @@ class UserExperienceAnalyticsAutopilotDevicesSummary(AdditionalDataHolder, Parsa
         """
         Sets the devicesNotAutopilotRegistered property value. The count of intune devices that are not autopilot registerd.
         Args:
-            value: Value to set for the devicesNotAutopilotRegistered property.
+            value: Value to set for the devices_not_autopilot_registered property.
         """
         self._devices_not_autopilot_registered = value
     
@@ -82,7 +82,7 @@ class UserExperienceAnalyticsAutopilotDevicesSummary(AdditionalDataHolder, Parsa
         """
         Sets the devicesWithoutAutopilotProfileAssigned property value. The count of intune devices not autopilot profile assigned.
         Args:
-            value: Value to set for the devicesWithoutAutopilotProfileAssigned property.
+            value: Value to set for the devices_without_autopilot_profile_assigned property.
         """
         self._devices_without_autopilot_profile_assigned = value
     
@@ -92,10 +92,10 @@ class UserExperienceAnalyticsAutopilotDevicesSummary(AdditionalDataHolder, Parsa
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "devices_not_autopilot_registered": lambda n : setattr(self, 'devices_not_autopilot_registered', n.get_int_value()),
-            "devices_without_autopilot_profile_assigned": lambda n : setattr(self, 'devices_without_autopilot_profile_assigned', n.get_int_value()),
+            "devicesNotAutopilotRegistered": lambda n : setattr(self, 'devices_not_autopilot_registered', n.get_int_value()),
+            "devicesWithoutAutopilotProfileAssigned": lambda n : setattr(self, 'devices_without_autopilot_profile_assigned', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "total_windows10_devices_without_tenant_attached": lambda n : setattr(self, 'total_windows10_devices_without_tenant_attached', n.get_int_value()),
+            "totalWindows10DevicesWithoutTenantAttached": lambda n : setattr(self, 'total_windows10_devices_without_tenant_attached', n.get_int_value()),
         }
         return fields
     
@@ -112,7 +112,7 @@ class UserExperienceAnalyticsAutopilotDevicesSummary(AdditionalDataHolder, Parsa
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -143,7 +143,7 @@ class UserExperienceAnalyticsAutopilotDevicesSummary(AdditionalDataHolder, Parsa
         """
         Sets the totalWindows10DevicesWithoutTenantAttached property value. The count of windows 10 devices that are Intune and Comanaged.
         Args:
-            value: Value to set for the totalWindows10DevicesWithoutTenantAttached property.
+            value: Value to set for the total_windows10_devices_without_tenant_attached property.
         """
         self._total_windows10_devices_without_tenant_attached = value
     

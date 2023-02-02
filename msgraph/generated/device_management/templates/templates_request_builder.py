@@ -11,7 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.device_management.templates.count.count_request_builder')
-import_office365_device_configuration_policies_request_builder = lazy_import('msgraph.generated.device_management.templates.import_office365_device_configuration_policies.import_office365_device_configuration_policies_request_builder')
+import_office365_device_configuration_policies_request_builder = lazy_import('msgraph.generated.device_management.templates.microsoft_graph_import_office365_device_configuration_policies.import_office365_device_configuration_policies_request_builder')
 device_management_template = lazy_import('msgraph.generated.models.device_management_template')
 device_management_template_collection_response = lazy_import('msgraph.generated.models.device_management_template_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -28,7 +28,7 @@ class TemplatesRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def import_office365_device_configuration_policies(self) -> import_office365_device_configuration_policies_request_builder.ImportOffice365DeviceConfigurationPoliciesRequestBuilder:
+    def microsoft_graph_import_office365_device_configuration_policies(self) -> import_office365_device_configuration_policies_request_builder.ImportOffice365DeviceConfigurationPoliciesRequestBuilder:
         """
         Provides operations to call the importOffice365DeviceConfigurationPolicies method.
         """
@@ -52,12 +52,11 @@ class TemplatesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[TemplatesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_template_collection_response.DeviceManagementTemplateCollectionResponse]:
+    async def get(self,request_configuration: Optional[TemplatesRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_template_collection_response.DeviceManagementTemplateCollectionResponse]:
         """
         The available templates
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_template_collection_response.DeviceManagementTemplateCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class TemplatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_template_collection_response.DeviceManagementTemplateCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_template_collection_response.DeviceManagementTemplateCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[device_management_template.DeviceManagementTemplate] = None, request_configuration: Optional[TemplatesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_template.DeviceManagementTemplate]:
+    async def post(self,body: Optional[device_management_template.DeviceManagementTemplate] = None, request_configuration: Optional[TemplatesRequestBuilderPostRequestConfiguration] = None) -> Optional[device_management_template.DeviceManagementTemplate]:
         """
         Create new navigation property to templates for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_template.DeviceManagementTemplate]
         """
         if body is None:
@@ -91,7 +89,7 @@ class TemplatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_template.DeviceManagementTemplate, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_template.DeviceManagementTemplate, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TemplatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -10,7 +10,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 class JobResponseBase(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new jobResponseBase and sets the default values.
+        Instantiates a new JobResponseBase and sets the default values.
         """
         super().__init__()
         # The creationDateTime property
@@ -55,7 +55,7 @@ class JobResponseBase(entity.Entity):
         """
         Sets the creationDateTime property value. The creationDateTime property
         Args:
-            value: Value to set for the creationDateTime property.
+            value: Value to set for the creation_date_time property.
         """
         self._creation_date_time = value
     
@@ -72,7 +72,7 @@ class JobResponseBase(entity.Entity):
         """
         Sets the endDateTime property value. The endDateTime property
         Args:
-            value: Value to set for the endDateTime property.
+            value: Value to set for the end_date_time property.
         """
         self._end_date_time = value
     
@@ -99,12 +99,12 @@ class JobResponseBase(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "creation_date_time": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
-            "end_date_time": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
+            "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
+            "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
             "error": lambda n : setattr(self, 'error', n.get_object_value(classification_error.ClassificationError)),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -141,7 +141,7 @@ class JobResponseBase(entity.Entity):
         """
         Sets the startDateTime property value. The startDateTime property
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     
@@ -175,7 +175,7 @@ class JobResponseBase(entity.Entity):
         """
         Sets the tenantId property value. The tenantId property
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     

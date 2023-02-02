@@ -44,7 +44,7 @@ class DeviceManagementConfigurationChoiceSettingDefinition(device_management_con
         """
         Sets the defaultOptionId property value. Default option for choice setting
         Args:
-            value: Value to set for the defaultOptionId property.
+            value: Value to set for the default_option_id property.
         """
         self._default_option_id = value
     
@@ -54,7 +54,7 @@ class DeviceManagementConfigurationChoiceSettingDefinition(device_management_con
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_option_id": lambda n : setattr(self, 'default_option_id', n.get_str_value()),
+            "defaultOptionId": lambda n : setattr(self, 'default_option_id', n.get_str_value()),
             "options": lambda n : setattr(self, 'options', n.get_collection_of_object_values(device_management_configuration_option_definition.DeviceManagementConfigurationOptionDefinition)),
         }
         super_fields = super().get_field_deserializers()

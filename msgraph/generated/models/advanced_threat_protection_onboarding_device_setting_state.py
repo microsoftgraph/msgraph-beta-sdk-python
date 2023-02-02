@@ -25,7 +25,7 @@ class AdvancedThreatProtectionOnboardingDeviceSettingState(entity.Entity):
         """
         Sets the complianceGracePeriodExpirationDateTime property value. The DateTime when device compliance grace period expires
         Args:
-            value: Value to set for the complianceGracePeriodExpirationDateTime property.
+            value: Value to set for the compliance_grace_period_expiration_date_time property.
         """
         self._compliance_grace_period_expiration_date_time = value
     
@@ -86,7 +86,7 @@ class AdvancedThreatProtectionOnboardingDeviceSettingState(entity.Entity):
         """
         Sets the deviceId property value. The Device Id that is being reported
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -103,7 +103,7 @@ class AdvancedThreatProtectionOnboardingDeviceSettingState(entity.Entity):
         """
         Sets the deviceModel property value. The device model that is being reported
         Args:
-            value: Value to set for the deviceModel property.
+            value: Value to set for the device_model property.
         """
         self._device_model = value
     
@@ -120,7 +120,7 @@ class AdvancedThreatProtectionOnboardingDeviceSettingState(entity.Entity):
         """
         Sets the deviceName property value. The Device Name that is being reported
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -130,18 +130,18 @@ class AdvancedThreatProtectionOnboardingDeviceSettingState(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "compliance_grace_period_expiration_date_time": lambda n : setattr(self, 'compliance_grace_period_expiration_date_time', n.get_datetime_value()),
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "device_model": lambda n : setattr(self, 'device_model', n.get_str_value()),
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
-            "platform_type": lambda n : setattr(self, 'platform_type', n.get_enum_value(device_type.DeviceType)),
+            "complianceGracePeriodExpirationDateTime": lambda n : setattr(self, 'compliance_grace_period_expiration_date_time', n.get_datetime_value()),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "deviceModel": lambda n : setattr(self, 'device_model', n.get_str_value()),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "platformType": lambda n : setattr(self, 'platform_type', n.get_enum_value(device_type.DeviceType)),
             "setting": lambda n : setattr(self, 'setting', n.get_str_value()),
-            "setting_name": lambda n : setattr(self, 'setting_name', n.get_str_value()),
+            "settingName": lambda n : setattr(self, 'setting_name', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(compliance_status.ComplianceStatus)),
-            "user_email": lambda n : setattr(self, 'user_email', n.get_str_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
-            "user_name": lambda n : setattr(self, 'user_name', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "userEmail": lambda n : setattr(self, 'user_email', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userName": lambda n : setattr(self, 'user_name', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -160,7 +160,7 @@ class AdvancedThreatProtectionOnboardingDeviceSettingState(entity.Entity):
         """
         Sets the platformType property value. Device type.
         Args:
-            value: Value to set for the platformType property.
+            value: Value to set for the platform_type property.
         """
         self._platform_type = value
     
@@ -216,7 +216,7 @@ class AdvancedThreatProtectionOnboardingDeviceSettingState(entity.Entity):
         """
         Sets the settingName property value. The Setting Name that is being reported
         Args:
-            value: Value to set for the settingName property.
+            value: Value to set for the setting_name property.
         """
         self._setting_name = value
     
@@ -250,7 +250,7 @@ class AdvancedThreatProtectionOnboardingDeviceSettingState(entity.Entity):
         """
         Sets the userEmail property value. The User email address that is being reported
         Args:
-            value: Value to set for the userEmail property.
+            value: Value to set for the user_email property.
         """
         self._user_email = value
     
@@ -267,7 +267,7 @@ class AdvancedThreatProtectionOnboardingDeviceSettingState(entity.Entity):
         """
         Sets the userId property value. The user Id that is being reported
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     
@@ -284,7 +284,7 @@ class AdvancedThreatProtectionOnboardingDeviceSettingState(entity.Entity):
         """
         Sets the userName property value. The User Name that is being reported
         Args:
-            value: Value to set for the userName property.
+            value: Value to set for the user_name property.
         """
         self._user_name = value
     
@@ -301,7 +301,7 @@ class AdvancedThreatProtectionOnboardingDeviceSettingState(entity.Entity):
         """
         Sets the userPrincipalName property value. The User PrincipalName that is being reported
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

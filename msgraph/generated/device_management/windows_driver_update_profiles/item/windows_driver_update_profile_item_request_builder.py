@@ -10,13 +10,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-assign_request_builder = lazy_import('msgraph.generated.device_management.windows_driver_update_profiles.item.assign.assign_request_builder')
 assignments_request_builder = lazy_import('msgraph.generated.device_management.windows_driver_update_profiles.item.assignments.assignments_request_builder')
 windows_driver_update_profile_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.windows_driver_update_profiles.item.assignments.item.windows_driver_update_profile_assignment_item_request_builder')
 driver_inventories_request_builder = lazy_import('msgraph.generated.device_management.windows_driver_update_profiles.item.driver_inventories.driver_inventories_request_builder')
 windows_driver_update_inventory_item_request_builder = lazy_import('msgraph.generated.device_management.windows_driver_update_profiles.item.driver_inventories.item.windows_driver_update_inventory_item_request_builder')
-execute_action_request_builder = lazy_import('msgraph.generated.device_management.windows_driver_update_profiles.item.execute_action.execute_action_request_builder')
-sync_inventory_request_builder = lazy_import('msgraph.generated.device_management.windows_driver_update_profiles.item.sync_inventory.sync_inventory_request_builder')
+assign_request_builder = lazy_import('msgraph.generated.device_management.windows_driver_update_profiles.item.microsoft_graph_assign.assign_request_builder')
+execute_action_request_builder = lazy_import('msgraph.generated.device_management.windows_driver_update_profiles.item.microsoft_graph_execute_action.execute_action_request_builder')
+sync_inventory_request_builder = lazy_import('msgraph.generated.device_management.windows_driver_update_profiles.item.microsoft_graph_sync_inventory.sync_inventory_request_builder')
 windows_driver_update_profile = lazy_import('msgraph.generated.models.windows_driver_update_profile')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -24,13 +24,6 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
     """
     Provides operations to manage the windowsDriverUpdateProfiles property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
-        """
-        Provides operations to call the assign method.
-        """
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
@@ -46,14 +39,21 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
         return driver_inventories_request_builder.DriverInventoriesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def execute_action(self) -> execute_action_request_builder.ExecuteActionRequestBuilder:
+    def microsoft_graph_assign(self) -> assign_request_builder.AssignRequestBuilder:
+        """
+        Provides operations to call the assign method.
+        """
+        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_execute_action(self) -> execute_action_request_builder.ExecuteActionRequestBuilder:
         """
         Provides operations to call the executeAction method.
         """
         return execute_action_request_builder.ExecuteActionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sync_inventory(self) -> sync_inventory_request_builder.SyncInventoryRequestBuilder:
+    def microsoft_graph_sync_inventory(self) -> sync_inventory_request_builder.SyncInventoryRequestBuilder:
         """
         Provides operations to call the syncInventory method.
         """
@@ -72,12 +72,13 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
         url_tpl_params["windowsDriverUpdateProfileAssignment%2Did"] = id
         return windows_driver_update_profile_assignment_item_request_builder.WindowsDriverUpdateProfileAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, windows_driver_update_profile_id: Optional[str] = None) -> None:
         """
         Instantiates a new WindowsDriverUpdateProfileItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            windowsDriverUpdateProfileId: key: id of windowsDriverUpdateProfile
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -87,15 +88,15 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceManagement/windowsDriverUpdateProfiles/{windowsDriverUpdateProfile%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["windowsDriverUpdateProfile%2Did"] = windowsDriverUpdateProfileId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property windowsDriverUpdateProfiles for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -106,7 +107,7 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def driver_inventories_by_id(self,id: str) -> windows_driver_update_inventory_item_request_builder.WindowsDriverUpdateInventoryItemRequestBuilder:
         """
@@ -121,12 +122,11 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
         url_tpl_params["windowsDriverUpdateInventory%2Did"] = id
         return windows_driver_update_inventory_item_request_builder.WindowsDriverUpdateInventoryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_driver_update_profile.WindowsDriverUpdateProfile]:
+    async def get(self,request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_driver_update_profile.WindowsDriverUpdateProfile]:
         """
         A collection of windows driver update profiles
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_driver_update_profile.WindowsDriverUpdateProfile]
         """
         request_info = self.to_get_request_information(
@@ -138,15 +138,14 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_driver_update_profile.WindowsDriverUpdateProfile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_driver_update_profile.WindowsDriverUpdateProfile, error_mapping)
     
-    async def patch(self,body: Optional[windows_driver_update_profile.WindowsDriverUpdateProfile] = None, request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_driver_update_profile.WindowsDriverUpdateProfile]:
+    async def patch(self,body: Optional[windows_driver_update_profile.WindowsDriverUpdateProfile] = None, request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[windows_driver_update_profile.WindowsDriverUpdateProfile]:
         """
         Update the navigation property windowsDriverUpdateProfiles in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_driver_update_profile.WindowsDriverUpdateProfile]
         """
         if body is None:
@@ -160,7 +159,7 @@ class WindowsDriverUpdateProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_driver_update_profile.WindowsDriverUpdateProfile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_driver_update_profile.WindowsDriverUpdateProfile, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[WindowsDriverUpdateProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

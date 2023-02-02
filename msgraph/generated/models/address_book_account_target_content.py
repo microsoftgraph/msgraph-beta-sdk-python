@@ -9,7 +9,7 @@ class AddressBookAccountTargetContent(account_target_content.AccountTargetConten
     @property
     def account_target_emails(self,) -> Optional[List[str]]:
         """
-        Gets the accountTargetEmails property value. The accountTargetEmails property
+        Gets the accountTargetEmails property value. List of user emails targeted for an attack simulation training campaign.
         Returns: Optional[List[str]]
         """
         return self._account_target_emails
@@ -17,9 +17,9 @@ class AddressBookAccountTargetContent(account_target_content.AccountTargetConten
     @account_target_emails.setter
     def account_target_emails(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the accountTargetEmails property value. The accountTargetEmails property
+        Sets the accountTargetEmails property value. List of user emails targeted for an attack simulation training campaign.
         Args:
-            value: Value to set for the accountTargetEmails property.
+            value: Value to set for the account_target_emails property.
         """
         self._account_target_emails = value
     
@@ -29,7 +29,7 @@ class AddressBookAccountTargetContent(account_target_content.AccountTargetConten
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.addressBookAccountTargetContent"
-        # The accountTargetEmails property
+        # List of user emails targeted for an attack simulation training campaign.
         self._account_target_emails: Optional[List[str]] = None
     
     @staticmethod
@@ -50,7 +50,7 @@ class AddressBookAccountTargetContent(account_target_content.AccountTargetConten
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "account_target_emails": lambda n : setattr(self, 'account_target_emails', n.get_collection_of_primitive_values(str)),
+            "accountTargetEmails": lambda n : setattr(self, 'account_target_emails', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

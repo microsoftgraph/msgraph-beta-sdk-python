@@ -17,10 +17,11 @@ class Fido2AuthenticationMethodItemRequestBuilder():
     """
     Provides operations to manage the fido2Methods property of the microsoft.graph.authentication entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, fido2_authentication_method_id: Optional[str] = None) -> None:
         """
         Instantiates a new Fido2AuthenticationMethodItemRequestBuilder and sets the default values.
         Args:
+            fido2AuthenticationMethodId: key: id of fido2AuthenticationMethod
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class Fido2AuthenticationMethodItemRequestBuilder():
         self.url_template: str = "{+baseurl}/users/{user%2Did}/authentication/fido2Methods/{fido2AuthenticationMethod%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["fido2AuthenticationMethod%2Did"] = fido2AuthenticationMethodId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[Fido2AuthenticationMethodItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[Fido2AuthenticationMethodItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property fido2Methods for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class Fido2AuthenticationMethodItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[Fido2AuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[fido2_authentication_method.Fido2AuthenticationMethod]:
+    async def get(self,request_configuration: Optional[Fido2AuthenticationMethodItemRequestBuilderGetRequestConfiguration] = None) -> Optional[fido2_authentication_method.Fido2AuthenticationMethod]:
         """
         Represents the FIDO2 security keys registered to a user for authentication.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[fido2_authentication_method.Fido2AuthenticationMethod]
         """
         request_info = self.to_get_request_information(
@@ -70,7 +70,7 @@ class Fido2AuthenticationMethodItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, fido2_authentication_method.Fido2AuthenticationMethod, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, fido2_authentication_method.Fido2AuthenticationMethod, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[Fido2AuthenticationMethodItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

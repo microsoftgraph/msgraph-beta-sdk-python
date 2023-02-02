@@ -21,7 +21,7 @@ class AndroidForWorkMobileAppConfiguration(managed_device_mobile_app_configurati
         """
         Sets the connectedAppsEnabled property value. Setting to specify whether to allow ConnectedApps experience for this app.
         Args:
-            value: Value to set for the connectedAppsEnabled property.
+            value: Value to set for the connected_apps_enabled property.
         """
         self._connected_apps_enabled = value
     
@@ -60,11 +60,11 @@ class AndroidForWorkMobileAppConfiguration(managed_device_mobile_app_configurati
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "connected_apps_enabled": lambda n : setattr(self, 'connected_apps_enabled', n.get_bool_value()),
-            "package_id": lambda n : setattr(self, 'package_id', n.get_str_value()),
-            "payload_json": lambda n : setattr(self, 'payload_json', n.get_str_value()),
-            "permission_actions": lambda n : setattr(self, 'permission_actions', n.get_collection_of_object_values(android_permission_action.AndroidPermissionAction)),
-            "profile_applicability": lambda n : setattr(self, 'profile_applicability', n.get_enum_value(android_profile_applicability.AndroidProfileApplicability)),
+            "connectedAppsEnabled": lambda n : setattr(self, 'connected_apps_enabled', n.get_bool_value()),
+            "packageId": lambda n : setattr(self, 'package_id', n.get_str_value()),
+            "payloadJson": lambda n : setattr(self, 'payload_json', n.get_str_value()),
+            "permissionActions": lambda n : setattr(self, 'permission_actions', n.get_collection_of_object_values(android_permission_action.AndroidPermissionAction)),
+            "profileApplicability": lambda n : setattr(self, 'profile_applicability', n.get_enum_value(android_profile_applicability.AndroidProfileApplicability)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -83,7 +83,7 @@ class AndroidForWorkMobileAppConfiguration(managed_device_mobile_app_configurati
         """
         Sets the packageId property value. Android For Work app configuration package id.
         Args:
-            value: Value to set for the packageId property.
+            value: Value to set for the package_id property.
         """
         self._package_id = value
     
@@ -100,7 +100,7 @@ class AndroidForWorkMobileAppConfiguration(managed_device_mobile_app_configurati
         """
         Sets the payloadJson property value. Android For Work app configuration JSON payload.
         Args:
-            value: Value to set for the payloadJson property.
+            value: Value to set for the payload_json property.
         """
         self._payload_json = value
     
@@ -117,7 +117,7 @@ class AndroidForWorkMobileAppConfiguration(managed_device_mobile_app_configurati
         """
         Sets the permissionActions property value. List of Android app permissions and corresponding permission actions.
         Args:
-            value: Value to set for the permissionActions property.
+            value: Value to set for the permission_actions property.
         """
         self._permission_actions = value
     
@@ -134,7 +134,7 @@ class AndroidForWorkMobileAppConfiguration(managed_device_mobile_app_configurati
         """
         Sets the profileApplicability property value. Android profile applicability
         Args:
-            value: Value to set for the profileApplicability property.
+            value: Value to set for the profile_applicability property.
         """
         self._profile_applicability = value
     

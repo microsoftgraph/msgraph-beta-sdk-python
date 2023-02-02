@@ -22,10 +22,10 @@ class Teamwork(entity.Entity):
         self._devices: Optional[List[teamwork_device.TeamworkDevice]] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # Represents tenant-wide settings for all Teams apps in the tenant.
-        self._teams_app_settings: Optional[teams_app_settings.TeamsAppSettings] = None
         # The templates associated with a team.
         self._team_templates: Optional[List[team_template.TeamTemplate]] = None
+        # Represents tenant-wide settings for all Teams apps in the tenant.
+        self._teams_app_settings: Optional[teams_app_settings.TeamsAppSettings] = None
         # A workforce integration with shifts.
         self._workforce_integrations: Optional[List[workforce_integration.WorkforceIntegration]] = None
     
@@ -54,7 +54,7 @@ class Teamwork(entity.Entity):
         """
         Sets the deletedTeams property value. A collection of deleted teams.
         Args:
-            value: Value to set for the deletedTeams property.
+            value: Value to set for the deleted_teams property.
         """
         self._deleted_teams = value
     
@@ -81,11 +81,11 @@ class Teamwork(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "deleted_teams": lambda n : setattr(self, 'deleted_teams', n.get_collection_of_object_values(deleted_team.DeletedTeam)),
+            "deletedTeams": lambda n : setattr(self, 'deleted_teams', n.get_collection_of_object_values(deleted_team.DeletedTeam)),
             "devices": lambda n : setattr(self, 'devices', n.get_collection_of_object_values(teamwork_device.TeamworkDevice)),
-            "teams_app_settings": lambda n : setattr(self, 'teams_app_settings', n.get_object_value(teams_app_settings.TeamsAppSettings)),
-            "team_templates": lambda n : setattr(self, 'team_templates', n.get_collection_of_object_values(team_template.TeamTemplate)),
-            "workforce_integrations": lambda n : setattr(self, 'workforce_integrations', n.get_collection_of_object_values(workforce_integration.WorkforceIntegration)),
+            "teamsAppSettings": lambda n : setattr(self, 'teams_app_settings', n.get_object_value(teams_app_settings.TeamsAppSettings)),
+            "teamTemplates": lambda n : setattr(self, 'team_templates', n.get_collection_of_object_values(team_template.TeamTemplate)),
+            "workforceIntegrations": lambda n : setattr(self, 'workforce_integrations', n.get_collection_of_object_values(workforce_integration.WorkforceIntegration)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -107,23 +107,6 @@ class Teamwork(entity.Entity):
         writer.write_collection_of_object_values("workforceIntegrations", self.workforce_integrations)
     
     @property
-    def teams_app_settings(self,) -> Optional[teams_app_settings.TeamsAppSettings]:
-        """
-        Gets the teamsAppSettings property value. Represents tenant-wide settings for all Teams apps in the tenant.
-        Returns: Optional[teams_app_settings.TeamsAppSettings]
-        """
-        return self._teams_app_settings
-    
-    @teams_app_settings.setter
-    def teams_app_settings(self,value: Optional[teams_app_settings.TeamsAppSettings] = None) -> None:
-        """
-        Sets the teamsAppSettings property value. Represents tenant-wide settings for all Teams apps in the tenant.
-        Args:
-            value: Value to set for the teamsAppSettings property.
-        """
-        self._teams_app_settings = value
-    
-    @property
     def team_templates(self,) -> Optional[List[team_template.TeamTemplate]]:
         """
         Gets the teamTemplates property value. The templates associated with a team.
@@ -136,9 +119,26 @@ class Teamwork(entity.Entity):
         """
         Sets the teamTemplates property value. The templates associated with a team.
         Args:
-            value: Value to set for the teamTemplates property.
+            value: Value to set for the team_templates property.
         """
         self._team_templates = value
+    
+    @property
+    def teams_app_settings(self,) -> Optional[teams_app_settings.TeamsAppSettings]:
+        """
+        Gets the teamsAppSettings property value. Represents tenant-wide settings for all Teams apps in the tenant.
+        Returns: Optional[teams_app_settings.TeamsAppSettings]
+        """
+        return self._teams_app_settings
+    
+    @teams_app_settings.setter
+    def teams_app_settings(self,value: Optional[teams_app_settings.TeamsAppSettings] = None) -> None:
+        """
+        Sets the teamsAppSettings property value. Represents tenant-wide settings for all Teams apps in the tenant.
+        Args:
+            value: Value to set for the teams_app_settings property.
+        """
+        self._teams_app_settings = value
     
     @property
     def workforce_integrations(self,) -> Optional[List[workforce_integration.WorkforceIntegration]]:
@@ -153,7 +153,7 @@ class Teamwork(entity.Entity):
         """
         Sets the workforceIntegrations property value. A workforce integration with shifts.
         Args:
-            value: Value to set for the workforceIntegrations property.
+            value: Value to set for the workforce_integrations property.
         """
         self._workforce_integrations = value
     

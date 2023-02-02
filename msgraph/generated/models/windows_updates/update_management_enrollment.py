@@ -34,7 +34,7 @@ class UpdateManagementEnrollment(updatable_asset_enrollment.UpdatableAssetEnroll
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "update_category": lambda n : setattr(self, 'update_category', n.get_enum_value(update_category.UpdateCategory)),
+            "updateCategory": lambda n : setattr(self, 'update_category', n.get_enum_value(update_category.UpdateCategory)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -64,7 +64,7 @@ class UpdateManagementEnrollment(updatable_asset_enrollment.UpdatableAssetEnroll
         """
         Sets the updateCategory property value. The updateCategory property
         Args:
-            value: Value to set for the updateCategory property.
+            value: Value to set for the update_category property.
         """
         self._update_category = value
     

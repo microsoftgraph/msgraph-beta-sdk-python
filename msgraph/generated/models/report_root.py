@@ -27,7 +27,7 @@ class ReportRoot(entity.Entity):
         """
         Sets the applicationSignInDetailedSummary property value. Represents a detailed summary of an application sign-in.
         Args:
-            value: Value to set for the applicationSignInDetailedSummary property.
+            value: Value to set for the application_sign_in_detailed_summary property.
         """
         self._application_sign_in_detailed_summary = value
     
@@ -44,7 +44,7 @@ class ReportRoot(entity.Entity):
         """
         Sets the authenticationMethods property value. Container for navigation properties for Azure AD authentication methods resources.
         Args:
-            value: Value to set for the authenticationMethods property.
+            value: Value to set for the authentication_methods property.
         """
         self._authentication_methods = value
     
@@ -109,7 +109,7 @@ class ReportRoot(entity.Entity):
         """
         Sets the credentialUserRegistrationDetails property value. Details of the usage of self-service password reset and multi-factor authentication (MFA) for all registered users.
         Args:
-            value: Value to set for the credentialUserRegistrationDetails property.
+            value: Value to set for the credential_user_registration_details property.
         """
         self._credential_user_registration_details = value
     
@@ -126,7 +126,7 @@ class ReportRoot(entity.Entity):
         """
         Sets the dailyPrintUsage property value. The dailyPrintUsage property
         Args:
-            value: Value to set for the dailyPrintUsage property.
+            value: Value to set for the daily_print_usage property.
         """
         self._daily_print_usage = value
     
@@ -143,7 +143,7 @@ class ReportRoot(entity.Entity):
         """
         Sets the dailyPrintUsageByPrinter property value. The dailyPrintUsageByPrinter property
         Args:
-            value: Value to set for the dailyPrintUsageByPrinter property.
+            value: Value to set for the daily_print_usage_by_printer property.
         """
         self._daily_print_usage_by_printer = value
     
@@ -160,7 +160,7 @@ class ReportRoot(entity.Entity):
         """
         Sets the dailyPrintUsageByUser property value. The dailyPrintUsageByUser property
         Args:
-            value: Value to set for the dailyPrintUsageByUser property.
+            value: Value to set for the daily_print_usage_by_user property.
         """
         self._daily_print_usage_by_user = value
     
@@ -177,7 +177,7 @@ class ReportRoot(entity.Entity):
         """
         Sets the dailyPrintUsageSummariesByPrinter property value. The dailyPrintUsageSummariesByPrinter property
         Args:
-            value: Value to set for the dailyPrintUsageSummariesByPrinter property.
+            value: Value to set for the daily_print_usage_summaries_by_printer property.
         """
         self._daily_print_usage_summaries_by_printer = value
     
@@ -194,7 +194,7 @@ class ReportRoot(entity.Entity):
         """
         Sets the dailyPrintUsageSummariesByUser property value. The dailyPrintUsageSummariesByUser property
         Args:
-            value: Value to set for the dailyPrintUsageSummariesByUser property.
+            value: Value to set for the daily_print_usage_summaries_by_user property.
         """
         self._daily_print_usage_summaries_by_user = value
     
@@ -204,20 +204,20 @@ class ReportRoot(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "application_sign_in_detailed_summary": lambda n : setattr(self, 'application_sign_in_detailed_summary', n.get_collection_of_object_values(application_sign_in_detailed_summary.ApplicationSignInDetailedSummary)),
-            "authentication_methods": lambda n : setattr(self, 'authentication_methods', n.get_object_value(authentication_methods_root.AuthenticationMethodsRoot)),
-            "credential_user_registration_details": lambda n : setattr(self, 'credential_user_registration_details', n.get_collection_of_object_values(credential_user_registration_details.CredentialUserRegistrationDetails)),
-            "daily_print_usage": lambda n : setattr(self, 'daily_print_usage', n.get_collection_of_object_values(print_usage.PrintUsage)),
-            "daily_print_usage_by_printer": lambda n : setattr(self, 'daily_print_usage_by_printer', n.get_collection_of_object_values(print_usage_by_printer.PrintUsageByPrinter)),
-            "daily_print_usage_by_user": lambda n : setattr(self, 'daily_print_usage_by_user', n.get_collection_of_object_values(print_usage_by_user.PrintUsageByUser)),
-            "daily_print_usage_summaries_by_printer": lambda n : setattr(self, 'daily_print_usage_summaries_by_printer', n.get_collection_of_object_values(print_usage_by_printer.PrintUsageByPrinter)),
-            "daily_print_usage_summaries_by_user": lambda n : setattr(self, 'daily_print_usage_summaries_by_user', n.get_collection_of_object_values(print_usage_by_user.PrintUsageByUser)),
-            "monthly_print_usage_by_printer": lambda n : setattr(self, 'monthly_print_usage_by_printer', n.get_collection_of_object_values(print_usage_by_printer.PrintUsageByPrinter)),
-            "monthly_print_usage_by_user": lambda n : setattr(self, 'monthly_print_usage_by_user', n.get_collection_of_object_values(print_usage_by_user.PrintUsageByUser)),
-            "monthly_print_usage_summaries_by_printer": lambda n : setattr(self, 'monthly_print_usage_summaries_by_printer', n.get_collection_of_object_values(print_usage_by_printer.PrintUsageByPrinter)),
-            "monthly_print_usage_summaries_by_user": lambda n : setattr(self, 'monthly_print_usage_summaries_by_user', n.get_collection_of_object_values(print_usage_by_user.PrintUsageByUser)),
+            "applicationSignInDetailedSummary": lambda n : setattr(self, 'application_sign_in_detailed_summary', n.get_collection_of_object_values(application_sign_in_detailed_summary.ApplicationSignInDetailedSummary)),
+            "authenticationMethods": lambda n : setattr(self, 'authentication_methods', n.get_object_value(authentication_methods_root.AuthenticationMethodsRoot)),
+            "credentialUserRegistrationDetails": lambda n : setattr(self, 'credential_user_registration_details', n.get_collection_of_object_values(credential_user_registration_details.CredentialUserRegistrationDetails)),
+            "dailyPrintUsage": lambda n : setattr(self, 'daily_print_usage', n.get_collection_of_object_values(print_usage.PrintUsage)),
+            "dailyPrintUsageByPrinter": lambda n : setattr(self, 'daily_print_usage_by_printer', n.get_collection_of_object_values(print_usage_by_printer.PrintUsageByPrinter)),
+            "dailyPrintUsageByUser": lambda n : setattr(self, 'daily_print_usage_by_user', n.get_collection_of_object_values(print_usage_by_user.PrintUsageByUser)),
+            "dailyPrintUsageSummariesByPrinter": lambda n : setattr(self, 'daily_print_usage_summaries_by_printer', n.get_collection_of_object_values(print_usage_by_printer.PrintUsageByPrinter)),
+            "dailyPrintUsageSummariesByUser": lambda n : setattr(self, 'daily_print_usage_summaries_by_user', n.get_collection_of_object_values(print_usage_by_user.PrintUsageByUser)),
+            "monthlyPrintUsageByPrinter": lambda n : setattr(self, 'monthly_print_usage_by_printer', n.get_collection_of_object_values(print_usage_by_printer.PrintUsageByPrinter)),
+            "monthlyPrintUsageByUser": lambda n : setattr(self, 'monthly_print_usage_by_user', n.get_collection_of_object_values(print_usage_by_user.PrintUsageByUser)),
+            "monthlyPrintUsageSummariesByPrinter": lambda n : setattr(self, 'monthly_print_usage_summaries_by_printer', n.get_collection_of_object_values(print_usage_by_printer.PrintUsageByPrinter)),
+            "monthlyPrintUsageSummariesByUser": lambda n : setattr(self, 'monthly_print_usage_summaries_by_user', n.get_collection_of_object_values(print_usage_by_user.PrintUsageByUser)),
             "security": lambda n : setattr(self, 'security', n.get_object_value(security_reports_root.SecurityReportsRoot)),
-            "user_credential_usage_details": lambda n : setattr(self, 'user_credential_usage_details', n.get_collection_of_object_values(user_credential_usage_details.UserCredentialUsageDetails)),
+            "userCredentialUsageDetails": lambda n : setattr(self, 'user_credential_usage_details', n.get_collection_of_object_values(user_credential_usage_details.UserCredentialUsageDetails)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -236,7 +236,7 @@ class ReportRoot(entity.Entity):
         """
         Sets the monthlyPrintUsageByPrinter property value. The monthlyPrintUsageByPrinter property
         Args:
-            value: Value to set for the monthlyPrintUsageByPrinter property.
+            value: Value to set for the monthly_print_usage_by_printer property.
         """
         self._monthly_print_usage_by_printer = value
     
@@ -253,7 +253,7 @@ class ReportRoot(entity.Entity):
         """
         Sets the monthlyPrintUsageByUser property value. The monthlyPrintUsageByUser property
         Args:
-            value: Value to set for the monthlyPrintUsageByUser property.
+            value: Value to set for the monthly_print_usage_by_user property.
         """
         self._monthly_print_usage_by_user = value
     
@@ -270,7 +270,7 @@ class ReportRoot(entity.Entity):
         """
         Sets the monthlyPrintUsageSummariesByPrinter property value. The monthlyPrintUsageSummariesByPrinter property
         Args:
-            value: Value to set for the monthlyPrintUsageSummariesByPrinter property.
+            value: Value to set for the monthly_print_usage_summaries_by_printer property.
         """
         self._monthly_print_usage_summaries_by_printer = value
     
@@ -287,7 +287,7 @@ class ReportRoot(entity.Entity):
         """
         Sets the monthlyPrintUsageSummariesByUser property value. The monthlyPrintUsageSummariesByUser property
         Args:
-            value: Value to set for the monthlyPrintUsageSummariesByUser property.
+            value: Value to set for the monthly_print_usage_summaries_by_user property.
         """
         self._monthly_print_usage_summaries_by_user = value
     
@@ -345,7 +345,7 @@ class ReportRoot(entity.Entity):
         """
         Sets the userCredentialUsageDetails property value. Represents the self-service password reset (SSPR) usage for a given tenant.
         Args:
-            value: Value to set for the userCredentialUsageDetails property.
+            value: Value to set for the user_credential_usage_details property.
         """
         self._user_credential_usage_details = value
     

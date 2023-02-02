@@ -75,7 +75,7 @@ class UserAppInstallStatus(entity.Entity):
         """
         Sets the deviceStatuses property value. The install state of the app on devices.
         Args:
-            value: Value to set for the deviceStatuses property.
+            value: Value to set for the device_statuses property.
         """
         self._device_statuses = value
     
@@ -92,7 +92,7 @@ class UserAppInstallStatus(entity.Entity):
         """
         Sets the failedDeviceCount property value. Failed Device Count.
         Args:
-            value: Value to set for the failedDeviceCount property.
+            value: Value to set for the failed_device_count property.
         """
         self._failed_device_count = value
     
@@ -103,12 +103,12 @@ class UserAppInstallStatus(entity.Entity):
         """
         fields = {
             "app": lambda n : setattr(self, 'app', n.get_object_value(mobile_app.MobileApp)),
-            "device_statuses": lambda n : setattr(self, 'device_statuses', n.get_collection_of_object_values(mobile_app_install_status.MobileAppInstallStatus)),
-            "failed_device_count": lambda n : setattr(self, 'failed_device_count', n.get_int_value()),
-            "installed_device_count": lambda n : setattr(self, 'installed_device_count', n.get_int_value()),
-            "not_installed_device_count": lambda n : setattr(self, 'not_installed_device_count', n.get_int_value()),
-            "user_name": lambda n : setattr(self, 'user_name', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "deviceStatuses": lambda n : setattr(self, 'device_statuses', n.get_collection_of_object_values(mobile_app_install_status.MobileAppInstallStatus)),
+            "failedDeviceCount": lambda n : setattr(self, 'failed_device_count', n.get_int_value()),
+            "installedDeviceCount": lambda n : setattr(self, 'installed_device_count', n.get_int_value()),
+            "notInstalledDeviceCount": lambda n : setattr(self, 'not_installed_device_count', n.get_int_value()),
+            "userName": lambda n : setattr(self, 'user_name', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -127,7 +127,7 @@ class UserAppInstallStatus(entity.Entity):
         """
         Sets the installedDeviceCount property value. Installed Device Count.
         Args:
-            value: Value to set for the installedDeviceCount property.
+            value: Value to set for the installed_device_count property.
         """
         self._installed_device_count = value
     
@@ -144,7 +144,7 @@ class UserAppInstallStatus(entity.Entity):
         """
         Sets the notInstalledDeviceCount property value. Not installed device count.
         Args:
-            value: Value to set for the notInstalledDeviceCount property.
+            value: Value to set for the not_installed_device_count property.
         """
         self._not_installed_device_count = value
     
@@ -178,7 +178,7 @@ class UserAppInstallStatus(entity.Entity):
         """
         Sets the userName property value. User name.
         Args:
-            value: Value to set for the userName property.
+            value: Value to set for the user_name property.
         """
         self._user_name = value
     
@@ -195,7 +195,7 @@ class UserAppInstallStatus(entity.Entity):
         """
         Sets the userPrincipalName property value. User Principal Name.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

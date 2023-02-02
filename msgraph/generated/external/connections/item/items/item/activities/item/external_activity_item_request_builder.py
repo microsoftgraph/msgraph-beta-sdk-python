@@ -25,10 +25,11 @@ class ExternalActivityItemRequestBuilder():
         """
         return performed_by_request_builder.PerformedByRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, external_activity_id: Optional[str] = None) -> None:
         """
         Instantiates a new ExternalActivityItemRequestBuilder and sets the default values.
         Args:
+            externalActivityId: key: id of externalActivity
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -40,15 +41,15 @@ class ExternalActivityItemRequestBuilder():
         self.url_template: str = "{+baseurl}/external/connections/{externalConnection%2Did}/items/{externalItem%2Did}/activities/{externalActivity%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["externalActivity%2Did"] = externalActivityId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ExternalActivityItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ExternalActivityItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property activities for external
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +60,13 @@ class ExternalActivityItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ExternalActivityItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[external_activity.ExternalActivity]:
+    async def get(self,request_configuration: Optional[ExternalActivityItemRequestBuilderGetRequestConfiguration] = None) -> Optional[external_activity.ExternalActivity]:
         """
         Write-only property. Returns results.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[external_activity.ExternalActivity]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +78,14 @@ class ExternalActivityItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, external_activity.ExternalActivity, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, external_activity.ExternalActivity, error_mapping)
     
-    async def patch(self,body: Optional[external_activity.ExternalActivity] = None, request_configuration: Optional[ExternalActivityItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[external_activity.ExternalActivity]:
+    async def patch(self,body: Optional[external_activity.ExternalActivity] = None, request_configuration: Optional[ExternalActivityItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[external_activity.ExternalActivity]:
         """
         Update the navigation property activities in external
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[external_activity.ExternalActivity]
         """
         if body is None:
@@ -100,7 +99,7 @@ class ExternalActivityItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, external_activity.ExternalActivity, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, external_activity.ExternalActivity, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ExternalActivityItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

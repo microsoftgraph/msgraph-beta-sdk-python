@@ -41,13 +41,13 @@ class Person(entity.Entity):
         """
         Sets the companyName property value. The name of the person's company.
         Args:
-            value: Value to set for the companyName property.
+            value: Value to set for the company_name property.
         """
         self._company_name = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new person and sets the default values.
+        Instantiates a new Person and sets the default values.
         """
         super().__init__()
         # The person's birthday.
@@ -135,7 +135,7 @@ class Person(entity.Entity):
         """
         Sets the displayName property value. The person's display name.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -152,7 +152,7 @@ class Person(entity.Entity):
         """
         Sets the emailAddresses property value. The person's email addresses.
         Args:
-            value: Value to set for the emailAddresses property.
+            value: Value to set for the email_addresses property.
         """
         self._email_addresses = value
     
@@ -163,25 +163,25 @@ class Person(entity.Entity):
         """
         fields = {
             "birthday": lambda n : setattr(self, 'birthday', n.get_str_value()),
-            "company_name": lambda n : setattr(self, 'company_name', n.get_str_value()),
+            "companyName": lambda n : setattr(self, 'company_name', n.get_str_value()),
             "department": lambda n : setattr(self, 'department', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "email_addresses": lambda n : setattr(self, 'email_addresses', n.get_collection_of_object_values(ranked_email_address.RankedEmailAddress)),
-            "given_name": lambda n : setattr(self, 'given_name', n.get_str_value()),
-            "is_favorite": lambda n : setattr(self, 'is_favorite', n.get_bool_value()),
-            "mailbox_type": lambda n : setattr(self, 'mailbox_type', n.get_str_value()),
-            "office_location": lambda n : setattr(self, 'office_location', n.get_str_value()),
-            "person_notes": lambda n : setattr(self, 'person_notes', n.get_str_value()),
-            "person_type": lambda n : setattr(self, 'person_type', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "emailAddresses": lambda n : setattr(self, 'email_addresses', n.get_collection_of_object_values(ranked_email_address.RankedEmailAddress)),
+            "givenName": lambda n : setattr(self, 'given_name', n.get_str_value()),
+            "isFavorite": lambda n : setattr(self, 'is_favorite', n.get_bool_value()),
+            "mailboxType": lambda n : setattr(self, 'mailbox_type', n.get_str_value()),
+            "officeLocation": lambda n : setattr(self, 'office_location', n.get_str_value()),
+            "personNotes": lambda n : setattr(self, 'person_notes', n.get_str_value()),
+            "personType": lambda n : setattr(self, 'person_type', n.get_str_value()),
             "phones": lambda n : setattr(self, 'phones', n.get_collection_of_object_values(phone.Phone)),
-            "postal_addresses": lambda n : setattr(self, 'postal_addresses', n.get_collection_of_object_values(location.Location)),
+            "postalAddresses": lambda n : setattr(self, 'postal_addresses', n.get_collection_of_object_values(location.Location)),
             "profession": lambda n : setattr(self, 'profession', n.get_str_value()),
             "sources": lambda n : setattr(self, 'sources', n.get_collection_of_object_values(person_data_source.PersonDataSource)),
             "surname": lambda n : setattr(self, 'surname', n.get_str_value()),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
             "websites": lambda n : setattr(self, 'websites', n.get_collection_of_object_values(website.Website)),
-            "yomi_company": lambda n : setattr(self, 'yomi_company', n.get_str_value()),
+            "yomiCompany": lambda n : setattr(self, 'yomi_company', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -200,7 +200,7 @@ class Person(entity.Entity):
         """
         Sets the givenName property value. The person's given name.
         Args:
-            value: Value to set for the givenName property.
+            value: Value to set for the given_name property.
         """
         self._given_name = value
     
@@ -217,7 +217,7 @@ class Person(entity.Entity):
         """
         Sets the isFavorite property value. true if the user has flagged this person as a favorite.
         Args:
-            value: Value to set for the isFavorite property.
+            value: Value to set for the is_favorite property.
         """
         self._is_favorite = value
     
@@ -234,7 +234,7 @@ class Person(entity.Entity):
         """
         Sets the mailboxType property value. The type of mailbox that is represented by the person's email address.
         Args:
-            value: Value to set for the mailboxType property.
+            value: Value to set for the mailbox_type property.
         """
         self._mailbox_type = value
     
@@ -251,7 +251,7 @@ class Person(entity.Entity):
         """
         Sets the officeLocation property value. The location of the person's office.
         Args:
-            value: Value to set for the officeLocation property.
+            value: Value to set for the office_location property.
         """
         self._office_location = value
     
@@ -268,7 +268,7 @@ class Person(entity.Entity):
         """
         Sets the personNotes property value. Free-form notes that the user has taken about this person.
         Args:
-            value: Value to set for the personNotes property.
+            value: Value to set for the person_notes property.
         """
         self._person_notes = value
     
@@ -285,7 +285,7 @@ class Person(entity.Entity):
         """
         Sets the personType property value. The type of person, for example distribution list.
         Args:
-            value: Value to set for the personType property.
+            value: Value to set for the person_type property.
         """
         self._person_type = value
     
@@ -319,7 +319,7 @@ class Person(entity.Entity):
         """
         Sets the postalAddresses property value. The person's addresses.
         Args:
-            value: Value to set for the postalAddresses property.
+            value: Value to set for the postal_addresses property.
         """
         self._postal_addresses = value
     
@@ -434,7 +434,7 @@ class Person(entity.Entity):
         """
         Sets the userPrincipalName property value. The user principal name (UPN) of the person. The UPN is an Internet-style login name for the person based on the Internet standard RFC 822. By convention, this should map to the person's email name. The general format is alias@domain.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     
@@ -468,7 +468,7 @@ class Person(entity.Entity):
         """
         Sets the yomiCompany property value. The phonetic Japanese name of the person's company.
         Args:
-            value: Value to set for the yomiCompany property.
+            value: Value to set for the yomi_company property.
         """
         self._yomi_company = value
     

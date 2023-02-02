@@ -27,14 +27,14 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the accountSetupDuration property value. Time spent in user ESP.
         Args:
-            value: Value to set for the accountSetupDuration property.
+            value: Value to set for the account_setup_duration property.
         """
         self._account_setup_duration = value
     
     @property
     def account_setup_status(self,) -> Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState]:
         """
-        Gets the accountSetupStatus property value. The accountSetupStatus property
+        Gets the accountSetupStatus property value. Deployment states for Autopilot devices
         Returns: Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState]
         """
         return self._account_setup_status
@@ -42,9 +42,9 @@ class DeviceManagementAutopilotEvent(entity.Entity):
     @account_setup_status.setter
     def account_setup_status(self,value: Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState] = None) -> None:
         """
-        Sets the accountSetupStatus property value. The accountSetupStatus property
+        Sets the accountSetupStatus property value. Deployment states for Autopilot devices
         Args:
-            value: Value to set for the accountSetupStatus property.
+            value: Value to set for the account_setup_status property.
         """
         self._account_setup_status = value
     
@@ -55,7 +55,7 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         super().__init__()
         # Time spent in user ESP.
         self._account_setup_duration: Optional[Timedelta] = None
-        # The accountSetupStatus property
+        # Deployment states for Autopilot devices
         self._account_setup_status: Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState] = None
         # Autopilot deployment duration including enrollment.
         self._deployment_duration: Optional[Timedelta] = None
@@ -63,7 +63,7 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         self._deployment_end_date_time: Optional[datetime] = None
         # Deployment start time.
         self._deployment_start_date_time: Optional[datetime] = None
-        # The deploymentState property
+        # Deployment states for Autopilot devices
         self._deployment_state: Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState] = None
         # Total deployment duration from enrollment to Desktop screen.
         self._deployment_total_duration: Optional[Timedelta] = None
@@ -77,7 +77,7 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         self._device_serial_number: Optional[str] = None
         # Time spent in device ESP.
         self._device_setup_duration: Optional[Timedelta] = None
-        # The deviceSetupStatus property
+        # Deployment states for Autopilot devices
         self._device_setup_status: Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState] = None
         # Enrollment failure details.
         self._enrollment_failure_details: Optional[str] = None
@@ -103,12 +103,12 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         self._targeted_policy_count: Optional[int] = None
         # User principal name used to enroll the device.
         self._user_principal_name: Optional[str] = None
+        # Autopilot profile name.
+        self._windows_autopilot_deployment_profile_display_name: Optional[str] = None
         # Enrollment Status Page profile name
         self._windows10_enrollment_completion_page_configuration_display_name: Optional[str] = None
         # Enrollment Status Page profile ID
         self._windows10_enrollment_completion_page_configuration_id: Optional[str] = None
-        # Autopilot profile name.
-        self._windows_autopilot_deployment_profile_display_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementAutopilotEvent:
@@ -135,7 +135,7 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the deploymentDuration property value. Autopilot deployment duration including enrollment.
         Args:
-            value: Value to set for the deploymentDuration property.
+            value: Value to set for the deployment_duration property.
         """
         self._deployment_duration = value
     
@@ -152,7 +152,7 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the deploymentEndDateTime property value. Deployment end time.
         Args:
-            value: Value to set for the deploymentEndDateTime property.
+            value: Value to set for the deployment_end_date_time property.
         """
         self._deployment_end_date_time = value
     
@@ -169,14 +169,14 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the deploymentStartDateTime property value. Deployment start time.
         Args:
-            value: Value to set for the deploymentStartDateTime property.
+            value: Value to set for the deployment_start_date_time property.
         """
         self._deployment_start_date_time = value
     
     @property
     def deployment_state(self,) -> Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState]:
         """
-        Gets the deploymentState property value. The deploymentState property
+        Gets the deploymentState property value. Deployment states for Autopilot devices
         Returns: Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState]
         """
         return self._deployment_state
@@ -184,9 +184,9 @@ class DeviceManagementAutopilotEvent(entity.Entity):
     @deployment_state.setter
     def deployment_state(self,value: Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState] = None) -> None:
         """
-        Sets the deploymentState property value. The deploymentState property
+        Sets the deploymentState property value. Deployment states for Autopilot devices
         Args:
-            value: Value to set for the deploymentState property.
+            value: Value to set for the deployment_state property.
         """
         self._deployment_state = value
     
@@ -203,7 +203,7 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the deploymentTotalDuration property value. Total deployment duration from enrollment to Desktop screen.
         Args:
-            value: Value to set for the deploymentTotalDuration property.
+            value: Value to set for the deployment_total_duration property.
         """
         self._deployment_total_duration = value
     
@@ -220,7 +220,7 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the deviceId property value. Device id associated with the object
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -237,7 +237,7 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the devicePreparationDuration property value. Time spent in device enrollment.
         Args:
-            value: Value to set for the devicePreparationDuration property.
+            value: Value to set for the device_preparation_duration property.
         """
         self._device_preparation_duration = value
     
@@ -254,7 +254,7 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the deviceRegisteredDateTime property value. Device registration date.
         Args:
-            value: Value to set for the deviceRegisteredDateTime property.
+            value: Value to set for the device_registered_date_time property.
         """
         self._device_registered_date_time = value
     
@@ -271,7 +271,7 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the deviceSerialNumber property value. Device serial number.
         Args:
-            value: Value to set for the deviceSerialNumber property.
+            value: Value to set for the device_serial_number property.
         """
         self._device_serial_number = value
     
@@ -288,14 +288,14 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the deviceSetupDuration property value. Time spent in device ESP.
         Args:
-            value: Value to set for the deviceSetupDuration property.
+            value: Value to set for the device_setup_duration property.
         """
         self._device_setup_duration = value
     
     @property
     def device_setup_status(self,) -> Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState]:
         """
-        Gets the deviceSetupStatus property value. The deviceSetupStatus property
+        Gets the deviceSetupStatus property value. Deployment states for Autopilot devices
         Returns: Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState]
         """
         return self._device_setup_status
@@ -303,9 +303,9 @@ class DeviceManagementAutopilotEvent(entity.Entity):
     @device_setup_status.setter
     def device_setup_status(self,value: Optional[windows_autopilot_deployment_state.WindowsAutopilotDeploymentState] = None) -> None:
         """
-        Sets the deviceSetupStatus property value. The deviceSetupStatus property
+        Sets the deviceSetupStatus property value. Deployment states for Autopilot devices
         Args:
-            value: Value to set for the deviceSetupStatus property.
+            value: Value to set for the device_setup_status property.
         """
         self._device_setup_status = value
     
@@ -322,7 +322,7 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the enrollmentFailureDetails property value. Enrollment failure details.
         Args:
-            value: Value to set for the enrollmentFailureDetails property.
+            value: Value to set for the enrollment_failure_details property.
         """
         self._enrollment_failure_details = value
     
@@ -339,7 +339,7 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the enrollmentStartDateTime property value. Device enrollment start date.
         Args:
-            value: Value to set for the enrollmentStartDateTime property.
+            value: Value to set for the enrollment_start_date_time property.
         """
         self._enrollment_start_date_time = value
     
@@ -356,7 +356,7 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the enrollmentState property value. The enrollmentState property
         Args:
-            value: Value to set for the enrollmentState property.
+            value: Value to set for the enrollment_state property.
         """
         self._enrollment_state = value
     
@@ -373,7 +373,7 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the enrollmentType property value. The enrollmentType property
         Args:
-            value: Value to set for the enrollmentType property.
+            value: Value to set for the enrollment_type property.
         """
         self._enrollment_type = value
     
@@ -390,7 +390,7 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the eventDateTime property value. Time when the event occurred .
         Args:
-            value: Value to set for the eventDateTime property.
+            value: Value to set for the event_date_time property.
         """
         self._event_date_time = value
     
@@ -400,33 +400,33 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "account_setup_duration": lambda n : setattr(self, 'account_setup_duration', n.get_object_value(Timedelta)),
-            "account_setup_status": lambda n : setattr(self, 'account_setup_status', n.get_enum_value(windows_autopilot_deployment_state.WindowsAutopilotDeploymentState)),
-            "deployment_duration": lambda n : setattr(self, 'deployment_duration', n.get_object_value(Timedelta)),
-            "deployment_end_date_time": lambda n : setattr(self, 'deployment_end_date_time', n.get_datetime_value()),
-            "deployment_start_date_time": lambda n : setattr(self, 'deployment_start_date_time', n.get_datetime_value()),
-            "deployment_state": lambda n : setattr(self, 'deployment_state', n.get_enum_value(windows_autopilot_deployment_state.WindowsAutopilotDeploymentState)),
-            "deployment_total_duration": lambda n : setattr(self, 'deployment_total_duration', n.get_object_value(Timedelta)),
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "device_preparation_duration": lambda n : setattr(self, 'device_preparation_duration', n.get_object_value(Timedelta)),
-            "device_registered_date_time": lambda n : setattr(self, 'device_registered_date_time', n.get_datetime_value()),
-            "device_serial_number": lambda n : setattr(self, 'device_serial_number', n.get_str_value()),
-            "device_setup_duration": lambda n : setattr(self, 'device_setup_duration', n.get_object_value(Timedelta)),
-            "device_setup_status": lambda n : setattr(self, 'device_setup_status', n.get_enum_value(windows_autopilot_deployment_state.WindowsAutopilotDeploymentState)),
-            "enrollment_failure_details": lambda n : setattr(self, 'enrollment_failure_details', n.get_str_value()),
-            "enrollment_start_date_time": lambda n : setattr(self, 'enrollment_start_date_time', n.get_datetime_value()),
-            "enrollment_state": lambda n : setattr(self, 'enrollment_state', n.get_enum_value(enrollment_state.EnrollmentState)),
-            "enrollment_type": lambda n : setattr(self, 'enrollment_type', n.get_enum_value(windows_autopilot_enrollment_type.WindowsAutopilotEnrollmentType)),
-            "event_date_time": lambda n : setattr(self, 'event_date_time', n.get_datetime_value()),
-            "managed_device_name": lambda n : setattr(self, 'managed_device_name', n.get_str_value()),
-            "os_version": lambda n : setattr(self, 'os_version', n.get_str_value()),
-            "policy_status_details": lambda n : setattr(self, 'policy_status_details', n.get_collection_of_object_values(device_management_autopilot_policy_status_detail.DeviceManagementAutopilotPolicyStatusDetail)),
-            "targeted_app_count": lambda n : setattr(self, 'targeted_app_count', n.get_int_value()),
-            "targeted_policy_count": lambda n : setattr(self, 'targeted_policy_count', n.get_int_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
-            "windows10_enrollment_completion_page_configuration_display_name": lambda n : setattr(self, 'windows10_enrollment_completion_page_configuration_display_name', n.get_str_value()),
-            "windows10_enrollment_completion_page_configuration_id": lambda n : setattr(self, 'windows10_enrollment_completion_page_configuration_id', n.get_str_value()),
-            "windows_autopilot_deployment_profile_display_name": lambda n : setattr(self, 'windows_autopilot_deployment_profile_display_name', n.get_str_value()),
+            "accountSetupDuration": lambda n : setattr(self, 'account_setup_duration', n.get_object_value(Timedelta)),
+            "accountSetupStatus": lambda n : setattr(self, 'account_setup_status', n.get_enum_value(windows_autopilot_deployment_state.WindowsAutopilotDeploymentState)),
+            "deploymentDuration": lambda n : setattr(self, 'deployment_duration', n.get_object_value(Timedelta)),
+            "deploymentEndDateTime": lambda n : setattr(self, 'deployment_end_date_time', n.get_datetime_value()),
+            "deploymentStartDateTime": lambda n : setattr(self, 'deployment_start_date_time', n.get_datetime_value()),
+            "deploymentState": lambda n : setattr(self, 'deployment_state', n.get_enum_value(windows_autopilot_deployment_state.WindowsAutopilotDeploymentState)),
+            "deploymentTotalDuration": lambda n : setattr(self, 'deployment_total_duration', n.get_object_value(Timedelta)),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "devicePreparationDuration": lambda n : setattr(self, 'device_preparation_duration', n.get_object_value(Timedelta)),
+            "deviceRegisteredDateTime": lambda n : setattr(self, 'device_registered_date_time', n.get_datetime_value()),
+            "deviceSerialNumber": lambda n : setattr(self, 'device_serial_number', n.get_str_value()),
+            "deviceSetupDuration": lambda n : setattr(self, 'device_setup_duration', n.get_object_value(Timedelta)),
+            "deviceSetupStatus": lambda n : setattr(self, 'device_setup_status', n.get_enum_value(windows_autopilot_deployment_state.WindowsAutopilotDeploymentState)),
+            "enrollmentFailureDetails": lambda n : setattr(self, 'enrollment_failure_details', n.get_str_value()),
+            "enrollmentStartDateTime": lambda n : setattr(self, 'enrollment_start_date_time', n.get_datetime_value()),
+            "enrollmentState": lambda n : setattr(self, 'enrollment_state', n.get_enum_value(enrollment_state.EnrollmentState)),
+            "enrollmentType": lambda n : setattr(self, 'enrollment_type', n.get_enum_value(windows_autopilot_enrollment_type.WindowsAutopilotEnrollmentType)),
+            "eventDateTime": lambda n : setattr(self, 'event_date_time', n.get_datetime_value()),
+            "managedDeviceName": lambda n : setattr(self, 'managed_device_name', n.get_str_value()),
+            "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
+            "policyStatusDetails": lambda n : setattr(self, 'policy_status_details', n.get_collection_of_object_values(device_management_autopilot_policy_status_detail.DeviceManagementAutopilotPolicyStatusDetail)),
+            "targetedAppCount": lambda n : setattr(self, 'targeted_app_count', n.get_int_value()),
+            "targetedPolicyCount": lambda n : setattr(self, 'targeted_policy_count', n.get_int_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "windows10EnrollmentCompletionPageConfigurationDisplayName": lambda n : setattr(self, 'windows10_enrollment_completion_page_configuration_display_name', n.get_str_value()),
+            "windows10EnrollmentCompletionPageConfigurationId": lambda n : setattr(self, 'windows10_enrollment_completion_page_configuration_id', n.get_str_value()),
+            "windowsAutopilotDeploymentProfileDisplayName": lambda n : setattr(self, 'windows_autopilot_deployment_profile_display_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -445,7 +445,7 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the managedDeviceName property value. Managed device name.
         Args:
-            value: Value to set for the managedDeviceName property.
+            value: Value to set for the managed_device_name property.
         """
         self._managed_device_name = value
     
@@ -462,7 +462,7 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the osVersion property value. Device operating system version.
         Args:
-            value: Value to set for the osVersion property.
+            value: Value to set for the os_version property.
         """
         self._os_version = value
     
@@ -479,7 +479,7 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the policyStatusDetails property value. Policy and application status details for this device.
         Args:
-            value: Value to set for the policyStatusDetails property.
+            value: Value to set for the policy_status_details property.
         """
         self._policy_status_details = value
     
@@ -533,7 +533,7 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the targetedAppCount property value. Count of applications targeted.
         Args:
-            value: Value to set for the targetedAppCount property.
+            value: Value to set for the targeted_app_count property.
         """
         self._targeted_app_count = value
     
@@ -550,7 +550,7 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the targetedPolicyCount property value. Count of policies targeted.
         Args:
-            value: Value to set for the targetedPolicyCount property.
+            value: Value to set for the targeted_policy_count property.
         """
         self._targeted_policy_count = value
     
@@ -567,9 +567,26 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the userPrincipalName property value. User principal name used to enroll the device.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
+    
+    @property
+    def windows_autopilot_deployment_profile_display_name(self,) -> Optional[str]:
+        """
+        Gets the windowsAutopilotDeploymentProfileDisplayName property value. Autopilot profile name.
+        Returns: Optional[str]
+        """
+        return self._windows_autopilot_deployment_profile_display_name
+    
+    @windows_autopilot_deployment_profile_display_name.setter
+    def windows_autopilot_deployment_profile_display_name(self,value: Optional[str] = None) -> None:
+        """
+        Sets the windowsAutopilotDeploymentProfileDisplayName property value. Autopilot profile name.
+        Args:
+            value: Value to set for the windows_autopilot_deployment_profile_display_name property.
+        """
+        self._windows_autopilot_deployment_profile_display_name = value
     
     @property
     def windows10_enrollment_completion_page_configuration_display_name(self,) -> Optional[str]:
@@ -584,7 +601,7 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the windows10EnrollmentCompletionPageConfigurationDisplayName property value. Enrollment Status Page profile name
         Args:
-            value: Value to set for the windows10EnrollmentCompletionPageConfigurationDisplayName property.
+            value: Value to set for the windows10_enrollment_completion_page_configuration_display_name property.
         """
         self._windows10_enrollment_completion_page_configuration_display_name = value
     
@@ -601,25 +618,8 @@ class DeviceManagementAutopilotEvent(entity.Entity):
         """
         Sets the windows10EnrollmentCompletionPageConfigurationId property value. Enrollment Status Page profile ID
         Args:
-            value: Value to set for the windows10EnrollmentCompletionPageConfigurationId property.
+            value: Value to set for the windows10_enrollment_completion_page_configuration_id property.
         """
         self._windows10_enrollment_completion_page_configuration_id = value
-    
-    @property
-    def windows_autopilot_deployment_profile_display_name(self,) -> Optional[str]:
-        """
-        Gets the windowsAutopilotDeploymentProfileDisplayName property value. Autopilot profile name.
-        Returns: Optional[str]
-        """
-        return self._windows_autopilot_deployment_profile_display_name
-    
-    @windows_autopilot_deployment_profile_display_name.setter
-    def windows_autopilot_deployment_profile_display_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the windowsAutopilotDeploymentProfileDisplayName property value. Autopilot profile name.
-        Args:
-            value: Value to set for the windowsAutopilotDeploymentProfileDisplayName property.
-        """
-        self._windows_autopilot_deployment_profile_display_name = value
     
 

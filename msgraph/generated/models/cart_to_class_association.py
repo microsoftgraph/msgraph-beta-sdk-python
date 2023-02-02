@@ -7,9 +7,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class CartToClassAssociation(entity.Entity):
-    """
-    CartToClassAssociation for associating device carts with classrooms.
-    """
     @property
     def classroom_ids(self,) -> Optional[List[str]]:
         """
@@ -23,13 +20,13 @@ class CartToClassAssociation(entity.Entity):
         """
         Sets the classroomIds property value. Identifiers of classrooms to be associated with device carts.
         Args:
-            value: Value to set for the classroomIds property.
+            value: Value to set for the classroom_ids property.
         """
         self._classroom_ids = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new cartToClassAssociation and sets the default values.
+        Instantiates a new CartToClassAssociation and sets the default values.
         """
         super().__init__()
         # Identifiers of classrooms to be associated with device carts.
@@ -62,7 +59,7 @@ class CartToClassAssociation(entity.Entity):
         """
         Sets the createdDateTime property value. DateTime the object was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -108,7 +105,7 @@ class CartToClassAssociation(entity.Entity):
         """
         Sets the deviceCartIds property value. Identifiers of device carts to be associated with classes.
         Args:
-            value: Value to set for the deviceCartIds property.
+            value: Value to set for the device_cart_ids property.
         """
         self._device_cart_ids = value
     
@@ -125,7 +122,7 @@ class CartToClassAssociation(entity.Entity):
         """
         Sets the displayName property value. Admin provided name of the device configuration.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -135,12 +132,12 @@ class CartToClassAssociation(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "classroom_ids": lambda n : setattr(self, 'classroom_ids', n.get_collection_of_primitive_values(str)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "classroomIds": lambda n : setattr(self, 'classroom_ids', n.get_collection_of_primitive_values(str)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "device_cart_ids": lambda n : setattr(self, 'device_cart_ids', n.get_collection_of_primitive_values(str)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "deviceCartIds": lambda n : setattr(self, 'device_cart_ids', n.get_collection_of_primitive_values(str)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "version": lambda n : setattr(self, 'version', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -160,7 +157,7 @@ class CartToClassAssociation(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. DateTime the object was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     

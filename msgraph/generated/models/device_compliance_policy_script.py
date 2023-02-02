@@ -60,7 +60,7 @@ class DeviceCompliancePolicyScript(AdditionalDataHolder, Parsable):
         """
         Sets the deviceComplianceScriptId property value. Device compliance script Id.
         Args:
-            value: Value to set for the deviceComplianceScriptId property.
+            value: Value to set for the device_compliance_script_id property.
         """
         self._device_compliance_script_id = value
     
@@ -70,9 +70,9 @@ class DeviceCompliancePolicyScript(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_compliance_script_id": lambda n : setattr(self, 'device_compliance_script_id', n.get_str_value()),
+            "deviceComplianceScriptId": lambda n : setattr(self, 'device_compliance_script_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "rules_content": lambda n : setattr(self, 'rules_content', n.get_bytes_value()),
+            "rulesContent": lambda n : setattr(self, 'rules_content', n.get_bytes_value()),
         }
         return fields
     
@@ -89,7 +89,7 @@ class DeviceCompliancePolicyScript(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -106,7 +106,7 @@ class DeviceCompliancePolicyScript(AdditionalDataHolder, Parsable):
         """
         Sets the rulesContent property value. Json of the rules.
         Args:
-            value: Value to set for the rulesContent property.
+            value: Value to set for the rules_content property.
         """
         self._rules_content = value
     

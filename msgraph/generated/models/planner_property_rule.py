@@ -54,7 +54,7 @@ class PlannerPropertyRule(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "rule_kind": lambda n : setattr(self, 'rule_kind', n.get_enum_value(planner_rule_kind.PlannerRuleKind)),
+            "ruleKind": lambda n : setattr(self, 'rule_kind', n.get_enum_value(planner_rule_kind.PlannerRuleKind)),
         }
         return fields
     
@@ -71,7 +71,7 @@ class PlannerPropertyRule(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -88,7 +88,7 @@ class PlannerPropertyRule(AdditionalDataHolder, Parsable):
         """
         Sets the ruleKind property value. Identifies which type of property rules is represented by this instance. The possible values are: taskRule, bucketRule, planRule, unknownFutureValue.
         Args:
-            value: Value to set for the ruleKind property.
+            value: Value to set for the rule_kind property.
         """
         self._rule_kind = value
     

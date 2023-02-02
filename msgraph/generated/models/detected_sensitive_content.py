@@ -24,7 +24,7 @@ class DetectedSensitiveContent(detected_sensitive_content_base.DetectedSensitive
         """
         Sets the classificationAttributes property value. The classificationAttributes property
         Args:
-            value: Value to set for the classificationAttributes property.
+            value: Value to set for the classification_attributes property.
         """
         self._classification_attributes = value
     
@@ -41,7 +41,7 @@ class DetectedSensitiveContent(detected_sensitive_content_base.DetectedSensitive
         """
         Sets the classificationMethod property value. The classificationMethod property
         Args:
-            value: Value to set for the classificationMethod property.
+            value: Value to set for the classification_method property.
         """
         self._classification_method = value
     
@@ -81,11 +81,11 @@ class DetectedSensitiveContent(detected_sensitive_content_base.DetectedSensitive
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "classification_attributes": lambda n : setattr(self, 'classification_attributes', n.get_collection_of_object_values(classification_attribute.ClassificationAttribute)),
-            "classification_method": lambda n : setattr(self, 'classification_method', n.get_enum_value(classification_method.ClassificationMethod)),
+            "classificationAttributes": lambda n : setattr(self, 'classification_attributes', n.get_collection_of_object_values(classification_attribute.ClassificationAttribute)),
+            "classificationMethod": lambda n : setattr(self, 'classification_method', n.get_enum_value(classification_method.ClassificationMethod)),
             "matches": lambda n : setattr(self, 'matches', n.get_collection_of_object_values(sensitive_content_location.SensitiveContentLocation)),
             "scope": lambda n : setattr(self, 'scope', n.get_enum_value(sensitive_type_scope.SensitiveTypeScope)),
-            "sensitive_type_source": lambda n : setattr(self, 'sensitive_type_source', n.get_enum_value(sensitive_type_source.SensitiveTypeSource)),
+            "sensitiveTypeSource": lambda n : setattr(self, 'sensitive_type_source', n.get_enum_value(sensitive_type_source.SensitiveTypeSource)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -138,7 +138,7 @@ class DetectedSensitiveContent(detected_sensitive_content_base.DetectedSensitive
         """
         Sets the sensitiveTypeSource property value. The sensitiveTypeSource property
         Args:
-            value: Value to set for the sensitiveTypeSource property.
+            value: Value to set for the sensitive_type_source property.
         """
         self._sensitive_type_source = value
     

@@ -26,7 +26,7 @@ class EmbeddedSIMActivationCodePool(entity.Entity):
         """
         Sets the activationCodeCount property value. The total count of activation codes which belong to this pool.
         Args:
-            value: Value to set for the activationCodeCount property.
+            value: Value to set for the activation_code_count property.
         """
         self._activation_code_count = value
     
@@ -43,7 +43,7 @@ class EmbeddedSIMActivationCodePool(entity.Entity):
         """
         Sets the activationCodes property value. The activation codes which belong to this pool. This navigation property is used to post activation codes to Intune but cannot be used to read activation codes from Intune.
         Args:
-            value: Value to set for the activationCodes property.
+            value: Value to set for the activation_codes property.
         """
         self._activation_codes = value
     
@@ -99,7 +99,7 @@ class EmbeddedSIMActivationCodePool(entity.Entity):
         """
         Sets the createdDateTime property value. The time the embedded SIM activation code pool was created. Generated service side.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -128,7 +128,7 @@ class EmbeddedSIMActivationCodePool(entity.Entity):
         """
         Sets the deviceStates property value. Navigational property to a list of device states for this pool.
         Args:
-            value: Value to set for the deviceStates property.
+            value: Value to set for the device_states property.
         """
         self._device_states = value
     
@@ -145,7 +145,7 @@ class EmbeddedSIMActivationCodePool(entity.Entity):
         """
         Sets the displayName property value. The admin defined name of the embedded SIM activation code pool.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -155,13 +155,13 @@ class EmbeddedSIMActivationCodePool(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "activation_code_count": lambda n : setattr(self, 'activation_code_count', n.get_int_value()),
-            "activation_codes": lambda n : setattr(self, 'activation_codes', n.get_collection_of_object_values(embedded_s_i_m_activation_code.EmbeddedSIMActivationCode)),
+            "activationCodes": lambda n : setattr(self, 'activation_codes', n.get_collection_of_object_values(embedded_s_i_m_activation_code.EmbeddedSIMActivationCode)),
+            "activationCodeCount": lambda n : setattr(self, 'activation_code_count', n.get_int_value()),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(embedded_s_i_m_activation_code_pool_assignment.EmbeddedSIMActivationCodePoolAssignment)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "device_states": lambda n : setattr(self, 'device_states', n.get_collection_of_object_values(embedded_s_i_m_device_state.EmbeddedSIMDeviceState)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "modified_date_time": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "deviceStates": lambda n : setattr(self, 'device_states', n.get_collection_of_object_values(embedded_s_i_m_device_state.EmbeddedSIMDeviceState)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "modifiedDateTime": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -180,7 +180,7 @@ class EmbeddedSIMActivationCodePool(entity.Entity):
         """
         Sets the modifiedDateTime property value. The time the embedded SIM activation code pool was last modified. Updated service side.
         Args:
-            value: Value to set for the modifiedDateTime property.
+            value: Value to set for the modified_date_time property.
         """
         self._modified_date_time = value
     
@@ -193,8 +193,8 @@ class EmbeddedSIMActivationCodePool(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_int_value("activationCodeCount", self.activation_code_count)
         writer.write_collection_of_object_values("activationCodes", self.activation_codes)
+        writer.write_int_value("activationCodeCount", self.activation_code_count)
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_collection_of_object_values("deviceStates", self.device_states)

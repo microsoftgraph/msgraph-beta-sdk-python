@@ -33,7 +33,7 @@ class AndroidDeviceOwnerGlobalProxyAutoConfig(android_device_owner_global_proxy.
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "proxy_auto_config_u_r_l": lambda n : setattr(self, 'proxy_auto_config_u_r_l', n.get_str_value()),
+            "proxyAutoConfigURL": lambda n : setattr(self, 'proxy_auto_config_u_r_l', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -52,7 +52,7 @@ class AndroidDeviceOwnerGlobalProxyAutoConfig(android_device_owner_global_proxy.
         """
         Sets the proxyAutoConfigURL property value. The proxy auto-config URL
         Args:
-            value: Value to set for the proxyAutoConfigURL property.
+            value: Value to set for the proxy_auto_config_u_r_l property.
         """
         self._proxy_auto_config_u_r_l = value
     

@@ -11,7 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 currency_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.item.currency.currency_request_builder')
-post_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.item.post.post_request_builder')
+post_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.item.microsoft_graph_post.post_request_builder')
 purchase_invoice_lines_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.item.purchase_invoice_lines.purchase_invoice_lines_request_builder')
 purchase_invoice_line_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.item.purchase_invoice_lines.item.purchase_invoice_line_item_request_builder')
 vendor_request_builder = lazy_import('msgraph.generated.financials.companies.item.purchase_invoices.item.vendor.vendor_request_builder')
@@ -30,7 +30,7 @@ class PurchaseInvoiceItemRequestBuilder():
         return currency_request_builder.CurrencyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def post(self) -> post_request_builder.PostRequestBuilder:
+    def microsoft_graph_post(self) -> post_request_builder.PostRequestBuilder:
         """
         Provides operations to call the post method.
         """
@@ -50,11 +50,12 @@ class PurchaseInvoiceItemRequestBuilder():
         """
         return vendor_request_builder.VendorRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, purchase_invoice_id: Optional[str] = None) -> None:
         """
         Instantiates a new PurchaseInvoiceItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
+            purchaseInvoiceId: key: id of purchaseInvoice
             requestAdapter: The request adapter to use to execute the requests.
         """
         if path_parameters is None:
@@ -65,15 +66,15 @@ class PurchaseInvoiceItemRequestBuilder():
         self.url_template: str = "{+baseurl}/financials/companies/{company%2Did}/purchaseInvoices/{purchaseInvoice%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["purchaseInvoice%2Did"] = purchaseInvoiceId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PurchaseInvoiceItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[purchase_invoice.PurchaseInvoice]:
+    async def get(self,request_configuration: Optional[PurchaseInvoiceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[purchase_invoice.PurchaseInvoice]:
         """
         Get purchaseInvoices from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[purchase_invoice.PurchaseInvoice]
         """
         request_info = self.to_get_request_information(
@@ -85,15 +86,14 @@ class PurchaseInvoiceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, purchase_invoice.PurchaseInvoice, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, purchase_invoice.PurchaseInvoice, error_mapping)
     
-    async def patch(self,body: Optional[purchase_invoice.PurchaseInvoice] = None, request_configuration: Optional[PurchaseInvoiceItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[purchase_invoice.PurchaseInvoice]:
+    async def patch(self,body: Optional[purchase_invoice.PurchaseInvoice] = None, request_configuration: Optional[PurchaseInvoiceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[purchase_invoice.PurchaseInvoice]:
         """
         Update the navigation property purchaseInvoices in financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[purchase_invoice.PurchaseInvoice]
         """
         if body is None:
@@ -107,7 +107,7 @@ class PurchaseInvoiceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, purchase_invoice.PurchaseInvoice, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, purchase_invoice.PurchaseInvoice, error_mapping)
     
     def purchase_invoice_lines_by_id(self,id: str) -> purchase_invoice_line_item_request_builder.PurchaseInvoiceLineItemRequestBuilder:
         """

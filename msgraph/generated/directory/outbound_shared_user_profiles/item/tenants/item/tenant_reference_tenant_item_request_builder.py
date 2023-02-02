@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-remove_personal_data_request_builder = lazy_import('msgraph.generated.directory.outbound_shared_user_profiles.item.tenants.item.remove_personal_data.remove_personal_data_request_builder')
+remove_personal_data_request_builder = lazy_import('msgraph.generated.directory.outbound_shared_user_profiles.item.tenants.item.microsoft_graph_remove_personal_data.remove_personal_data_request_builder')
 tenant_reference = lazy_import('msgraph.generated.models.tenant_reference')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -19,18 +19,19 @@ class TenantReferenceTenantItemRequestBuilder():
     Provides operations to manage the tenants property of the microsoft.graph.outboundSharedUserProfile entity.
     """
     @property
-    def remove_personal_data(self) -> remove_personal_data_request_builder.RemovePersonalDataRequestBuilder:
+    def microsoft_graph_remove_personal_data(self) -> remove_personal_data_request_builder.RemovePersonalDataRequestBuilder:
         """
         Provides operations to call the removePersonalData method.
         """
         return remove_personal_data_request_builder.RemovePersonalDataRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, tenant_reference_tenant_id: Optional[str] = None) -> None:
         """
         Instantiates a new TenantReferenceTenantItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            tenantReferenceTenantId: key: tenantId of tenantReference
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -40,15 +41,15 @@ class TenantReferenceTenantItemRequestBuilder():
         self.url_template: str = "{+baseurl}/directory/outboundSharedUserProfiles/{outboundSharedUserProfile%2DuserId}/tenants/{tenantReference%2DtenantId}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["tenantReference%2DtenantId"] = tenantReferenceTenantId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[TenantReferenceTenantItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[TenantReferenceTenantItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property tenants for directory
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +60,13 @@ class TenantReferenceTenantItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[TenantReferenceTenantItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant_reference.TenantReference]:
+    async def get(self,request_configuration: Optional[TenantReferenceTenantItemRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_reference.TenantReference]:
         """
         Get tenants from directory
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_reference.TenantReference]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +78,14 @@ class TenantReferenceTenantItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant_reference.TenantReference, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant_reference.TenantReference, error_mapping)
     
-    async def patch(self,body: Optional[tenant_reference.TenantReference] = None, request_configuration: Optional[TenantReferenceTenantItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant_reference.TenantReference]:
+    async def patch(self,body: Optional[tenant_reference.TenantReference] = None, request_configuration: Optional[TenantReferenceTenantItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[tenant_reference.TenantReference]:
         """
         Update the navigation property tenants in directory
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_reference.TenantReference]
         """
         if body is None:
@@ -100,7 +99,7 @@ class TenantReferenceTenantItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant_reference.TenantReference, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant_reference.TenantReference, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[TenantReferenceTenantItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

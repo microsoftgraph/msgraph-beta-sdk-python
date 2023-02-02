@@ -17,10 +17,11 @@ class CurrencyItemRequestBuilder():
     """
     Provides operations to manage the currencies property of the microsoft.graph.company entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, currency_id: Optional[str] = None) -> None:
         """
         Instantiates a new CurrencyItemRequestBuilder and sets the default values.
         Args:
+            currencyId: key: id of currency
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class CurrencyItemRequestBuilder():
         self.url_template: str = "{+baseurl}/financials/companies/{company%2Did}/currencies/{currency%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["currency%2Did"] = currencyId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CurrencyItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CurrencyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property currencies for financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class CurrencyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CurrencyItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[currency.Currency]:
+    async def get(self,request_configuration: Optional[CurrencyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[currency.Currency]:
         """
         Get currencies from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[currency.Currency]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class CurrencyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, currency.Currency, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, currency.Currency, error_mapping)
     
-    async def patch(self,body: Optional[currency.Currency] = None, request_configuration: Optional[CurrencyItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[currency.Currency]:
+    async def patch(self,body: Optional[currency.Currency] = None, request_configuration: Optional[CurrencyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[currency.Currency]:
         """
         Update the navigation property currencies in financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[currency.Currency]
         """
         if body is None:
@@ -92,7 +91,7 @@ class CurrencyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, currency.Currency, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, currency.Currency, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CurrencyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -62,7 +62,7 @@ class GovernanceNotificationPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the enabledTemplateTypes property value. The enabledTemplateTypes property
         Args:
-            value: Value to set for the enabledTemplateTypes property.
+            value: Value to set for the enabled_template_types property.
         """
         self._enabled_template_types = value
     
@@ -72,8 +72,8 @@ class GovernanceNotificationPolicy(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "enabled_template_types": lambda n : setattr(self, 'enabled_template_types', n.get_collection_of_primitive_values(str)),
-            "notification_templates": lambda n : setattr(self, 'notification_templates', n.get_collection_of_object_values(governance_notification_template.GovernanceNotificationTemplate)),
+            "enabledTemplateTypes": lambda n : setattr(self, 'enabled_template_types', n.get_collection_of_primitive_values(str)),
+            "notificationTemplates": lambda n : setattr(self, 'notification_templates', n.get_collection_of_object_values(governance_notification_template.GovernanceNotificationTemplate)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -91,7 +91,7 @@ class GovernanceNotificationPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the notificationTemplates property value. The notificationTemplates property
         Args:
-            value: Value to set for the notificationTemplates property.
+            value: Value to set for the notification_templates property.
         """
         self._notification_templates = value
     
@@ -108,7 +108,7 @@ class GovernanceNotificationPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

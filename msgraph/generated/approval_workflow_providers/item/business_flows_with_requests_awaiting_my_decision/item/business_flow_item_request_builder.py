@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-record_decisions_request_builder = lazy_import('msgraph.generated.approval_workflow_providers.item.business_flows_with_requests_awaiting_my_decision.item.record_decisions.record_decisions_request_builder')
+record_decisions_request_builder = lazy_import('msgraph.generated.approval_workflow_providers.item.business_flows_with_requests_awaiting_my_decision.item.microsoft_graph_record_decisions.record_decisions_request_builder')
 business_flow = lazy_import('msgraph.generated.models.business_flow')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -19,16 +19,17 @@ class BusinessFlowItemRequestBuilder():
     Provides operations to manage the businessFlowsWithRequestsAwaitingMyDecision property of the microsoft.graph.approvalWorkflowProvider entity.
     """
     @property
-    def record_decisions(self) -> record_decisions_request_builder.RecordDecisionsRequestBuilder:
+    def microsoft_graph_record_decisions(self) -> record_decisions_request_builder.RecordDecisionsRequestBuilder:
         """
         Provides operations to call the recordDecisions method.
         """
         return record_decisions_request_builder.RecordDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, business_flow_id: Optional[str] = None) -> None:
         """
         Instantiates a new BusinessFlowItemRequestBuilder and sets the default values.
         Args:
+            businessFlowId: key: id of businessFlow
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -40,15 +41,15 @@ class BusinessFlowItemRequestBuilder():
         self.url_template: str = "{+baseurl}/approvalWorkflowProviders/{approvalWorkflowProvider%2Did}/businessFlowsWithRequestsAwaitingMyDecision/{businessFlow%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["businessFlow%2Did"] = businessFlowId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[BusinessFlowItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[BusinessFlowItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property businessFlowsWithRequestsAwaitingMyDecision for approvalWorkflowProviders
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +60,13 @@ class BusinessFlowItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[BusinessFlowItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[business_flow.BusinessFlow]:
+    async def get(self,request_configuration: Optional[BusinessFlowItemRequestBuilderGetRequestConfiguration] = None) -> Optional[business_flow.BusinessFlow]:
         """
         Get businessFlowsWithRequestsAwaitingMyDecision from approvalWorkflowProviders
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[business_flow.BusinessFlow]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +78,14 @@ class BusinessFlowItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, business_flow.BusinessFlow, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, business_flow.BusinessFlow, error_mapping)
     
-    async def patch(self,body: Optional[business_flow.BusinessFlow] = None, request_configuration: Optional[BusinessFlowItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[business_flow.BusinessFlow]:
+    async def patch(self,body: Optional[business_flow.BusinessFlow] = None, request_configuration: Optional[BusinessFlowItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[business_flow.BusinessFlow]:
         """
         Update the navigation property businessFlowsWithRequestsAwaitingMyDecision in approvalWorkflowProviders
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[business_flow.BusinessFlow]
         """
         if body is None:
@@ -100,7 +99,7 @@ class BusinessFlowItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, business_flow.BusinessFlow, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, business_flow.BusinessFlow, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[BusinessFlowItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

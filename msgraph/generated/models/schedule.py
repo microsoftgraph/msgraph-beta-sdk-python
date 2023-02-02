@@ -61,10 +61,10 @@ class Schedule(entity.Entity):
         self._time_off_requests: Optional[List[time_off_request.TimeOffRequest]] = None
         # Indicates whether time off requests are enabled for the schedule.
         self._time_off_requests_enabled: Optional[bool] = None
-        # The instances of times off in the schedule.
-        self._times_off: Optional[List[time_off.TimeOff]] = None
         # Indicates the time zone of the schedule team using tz database format. Required.
         self._time_zone: Optional[str] = None
+        # The instances of times off in the schedule.
+        self._times_off: Optional[List[time_off.TimeOff]] = None
         # The workforceIntegrationIds property
         self._workforce_integration_ids: Optional[List[str]] = None
     
@@ -104,26 +104,26 @@ class Schedule(entity.Entity):
         """
         fields = {
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
-            "offer_shift_requests": lambda n : setattr(self, 'offer_shift_requests', n.get_collection_of_object_values(offer_shift_request.OfferShiftRequest)),
-            "offer_shift_requests_enabled": lambda n : setattr(self, 'offer_shift_requests_enabled', n.get_bool_value()),
-            "open_shift_change_requests": lambda n : setattr(self, 'open_shift_change_requests', n.get_collection_of_object_values(open_shift_change_request.OpenShiftChangeRequest)),
-            "open_shifts": lambda n : setattr(self, 'open_shifts', n.get_collection_of_object_values(open_shift.OpenShift)),
-            "open_shifts_enabled": lambda n : setattr(self, 'open_shifts_enabled', n.get_bool_value()),
-            "provision_status": lambda n : setattr(self, 'provision_status', n.get_enum_value(operation_status.OperationStatus)),
-            "provision_status_code": lambda n : setattr(self, 'provision_status_code', n.get_str_value()),
-            "scheduling_groups": lambda n : setattr(self, 'scheduling_groups', n.get_collection_of_object_values(scheduling_group.SchedulingGroup)),
+            "offerShiftRequests": lambda n : setattr(self, 'offer_shift_requests', n.get_collection_of_object_values(offer_shift_request.OfferShiftRequest)),
+            "offerShiftRequestsEnabled": lambda n : setattr(self, 'offer_shift_requests_enabled', n.get_bool_value()),
+            "openShifts": lambda n : setattr(self, 'open_shifts', n.get_collection_of_object_values(open_shift.OpenShift)),
+            "openShiftsEnabled": lambda n : setattr(self, 'open_shifts_enabled', n.get_bool_value()),
+            "openShiftChangeRequests": lambda n : setattr(self, 'open_shift_change_requests', n.get_collection_of_object_values(open_shift_change_request.OpenShiftChangeRequest)),
+            "provisionStatus": lambda n : setattr(self, 'provision_status', n.get_enum_value(operation_status.OperationStatus)),
+            "provisionStatusCode": lambda n : setattr(self, 'provision_status_code', n.get_str_value()),
+            "schedulingGroups": lambda n : setattr(self, 'scheduling_groups', n.get_collection_of_object_values(scheduling_group.SchedulingGroup)),
             "shifts": lambda n : setattr(self, 'shifts', n.get_collection_of_object_values(shift.Shift)),
-            "swap_shifts_change_requests": lambda n : setattr(self, 'swap_shifts_change_requests', n.get_collection_of_object_values(swap_shifts_change_request.SwapShiftsChangeRequest)),
-            "swap_shifts_requests_enabled": lambda n : setattr(self, 'swap_shifts_requests_enabled', n.get_bool_value()),
-            "time_cards": lambda n : setattr(self, 'time_cards', n.get_collection_of_object_values(time_card.TimeCard)),
-            "time_clock_enabled": lambda n : setattr(self, 'time_clock_enabled', n.get_bool_value()),
-            "time_clock_settings": lambda n : setattr(self, 'time_clock_settings', n.get_object_value(time_clock_settings.TimeClockSettings)),
-            "time_off_reasons": lambda n : setattr(self, 'time_off_reasons', n.get_collection_of_object_values(time_off_reason.TimeOffReason)),
-            "time_off_requests": lambda n : setattr(self, 'time_off_requests', n.get_collection_of_object_values(time_off_request.TimeOffRequest)),
-            "time_off_requests_enabled": lambda n : setattr(self, 'time_off_requests_enabled', n.get_bool_value()),
-            "times_off": lambda n : setattr(self, 'times_off', n.get_collection_of_object_values(time_off.TimeOff)),
-            "time_zone": lambda n : setattr(self, 'time_zone', n.get_str_value()),
-            "workforce_integration_ids": lambda n : setattr(self, 'workforce_integration_ids', n.get_collection_of_primitive_values(str)),
+            "swapShiftsChangeRequests": lambda n : setattr(self, 'swap_shifts_change_requests', n.get_collection_of_object_values(swap_shifts_change_request.SwapShiftsChangeRequest)),
+            "swapShiftsRequestsEnabled": lambda n : setattr(self, 'swap_shifts_requests_enabled', n.get_bool_value()),
+            "timesOff": lambda n : setattr(self, 'times_off', n.get_collection_of_object_values(time_off.TimeOff)),
+            "timeCards": lambda n : setattr(self, 'time_cards', n.get_collection_of_object_values(time_card.TimeCard)),
+            "timeClockEnabled": lambda n : setattr(self, 'time_clock_enabled', n.get_bool_value()),
+            "timeClockSettings": lambda n : setattr(self, 'time_clock_settings', n.get_object_value(time_clock_settings.TimeClockSettings)),
+            "timeOffReasons": lambda n : setattr(self, 'time_off_reasons', n.get_collection_of_object_values(time_off_reason.TimeOffReason)),
+            "timeOffRequests": lambda n : setattr(self, 'time_off_requests', n.get_collection_of_object_values(time_off_request.TimeOffRequest)),
+            "timeOffRequestsEnabled": lambda n : setattr(self, 'time_off_requests_enabled', n.get_bool_value()),
+            "timeZone": lambda n : setattr(self, 'time_zone', n.get_str_value()),
+            "workforceIntegrationIds": lambda n : setattr(self, 'workforce_integration_ids', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -142,7 +142,7 @@ class Schedule(entity.Entity):
         """
         Sets the offerShiftRequests property value. The offerShiftRequests property
         Args:
-            value: Value to set for the offerShiftRequests property.
+            value: Value to set for the offer_shift_requests property.
         """
         self._offer_shift_requests = value
     
@@ -159,7 +159,7 @@ class Schedule(entity.Entity):
         """
         Sets the offerShiftRequestsEnabled property value. Indicates whether offer shift requests are enabled for the schedule.
         Args:
-            value: Value to set for the offerShiftRequestsEnabled property.
+            value: Value to set for the offer_shift_requests_enabled property.
         """
         self._offer_shift_requests_enabled = value
     
@@ -176,7 +176,7 @@ class Schedule(entity.Entity):
         """
         Sets the openShiftChangeRequests property value. The openShiftChangeRequests property
         Args:
-            value: Value to set for the openShiftChangeRequests property.
+            value: Value to set for the open_shift_change_requests property.
         """
         self._open_shift_change_requests = value
     
@@ -193,7 +193,7 @@ class Schedule(entity.Entity):
         """
         Sets the openShifts property value. The openShifts property
         Args:
-            value: Value to set for the openShifts property.
+            value: Value to set for the open_shifts property.
         """
         self._open_shifts = value
     
@@ -210,7 +210,7 @@ class Schedule(entity.Entity):
         """
         Sets the openShiftsEnabled property value. Indicates whether open shifts are enabled for the schedule.
         Args:
-            value: Value to set for the openShiftsEnabled property.
+            value: Value to set for the open_shifts_enabled property.
         """
         self._open_shifts_enabled = value
     
@@ -227,7 +227,7 @@ class Schedule(entity.Entity):
         """
         Sets the provisionStatus property value. The status of the schedule provisioning. The possible values are notStarted, running, completed, failed.
         Args:
-            value: Value to set for the provisionStatus property.
+            value: Value to set for the provision_status property.
         """
         self._provision_status = value
     
@@ -244,7 +244,7 @@ class Schedule(entity.Entity):
         """
         Sets the provisionStatusCode property value. Additional information about why schedule provisioning failed.
         Args:
-            value: Value to set for the provisionStatusCode property.
+            value: Value to set for the provision_status_code property.
         """
         self._provision_status_code = value
     
@@ -261,7 +261,7 @@ class Schedule(entity.Entity):
         """
         Sets the schedulingGroups property value. The logical grouping of users in the schedule (usually by role).
         Args:
-            value: Value to set for the schedulingGroups property.
+            value: Value to set for the scheduling_groups property.
         """
         self._scheduling_groups = value
     
@@ -277,20 +277,20 @@ class Schedule(entity.Entity):
         writer.write_bool_value("enabled", self.enabled)
         writer.write_collection_of_object_values("offerShiftRequests", self.offer_shift_requests)
         writer.write_bool_value("offerShiftRequestsEnabled", self.offer_shift_requests_enabled)
-        writer.write_collection_of_object_values("openShiftChangeRequests", self.open_shift_change_requests)
         writer.write_collection_of_object_values("openShifts", self.open_shifts)
         writer.write_bool_value("openShiftsEnabled", self.open_shifts_enabled)
+        writer.write_collection_of_object_values("openShiftChangeRequests", self.open_shift_change_requests)
         writer.write_collection_of_object_values("schedulingGroups", self.scheduling_groups)
         writer.write_collection_of_object_values("shifts", self.shifts)
         writer.write_collection_of_object_values("swapShiftsChangeRequests", self.swap_shifts_change_requests)
         writer.write_bool_value("swapShiftsRequestsEnabled", self.swap_shifts_requests_enabled)
+        writer.write_collection_of_object_values("timesOff", self.times_off)
         writer.write_collection_of_object_values("timeCards", self.time_cards)
         writer.write_bool_value("timeClockEnabled", self.time_clock_enabled)
         writer.write_object_value("timeClockSettings", self.time_clock_settings)
         writer.write_collection_of_object_values("timeOffReasons", self.time_off_reasons)
         writer.write_collection_of_object_values("timeOffRequests", self.time_off_requests)
         writer.write_bool_value("timeOffRequestsEnabled", self.time_off_requests_enabled)
-        writer.write_collection_of_object_values("timesOff", self.times_off)
         writer.write_str_value("timeZone", self.time_zone)
         writer.write_collection_of_primitive_values("workforceIntegrationIds", self.workforce_integration_ids)
     
@@ -324,7 +324,7 @@ class Schedule(entity.Entity):
         """
         Sets the swapShiftsChangeRequests property value. The swapShiftsChangeRequests property
         Args:
-            value: Value to set for the swapShiftsChangeRequests property.
+            value: Value to set for the swap_shifts_change_requests property.
         """
         self._swap_shifts_change_requests = value
     
@@ -341,7 +341,7 @@ class Schedule(entity.Entity):
         """
         Sets the swapShiftsRequestsEnabled property value. Indicates whether swap shifts requests are enabled for the schedule.
         Args:
-            value: Value to set for the swapShiftsRequestsEnabled property.
+            value: Value to set for the swap_shifts_requests_enabled property.
         """
         self._swap_shifts_requests_enabled = value
     
@@ -358,7 +358,7 @@ class Schedule(entity.Entity):
         """
         Sets the timeCards property value. The timeCards property
         Args:
-            value: Value to set for the timeCards property.
+            value: Value to set for the time_cards property.
         """
         self._time_cards = value
     
@@ -375,7 +375,7 @@ class Schedule(entity.Entity):
         """
         Sets the timeClockEnabled property value. Indicates whether time clock is enabled for the schedule.
         Args:
-            value: Value to set for the timeClockEnabled property.
+            value: Value to set for the time_clock_enabled property.
         """
         self._time_clock_enabled = value
     
@@ -392,7 +392,7 @@ class Schedule(entity.Entity):
         """
         Sets the timeClockSettings property value. The timeClockSettings property
         Args:
-            value: Value to set for the timeClockSettings property.
+            value: Value to set for the time_clock_settings property.
         """
         self._time_clock_settings = value
     
@@ -409,7 +409,7 @@ class Schedule(entity.Entity):
         """
         Sets the timeOffReasons property value. The set of reasons for a time off in the schedule.
         Args:
-            value: Value to set for the timeOffReasons property.
+            value: Value to set for the time_off_reasons property.
         """
         self._time_off_reasons = value
     
@@ -426,7 +426,7 @@ class Schedule(entity.Entity):
         """
         Sets the timeOffRequests property value. The timeOffRequests property
         Args:
-            value: Value to set for the timeOffRequests property.
+            value: Value to set for the time_off_requests property.
         """
         self._time_off_requests = value
     
@@ -443,26 +443,9 @@ class Schedule(entity.Entity):
         """
         Sets the timeOffRequestsEnabled property value. Indicates whether time off requests are enabled for the schedule.
         Args:
-            value: Value to set for the timeOffRequestsEnabled property.
+            value: Value to set for the time_off_requests_enabled property.
         """
         self._time_off_requests_enabled = value
-    
-    @property
-    def times_off(self,) -> Optional[List[time_off.TimeOff]]:
-        """
-        Gets the timesOff property value. The instances of times off in the schedule.
-        Returns: Optional[List[time_off.TimeOff]]
-        """
-        return self._times_off
-    
-    @times_off.setter
-    def times_off(self,value: Optional[List[time_off.TimeOff]] = None) -> None:
-        """
-        Sets the timesOff property value. The instances of times off in the schedule.
-        Args:
-            value: Value to set for the timesOff property.
-        """
-        self._times_off = value
     
     @property
     def time_zone(self,) -> Optional[str]:
@@ -477,9 +460,26 @@ class Schedule(entity.Entity):
         """
         Sets the timeZone property value. Indicates the time zone of the schedule team using tz database format. Required.
         Args:
-            value: Value to set for the timeZone property.
+            value: Value to set for the time_zone property.
         """
         self._time_zone = value
+    
+    @property
+    def times_off(self,) -> Optional[List[time_off.TimeOff]]:
+        """
+        Gets the timesOff property value. The instances of times off in the schedule.
+        Returns: Optional[List[time_off.TimeOff]]
+        """
+        return self._times_off
+    
+    @times_off.setter
+    def times_off(self,value: Optional[List[time_off.TimeOff]] = None) -> None:
+        """
+        Sets the timesOff property value. The instances of times off in the schedule.
+        Args:
+            value: Value to set for the times_off property.
+        """
+        self._times_off = value
     
     @property
     def workforce_integration_ids(self,) -> Optional[List[str]]:
@@ -494,7 +494,7 @@ class Schedule(entity.Entity):
         """
         Sets the workforceIntegrationIds property value. The workforceIntegrationIds property
         Args:
-            value: Value to set for the workforceIntegrationIds property.
+            value: Value to set for the workforce_integration_ids property.
         """
         self._workforce_integration_ids = value
     

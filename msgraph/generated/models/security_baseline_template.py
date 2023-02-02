@@ -22,7 +22,7 @@ class SecurityBaselineTemplate(device_management_template.DeviceManagementTempla
         """
         Sets the categoryDeviceStateSummaries property value. The security baseline per category device state summary
         Args:
-            value: Value to set for the categoryDeviceStateSummaries property.
+            value: Value to set for the category_device_state_summaries property.
         """
         self._category_device_state_summaries = value
     
@@ -34,10 +34,10 @@ class SecurityBaselineTemplate(device_management_template.DeviceManagementTempla
         self.odata_type = "#microsoft.graph.securityBaselineTemplate"
         # The security baseline per category device state summary
         self._category_device_state_summaries: Optional[List[security_baseline_category_state_summary.SecurityBaselineCategoryStateSummary]] = None
-        # The security baseline device states
-        self._device_states: Optional[List[security_baseline_device_state.SecurityBaselineDeviceState]] = None
         # The security baseline device state summary
         self._device_state_summary: Optional[security_baseline_state_summary.SecurityBaselineStateSummary] = None
+        # The security baseline device states
+        self._device_states: Optional[List[security_baseline_device_state.SecurityBaselineDeviceState]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SecurityBaselineTemplate:
@@ -52,23 +52,6 @@ class SecurityBaselineTemplate(device_management_template.DeviceManagementTempla
         return SecurityBaselineTemplate()
     
     @property
-    def device_states(self,) -> Optional[List[security_baseline_device_state.SecurityBaselineDeviceState]]:
-        """
-        Gets the deviceStates property value. The security baseline device states
-        Returns: Optional[List[security_baseline_device_state.SecurityBaselineDeviceState]]
-        """
-        return self._device_states
-    
-    @device_states.setter
-    def device_states(self,value: Optional[List[security_baseline_device_state.SecurityBaselineDeviceState]] = None) -> None:
-        """
-        Sets the deviceStates property value. The security baseline device states
-        Args:
-            value: Value to set for the deviceStates property.
-        """
-        self._device_states = value
-    
-    @property
     def device_state_summary(self,) -> Optional[security_baseline_state_summary.SecurityBaselineStateSummary]:
         """
         Gets the deviceStateSummary property value. The security baseline device state summary
@@ -81,9 +64,26 @@ class SecurityBaselineTemplate(device_management_template.DeviceManagementTempla
         """
         Sets the deviceStateSummary property value. The security baseline device state summary
         Args:
-            value: Value to set for the deviceStateSummary property.
+            value: Value to set for the device_state_summary property.
         """
         self._device_state_summary = value
+    
+    @property
+    def device_states(self,) -> Optional[List[security_baseline_device_state.SecurityBaselineDeviceState]]:
+        """
+        Gets the deviceStates property value. The security baseline device states
+        Returns: Optional[List[security_baseline_device_state.SecurityBaselineDeviceState]]
+        """
+        return self._device_states
+    
+    @device_states.setter
+    def device_states(self,value: Optional[List[security_baseline_device_state.SecurityBaselineDeviceState]] = None) -> None:
+        """
+        Sets the deviceStates property value. The security baseline device states
+        Args:
+            value: Value to set for the device_states property.
+        """
+        self._device_states = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -91,9 +91,9 @@ class SecurityBaselineTemplate(device_management_template.DeviceManagementTempla
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "category_device_state_summaries": lambda n : setattr(self, 'category_device_state_summaries', n.get_collection_of_object_values(security_baseline_category_state_summary.SecurityBaselineCategoryStateSummary)),
-            "device_states": lambda n : setattr(self, 'device_states', n.get_collection_of_object_values(security_baseline_device_state.SecurityBaselineDeviceState)),
-            "device_state_summary": lambda n : setattr(self, 'device_state_summary', n.get_object_value(security_baseline_state_summary.SecurityBaselineStateSummary)),
+            "categoryDeviceStateSummaries": lambda n : setattr(self, 'category_device_state_summaries', n.get_collection_of_object_values(security_baseline_category_state_summary.SecurityBaselineCategoryStateSummary)),
+            "deviceStates": lambda n : setattr(self, 'device_states', n.get_collection_of_object_values(security_baseline_device_state.SecurityBaselineDeviceState)),
+            "deviceStateSummary": lambda n : setattr(self, 'device_state_summary', n.get_object_value(security_baseline_state_summary.SecurityBaselineStateSummary)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

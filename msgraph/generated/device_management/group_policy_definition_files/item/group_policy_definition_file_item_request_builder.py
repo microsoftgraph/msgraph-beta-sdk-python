@@ -26,10 +26,11 @@ class GroupPolicyDefinitionFileItemRequestBuilder():
         """
         return definitions_request_builder.DefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, group_policy_definition_file_id: Optional[str] = None) -> None:
         """
         Instantiates a new GroupPolicyDefinitionFileItemRequestBuilder and sets the default values.
         Args:
+            groupPolicyDefinitionFileId: key: id of groupPolicyDefinitionFile
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -41,6 +42,7 @@ class GroupPolicyDefinitionFileItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceManagement/groupPolicyDefinitionFiles/{groupPolicyDefinitionFile%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["groupPolicyDefinitionFile%2Did"] = groupPolicyDefinitionFileId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
@@ -57,12 +59,11 @@ class GroupPolicyDefinitionFileItemRequestBuilder():
         url_tpl_params["groupPolicyDefinition%2Did"] = id
         return group_policy_definition_item_request_builder.GroupPolicyDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[GroupPolicyDefinitionFileItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[GroupPolicyDefinitionFileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property groupPolicyDefinitionFiles for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -73,14 +74,13 @@ class GroupPolicyDefinitionFileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[GroupPolicyDefinitionFileItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group_policy_definition_file.GroupPolicyDefinitionFile]:
+    async def get(self,request_configuration: Optional[GroupPolicyDefinitionFileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[group_policy_definition_file.GroupPolicyDefinitionFile]:
         """
         The available group policy definition files for this account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_policy_definition_file.GroupPolicyDefinitionFile]
         """
         request_info = self.to_get_request_information(
@@ -92,15 +92,14 @@ class GroupPolicyDefinitionFileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group_policy_definition_file.GroupPolicyDefinitionFile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, group_policy_definition_file.GroupPolicyDefinitionFile, error_mapping)
     
-    async def patch(self,body: Optional[group_policy_definition_file.GroupPolicyDefinitionFile] = None, request_configuration: Optional[GroupPolicyDefinitionFileItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group_policy_definition_file.GroupPolicyDefinitionFile]:
+    async def patch(self,body: Optional[group_policy_definition_file.GroupPolicyDefinitionFile] = None, request_configuration: Optional[GroupPolicyDefinitionFileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[group_policy_definition_file.GroupPolicyDefinitionFile]:
         """
         Update the navigation property groupPolicyDefinitionFiles in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_policy_definition_file.GroupPolicyDefinitionFile]
         """
         if body is None:
@@ -114,7 +113,7 @@ class GroupPolicyDefinitionFileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group_policy_definition_file.GroupPolicyDefinitionFile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, group_policy_definition_file.GroupPolicyDefinitionFile, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[GroupPolicyDefinitionFileItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

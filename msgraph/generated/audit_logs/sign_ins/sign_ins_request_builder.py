@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-confirm_compromised_request_builder = lazy_import('msgraph.generated.audit_logs.sign_ins.confirm_compromised.confirm_compromised_request_builder')
-confirm_safe_request_builder = lazy_import('msgraph.generated.audit_logs.sign_ins.confirm_safe.confirm_safe_request_builder')
 count_request_builder = lazy_import('msgraph.generated.audit_logs.sign_ins.count.count_request_builder')
+confirm_compromised_request_builder = lazy_import('msgraph.generated.audit_logs.sign_ins.microsoft_graph_confirm_compromised.confirm_compromised_request_builder')
+confirm_safe_request_builder = lazy_import('msgraph.generated.audit_logs.sign_ins.microsoft_graph_confirm_safe.confirm_safe_request_builder')
 sign_in = lazy_import('msgraph.generated.models.sign_in')
 sign_in_collection_response = lazy_import('msgraph.generated.models.sign_in_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -22,25 +22,25 @@ class SignInsRequestBuilder():
     Provides operations to manage the signIns property of the microsoft.graph.auditLogRoot entity.
     """
     @property
-    def confirm_compromised(self) -> confirm_compromised_request_builder.ConfirmCompromisedRequestBuilder:
+    def count(self) -> count_request_builder.CountRequestBuilder:
+        """
+        Provides operations to count the resources in the collection.
+        """
+        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_confirm_compromised(self) -> confirm_compromised_request_builder.ConfirmCompromisedRequestBuilder:
         """
         Provides operations to call the confirmCompromised method.
         """
         return confirm_compromised_request_builder.ConfirmCompromisedRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def confirm_safe(self) -> confirm_safe_request_builder.ConfirmSafeRequestBuilder:
+    def microsoft_graph_confirm_safe(self) -> confirm_safe_request_builder.ConfirmSafeRequestBuilder:
         """
         Provides operations to call the confirmSafe method.
         """
         return confirm_safe_request_builder.ConfirmSafeRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def count(self) -> count_request_builder.CountRequestBuilder:
-        """
-        Provides operations to count the resources in the collection.
-        """
-        return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -60,12 +60,11 @@ class SignInsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SignInsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sign_in_collection_response.SignInCollectionResponse]:
+    async def get(self,request_configuration: Optional[SignInsRequestBuilderGetRequestConfiguration] = None) -> Optional[sign_in_collection_response.SignInCollectionResponse]:
         """
         Get a list of signIn objects. The list contains the user sign-ins for your Azure Active Directory tenant. Sign-ins where a username and password are passed as part of authorization token, and successful federated sign-ins are currently included in the sign-in logs. The maximum and default page size is 1,000 objects and by default, the most recent sign-ins are returned first. Only sign-in events that occurred within the Azure Active Directory (Azure AD) default retention period are available.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sign_in_collection_response.SignInCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -77,15 +76,14 @@ class SignInsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sign_in_collection_response.SignInCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, sign_in_collection_response.SignInCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[sign_in.SignIn] = None, request_configuration: Optional[SignInsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sign_in.SignIn]:
+    async def post(self,body: Optional[sign_in.SignIn] = None, request_configuration: Optional[SignInsRequestBuilderPostRequestConfiguration] = None) -> Optional[sign_in.SignIn]:
         """
         Create new navigation property to signIns for auditLogs
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sign_in.SignIn]
         """
         if body is None:
@@ -99,7 +97,7 @@ class SignInsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sign_in.SignIn, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, sign_in.SignIn, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SignInsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

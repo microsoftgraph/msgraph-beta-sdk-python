@@ -90,14 +90,14 @@ class DeviceGeoLocation(AdditionalDataHolder, Parsable):
         fields = {
             "altitude": lambda n : setattr(self, 'altitude', n.get_float_value()),
             "heading": lambda n : setattr(self, 'heading', n.get_float_value()),
-            "horizontal_accuracy": lambda n : setattr(self, 'horizontal_accuracy', n.get_float_value()),
-            "last_collected_date_time": lambda n : setattr(self, 'last_collected_date_time', n.get_datetime_value()),
-            "last_collected_date_time_utc": lambda n : setattr(self, 'last_collected_date_time_utc', n.get_datetime_value()),
+            "horizontalAccuracy": lambda n : setattr(self, 'horizontal_accuracy', n.get_float_value()),
+            "lastCollectedDateTime": lambda n : setattr(self, 'last_collected_date_time', n.get_datetime_value()),
+            "lastCollectedDateTimeUtc": lambda n : setattr(self, 'last_collected_date_time_utc', n.get_datetime_value()),
             "latitude": lambda n : setattr(self, 'latitude', n.get_float_value()),
             "longitude": lambda n : setattr(self, 'longitude', n.get_float_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "speed": lambda n : setattr(self, 'speed', n.get_float_value()),
-            "vertical_accuracy": lambda n : setattr(self, 'vertical_accuracy', n.get_float_value()),
+            "verticalAccuracy": lambda n : setattr(self, 'vertical_accuracy', n.get_float_value()),
         }
         return fields
     
@@ -131,7 +131,7 @@ class DeviceGeoLocation(AdditionalDataHolder, Parsable):
         """
         Sets the horizontalAccuracy property value. Accuracy of longitude and latitude in meters
         Args:
-            value: Value to set for the horizontalAccuracy property.
+            value: Value to set for the horizontal_accuracy property.
         """
         self._horizontal_accuracy = value
     
@@ -148,7 +148,7 @@ class DeviceGeoLocation(AdditionalDataHolder, Parsable):
         """
         Sets the lastCollectedDateTime property value. Time at which location was recorded, relative to UTC
         Args:
-            value: Value to set for the lastCollectedDateTime property.
+            value: Value to set for the last_collected_date_time property.
         """
         self._last_collected_date_time = value
     
@@ -165,7 +165,7 @@ class DeviceGeoLocation(AdditionalDataHolder, Parsable):
         """
         Sets the lastCollectedDateTimeUtc property value. Time at which location was recorded, relative to UTC
         Args:
-            value: Value to set for the lastCollectedDateTimeUtc property.
+            value: Value to set for the last_collected_date_time_utc property.
         """
         self._last_collected_date_time_utc = value
     
@@ -216,7 +216,7 @@ class DeviceGeoLocation(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -270,7 +270,7 @@ class DeviceGeoLocation(AdditionalDataHolder, Parsable):
         """
         Sets the verticalAccuracy property value. Accuracy of altitude in meters
         Args:
-            value: Value to set for the verticalAccuracy property.
+            value: Value to set for the vertical_accuracy property.
         """
         self._vertical_accuracy = value
     

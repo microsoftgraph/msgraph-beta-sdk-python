@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-assign_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.user_settings.item.assign.assign_request_builder')
 assignments_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.user_settings.item.assignments.assignments_request_builder')
 cloud_pc_user_setting_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.user_settings.item.assignments.item.cloud_pc_user_setting_assignment_item_request_builder')
+assign_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.user_settings.item.microsoft_graph_assign.assign_request_builder')
 cloud_pc_user_setting = lazy_import('msgraph.generated.models.cloud_pc_user_setting')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -21,18 +21,18 @@ class CloudPcUserSettingItemRequestBuilder():
     Provides operations to manage the userSettings property of the microsoft.graph.virtualEndpoint entity.
     """
     @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
-        """
-        Provides operations to call the assign method.
-        """
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.cloudPcUserSetting entity.
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_assign(self) -> assign_request_builder.AssignRequestBuilder:
+        """
+        Provides operations to call the assign method.
+        """
+        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
     def assignments_by_id(self,id: str) -> cloud_pc_user_setting_assignment_item_request_builder.CloudPcUserSettingAssignmentItemRequestBuilder:
         """
@@ -47,10 +47,11 @@ class CloudPcUserSettingItemRequestBuilder():
         url_tpl_params["cloudPcUserSettingAssignment%2Did"] = id
         return cloud_pc_user_setting_assignment_item_request_builder.CloudPcUserSettingAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, cloud_pc_user_setting_id: Optional[str] = None) -> None:
         """
         Instantiates a new CloudPcUserSettingItemRequestBuilder and sets the default values.
         Args:
+            cloudPcUserSettingId: key: id of cloudPcUserSetting
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -62,15 +63,15 @@ class CloudPcUserSettingItemRequestBuilder():
         self.url_template: str = "{+baseurl}/deviceManagement/virtualEndpoint/userSettings/{cloudPcUserSetting%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["cloudPcUserSetting%2Did"] = cloudPcUserSettingId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CloudPcUserSettingItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CloudPcUserSettingItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property userSettings for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -81,14 +82,13 @@ class CloudPcUserSettingItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CloudPcUserSettingItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_user_setting.CloudPcUserSetting]:
+    async def get(self,request_configuration: Optional[CloudPcUserSettingItemRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_user_setting.CloudPcUserSetting]:
         """
         Cloud PC user settings.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_user_setting.CloudPcUserSetting]
         """
         request_info = self.to_get_request_information(
@@ -100,15 +100,14 @@ class CloudPcUserSettingItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_user_setting.CloudPcUserSetting, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_user_setting.CloudPcUserSetting, error_mapping)
     
-    async def patch(self,body: Optional[cloud_pc_user_setting.CloudPcUserSetting] = None, request_configuration: Optional[CloudPcUserSettingItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_user_setting.CloudPcUserSetting]:
+    async def patch(self,body: Optional[cloud_pc_user_setting.CloudPcUserSetting] = None, request_configuration: Optional[CloudPcUserSettingItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[cloud_pc_user_setting.CloudPcUserSetting]:
         """
         Update the navigation property userSettings in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_user_setting.CloudPcUserSetting]
         """
         if body is None:
@@ -122,7 +121,7 @@ class CloudPcUserSettingItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_user_setting.CloudPcUserSetting, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_user_setting.CloudPcUserSetting, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CloudPcUserSettingItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

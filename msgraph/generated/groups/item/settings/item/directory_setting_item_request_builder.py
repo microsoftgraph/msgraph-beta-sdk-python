@@ -17,10 +17,11 @@ class DirectorySettingItemRequestBuilder():
     """
     Provides operations to manage the settings property of the microsoft.graph.group entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, directory_setting_id: Optional[str] = None) -> None:
         """
         Instantiates a new DirectorySettingItemRequestBuilder and sets the default values.
         Args:
+            directorySettingId: key: id of directorySetting
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class DirectorySettingItemRequestBuilder():
         self.url_template: str = "{+baseurl}/groups/{group%2Did}/settings/{directorySetting%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["directorySetting%2Did"] = directorySettingId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DirectorySettingItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DirectorySettingItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property settings for groups
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class DirectorySettingItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DirectorySettingItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_setting.DirectorySetting]:
+    async def get(self,request_configuration: Optional[DirectorySettingItemRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_setting.DirectorySetting]:
         """
         Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_setting.DirectorySetting]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class DirectorySettingItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_setting.DirectorySetting, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_setting.DirectorySetting, error_mapping)
     
-    async def patch(self,body: Optional[directory_setting.DirectorySetting] = None, request_configuration: Optional[DirectorySettingItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_setting.DirectorySetting]:
+    async def patch(self,body: Optional[directory_setting.DirectorySetting] = None, request_configuration: Optional[DirectorySettingItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[directory_setting.DirectorySetting]:
         """
         Update the navigation property settings in groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_setting.DirectorySetting]
         """
         if body is None:
@@ -92,7 +91,7 @@ class DirectorySettingItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_setting.DirectorySetting, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_setting.DirectorySetting, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DirectorySettingItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

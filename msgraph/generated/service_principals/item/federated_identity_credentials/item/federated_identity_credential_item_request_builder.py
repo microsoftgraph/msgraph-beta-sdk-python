@@ -17,10 +17,11 @@ class FederatedIdentityCredentialItemRequestBuilder():
     """
     Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.servicePrincipal entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, federated_identity_credential_id: Optional[str] = None) -> None:
         """
         Instantiates a new FederatedIdentityCredentialItemRequestBuilder and sets the default values.
         Args:
+            federatedIdentityCredentialId: key: id of federatedIdentityCredential
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class FederatedIdentityCredentialItemRequestBuilder():
         self.url_template: str = "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/federatedIdentityCredentials/{federatedIdentityCredential%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["federatedIdentityCredential%2Did"] = federatedIdentityCredentialId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[FederatedIdentityCredentialItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[FederatedIdentityCredentialItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property federatedIdentityCredentials for servicePrincipals
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +52,13 @@ class FederatedIdentityCredentialItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[FederatedIdentityCredentialItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[federated_identity_credential.FederatedIdentityCredential]:
+    async def get(self,request_configuration: Optional[FederatedIdentityCredentialItemRequestBuilderGetRequestConfiguration] = None) -> Optional[federated_identity_credential.FederatedIdentityCredential]:
         """
         Get federatedIdentityCredentials from servicePrincipals
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[federated_identity_credential.FederatedIdentityCredential]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +70,14 @@ class FederatedIdentityCredentialItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, federated_identity_credential.FederatedIdentityCredential, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, federated_identity_credential.FederatedIdentityCredential, error_mapping)
     
-    async def patch(self,body: Optional[federated_identity_credential.FederatedIdentityCredential] = None, request_configuration: Optional[FederatedIdentityCredentialItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[federated_identity_credential.FederatedIdentityCredential]:
+    async def patch(self,body: Optional[federated_identity_credential.FederatedIdentityCredential] = None, request_configuration: Optional[FederatedIdentityCredentialItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[federated_identity_credential.FederatedIdentityCredential]:
         """
         Update the navigation property federatedIdentityCredentials in servicePrincipals
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[federated_identity_credential.FederatedIdentityCredential]
         """
         if body is None:
@@ -92,7 +91,7 @@ class FederatedIdentityCredentialItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, federated_identity_credential.FederatedIdentityCredential, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, federated_identity_credential.FederatedIdentityCredential, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[FederatedIdentityCredentialItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

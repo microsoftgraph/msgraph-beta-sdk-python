@@ -20,7 +20,7 @@ class UserExperienceAnalyticsBatteryHealthRuntimeDetails(entity.Entity):
         """
         Sets the activeDevices property value. Number of active devices within the tenant. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the activeDevices property.
+            value: Value to set for the active_devices property.
         """
         self._active_devices = value
     
@@ -37,7 +37,7 @@ class UserExperienceAnalyticsBatteryHealthRuntimeDetails(entity.Entity):
         """
         Sets the batteryRuntimeFair property value. Number of devices whose active runtime is greater than 3 hours but lesser than 5 hours. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the batteryRuntimeFair property.
+            value: Value to set for the battery_runtime_fair property.
         """
         self._battery_runtime_fair = value
     
@@ -54,7 +54,7 @@ class UserExperienceAnalyticsBatteryHealthRuntimeDetails(entity.Entity):
         """
         Sets the batteryRuntimeGood property value. Number of devices  whose active runtime is greater than 5 hours. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the batteryRuntimeGood property.
+            value: Value to set for the battery_runtime_good property.
         """
         self._battery_runtime_good = value
     
@@ -71,13 +71,13 @@ class UserExperienceAnalyticsBatteryHealthRuntimeDetails(entity.Entity):
         """
         Sets the batteryRuntimePoor property value. Number of devices whose active runtime is lesser than 3 hours. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the batteryRuntimePoor property.
+            value: Value to set for the battery_runtime_poor property.
         """
         self._battery_runtime_poor = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new userExperienceAnalyticsBatteryHealthRuntimeDetails and sets the default values.
+        Instantiates a new UserExperienceAnalyticsBatteryHealthRuntimeDetails and sets the default values.
         """
         super().__init__()
         # Number of active devices within the tenant. Valid values -2147483648 to 2147483647
@@ -111,11 +111,11 @@ class UserExperienceAnalyticsBatteryHealthRuntimeDetails(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "active_devices": lambda n : setattr(self, 'active_devices', n.get_int_value()),
-            "battery_runtime_fair": lambda n : setattr(self, 'battery_runtime_fair', n.get_int_value()),
-            "battery_runtime_good": lambda n : setattr(self, 'battery_runtime_good', n.get_int_value()),
-            "battery_runtime_poor": lambda n : setattr(self, 'battery_runtime_poor', n.get_int_value()),
-            "last_refreshed_date_time": lambda n : setattr(self, 'last_refreshed_date_time', n.get_datetime_value()),
+            "activeDevices": lambda n : setattr(self, 'active_devices', n.get_int_value()),
+            "batteryRuntimeFair": lambda n : setattr(self, 'battery_runtime_fair', n.get_int_value()),
+            "batteryRuntimeGood": lambda n : setattr(self, 'battery_runtime_good', n.get_int_value()),
+            "batteryRuntimePoor": lambda n : setattr(self, 'battery_runtime_poor', n.get_int_value()),
+            "lastRefreshedDateTime": lambda n : setattr(self, 'last_refreshed_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -134,7 +134,7 @@ class UserExperienceAnalyticsBatteryHealthRuntimeDetails(entity.Entity):
         """
         Sets the lastRefreshedDateTime property value. Recorded date time of this runtime details instance.
         Args:
-            value: Value to set for the lastRefreshedDateTime property.
+            value: Value to set for the last_refreshed_date_time property.
         """
         self._last_refreshed_date_time = value
     

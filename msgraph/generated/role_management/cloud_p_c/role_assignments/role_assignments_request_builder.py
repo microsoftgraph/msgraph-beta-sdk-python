@@ -44,12 +44,11 @@ class RoleAssignmentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[RoleAssignmentsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_role_assignment_multiple_collection_response.UnifiedRoleAssignmentMultipleCollectionResponse]:
+    async def get(self,request_configuration: Optional[RoleAssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_assignment_multiple_collection_response.UnifiedRoleAssignmentMultipleCollectionResponse]:
         """
         Get a list of unifiedRoleAssignmentMultiple objects for an RBAC provider. The following RBAC providers are currently supported:- Cloud PC - device management (Intune) For other Microsoft 365 applications (like Azure AD), use unifiedRoleAssignment.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_role_assignment_multiple_collection_response.UnifiedRoleAssignmentMultipleCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class RoleAssignmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_role_assignment_multiple_collection_response.UnifiedRoleAssignmentMultipleCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_role_assignment_multiple_collection_response.UnifiedRoleAssignmentMultipleCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple] = None, request_configuration: Optional[RoleAssignmentsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple]:
+    async def post(self,body: Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple] = None, request_configuration: Optional[RoleAssignmentsRequestBuilderPostRequestConfiguration] = None) -> Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple]:
         """
         Create a new unifiedRoleAssignmentMultiple object for an RBAC provider.  The following RBAC providers are currently supported:- Cloud PC - device management (Intune) For other Microsoft 365 applications (like Azure AD), use unifiedRoleAssignment.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple]
         """
         if body is None:
@@ -83,7 +81,7 @@ class RoleAssignmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RoleAssignmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

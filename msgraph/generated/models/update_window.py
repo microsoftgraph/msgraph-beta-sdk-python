@@ -55,8 +55,8 @@ class UpdateWindow(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "update_window_end_time": lambda n : setattr(self, 'update_window_end_time', n.get_object_value(Time)),
-            "update_window_start_time": lambda n : setattr(self, 'update_window_start_time', n.get_object_value(Time)),
+            "updateWindowEndTime": lambda n : setattr(self, 'update_window_end_time', n.get_object_value(Time)),
+            "updateWindowStartTime": lambda n : setattr(self, 'update_window_start_time', n.get_object_value(Time)),
         }
         return fields
     
@@ -73,7 +73,7 @@ class UpdateWindow(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -103,7 +103,7 @@ class UpdateWindow(AdditionalDataHolder, Parsable):
         """
         Sets the updateWindowEndTime property value. End of a time window during which agents can receive updates
         Args:
-            value: Value to set for the updateWindowEndTime property.
+            value: Value to set for the update_window_end_time property.
         """
         self._update_window_end_time = value
     
@@ -120,7 +120,7 @@ class UpdateWindow(AdditionalDataHolder, Parsable):
         """
         Sets the updateWindowStartTime property value. Start of a time window during which agents can receive updates
         Args:
-            value: Value to set for the updateWindowStartTime property.
+            value: Value to set for the update_window_start_time property.
         """
         self._update_window_start_time = value
     

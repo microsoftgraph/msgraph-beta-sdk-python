@@ -37,7 +37,7 @@ class ConfigManagerPolicySummary(AdditionalDataHolder, Parsable):
         """
         Sets the compliantDeviceCount property value. The number of devices evaluated to be compliant by the policy.
         Args:
-            value: Value to set for the compliantDeviceCount property.
+            value: Value to set for the compliant_device_count property.
         """
         self._compliant_device_count = value
     
@@ -88,7 +88,7 @@ class ConfigManagerPolicySummary(AdditionalDataHolder, Parsable):
         """
         Sets the enforcedDeviceCount property value. The number of devices that have have been remediated by the policy.
         Args:
-            value: Value to set for the enforcedDeviceCount property.
+            value: Value to set for the enforced_device_count property.
         """
         self._enforced_device_count = value
     
@@ -105,7 +105,7 @@ class ConfigManagerPolicySummary(AdditionalDataHolder, Parsable):
         """
         Sets the failedDeviceCount property value. The number of devices that failed to be evaluated by the policy.
         Args:
-            value: Value to set for the failedDeviceCount property.
+            value: Value to set for the failed_device_count property.
         """
         self._failed_device_count = value
     
@@ -115,13 +115,13 @@ class ConfigManagerPolicySummary(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "compliant_device_count": lambda n : setattr(self, 'compliant_device_count', n.get_int_value()),
-            "enforced_device_count": lambda n : setattr(self, 'enforced_device_count', n.get_int_value()),
-            "failed_device_count": lambda n : setattr(self, 'failed_device_count', n.get_int_value()),
-            "non_compliant_device_count": lambda n : setattr(self, 'non_compliant_device_count', n.get_int_value()),
+            "compliantDeviceCount": lambda n : setattr(self, 'compliant_device_count', n.get_int_value()),
+            "enforcedDeviceCount": lambda n : setattr(self, 'enforced_device_count', n.get_int_value()),
+            "failedDeviceCount": lambda n : setattr(self, 'failed_device_count', n.get_int_value()),
+            "nonCompliantDeviceCount": lambda n : setattr(self, 'non_compliant_device_count', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "pending_device_count": lambda n : setattr(self, 'pending_device_count', n.get_int_value()),
-            "targeted_device_count": lambda n : setattr(self, 'targeted_device_count', n.get_int_value()),
+            "pendingDeviceCount": lambda n : setattr(self, 'pending_device_count', n.get_int_value()),
+            "targetedDeviceCount": lambda n : setattr(self, 'targeted_device_count', n.get_int_value()),
         }
         return fields
     
@@ -138,7 +138,7 @@ class ConfigManagerPolicySummary(AdditionalDataHolder, Parsable):
         """
         Sets the nonCompliantDeviceCount property value. The number of devices evaluated to be noncompliant by the policy.
         Args:
-            value: Value to set for the nonCompliantDeviceCount property.
+            value: Value to set for the non_compliant_device_count property.
         """
         self._non_compliant_device_count = value
     
@@ -155,7 +155,7 @@ class ConfigManagerPolicySummary(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -172,7 +172,7 @@ class ConfigManagerPolicySummary(AdditionalDataHolder, Parsable):
         """
         Sets the pendingDeviceCount property value. The number of devices that have acknowledged the policy but are pending evaluation.
         Args:
-            value: Value to set for the pendingDeviceCount property.
+            value: Value to set for the pending_device_count property.
         """
         self._pending_device_count = value
     
@@ -206,7 +206,7 @@ class ConfigManagerPolicySummary(AdditionalDataHolder, Parsable):
         """
         Sets the targetedDeviceCount property value. The number of devices targeted by the policy.
         Args:
-            value: Value to set for the targetedDeviceCount property.
+            value: Value to set for the targeted_device_count property.
         """
         self._targeted_device_count = value
     

@@ -36,7 +36,7 @@ class MeetingCapability(AdditionalDataHolder, Parsable):
         """
         Sets the allowAnonymousUsersToDialOut property value. Indicates whether anonymous users dialout is allowed in a meeting.
         Args:
-            value: Value to set for the allowAnonymousUsersToDialOut property.
+            value: Value to set for the allow_anonymous_users_to_dial_out property.
         """
         self._allow_anonymous_users_to_dial_out = value
     
@@ -53,7 +53,7 @@ class MeetingCapability(AdditionalDataHolder, Parsable):
         """
         Sets the allowAnonymousUsersToStartMeeting property value. Indicates whether anonymous users are allowed to start a meeting.
         Args:
-            value: Value to set for the allowAnonymousUsersToStartMeeting property.
+            value: Value to set for the allow_anonymous_users_to_start_meeting property.
         """
         self._allow_anonymous_users_to_start_meeting = value
     
@@ -70,7 +70,7 @@ class MeetingCapability(AdditionalDataHolder, Parsable):
         """
         Sets the autoAdmittedUsers property value. The autoAdmittedUsers property
         Args:
-            value: Value to set for the autoAdmittedUsers property.
+            value: Value to set for the auto_admitted_users property.
         """
         self._auto_admitted_users = value
     
@@ -108,9 +108,9 @@ class MeetingCapability(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_anonymous_users_to_dial_out": lambda n : setattr(self, 'allow_anonymous_users_to_dial_out', n.get_bool_value()),
-            "allow_anonymous_users_to_start_meeting": lambda n : setattr(self, 'allow_anonymous_users_to_start_meeting', n.get_bool_value()),
-            "auto_admitted_users": lambda n : setattr(self, 'auto_admitted_users', n.get_enum_value(auto_admitted_users_type.AutoAdmittedUsersType)),
+            "allowAnonymousUsersToDialOut": lambda n : setattr(self, 'allow_anonymous_users_to_dial_out', n.get_bool_value()),
+            "allowAnonymousUsersToStartMeeting": lambda n : setattr(self, 'allow_anonymous_users_to_start_meeting', n.get_bool_value()),
+            "autoAdmittedUsers": lambda n : setattr(self, 'auto_admitted_users', n.get_enum_value(auto_admitted_users_type.AutoAdmittedUsersType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -128,7 +128,7 @@ class MeetingCapability(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

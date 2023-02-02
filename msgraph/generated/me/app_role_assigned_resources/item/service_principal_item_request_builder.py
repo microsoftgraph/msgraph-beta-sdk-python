@@ -17,12 +17,13 @@ class ServicePrincipalItemRequestBuilder():
     """
     Provides operations to manage the appRoleAssignedResources property of the microsoft.graph.user entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, service_principal_id: Optional[str] = None) -> None:
         """
         Instantiates a new ServicePrincipalItemRequestBuilder and sets the default values.
         Args:
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
+            servicePrincipalId: key: id of servicePrincipal
         """
         if path_parameters is None:
             raise Exception("path_parameters cannot be undefined")
@@ -32,15 +33,15 @@ class ServicePrincipalItemRequestBuilder():
         self.url_template: str = "{+baseurl}/me/appRoleAssignedResources/{servicePrincipal%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["servicePrincipal%2Did"] = servicePrincipalId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ServicePrincipalItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[service_principal.ServicePrincipal]:
+    async def get(self,request_configuration: Optional[ServicePrincipalItemRequestBuilderGetRequestConfiguration] = None) -> Optional[service_principal.ServicePrincipal]:
         """
         Get appRoleAssignedResources from me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[service_principal.ServicePrincipal]
         """
         request_info = self.to_get_request_information(
@@ -52,7 +53,7 @@ class ServicePrincipalItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, service_principal.ServicePrincipal, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, service_principal.ServicePrincipal, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ServicePrincipalItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

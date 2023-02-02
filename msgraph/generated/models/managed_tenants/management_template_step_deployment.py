@@ -47,7 +47,7 @@ class ManagementTemplateStepDeployment(entity.Entity):
         """
         Sets the createdByUserId property value. The createdByUserId property
         Args:
-            value: Value to set for the createdByUserId property.
+            value: Value to set for the created_by_user_id property.
         """
         self._created_by_user_id = value
     
@@ -64,7 +64,7 @@ class ManagementTemplateStepDeployment(entity.Entity):
         """
         Sets the createdDateTime property value. The createdDateTime property
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -103,14 +103,14 @@ class ManagementTemplateStepDeployment(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "created_by_user_id": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "error": lambda n : setattr(self, 'error', n.get_object_value(graphAPIErrorDetails)),
-            "last_action_by_user_id": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
-            "last_action_date_time": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
+            "lastActionByUserId": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
+            "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(management_template_deployment_status.ManagementTemplateDeploymentStatus)),
-            "template_step_version": lambda n : setattr(self, 'template_step_version', n.get_object_value(management_template_step_version.ManagementTemplateStepVersion)),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "templateStepVersion": lambda n : setattr(self, 'template_step_version', n.get_object_value(management_template_step_version.ManagementTemplateStepVersion)),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -129,7 +129,7 @@ class ManagementTemplateStepDeployment(entity.Entity):
         """
         Sets the lastActionByUserId property value. The lastActionByUserId property
         Args:
-            value: Value to set for the lastActionByUserId property.
+            value: Value to set for the last_action_by_user_id property.
         """
         self._last_action_by_user_id = value
     
@@ -146,7 +146,7 @@ class ManagementTemplateStepDeployment(entity.Entity):
         """
         Sets the lastActionDateTime property value. The lastActionDateTime property
         Args:
-            value: Value to set for the lastActionDateTime property.
+            value: Value to set for the last_action_date_time property.
         """
         self._last_action_date_time = value
     
@@ -198,7 +198,7 @@ class ManagementTemplateStepDeployment(entity.Entity):
         """
         Sets the templateStepVersion property value. The templateStepVersion property
         Args:
-            value: Value to set for the templateStepVersion property.
+            value: Value to set for the template_step_version property.
         """
         self._template_step_version = value
     
@@ -215,7 +215,7 @@ class ManagementTemplateStepDeployment(entity.Entity):
         """
         Sets the tenantId property value. The tenantId property
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     

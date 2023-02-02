@@ -21,7 +21,7 @@ class Command(entity.Entity):
         """
         Sets the appServiceName property value. The appServiceName property
         Args:
-            value: Value to set for the appServiceName property.
+            value: Value to set for the app_service_name property.
         """
         self._app_service_name = value
     
@@ -86,12 +86,12 @@ class Command(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_service_name": lambda n : setattr(self, 'app_service_name', n.get_str_value()),
+            "appServiceName": lambda n : setattr(self, 'app_service_name', n.get_str_value()),
             "error": lambda n : setattr(self, 'error', n.get_str_value()),
-            "package_family_name": lambda n : setattr(self, 'package_family_name', n.get_str_value()),
+            "packageFamilyName": lambda n : setattr(self, 'package_family_name', n.get_str_value()),
             "payload": lambda n : setattr(self, 'payload', n.get_object_value(payload_request.PayloadRequest)),
-            "permission_ticket": lambda n : setattr(self, 'permission_ticket', n.get_str_value()),
-            "post_back_uri": lambda n : setattr(self, 'post_back_uri', n.get_str_value()),
+            "permissionTicket": lambda n : setattr(self, 'permission_ticket', n.get_str_value()),
+            "postBackUri": lambda n : setattr(self, 'post_back_uri', n.get_str_value()),
             "responsepayload": lambda n : setattr(self, 'responsepayload', n.get_object_value(payload_response.PayloadResponse)),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
@@ -113,7 +113,7 @@ class Command(entity.Entity):
         """
         Sets the packageFamilyName property value. The packageFamilyName property
         Args:
-            value: Value to set for the packageFamilyName property.
+            value: Value to set for the package_family_name property.
         """
         self._package_family_name = value
     
@@ -147,7 +147,7 @@ class Command(entity.Entity):
         """
         Sets the permissionTicket property value. The permissionTicket property
         Args:
-            value: Value to set for the permissionTicket property.
+            value: Value to set for the permission_ticket property.
         """
         self._permission_ticket = value
     
@@ -164,7 +164,7 @@ class Command(entity.Entity):
         """
         Sets the postBackUri property value. The postBackUri property
         Args:
-            value: Value to set for the postBackUri property.
+            value: Value to set for the post_back_uri property.
         """
         self._post_back_uri = value
     

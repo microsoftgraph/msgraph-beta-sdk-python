@@ -1,7 +1,7 @@
 from enum import Enum
 
 class ClientCredentialType(Enum):
-    None_escaped = "none",
+    None_ = "none",
     ClientSecret = "clientSecret",
     ClientAssertion = "clientAssertion",
     FederatedIdentityCredential = "federatedIdentityCredential",

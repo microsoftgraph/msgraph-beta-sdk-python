@@ -43,11 +43,11 @@ class Office365GroupsActivityStorage(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "mailbox_storage_used_in_bytes": lambda n : setattr(self, 'mailbox_storage_used_in_bytes', n.get_int_value()),
-            "report_date": lambda n : setattr(self, 'report_date', n.get_object_value(Date)),
-            "report_period": lambda n : setattr(self, 'report_period', n.get_str_value()),
-            "report_refresh_date": lambda n : setattr(self, 'report_refresh_date', n.get_object_value(Date)),
-            "site_storage_used_in_bytes": lambda n : setattr(self, 'site_storage_used_in_bytes', n.get_int_value()),
+            "mailboxStorageUsedInBytes": lambda n : setattr(self, 'mailbox_storage_used_in_bytes', n.get_int_value()),
+            "reportDate": lambda n : setattr(self, 'report_date', n.get_object_value(Date)),
+            "reportPeriod": lambda n : setattr(self, 'report_period', n.get_str_value()),
+            "reportRefreshDate": lambda n : setattr(self, 'report_refresh_date', n.get_object_value(Date)),
+            "siteStorageUsedInBytes": lambda n : setattr(self, 'site_storage_used_in_bytes', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -66,7 +66,7 @@ class Office365GroupsActivityStorage(entity.Entity):
         """
         Sets the mailboxStorageUsedInBytes property value. The storage used in group mailbox.
         Args:
-            value: Value to set for the mailboxStorageUsedInBytes property.
+            value: Value to set for the mailbox_storage_used_in_bytes property.
         """
         self._mailbox_storage_used_in_bytes = value
     
@@ -83,7 +83,7 @@ class Office365GroupsActivityStorage(entity.Entity):
         """
         Sets the reportDate property value. The snapshot date for Exchange and SharePoint used storage.
         Args:
-            value: Value to set for the reportDate property.
+            value: Value to set for the report_date property.
         """
         self._report_date = value
     
@@ -100,7 +100,7 @@ class Office365GroupsActivityStorage(entity.Entity):
         """
         Sets the reportPeriod property value. The number of days the report covers.
         Args:
-            value: Value to set for the reportPeriod property.
+            value: Value to set for the report_period property.
         """
         self._report_period = value
     
@@ -117,7 +117,7 @@ class Office365GroupsActivityStorage(entity.Entity):
         """
         Sets the reportRefreshDate property value. The latest date of the content.
         Args:
-            value: Value to set for the reportRefreshDate property.
+            value: Value to set for the report_refresh_date property.
         """
         self._report_refresh_date = value
     
@@ -149,7 +149,7 @@ class Office365GroupsActivityStorage(entity.Entity):
         """
         Sets the siteStorageUsedInBytes property value. The storage used in SharePoint document library.
         Args:
-            value: Value to set for the siteStorageUsedInBytes property.
+            value: Value to set for the site_storage_used_in_bytes property.
         """
         self._site_storage_used_in_bytes = value
     

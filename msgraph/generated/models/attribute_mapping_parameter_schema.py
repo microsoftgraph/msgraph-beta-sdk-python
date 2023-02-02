@@ -36,7 +36,7 @@ class AttributeMappingParameterSchema(AdditionalDataHolder, Parsable):
         """
         Sets the allowMultipleOccurrences property value. The given parameter can be provided multiple times (for example, multiple input strings in the Concatenate(string,string,...) function).
         Args:
-            value: Value to set for the allowMultipleOccurrences property.
+            value: Value to set for the allow_multiple_occurrences property.
         """
         self._allow_multiple_occurrences = value
     
@@ -76,7 +76,7 @@ class AttributeMappingParameterSchema(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_multiple_occurrences": lambda n : setattr(self, 'allow_multiple_occurrences', n.get_bool_value()),
+            "allowMultipleOccurrences": lambda n : setattr(self, 'allow_multiple_occurrences', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "required": lambda n : setattr(self, 'required', n.get_bool_value()),
@@ -114,7 +114,7 @@ class AttributeMappingParameterSchema(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -54,7 +54,7 @@ class AppCatalogs(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "teams_apps": lambda n : setattr(self, 'teams_apps', n.get_collection_of_object_values(teams_app.TeamsApp)),
+            "teamsApps": lambda n : setattr(self, 'teams_apps', n.get_collection_of_object_values(teams_app.TeamsApp)),
         }
         return fields
     
@@ -71,7 +71,7 @@ class AppCatalogs(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -100,7 +100,7 @@ class AppCatalogs(AdditionalDataHolder, Parsable):
         """
         Sets the teamsApps property value. The teamsApps property
         Args:
-            value: Value to set for the teamsApps property.
+            value: Value to set for the teams_apps property.
         """
         self._teams_apps = value
     

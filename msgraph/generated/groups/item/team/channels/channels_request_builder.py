@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-all_messages_request_builder = lazy_import('msgraph.generated.groups.item.team.channels.all_messages.all_messages_request_builder')
 count_request_builder = lazy_import('msgraph.generated.groups.item.team.channels.count.count_request_builder')
-get_all_messages_request_builder = lazy_import('msgraph.generated.groups.item.team.channels.get_all_messages.get_all_messages_request_builder')
+all_messages_request_builder = lazy_import('msgraph.generated.groups.item.team.channels.microsoft_graph_all_messages.all_messages_request_builder')
+get_all_messages_request_builder = lazy_import('msgraph.generated.groups.item.team.channels.microsoft_graph_get_all_messages.get_all_messages_request_builder')
 channel = lazy_import('msgraph.generated.models.channel')
 channel_collection_response = lazy_import('msgraph.generated.models.channel_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -28,12 +28,19 @@ class ChannelsRequestBuilder():
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def all_messages(self,) -> all_messages_request_builder.AllMessagesRequestBuilder:
+    @property
+    def microsoft_graph_all_messages(self) -> all_messages_request_builder.AllMessagesRequestBuilder:
         """
         Provides operations to call the allMessages method.
-        Returns: all_messages_request_builder.AllMessagesRequestBuilder
         """
         return all_messages_request_builder.AllMessagesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_all_messages(self) -> get_all_messages_request_builder.GetAllMessagesRequestBuilder:
+        """
+        Provides operations to call the getAllMessages method.
+        """
+        return get_all_messages_request_builder.GetAllMessagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -53,12 +60,11 @@ class ChannelsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ChannelsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[channel_collection_response.ChannelCollectionResponse]:
+    async def get(self,request_configuration: Optional[ChannelsRequestBuilderGetRequestConfiguration] = None) -> Optional[channel_collection_response.ChannelCollectionResponse]:
         """
         Retrieve the list of channels in this team.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[channel_collection_response.ChannelCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -70,22 +76,14 @@ class ChannelsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, channel_collection_response.ChannelCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, channel_collection_response.ChannelCollectionResponse, error_mapping)
     
-    def get_all_messages(self,) -> get_all_messages_request_builder.GetAllMessagesRequestBuilder:
-        """
-        Provides operations to call the getAllMessages method.
-        Returns: get_all_messages_request_builder.GetAllMessagesRequestBuilder
-        """
-        return get_all_messages_request_builder.GetAllMessagesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def post(self,body: Optional[channel.Channel] = None, request_configuration: Optional[ChannelsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[channel.Channel]:
+    async def post(self,body: Optional[channel.Channel] = None, request_configuration: Optional[ChannelsRequestBuilderPostRequestConfiguration] = None) -> Optional[channel.Channel]:
         """
         Create a new channel in a team, as specified in the request body. When you create a channel, the maximum length of the channel's `displayName` is 50 characters. This is the name that appears to the user in Microsoft Teams. You can add a maximum of 200 members when you create a private channel.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[channel.Channel]
         """
         if body is None:
@@ -99,7 +97,7 @@ class ChannelsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, channel.Channel, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, channel.Channel, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ChannelsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

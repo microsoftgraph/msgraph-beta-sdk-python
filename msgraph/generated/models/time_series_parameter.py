@@ -66,7 +66,7 @@ class TimeSeriesParameter(AdditionalDataHolder, Parsable):
         """
         Sets the endDateTime property value. End time of the series being requested. Optional; if not specified, current time is used.
         Args:
-            value: Value to set for the endDateTime property.
+            value: Value to set for the end_date_time property.
         """
         self._end_date_time = value
     
@@ -76,10 +76,10 @@ class TimeSeriesParameter(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "end_date_time": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
-            "metric_name": lambda n : setattr(self, 'metric_name', n.get_str_value()),
+            "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
+            "metricName": lambda n : setattr(self, 'metric_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
         }
         return fields
     
@@ -96,7 +96,7 @@ class TimeSeriesParameter(AdditionalDataHolder, Parsable):
         """
         Sets the metricName property value. The name of the metric for which a time series is requested.
         Args:
-            value: Value to set for the metricName property.
+            value: Value to set for the metric_name property.
         """
         self._metric_name = value
     
@@ -113,7 +113,7 @@ class TimeSeriesParameter(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -144,7 +144,7 @@ class TimeSeriesParameter(AdditionalDataHolder, Parsable):
         """
         Sets the startDateTime property value. Start time of the series being requested.
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     

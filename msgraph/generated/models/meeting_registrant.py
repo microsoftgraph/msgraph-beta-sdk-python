@@ -53,7 +53,7 @@ class MeetingRegistrant(meeting_registrant_base.MeetingRegistrantBase):
         """
         Sets the customQuestionAnswers property value. The registrant's answer to custom questions.
         Args:
-            value: Value to set for the customQuestionAnswers property.
+            value: Value to set for the custom_question_answers property.
         """
         self._custom_question_answers = value
     
@@ -87,7 +87,7 @@ class MeetingRegistrant(meeting_registrant_base.MeetingRegistrantBase):
         """
         Sets the firstName property value. The first name of the registrant.
         Args:
-            value: Value to set for the firstName property.
+            value: Value to set for the first_name property.
         """
         self._first_name = value
     
@@ -97,11 +97,11 @@ class MeetingRegistrant(meeting_registrant_base.MeetingRegistrantBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "custom_question_answers": lambda n : setattr(self, 'custom_question_answers', n.get_collection_of_object_values(custom_question_answer.CustomQuestionAnswer)),
+            "customQuestionAnswers": lambda n : setattr(self, 'custom_question_answers', n.get_collection_of_object_values(custom_question_answer.CustomQuestionAnswer)),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
-            "first_name": lambda n : setattr(self, 'first_name', n.get_str_value()),
-            "last_name": lambda n : setattr(self, 'last_name', n.get_str_value()),
-            "registration_date_time": lambda n : setattr(self, 'registration_date_time', n.get_datetime_value()),
+            "firstName": lambda n : setattr(self, 'first_name', n.get_str_value()),
+            "lastName": lambda n : setattr(self, 'last_name', n.get_str_value()),
+            "registrationDateTime": lambda n : setattr(self, 'registration_date_time', n.get_datetime_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(meeting_registrant_status.MeetingRegistrantStatus)),
         }
         super_fields = super().get_field_deserializers()
@@ -121,7 +121,7 @@ class MeetingRegistrant(meeting_registrant_base.MeetingRegistrantBase):
         """
         Sets the lastName property value. The last name of the registrant.
         Args:
-            value: Value to set for the lastName property.
+            value: Value to set for the last_name property.
         """
         self._last_name = value
     
@@ -138,7 +138,7 @@ class MeetingRegistrant(meeting_registrant_base.MeetingRegistrantBase):
         """
         Sets the registrationDateTime property value. Time in UTC when the registrant registers for the meeting. Read-only.
         Args:
-            value: Value to set for the registrationDateTime property.
+            value: Value to set for the registration_date_time property.
         """
         self._registration_date_time = value
     

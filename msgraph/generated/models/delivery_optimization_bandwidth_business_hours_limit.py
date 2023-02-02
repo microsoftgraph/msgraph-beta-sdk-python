@@ -37,7 +37,7 @@ class DeliveryOptimizationBandwidthBusinessHoursLimit(AdditionalDataHolder, Pars
         """
         Sets the bandwidthBeginBusinessHours property value. Specifies the beginning of business hours using a 24-hour clock (0-23). Valid values 0 to 23
         Args:
-            value: Value to set for the bandwidthBeginBusinessHours property.
+            value: Value to set for the bandwidth_begin_business_hours property.
         """
         self._bandwidth_begin_business_hours = value
     
@@ -54,7 +54,7 @@ class DeliveryOptimizationBandwidthBusinessHoursLimit(AdditionalDataHolder, Pars
         """
         Sets the bandwidthEndBusinessHours property value. Specifies the end of business hours using a 24-hour clock (0-23). Valid values 0 to 23
         Args:
-            value: Value to set for the bandwidthEndBusinessHours property.
+            value: Value to set for the bandwidth_end_business_hours property.
         """
         self._bandwidth_end_business_hours = value
     
@@ -71,7 +71,7 @@ class DeliveryOptimizationBandwidthBusinessHoursLimit(AdditionalDataHolder, Pars
         """
         Sets the bandwidthPercentageDuringBusinessHours property value. Specifies the percentage of bandwidth to limit during business hours (0-100). Valid values 0 to 100
         Args:
-            value: Value to set for the bandwidthPercentageDuringBusinessHours property.
+            value: Value to set for the bandwidth_percentage_during_business_hours property.
         """
         self._bandwidth_percentage_during_business_hours = value
     
@@ -88,7 +88,7 @@ class DeliveryOptimizationBandwidthBusinessHoursLimit(AdditionalDataHolder, Pars
         """
         Sets the bandwidthPercentageOutsideBusinessHours property value. Specifies the percentage of bandwidth to limit outsidse business hours (0-100). Valid values 0 to 100
         Args:
-            value: Value to set for the bandwidthPercentageOutsideBusinessHours property.
+            value: Value to set for the bandwidth_percentage_outside_business_hours property.
         """
         self._bandwidth_percentage_outside_business_hours = value
     
@@ -128,10 +128,10 @@ class DeliveryOptimizationBandwidthBusinessHoursLimit(AdditionalDataHolder, Pars
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "bandwidth_begin_business_hours": lambda n : setattr(self, 'bandwidth_begin_business_hours', n.get_int_value()),
-            "bandwidth_end_business_hours": lambda n : setattr(self, 'bandwidth_end_business_hours', n.get_int_value()),
-            "bandwidth_percentage_during_business_hours": lambda n : setattr(self, 'bandwidth_percentage_during_business_hours', n.get_int_value()),
-            "bandwidth_percentage_outside_business_hours": lambda n : setattr(self, 'bandwidth_percentage_outside_business_hours', n.get_int_value()),
+            "bandwidthBeginBusinessHours": lambda n : setattr(self, 'bandwidth_begin_business_hours', n.get_int_value()),
+            "bandwidthEndBusinessHours": lambda n : setattr(self, 'bandwidth_end_business_hours', n.get_int_value()),
+            "bandwidthPercentageDuringBusinessHours": lambda n : setattr(self, 'bandwidth_percentage_during_business_hours', n.get_int_value()),
+            "bandwidthPercentageOutsideBusinessHours": lambda n : setattr(self, 'bandwidth_percentage_outside_business_hours', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -149,7 +149,7 @@ class DeliveryOptimizationBandwidthBusinessHoursLimit(AdditionalDataHolder, Pars
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

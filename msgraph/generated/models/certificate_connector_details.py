@@ -23,7 +23,7 @@ class CertificateConnectorDetails(entity.Entity):
         """
         Sets the connectorName property value. Connector name (set during enrollment).
         Args:
-            value: Value to set for the connectorName property.
+            value: Value to set for the connector_name property.
         """
         self._connector_name = value
     
@@ -40,7 +40,7 @@ class CertificateConnectorDetails(entity.Entity):
         """
         Sets the connectorVersion property value. Version of the connector installed.
         Args:
-            value: Value to set for the connectorVersion property.
+            value: Value to set for the connector_version property.
         """
         self._connector_version = value
     
@@ -87,7 +87,7 @@ class CertificateConnectorDetails(entity.Entity):
         """
         Sets the enrollmentDateTime property value. Date/time when this connector was enrolled.
         Args:
-            value: Value to set for the enrollmentDateTime property.
+            value: Value to set for the enrollment_date_time property.
         """
         self._enrollment_date_time = value
     
@@ -97,11 +97,11 @@ class CertificateConnectorDetails(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "connector_name": lambda n : setattr(self, 'connector_name', n.get_str_value()),
-            "connector_version": lambda n : setattr(self, 'connector_version', n.get_str_value()),
-            "enrollment_date_time": lambda n : setattr(self, 'enrollment_date_time', n.get_datetime_value()),
-            "last_checkin_date_time": lambda n : setattr(self, 'last_checkin_date_time', n.get_datetime_value()),
-            "machine_name": lambda n : setattr(self, 'machine_name', n.get_str_value()),
+            "connectorName": lambda n : setattr(self, 'connector_name', n.get_str_value()),
+            "connectorVersion": lambda n : setattr(self, 'connector_version', n.get_str_value()),
+            "enrollmentDateTime": lambda n : setattr(self, 'enrollment_date_time', n.get_datetime_value()),
+            "lastCheckinDateTime": lambda n : setattr(self, 'last_checkin_date_time', n.get_datetime_value()),
+            "machineName": lambda n : setattr(self, 'machine_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -120,7 +120,7 @@ class CertificateConnectorDetails(entity.Entity):
         """
         Sets the lastCheckinDateTime property value. Date/time when this connector last connected to the service.
         Args:
-            value: Value to set for the lastCheckinDateTime property.
+            value: Value to set for the last_checkin_date_time property.
         """
         self._last_checkin_date_time = value
     
@@ -137,7 +137,7 @@ class CertificateConnectorDetails(entity.Entity):
         """
         Sets the machineName property value. Name of the machine hosting this connector service.
         Args:
-            value: Value to set for the machineName property.
+            value: Value to set for the machine_name property.
         """
         self._machine_name = value
     

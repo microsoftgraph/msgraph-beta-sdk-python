@@ -17,10 +17,11 @@ class EdiscoveryReviewTagItemRequestBuilder():
     """
     Provides operations to manage the tags property of the microsoft.graph.security.ediscoveryFile entity.
     """
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, ediscovery_review_tag_id: Optional[str] = None) -> None:
         """
         Instantiates a new EdiscoveryReviewTagItemRequestBuilder and sets the default values.
         Args:
+            ediscoveryReviewTagId: key: id of ediscoveryReviewTag
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -32,15 +33,15 @@ class EdiscoveryReviewTagItemRequestBuilder():
         self.url_template: str = "{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/reviewSets/{ediscoveryReviewSet%2Did}/files/{ediscoveryFile%2Did}/tags/{ediscoveryReviewTag%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["ediscoveryReviewTag%2Did"] = ediscoveryReviewTagId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[EdiscoveryReviewTagItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ediscovery_review_tag.EdiscoveryReviewTag]:
+    async def get(self,request_configuration: Optional[EdiscoveryReviewTagItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_review_tag.EdiscoveryReviewTag]:
         """
         Tags associated with the file.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscovery_review_tag.EdiscoveryReviewTag]
         """
         request_info = self.to_get_request_information(
@@ -52,7 +53,7 @@ class EdiscoveryReviewTagItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ediscovery_review_tag.EdiscoveryReviewTag, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ediscovery_review_tag.EdiscoveryReviewTag, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[EdiscoveryReviewTagItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

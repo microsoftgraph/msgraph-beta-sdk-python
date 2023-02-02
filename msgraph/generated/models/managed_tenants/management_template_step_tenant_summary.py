@@ -20,7 +20,7 @@ class ManagementTemplateStepTenantSummary(entity.Entity):
         """
         Sets the assignedTenantsCount property value. The assignedTenantsCount property
         Args:
-            value: Value to set for the assignedTenantsCount property.
+            value: Value to set for the assigned_tenants_count property.
         """
         self._assigned_tenants_count = value
     
@@ -37,13 +37,13 @@ class ManagementTemplateStepTenantSummary(entity.Entity):
         """
         Sets the compliantTenantsCount property value. The compliantTenantsCount property
         Args:
-            value: Value to set for the compliantTenantsCount property.
+            value: Value to set for the compliant_tenants_count property.
         """
         self._compliant_tenants_count = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new managementTemplateStepTenantSummary and sets the default values.
+        Instantiates a new ManagementTemplateStepTenantSummary and sets the default values.
         """
         super().__init__()
         # The assignedTenantsCount property
@@ -92,7 +92,7 @@ class ManagementTemplateStepTenantSummary(entity.Entity):
         """
         Sets the createdByUserId property value. The createdByUserId property
         Args:
-            value: Value to set for the createdByUserId property.
+            value: Value to set for the created_by_user_id property.
         """
         self._created_by_user_id = value
     
@@ -109,7 +109,7 @@ class ManagementTemplateStepTenantSummary(entity.Entity):
         """
         Sets the createdDateTime property value. The createdDateTime property
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -138,7 +138,7 @@ class ManagementTemplateStepTenantSummary(entity.Entity):
         """
         Sets the dismissedTenantsCount property value. The dismissedTenantsCount property
         Args:
-            value: Value to set for the dismissedTenantsCount property.
+            value: Value to set for the dismissed_tenants_count property.
         """
         self._dismissed_tenants_count = value
     
@@ -148,21 +148,21 @@ class ManagementTemplateStepTenantSummary(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assigned_tenants_count": lambda n : setattr(self, 'assigned_tenants_count', n.get_int_value()),
-            "compliant_tenants_count": lambda n : setattr(self, 'compliant_tenants_count', n.get_int_value()),
-            "created_by_user_id": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "dismissed_tenants_count": lambda n : setattr(self, 'dismissed_tenants_count', n.get_int_value()),
-            "ineligible_tenants_count": lambda n : setattr(self, 'ineligible_tenants_count', n.get_int_value()),
-            "last_action_by_user_id": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
-            "last_action_date_time": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
-            "management_template_collection_display_name": lambda n : setattr(self, 'management_template_collection_display_name', n.get_str_value()),
-            "management_template_collection_id": lambda n : setattr(self, 'management_template_collection_id', n.get_str_value()),
-            "management_template_display_name": lambda n : setattr(self, 'management_template_display_name', n.get_str_value()),
-            "management_template_id": lambda n : setattr(self, 'management_template_id', n.get_str_value()),
-            "management_template_step_display_name": lambda n : setattr(self, 'management_template_step_display_name', n.get_str_value()),
-            "management_template_step_id": lambda n : setattr(self, 'management_template_step_id', n.get_str_value()),
-            "not_compliant_tenants_count": lambda n : setattr(self, 'not_compliant_tenants_count', n.get_int_value()),
+            "assignedTenantsCount": lambda n : setattr(self, 'assigned_tenants_count', n.get_int_value()),
+            "compliantTenantsCount": lambda n : setattr(self, 'compliant_tenants_count', n.get_int_value()),
+            "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "dismissedTenantsCount": lambda n : setattr(self, 'dismissed_tenants_count', n.get_int_value()),
+            "ineligibleTenantsCount": lambda n : setattr(self, 'ineligible_tenants_count', n.get_int_value()),
+            "lastActionByUserId": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
+            "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
+            "managementTemplateCollectionDisplayName": lambda n : setattr(self, 'management_template_collection_display_name', n.get_str_value()),
+            "managementTemplateCollectionId": lambda n : setattr(self, 'management_template_collection_id', n.get_str_value()),
+            "managementTemplateDisplayName": lambda n : setattr(self, 'management_template_display_name', n.get_str_value()),
+            "managementTemplateId": lambda n : setattr(self, 'management_template_id', n.get_str_value()),
+            "managementTemplateStepDisplayName": lambda n : setattr(self, 'management_template_step_display_name', n.get_str_value()),
+            "managementTemplateStepId": lambda n : setattr(self, 'management_template_step_id', n.get_str_value()),
+            "notCompliantTenantsCount": lambda n : setattr(self, 'not_compliant_tenants_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -181,7 +181,7 @@ class ManagementTemplateStepTenantSummary(entity.Entity):
         """
         Sets the ineligibleTenantsCount property value. The ineligibleTenantsCount property
         Args:
-            value: Value to set for the ineligibleTenantsCount property.
+            value: Value to set for the ineligible_tenants_count property.
         """
         self._ineligible_tenants_count = value
     
@@ -198,7 +198,7 @@ class ManagementTemplateStepTenantSummary(entity.Entity):
         """
         Sets the lastActionByUserId property value. The lastActionByUserId property
         Args:
-            value: Value to set for the lastActionByUserId property.
+            value: Value to set for the last_action_by_user_id property.
         """
         self._last_action_by_user_id = value
     
@@ -215,7 +215,7 @@ class ManagementTemplateStepTenantSummary(entity.Entity):
         """
         Sets the lastActionDateTime property value. The lastActionDateTime property
         Args:
-            value: Value to set for the lastActionDateTime property.
+            value: Value to set for the last_action_date_time property.
         """
         self._last_action_date_time = value
     
@@ -232,7 +232,7 @@ class ManagementTemplateStepTenantSummary(entity.Entity):
         """
         Sets the managementTemplateCollectionDisplayName property value. The managementTemplateCollectionDisplayName property
         Args:
-            value: Value to set for the managementTemplateCollectionDisplayName property.
+            value: Value to set for the management_template_collection_display_name property.
         """
         self._management_template_collection_display_name = value
     
@@ -249,7 +249,7 @@ class ManagementTemplateStepTenantSummary(entity.Entity):
         """
         Sets the managementTemplateCollectionId property value. The managementTemplateCollectionId property
         Args:
-            value: Value to set for the managementTemplateCollectionId property.
+            value: Value to set for the management_template_collection_id property.
         """
         self._management_template_collection_id = value
     
@@ -266,7 +266,7 @@ class ManagementTemplateStepTenantSummary(entity.Entity):
         """
         Sets the managementTemplateDisplayName property value. The managementTemplateDisplayName property
         Args:
-            value: Value to set for the managementTemplateDisplayName property.
+            value: Value to set for the management_template_display_name property.
         """
         self._management_template_display_name = value
     
@@ -283,7 +283,7 @@ class ManagementTemplateStepTenantSummary(entity.Entity):
         """
         Sets the managementTemplateId property value. The managementTemplateId property
         Args:
-            value: Value to set for the managementTemplateId property.
+            value: Value to set for the management_template_id property.
         """
         self._management_template_id = value
     
@@ -300,7 +300,7 @@ class ManagementTemplateStepTenantSummary(entity.Entity):
         """
         Sets the managementTemplateStepDisplayName property value. The managementTemplateStepDisplayName property
         Args:
-            value: Value to set for the managementTemplateStepDisplayName property.
+            value: Value to set for the management_template_step_display_name property.
         """
         self._management_template_step_display_name = value
     
@@ -317,7 +317,7 @@ class ManagementTemplateStepTenantSummary(entity.Entity):
         """
         Sets the managementTemplateStepId property value. The managementTemplateStepId property
         Args:
-            value: Value to set for the managementTemplateStepId property.
+            value: Value to set for the management_template_step_id property.
         """
         self._management_template_step_id = value
     
@@ -334,7 +334,7 @@ class ManagementTemplateStepTenantSummary(entity.Entity):
         """
         Sets the notCompliantTenantsCount property value. The notCompliantTenantsCount property
         Args:
-            value: Value to set for the notCompliantTenantsCount property.
+            value: Value to set for the not_compliant_tenants_count property.
         """
         self._not_compliant_tenants_count = value
     

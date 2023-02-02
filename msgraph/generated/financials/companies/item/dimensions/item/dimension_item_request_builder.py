@@ -26,10 +26,11 @@ class DimensionItemRequestBuilder():
         """
         return dimension_values_request_builder.DimensionValuesRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None, dimension_id: Optional[str] = None) -> None:
         """
         Instantiates a new DimensionItemRequestBuilder and sets the default values.
         Args:
+            dimensionId: key: id of dimension
             pathParameters: The raw url or the Url template parameters for the request.
             requestAdapter: The request adapter to use to execute the requests.
         """
@@ -41,6 +42,7 @@ class DimensionItemRequestBuilder():
         self.url_template: str = "{+baseurl}/financials/companies/{company%2Did}/dimensions/{dimension%2Did}{?%24select,%24expand}"
 
         url_tpl_params = get_path_parameters(path_parameters)
+        url_tpl_params["dimension%2Did"] = dimensionId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
@@ -57,12 +59,11 @@ class DimensionItemRequestBuilder():
         url_tpl_params["dimensionValue%2Did"] = id
         return dimension_value_item_request_builder.DimensionValueItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DimensionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[dimension.Dimension]:
+    async def get(self,request_configuration: Optional[DimensionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[dimension.Dimension]:
         """
         Get dimensions from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[dimension.Dimension]
         """
         request_info = self.to_get_request_information(
@@ -74,7 +75,7 @@ class DimensionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, dimension.Dimension, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, dimension.Dimension, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DimensionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

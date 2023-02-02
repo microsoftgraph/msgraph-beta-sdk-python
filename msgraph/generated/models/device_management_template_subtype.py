@@ -2,7 +2,7 @@ from enum import Enum
 
 class DeviceManagementTemplateSubtype(Enum):
     # Template has no subtype
-    None_escaped = "none",
+    None_ = "none",
     # Endpoint security firewall subtype
     Firewall = "firewall",
     # Endpoint security disk encryption subtype

@@ -20,7 +20,7 @@ class DeviceCompliancePolicySettingStateSummary(entity.Entity):
         """
         Sets the conflictDeviceCount property value. The number of devices in a conflict state. Optional. Read-only.
         Args:
-            value: Value to set for the conflictDeviceCount property.
+            value: Value to set for the conflict_device_count property.
         """
         self._conflict_device_count = value
     
@@ -83,7 +83,7 @@ class DeviceCompliancePolicySettingStateSummary(entity.Entity):
         """
         Sets the errorDeviceCount property value. The number of devices in an error state. Optional. Read-only.
         Args:
-            value: Value to set for the errorDeviceCount property.
+            value: Value to set for the error_device_count property.
         """
         self._error_device_count = value
     
@@ -100,7 +100,7 @@ class DeviceCompliancePolicySettingStateSummary(entity.Entity):
         """
         Sets the failedDeviceCount property value. The number of devices in a failed state. Optional. Read-only.
         Args:
-            value: Value to set for the failedDeviceCount property.
+            value: Value to set for the failed_device_count property.
         """
         self._failed_device_count = value
     
@@ -110,19 +110,19 @@ class DeviceCompliancePolicySettingStateSummary(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "conflict_device_count": lambda n : setattr(self, 'conflict_device_count', n.get_int_value()),
-            "error_device_count": lambda n : setattr(self, 'error_device_count', n.get_int_value()),
-            "failed_device_count": lambda n : setattr(self, 'failed_device_count', n.get_int_value()),
-            "intune_account_id": lambda n : setattr(self, 'intune_account_id', n.get_str_value()),
-            "intune_setting_id": lambda n : setattr(self, 'intune_setting_id', n.get_str_value()),
-            "last_refreshed_date_time": lambda n : setattr(self, 'last_refreshed_date_time', n.get_datetime_value()),
-            "not_applicable_device_count": lambda n : setattr(self, 'not_applicable_device_count', n.get_int_value()),
-            "pending_device_count": lambda n : setattr(self, 'pending_device_count', n.get_int_value()),
-            "policy_type": lambda n : setattr(self, 'policy_type', n.get_str_value()),
-            "setting_name": lambda n : setattr(self, 'setting_name', n.get_str_value()),
-            "succeeded_device_count": lambda n : setattr(self, 'succeeded_device_count', n.get_int_value()),
-            "tenant_display_name": lambda n : setattr(self, 'tenant_display_name', n.get_str_value()),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "conflictDeviceCount": lambda n : setattr(self, 'conflict_device_count', n.get_int_value()),
+            "errorDeviceCount": lambda n : setattr(self, 'error_device_count', n.get_int_value()),
+            "failedDeviceCount": lambda n : setattr(self, 'failed_device_count', n.get_int_value()),
+            "intuneAccountId": lambda n : setattr(self, 'intune_account_id', n.get_str_value()),
+            "intuneSettingId": lambda n : setattr(self, 'intune_setting_id', n.get_str_value()),
+            "lastRefreshedDateTime": lambda n : setattr(self, 'last_refreshed_date_time', n.get_datetime_value()),
+            "notApplicableDeviceCount": lambda n : setattr(self, 'not_applicable_device_count', n.get_int_value()),
+            "pendingDeviceCount": lambda n : setattr(self, 'pending_device_count', n.get_int_value()),
+            "policyType": lambda n : setattr(self, 'policy_type', n.get_str_value()),
+            "settingName": lambda n : setattr(self, 'setting_name', n.get_str_value()),
+            "succeededDeviceCount": lambda n : setattr(self, 'succeeded_device_count', n.get_int_value()),
+            "tenantDisplayName": lambda n : setattr(self, 'tenant_display_name', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -141,7 +141,7 @@ class DeviceCompliancePolicySettingStateSummary(entity.Entity):
         """
         Sets the intuneAccountId property value. The identifer for the Microsoft Intune account. Required. Read-only.
         Args:
-            value: Value to set for the intuneAccountId property.
+            value: Value to set for the intune_account_id property.
         """
         self._intune_account_id = value
     
@@ -158,7 +158,7 @@ class DeviceCompliancePolicySettingStateSummary(entity.Entity):
         """
         Sets the intuneSettingId property value. The identifier for the Intune setting. Optional. Read-only.
         Args:
-            value: Value to set for the intuneSettingId property.
+            value: Value to set for the intune_setting_id property.
         """
         self._intune_setting_id = value
     
@@ -175,7 +175,7 @@ class DeviceCompliancePolicySettingStateSummary(entity.Entity):
         """
         Sets the lastRefreshedDateTime property value. Date and time the entity was last updated in the multi-tenant management platform. Optional. Read-only.
         Args:
-            value: Value to set for the lastRefreshedDateTime property.
+            value: Value to set for the last_refreshed_date_time property.
         """
         self._last_refreshed_date_time = value
     
@@ -192,7 +192,7 @@ class DeviceCompliancePolicySettingStateSummary(entity.Entity):
         """
         Sets the notApplicableDeviceCount property value. The number of devices in a not applicable state. Optional. Read-only.
         Args:
-            value: Value to set for the notApplicableDeviceCount property.
+            value: Value to set for the not_applicable_device_count property.
         """
         self._not_applicable_device_count = value
     
@@ -209,7 +209,7 @@ class DeviceCompliancePolicySettingStateSummary(entity.Entity):
         """
         Sets the pendingDeviceCount property value. The number of devices in a pending state. Optional. Read-only.
         Args:
-            value: Value to set for the pendingDeviceCount property.
+            value: Value to set for the pending_device_count property.
         """
         self._pending_device_count = value
     
@@ -226,7 +226,7 @@ class DeviceCompliancePolicySettingStateSummary(entity.Entity):
         """
         Sets the policyType property value. The type for the device compliance policy. Optional. Read-only.
         Args:
-            value: Value to set for the policyType property.
+            value: Value to set for the policy_type property.
         """
         self._policy_type = value
     
@@ -266,7 +266,7 @@ class DeviceCompliancePolicySettingStateSummary(entity.Entity):
         """
         Sets the settingName property value. The name for the setting within the device compliance policy. Optional. Read-only.
         Args:
-            value: Value to set for the settingName property.
+            value: Value to set for the setting_name property.
         """
         self._setting_name = value
     
@@ -283,7 +283,7 @@ class DeviceCompliancePolicySettingStateSummary(entity.Entity):
         """
         Sets the succeededDeviceCount property value. The number of devices in a succeeded state. Optional. Read-only.
         Args:
-            value: Value to set for the succeededDeviceCount property.
+            value: Value to set for the succeeded_device_count property.
         """
         self._succeeded_device_count = value
     
@@ -300,7 +300,7 @@ class DeviceCompliancePolicySettingStateSummary(entity.Entity):
         """
         Sets the tenantDisplayName property value. The display name for the managed tenant. Required. Read-only.
         Args:
-            value: Value to set for the tenantDisplayName property.
+            value: Value to set for the tenant_display_name property.
         """
         self._tenant_display_name = value
     
@@ -317,7 +317,7 @@ class DeviceCompliancePolicySettingStateSummary(entity.Entity):
         """
         Sets the tenantId property value. The Azure Active Directory tenant identifier for the managed tenant. Required. Read-only.
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     
